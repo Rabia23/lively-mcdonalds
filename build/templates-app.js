@@ -4,5 +4,6 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
   $templateCache.put("home/home.tpl.html",
     "<div>\n" +
     "  welcome to home page\n" +
+    "  {{users}}\n" +
     "</div>");
 }]);

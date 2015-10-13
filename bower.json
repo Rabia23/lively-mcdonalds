@@ -8,5 +8,7 @@
     "angular-bootstrap": "~0.14.0",
     "angular-ui-router": "~0.2.15"
   },
-  "dependencies": {}
+  "dependencies": {
+    "parse-angular-patch": "~0.1.2"
+  }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="ngBoilerplate" ng-controller="AppCtrl">
+<html ng-app="livefeed" ng-controller="AppCtrl">
   <head>
     <title ng-bind="pageTitle"></title>
 
@@ -14,10 +14,8 @@
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
 
-    <!-- it's stupid to have to load it here, but this is for the +1 button -->
-    <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
-      { "parsetags": "explicit" }
-    </script>
+    <script src="//www.parsecdn.com/js/parse-1.2.15.js"></script>
+
   </head>
   <body>
 

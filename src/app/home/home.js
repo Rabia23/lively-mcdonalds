@@ -12,8 +12,9 @@
  * The dependencies block here is also where component dependencies should be
  * specified, as shown below.
  */
-angular.module( 'ngBoilerplate.home', [
-  'ui.router'
+angular.module( 'livefeed.home', [
+  'ui.router',
+  'livefeed.queries'
 ])
 
 /**
@@ -37,8 +38,11 @@ angular.module( 'ngBoilerplate.home', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope ) {
-  
+.controller( 'HomeCtrl', function HomeController( $scope, chartQueries ) {
+
+  chartQueries.piechart().then(function(data){
+    $scope.users = data;
+  });
 })
 
 ;

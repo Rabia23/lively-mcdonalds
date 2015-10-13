@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="ngBoilerplate" ng-controller="AppCtrl">
+<html ng-app="livefeed" ng-controller="AppCtrl">
   <head>
     <title ng-bind="pageTitle"></title>
 
@@ -16,15 +16,18 @@
     <script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js"></script>
     <script type="text/javascript" src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="vendor/parse-angular-patch/dist/parse-angular.js"></script>
     <script type="text/javascript" src="src/app/app.js"></script>
     <script type="text/javascript" src="src/app/home/home.js"></script>
+    <script type="text/javascript" src="src/models.js"></script>
+    <script type="text/javascript" src="src/models/models.js"></script>
+    <script type="text/javascript" src="src/models/user.js"></script>
+    <script type="text/javascript" src="src/queries.js"></script>
     <script type="text/javascript" src="templates-common.js"></script>
     <script type="text/javascript" src="templates-app.js"></script>
 
-    <!-- it's stupid to have to load it here, but this is for the +1 button -->
-    <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
-      { "parsetags": "explicit" }
-    </script>
+    <script src="//www.parsecdn.com/js/parse-1.2.15.js"></script>
+
   </head>
   <body>
 
