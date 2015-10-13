@@ -9,6 +9,7 @@
     "angular-ui-router": "~0.2.15"
   },
   "dependencies": {
-    "parse-angular-patch": "~0.1.2"
+    "parse-angular-patch": "~0.1.2",
+    "angular-chart.js": "~0.8.4"
   }
 }
