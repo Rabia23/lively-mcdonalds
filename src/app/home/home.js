@@ -42,6 +42,7 @@ angular.module( 'livefeed.home', [
  */
 .controller( 'HomeCtrl', function HomeController( $scope, chartQueries, chartService, _ ) {
 
+  $scope.bar_data = [];
 
   chartQueries.getMainRatingOptions().then(function(options_data){
     $scope.options_data = options_data;
@@ -50,11 +51,12 @@ angular.module( 'livefeed.home', [
       
       var graph_data = chartService.getPieChartData(options_data, feedback_data);
       $scope.labels = _.map(graph_data, function(data){return data.title;});
-      console.log($scope.labels);
       $scope.data = _.map(graph_data, function(data){return data.length;});
-      console.log($scope.data);
 
-      
+      var bar_graph = chartService.getBarChartData(options_data, feedback_data);
+      $scope.bar_labels = _.map(bar_graph, function(data){return data.title;});
+      var bar_data = _.map(bar_graph, function(data){return data.length;});
+      $scope.bar_data.push(bar_data);
     });
   });
   
