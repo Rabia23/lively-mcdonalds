@@ -15,7 +15,8 @@
 angular.module( 'livefeed.home', [
   'ui.router',
   'livefeed.queries',
-  'chart.js'
+  'chart.js',
+  'livefeed.chart'
 ])
 
 /**
@@ -39,29 +40,43 @@ angular.module( 'livefeed.home', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope, chartQueries ) {
+.controller( 'HomeCtrl', function HomeController( $scope, chartQueries, chartService, _ ) {
 
-  $scope.clicked = function(e){
-    console.log("clicked");
-    console.log(e);
-  };
 
-  $scope.labels = ["Good", "Bad", "Very Bad"];
-  $scope.data = [300, 500, 100];
+  chartQueries.getMainRatingOptions().then(function(options_data){
+    $scope.options_data = options_data;
+    chartQueries.getUserFeedBack().then(function(feedback_data){
+      $scope.feedback_data = feedback_data;
+      
+      var graph_data = chartService.getPieChartData(options_data, feedback_data);
+      $scope.labels = _.map(graph_data, function(data){return data.title;});
+      console.log($scope.labels);
+      $scope.data = _.map(graph_data, function(data){return data.length;});
+      console.log($scope.data);
 
-  $scope.line_labels = ["January", "February", "March", "April", "May", "June", "July"];
-  $scope.series = ['Series A', 'Series B'];
-  $scope.line_data = [
-    [65, 59, 80, 81, 56, 55, 40],
-    [28, 48, 40, 19, 86, 27, 90]
-  ];
-  $scope.onClick = function (points, evt) {
-    console.log(points, evt);
-  };
-  
-  chartQueries.piechart().then(function(data){
-    $scope.users = data;
+      
+    });
   });
+  
+
+  // $scope.clicked = function(e){
+  //   console.log("clicked");
+  //   console.log(e);
+  // };
+
+  // $scope.labels = ["Good", "Bad", "Very Bad"];
+  // $scope.data = [300, 500, 100];
+
+
+  // $scope.line_labels = ["January", "February", "March", "April", "May", "June", "July"];
+  // $scope.series = ['Series A', 'Series B'];
+  // $scope.line_data = [
+  //   [65, 59, 80, 81, 56, 55, 40],
+  //   [28, 48, 40, 19, 86, 27, 90]
+  // ];
+  // $scope.onClick = function (points, evt) {
+  //   console.log(points, evt);
+  // };
 
 
 });

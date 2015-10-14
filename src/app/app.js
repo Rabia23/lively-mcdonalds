@@ -5,23 +5,23 @@ angular.module( 'livefeed', [
   'ui.router',
   'parse-angular',
   'parse-angular.enhance',
-  'livefeed.queries'
+  'livefeed.queries',
+  'livefeed.chart'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise( '/home' );
 })
 
+.constant('_',
+    window._
+)
+
 .run( function run () {
-  Parse.initialize("Sh3kxC6beypF4TjUkljjAi4NuDEm3ghkcvy12gL8", "Ms1UMG098qjYIZgvEaXTJeRtQSmVy9a0Tnw3b7Nh");
+  Parse.initialize("Xko6uCPfXVY6jSBwt3klu39eXKs3dZI6QKz94Y9s", "XT9qGnhCUaFTOVumUNPxo5PPnvMwNHWeyi6WEloF");
 })
 
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
-  $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-    if ( angular.isDefined( toState.data.pageTitle ) ) {
-      $scope.pageTitle = toState.data.pageTitle + ' | livefeed' ;
-    }
-  });
 })
 
 ;

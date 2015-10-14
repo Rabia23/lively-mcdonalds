@@ -69,7 +69,9 @@ module.exports = {
       'vendor/angular-ui-utils/modules/route/route.js',
       'vendor/parse-angular-patch/dist/parse-angular.js',
       'vendor/Chart.js/Chart.min.js',
-      'vendor/angular-chart.js/dist/angular-chart.min.js'
+      'vendor/angular-chart.js/dist/angular-chart.min.js',
+      'vendor/underscore/underscore-min.js',
+
     ],
     css: [
       'vendor/angular-chart.js/dist/angular-chart.min.css'
