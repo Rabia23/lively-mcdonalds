@@ -42,21 +42,30 @@ angular.module( 'livefeed.home', [
  */
 .controller( 'HomeCtrl', function HomeController( $scope, chartQueries, chartService, _ ) {
 
+      chartQueries.getCities().then(function(cities_data){
+          $scope.cities_data = cities_data;
+          console.log(cities_data);
+        chartQueries.getRegions().then(function(regions_data){
+          $scope.regions_data = regions_data;
 
-  chartQueries.getMainRatingOptions().then(function(options_data){
-    $scope.options_data = options_data;
-    chartQueries.getUserFeedBack().then(function(feedback_data){
-      $scope.feedback_data = feedback_data;
-      
-      var graph_data = chartService.getPieChartData(options_data, feedback_data);
-      $scope.labels = _.map(graph_data, function(data){return data.title;});
-      console.log($scope.labels);
-      $scope.data = _.map(graph_data, function(data){return data.length;});
-      console.log($scope.data);
+          var region_city_data = chartQueries.getRegionCities(regions_data,cities_data);
+        });
+      });
 
-      
-    });
-  });
+  //    chartQueries.getMainRatingOptions().then(function(options_data){
+  //    $scope.options_data = options_data;
+  //    chartQueries.getUserFeedBack().then(function(feedback_data){
+  //    $scope.feedback_data = feedback_data;
+  //
+  //    var graph_data = chartService.getPieChartData(options_data, feedback_data);
+  //    $scope.labels = _.map(graph_data, function(data){return data.title;});
+  //    console.log($scope.labels);
+  //    $scope.data = _.map(graph_data, function(data){return data.length;});
+  //    console.log($scope.data);
+  //
+  //
+  //  });
+  //});
   
 
   // $scope.clicked = function(e){
