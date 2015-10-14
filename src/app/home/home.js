@@ -42,7 +42,15 @@ angular.module( 'livefeed.home', [
  */
 .controller( 'HomeCtrl', function HomeController( $scope, chartQueries, chartService, _ ) {
 
+  
   $scope.bar_data = [];
+
+  chartQueries.getCities().then(function(cities_data){
+    chartQueries.getRegions().then(function(regions_data){
+      $scope.regions_data = regions_data;
+      var region_city_data = chartQueries.getRegionCities(regions_data,cities_data);
+    });
+  });
 
   chartQueries.getMainRatingOptions().then(function(options_data){
     $scope.options_data = options_data;
@@ -59,26 +67,6 @@ angular.module( 'livefeed.home', [
       $scope.bar_data.push(bar_data);
     });
   });
-  
-
-  // $scope.clicked = function(e){
-  //   console.log("clicked");
-  //   console.log(e);
-  // };
-
-  // $scope.labels = ["Good", "Bad", "Very Bad"];
-  // $scope.data = [300, 500, 100];
-
-
-  // $scope.line_labels = ["January", "February", "March", "April", "May", "June", "July"];
-  // $scope.series = ['Series A', 'Series B'];
-  // $scope.line_data = [
-  //   [65, 59, 80, 81, 56, 55, 40],
-  //   [28, 48, 40, 19, 86, 27, 90]
-  // ];
-  // $scope.onClick = function (points, evt) {
-  //   console.log(points, evt);
-  // };
 
 
 });
