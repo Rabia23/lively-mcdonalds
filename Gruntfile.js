@@ -10,10 +10,10 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-conventional-changelog');
   grunt.loadNpmTasks('grunt-bump');
+  grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-coffeelint');
   grunt.loadNpmTasks('grunt-ng-annotate');
   grunt.loadNpmTasks('grunt-html2js');
@@ -305,7 +305,7 @@ module.exports = function ( grunt ) {
       globals: {}
     },
 
-    /**
+     /**
      * `coffeelint` does the same as `jshint`, but for CoffeeScript.
      * CoffeeScript is not the default in ngBoilerplate, so we're just using
      * the defaults here.
@@ -448,8 +448,9 @@ module.exports = function ( grunt ) {
         files: [ 
           '<%= app_files.coffee %>'
         ],
-        tasks: [ 'coffeelint:src', 'coffee:source', 'copy:build_appjs' ]
+        tasks: [ 'coffeelint:src', 'coffee:source', 'karma:unit:run', 'copy:build_appjs' ]
       },
+
 
       /**
        * When assets are changed, copy them. Note that this will *not* copy new
@@ -501,20 +502,21 @@ module.exports = function ( grunt ) {
         options: {
           livereload: false
         }
-      },
+      }
 
-      /**
-       * When a CoffeeScript unit test file changes, we only want to lint it and
-       * run the unit tests. We don't want to do any live reloading.
-       */
-      coffeeunit: {
-        files: [
-          '<%= app_files.coffeeunit %>'
-        ],
-        tasks: [ 'coffeelint:test'],
-        options: {
-          livereload: false
-        }
+    },
+
+    /**
+     * When a CoffeeScript unit test file changes, we only want to lint it and
+     * run the unit tests. We don't want to do any live reloading.
+     */
+    coffeeunit: {
+      files: [
+        '<%= app_files.coffeeunit %>'
+      ],
+      tasks: [ 'coffeelint:test', 'karma:unit:run' ],
+      options: {
+        livereload: false
       }
     },
     
@@ -524,44 +526,11 @@ module.exports = function ( grunt ) {
  
             // the server root directory 
             root: '<%= build_dir %>',
- 
-            // the server port 
-            // can also be written as a function, e.g. 
-            // port: function() { return 8282; } 
             port: 3000,
- 
-            // the host ip address 
-            // If specified to, for example, "127.0.0.1" the server will 
-            // only be available on that ip. 
-            // Specify "0.0.0.0" to be available everywhere 
             host: "localhost",
- 
-            //cache: <sec>,
-            //showDir : true,
-            //autoIndex: true,
- 
-            // server default file extension 
             ext: "html",
- 
-            // run in parallel with other tasks 
             runInBackground: false,
  
-            // specify a logger function. By default the requests are 
-            // sent to stdout. 
-            //logFn: function(req, res, error) { },
- 
-            // Proxies all requests which can't be resolved locally to the given url 
-            // Note this this will disable 'showDir' 
-            //proxy: "http://someurl.com",
- 
-            /// Use 'https: true' for default module SSL configuration 
-            /// (default state is disabled) 
-            /*https: {
-                cert: "cert.pem",
-                key : "key.pem"
-            },*/
- 
-            // Tell grunt task to open the browser 
             openBrowser : false
  
         }
@@ -592,7 +561,7 @@ module.exports = function ( grunt ) {
    * The `build` task gets your app ready to run for development and testing.
    */
   grunt.registerTask( 'build', [
-    'clean', 'html2js', 'jshint', 'coffeelint', 'coffee', 'less:build',
+    'clean', 'html2js', 'jshint', 'coffeelint', 'coffee','less:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss', 'index:build'
   ]);
@@ -631,6 +600,7 @@ module.exports = function ( grunt ) {
    */
   grunt.registerMultiTask( 'index', 'Process index.html template', function () {
     var dirRE = new RegExp( '^('+grunt.config('build_dir')+'|'+grunt.config('compile_dir')+')\/', 'g' );
+    
     var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
     });

@@ -1,7 +1,7 @@
 angular.module( 'livefeed', [
   'templates-app',
   'templates-common',
-  'livefeed.home',
+  'livefeed.dashboard',
   'ui.router',
   'parse-angular',
   'parse-angular.enhance',
@@ -10,7 +10,7 @@ angular.module( 'livefeed', [
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/home' );
+  $urlRouterProvider.otherwise( '/dashboard' );
 })
 
 .constant('_',
@@ -21,7 +21,10 @@ angular.module( 'livefeed', [
   Parse.initialize("Xko6uCPfXVY6jSBwt3klu39eXKs3dZI6QKz94Y9s", "XT9qGnhCUaFTOVumUNPxo5PPnvMwNHWeyi6WEloF");
 })
 
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
+.controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope ) {
+  $rootScope.main = {
+    brand: "LiveFeed"
+  };
 })
 
 ;
