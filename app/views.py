@@ -18,14 +18,7 @@ def region(request):
         data = request.data["object"]
         trigger = request.data["triggerName"]
 
-        if trigger == constants.TRIGGER_BEFORE_SAVE:
-            region = Region.get_if_exists(data["objectId"])
-            if region:
-                serializer = RegionSerializer(region, data=data)
-            else:
-                serializer = RegionSerializer(data=data)
-            return beforeSave(serializer, data)
-        elif trigger == constants.TRIGGER_AFTER_SAVE:
+        if trigger == constants.TRIGGER_AFTER_SAVE:
             region = Region.get_if_exists(data["objectId"])
             if region:
                 serializer = RegionSerializer(region, data=data)
@@ -46,7 +39,7 @@ def city(request):
         data = request.data["object"]
         trigger = request.data["triggerName"]
 
-        if trigger == constants.TRIGGER_BEFORE_SAVE:
+        if trigger == constants.TRIGGER_AFTER_SAVE:
             city = City.get_if_exists(data["objectId"])
             if city:
                 serializer = CitySerializer(city, data=data)
