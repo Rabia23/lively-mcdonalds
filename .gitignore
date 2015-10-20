@@ -6,4 +6,3 @@
 local_settings.py
 error.log
 venv
-staticfiles
