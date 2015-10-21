@@ -45,3 +45,5 @@ class Branch(models.Model):
 
 class Devices(models.Model):
     branch = models.ForeignKey(Branch, related_name='devices')
+    city = models.ForeignKey(City, related_name='devices')
+    region = models.ForeignKey(Region, related_name='devices')
