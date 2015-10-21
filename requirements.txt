@@ -8,3 +8,4 @@ gunicorn==19.3.0
 psycopg2==2.6.1
 SQLAlchemy==1.0.8
 static3==0.6.1
+parse-rest==0.2.20141004

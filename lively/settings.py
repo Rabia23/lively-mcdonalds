@@ -122,6 +122,10 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
+#------------------------- Parse Constants --------------------------
+APPLICATION_ID = "Xko6uCPfXVY6jSBwt3klu39eXKs3dZI6QKz94Y9s"
+REST_API_KEY = "BPKMHHVjVPcMwMl8pZdEHGQ20RdFKdvyQDIRsjuk"
+
 try:
     from local_settings import *
 except ImportError:

@@ -25,7 +25,7 @@ class Region(models.Model):
 class City(models.Model):
     name = models.CharField(max_length=20)
     objectId = models.CharField(max_length=20)
-    region = models.ForeignKey(Region, related_name='cities')
+    region = models.ForeignKey(Region, related_name='cities', null=True, blank=True)
 
     def __unicode__(self):
        return self.name
