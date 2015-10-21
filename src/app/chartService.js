@@ -2,31 +2,57 @@ angular.module('livefeed.chart', [])
 
 .service('chartService', function(_){
 
-var mainRatingOptions = [];
+  var randomColorGenerator = function () { 
+      return '#' + (Math.random().toString(16) + '0000000').slice(2, 8); 
+  };
 
-	return {
 
-		getPieChartData: function(options_data, feedback_data){
-			var allSelectedOptions = _.pluck(_.pluck(feedback_data, 'attributes'), "selectedRatingOption");
-			var grouped_feeback = _.groupBy(allSelectedOptions, "id");
-			var feedback_length = feedback_data.length;
-			var graph_data  = _.map(options_data, function(option){
-				var length = (grouped_feeback[option.id] === undefined)? 0 : grouped_feeback[option.id].length;
-				return {length: length, title: option.attributes.optionString, percentage: ((length*100)/feedback_length)};
-			});
-			return graph_data;
-		},
+  return {
+    
+    
+    decideColorScheme: function(graph_data){
+      return _.map(graph_data.feedback,  function(data){ 
+                  if(data.label === "Very Bad"){
+                    return '#ca786a';
+                  }
+                  else if(data.label === "Bad"){
+                    return '#d8c170';
+                  }
+                  else if(data.label === "Good"){
+                    return '#68acce';
+                  }
+                  else if(data.label === "Very Good"){
+                    return '#2ca998';
+                  }
+                  else{
+                    return randomColorGenerator();
+                  }        
 
-		getBarChartData: function(options_data, feedback_data){
-			var allSelectedOptions = _.pluck(_.pluck(feedback_data, 'attributes'), "selectedRatingOption");
-			var grouped_feeback = _.groupBy(allSelectedOptions, "id");
-			var graph_data  = _.map(options_data, function(option){
-				var length = (grouped_feeback[option.id] === undefined)? 0 : grouped_feeback[option.id].length;
-				return {length: length, title: option.attributes.optionString};
-			});
-			return graph_data;
-		}
+                });
+    },
+    getPieChartData: function(graph_data, colorScheme){
+      return {
+        labels : _.map(graph_data.feedback,  function(data){ return data.label;}),
+        data: _.map(graph_data.feedback,  function(data){return (data.count/graph_data.total_feedback)*100;}),
+        colors : colorScheme
+      };
+    },
 
-	};
+    getBarChartData: function(graph_data, colorScheme){
+      return {
+        labels : _.map(graph_data.feedback,  function(data){ return data.label;}),
+        data: [_.map(graph_data.feedback,  function(data){return data.count;})],
+        colors : [{fillColor: colorScheme}],
+        
+        options: {
+          scaleShowHorizontalLines: false,
+          scaleShowVerticalLines: false,
+          barValueSpacing : 30
+        }
+
+      };
+    }
+
+  };
 
 });

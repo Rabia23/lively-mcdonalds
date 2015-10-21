@@ -14,7 +14,6 @@
  */
 angular.module( 'livefeed.dashboard', [
   'ui.router',
-  'livefeed.queries',
   'chart.js',
   'livefeed.chart'
 ])
@@ -40,37 +39,83 @@ angular.module( 'livefeed.dashboard', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'DashboardCtrl', function DashboardController( $scope, chartQueries, chartService, _ ) {
+.controller( 'DashboardCtrl', function DashboardController( $scope, chartService, _ , $location, $anchorScroll ) {
 
   
-  // $scope.bar_data = [];
+  $scope.pie_chart_first_step = true;
+  $scope.show_detail_table = false;
 
-  // chartQueries.getCities().then(function(cities_data){
-  //   chartQueries.getRegions().then(function(regions_data){
-  //     $scope.regions_data = regions_data;
-  //     console.log($scope.regions_data);
-  //     var region_city_data = chartQueries.getRegionCities(regions_data,cities_data);
-  //     console.log(region_city_data);
-  //   });
-  // });
+  var graph_data = {
+      total_feedback: 80, 
+      feedback: [{label: "Very Bad", count: 20}, {label: "Bad", count: 20}, {label: "Good", count: 20}, {label: "Very Good", count: 20}]};
+  
+  $scope.colorScheme = chartService.decideColorScheme(graph_data);
 
 
-  chartQueries.getMainRatingOptions().then(function(options_data){
-    $scope.options_data = options_data;
-    chartQueries.getUserFeedBack().then(function(feedback_data){
-      $scope.feedback_data = feedback_data;
-      
-      var graph_data = chartService.getPieChartData(options_data, feedback_data);
-      $scope.labels = _.map(graph_data, function(data){return data.title;});
-      $scope.data = _.map(graph_data, function(data){return data.length;});
+  $scope.pie_chart = chartService.getPieChartData(graph_data, $scope.colorScheme);
+  $scope.bar_chart = chartService.getBarChartData(graph_data, $scope.colorScheme);
 
-      // var bar_graph = chartService.getBarChartData(options_data, feedback_data);
-      // $scope.bar_labels = _.map(bar_graph, function(data){return data.title;});
-      // var bar_data = _.map(bar_graph, function(data){return data.length;});
-      // $scope.bar_data.push(bar_data);
-    });
-  });
+  $scope.backPieChart = function(){
+    $scope.pie_chart_first_step = true;
+    $scope.colorScheme = chartService.decideColorScheme(graph_data);
+    $scope.pie_chart = chartService.getPieChartData(graph_data, $scope.colorScheme );
+    $scope.bar_chart = chartService.getBarChartData(graph_data, $scope.colorScheme );
 
+  };
+
+  $scope.detailPieChart = function(){
+    $scope.pie_chart_first_step = false;
+    
+    var detail_data = {
+      total_feedback: 80, 
+      feedback: [{label: "Services", count: 20}, {label: "Food", count: 50}, {label: "Cleanliness", count: 10}]};
+
+    $scope.colorScheme = chartService.decideColorScheme(detail_data);
+    $scope.pie_chart = chartService.getPieChartData(detail_data, $scope.colorScheme);
+    $scope.bar_chart = chartService.getBarChartData(detail_data, $scope.colorScheme);
+
+
+  
+  };
+
+
+  
+
+  /* Line Chart*/
+
+  $scope.total_line_chart_series = ['Series A', 'Series B'];
+  $scope.total_line_chart_data = [[65, 59, 80, 81, 56, 55, 40],[28, 48, 40, 19, 86, 27, 90]];
+  
+  $scope.line_chart = {
+    labels : ["January", "February", "March", "April", "May", "June", "July"],
+    data: [[65, 59, 80, 81, 56, 55, 40],[28, 48, 40, 19, 86, 27, 90]],
+    series: ['Series A', 'Series B'],
+    options: {
+      bezierCurve : false
+    }
+  };
+
+  $scope.addRemoveSeries = function(series, index){
+    if($scope.line_chart.series.indexOf(series) == -1){
+      $scope.line_chart.series.push(series);
+      $scope.line_chart.data.push($scope.total_line_chart_data[index]);
+    }
+    else{
+      var ind = $scope.line_chart.series.indexOf(series);
+      $scope.line_chart.series.splice(ind, 1);
+      $scope.line_chart.data.splice(ind, 1);
+    }
+  };
+
+  $scope.checkCheckBox = function(series){
+    return ($scope.line_chart.series.indexOf(series) === -1)? false : true;
+  };
+
+  $scope.lineChartClicked = function(points, evt){
+    $scope.show_detail_table = true;
+    $location.hash('details-table');
+    $anchorScroll();
+  };
 
 });
 

@@ -1,163 +1,126 @@
 <div class="page page-dashboard" data-ng-controller="DashboardCtrl">
 
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <strong>
-          <span class="glyphicon glyphicon-th"></span>
-           Chart Filters
-        </strong>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong>
+        <span class="glyphicon glyphicon-th"></span>
+         Chart Filters
+      </strong>
+    </div>
+    <div class="panel-body" >
+      <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-6">
+        <label>Region</label>
+        <span class="ui-select">
+          <select>
+            <option value = "">All Branches</option>
+          </select>
+        </span>
       </div>
-      <div class="panel-body" >
-        
+      <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-6">
+        <label>City</label>
+        <span class="ui-select">
+          <select>
+            <option value = ""> All Cities</option>
+          </select>
+        </span>
+      </div>
+      <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-6">
+        <label>Branch</label>
+        <span class="ui-select">
+          <select>
+            <option value = "">All Branches</option>
+          </select>
+        </span>
       </div>
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="panel">
-          <div class="panel-body">
-            <canvas id="pie" class="chart chart-pie" chart-data="data" chart-labels="labels" chart-options = "options" legends = true chart-click= "clicked"></canvas>
-          </div>
-        </div>            
-      </div>
-      <div class="col-lg-6">
-        <div class="row">
-            <div class="col-xsm-6">
-                <div class="panel mini-box">
-                    <span class="box-icon rounded bg-success">
-                        <i class="fa fa-rocket"></i>
-                    </span>
-                    <div class="box-info">
-                        <p class="size-h2">36 <span class="size-h4">%</span></p>
-                        <p class="text-muted"><span >Growth</span></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xsm-6">
-                <div class="panel mini-box">
-                    <span class="box-icon rounded bg-info">
-                        <i class="fa fa-users"></i>
-                    </span>
-                    <div class="box-info">
-                        <p class="size-h2">352</p>
-                        <p class="text-muted"><span data-i18n="New users"></span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xsm-6">
-                <div class="panel mini-box">
-                    <span class="box-icon rounded bg-warning">
-                        <i class="fa fa-dollar"></i>
-                    </span>
-                    <div class="box-info">
-                        <p class="size-h2">4,120</p>
-                        <p class="text-muted"><span data-i18n="Profit"></span></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xsm-6">
-                <div class="panel mini-box">
-                    <span class="box-icon rounded bg-danger">
-                        <i class="fa fa-shopping-cart"></i>
-                    </span>
-                    <div class="box-info">
-                        <p class="size-h2">313</p>
-                        <p class="text-muted"><span data-i18n="Sales"></span></p>
-                    </div>
-                </div>
-            </div>
-        </div>         
-      </div>
-    </div>
-
-
-    <div class="panel panel-default">
-      <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Area Chart</strong></div>
-      <div class="panel-body" >
-          <div data-flot-chart
-               data-data="line1.data"
-               data-options="line1.options"
-               style="width: 100%; height: 300px;"
-               >
-               </div>
-      </div>
-    </div>
-
-
-    <div class="panel panel-default">
-        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Table - General</strong></div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Project</th>
-                    <th>Status</th>
-                    <th>Manager</th>
-                    <th>Progress</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><span class="color-success"><i class="fa fa-level-up"></i></span> TWLT</td>
-                    <td><span class="label label-info">Pending</span></td>
-                    <td>Amery Lee</td>
-                    <td><progressbar class="progressbar-xs no-margin" value="55"></progressbar>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><span class="color-success"><i class="fa fa-level-up"></i></span> A16Z</td>
-                    <td><span class="label label-primary">Due</span></td>
-                    <td>Romayne Carlyn</td>
-                    <td><progressbar class="progressbar-xs no-margin" value="34" type="success"></progressbar></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><span class="color-warning"><i class="fa fa-level-down"></i></span> DARK</td>
-                    <td><span class="label label-success">Due</span></td>
-                    <td>Marybeth Joanna</td>
-                    <td><progressbar class="progressbar-xs no-margin" value="68" type="info"></progressbar></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td><span class="color-info"><i class="fa fa-level-up"></i></span> Q300</td>
-                    <td><span class="label label-danger">Blocked</span></td>
-                    <td>Jonah Benny</td>
-                    <td><progressbar class="progressbar-xs no-margin" value="52" type="warning"></progressbar></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td><span class="color-danger"><i class="fa fa-level-down"></i></span> RVNG</td>
-                    <td><span class="label label-warning">Suspended</span></td>
-                    <td>Daly Royle</td>
-                    <td><progressbar class="progressbar-xs no-margin" value="77" type="danger"></progressbar></td></td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td><span class="color-info"><i class="fa fa-level-down"></i></span> FDSA</td>
-                    <td><span class="label label-info">Suspended</span></td>
-                    <td>Jane Swift</td>
-                    <td><progressbar class="progressbar-xs no-margin" value="55" type="success"></progressbar></td></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-
-<!--     <div class="panel panel-default">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Line and Area Chart</h3>
+          <strong><span class="glyphicon glyphicon-th"></span>Pie Chart</strong>
+        </div> 
+        <div class="panel-body">
+          <div class = "col-xs-12">
+            <a ng-click = "backPieChart()" ng-hide = "pie_chart_first_step">Back</a>
+            <a ng-click = "detailPieChart()" ng-show = "pie_chart_first_step">Details</a>
+          </div>
+          <div class = "col-xs-8">
+            <canvas id="pie" class="chart chart-pie" chart-data="pie_chart.data" chart-labels="pie_chart.labels" chart-options = "pie_chart.options" chart-legend = true chart-click= "pie_clicked" chart-colours = "pie_chart.colors"></canvas>
+          </div>
+          <div class = "col-xs-4">
+            <div ng-repeat = "label in pie_chart.labels track by $index">
+              <span style = "color: {{pie_chart.colors[$index]}}; font-size: 21px;">{{pie_chart.data[$index]}}%</span>&nbsp;
+              <span style = "color: {{pie_chart.colors[$index]}}; font-size: 21px;">{{label}}</span>
+            </div>
+          </div>  
         </div>
-        <div class="panel-body" data-ng-controller="morrisChartCtrl">
-            <div morris-chart
-                 data-data="combo1.data"
-                 data-type="combo1.type"
-                 data-options="combo1.options"
-                 ></div>
+      </div>            
+    </div>
+    <div class="col-lg-6">
+      <div class = "panel panel-default">
+        <div class="panel-heading">
+          <strong><span class="glyphicon glyphicon-th"></span>Rating Bar Chart</strong>
         </div>
-    </div> -->
+        <div class = "panel-body">
+          <canvas id="bar" class="chart chart-bar" chart-data="bar_chart.data" chart-labels="bar_chart.labels" chart-colours = "bar_chart.colors" chart-options = "bar_chart.options"></canvas>
+        </div>
+      </div>        
+    </div>
+  </div>
 
+
+  <div class="panel panel-default">
+    <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span>Line Chart</strong></div>
+    <div class="panel-body">
+      <div class = "col-xs-12">
+        <label class="ui-checkbox" ng-repeat = "series in total_line_chart_series  track by $index">
+          <input name="checkbox1" type="checkbox" ng-click = "addRemoveSeries(series, $index)" ng-checked = "checkCheckBox(series)">
+          <span>{{series}}</span>
+        </label>
+      </div>
+      <div class = "col-xs-12">
+        <canvas id="line" class="chart chart-line" chart-data="line_chart.data" chart-labels="line_chart.labels" chart-legend="true" chart-options = "line_chart.options" chart-series = "line_chart.series" chart-click = "lineChartClicked"></canvas>
+      </div> 
+    </div>
+  </div>
+
+
+  <div class="panel panel-default" ng-show = "show_detail_table" id="details-table">
+    <div class="panel-heading">
+      <strong><span class="glyphicon glyphicon-th"></span>Customer Details</strong>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Customer Name</th>
+          <th>Date</th>
+          <th>Feedback</th>
+          <th>Region</th>
+          <th>Branch</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td> Name 1 </td>
+          <td>March 19, 2015</td>
+          <td><span class="label label-info">Good</span></td>
+          <td>North/Lahore</td>
+          <td>Gulberg</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td> Name 2 </td>
+          <td>March 19, 2015</td>
+          <td><span class="label label-info">Good</span></td>
+          <td>North/Lahore</td>
+          <td>Gulberg</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
   

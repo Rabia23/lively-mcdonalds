@@ -5,7 +5,6 @@ angular.module( 'livefeed', [
   'ui.router',
   'parse-angular',
   'parse-angular.enhance',
-  'livefeed.queries',
   'livefeed.chart'
 ])
 
