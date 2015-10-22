@@ -5,6 +5,7 @@ django-postgrespool==0.3.0
 django-toolbelt==0.0.1
 djangorestframework==3.2.4
 gunicorn==19.3.0
+parse-rest==0.2.20141004
 psycopg2==2.6.1
 SQLAlchemy==1.0.8
 static3==0.6.1

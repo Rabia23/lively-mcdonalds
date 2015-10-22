@@ -1,6 +1,23 @@
 from django.contrib.auth.models import User
 from django.db import models
-from app.models import Devices
+from app.models import Branch
+
+
+class Feedback(models.Model):
+    user = models.ForeignKey(User, related_name='feedback', null=True, blank=True)
+    branch = models.ForeignKey(Branch, related_name='feedback', null=True, blank=True)
+    comment = models.TextField()
+    score = models.IntegerField()
+    objectId = models.CharField(max_length=20)
+
+    def __unicode__(self):
+       return str(self.score)
+
+    @staticmethod
+    def get_if_exists(objectId):
+        feedback = Feedback.objects.filter(objectId=objectId).first()
+        if feedback:
+            return feedback
 
 
 class Option(models.Model):
@@ -11,13 +28,6 @@ class Option(models.Model):
 class Question(models.Model):
     text = models.TextField()
     options = models.ManyToManyField(Option)
-
-
-class Feedback(models.Model):
-    user = models.ForeignKey(User)
-    device = models.ForeignKey(Devices)
-    comment = models.TextField()
-    score = models.IntegerField()
 
 
 class SelectedFeedbackOptions(models.Model):

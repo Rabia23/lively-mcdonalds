@@ -1,1 +1,1 @@
-web: gunicorn AnalyticsApp.wsgi --log-file -
+web: gunicorn lively.wsgi --log-file -

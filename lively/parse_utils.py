@@ -1,14 +1,39 @@
 __author__ = 'aamish'
-from rest_framework import status
-from rest_framework.response import Response
+
+import json, http.client
+from lively import settings
 
 
-def beforeSave(serializer, data):
-    if serializer.is_valid():
-        serializer.save()
-        data = {
-            "success": data
+def make_request(method, content_type, request_url, request_data):
+    connection = http.client.HTTPSConnection('api.parse.com', 443)
+    connection.connect()
+    connection.request(
+        method,
+        request_url,
+        request_data,
+        {
+            "X-Parse-Application-Id": settings.APPLICATION_ID,
+            "X-Parse-REST-API-Key": settings.REST_API_KEY,
+            "Content-Type": content_type
         }
-        return Response(data, status=status.HTTP_200_OK)
-    else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    )
+
+    str_response = connection.getresponse().readall().decode('utf-8')
+    return json.loads(str_response)
+
+
+def region_get(object_id):
+    response = make_request('GET', "application/json", '/1/classes/Region/%s' % object_id, '')
+    return response
+
+def city_get(object_id):
+    response = make_request('GET', "application/json", '/1/classes/City/%s' % object_id, '')
+    return response
+
+def branch_get(object_id):
+    response = make_request('GET', "application/json", '/1/classes/Branch/%s' % object_id, '')
+    return response
+
+def user_get(object_id):
+    response = make_request('GET', "application/json", '/1/classes/User/%s' % object_id, '')
+    return response

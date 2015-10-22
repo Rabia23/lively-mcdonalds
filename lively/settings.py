@@ -23,9 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'f#qiorpa9id!n$v#1*(ne16j9%hpa3zqo)u#)jtu=jqge#t%g!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -122,6 +121,10 @@ STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
+
+#------------------------- Parse Constants --------------------------
+APPLICATION_ID = "Xko6uCPfXVY6jSBwt3klu39eXKs3dZI6QKz94Y9s"
+REST_API_KEY = "BPKMHHVjVPcMwMl8pZdEHGQ20RdFKdvyQDIRsjuk"
 
 try:
     from local_settings import *
