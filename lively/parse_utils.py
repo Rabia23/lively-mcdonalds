@@ -25,3 +25,15 @@ def make_request(method, content_type, request_url, request_data):
 def region_get(object_id):
     response = make_request('GET', "application/json", '/1/classes/Region/%s' % object_id, '')
     return response
+
+def city_get(object_id):
+    response = make_request('GET', "application/json", '/1/classes/City/%s' % object_id, '')
+    return response
+
+def branch_get(object_id):
+    response = make_request('GET', "application/json", '/1/classes/Branch/%s' % object_id, '')
+    return response
+
+def user_get(object_id):
+    response = make_request('GET', "application/json", '/1/classes/User/%s' % object_id, '')
+    return response

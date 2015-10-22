@@ -1,6 +1,6 @@
-from django.conf.urls import url
-from feedback import views
+from django.conf.urls import patterns, url
 
-urlpatterns = [
-    url(r'^feedbacks/$', views.feedback_scores),
-]
+urlpatterns = patterns('feedback.views',
+    url(r'^feedback/$', 'feedback', name='feedback'),
+    url(r'^api/feedback/$', 'feedback_scores', name='api_feedback'),
+)
