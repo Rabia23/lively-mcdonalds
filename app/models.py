@@ -31,6 +31,12 @@ class Region(models.Model):
         if region:
             return region
 
+    @staticmethod
+    def get_by_id(region_id):
+        region = Region.objects.filter(pk=region_id).first() if region_id else None
+        if region:
+            return region
+
 
 class City(models.Model):
     name = models.CharField(max_length=20)
