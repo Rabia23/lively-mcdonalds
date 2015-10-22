@@ -52,6 +52,12 @@ class City(models.Model):
         if city:
             return city
 
+    @staticmethod
+    def get_by_id(city_id):
+        city = City.objects.filter(pk=city_id).first() if city_id else None
+        if city:
+            return city
+
 
 class Branch(models.Model):
     name = models.CharField(max_length=20)
