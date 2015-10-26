@@ -3,11 +3,12 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.db.models import Count
 from feedback.models import Feedback
-from app.models import Region, City, Branch
 from feedback.serializers import FeedbackSerializer
 from django.core import serializers
 from django.http import HttpResponse
-from django.core.serializers.json import DjangoJSONEncoder
+from lively import constants
+from lively.parse_utils import branch_get, user_get
+from lively.utils import save_and_response, save, response, get_related_branch, get_related_user
 import json
 
 
@@ -40,3 +41,28 @@ def feedback_scores(request):
         total_scores = Feedback.objects.count()
         data = {'total_count': total_scores, 'scores': list(scores)}
         return HttpResponse(json.dumps(data))
+
+    if request.method == 'POST':
+
+        data = request.data["object"]
+        trigger = request.data["triggerName"]
+
+        if trigger == constants.TRIGGER_AFTER_SAVE:
+            feedback = Feedback.get_if_exists(data["objectId"])
+            if feedback:
+                serializer = FeedbackSerializer(feedback, data=data)
+                return save_and_response(serializer, data)
+            else:
+                related_branch = branch_get(data["branch"]["objectId"])
+                branch = get_related_branch(related_branch)
+
+                related_user = user_get(data["user"]["objectId"])
+                user = get_related_user(related_user)
+
+                serializer = FeedbackSerializer(data=data)
+                feedback = save(serializer)
+                feedback.branch = branch
+                feedback.user = user
+                feedback.save()
+
+            return response(data)
