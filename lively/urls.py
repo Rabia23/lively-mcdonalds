@@ -6,8 +6,8 @@ from lively import settings
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^app/', include(app_urls)),
-    url(r'^feedback/', include(feedback_urls)),
+    url(r'^', include(app_urls)),
+    url(r'^', include(feedback_urls)),
 ]
 
 if not settings.DEBUG:
