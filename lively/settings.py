@@ -132,8 +132,8 @@ TEMPLATE_DIRS = (
 )
 
 #------------------------- Parse Constants --------------------------
-APPLICATION_ID = "Xko6uCPfXVY6jSBwt3klu39eXKs3dZI6QKz94Y9s"
-REST_API_KEY = "BPKMHHVjVPcMwMl8pZdEHGQ20RdFKdvyQDIRsjuk"
+APPLICATION_ID = "wa5gQWFuwUkIhBNgXhreiC1rNuYj97WoJZkV5m0I"
+REST_API_KEY = "gGbAgkrUAwTMuRqtr0dOMKi1YThcvAufrRo9sR4C"
 
 try:
     from local_settings import *
