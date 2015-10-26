@@ -20,21 +20,32 @@ class Feedback(models.Model):
             return feedback
 
 
-class Option(models.Model):
+class FollowupOption(models.Model):
     text = models.CharField(max_length=20)
+    objectId = models.CharField(max_length=20)
     parent = models.ForeignKey('self', null=True, blank=True, related_name='children')
 
+    def __unicode__(self):
+       return self.text
 
-class Question(models.Model):
-    text = models.TextField()
-    options = models.ManyToManyField(Option)
+    @staticmethod
+    def get_if_exists(objectId):
+        followup_option= FollowupOption.objects.filter(objectId=objectId).first()
+        if followup_option:
+            return followup_option
 
 
-class SelectedFeedbackOptions(models.Model):
-    feedback = models.ForeignKey(Feedback)
-    option = models.ForeignKey(Option)
+class SelectedFollowupOption(models.Model):
+    objectId = models.CharField(max_length=20)
+    feedback = models.ForeignKey(Feedback, related_name='selected_option', null=True, blank=True)
+    followup_option = models.ForeignKey(FollowupOption, related_name='selected_option', null=True, blank=True)
 
+    def __unicode__(self):
+       return self.objectId
 
-class SelectedFeedbackSubOptions(models.Model):
-    selected_feedback_option = models.ForeignKey(SelectedFeedbackOptions)
-    option = models.ForeignKey(Option)
+    @staticmethod
+    def get_if_exists(objectId):
+        selected_followup_option= SelectedFollowupOption.objects.filter(objectId=objectId).first()
+        if selected_followup_option:
+            return selected_followup_option
+
