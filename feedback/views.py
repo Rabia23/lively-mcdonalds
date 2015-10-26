@@ -42,8 +42,15 @@ def feedback_scores(request):
         data = {'total_count': total_scores, 'scores': list(scores)}
         return HttpResponse(json.dumps(data))
 
-    if request.method == 'POST':
+@api_view(['GET', 'POST'])
+def feedback(request):
 
+    if request.method == 'GET':
+        feedback = Feedback.objects.all()
+        serializer = FeedbackSerializer(feedback, many=True)
+        return Response(serializer.data)
+
+    if request.method == 'POST':
         data = request.data["object"]
         trigger = request.data["triggerName"]
 
