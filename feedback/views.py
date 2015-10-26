@@ -15,11 +15,11 @@ import json
 @api_view(['GET', 'POST'])
 def feedback_scores(request):
 
-    region_id = request.query_params.get('region', None)
-    city_id = request.query_params.get('city', None)
-    branch_id = request.query_params.get('branch', None)
-
     if request.method == 'GET':
+
+        region_id = request.query_params.get('region', None)
+        city_id = request.query_params.get('city', None)
+        branch_id = request.query_params.get('branch', None)
 
         if region_id and city_id and branch_id:
             scores = Feedback.objects.filter(branch__exact=branch_id, branch__city__exact=city_id, branch__city__region__exact=region_id).\
