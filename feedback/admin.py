@@ -1,3 +1,9 @@
 from django.contrib import admin
+from feedback.models import Feedback
 
-# Register your models here.
+
+class FeedbackAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Feedback, FeedbackAdmin)
