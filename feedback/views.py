@@ -1,9 +1,11 @@
-from django.db.models import Count,Sum
-from feedback.models import Feedback
-from feedback.serializers import FeedbackSerializer
-from django.http import HttpResponse
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.db.models import Count
+from feedback.models import Feedback
+from feedback.serializers import FeedbackSerializer
+from django.core import serializers
+from django.http import HttpResponse
 from lively import constants
 from lively.parse_utils import branch_get, user_get
 from lively.utils import save_and_response, save, response, get_related_branch, get_related_user
@@ -12,13 +14,33 @@ import json
 
 @api_view(['GET', 'POST'])
 def feedback_scores(request):
+
     if request.method == 'GET':
 
-        scores = Feedback.objects.values('score').annotate(count=Count('score')).order_by('score')
+        region_id = request.query_params.get('region', None)
+        city_id = request.query_params.get('city', None)
+        branch_id = request.query_params.get('branch', None)
+
+        if region_id and city_id and branch_id:
+            scores = Feedback.objects.filter(branch__exact=branch_id, branch__city__exact=city_id, branch__city__region__exact=region_id).\
+                values('score').\
+                annotate(count=Count('score'))
+
+        elif region_id and city_id:
+            scores = Feedback.objects.filter(branch__city__exact=city_id, branch__city__region__exact=region_id).\
+                values('score').\
+                annotate(count=Count('score'))
+
+        elif region_id:
+            scores = Feedback.objects.filter(branch__city__region__exact=region_id).\
+                values('score').\
+                annotate(count=Count('score'))
+        else:
+            scores = Feedback.objects.values('score').annotate(count=Count('score'))
+
         total_scores = Feedback.objects.count()
         data = {'total_count': total_scores, 'scores': list(scores)}
         return HttpResponse(json.dumps(data))
-
 
 @api_view(['GET', 'POST'])
 def feedback(request):

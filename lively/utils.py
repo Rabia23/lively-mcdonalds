@@ -11,6 +11,7 @@ __author__ = 'aamish'
 
 #**************** Generic Util Methods ****************
 
+
 def save_and_response(serializer, data):
     if serializer.is_valid():
         serializer.save()
