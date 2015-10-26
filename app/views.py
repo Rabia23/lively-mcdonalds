@@ -32,7 +32,14 @@ def region(request):
 def city(request):
 
     if request.method == 'GET':
-        cities = City.objects.all()
+        cities = None
+        region_id = request.query_params.get('region', None)
+        if region_id:
+            region = Region.get_by_id(region_id)
+            if region:
+                cities = region.cities.all()
+        else:
+            cities = City.objects.all()
         serializer = CitySerializer(cities, many=True)
         return Response(serializer.data)
 
@@ -61,7 +68,14 @@ def city(request):
 def branch(request):
 
     if request.method == 'GET':
-        branches = Branch.objects.all()
+        branches = None
+        city_id = request.query_params.get('city', None)
+        if city_id:
+            city = City.get_by_id(city_id)
+            if city:
+                branches = city.branches.all()
+        else:
+            branches = Branch.objects.all()
         serializer = CitySerializer(branches, many=True)
         return Response(serializer.data)
 

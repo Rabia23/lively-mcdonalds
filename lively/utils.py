@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from app.models import Region, City, Branch, UserInfo
-from app.serializers import RegionSerializer, CitySerializer, BranchSerializer
+from app.serializers import RegionSerializer, CitySerializer, BranchSerializer, UserSerializer, UserInfoSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from lively import constants
@@ -37,6 +37,7 @@ def response(data):
 #**************** Related Objects Methods ****************
 #all need to be refactored -  can be converted into one method
 
+
 def get_related_region(data):
     region = Region.get_if_exists(data["objectId"])
     if region:
@@ -58,6 +59,14 @@ def get_related_city(data):
 
     if serializer.is_valid():
         city = serializer.save()
+
+        #will use this after testing the nested example otherwise will remove this code
+        # related_region = region_get(data["region"]["objectId"])
+        # region = get_related_region(related_region)
+        #
+        # city.region = region
+        # city.save()
+
         return city
 
 
@@ -76,25 +85,37 @@ def get_related_branch(data):
 def get_related_user(data):
     user_info = UserInfo.get_if_exists(data["objectId"])
     if user_info:
-        #serializer = BranchSerializer(branch, data=data)
-        pass
+        user_info_serializer = UserInfoSerializer(user_info, data=data)
+        user_serializer = UserSerializer(user_info.user, data=data)
+
+        save(user_info_serializer)
+        user = save(user_serializer)
+        return user
     else:
-        user = User(first_name=data["first_name"],
-                    last_name=data["last_name"],
-                    username=generate_username())
-        user.set_password(constants.CUSTOMER_PASSWORD)
+        data['username'] = generate_username()
+        data['password'] = constants.CUSTOMER_PASSWORD
 
-        user_info = UserInfo(phone_no=data["phone_no"],
-                             is_customer=data["is_customer"],
-                             objectId=data["objectId"])
+        user_info_serializer = UserInfoSerializer(data=data)
+        user_info = save(user_info_serializer)
+
+        if user_info:
+            user_serializer = UserSerializer(data=data)
+            user = save(user_serializer)
+
+            return associate_info_to_user(user, user_info)
+
+
+def associate_info_to_user(user, user_info):
+    if user:
         user_info.user = user
-
-        user.save()
         user_info.save()
 
         return user
+    else:
+        user_info.delete()
 
 
+#copied
 def generate_username():
     # Python 3 uses ascii_letters. If not available, fallback to letters
     try:

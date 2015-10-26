@@ -26,6 +26,9 @@ SECRET_KEY = 'f#qiorpa9id!n$v#1*(ne16j9%hpa3zqo)u#)jtu=jqge#t%g!'
 DEBUG = False
 ALLOWED_HOSTS = ['*']
 
+# DEBUG = True
+# ALLOWED_HOSTS = []
+
 
 # Application definition
 
@@ -40,6 +43,12 @@ INSTALLED_APPS = (
     'app',
     'feedback',
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework_jsonp.renderers.JSONPRenderer',
+    ),
+}
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
