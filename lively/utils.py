@@ -4,7 +4,8 @@ from app.serializers import RegionSerializer, CitySerializer, BranchSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from lively import constants
-import string, random
+import string,random
+from lively.parse_utils import region_get
 
 __author__ = 'aamish'
 
