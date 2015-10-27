@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.db.models import Count
-from feedback.models import Feedback, FollowupOption, SelectedFollowupOption
+from feedback.models import Feedback, FollowupOption, SelectedFollowupOption, ScoreTypes
 from feedback.serializers import FeedbackSerializer, CustomFeedbackSerializer, CustomSingleFeedbackSerializer, \
     FollowupOptionSerializer, SelectedFollowupOptionSerializer
 from django.core import serializers
@@ -11,14 +11,12 @@ from lively import constants
 from lively.parse_utils import branch_get, user_get, followup_option_get, feedback_get
 from lively.utils import save_and_response, save, response, get_related_branch, get_related_user, \
     get_related_followup_option, get_related_feedback
-import json
 
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def feedback_with_scores(request):
 
     if request.method == 'GET':
-
         region_id = request.query_params.get('region', None)
         city_id = request.query_params.get('city', None)
         branch_id = request.query_params.get('branch', None)
@@ -27,12 +25,10 @@ def feedback_with_scores(request):
             scores = Feedback.objects.filter(branch__exact=branch_id, branch__city__exact=city_id, branch__city__region__exact=region_id).\
                 values('score').\
                 annotate(count=Count('score'))
-
         elif region_id and city_id:
             scores = Feedback.objects.filter(branch__city__exact=city_id, branch__city__region__exact=region_id).\
                 values('score').\
                 annotate(count=Count('score'))
-
         elif region_id:
             scores = Feedback.objects.filter(branch__city__region__exact=region_id).\
                 values('score').\
@@ -40,11 +36,17 @@ def feedback_with_scores(request):
         else:
             scores = Feedback.objects.values('score').annotate(count=Count('score'))
 
-        total_scores = Feedback.objects.count()
-        data = {'total_count': total_scores, 'scores': list(scores)}
-        feedback_response = CustomFeedbackSerializer(data)
+        list_score_values = [item['score'] for item in scores]
+        list_score_feedback = [item for item in scores]
 
+        for type in ScoreTypes:
+            if type.value not in list_score_values:
+                list_score_feedback.append({'count': 0, 'score': type.value})
+
+        data = {'scores_count': scores.count(), 'scores': list_score_feedback}
+        feedback_response = CustomFeedbackSerializer(data)
         return Response(feedback_response.data)
+
 
 @api_view(['GET', 'POST'])
 def feedback(request):

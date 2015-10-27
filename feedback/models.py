@@ -1,3 +1,4 @@
+from enum import Enum
 from django.contrib.auth.models import User
 from django.db import models
 from app.models import Branch
@@ -18,6 +19,13 @@ class Feedback(models.Model):
         feedback = Feedback.objects.filter(objectId=objectId).first()
         if feedback:
             return feedback
+
+
+class ScoreTypes(Enum):
+    very_happy = 1
+    happy = 2
+    sad = 3
+    very_sad = 4
 
 
 class FollowupOption(models.Model):
