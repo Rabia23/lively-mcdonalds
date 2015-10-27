@@ -27,9 +27,9 @@ class CustomSingleFeedbackSerializer(serializers.Serializer):
 
 class CustomFeedbackSerializer(serializers.Serializer):
     scores = CustomSingleFeedbackSerializer(many=True)
-    total_count = serializers.IntegerField()
-
-
+    scores_count = serializers.IntegerField()
+    
+    
 class CustomFollowupOptionSerializer(serializers.Serializer):
     count = serializers.IntegerField()
     followup_option = serializers.IntegerField()
