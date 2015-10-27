@@ -5,6 +5,6 @@ urlpatterns = patterns('feedback.views',
        url(r'^followup_option/$', 'followup_option', name='followup_option'),
        url(r'^selected_followup_option/$', 'selected_followup_option', name='selected_followup_option'),
        url(r'^feedback_with_scores/$', 'feedback_with_scores', name='feedback_with_scores'),
-       url(r'^followup_option_with_scores/$', 'followup_option_with_scores', name='followup_option_with_scores'),
-       )
+       url(r'^followup_options_feedback/$', 'followup_options_feedback', name='followup_options_feedback'),
+    )
 

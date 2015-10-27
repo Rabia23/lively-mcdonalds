@@ -1,12 +1,9 @@
-from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.db.models import Count
 from feedback.models import Feedback, FollowupOption, SelectedFollowupOption, ScoreTypes
 from feedback.serializers import FeedbackSerializer, CustomFeedbackSerializer, CustomSingleFeedbackSerializer, \
     FollowupOptionSerializer, SelectedFollowupOptionSerializer, CustomFollowupOptionSerializer
-from django.core import serializers
-from django.http import HttpResponse
 from lively import constants
 from lively.parse_utils import branch_get, user_get, followup_option_get, feedback_get
 from lively.utils import save_and_response, save, response, get_related_branch, get_related_user, \
@@ -49,15 +46,33 @@ def feedback_with_scores(request):
 
 
 
-@api_view(['GET', 'POST'])
-def followup_option_with_scores(request):
+@api_view(['GET'])
+def followup_options_feedback(request):
 
     if request.method == 'GET':
-        data = SelectedFollowupOption.objects.filter(followup_option__parent__isnull=True).\
-            values('followup_option', 'followup_option__text').\
-            annotate(count=Count('followup_option'))
-        followup_option_response = CustomFollowupOptionSerializer(data, many=True)
 
+        region_id = request.query_params.get('region', None)
+        city_id = request.query_params.get('city', None)
+        branch_id = request.query_params.get('branch', None)
+
+        if region_id and city_id and branch_id:
+            data = SelectedFollowupOption.objects.filter(feedback__branch__exact=branch_id, feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id, followup_option__parent__isnull=True).\
+                values('followup_option', 'followup_option__text').\
+                annotate(count=Count('followup_option'))
+        elif region_id and city_id:
+            data = SelectedFollowupOption.objects.filter(feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id, followup_option__parent__isnull=True).\
+                values('followup_option', 'followup_option__text').\
+                annotate(count=Count('followup_option'))
+        elif region_id:
+            data = SelectedFollowupOption.objects.filter(feedback__branch__city__region__exact=region_id, followup_option__parent__isnull=True).\
+                values('followup_option', 'followup_option__text').\
+                annotate(count=Count('followup_option'))
+        else:
+            data = SelectedFollowupOption.objects.filter(followup_option__parent__isnull=True).\
+                values('followup_option', 'followup_option__text').\
+                annotate(count=Count('followup_option'))
+
+        followup_option_response = CustomFollowupOptionSerializer(data, many=True)
         return Response(followup_option_response.data)
 
 
