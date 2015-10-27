@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from django.db.models import Count
 from feedback.models import Feedback, FollowupOption, SelectedFollowupOption, ScoreTypes
 from feedback.serializers import FeedbackSerializer, CustomFeedbackSerializer, CustomSingleFeedbackSerializer, \
-    FollowupOptionSerializer, SelectedFollowupOptionSerializer
+    FollowupOptionSerializer, SelectedFollowupOptionSerializer, CustomFollowupOptionSerializer
 from django.core import serializers
 from django.http import HttpResponse
 from lively import constants
@@ -46,6 +46,19 @@ def feedback_with_scores(request):
         data = {'scores_count': scores.count(), 'scores': list_score_feedback}
         feedback_response = CustomFeedbackSerializer(data)
         return Response(feedback_response.data)
+
+
+
+@api_view(['GET', 'POST'])
+def followup_option_with_scores(request):
+
+    if request.method == 'GET':
+        data = SelectedFollowupOption.objects.filter(followup_option__parent__isnull=True).\
+            values('followup_option', 'followup_option__text').\
+            annotate(count=Count('followup_option'))
+        followup_option_response = CustomFollowupOptionSerializer(data, many=True)
+
+        return Response(followup_option_response.data)
 
 
 @api_view(['GET', 'POST'])
