@@ -2,9 +2,8 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('feedback.views',
        url(r'^feedback/$', 'feedback', name='feedback'),
-       url(r'^followup_option/$', 'followup_option', name='followup_option'),
-       url(r'^selected_followup_option/$', 'selected_followup_option', name='selected_followup_option'),
-       url(r'^feedback_with_scores/$', 'feedback_with_scores', name='feedback_with_scores'),
-       url(r'^followup_options_feedback/$', 'followup_options_feedback', name='followup_options_feedback'),
+       url(r'^option/$', 'option', name='option'),
+       url(r'^question/$', 'question', name='question'),
+       url(r'^feedback_option/$', 'feedback_option', name='feedback_option'),
     )
 

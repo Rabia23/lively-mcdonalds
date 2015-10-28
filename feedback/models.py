@@ -8,11 +8,10 @@ class Feedback(models.Model):
     user = models.ForeignKey(User, related_name='feedback', null=True, blank=True)
     branch = models.ForeignKey(Branch, related_name='feedback', null=True, blank=True)
     comment = models.TextField()
-    score = models.IntegerField()
     objectId = models.CharField(max_length=20)
 
     def __unicode__(self):
-       return str(self.score)
+       return self.objectId
 
     @staticmethod
     def get_if_exists(objectId):
@@ -21,16 +20,27 @@ class Feedback(models.Model):
             return feedback
 
 
-class ScoreTypes(Enum):
-    very_happy = 1
-    happy = 2
-    sad = 3
-    very_sad = 4
-
-
-class FollowupOption(models.Model):
-    text = models.CharField(max_length=20)
+class Question(models.Model):
+    text = models.TextField()
+    isActive = models.BooleanField(default=True)
+    type = models.IntegerField()
     objectId = models.CharField(max_length=20)
+
+    def __unicode__(self):
+       return self.text
+
+    @staticmethod
+    def get_if_exists(objectId):
+        question = Question.objects.filter(objectId=objectId).first()
+        if question:
+            return question
+
+
+class Option(models.Model):
+    text = models.TextField()
+    objectId = models.CharField(max_length=20)
+    isNegative = models.BooleanField(default=False)
+    question = models.ForeignKey(Question, related_name='options', null=True, blank=True)
     parent = models.ForeignKey('self', null=True, blank=True, related_name='children')
 
     def __unicode__(self):
@@ -38,22 +48,23 @@ class FollowupOption(models.Model):
 
     @staticmethod
     def get_if_exists(objectId):
-        followup_option= FollowupOption.objects.filter(objectId=objectId).first()
-        if followup_option:
-            return followup_option
+        option = Option.objects.filter(objectId=objectId).first()
+        if option:
+            return option
 
 
-class SelectedFollowupOption(models.Model):
+class FeedbackOption(models.Model):
     objectId = models.CharField(max_length=20)
-    feedback = models.ForeignKey(Feedback, related_name='selected_option', null=True, blank=True)
-    followup_option = models.ForeignKey(FollowupOption, related_name='selected_option', null=True, blank=True)
+    feedback = models.ForeignKey(Feedback, related_name='feedback_option', null=True, blank=True)
+    option = models.ForeignKey(Option, related_name='feedback_option', null=True, blank=True)
 
     def __unicode__(self):
        return self.objectId
 
     @staticmethod
     def get_if_exists(objectId):
-        selected_followup_option= SelectedFollowupOption.objects.filter(objectId=objectId).first()
-        if selected_followup_option:
-            return selected_followup_option
+        feedback_option = FeedbackOption.objects.filter(objectId=objectId).first()
+        if feedback_option:
+            return feedback_option
+
 

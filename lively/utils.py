@@ -3,11 +3,11 @@ from app.models import Region, City, Branch, UserInfo
 from app.serializers import RegionSerializer, CitySerializer, BranchSerializer, UserSerializer, UserInfoSerializer
 from rest_framework import status
 from rest_framework.response import Response
-from feedback.models import FollowupOption, Feedback
-from feedback.serializers import FollowupOptionSerializer, FeedbackSerializer
+from feedback.models import Feedback, Option
+from feedback.serializers import FeedbackSerializer, OptionSerializer
 from lively import constants
 import string,random
-from lively.parse_utils import region_get, feedback_get, followup_option_get
+from lively.parse_utils import region_get, feedback_get, option_get
 
 __author__ = 'aamish'
 
@@ -117,24 +117,25 @@ def associate_info_to_user(user, user_info):
         user_info.delete()
 
 
-def get_related_followup_option(data):
-    followup_option = FollowupOption.get_if_exists(data["objectId"])
-    if followup_option:
-        serializer = FollowupOptionSerializer(followup_option, data=data)
+def get_related_option(data):
+    option = Option.get_if_exists(data["objectId"])
+    if option:
+        serializer = OptionSerializer(option, data=data)
     else:
-        serializer = FollowupOptionSerializer(data=data)
+        serializer = OptionSerializer(data=data)
 
     if serializer.is_valid():
-        followup_option = serializer.save()
+        option = serializer.save()
 
         if "subOptions" in data:
-            for sub_option in data["subOptions"]:
-                related_followup_option = followup_option_get(sub_option["objectId"])
-                rel_option = get_related_followup_option(related_followup_option)
-                rel_option.parent = followup_option
-                rel_option.save()
+            for sub_option_data in data["subOptions"]:
+                sub_option_parse = option_get(sub_option_data["objectId"])
+                sub_option = get_related_option(sub_option_parse)
 
-        return followup_option
+                sub_option.parent = option
+                sub_option.save()
+
+        return option
 
 
 def get_related_feedback(data):

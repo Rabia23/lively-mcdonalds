@@ -38,8 +38,8 @@ def user_get(object_id):
     response = make_request('GET', "application/json", '/1/classes/User/%s' % object_id, '')
     return response
 
-def followup_option_get(object_id):
-    response = make_request('GET', "application/json", '/1/classes/FollowupOption/%s' % object_id, '')
+def option_get(object_id):
+    response = make_request('GET', "application/json", '/1/classes/Option/%s' % object_id, '')
     return response
 
 def feedback_get(object_id):

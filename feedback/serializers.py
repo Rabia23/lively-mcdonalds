@@ -1,22 +1,28 @@
 from rest_framework import serializers
-from feedback.models import Feedback, FollowupOption, SelectedFollowupOption
+from feedback.models import Feedback, Option, Question, FeedbackOption
 
 
 class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
-        fields = ('id', 'score', 'comment', 'objectId')
+        fields = ('id', 'comment', 'objectId')
         
         
-class FollowupOptionSerializer(serializers.ModelSerializer):
+class OptionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = FollowupOption
-        fields = ('id', 'text', 'objectId')
+        model = Option
+        fields = ('id', 'text', 'isNegative', 'objectId')
 
 
-class SelectedFollowupOptionSerializer(serializers.ModelSerializer):
+class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = SelectedFollowupOption
+        model = Question
+        fields = ('id', 'text', 'isActive', 'type', 'objectId')
+
+
+class FeedbackOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FeedbackOption
         fields = ('id', 'objectId')
 
 
