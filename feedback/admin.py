@@ -3,11 +3,11 @@ from feedback.models import Feedback, Question, Option
 
 
 class FeedbackAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('comment',)
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('text',)
 
 
 class OptionAdmin(admin.ModelAdmin):

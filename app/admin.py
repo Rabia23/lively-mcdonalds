@@ -3,19 +3,22 @@ from app.models import Region, City, Branch, UserInfo
 
 
 class RegionAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name',)
 
 
 class CityAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name',)
 
 
 class BranchAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name',)
 
 
 class UserInfoAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('user_name',)
+
+    def user_name(self, instance):
+        return instance.user.first_name
 
 
 admin.site.register(Region, RegionAdmin)
