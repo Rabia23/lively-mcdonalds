@@ -57,7 +57,7 @@ def overall_feedback(request):
         city_id = request.query_params.get('city', None)
         branch_id = request.query_params.get('branch', None)
 
-        question = Question.objects.get(type=constants.MAIN_QUESTION)
+        question = Question.objects.filter(type=constants.MAIN_QUESTION).first()
 
         if region_id and city_id and branch_id:
             feedback_options = FeedbackOption.objects.filter(
