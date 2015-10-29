@@ -5,6 +5,7 @@ from app.models import Region, City, Branch
 from app.serializers import RegionSerializer, CitySerializer
 from feedback.models import Feedback, Question, FeedbackOption
 from feedback.serializers import OverallFeedbackSerializer
+from lively import constants
 
 
 @api_view(['GET', 'POST'])
@@ -56,7 +57,7 @@ def overall_feedback(request):
         city_id = request.query_params.get('city', None)
         branch_id = request.query_params.get('branch', None)
 
-        question = Question.objects.get(type=1)
+        question = Question.objects.get(type=constants.MAIN_QUESTION)
 
         if region_id and city_id and branch_id:
             feedback_options = FeedbackOption.objects.filter(
