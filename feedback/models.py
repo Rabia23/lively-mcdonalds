@@ -39,7 +39,7 @@ class Question(models.Model):
 class Option(models.Model):
     text = models.TextField()
     objectId = models.CharField(max_length=20)
-    isNegative = models.BooleanField(default=False)
+    score = models.IntegerField(default=0)
     question = models.ForeignKey(Question, related_name='options', null=True, blank=True)
     parent = models.ForeignKey('self', null=True, blank=True, related_name='children')
 

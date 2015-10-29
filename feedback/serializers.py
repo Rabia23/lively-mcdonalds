@@ -12,7 +12,7 @@ class FeedbackSerializer(serializers.ModelSerializer):
 class OptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Option
-        fields = ('id', 'text', 'isNegative', 'objectId')
+        fields = ('id', 'text', 'score', 'objectId')
 
 
 class QuestionSerializer(serializers.ModelSerializer):
