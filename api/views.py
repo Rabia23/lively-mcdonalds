@@ -88,14 +88,13 @@ def overall_feedback(request):
                     list_feedback.append({'count': 0, 'option_id': option.id, 'option__text': option.text})
 
             data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
+            feedback_response = OverallFeedbackSerializer(data)
+            return Response(feedback_response.data)
 
-        except Question.DoesNotExist as e:
-            data = None
         except Exception as e:
-            data = None
+            return Response(None)
 
-        feedback_response = OverallFeedbackSerializer(data)
-        return Response(feedback_response.data)
+
 
 
 # @api_view(['GET'])
