@@ -1,126 +1,40 @@
-<div class="page page-dashboard" data-ng-controller="DashboardCtrl">
-
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <strong>
-        <span class="glyphicon glyphicon-th"></span>
-         Chart Filters
-      </strong>
-    </div>
-    <div class="panel-body" >
-      <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-6">
-        <label>Region</label>
-        <span class="ui-select">
-          <select>
-            <option value = "">All Branches</option>
-          </select>
-        </span>
-      </div>
-      <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-6">
-        <label>City</label>
-        <span class="ui-select">
-          <select>
-            <option value = ""> All Cities</option>
-          </select>
-        </span>
-      </div>
-      <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-6">
-        <label>Branch</label>
-        <span class="ui-select">
-          <select>
-            <option value = "">All Branches</option>
-          </select>
-        </span>
-      </div>
-    </div>
+<br/>
+<div class = "row">
+  <div class = "col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div ui-view="feedback_map"></div>
   </div>
 
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <strong><span class="glyphicon glyphicon-th"></span>Pie Chart</strong>
-        </div> 
-        <div class="panel-body">
-          <div class = "col-xs-12">
-            <a ng-click = "backPieChart()" ng-hide = "pie_chart_first_step">Back</a>
-            <a ng-click = "detailPieChart()" ng-show = "pie_chart_first_step">Details</a>
-          </div>
-          <div class = "col-xs-8">
-            <canvas id="pie" class="chart chart-pie" chart-data="pie_chart.data" chart-labels="pie_chart.labels" chart-options = "pie_chart.options" chart-legend = true chart-click= "pie_clicked" chart-colours = "pie_chart.colors"></canvas>
-          </div>
-          <div class = "col-xs-4">
-            <div ng-repeat = "label in pie_chart.labels track by $index">
-              <span style = "color: {{pie_chart.colors[$index]}}; font-size: 21px;">{{pie_chart.data[$index]}}%</span>&nbsp;
-              <span style = "color: {{pie_chart.colors[$index]}}; font-size: 21px;">{{label}}</span>
-            </div>
-          </div>  
-        </div>
-      </div>            
-    </div>
-    <div class="col-lg-6">
-      <div class = "panel panel-default">
-        <div class="panel-heading">
-          <strong><span class="glyphicon glyphicon-th"></span>Rating Bar Chart</strong>
-        </div>
-        <div class = "panel-body">
-          <canvas id="bar" class="chart chart-bar" chart-data="bar_chart.data" chart-labels="bar_chart.labels" chart-colours = "bar_chart.colors" chart-options = "bar_chart.options"></canvas>
-        </div>
-      </div>        
-    </div>
-  </div>
-
-
-  <div class="panel panel-default">
-    <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span>Line Chart</strong></div>
-    <div class="panel-body">
-      <div class = "col-xs-12">
-        <label class="ui-checkbox" ng-repeat = "series in total_line_chart_series  track by $index">
-          <input name="checkbox1" type="checkbox" ng-click = "addRemoveSeries(series, $index)" ng-checked = "checkCheckBox(series)">
-          <span>{{series}}</span>
-        </label>
-      </div>
-      <div class = "col-xs-12">
-        <canvas id="line" class="chart chart-line" chart-data="line_chart.data" chart-labels="line_chart.labels" chart-legend="true" chart-options = "line_chart.options" chart-series = "line_chart.series" chart-click = "lineChartClicked"></canvas>
-      </div> 
-    </div>
-  </div>
-
-
-  <div class="panel panel-default" ng-show = "show_detail_table" id="details-table">
-    <div class="panel-heading">
-      <strong><span class="glyphicon glyphicon-th"></span>Customer Details</strong>
-    </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Customer Name</th>
-          <th>Date</th>
-          <th>Feedback</th>
-          <th>Region</th>
-          <th>Branch</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td> Name 1 </td>
-          <td>March 19, 2015</td>
-          <td><span class="label label-info">Good</span></td>
-          <td>North/Lahore</td>
-          <td>Gulberg</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td> Name 2 </td>
-          <td>March 19, 2015</td>
-          <td><span class="label label-info">Good</span></td>
-          <td>North/Lahore</td>
-          <td>Gulberg</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class = "col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div ui-view="category_performance_analysis"></div>
   </div>
 </div>
+
+<div class = "row">
+  <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div ui-view="regional_analysis"></div>
+  </div>
+</div>
+
+<div class = "row">
+  <div class = "col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div ui-view="overall_rating"></div>
+  </div>
+
+  <div class = "col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div ui-view="overall_feedback"></div>
+  </div>
+</div>
+
+<div class = "row">
+  <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div ui-view="statistics"></div>
+  </div>
+</div>
+
+<div class = "row">
+  <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div ui-view="positive_negative_feedback"></div>
+  </div>
+</div>
+
   

@@ -30,7 +30,8 @@ module.exports = {
     ctpl: [ 'src/common/**/*.tpl.html' ],
 
     html: [ 'src/index.html' ],
-    less: 'src/less/main.less'
+    less: 'src/less/main.less',
+    sass: 'src/sass/styles.scss'
   },
 
   /**
@@ -71,10 +72,17 @@ module.exports = {
       'vendor/Chart.js/Chart.js',
       'vendor/angular-chart.js/dist/angular-chart.min.js',
       'vendor/underscore/underscore-min.js',
+      'vendor/angular-resource/angular-resource.js',
+      'vendor/ngmap/build/scripts/ng-map.js',
+      'vendor/jquery/dist/jquery.js',
+      'vendor/morris.js/morris.js',
+      'vendor/raphael/raphael.js'
 
     ],
     css: [
-      'vendor/angular-chart.js/dist/angular-chart.min.css'
+      'vendor/angular-chart.js/dist/angular-chart.min.css',
+      'vendor/bootstrap/dist/css/bootstrap.css',
+      'vendor/morris.js/morris.css'
     ],
     assets: [
     ]

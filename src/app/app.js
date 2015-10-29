@@ -5,7 +5,8 @@ angular.module( 'livefeed', [
   'ui.router',
   'parse-angular',
   'parse-angular.enhance',
-  'livefeed.chart'
+  'livefeed.chart',
+  'factories'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
@@ -17,7 +18,7 @@ angular.module( 'livefeed', [
 )
 
 .run( function run () {
-  Parse.initialize("Xko6uCPfXVY6jSBwt3klu39eXKs3dZI6QKz94Y9s", "XT9qGnhCUaFTOVumUNPxo5PPnvMwNHWeyi6WEloF");
+  
 })
 
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope ) {

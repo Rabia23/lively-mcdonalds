@@ -1,0 +1,15 @@
+<div ng-controller = "RegionalAnalysisCtrl">    
+
+  <section class="panel panel-default">
+    <div class="panel-body">
+      <h4> Regional Analysis </h4>
+      <div class="col-md-3" ng-repeat = "region in donut_graph_data.regions track by $index">
+        <div morris-chart data-data="donut_graph_data.donutData[$index]" data-type="donut" data-options="donut_graph_data.donutOptions[$index]"></div>
+        <div style = "text-align:center">
+        	<span>Region {{$index + 1}}</span>&nbsp;<span>{{region}}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+  

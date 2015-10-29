@@ -6,12 +6,15 @@
     "angular-mocks": "~1.5",
     "bootstrap": "~3.3",
     "angular-bootstrap": "~0.14.0",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "ngmap": "~1.13.14",
+    "morris.js": "~0.5.1"
   },
   "dependencies": {
     "parse-angular-patch": "~0.1.2",
     "angular-chart.js": "~0.8.4",
     "underscore": "~1.8.3",
-    "font-awesome": "fontawesome#~4.4.0"
+    "font-awesome": "fontawesome#~4.4.0",
+    "angular-resource": "~1.4.7"
   }
 }

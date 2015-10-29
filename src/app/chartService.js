@@ -12,16 +12,16 @@ angular.module('livefeed.chart', [])
     
     decideColorScheme: function(graph_data){
       return _.map(graph_data.feedback,  function(data){ 
-                  if(data.label === "Very Bad"){
+                  if(data.score === 1){
                     return '#ca786a';
                   }
-                  else if(data.label === "Bad"){
+                  else if(data.score === 2){
                     return '#d8c170';
                   }
-                  else if(data.label === "Good"){
+                  else if(data.label === 3){
                     return '#68acce';
                   }
-                  else if(data.label === "Very Good"){
+                  else if(data.label === 4){
                     return '#2ca998';
                   }
                   else{
@@ -29,6 +29,33 @@ angular.module('livefeed.chart', [])
                   }        
 
                 });
+    },
+    getRegionChartData: function(graph_data){
+      return {
+        regions: _.map(graph_data.regional_feedbacks,  function(data){ return data.region.name;}),
+        donutData: _.map(graph_data.regional_feedbacks,  function(data){ 
+          return   _.map(data.data.feedbacks,  function(dat){ return {label: dat.option__text, value: dat.count};});
+        }),
+        donutOptions: _.map(graph_data.regional_feedbacks,  function(data){ 
+          return   {
+              xkey: "year",
+              colors: _.map(data.data.feedbacks,  function(dat){
+                  if(dat.option__text === "Few Concerns"){
+                    return '#ca786a';
+                  }
+                  else if(dat.option__text === "Not happy enough"){
+                    return '#d8c170';
+                  }
+                  else if(dat.option__text === "Everything is on track!"){
+                    return '#68acce';
+                  }
+                  else{
+                    return '#2ca998';
+                  }
+              });
+            };
+        })
+      };
     },
     getPieChartData: function(graph_data, colorScheme){
       return {

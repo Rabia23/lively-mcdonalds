@@ -4,7 +4,7 @@ angular.module("header.tpl.html", []).run(["$templateCache", function($templateC
   $templateCache.put("header.tpl.html",
     "<header class=\"top-header clearfix\">\n" +
     "\n" +
-    "  <div class=\"logo\">\n" +
+    "  <!-- <div class=\"logo\">\n" +
     "    <a href=\"#/\">\n" +
     "        <span>{{main.brand}}</span>\n" +
     "    </a>\n" +
@@ -24,7 +24,7 @@ angular.module("header.tpl.html", []).run(["$templateCache", function($templateC
     "            </a>\n" +
     "        </li>\n" +
     "      </ul> \n" +
-    "    </div>\n" +
+    "    </div> -->\n" +
     "\n" +
     "</header>\n" +
     "");

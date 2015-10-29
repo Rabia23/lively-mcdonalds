@@ -10,9 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-
+    <script src="http://maps.google.com/maps/api/js"></script>
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
@@ -20,19 +21,36 @@
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
 
-    <script src="//www.parsecdn.com/js/parse-1.2.15.js"></script>
-
   </head>
-  <body id="app" class="app" data-custom-page data-off-canvas-nav data-ng-class=" {'layout-boxed': admin.layout === 'boxed' } ">
+  <body >
+    <div class="top-bar"></div>
+    <div class = "container">
+    <!-- <nav class="navbar" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img src="/assets/images/logo.png" alt=""></a>
+            </div>
 
-    <section data-ng-include=" 'header.tpl.html' " id="header" class="header-container " data-ng-class=" {'header-fixed': admin.fixedHeader} "></section>
+            <div class="collapse navbar-collapse pull-right">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Dashboard</a></li>
+                    <li><a href="#compare">Compare</a></li>
+                    <li><a href="#about">About us</a></li>
+                    <li><a href="#contact">Contact us</a></li>
+                </ul>
+            </div>
+           
+        </div>
+    </nav> -->
 
-    <div class="main-container">
-      <aside data-ng-include=" 'nav.tpl.html' " id="nav-container" class="nav-container" data-ng-class=" {'nav-fixed': admin.fixedSidebar, 'nav-horizontal': admin.menu === 'horizontal', 'nav-vertical': admin.menu === 'vertical'}">
-      </aside>
-
-      <section ui-view = "main" id="content" class="content-container animate-fade-up"></section>
-    </div>
+      <div ui-view></div>
+    </div>  
 
   </body>
 </html>
