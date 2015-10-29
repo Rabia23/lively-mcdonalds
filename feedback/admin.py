@@ -11,7 +11,7 @@ class QuestionAdmin(admin.ModelAdmin):
 
 
 class OptionAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('text',)
 
 admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(Question, QuestionAdmin)
