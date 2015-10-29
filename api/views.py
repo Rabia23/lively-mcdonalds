@@ -53,45 +53,51 @@ def branch(request):
 def overall_feedback(request):
 
     if request.method == 'GET':
-        region_id = request.query_params.get('region', None)
-        city_id = request.query_params.get('city', None)
-        branch_id = request.query_params.get('branch', None)
 
-        question = Question.objects.filter(type=constants.MAIN_QUESTION).first()
+        try:
+            region_id = request.query_params.get('region', None)
+            city_id = request.query_params.get('city', None)
+            branch_id = request.query_params.get('branch', None)
 
-        if region_id and city_id and branch_id:
-            feedback_options = FeedbackOption.objects.filter(
-                option__in=question.options.values_list('id'),
-                feedback__branch__exact=branch_id, feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id).\
-                values('option_id', 'option__text').annotate(count=Count('option_id', 'option__text'))
-        elif region_id and city_id:
-            feedback_options = FeedbackOption.objects.filter(
-                option__in=question.options.values_list('id'),
-                feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id).\
-                values('option_id', 'option__text').annotate(count=Count('option_id', 'option__text'))
-        elif region_id:
-            feedback_options = FeedbackOption.objects.filter(
-                option__in=question.options.values_list('id'),
-                feedback__branch__city__region__exact=region_id).\
-                values('option_id', 'option__text').annotate(count=Count('option_id', 'option__text'))
-        else:
-            feedback_options = FeedbackOption.objects.filter(option__in=question.options.values_list('id')).\
-                values('option_id', 'option__text').annotate(count=Count('option_id', 'option__text'))
+            question = Question.objects.get(type=constants.MAIN_QUESTION)
 
-        list_feedback_option_ids = [item['option_id'] for item in feedback_options]
-        list_feedback = list(feedback_options)
+            if region_id and city_id and branch_id:
+                feedback_options = FeedbackOption.objects.filter(
+                    option__in=question.options.values_list('id'),
+                    feedback__branch__exact=branch_id, feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id).\
+                    values('option_id', 'option__text').annotate(count=Count('option_id', 'option__text'))
+            elif region_id and city_id:
+                feedback_options = FeedbackOption.objects.filter(
+                    option__in=question.options.values_list('id'),
+                    feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id).\
+                    values('option_id', 'option__text').annotate(count=Count('option_id', 'option__text'))
+            elif region_id:
+                feedback_options = FeedbackOption.objects.filter(
+                    option__in=question.options.values_list('id'),
+                    feedback__branch__city__region__exact=region_id).\
+                    values('option_id', 'option__text').annotate(count=Count('option_id', 'option__text'))
+            else:
+                feedback_options = FeedbackOption.objects.filter(option__in=question.options.values_list('id')).\
+                    values('option_id', 'option__text').annotate(count=Count('option_id', 'option__text'))
 
-        for option in question.options.all():
-            if option.id not in list_feedback_option_ids:
-                list_feedback.append({'count': 0, 'option_id': option.id, 'option__text': option.text})
+            list_feedback_option_ids = [item['option_id'] for item in feedback_options]
+            list_feedback = list(feedback_options)
 
-        data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
+            for option in question.options.all():
+                if option.id not in list_feedback_option_ids:
+                    list_feedback.append({'count': 0, 'option_id': option.id, 'option__text': option.text})
+
+            data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
+
+        except Question.DoesNotExist as e:
+            data = None
+        except Exception as e:
+            data = None
 
         feedback_response = OverallFeedbackSerializer(data)
         return Response(feedback_response.data)
-#
-#
-#
+
+
 # @api_view(['GET'])
 # def followup_options_feedback(request):
 #
