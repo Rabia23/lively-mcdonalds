@@ -26,17 +26,12 @@ class FeedbackOptionSerializer(serializers.ModelSerializer):
         fields = ('id', 'objectId')
 
 
-class CustomSingleFeedbackSerializer(serializers.Serializer):
+class OverallFeedbackSerializerSingle(serializers.Serializer):
     count = serializers.IntegerField()
-    score = serializers.IntegerField()
+    option_id = serializers.IntegerField()
+    option__text = serializers.CharField(max_length=100)
 
 
-class CustomFeedbackSerializer(serializers.Serializer):
-    scores = CustomSingleFeedbackSerializer(many=True)
-    scores_count = serializers.IntegerField()
-    
-    
-class CustomFollowupOptionSerializer(serializers.Serializer):
-    count = serializers.IntegerField()
-    followup_option = serializers.IntegerField()
-    followup_option__text = serializers.CharField()
+class OverallFeedbackSerializer(serializers.Serializer):
+    feedbacks = OverallFeedbackSerializerSingle(many=True)
+    feedback_count = serializers.IntegerField()

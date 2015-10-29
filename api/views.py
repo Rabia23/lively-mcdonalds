@@ -1,7 +1,10 @@
+from django.db.models.aggregates import Count
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from app.models import Region, City, Branch
 from app.serializers import RegionSerializer, CitySerializer
+from feedback.models import Feedback, Question, FeedbackOption
+from feedback.serializers import OverallFeedbackSerializer
 
 
 @api_view(['GET', 'POST'])
@@ -45,39 +48,46 @@ def branch(request):
         return Response(serializer.data)
 
 
-# @api_view(['GET'])
-# def feedback_with_scores(request):
-#
-#     if request.method == 'GET':
-#         region_id = request.query_params.get('region', None)
-#         city_id = request.query_params.get('city', None)
-#         branch_id = request.query_params.get('branch', None)
-#
-#         if region_id and city_id and branch_id:
-#             scores = Feedback.objects.filter(branch__exact=branch_id, branch__city__exact=city_id, branch__city__region__exact=region_id).\
-#                 values('score').\
-#                 annotate(count=Count('score'))
-#         elif region_id and city_id:
-#             scores = Feedback.objects.filter(branch__city__exact=city_id, branch__city__region__exact=region_id).\
-#                 values('score').\
-#                 annotate(count=Count('score'))
-#         elif region_id:
-#             scores = Feedback.objects.filter(branch__city__region__exact=region_id).\
-#                 values('score').\
-#                 annotate(count=Count('score'))
-#         else:
-#             scores = Feedback.objects.values('score').annotate(count=Count('score'))
-#
-#         list_score_values = [item['score'] for item in scores]
-#         list_score_feedback = [item for item in scores]
-#
-#         for type in ScoreTypes:
-#             if type.value not in list_score_values:
-#                 list_score_feedback.append({'count': 0, 'score': type.value})
-#
-#         data = {'scores_count': scores.count(), 'scores': list_score_feedback}
-#         feedback_response = CustomFeedbackSerializer(data)
-#         return Response(feedback_response.data)
+@api_view(['GET'])
+def overall_feedback(request):
+
+    if request.method == 'GET':
+        region_id = request.query_params.get('region', None)
+        city_id = request.query_params.get('city', None)
+        branch_id = request.query_params.get('branch', None)
+
+        question = Question.objects.get(type=1)
+
+        if region_id and city_id and branch_id:
+            feedback_options = FeedbackOption.objects.filter(
+                option__in=question.options.values_list('id'),
+                feedback__branch__exact=branch_id, feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id).\
+                values('option_id', 'option__text').annotate(count=Count('option_id', 'option__text'))
+        elif region_id and city_id:
+            feedback_options = FeedbackOption.objects.filter(
+                option__in=question.options.values_list('id'),
+                feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id).\
+                values('option_id', 'option__text').annotate(count=Count('option_id', 'option__text'))
+        elif region_id:
+            feedback_options = FeedbackOption.objects.filter(
+                option__in=question.options.values_list('id'),
+                feedback__branch__city__region__exact=region_id).\
+                values('option_id', 'option__text').annotate(count=Count('option_id', 'option__text'))
+        else:
+            feedback_options = FeedbackOption.objects.filter(option__in=question.options.values_list('id')).\
+                values('option_id', 'option__text').annotate(count=Count('option_id', 'option__text'))
+
+        list_feedback_option_ids = [item['option_id'] for item in feedback_options]
+        list_feedback = list(feedback_options)
+
+        for option in question.options.all():
+            if option.id not in list_feedback_option_ids:
+                list_feedback.append({'count': 0, 'option_id': option.id, 'option__text': option.text})
+
+        data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
+
+        feedback_response = OverallFeedbackSerializer(data)
+        return Response(feedback_response.data)
 #
 #
 #
