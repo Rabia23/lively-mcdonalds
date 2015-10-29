@@ -120,7 +120,9 @@ def regional_analysis(request):
                     if option.id not in list_feedback_option_ids:
                         list_feedback.append({'count': 0, 'option_id': option.id, 'option__text': option.text})
 
-                total_feedbacks = FeedbackOption.objects.filter(option__in=question.options.values_list('id')).count()
+                total_feedbacks = FeedbackOption.objects.filter(option__in=question.options.values_list('id'),
+                                        feedback__branch__city__region__exact=region.id).count()
+
                 region_data = {'feedback_count': total_feedbacks, 'feedbacks': list_feedback}
                 regional_feedbacks.append(
                     {'region': region, 'data': region_data}
