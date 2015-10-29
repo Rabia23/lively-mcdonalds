@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from app.models import Region, City, Branch
 from app.serializers import RegionSerializer, CitySerializer
-from feedback.models import Feedback, Question, FeedbackOption
+from feedback.models import Question, FeedbackOption
 from feedback.serializers import OverallFeedbackSerializer, RegionalAnalysisSerializer
 from lively import constants
 
