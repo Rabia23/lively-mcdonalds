@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from app.serializers import RegionSerializer
 from feedback.models import Feedback, Option, Question, FeedbackOption
 
 
@@ -35,3 +36,15 @@ class OverallFeedbackSerializerSingle(serializers.Serializer):
 class OverallFeedbackSerializer(serializers.Serializer):
     feedbacks = OverallFeedbackSerializerSingle(many=True)
     feedback_count = serializers.IntegerField()
+
+
+class RegionFeedbackSerializer(serializers.Serializer):
+    region = RegionSerializer()
+    data = OverallFeedbackSerializer()
+
+
+class RegionalAnalysisSerializer(serializers.Serializer):
+    region_count = serializers.IntegerField()
+    regional_feedbacks = RegionFeedbackSerializer(many=True)
+
+

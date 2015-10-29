@@ -1,10 +1,10 @@
-from django.db.models.aggregates import Count
+from django.db.models import Count
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from app.models import Region, City, Branch
 from app.serializers import RegionSerializer, CitySerializer
 from feedback.models import Feedback, Question, FeedbackOption
-from feedback.serializers import OverallFeedbackSerializer
+from feedback.serializers import OverallFeedbackSerializer, RegionalAnalysisSerializer
 from lively import constants
 
 
@@ -65,20 +65,21 @@ def overall_feedback(request):
                 feedback_options = FeedbackOption.objects.filter(
                     option__in=question.options.values_list('id'),
                     feedback__branch__exact=branch_id, feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id).\
-                    values('option_id', 'option__text').annotate(count=Count('option_id', 'option__text'))
+                    values('option_id', 'option__text').annotate(count=Count('option_id'))
             elif region_id and city_id:
                 feedback_options = FeedbackOption.objects.filter(
                     option__in=question.options.values_list('id'),
                     feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id).\
-                    values('option_id', 'option__text').annotate(count=Count('option_id', 'option__text'))
+                    values('option_id', 'option__text').annotate(count=Count('option_id'))
             elif region_id:
                 feedback_options = FeedbackOption.objects.filter(
                     option__in=question.options.values_list('id'),
                     feedback__branch__city__region__exact=region_id).\
-                    values('option_id', 'option__text').annotate(count=Count('option_id', 'option__text'))
+                    values('option_id', 'option__text').annotate(count=Count('option_id'))
             else:
-                feedback_options = FeedbackOption.objects.filter(option__in=question.options.values_list('id')).\
-                    values('option_id', 'option__text').annotate(count=Count('option_id', 'option__text'))
+                feedback_options = FeedbackOption.objects.filter(
+                    option__in=question.options.values_list('id')).\
+                    values('option_id', 'option__text').annotate(count=Count('option_id'))
 
             list_feedback_option_ids = [item['option_id'] for item in feedback_options]
             list_feedback = list(feedback_options)
@@ -87,7 +88,8 @@ def overall_feedback(request):
                 if option.id not in list_feedback_option_ids:
                     list_feedback.append({'count': 0, 'option_id': option.id, 'option__text': option.text})
 
-            data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
+            total_feedbacks = FeedbackOption.objects.filter(option__in=question.options.values_list('id')).count()
+            data = {'feedback_count': total_feedbacks, 'feedbacks': list_feedback}
             feedback_response = OverallFeedbackSerializer(data)
             return Response(feedback_response.data)
 
@@ -95,34 +97,39 @@ def overall_feedback(request):
             return Response(None)
 
 
+@api_view(['GET'])
+def regional_analysis(request):
 
+    if request.method == 'GET':
 
-# @api_view(['GET'])
-# def followup_options_feedback(request):
-#
-#     if request.method == 'GET':
-#
-#         region_id = request.query_params.get('region', None)
-#         city_id = request.query_params.get('city', None)
-#         branch_id = request.query_params.get('branch', None)
-#
-#         if region_id and city_id and branch_id:
-#             data = SelectedFollowupOption.objects.filter(feedback__branch__exact=branch_id, feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id, followup_option__parent__isnull=True).\
-#                 values('followup_option', 'followup_option__text').\
-#                 annotate(count=Count('followup_option'))
-#         elif region_id and city_id:
-#             data = SelectedFollowupOption.objects.filter(feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id, followup_option__parent__isnull=True).\
-#                 values('followup_option', 'followup_option__text').\
-#                 annotate(count=Count('followup_option'))
-#         elif region_id:
-#             data = SelectedFollowupOption.objects.filter(feedback__branch__city__region__exact=region_id, followup_option__parent__isnull=True).\
-#                 values('followup_option', 'followup_option__text').\
-#                 annotate(count=Count('followup_option'))
-#         else:
-#             data = SelectedFollowupOption.objects.filter(followup_option__parent__isnull=True).\
-#                 values('followup_option', 'followup_option__text').\
-#                 annotate(count=Count('followup_option'))
-#
-#         followup_option_response = CustomFollowupOptionSerializer(data, many=True)
-#         return Response(followup_option_response.data)
-#
+        try:
+            question = Question.objects.get(type=constants.MAIN_QUESTION)
+            regions = Region.objects.all()
+            regional_feedbacks = []
+
+            for region in regions:
+                feedback_options = FeedbackOption.objects.filter(
+                    option__in=question.options.values_list('id'),
+                    feedback__branch__city__region__exact=region.id).\
+                    values('option_id', 'option__text').annotate(count=Count('option_id'))
+
+                list_feedback_option_ids = [item['option_id'] for item in feedback_options]
+                list_feedback = list(feedback_options)
+
+                for option in question.options.all():
+                    if option.id not in list_feedback_option_ids:
+                        list_feedback.append({'count': 0, 'option_id': option.id, 'option__text': option.text})
+
+                total_feedbacks = FeedbackOption.objects.filter(option__in=question.options.values_list('id')).count()
+                region_data = {'feedback_count': total_feedbacks, 'feedbacks': list_feedback}
+                regional_feedbacks.append(
+                    {'region': region, 'data': region_data}
+                )
+
+            region_data = {'region_count': regions.count(), 'regional_feedbacks': regional_feedbacks}
+            feedback_response = RegionalAnalysisSerializer(region_data)
+            return Response(feedback_response.data)
+
+        except Exception as e:
+            return Response(None)
+
