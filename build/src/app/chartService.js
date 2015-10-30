@@ -37,20 +37,23 @@ angular.module('livefeed.chart', [])
           return   _.map(data.data.feedbacks,  function(dat){ return {label: dat.option__text, value: dat.count};});
         }),
         donutOptions: _.map(graph_data.regional_feedbacks,  function(data){ 
-          return   _.map(data.data.feedbacks,  function(dat){
-            if(dat.option__text === "Few Concerns"){
-              return '#ca786a';
-            }
-            else if(dat.option__text === "Not happy enough"){
-              return '#d8c170';
-            }
-            else if(dat.option__text === "Everything is on track!"){
-              return '#68acce';
-            }
-            else{
-              return '#2ca998';
-            }
-          });
+          return   {
+              xkey: "year",
+              colors: _.map(data.data.feedbacks,  function(dat){
+                  if(dat.option__text === "Few concerns"){
+                    return '#ca786a';
+                  }
+                  else if(dat.option__text === "Not happy enough"){
+                    return '#d8c170';
+                  }
+                  else if(dat.option__text === "Everything is on track!"){
+                    return '#68acce';
+                  }
+                  else{
+                    return '#2ca998';
+                  }
+              })
+            };
         })
       };
     },

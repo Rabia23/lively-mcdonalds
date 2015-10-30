@@ -40,7 +40,7 @@ angular.module('livefeed.chart', [])
           return   {
               xkey: "year",
               colors: _.map(data.data.feedbacks,  function(dat){
-                  if(dat.option__text === "Few Concerns"){
+                  if(dat.option__text === "Few concerns"){
                     return '#ca786a';
                   }
                   else if(dat.option__text === "Not happy enough"){
@@ -52,7 +52,7 @@ angular.module('livefeed.chart', [])
                   else{
                     return '#2ca998';
                   }
-              });
+              })
             };
         })
       };
