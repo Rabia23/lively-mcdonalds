@@ -9,6 +9,7 @@ class Feedback(models.Model):
     branch = models.ForeignKey(Branch, related_name='feedback', null=True, blank=True)
     comment = models.TextField()
     objectId = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
        return self.objectId
@@ -57,6 +58,7 @@ class FeedbackOption(models.Model):
     objectId = models.CharField(max_length=20)
     feedback = models.ForeignKey(Feedback, related_name='feedback_option', null=True, blank=True)
     option = models.ForeignKey(Option, related_name='feedback_option', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
        return self.objectId

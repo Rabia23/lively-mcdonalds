@@ -1,10 +1,12 @@
 from django.db.models import Count
+from datetime import datetime, timedelta
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from app.models import Region, City, Branch
 from app.serializers import RegionSerializer, CitySerializer
 from feedback.models import Question, FeedbackOption
-from feedback.serializers import OverallFeedbackSerializer, RegionalAnalysisSerializer
+from feedback.serializers import OverallFeedbackSerializer, RegionalAnalysisSerializer, CityAnalysisSerializer, \
+    OverallRattingSerializer
 from lively import constants
 
 
@@ -135,3 +137,101 @@ def regional_analysis(request):
         except Exception as e:
             return Response(None)
 
+
+@api_view(['GET'])
+def city_analysis(request):
+
+    if request.method == 'GET':
+
+        try:
+            region_id = request.query_params.get('region', None)
+
+            if region_id:
+                question = Question.objects.get(type=constants.MAIN_QUESTION)
+                region = Region.objects.get(pk=region_id)
+                cities = region.cities.all()
+
+                city_feedbacks = []
+
+                for city in cities:
+                    feedback_options = FeedbackOption.objects.filter(
+                        option__in=question.options.values_list('id'),
+                        feedback__branch__city__exact=city.id).\
+                        values('option_id', 'option__text').annotate(count=Count('option_id'))
+
+                    list_feedback_option_ids = [item['option_id'] for item in feedback_options]
+                    list_feedback = list(feedback_options)
+
+                    for option in question.options.all():
+                        if option.id not in list_feedback_option_ids:
+                            list_feedback.append({'count': 0, 'option_id': option.id, 'option__text': option.text})
+
+                    total_feedbacks = FeedbackOption.objects.filter(option__in=question.options.values_list('id'),
+                                            feedback__branch__city__exact=city.id).count()
+
+                    city_data = {'feedback_count': total_feedbacks, 'feedbacks': list_feedback}
+                    city_feedbacks.append(
+                        {'city': city, 'data': city_data}
+                    )
+
+                city_data = {'city_count': cities.count(), 'city_feedbacks': city_feedbacks}
+                feedback_response = CityAnalysisSerializer(city_data)
+                return Response(feedback_response.data)
+
+        except Exception as e:
+            return Response(None)
+
+
+@api_view(['GET'])
+def overall_rating(request):
+
+    if request.method == 'GET':
+
+        try:
+            region_id = request.query_params.get('region', None)
+            city_id = request.query_params.get('city', None)
+            branch_id = request.query_params.get('branch', None)
+
+            question = Question.objects.get(type=constants.SECONDARY_QUESTION)
+
+            if region_id and city_id and branch_id:
+                feedback_options = FeedbackOption.objects.filter(
+                    option__in=question.options.filter(parent=None).values_list('id'),
+                    feedback__branch__exact=branch_id, feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id,
+                    created_at__gte=datetime.now()-timedelta(days=7))
+            elif region_id and city_id:
+                feedback_options = FeedbackOption.objects.filter(
+                    option__in=question.options.filter(parent=None).values_list('id'),
+                    feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id,
+                    created_at__gte=datetime.now()-timedelta(days=7))
+            elif region_id:
+                feedback_options = FeedbackOption.objects.filter(
+                    option__in=question.options.filter(parent=None).values_list('id'),
+                    feedback__branch__city__region__exact=region_id,
+                    created_at__gte=datetime.now()-timedelta(days=7))
+            else:
+                feedback_options = FeedbackOption.objects.filter(
+                    option__in=question.options.filter(parent=None).values_list('id'),
+                    created_at__gte=datetime.now()-timedelta(days=7))
+
+            feedback_records_list = []
+            start_date = datetime.now() - timedelta(days=7)
+            for single_date in (start_date + timedelta(n) for n in range(7)):
+                feedbacks = feedback_options.filter(created_at__day=single_date.day)
+                filtered_feedbacks = feedbacks.values('option_id', 'option__text').annotate(count=Count('option_id'))
+
+                list_feedback_option_ids = [item['option_id'] for item in filtered_feedbacks]
+                list_feedback = list(filtered_feedbacks)
+
+                for option in question.options.all():
+                    if option.id not in list_feedback_option_ids:
+                        list_feedback.append({'count': 0, 'option_id': option.id, 'option__text': option.text})
+
+                date_data = {'feedback_count': feedbacks.count(), 'feedbacks': list_feedback}
+                feedback_records_list.append({'date': single_date, 'data': date_data})
+
+            feedback_response = OverallRattingSerializer(feedback_records_list, many=True)
+            return Response(feedback_response.data)
+
+        except Exception as e:
+            return Response(None)

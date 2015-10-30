@@ -8,6 +8,8 @@ urlpatterns = patterns('api.views',
     url(r'^branch/$', 'branch', name='branch'),
     url(r'^overall_feedback/$', 'overall_feedback', name='overall_feedback'),
     url(r'^regional_analysis/$', 'regional_analysis', name='regional_analysis'),
+    url(r'^city_analysis/$', 'city_analysis', name='city_analysis'),
+    url(r'^overall_rating/$', 'overall_rating', name='overall_rating'),
 )
 
 

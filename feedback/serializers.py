@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from app.serializers import RegionSerializer
+from app.serializers import RegionSerializer, CitySerializer
 from feedback.models import Feedback, Option, Question, FeedbackOption
 
 
@@ -46,5 +46,20 @@ class RegionFeedbackSerializer(serializers.Serializer):
 class RegionalAnalysisSerializer(serializers.Serializer):
     region_count = serializers.IntegerField()
     regional_feedbacks = RegionFeedbackSerializer(many=True)
+
+
+class CityFeedbackSerializer(serializers.Serializer):
+    city = CitySerializer()
+    data = OverallFeedbackSerializer()
+
+
+class CityAnalysisSerializer(serializers.Serializer):
+    city_count = serializers.IntegerField()
+    city_feedbacks = CityFeedbackSerializer(many=True)
+
+
+class OverallRattingSerializer(serializers.Serializer):
+    date = serializers.DateTimeField()
+    data = OverallFeedbackSerializer()
 
 

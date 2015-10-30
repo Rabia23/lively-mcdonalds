@@ -9,3 +9,4 @@ CUSTOMER_PASSWORD = "customerpassword"
 
 #------------ Question Types -------------
 MAIN_QUESTION = 1
+SECONDARY_QUESTION = 2
