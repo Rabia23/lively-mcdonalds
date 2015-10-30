@@ -1,0 +1,24 @@
+#wrapper{
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+
+#main{
+	@extend .container;
+}
+
+.section{
+	@extend .row;
+	margin-bottom: 18px;
+}
+
+.section-holder{@extend .col-xs-12;}
+
+.block{@extend .col-md-6;}
+
+.header{
+	@extend .row;
+	@extend .text-center;
+	margin-bottom: 13px;
+}

@@ -1,0 +1,30 @@
+#footer{
+	background: $black;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	color: $mikado-yellow;
+	font: {
+		family: $primary-font;
+		weight: 700;
+	}
+	@include fontsize(20, 15);
+	line-height: 1em;
+	
+	a{
+		color: $white;
+		&:hover,
+		&:active,
+		&:focus{color: lighten($mikado-yellow,10%);}
+	}
+	p{margin: 0;}
+}
+
+.footer-holder{
+	@extend .container;
+	.frame{@extend .row;}
+	.footer-text{@extend .col-sm-6;}
+	.footer-container{
+		@extend .col-sm-6;
+		@extend .text-right;
+	}
+}

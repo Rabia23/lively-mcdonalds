@@ -1,0 +1,50 @@
+*{
+	font-size: 100.01%;
+}
+
+html{
+	font-size: 50%;
+	background: $black;
+	
+	@include media("≥tablet"){ font-size: 55%; }	
+	@include media("≥desktop"){ font-size: 60%; }
+	@include media("≥widescreen"){ font-size: 62.5%; }
+}
+
+body {
+	font-size: $base-font-size;
+	line-height: $base-line-height;
+	font-weight: 300;
+	min-width: $base-min-width;
+}
+
+a {
+	outline: none;
+	@include transition(all , 0.2s , linear);
+	
+	&:hover,
+	&:active,
+	&:focus{
+		outline: none;
+		text-decoration: none;
+		@include transition(all , 0.2s , linear);
+	}
+}
+
+img{
+	max-width: 100%;
+	height: auto;
+	vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6{
+	text-transform: capitalize;
+	margin: 0 0 15px;
+}
+
+@-webkit-viewport   { width: device-width; }
+@-moz-viewport      { width: device-width; }
+@-ms-viewport       { width: device-width; }
+@-o-viewport        { width: device-width; }
+@viewport           { width: device-width; }

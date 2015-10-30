@@ -1,0 +1,40 @@
+#header{
+	position: relative;
+	
+	&:after{
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		content: "";
+		height: 28px;
+		background: $carnelian;
+	}
+	
+	&:before{
+		position: absolute;
+		left: 50%;
+		top: 0;
+		width: 336px;
+		height: 28px;
+		margin-left: -168px;
+		z-index: 2;
+		content: "";
+		background: $golden-poppy;
+	}
+	
+	.logo{
+		display: block;
+		margin: 0 auto 25px;
+		width: 145px;
+		height: 129px;
+		position: relative;
+		z-index: 3;
+		
+		img{
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+	}
+}

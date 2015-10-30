@@ -1,0 +1,32 @@
+.list{
+	@extend .list-unstyled;
+	text-align: center;
+	
+	li{
+		overflow: hidden;
+		color: $storm-dust;
+		margin: 0 0 8px;
+		
+		&:before{
+			@include inline-block(middle);
+			content: '\ad800'; 
+			font-family: $ico-font;
+			@include fontsize(37, 15);
+			line-height: 1em;
+			margin: 0 13px 0 -2px;
+		}
+		
+		&.v-good{
+			&:before{color: $brand-success;}
+		}
+		&.good{
+			&:before{color: $brand-primary;}
+		}
+		&.neutral{
+			&:before{color: $brand-warning;}
+		}
+		&.negative{
+			&:before{color: $brand-danger;}
+		}
+	}
+}

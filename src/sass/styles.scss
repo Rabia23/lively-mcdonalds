@@ -1,15 +1,68 @@
+$breakpoints: (
+  'xs-phone': 320px,
+  'phone': 480px,
+  'tablet': 768px,
+  'desktop': 992px,
+  'widescreen': 1200px,
+  'tvscreen': 1900px,
+);
+
+// keywords
+$media-expressions: (
+  'screen': 'screen',
+  'print': 'print',
+  'handheld': 'handheld',
+  'landscape': '(orientation: landscape)',
+  'portrait': '(orientation: portrait)',
+  'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
+  'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)'
+);
+
+// ligatured operators ≥ ≤
 /**************************************
 Load Sass
 **************************************/
 
-@import 'global';
-@import 'custom';
-@import 'home';
-@import 'nav';
-@import 'bootstrap.css';
+/*fonts*/
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+@import url(https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,600,400italic);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic);
+
+@import 'vendor/include-media';
+
+/*libraries*/
+@import 'lib/custom-variables';
+@import 'lib/custom-mixins';
+
+/*vendor*/
+@import 'vendor/bootstrap';
+
+/*components*/
+@import "components/info-block";
+@import "components/list";
+@import "components/info-holder";
+
+
+/*layouts*/
+@import 'vendor/icon-fonts';
+@import "layouts/header";
+@import "layouts/main-container";
+@import "layouts/footer";
+@import 'layouts/reset';
 
 
 /**************************************
 Styles
 **************************************/
 
+.screen{
+	position: absolute;
+	left: 50%;
+	top: 0;
+	opacity: 0.6;
+	pointer-events: none;
+	z-index: 99;
+	margin-left: -900px;
+	img{display: block;}
+	display: none;
+}

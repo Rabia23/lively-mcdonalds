@@ -1,0 +1,27 @@
+.info-block{
+	background: $white;
+	overflow: hidden;
+}
+
+.info-box{
+	text-align: center;
+	@include media("≥tablet"){
+		width: 40.2%;
+		float: left;
+		padding: 0 10px 0;
+	}
+	h2{margin-bottom: 7px;}
+	
+	.heading{
+		overflow: hidden;
+		padding: 19px 0 20px;
+	}
+}
+
+.map-holder{
+	overflow: hidden;
+	img{
+		display: block;
+		width: 100%;
+	}
+}

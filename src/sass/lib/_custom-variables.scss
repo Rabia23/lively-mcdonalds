@@ -1,0 +1,56 @@
+
+// Custom Variables
+
+$green-house											: #28530c;
+$wild-sand												: #f4f4f4;
+$chicago												: #5c5c5c;
+$white													: #fff;
+$shark													: #292929;
+$carnelian												: #ac1a1a;
+$golden-poppy											: #ffc300;
+$black													: #000;
+$mikado-yellow											: #ffca10;
+$islamic-green											: #01ad0f;
+$cinnabar												: #e73a3a;
+$storm-dust												: #656565;
+
+$base-font-size											: 1.5em;
+$base-line-height										: 1.1em;
+$base-min-width											: 320px;
+
+$primary-font											: 'Lato', sans-serif;
+$ico-font												: 'fontello';
+
+// Bootstrap Override
+
+$icon-font-path: "../fonts/fontello/";
+
+/* Fonts */
+$font-family-sans-serif									: 'Droid Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-size-base											: 15px;
+
+$headings-font-family									: 'Josefin Slab', "Helvetica Neue", Helvetica, Arial, sans-serif;
+$headings-font-weight									: 600;
+$headings-color											: $shark;
+
+$font-size-h1											: 1.4em;
+$font-size-h2											: 1.8em;
+$font-size-h3											: 1.25em;
+$font-size-h4											: 1.25em;
+$font-size-h5											: 12px;
+$font-size-h6											: 12px;
+
+/* Colors */
+/*Brand*/
+$brand-primary											: $islamic-green;
+$brand-success											: $green-house;
+$brand-warning											: $cinnabar;
+$brand-danger											: $carnelian;
+
+$body-bg												: $wild-sand;
+$text-color												: $chicago;
+$link-color												: $brand-success;
+
+$grid-gutter-width										: 20px;
+$container-large-desktop								: (1172px + $grid-gutter-width);
+$screen-lg												: 1220px;

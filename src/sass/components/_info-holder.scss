@@ -1,0 +1,106 @@
+.info-holder{
+	background: $white;
+	padding: 20px 30px 0;
+	overflow: hidden;
+	
+	h2{
+		margin: 0 0 21px;
+		letter-spacing: 1px;
+	}
+	
+}
+
+#main .table{
+	th,
+	td{
+		border: 0;
+		padding: 0 0 25px;
+		font-weight: 300;
+		text-align: center;
+		vertical-align: middle;
+		&.item1{
+			width: 36.05%;
+			padding-left: 23px;
+			text-align: left;
+			@include fontsize(20, 15);
+			color: $storm-dust;
+		}
+		&.item2{
+			width: 21.32%;
+			padding-right: 3px;
+			text-align: left;
+		}
+		&.item3{width: 15.7%;}
+		&.item4{
+			width: 26.75%;
+			padding-left: 18px;
+		}
+	}
+	th{padding-bottom: 14px;}
+	img{vertical-align: middle;}
+	.text{
+		display: block;
+		margin: 0 auto;
+		width: 35px;
+		height: 35px;
+		line-height: 35px;
+		color: $white;
+		text-align: center;
+		background: $brand-danger;
+		position: relative;
+		left: -4px;
+		@include border-radius(100%);
+		
+		&:after{
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			content: "";
+			width: 0; 
+			height: 0; 
+			border-bottom: 20px solid $brand-danger;
+			border-right: 20px solid transparent; 
+		}
+	}
+}
+
+.rating{
+	@extend .list-inline;
+	margin: 0;
+	letter-spacing: -6px;
+	li{
+		vertical-align: middle;
+		letter-spacing: 0;
+		padding: 0 3px 0 0;
+	}
+	a{
+		display: block;
+		width: 13px;
+		height: 13px;
+		overflow: hidden;
+		text-indent: -9999px;
+		font-size: 0;
+		line-height: 0;
+		position: relative;
+		border: 2px solid $golden-poppy;
+		@include border-radius(100%);
+		
+		&:after{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			background: $golden-poppy;
+			width: 5px;
+			height: 5px;
+			margin: -2px 0 0 -2px;
+			content: "";
+			@include border-radius(100%);
+		}
+		
+		&:hover{
+			border-color: darken($golden-poppy,10%);
+			
+			&:after{background: darken($golden-poppy,10%);}
+		}
+	}
+}
