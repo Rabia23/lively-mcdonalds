@@ -165,3 +165,13 @@ def generate_username():
     except User.DoesNotExist:
         return uname
 
+
+def generate_missing_options(question, data):
+    list_feedback_option_ids = [item['option_id'] for item in data]
+    list_feedback = list(data)
+
+    for option in question.options.all():
+        if option.id not in list_feedback_option_ids:
+            list_feedback.append({'count': 0, 'option_id': option.id, 'option__text': option.text})
+
+    return list_feedback
