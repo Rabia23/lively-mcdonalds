@@ -15,3 +15,6 @@ SECONDARY_QUESTION = 2
 REGIONAL_ANALYSIS = '1'
 CITY_ANALYSIS = '2'
 BRANCH_ANALYSIS = '3'
+
+#------------ Daywise Data Ratting -------------
+NO_OF_DAYS = 7

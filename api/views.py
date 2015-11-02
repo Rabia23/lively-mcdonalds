@@ -62,29 +62,26 @@ def overall_feedback(request):
             branch_id = request.query_params.get('branch', None)
 
             question = Question.objects.get(type=constants.MAIN_QUESTION)
+            filtered_feedback_options = FeedbackOption.objects.filter(option__in=question.options.values_list('id'))
 
             if region_id and city_id and branch_id:
-                feedback_options = FeedbackOption.objects.filter(
-                    option__in=question.options.values_list('id'),
-                    feedback__branch__exact=branch_id, feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id).\
-                    values('option_id', 'option__text').annotate(count=Count('option_id'))
+                filtered_feedback_options = filtered_feedback_options.filter(
+                    feedback__branch__exact=branch_id,
+                    feedback__branch__city__exact=city_id,
+                    feedback__branch__city__region__exact=region_id)
             elif region_id and city_id:
-                feedback_options = FeedbackOption.objects.filter(
-                    option__in=question.options.values_list('id'),
-                    feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id).\
-                    values('option_id', 'option__text').annotate(count=Count('option_id'))
+                filtered_feedback_options = filtered_feedback_options.filter(
+                    feedback__branch__city__exact=city_id,
+                    feedback__branch__city__region__exact=region_id)
             elif region_id:
-                feedback_options = FeedbackOption.objects.filter(
-                    option__in=question.options.values_list('id'),
-                    feedback__branch__city__region__exact=region_id).\
-                    values('option_id', 'option__text').annotate(count=Count('option_id'))
-            else:
-                feedback_options = FeedbackOption.objects.filter(
-                    option__in=question.options.values_list('id')).\
-                    values('option_id', 'option__text').annotate(count=Count('option_id'))
+                filtered_feedback_options = filtered_feedback_options.filter(
+                    feedback__branch__city__region__exact=region_id)
+
+            filtered_feedback_options_count = filtered_feedback_options.count()
+            feedback_options = filtered_feedback_options.values('option_id', 'option__text').annotate(count=Count('option_id'))
             list_feedback = generate_missing_options(question, feedback_options)
-            total_feedbacks = FeedbackOption.objects.filter(option__in=question.options.values_list('id')).count()
-            data = {'feedback_count': total_feedbacks, 'feedbacks': list_feedback}
+
+            data = {'feedback_count': filtered_feedback_options_count, 'feedbacks': list_feedback}
             feedback_response = OverallFeedbackSerializer(data)
             return Response(feedback_response.data)
 
@@ -125,9 +122,7 @@ def feedback_analysis(request):
                 list_feedback = generate_missing_options(question, filtered_feedback_options)
 
                 data = {'feedback_count': filtered_feedback_options_count, 'feedbacks': list_feedback}
-                feedbacks.append(
-                    {'object': object, 'data': data}
-                )
+                feedbacks.append({'object': object, 'data': data})
 
             feedback_data = {'count': objects.count(), 'analysis': feedbacks}
             feedback_response = FeedbackAnalysisSerializer(feedback_data)
@@ -148,31 +143,27 @@ def overall_rating(request):
             branch_id = request.query_params.get('branch', None)
 
             question = Question.objects.get(type=constants.SECONDARY_QUESTION)
+            filtered_feedback_options = FeedbackOption.objects.filter(
+                option__in=question.options.filter(parent=None).values_list('id'),
+                created_at__gte=datetime.now() - timedelta(days=constants.NO_OF_DAYS))
 
             if region_id and city_id and branch_id:
-                feedback_options = FeedbackOption.objects.filter(
-                    option__in=question.options.filter(parent=None).values_list('id'),
-                    feedback__branch__exact=branch_id, feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id,
-                    created_at__gte=datetime.now() - timedelta(days=7))
+                filtered_feedback_options = filtered_feedback_options.filter(
+                    feedback__branch__exact=branch_id,
+                    feedback__branch__city__exact=city_id,
+                    feedback__branch__city__region__exact=region_id)
             elif region_id and city_id:
-                feedback_options = FeedbackOption.objects.filter(
-                    option__in=question.options.filter(parent=None).values_list('id'),
-                    feedback__branch__city__exact=city_id, feedback__branch__city__region__exact=region_id,
-                    created_at__gte=datetime.now() - timedelta(days=7))
+                filtered_feedback_options = filtered_feedback_options.filter(
+                    feedback__branch__city__exact=city_id,
+                    feedback__branch__city__region__exact=region_id)
             elif region_id:
-                feedback_options = FeedbackOption.objects.filter(
-                    option__in=question.options.filter(parent=None).values_list('id'),
-                    feedback__branch__city__region__exact=region_id,
-                    created_at__gte=datetime.now() - timedelta(days=7))
-            else:
-                feedback_options = FeedbackOption.objects.filter(
-                    option__in=question.options.filter(parent=None).values_list('id'),
-                    created_at__gte=datetime.now() - timedelta(days=7))
+                filtered_feedback_options = filtered_feedback_options.filter(
+                    feedback__branch__city__region__exact=region_id)
 
             feedback_records_list = []
-            start_date = datetime.now() - timedelta(days=7)
-            for single_date in (start_date + timedelta(n) for n in range(7)):
-                feedbacks = feedback_options.filter(created_at__day=single_date.day)
+            start_date = datetime.now() - timedelta(days=constants.NO_OF_DAYS)
+            for single_date in (start_date + timedelta(n) for n in range(constants.NO_OF_DAYS)):
+                feedbacks = filtered_feedback_options.filter(created_at__day=single_date.day)
                 filtered_feedbacks = feedbacks.values('option_id', 'option__text').annotate(count=Count('option_id'))
                 list_feedback = generate_missing_options(question, filtered_feedbacks)
                 date_data = {'feedback_count': feedbacks.count(), 'feedbacks': list_feedback}
