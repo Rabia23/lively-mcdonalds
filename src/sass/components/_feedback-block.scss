@@ -25,25 +25,33 @@
 	}
 	
 	> li{
-		@include inline-block(bottom);
+		@include inline-block(top);
 		text-align: center;
 		padding: 0 5px 10px;
 		width: 50%;
 		
 		@include media("≥phone"){
 			max-width: 25%;
-			width: auto;
+			width: inherit;
 			padding: 0 0 10px;
 		}
 		
 		.img-holder{
 			overflow: hidden;
 			margin: 0 0 10px;
+			min-height: 115px;
+			@include v-align(100%, bottom, before);
+			&:before{min-height: inherit;}
 		}
 		
 		h3{
-			line-height: 1em;
-			span{display: block;}
+			word-spacing: -1px;
+			@include fontsize(19, 15);
+			line-height: 1.2em;
+			span{
+				display: block;
+				@include fontsize(21, 19);
+			}
 		}
 		
 		&.v-good{
@@ -71,8 +79,8 @@
 	border-style: solid;
 	border-width: 0 0 5px;
 	letter-spacing: -3px;
-	
-	@include media("<phone"){@include inline-block(top);}
+	padding: 0 0 10px;
+	@include inline-block(bottom);
 	
 	> li{
 		@include inline-block(top);

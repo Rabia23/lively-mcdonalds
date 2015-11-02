@@ -9,6 +9,13 @@
 		letter-spacing: 1px;
 		margin: 0 0 29px;
 	}
+	
+	.breadcrum{
+		span{
+			@include inline-block(top);
+			cursor: pointer;
+		}
+	}
 }
 .info-list{
 	@extend %listreset;
@@ -25,15 +32,14 @@
 		margin: 0 0 10px;
 		
 		@include media("≥phone"){width: 50%;}
-		@include media("≥tablet"){width: 33.3%;}
-		@include media("≥widescreen"){
-			width: 20%;
-			margin: 0 0 3px;
-		}
+		@include media("≥tablet"){width: 33.33%;}
+		@include media("≥desktop"){width: 25%;}
 	}
 	.graph-holder{
 		overflow: hidden;
 		margin: 0 0 20px;
 		position: relative;
+		
+		svg{height: 200px !important;}
 	}
 }

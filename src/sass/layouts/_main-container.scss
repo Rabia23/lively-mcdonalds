@@ -11,17 +11,30 @@
 
 .section{
 	@extend .row;
+	overflow: hidden;
 	margin-bottom: 18px;
 }
 
 .section-holder{@extend .col-xs-12;}
 
 .block{
+	position: relative;
 	@extend .col-md-6;
 	&:first-child{margin-bottom: 18px;}
 	
 	@include media("≥desktop"){
 		&:first-child{margin-bottom: 0;}
+	}
+	@include media("≥desktop"){	
+		&:before{
+			position: absolute;
+			left: 10px;
+			right: 10px;
+			top: 100%;
+			height: 9999px;
+			content: "";
+			background: $white;
+		}
 	}
 }
 
