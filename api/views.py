@@ -134,6 +134,46 @@ def feedback_analysis(request):
 
 
 @api_view(['GET'])
+def feedback_analysis_breakdown(request):
+
+    if request.method == 'GET':
+        option_id = request.query_params.get('option', None)
+
+        region_id = request.query_params.get('region', None)
+        city_id = request.query_params.get('city', None)
+        branch_id = request.query_params.get('branch', None)
+
+        try:
+            question = Question.objects.get(type=constants.SECONDARY_QUESTION)
+            filtered_feedback_options = FeedbackOption.objects.filter(option__in=question.options.values_list('id'),
+                feedback__in=FeedbackOption.objects.filter(option_id=option_id).values_list('feedback_id'))
+
+            if region_id and city_id and branch_id:
+                filtered_feedback_options = filtered_feedback_options.filter(
+                    feedback__branch__exact=branch_id,
+                    feedback__branch__city__exact=city_id,
+                    feedback__branch__city__region__exact=region_id)
+            elif region_id and city_id:
+                filtered_feedback_options = filtered_feedback_options.filter(
+                    feedback__branch__city__exact=city_id,
+                    feedback__branch__city__region__exact=region_id)
+            elif region_id:
+                filtered_feedback_options = filtered_feedback_options.filter(
+                    feedback__branch__city__region__exact=region_id)
+
+            filtered_feedback_options_count = filtered_feedback_options .count()
+            filtered_feedback_options = filtered_feedback_options.values('option_id', 'option__text').annotate(count=Count('option_id'))
+            list_feedback = generate_missing_options(question, filtered_feedback_options)
+
+            data = {'feedback_count': filtered_feedback_options_count, 'feedbacks': list_feedback}
+            feedback_response = OverallFeedbackSerializer(data)
+            return Response(feedback_response.data)
+
+        except Exception as e:
+            return Response(None)
+
+
+@api_view(['GET'])
 def overall_rating(request):
 
     if request.method == 'GET':

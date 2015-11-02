@@ -8,6 +8,7 @@ urlpatterns = patterns('api.views',
     url(r'^branch/$', 'branch', name='branch'),
     url(r'^overall_feedback/$', 'overall_feedback', name='overall_feedback'),
     url(r'^feedback_analysis/$', 'feedback_analysis', name='feedback_analysis'),
+    url(r'^feedback_analysis_breakdown/$', 'feedback_analysis_breakdown', name='feedback_analysis_breakdown'),
     url(r'^overall_rating/$', 'overall_rating', name='overall_rating'),
     url(r'^category_performance/$', 'category_performance', name='category_performance'),
 )
