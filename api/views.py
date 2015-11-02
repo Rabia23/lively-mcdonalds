@@ -1,5 +1,4 @@
 from django.db.models import Count
-from datetime import datetime, timedelta
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from app.models import Region, City, Branch
@@ -8,6 +7,8 @@ from feedback.models import Question, FeedbackOption, Option
 from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer
 from lively import constants
 from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options
+from dateutil import rrule
+from datetime import datetime, timedelta
 
 
 @api_view(['GET', 'POST'])
@@ -136,16 +137,24 @@ def feedback_analysis(request):
 def overall_rating(request):
 
     if request.method == 'GET':
+        feedback_records_list = []
 
         try:
             region_id = request.query_params.get('region', None)
             city_id = request.query_params.get('city', None)
             branch_id = request.query_params.get('branch', None)
+            option_id = request.query_params.get('option', None)
 
             question = Question.objects.get(type=constants.SECONDARY_QUESTION)
-            filtered_feedback_options = FeedbackOption.objects.filter(
-                option__in=question.options.filter(parent=None).values_list('id'),
-                created_at__gte=datetime.now() - timedelta(days=constants.NO_OF_DAYS))
+
+            if option_id:
+                filtered_feedback_options = FeedbackOption.objects.filter(
+                    option__in=Option.objects.filter(parent=option_id).values_list('id'),
+                    created_at__gte=datetime.now() - timedelta(days=constants.NO_OF_DAYS))
+            else:
+                filtered_feedback_options = FeedbackOption.objects.filter(
+                    option__in=question.options.filter(parent=None).values_list('id'),
+                    created_at__gte=datetime.now() - timedelta(days=constants.NO_OF_DAYS))
 
             if region_id and city_id and branch_id:
                 filtered_feedback_options = filtered_feedback_options.filter(
@@ -160,12 +169,15 @@ def overall_rating(request):
                 filtered_feedback_options = filtered_feedback_options.filter(
                     feedback__branch__city__region__exact=region_id)
 
-            feedback_records_list = []
-            start_date = datetime.now() - timedelta(days=constants.NO_OF_DAYS)
-            for single_date in (start_date + timedelta(n) for n in range(constants.NO_OF_DAYS)):
+            now = datetime.now()
+            start_date = now - timedelta(days=constants.NO_OF_DAYS)
+            for single_date in rrule.rrule(rrule.DAILY, dtstart=start_date, until=now):
                 feedbacks = filtered_feedback_options.filter(created_at__day=single_date.day)
                 filtered_feedbacks = feedbacks.values('option_id', 'option__text').annotate(count=Count('option_id'))
-                list_feedback = generate_missing_options(question, filtered_feedbacks)
+                if option_id:
+                    list_feedback = generate_missing_sub_options(option_id, filtered_feedbacks)
+                else:
+                    list_feedback = generate_missing_options(question, filtered_feedbacks)
                 date_data = {'feedback_count': feedbacks.count(), 'feedbacks': list_feedback}
                 feedback_records_list.append({'date': single_date, 'data': date_data})
 
