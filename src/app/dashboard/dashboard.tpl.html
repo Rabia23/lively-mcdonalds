@@ -1,29 +1,16 @@
-<br/>
-<div class = "row">
-  <div class = "col-xs-12 col-sm-12 col-md-6 col-lg-6">
-    <div ui-view="feedback_map"></div>
-  </div>
+<section class = "section">
+  <div class = "block" ui-view = "feedback_map" ng-controller = "FeedbackMapCtrl"></div>
+  <div class = "block" ui-view = "category_performance_analysis" ng-controller = "CategoryPerformanceAnalysisCtrl"></div>
+</section>
 
-  <div class = "col-xs-12 col-sm-12 col-md-6 col-lg-6">
-    <div ui-view="category_performance_analysis"></div>
-  </div>
-</div>
 
-<div class = "row">
-  <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div ui-view="regional_analysis"></div>
-  </div>
-</div>
+<section class = "section" ui-view="regional_analysis" ng-controller = "RegionalAnalysisCtrl"></section>
 
-<div class = "row">
-  <div class = "col-xs-12 col-sm-12 col-md-6 col-lg-6">
-    <div ui-view="overall_rating"></div>
-  </div>
+<section class = "section">
+  <div class = "block" ui-view = "overall_rating" ng-controller = "OverallRatingCtrl"></div>
+  <div class = "block" ui-view = "overall_feedback" ng-controller = "OverallFeedbackCtrl"></div>
+</section>
 
-  <div class = "col-xs-12 col-sm-12 col-md-6 col-lg-6">
-    <div ui-view="overall_feedback"></div>
-  </div>
-</div>
 
 <div class = "row">
   <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">

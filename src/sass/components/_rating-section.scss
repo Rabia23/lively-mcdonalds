@@ -1,0 +1,64 @@
+.rating-section{
+	overflow: hidden;
+	background: $white;
+	padding: 15px;
+	text-align: center;
+	
+	@include media("≥desktop"){padding: 20px 15px 15px;}
+	@include media("≥widescreen"){padding: 20px 28px 15px;}
+	
+	.heading-block{
+		overflow: hidden;
+		margin: 0 0 17px;
+		h2{
+			@include media("≥desktop"){float: left;}
+		}
+		ul{
+			@extend .list-inline;
+			text-align: center;
+			overflow: hidden;
+			margin: 0 0 10px;
+			letter-spacing: -6px;
+			
+			
+			@include media("≥desktop"){
+				text-align: right;
+				padding: 10px 0 0 0;
+				margin: 0;
+			}
+			
+			li{
+				vertical-align: top;
+				letter-spacing: 0;
+				padding: 0 3.2% 0 6.1%;
+				
+				a{
+					color: $brand-danger;
+					
+					&:hover{color: darken($brand-danger,10%);}
+				}
+				
+				&.item2{
+					a{
+						color: $brand-info;
+
+						&:hover{color: darken($brand-info,10%);}
+					}
+				}
+				
+				&.item3{
+					a{
+						color: $dell;
+
+						&:hover{color: darken($dell,10%);}
+					}
+				}
+			}
+		}
+	}
+	
+	.rating-holder{
+		overflow: hidden;
+		text-align: center;
+	}
+}

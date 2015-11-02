@@ -14,7 +14,10 @@
 	
 	.heading{
 		overflow: hidden;
-		padding: 19px 0 20px;
+		padding: 19px 0 18px;
+		
+		@include media("≥desktop"){padding: 15px 0 5px;}
+		@include media("≥widescreen"){padding: 19px 0 18px;}
 	}
 }
 

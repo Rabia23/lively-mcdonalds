@@ -1,7 +1,9 @@
 .info-holder{
 	background: $white;
-	padding: 20px 30px 0;
+	padding: 20px 15px 0;
 	overflow: hidden;
+	
+	@include media("≥widescreen"){padding: 20px 30px 0;}
 	
 	h2{
 		margin: 0 0 21px;
@@ -10,37 +12,65 @@
 	
 }
 
+.table-holder{
+	overflow: hidden;
+	min-height: 0.01%;
+    overflow-x: auto;
+}
+
 #main .table{
+	margin: 0;
+	max-width: 100%;
+    width: 100%;
+	min-width: 480px;
 	th,
 	td{
 		border: 0;
-		padding: 0 0 25px;
+		padding: 0 3px 10px;
 		font-weight: 300;
 		text-align: center;
 		vertical-align: middle;
+		
+		@include media("≥widescreen"){padding: 0 3px 25px;}
 		&.item1{
-			width: 36.05%;
-			padding-left: 23px;
+			width: 33%;
 			text-align: left;
 			@include fontsize(20, 15);
 			color: $storm-dust;
+			
+			@include media("≥tablet"){width: 36.05%;}
+			@include media("≥widescreen"){padding-left: 23px;}
 		}
 		&.item2{
-			width: 21.32%;
-			padding-right: 3px;
+			width: 25%;
 			text-align: left;
+			
+			@include media("≥tablet"){width: 21.32%;}
+			@include media("≥widescreen"){
+				padding-right: 3px;
+				padding-left: 0;
+			}
 		}
-		&.item3{width: 15.7%;}
+		&.item3{
+			width: 17%;
+			
+			@include media("≥tablet"){width: 15.7%;}
+			@include media("≥widescreen"){
+				padding-right: 0;
+				padding-left: 0;
+			}
+		}
 		&.item4{
-			width: 26.75%;
-			padding-left: 18px;
+			width: 25%;
+			
+			@include media("≥tablet"){width: 26.75%;}
+			@include media("≥widescreen"){padding-left: 18px;}
 		}
 	}
 	th{padding-bottom: 14px;}
 	img{vertical-align: middle;}
 	.text{
-		display: block;
-		margin: 0 auto;
+		@include inline-block(top);
 		width: 35px;
 		height: 35px;
 		line-height: 35px;
@@ -84,17 +114,19 @@
 		position: relative;
 		border: 2px solid $golden-poppy;
 		@include border-radius(100%);
+		z-index: 1;
 		
 		&:after{
 			position: absolute;
 			left: 50%;
 			top: 50%;
 			background: $golden-poppy;
-			width: 5px;
-			height: 5px;
-			margin: -2px 0 0 -2px;
+			width: 4px;
+			height: 4px;
+			margin: -2px 0 0 -1px;
 			content: "";
 			@include border-radius(100%);
+			z-index: -1;
 		}
 		
 		&:hover{

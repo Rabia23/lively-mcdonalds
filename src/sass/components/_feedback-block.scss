@@ -1,0 +1,97 @@
+.feedback-block{
+	overflow: hidden;
+	background: $white;
+	padding: 15px 15px 0;
+	
+	@include media("≥desktop"){padding: 20px 15px 0;}
+	@include media("≥widescreen"){padding: 20px 23px 0 30px;}
+	
+	h2{margin: 0 0 29px;}
+}
+
+.feedback-list{
+	@extend %listreset;
+	width: 100%;
+	text-align: justify;
+	letter-spacing: -6px;
+	margin: 0 0 -15px;
+	
+	&:after{
+		@include inline-block(top);
+		width: 100%;
+		text-align: center;
+		height: 0;
+		content: "";
+	}
+	
+	> li{
+		@include inline-block(bottom);
+		text-align: center;
+		padding: 0 5px 10px;
+		width: 50%;
+		
+		@include media("≥phone"){
+			max-width: 25%;
+			width: auto;
+			padding: 0 0 10px;
+		}
+		
+		.img-holder{
+			overflow: hidden;
+			margin: 0 0 10px;
+		}
+		
+		h3{
+			line-height: 1em;
+			span{display: block;}
+		}
+		
+		&.v-good{
+			h3{color: $brand-success;}
+			.ico-list{border-color: $brand-success;}
+		}
+		&.good{
+			h3{color: $brand-primary;}
+			.ico-list{border-color: $brand-primary;}
+		}
+		&.neutral{
+			h3{color: $brand-warning;}
+			.ico-list{border-color: $brand-warning;}
+		}
+		&.negative{
+			h3{color: $brand-danger;}
+			.ico-list{border-color: $brand-danger;}
+		}
+	}
+}
+
+.ico-list{
+	@extend %listreset;
+	overflow: hidden;
+	border-style: solid;
+	border-width: 0 0 5px;
+	letter-spacing: -3px;
+	
+	@include media("<phone"){@include inline-block(top);}
+	
+	> li{
+		@include inline-block(top);
+		margin: 0 3px;
+		
+		@include media("≥desktop"){margin: 0 2px;}
+		@include media("≥widescreen"){margin: 0 3px;}
+		
+		ul{
+			@extend %listreset;
+			overflow: hidden;
+			
+			li{
+				overflow: hidden;
+				margin: 0 0 8px;
+				
+				@include media("≥desktop"){margin: 0 0 5px;}
+				@include media("≥widescreen"){margin: 0 0 8px;}
+			}
+		}
+	}
+}

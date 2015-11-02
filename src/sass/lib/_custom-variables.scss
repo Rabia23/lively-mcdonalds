@@ -13,9 +13,12 @@ $mikado-yellow											: #ffca10;
 $islamic-green											: #01ad0f;
 $cinnabar												: #e73a3a;
 $storm-dust												: #656565;
+$mikado-yellow2											: #ffc712;
+$dell													: #406728;
+$alto													: #dadada;
 
 $base-font-size											: 1.5em;
-$base-line-height										: 1.1em;
+$base-line-height										: 1.15em;
 $base-min-width											: 320px;
 
 $primary-font											: 'Lato', sans-serif;
@@ -23,7 +26,7 @@ $ico-font												: 'fontello';
 
 // Bootstrap Override
 
-$icon-font-path: "../fonts/fontello/";
+$icon-font-path: "/assets/fonts/fontello/";
 
 /* Fonts */
 $font-family-sans-serif									: 'Droid Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -35,7 +38,7 @@ $headings-color											: $shark;
 
 $font-size-h1											: 1.4em;
 $font-size-h2											: 1.8em;
-$font-size-h3											: 1.25em;
+$font-size-h3											: 1.4em;
 $font-size-h4											: 1.25em;
 $font-size-h5											: 12px;
 $font-size-h6											: 12px;
@@ -46,6 +49,7 @@ $brand-primary											: $islamic-green;
 $brand-success											: $green-house;
 $brand-warning											: $cinnabar;
 $brand-danger											: $carnelian;
+$brand-info												: $mikado-yellow2;
 
 $body-bg												: $wild-sand;
 $text-color												: $chicago;

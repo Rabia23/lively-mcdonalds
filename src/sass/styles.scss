@@ -3,7 +3,7 @@ $breakpoints: (
   'phone': 480px,
   'tablet': 768px,
   'desktop': 992px,
-  'widescreen': 1200px,
+  'widescreen': 1220px,
   'tvscreen': 1900px,
 );
 
@@ -23,10 +23,6 @@ $media-expressions: (
 Load Sass
 **************************************/
 
-/*fonts*/
-@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
-@import url(https://fonts.googleapis.com/css?family=Josefin+Slab:400,700,600,400italic);
-@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic);
 
 @import 'vendor/include-media';
 
@@ -41,6 +37,11 @@ Load Sass
 @import "components/info-block";
 @import "components/list";
 @import "components/info-holder";
+@import "components/info-area";
+@import "components/rating-section";
+@import "components/feedback-block";
+@import "components/stat-block";
+@import "components/review-block";
 
 
 /*layouts*/
@@ -54,15 +55,3 @@ Load Sass
 /**************************************
 Styles
 **************************************/
-
-.screen{
-	position: absolute;
-	left: 50%;
-	top: 0;
-	opacity: 0.6;
-	pointer-events: none;
-	z-index: 99;
-	margin-left: -900px;
-	img{display: block;}
-	display: none;
-}

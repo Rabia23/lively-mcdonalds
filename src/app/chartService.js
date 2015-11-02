@@ -9,74 +9,31 @@ angular.module('livefeed.chart', [])
 
   return {
     
-    
-    decideColorScheme: function(graph_data){
-      return _.map(graph_data.feedback,  function(data){ 
-                  if(data.score === 1){
-                    return '#ca786a';
-                  }
-                  else if(data.score === 2){
-                    return '#d8c170';
-                  }
-                  else if(data.label === 3){
-                    return '#68acce';
-                  }
-                  else if(data.label === 4){
-                    return '#2ca998';
-                  }
-                  else{
-                    return randomColorGenerator();
-                  }        
-
-                });
-    },
-    getRegionChartData: function(graph_data){
+    getDonutChartData: function(graph_data){
       return {
-        regions: _.map(graph_data.regional_feedbacks,  function(data){ return data.region.name;}),
-        donutData: _.map(graph_data.regional_feedbacks,  function(data){ 
+        objects: _.map(graph_data.analysis,  function(data){ return {name: data.object.name, id: data.object.id};}),
+        donutData: _.map(graph_data.analysis,  function(data){ 
           return   _.map(data.data.feedbacks,  function(dat){ return {label: dat.option__text, value: dat.count};});
         }),
-        donutOptions: _.map(graph_data.regional_feedbacks,  function(data){ 
+        donutOptions: _.map(graph_data.analysis,  function(data){ 
           return   {
               xkey: "year",
               colors: _.map(data.data.feedbacks,  function(dat){
                   if(dat.option__text === "Few concerns"){
-                    return '#ca786a';
+                    return '#ac1a1a';
                   }
                   else if(dat.option__text === "Not happy enough"){
-                    return '#d8c170';
+                    return '#e73a3a';
                   }
                   else if(dat.option__text === "Everything is on track!"){
-                    return '#68acce';
+                    return '#01ad0f';
                   }
                   else{
-                    return '#2ca998';
+                    return '#28530c';
                   }
               })
             };
         })
-      };
-    },
-    getPieChartData: function(graph_data, colorScheme){
-      return {
-        labels : _.map(graph_data.feedback,  function(data){ return data.label;}),
-        data: _.map(graph_data.feedback,  function(data){return (data.count/graph_data.total_feedback)*100;}),
-        colors : colorScheme
-      };
-    },
-
-    getBarChartData: function(graph_data, colorScheme){
-      return {
-        labels : _.map(graph_data.feedback,  function(data){ return data.label;}),
-        data: [_.map(graph_data.feedback,  function(data){return data.count;})],
-        colors : [{fillColor: colorScheme}],
-        
-        options: {
-          scaleShowHorizontalLines: false,
-          scaleShowVerticalLines: false,
-          barValueSpacing : 30
-        }
-
       };
     }
 

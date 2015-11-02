@@ -1,0 +1,222 @@
+.stat-block{
+	overflow: hidden;
+	background: $white;
+	padding: 15px;
+	text-align: center;
+	
+	@include media("≥tablet"){
+		padding: 20px 15px;
+		text-align: left;
+	}
+	@include media("≥widescreen"){padding: 20px 30px 22px;}
+	
+	h2{
+		margin: 0;
+		@include media("≥tablet"){margin: 0 0 11px;}
+	}
+	.holder{
+		overflow: hidden;
+		position: relative;
+		
+		@include media("≥tablet"){
+			&:after,
+			&:before{
+				position: absolute;
+				left: 41.5%;
+				top: 0;
+				bottom: 0;
+				background: $alto;
+				width: 1px;
+				content: "";
+			}
+
+			&:before{
+				left: auto;
+				right: 28.5%;
+			}
+		}
+		@include media("≥desktop"){
+			&:before{
+				left: auto;
+				right: 33.2%;
+			}
+		}
+	}
+	
+	.col{
+		float: left;
+		width: 100%;
+		padding: 15px 0;
+		border-top: 1px solid $alto;
+		
+		&:first-child{border: 0;}
+		
+		@include media("≥tablet"){
+			width: 30%;
+			border: 0;
+			
+			&:first-child{width: 41.5%;}
+			&.last{width: 28%;}
+		}
+		
+		@include media("≥desktop"){
+			width: 25.2%;
+			
+			&:first-child{width: 41.5%;}
+			&.last{width: 33.2%;}
+		}
+	}
+	
+	.graph-holder{
+		overflow: hidden;
+		
+		@include media("≥tablet"){
+			padding: 0 10px 0 20px;
+			float: left;
+		}
+		@include media("≥desktop"){padding: 0 0 0 30px;}
+		@include media("≥widescreen"){padding: 0 0 0 51px;}
+	}
+	
+	.detail-box{
+		overflow: hidden;
+		letter-spacing: -6px;
+		
+		@include media("≥tablet"){padding: 0 0 0 20px;}
+		@include media("≥desktop"){padding: 28px 0 0 20px;}
+		@include media("≥widescreen"){padding: 28px 0 0 53px;}
+		.img-holder{
+			width: 100%;
+			@include inline-block(top);
+			
+			@include media("≥desktop"){
+				vertical-align: middle;
+				width: 50%;
+			}
+			
+		}
+		
+		.box{
+			width: 100%;
+			@include inline-block(top);
+			
+			@include media("≥desktop"){
+				vertical-align: middle;
+				width: 50%;
+				padding: 13px 0 0 15px;
+			}
+			
+			ul{
+				@extend %listreset;
+				overflow: hidden;
+				letter-spacing: -6px;
+				margin: 0 0 3px;
+				
+				li{
+					@include inline-block(middle);
+					margin: 0 8px 5px 0;
+					
+					&.active{
+						a{
+							width: 19px;
+							height: 19px;
+						}
+					}
+				}
+				
+				a{
+					display: block;
+					width: 5px;
+					height: 5px;
+					overflow: hidden;
+					text-indent: -9999px;
+					@include border-radius(100%);
+					background: $golden-poppy;
+				}
+			}
+			
+			.text{
+				overflow: hidden;
+				span{display: block;}
+				p{margin: 0;}
+			}
+		}
+	}
+}
+
+.detail-list{
+	overflow: hidden;
+	@extend %listreset;
+	padding: 11px 0 0;
+	
+	> li{
+		overflow: hidden;
+		margin: 0 0 12px;
+		
+		@include media("≥tablet"){margin: 0 0 9px;}
+		
+		&.v-good{
+			h3{color: $brand-success;}
+		}
+		&.good{
+			h3{color: $brand-primary;}
+		}
+		&.neutral{
+			h3{color: $brand-warning;}
+		}
+		&.negative{
+			h3{color: $brand-danger;}
+		}
+	}
+	.title-holder{
+		margin: 0 0 5px;
+		h3{
+			margin: 0;
+			strong{
+				@include fontsize(26, 21);
+				font-weight: 900;
+				@include inline-block(middle);
+				margin: 0 3px;
+			}
+		}
+		
+		
+		@include media("≥tablet"){
+			text-align: right;
+			float: left;
+			width: 80px;
+			margin: 0 10px 0 0;
+			h3{
+				margin: 0;
+				strong{
+					margin: 0 0 -4px;
+					display: block;
+				}
+			}
+		}
+		
+		@include media("≥desktop"){
+			width: 100px;
+			margin: 0 10px 0 0;
+		}
+		
+		@include media("≥widescreen"){
+			width: 110px;
+			margin: 0 20px 0 0;
+		}
+	}
+	ul{
+		overflow: hidden;
+		@extend %listreset;
+		letter-spacing: -6px;
+		
+		li{
+			@include inline-block(top);
+			margin: 0 3px 3px;
+			
+			@include media("≥tablet"){margin: 0 5px 3px 7px;}
+			@include media("≥desktop"){margin: 0 2px 3px 6px;}
+			@include media("≥widescreen"){margin: 0 0 0 10px;}
+		}
+	}
+}

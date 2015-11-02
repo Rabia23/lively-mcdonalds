@@ -27,7 +27,7 @@ angular.module( 'factories', ['ngResource'])
     this.service = $resource('http://mclively.herokuapp.com/api/:endpoint/', {callback: "JSON_CALLBACK"},
                   {
                     overall_feedback: {method: "JSONP",isArray: false, params: {endpoint: "overall_feedback"}},
-                    regional_analysis: {method: "JSONP",isArray: false, params: {endpoint: "regional_analysis"}}
+                    feedback_analysis: {method: "JSONP",isArray: false, params: {endpoint: "feedback_analysis"}}
 
                  });
   }
@@ -37,11 +37,16 @@ angular.module( 'factories', ['ngResource'])
     branch_id = branch_id || "";
     return this.service.overall_feedback({region: region_id, city: city_id, branch: branch_id});
   };
-  Graphs.prototype.regional_analysis = function(region_id, city_id, branch_id){
+  Graphs.prototype.regional_analysis = function(){
+    return this.service.feedback_analysis();
+  };
+  Graphs.prototype.city_analysis = function(region_id){
     region_id = region_id || "";
+    return this.service.feedback_analysis({type: 2, region: region_id});
+  };
+  Graphs.prototype.branch_analysis = function(city_id){
     city_id = city_id || "";
-    branch_id = branch_id || "";
-    return this.service.regional_analysis({region: region_id, city: city_id, branch: branch_id});
+    return this.service.feedback_analysis({type: 3, city: city_id});
   };
   return new Graphs();
 }]);

@@ -1,19 +1,22 @@
 .list{
 	@extend .list-unstyled;
 	text-align: center;
+	padding: 0 0 10px;
 	
 	li{
 		overflow: hidden;
 		color: $storm-dust;
-		margin: 0 0 8px;
-		
+		margin: 0 0 4px;
+				
 		&:before{
 			@include inline-block(middle);
 			content: '\ad800'; 
 			font-family: $ico-font;
-			@include fontsize(37, 15);
-			line-height: 1em;
+			@include fontsize(28, 15);
+			line-height: 1.1em;
 			margin: 0 13px 0 -2px;
+			
+			@include media("≥widescreen"){@include fontsize(37, 15);}
 		}
 		
 		&.v-good{

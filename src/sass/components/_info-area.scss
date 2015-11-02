@@ -1,0 +1,39 @@
+.info-area{
+	background: $white;
+	overflow: hidden;
+	padding: 15px;
+	
+	@include media("≥desktop"){padding: 20px 15px 10px;}
+	@include media("≥widescreen"){padding: 17px 30px;}
+	h2{
+		letter-spacing: 1px;
+		margin: 0 0 29px;
+	}
+}
+.info-list{
+	@extend %listreset;
+	overflow: hidden;
+	letter-spacing: -6px;
+	text-align: center;
+	
+	@include media("≥widescreen"){padding: 0 36px;}
+	
+	li{
+		@include inline-block(top);
+		width: 100%;
+		text-align: center;
+		margin: 0 0 10px;
+		
+		@include media("≥phone"){width: 50%;}
+		@include media("≥tablet"){width: 33.3%;}
+		@include media("≥widescreen"){
+			width: 20%;
+			margin: 0 0 3px;
+		}
+	}
+	.graph-holder{
+		overflow: hidden;
+		margin: 0 0 20px;
+		position: relative;
+	}
+}

@@ -6,6 +6,7 @@
 
 #main{
 	@extend .container;
+	margin-bottom: 7px;
 }
 
 .section{
@@ -15,7 +16,14 @@
 
 .section-holder{@extend .col-xs-12;}
 
-.block{@extend .col-md-6;}
+.block{
+	@extend .col-md-6;
+	&:first-child{margin-bottom: 18px;}
+	
+	@include media("≥desktop"){
+		&:first-child{margin-bottom: 0;}
+	}
+}
 
 .header{
 	@extend .row;

@@ -81,7 +81,6 @@ module.exports = {
     ],
     css: [
       'vendor/angular-chart.js/dist/angular-chart.min.css',
-      'vendor/bootstrap/dist/css/bootstrap.css',
       'vendor/morris.js/morris.css'
     ],
     assets: [

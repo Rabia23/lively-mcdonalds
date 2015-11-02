@@ -255,6 +255,7 @@
 @mixin inline-block($val){
 	display: inline-block;
 	vertical-align: $val;
+	letter-spacing: 0;
 }
 
 

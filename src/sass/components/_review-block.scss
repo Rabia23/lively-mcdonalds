@@ -1,0 +1,125 @@
+.review-block{
+	overflow: hidden;
+	background: $white;
+	padding: 15px;
+	text-align: center;
+	
+	@include media("≥tablet"){
+		text-align: left;
+		padding: 20px 15px 10px;
+	}
+	@include media("≥widescreen"){padding: 24px 30px 29px;}
+	
+	h2{
+		letter-spacing: 1px;
+		margin: 0 0 30px;
+		
+		@include media("≥tablet"){margin: 0 0 40px;}
+		@include media("≥desktop"){margin: 0 0 58px;}
+	}
+	
+	.holder{
+		overflow: hidden;
+		@include media("≥widescreen"){padding: 0 2px;}
+	}
+	
+	ul{
+		@extend %clearfix;
+		@extend %listreset;
+		text-align: center;
+		width: 100%;
+		
+		@include media("≥widescreen"){
+			float: left;
+			width: 49.5%;
+		}
+		&.add{
+			@include media("≥widescreen"){float: right;}
+			
+			li{
+				border-color: $brand-danger;
+				
+				&:after{border-bottom-color: $brand-danger;}
+				&:before{color: $brand-danger;}
+				.ico-holder{color: $brand-danger;}
+			}
+		}
+		
+		li{
+			@include inline-block(top);
+			width: 159px;
+			height: 159px;
+			position: relative;
+			z-index: 1;
+			padding: 11px 0;
+			margin: 0 25px 40px 10px;
+			text-align: center;
+			@include border-radius(100%);
+			border: 11px solid $brand-success;
+			
+			@include media("≥phone"){margin: 0 25px 40px 10px;}
+			@include media("≥tablet"){margin: 0 3px 30px;}
+			@include media("≥widescreen"){margin: 0 4px 20px;}
+			
+			&:after{
+				position: absolute;
+				right: -9px;
+				bottom: -9px;
+				content: "";
+				width: 0; 
+				height: 0; 
+				border-bottom: 65px solid $brand-success;
+				border-left: 65px solid transparent; 
+			}
+			
+			&:before{
+				position: absolute;
+				right: -37px;
+				bottom: -43px;
+				color: $brand-success;
+				content: '\Ad804';
+				font: {
+					size: 40px;
+					family: $ico-font;
+				}
+				line-height: 1em;
+			}
+		}
+		
+		.ico-holder{
+			display: block;
+			@include v-align(100%, bottom, before);
+			font-size: 22px;
+			line-height: 22px;
+			margin: 0 0 11px;
+			position: relative;
+			z-index: 6;
+			color: $brand-success;
+		}
+		
+		.inner-holder{
+			position: relative;
+			
+			&:after{
+				position: absolute;
+				right: 2px;
+				bottom: -22px;
+				left: 0;
+				top: 0;
+				content: "";
+				background: $white;
+				z-index: 5;
+				@include border-radius(100%);
+			}
+		}
+		
+		.text{
+			height: 72px;
+			position: relative;
+			padding: 0 14px;
+			overflow: hidden;
+			z-index: 6;
+			p{margin: 0;}
+		}
+	}
+}
