@@ -10,3 +10,8 @@ CUSTOMER_PASSWORD = "customerpassword"
 #------------ Question Types -------------
 MAIN_QUESTION = 1
 SECONDARY_QUESTION = 2
+
+#------------ Feedback Analysis -------------
+REGIONAL_ANALYSIS = '1'
+CITY_ANALYSIS = '2'
+BRANCH_ANALYSIS = '3'

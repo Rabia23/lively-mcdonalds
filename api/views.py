@@ -5,10 +5,9 @@ from rest_framework.response import Response
 from app.models import Region, City, Branch
 from app.serializers import RegionSerializer, CitySerializer
 from feedback.models import Question, FeedbackOption
-from feedback.serializers import OverallFeedbackSerializer, RegionalAnalysisSerializer, CityAnalysisSerializer, \
-    OverallRattingSerializer
+from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer
 from lively import constants
-from lively.utils import generate_missing_options
+from lively.utils import generate_missing_options, get_filtered_feedback_options
 
 
 @api_view(['GET', 'POST'])
@@ -94,69 +93,45 @@ def overall_feedback(request):
 
 
 @api_view(['GET'])
-def regional_analysis(request):
+def feedback_analysis(request):
 
     if request.method == 'GET':
+        type = request.query_params.get('type', None)
+        objects = None
+        feedbacks = []
 
         try:
             question = Question.objects.get(type=constants.MAIN_QUESTION)
-            regions = Region.objects.all()
-            regional_feedbacks = []
+            feedback_options = FeedbackOption.objects.filter(option__in=question.options.values_list('id'))
 
-            for region in regions:
-                feedback_options = FeedbackOption.objects.filter(
-                    option__in=question.options.values_list('id'),
-                    feedback__branch__city__region__exact=region.id).\
-                    values('option_id', 'option__text').annotate(count=Count('option_id'))
-                list_feedback = generate_missing_options(question, feedback_options)
-                total_feedbacks = FeedbackOption.objects.filter(option__in=question.options.values_list('id'),
-                                        feedback__branch__city__region__exact=region.id).count()
+            if type == constants.CITY_ANALYSIS:
+                region_id = request.query_params.get('region', None)
+                if region_id:
+                    region = Region.objects.get(pk=region_id)
+                    objects = region.cities.all()
+            elif type == constants.BRANCH_ANALYSIS:
+                city_id = request.query_params.get('city', None)
+                if city_id:
+                    city = City.objects.get(pk=city_id)
+                    objects = city.branches.all()
+            else:
+                objects = Region.objects.all()
 
-                region_data = {'feedback_count': total_feedbacks, 'feedbacks': list_feedback}
-                regional_feedbacks.append(
-                    {'region': region, 'data': region_data}
+            for object in objects:
+                filtered_feedback_options = get_filtered_feedback_options(feedback_options, type, object)
+                filtered_feedback_options_count = filtered_feedback_options.count()
+                filtered_feedback_options = filtered_feedback_options.values(
+                    'option_id', 'option__text').annotate(count=Count('option_id'))
+                list_feedback = generate_missing_options(question, filtered_feedback_options)
+
+                data = {'feedback_count': filtered_feedback_options_count, 'feedbacks': list_feedback}
+                feedbacks.append(
+                    {'object': object, 'data': data}
                 )
 
-            region_data = {'region_count': regions.count(), 'regional_feedbacks': regional_feedbacks}
-            feedback_response = RegionalAnalysisSerializer(region_data)
+            feedback_data = {'count': objects.count(), 'analysis': feedbacks}
+            feedback_response = FeedbackAnalysisSerializer(feedback_data)
             return Response(feedback_response.data)
-
-        except Exception as e:
-            return Response(None)
-
-
-@api_view(['GET'])
-def city_analysis(request):
-
-    if request.method == 'GET':
-
-        try:
-            region_id = request.query_params.get('region', None)
-
-            if region_id:
-                question = Question.objects.get(type=constants.MAIN_QUESTION)
-                region = Region.objects.get(pk=region_id)
-                cities = region.cities.all()
-
-                city_feedbacks = []
-
-                for city in cities:
-                    feedback_options = FeedbackOption.objects.filter(
-                        option__in=question.options.values_list('id'),
-                        feedback__branch__city__exact=city.id).\
-                        values('option_id', 'option__text').annotate(count=Count('option_id'))
-                    list_feedback = generate_missing_options(question, feedback_options)
-                    total_feedbacks = FeedbackOption.objects.filter(option__in=question.options.values_list('id'),
-                                            feedback__branch__city__exact=city.id).count()
-
-                    city_data = {'feedback_count': total_feedbacks, 'feedbacks': list_feedback}
-                    city_feedbacks.append(
-                        {'city': city, 'data': city_data}
-                    )
-
-                city_data = {'city_count': cities.count(), 'city_feedbacks': city_feedbacks}
-                feedback_response = CityAnalysisSerializer(city_data)
-                return Response(feedback_response.data)
 
         except Exception as e:
             return Response(None)

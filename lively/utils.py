@@ -175,3 +175,14 @@ def generate_missing_options(question, data):
             list_feedback.append({'count': 0, 'option_id': option.id, 'option__text': option.text})
 
     return list_feedback
+
+
+def get_filtered_feedback_options(feedback_options, type, object):
+    if type == constants.CITY_ANALYSIS:
+        filtered_feedback_options = feedback_options.filter(feedback__branch__city__exact=object.id)
+    elif type == constants.BRANCH_ANALYSIS:
+        filtered_feedback_options = feedback_options.filter(feedback__branch__exact=object.id)
+    else:
+        filtered_feedback_options = feedback_options.filter(feedback__branch__city__region__exact=object.id)
+
+    return filtered_feedback_options
