@@ -28,11 +28,10 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
         name: data.option__text, 
         percentage: ((data.count/feedback_data.feedback_count)*100),
         rounded_percentage: Math.round( ((data.count/feedback_data.feedback_count)*100)* 10 ) / 10,
-        columns: _.range(0,Math.floor(((data.count/feedback_data.feedback_count)*100)/10)),
+        columns: _.range(0,Math.round(((data.count/feedback_data.feedback_count)*100)/10)),
         class: getClass(data.option__text)
       };
     });
-    console.log($scope.overall_feedback);
   
   }); 
 

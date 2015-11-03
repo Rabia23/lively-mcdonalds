@@ -2,11 +2,13 @@
   <header class="heading-block">
     <h2>Overall Rating</h2>
     <ul>
-      <li><a href="#">Food</a></li>
-      <li class="item2"><a href="#">Service</a></li>
-      <li class="item3"><a href="#">Cleanliness</a></li>
+      <li ng-repeat = "label in labels">
+        <a style = "color: {{label.color}}">{{label.value}}</a>
+      </li>
     </ul>
   </header>
-  <div class="rating-holder"><img src="assets/images/img9.png" alt="image description"></div>
+  <div class="rating-holder">
+    <div id = "overall-rating-linechart" data-flot-chart data-data="line1.data" data-options="line1.options" style="width: 100%; height: 300px;"></div>
+  </div>
 </div>
   

@@ -1,7 +1,8 @@
 <div class="section-holder" >
   <div class="info-area">
     <h2 ng-show = "regional_view">Regional Analysis</h2>
-    <h2 ng-hide = "regional_view">{{selected_region.name}} Region City Analysis</h2>
+    <h2 ng-show = "regional_view == false && city_view == true">{{selected_region.name}} Region City Analysis</h2>
+    <h2 ng-show = "regional_view == false && city_view == false">{{selected_city.name}} City Branch Analysis</h2>
     <div class = "breadcrum">
       <span ng-hide = "regional_view">
         <a ng-click = "backToRegions()" style = "style: cursor:pointer">Regions /</a>
@@ -16,7 +17,7 @@
         <div class="graph-holder">
           <div morris-chart data-data="donut_graph_data.donutData[$index]" data-type="donut" data-options="donut_graph_data.donutOptions[$index]"></div>
         </div>
-        <h3>Region {{$index + 1}},&nbsp;
+        <h3>
           <a ng-click = "getRegionCities(region)" style = "cursor:pointer;">{{region.name}}</a>
         </h3>
       </li>
@@ -27,7 +28,6 @@
           <div morris-chart data-data="donut_cities_data.donutData[$index]" data-type="donut" data-options="donut_cities_data.donutOptions[$index]"></div>
         </div>
         <h3>
-          City {{$index + 1}},&nbsp;
           <a ng-click = "getCityBranches(city)" style = "cursor:pointer;">{{city.name}}</a>
         </h3>
       </li>
@@ -37,7 +37,7 @@
         <div class="graph-holder">
           <div morris-chart data-data="donut_branches_data.donutData[$index]" data-type="donut" data-options="donut_branches_data.donutOptions[$index]"></div>
         </div>
-        <h3>Branch {{$index + 1}},&nbsp;{{branch.name}}</h3>
+        <h3>{{branch.name}}</h3>
       </li>
     </ul>
   </div>

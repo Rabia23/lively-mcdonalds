@@ -76,7 +76,9 @@ module.exports = {
       'vendor/ngmap/build/scripts/ng-map.js',
       'vendor/jquery/dist/jquery.js',
       'vendor/morris.js/morris.js',
-      'vendor/raphael/raphael.js'
+      'vendor/raphael/raphael.js',
+      'vendor/Flot/jquery.flot.js',
+      'vendor/flot.tooltip/js/jquery.flot.tooltip.js',
 
     ],
     css: [

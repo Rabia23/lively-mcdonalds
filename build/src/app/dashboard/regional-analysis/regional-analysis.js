@@ -19,7 +19,6 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.regional_view = false;
     $scope.city_view = true;
     Graphs.city_analysis(region.id).$promise.then(function(data){
-      console.log(data);
       $scope.donut_cities_data = chartService.getDonutChartData(data);
     });
   };
@@ -28,7 +27,6 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.selected_city = city;
     $scope.city_view = false;
     Graphs.branch_analysis(city.id).$promise.then(function(data){
-      console.log(data);
       $scope.donut_branches_data = chartService.getDonutChartData(data);
     });
   };

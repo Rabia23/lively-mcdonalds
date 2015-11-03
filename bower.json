@@ -6,7 +6,9 @@
     "angular-bootstrap": "~0.14.0",
     "angular-ui-router": "~0.2.15",
     "ngmap": "~1.13.14",
-    "morris.js": "~0.5.1"
+    "morris.js": "~0.5.1",
+    "Flot": "flot#~0.8.3",
+    "flot.tooltip": "~0.8.5",
   },
   "dependencies": {
     "parse-angular-patch": "~0.1.2",
