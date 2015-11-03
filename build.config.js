@@ -78,7 +78,9 @@ module.exports = {
       'vendor/morris.js/morris.js',
       'vendor/raphael/raphael.js',
       'vendor/Flot/jquery.flot.js',
+      'vendor/Flot/jquery.flot.resize.js',
       'vendor/flot.tooltip/js/jquery.flot.tooltip.js',
+      'vendor/angular-flot/angular-flot.js'
 
     ],
     css: [

@@ -91,7 +91,6 @@ angular.module('livefeed.chart', [
               var new_date = new_date_array[1] + " " + new_date_array[2] + " " + new_date_array[3];
               return [index + 1, new_date];
             })
-            //ticks: [[1,"Jan"], [2, "Feb"], [3,"Mar"], [4,"Apr"], [5,"May"], [6,"Jun"], [7,"Jul"], [8,"Aug"]]
           }
         }
       };

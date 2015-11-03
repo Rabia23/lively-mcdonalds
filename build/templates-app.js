@@ -180,7 +180,8 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "    </ul>\n" +
     "  </header>\n" +
     "  <div class=\"rating-holder\">\n" +
-    "    <div id = \"overall-rating-linechart\" data-flot-chart data-data=\"line1.data\" data-options=\"line1.options\" style=\"width: 100%; height: 300px;\"></div>\n" +
+    "    <!-- <div id = \"overall-rating-linechart\" data-flot-chart data-data=\"line1.data\" data-options=\"line1.options\" style=\"width: 100%; height: 300px;\" data-bind-plotclick></div> -->\n" +
+    "     <flot dataset=\"line1.data\" options=\"line1.options\" data-width = \"520px\" data-height = \"300px\"></flot>\n" +
     "  </div>\n" +
     "</div>\n" +
     "  ");

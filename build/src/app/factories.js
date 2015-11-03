@@ -33,8 +33,9 @@ angular.module( 'factories', ['ngResource'])
                  });
   }
 
-  Graphs.prototype.overall_rating = function(){
-    return this.service.overall_rating();
+  Graphs.prototype.overall_rating = function(option_id){
+    option_id = option_id || "";
+    return this.service.overall_rating({option: option_id});
   };
   Graphs.prototype.overall_feedback = function(region_id, city_id, branch_id){
     region_id = region_id || "";
