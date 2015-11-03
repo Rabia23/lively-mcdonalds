@@ -8,7 +8,7 @@
     "ngmap": "~1.13.14",
     "morris.js": "~0.5.1",
     "Flot": "flot#~0.8.3",
-    "flot.tooltip": "~0.8.5",
+    "flot.tooltip": "~0.8.5"
   },
   "dependencies": {
     "parse-angular-patch": "~0.1.2",

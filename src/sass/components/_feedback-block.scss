@@ -11,46 +11,35 @@
 
 .feedback-list{
 	@extend %listreset;
-	width: 100%;
-	text-align: justify;
-	letter-spacing: -6px;
-	margin: 0 0 -15px;
-	
-	&:after{
-		@include inline-block(top);
-		width: 100%;
-		text-align: center;
-		height: 0;
-		content: "";
-	}
-	
+    text-align:center;
+	margin: 0 -15px;
+	@include media("≥phone"){margin: 0;}
 	> li{
 		@include inline-block(top);
 		text-align: center;
 		padding: 0 5px 10px;
 		width: 50%;
 		
-		@include media("≥phone"){
-			max-width: 25%;
-			width: inherit;
-			padding: 0 0 10px;
-		}
+		@include media("≥phone"){padding: 0 0 10px;}
+		@include media("≥tablet"){width: 25%;}
+		@include media("≥desktop"){width: 50%;}
+		@include media("≥widescreen"){width: auto;}
 		
 		.img-holder{
 			overflow: hidden;
 			margin: 0 0 10px;
-			min-height: 115px;
+			min-height: 125px;
 			@include v-align(100%, bottom, before);
 			&:before{min-height: inherit;}
 		}
 		
 		h3{
 			word-spacing: -1px;
-			@include fontsize(19, 15);
+			@include fontsize(15, 15);
 			line-height: 1.2em;
 			span{
 				display: block;
-				@include fontsize(21, 19);
+				@include fontsize(18, 15);
 			}
 		}
 		
