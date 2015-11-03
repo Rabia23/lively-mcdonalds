@@ -30,7 +30,9 @@
 			li{
 				vertical-align: top;
 				letter-spacing: 0;
-				padding: 0 3.2% 0 6.1%;
+				padding: 0 3.2% 0 1%;
+				
+				@include media("≥widescreen"){padding: 0 3.2% 0 6.1%;}
 				
 				a{
 					color: $brand-danger;
