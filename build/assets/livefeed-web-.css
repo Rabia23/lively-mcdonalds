@@ -7443,21 +7443,21 @@ button.close {
 .info-area {
   background: #fff;
   overflow: hidden;
-  padding: 15px;
+  padding: 15px 15px 0;
 }
 @media (min-width: 992px) {
   .info-area {
-    padding: 20px 15px 10px;
+    padding: 20px 15px 10px 0;
   }
 }
 @media (min-width: 1220px) {
   .info-area {
-    padding: 17px 30px;
+    padding: 17px 30px 0;
   }
 }
 .info-area h2 {
   letter-spacing: 1px;
-  margin: 0 0 29px;
+  margin: 0 0 9px;
 }
 .info-area .breadcrum span {
   display: inline-block;
@@ -7501,7 +7501,7 @@ button.close {
 }
 .info-list .graph-holder {
   overflow: hidden;
-  margin: 0 0 20px;
+  margin: 0;
   position: relative;
 }
 .info-list .graph-holder svg {
@@ -7646,22 +7646,22 @@ button.close {
 }
 .feedback-list > li .img-holder {
   overflow: hidden;
-  margin: 0 0 10px;
-  min-height: 125px;
+  margin: 0 0 15px;
+  min-height: 150px;
   white-space: nowrap;
   text-align: center;
 }
 .feedback-list > li .img-holder:before {
   content: '';
   display: inline-block;
-  vertical-align: bottom;
+  vertical-align: top;
   width: 0;
   min-height: 100%;
 }
 .feedback-list > li .img-holder > * {
   white-space: normal;
   display: inline-block;
-  vertical-align: bottom;
+  vertical-align: top;
   max-width: 99%;
 }
 .feedback-list > li .img-holder:before {
@@ -7690,17 +7690,31 @@ button.close {
 .feedback-list > li.good .ico-list {
   border-color: #01ad0f;
 }
+.feedback-list > li.neutral {
+  padding-top: 10px;
+}
 .feedback-list > li.neutral h3 {
   color: #e73a3a;
 }
+.feedback-list > li.neutral .img-holder {
+  margin: 0 0 5px;
+}
 .feedback-list > li.neutral .ico-list {
   border-color: #e73a3a;
+  min-height: 130px;
+}
+.feedback-list > li.negative {
+  padding-top: 10px;
 }
 .feedback-list > li.negative h3 {
   color: #ac1a1a;
 }
+.feedback-list > li.negative .img-holder {
+  margin: 0 0 5px;
+}
 .feedback-list > li.negative .ico-list {
   border-color: #ac1a1a;
+  min-height: 130px;
 }
 
 .ico-list {
@@ -7709,8 +7723,9 @@ button.close {
   border-width: 0 0 5px;
   letter-spacing: -3px;
   padding: 0 0 10px;
+  min-height: 140px;
   display: inline-block;
-  vertical-align: bottom;
+  vertical-align: top;
   letter-spacing: 0;
 }
 .ico-list > li {
@@ -7738,12 +7753,12 @@ button.close {
 }
 @media (min-width: 992px) {
   .ico-list > li ul li {
-    margin: 0 0 5px;
+    margin: 0 0 8px;
   }
 }
 @media (min-width: 1220px) {
   .ico-list > li ul li {
-    margin: 0 0 8px;
+    margin: 0 0 10px;
   }
 }
 

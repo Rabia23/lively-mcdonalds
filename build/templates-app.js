@@ -142,9 +142,9 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "        <ul class=\"ico-list\" ng-if = \"feedback.class == 'neutral'\">\n" +
     "          <li ng-repeat='val in feedback.columns'>\n" +
     "            <ul>\n" +
-    "              <li><img src=\"assets/images/ico-face.png\" alt=\"image description\"></li>\n" +
-    "              <li><img src=\"assets/images/ico-face.png\" alt=\"image description\"></li>\n" +
-    "              <li><img src=\"assets/images/ico-face.png\" alt=\"image description\"></li>\n" +
+    "              <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
+    "              <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
+    "              <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
     "            </ul>\n" +
     "          </li>\n" +
     "        </ul>\n" +
