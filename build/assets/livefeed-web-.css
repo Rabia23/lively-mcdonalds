@@ -7478,7 +7478,7 @@ button.close {
   overflow: hidden;
   letter-spacing: -6px;
   text-align: center;
-  min-height: 300px;
+  min-height: 250px;
   position: relative;
 }
 .info-list:after {
@@ -7489,7 +7489,7 @@ button.close {
   width: 200px;
   height: 200px;
   content: "";
-  margin: -120px 0 0 -100px;
+  margin: -110px 0 0 -100px;
   visibility: hidden;
   opacity: 0;
   z-index: 9;
@@ -7498,7 +7498,7 @@ button.close {
   left: 0;
   right: 0;
   top: 0;
-  bottom: 30px;
+  bottom: 20px;
   content: "";
   background: #ccc;
   visibility: hidden;
@@ -7596,7 +7596,7 @@ button.close {
   width: 200px;
   height: 200px;
   content: "";
-  margin: -120px 0 0 -100px;
+  margin: -100px 0 0 -100px;
   visibility: hidden;
   opacity: 0;
   z-index: 99;
@@ -7605,7 +7605,7 @@ button.close {
   left: 0;
   right: 0;
   top: 0;
-  bottom: 30px;
+  bottom: 0;
   content: "";
   background: #ccc;
   visibility: hidden;
@@ -7714,20 +7714,8 @@ button.close {
 @media (min-width: 480px) {
   .feedback-list {
     margin: 0;
-  }
-}
-@media (min-width: 768px) {
-  .feedback-list {
     width: 100%;
-    text-align: justify;
-  }
-  .feedback-list:after {
-    display: inline-block;
-    width: 100%;
-    content: '';
-    height: 0;
-    font-size: 0;
-    line-height: 0;
+    display: table;
   }
 }
 .feedback-list > li {
@@ -7735,33 +7723,26 @@ button.close {
   vertical-align: top;
   letter-spacing: 0;
   padding: 0 5px 10px;
-  width: 50%;
   text-align: center;
 }
-@media (min-width: 480px) {
-  .feedback-list > li {
-    padding: 0 3px 10px;
-  }
-}
-@media (min-width: 768px) {
-  .feedback-list > li {
-    width: 25%;
-  }
-}
-@media (min-width: 992px) {
+@media (max-width: 479px) {
   .feedback-list > li {
     width: 50%;
   }
 }
-@media (min-width: 1220px) {
+@media (min-width: 480px) {
   .feedback-list > li {
-    width: auto;
+    display: table-cell;
+    vertical-align: top;
   }
 }
 .feedback-list > li .img-holder {
   overflow: hidden;
   margin: 0 0 15px;
   min-height: 150px;
+  display: inline-block;
+  vertical-align: top;
+  letter-spacing: 0;
   white-space: nowrap;
   text-align: center;
 }
@@ -7786,6 +7767,7 @@ button.close {
   font-size: 13px;
   font-size: 0.86667em;
   line-height: 1.2em;
+  text-align: center;
 }
 .feedback-list > li h3 span {
   display: block;

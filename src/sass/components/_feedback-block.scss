@@ -34,37 +34,28 @@
 	padding: 0;
     text-align:center;
 	margin: 0 -15px;
-	@include media("≥phone"){margin: 0;}
-	@include media("≥tablet"){
+	
+	@include media("≥phone"){
+		margin: 0;
 		width: 100%;
-		text-align: justify;
-		
-		&:after{
-			display:inline-block;
-			width:100%;
-			content:'';
-			height:0;
-			font-size:0;
-			line-height:0;
-		}
+		display: table;
 	}
 	> li{
 		@include inline-block(top);
 		padding: 0 5px 10px;
-		width: 50%;
 		text-align: center;
 		
-		@include media("≥phone"){padding: 0 3px 10px;}
-		@include media("≥tablet"){width: 25%;}
-		@include media("≥desktop"){width: 50%;}
-		@include media("≥widescreen"){
-			width: auto;
+		@include media("<phone"){width: 50%;}
+		@include media("≥phone"){
+			display: table-cell;
+			vertical-align: top;
 		}
 		
 		.img-holder{
 			overflow: hidden;
 			margin: 0 0 15px;
 			min-height: 150px;
+			@include inline-block(top);
 			@include v-align(100%, top, before);
 			&:before{min-height: inherit;}
 		}
@@ -73,6 +64,7 @@
 			word-spacing: -1px;
 			@include fontsize(13, 15);
 			line-height: 1.2em;
+			text-align: center;
 			span{
 				display: block;
 				@include fontsize(18, 15);
