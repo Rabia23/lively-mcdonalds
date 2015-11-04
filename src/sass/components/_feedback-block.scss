@@ -20,7 +20,7 @@
 		padding: 0 5px 10px;
 		width: 50%;
 		
-		@include media("≥phone"){padding: 0 0 10px;}
+		@include media("≥phone"){padding: 0 3px 10px;}
 		@include media("≥tablet"){width: 25%;}
 		@include media("≥desktop"){width: 50%;}
 		@include media("≥widescreen"){width: auto;}
@@ -35,7 +35,7 @@
 		
 		h3{
 			word-spacing: -1px;
-			@include fontsize(15, 15);
+			@include fontsize(13, 15);
 			line-height: 1.2em;
 			span{
 				display: block;

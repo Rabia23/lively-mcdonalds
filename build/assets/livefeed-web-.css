@@ -1521,7 +1521,7 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Josefin Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 600;
-  line-height: 1.1;
+  line-height: 1.3;
   color: #292929;
 }
 h1 small,
@@ -1773,12 +1773,12 @@ ol ol {
   list-style: none;
 }
 
-.list-inline, .rating, .rating-section .heading-block ul {
+.list-inline, .rating, .rating-section .rating-holder ul {
   padding-left: 0;
   list-style: none;
   margin-left: -5px;
 }
-.list-inline > li, .rating > li, .rating-section .heading-block ul > li {
+.list-inline > li, .rating > li, .rating-section .rating-holder ul > li {
   display: inline-block;
   padding-left: 5px;
   padding-right: 5px;
@@ -7526,57 +7526,66 @@ button.close {
 }
 .rating-section .heading-block {
   overflow: hidden;
-  margin: 0 0 17px;
-}
-@media (min-width: 992px) {
-  .rating-section .heading-block h2 {
-    float: left;
-  }
-}
-.rating-section .heading-block ul {
-  text-align: center;
-  overflow: hidden;
   margin: 0 0 10px;
-  letter-spacing: -6px;
 }
-@media (min-width: 992px) {
-  .rating-section .heading-block ul {
-    text-align: right;
-    padding: 10px 0 0 0;
-    margin: 0;
-  }
+.rating-section .heading-block h2 {
+  float: left;
+  margin: 0 5px 0 0;
 }
-.rating-section .heading-block ul li {
-  vertical-align: top;
-  letter-spacing: 0;
-  padding: 0 3.2% 0 1%;
+.rating-section .heading-block a {
+  float: right;
+  cursor: pointer;
+  margin: 10px 0 0 5px;
 }
-@media (min-width: 1220px) {
-  .rating-section .heading-block ul li {
-    padding: 0 3.2% 0 6.1%;
-  }
-}
-.rating-section .heading-block ul li a {
-  color: #ac1a1a;
-}
-.rating-section .heading-block ul li a:hover {
-  color: #801313;
-}
-.rating-section .heading-block ul li.item2 a {
-  color: #ffc712;
-}
-.rating-section .heading-block ul li.item2 a:hover {
-  color: #deaa00;
-}
-.rating-section .heading-block ul li.item3 a {
-  color: #406728;
-}
-.rating-section .heading-block ul li.item3 a:hover {
+.rating-section .heading-block a:hover {
   color: #29421a;
 }
 .rating-section .rating-holder {
   overflow: hidden;
   text-align: center;
+}
+.rating-section .rating-holder ul {
+  text-align: center;
+  overflow: hidden;
+  margin: 0;
+  letter-spacing: -6px;
+}
+.rating-section .rating-holder ul li {
+  vertical-align: top;
+  letter-spacing: 0;
+  padding: 0 5px 5px;
+}
+@media (min-width: 768px) {
+  .rating-section .rating-holder ul li {
+    padding: 0 10px 10px;
+  }
+}
+.rating-section .rating-holder ul li a {
+  color: #ac1a1a;
+}
+.rating-section .rating-holder ul li a:hover {
+  color: #801313;
+}
+.rating-section .rating-holder ul li.item2 a {
+  color: #ffc712;
+}
+.rating-section .rating-holder ul li.item2 a:hover {
+  color: #deaa00;
+}
+.rating-section .rating-holder ul li.item3 a {
+  color: #406728;
+}
+.rating-section .rating-holder ul li.item3 a:hover {
+  color: #29421a;
+}
+.rating-section .rating-holder .flot-tick-label {
+  max-width: 60px !important;
+}
+.rating-section .rating-holder .ng-isolate-scope {
+  height: 200px !important;
+}
+.rating-section .rating-holder .ng-isolate-scope > div {
+  height: 200px !important;
 }
 
 .feedback-block {
@@ -7617,7 +7626,7 @@ button.close {
 }
 @media (min-width: 480px) {
   .feedback-list > li {
-    padding: 0 0 10px;
+    padding: 0 3px 10px;
   }
 }
 @media (min-width: 768px) {
@@ -7660,8 +7669,8 @@ button.close {
 }
 .feedback-list > li h3 {
   word-spacing: -1px;
-  font-size: 15px;
-  font-size: 1em;
+  font-size: 13px;
+  font-size: 0.86667em;
   line-height: 1.2em;
 }
 .feedback-list > li h3 span {
@@ -8180,8 +8189,8 @@ button.close {
 /*layouts*/
 @font-face {
   font-family: 'fontello';
-  src: url("/assets/fonts/fontello/fontello.eot?82557438");
-  src: url("/assets/fonts/fontello/fontello.eot?82557438#iefix") format("embedded-opentype"), url("/assets/fonts/fontello/fontello.woff?82557438") format("woff"), url("/assets/fonts/fontello/fontello.ttf?82557438") format("truetype"), url("/assets/fonts/fontello/fontello.svg?82557438#fontello") format("svg");
+  src: url("../fonts/fontello/fontello.eot?82557438");
+  src: url("../fonts/fontello/fontello.eot?82557438#iefix") format("embedded-opentype"), url("../fonts/fontello/fontello.woff?82557438") format("woff"), url("../fonts/fontello/fontello.ttf?82557438") format("truetype"), url("../fonts/fontello/fontello.svg?82557438#fontello") format("svg");
   font-weight: normal;
   font-style: normal;
 }

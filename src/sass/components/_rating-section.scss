@@ -9,30 +9,38 @@
 	
 	.heading-block{
 		overflow: hidden;
-		margin: 0 0 17px;
+		margin: 0 0 10px;
 		h2{
-			@include media("≥desktop"){float: left;}
+			float: left;
+			margin: 0 5px 0 0;
 		}
+		
+		a{
+			float: right;
+			cursor: pointer;
+			margin: 10px 0 0 5px;
+			
+			&:hover{color: darken($dell,10%);}
+		}
+	}
+	
+	.rating-holder{
+		overflow: hidden;
+		text-align: center;
+		
 		ul{
 			@extend .list-inline;
 			text-align: center;
 			overflow: hidden;
-			margin: 0 0 10px;
+			margin: 0;
 			letter-spacing: -6px;
-			
-			
-			@include media("≥desktop"){
-				text-align: right;
-				padding: 10px 0 0 0;
-				margin: 0;
-			}
 			
 			li{
 				vertical-align: top;
 				letter-spacing: 0;
-				padding: 0 3.2% 0 1%;
+				padding: 0 5px 5px;
 				
-				@include media("≥widescreen"){padding: 0 3.2% 0 6.1%;}
+				@include media("≥tablet"){padding: 0 10px 10px;}
 				
 				a{
 					color: $brand-danger;
@@ -57,10 +65,10 @@
 				}
 			}
 		}
-	}
-	
-	.rating-holder{
-		overflow: hidden;
-		text-align: center;
+		.flot-tick-label{max-width: 60px !important;}
+		.ng-isolate-scope{
+			height: 200px !important;
+			> div{height: 200px !important;}
+		}
 	}
 }
