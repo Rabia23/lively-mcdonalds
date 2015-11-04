@@ -31,6 +31,7 @@ class OverallFeedbackSerializerSingle(serializers.Serializer):
     count = serializers.IntegerField()
     option_id = serializers.IntegerField()
     option__text = serializers.CharField(max_length=100)
+    option__parent_id = serializers.IntegerField(required=False)
 
 
 class OverallFeedbackSerializer(serializers.Serializer):

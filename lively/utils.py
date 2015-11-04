@@ -172,7 +172,10 @@ def generate_missing_options(question, data):
 
     for option in question.options.all():
         if option.id not in list_feedback_option_ids:
-            list_feedback.append({'count': 0, 'option_id': option.id, 'option__text': option.text})
+            list_feedback.append({'count': 0,
+                                  'option_id': option.id,
+                                  'option__text': option.text,
+                                  'option__parent_id': option.parent_id})
 
     return list_feedback
 
@@ -183,7 +186,10 @@ def generate_missing_sub_options(option_id, data):
 
     for option in Option.objects.filter(parent=option_id):
         if option.id not in list_feedback_option_ids:
-            list_feedback.append({'count': 0, 'option_id': option.id, 'option__text': option.text})
+            list_feedback.append({'count': 0,
+                                  'option_id': option.id,
+                                  'option__text': option.text,
+                                  'option__parent_id': option.parent_id})
 
     return list_feedback
 

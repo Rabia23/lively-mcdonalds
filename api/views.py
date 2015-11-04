@@ -79,7 +79,8 @@ def overall_feedback(request):
                     feedback__branch__city__region__exact=region_id)
 
             filtered_feedback_options_count = filtered_feedback_options.count()
-            feedback_options = filtered_feedback_options.values('option_id', 'option__text').annotate(count=Count('option_id'))
+            feedback_options = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').\
+                annotate(count=Count('option_id'))
             list_feedback = generate_missing_options(question, feedback_options)
 
             data = {'feedback_count': filtered_feedback_options_count, 'feedbacks': list_feedback}
@@ -119,7 +120,7 @@ def feedback_analysis(request):
                 filtered_feedback_options = get_filtered_feedback_options(feedback_options, type, object)
                 filtered_feedback_options_count = filtered_feedback_options.count()
                 filtered_feedback_options = filtered_feedback_options.values(
-                    'option_id', 'option__text').annotate(count=Count('option_id'))
+                    'option_id', 'option__text', 'option__parent_id').annotate(count=Count('option_id'))
                 list_feedback = generate_missing_options(question, filtered_feedback_options)
 
                 data = {'feedback_count': filtered_feedback_options_count, 'feedbacks': list_feedback}
@@ -162,7 +163,8 @@ def feedback_analysis_breakdown(request):
                     feedback__branch__city__region__exact=region_id)
 
             filtered_feedback_options_count = filtered_feedback_options .count()
-            filtered_feedback_options = filtered_feedback_options.values('option_id', 'option__text').annotate(count=Count('option_id'))
+            filtered_feedback_options = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').\
+                annotate(count=Count('option_id'))
             list_feedback = generate_missing_options(question, filtered_feedback_options)
 
             data = {'feedback_count': filtered_feedback_options_count, 'feedbacks': list_feedback}
@@ -213,7 +215,8 @@ def overall_rating(request):
             start_date = now - timedelta(days=constants.NO_OF_DAYS)
             for single_date in rrule.rrule(rrule.DAILY, dtstart=start_date, until=now):
                 feedbacks = filtered_feedback_options.filter(created_at__day=single_date.day)
-                filtered_feedbacks = feedbacks.values('option_id', 'option__text').annotate(count=Count('option_id'))
+                filtered_feedbacks = feedbacks.values('option_id', 'option__text', 'option__parent_id').\
+                    annotate(count=Count('option_id'))
                 if option_id:
                     list_feedback = generate_missing_sub_options(option_id, filtered_feedbacks)
                 else:
@@ -263,7 +266,8 @@ def category_performance(request):
                     feedback__branch__city__region__exact=region_id)
 
             filtered_feedback_options_count = filtered_feedback_options.count()
-            filtered_feedbacks = filtered_feedback_options.values('option_id', 'option__text').annotate(count=Count('option_id'))
+            filtered_feedbacks = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').\
+                annotate(count=Count('option_id'))
             if option_id:
                 list_feedback = generate_missing_sub_options(option_id, filtered_feedbacks)
             else:
