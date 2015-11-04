@@ -62,7 +62,6 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
         action: '&'
       },
       link: function(scope, ele, attrs) {
-        //console.log(scope);
         var data, func, options, type;
         data = scope.data;
         type = scope.type;

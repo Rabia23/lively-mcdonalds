@@ -48,6 +48,10 @@ angular.module('livefeed.chart', [
           data_array[index].push([ upper_index + 1, value.count]);
         });
       });
+
+      function getTooltip(label, x, y){
+        return "Complaints: "  + y;
+      }
       
       return {
         
@@ -74,7 +78,8 @@ angular.module('livefeed.chart', [
           tooltip: true,
           legend: false,
           tooltipOpts: {
-            defaultTheme: false
+            defaultTheme: false,
+            content: getTooltip
           },
           grid: {
             hoverable: true,

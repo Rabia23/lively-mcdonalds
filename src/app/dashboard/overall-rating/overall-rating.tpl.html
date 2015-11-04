@@ -6,7 +6,7 @@
   <div class="rating-holder">
     <ul>
       <li ng-repeat = "label in labels">
-        <a style = "color: {{label.color}}">{{label.value}}</a>
+        <a style = "color: {{label.color}};cursor:pointer;" ng-click = "labelClick(label)">{{label.value}}</a>
       </li>
     </ul>
     <!-- <div id = "overall-rating-linechart" data-flot-chart data-data="line1.data" data-options="line1.options" style="width: 100%; height: 300px;" data-bind-plotclick></div> -->

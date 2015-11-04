@@ -185,7 +185,7 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "  <div class=\"rating-holder\">\n" +
     "    <ul>\n" +
     "      <li ng-repeat = \"label in labels\">\n" +
-    "        <a style = \"color: {{label.color}}\">{{label.value}}</a>\n" +
+    "        <a style = \"color: {{label.color}};cursor:pointer;\" ng-click = \"labelClick(label)\">{{label.value}}</a>\n" +
     "      </li>\n" +
     "    </ul>\n" +
     "    <!-- <div id = \"overall-rating-linechart\" data-flot-chart data-data=\"line1.data\" data-options=\"line1.options\" style=\"width: 100%; height: 300px;\" data-bind-plotclick></div> -->\n" +

@@ -4,16 +4,17 @@ angular.module( 'helper_factories', ['ngResource'])
 
   return {
     mainRatingColorScheme: {
-      "Few concerns": '#ac1a1a',
-      "Not happy enough": '#e73a3a',
+      "Few concerns": '#e73a3a',
+      "Not happy enough": '#ac1a1a',
       "Everything is on track!": '#01ad0f',
       "I'm lovin' it": '#28530c'
+
     },
 
     optionsColorScheme: {
-      "Food Quality": "#8f1a30",
-      "Service": "#f5c40f",
-      "Cleanliness": "#29474c"
+      "Food Quality": "rgb(143,26,48)",
+      "Service": "rgb(245,196,15)",
+      "Cleanliness": "rgb(41,71,76)"
     }
 
   };

@@ -28,20 +28,33 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
   $scope.optionClick = function (event, pos, item){
     var option = $scope.labels[item.seriesIndex];
+    console.log(option.parent_id);
     if(option.parent_id == null){
       Graphs.overall_rating(option.id).$promise.then(function(data){
         $scope.mainView = false;
         $scope.line1 = chartService.getLineChart(data);
         $scope.labels = _.map(data[0].data.feedbacks ,function(value){
-          return {id: value.option_id, value: value.option__text, color: Global.optionsColorScheme[value.option__text]};
+          return {parent_id: value.option__parent_id,id: value.option_id, value: value.option__text, color: Global.optionsColorScheme[value.option__text]};
         });
       });
     }
       
   };
 
+  $scope.labelClick = function(option){
+    if(option.parent_id == null){
+      Graphs.overall_rating(option.id).$promise.then(function(data){
+        $scope.mainView = false;
+        $scope.line1 = chartService.getLineChart(data);
+        $scope.labels = _.map(data[0].data.feedbacks ,function(value){
+          return {parent_id: value.option__parent_id,id: value.option_id, value: value.option__text, color: Global.optionsColorScheme[value.option__text]};
+        });
+      });
+    }
+  };
+
   $scope.backToMain = function(){
-    console.log("clicked");
     mainRating();
   };
+
 });
