@@ -173,15 +173,16 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "<div class=\"rating-section\">\n" +
     "  <header class=\"heading-block\">\n" +
     "    <h2>Overall Rating</h2>\n" +
+    "    <a ng-click = \"backToMain()\" ng-hide = \"mainView\">Back</a>\n" +
+    "  </header>\n" +
+    "  <div class=\"rating-holder\">\n" +
     "    <ul>\n" +
     "      <li ng-repeat = \"label in labels\">\n" +
     "        <a style = \"color: {{label.color}}\">{{label.value}}</a>\n" +
     "      </li>\n" +
     "    </ul>\n" +
-    "  </header>\n" +
-    "  <div class=\"rating-holder\">\n" +
     "    <!-- <div id = \"overall-rating-linechart\" data-flot-chart data-data=\"line1.data\" data-options=\"line1.options\" style=\"width: 100%; height: 300px;\" data-bind-plotclick></div> -->\n" +
-    "     <flot dataset=\"line1.data\" options=\"line1.options\" data-width = \"520px\" data-height = \"300px\"></flot>\n" +
+    "     <flot dataset=\"line1.data\" options=\"line1.options\" data-width = \"100%\" data-height = \"300px\" on-plot-click = \"optionClick(event, pos, item)\"></flot>\n" +
     "  </div>\n" +
     "</div>\n" +
     "  ");
