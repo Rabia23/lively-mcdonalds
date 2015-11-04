@@ -67,7 +67,12 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
           func = new Function('y', 'data', options.formatter);
           options.formatter = func;
         }
-        return new Morris.Donut(options);
+        morris_chart = new Morris.Donut(options);
+        morris_chart.on('click', function(i, row){
+          alert(row.label);
+          console.log(i, row);
+        });
+        return morris_chart;
         
       }
   };

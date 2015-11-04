@@ -18,7 +18,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
     Graphs.overall_rating().$promise.then(function(data){
       $scope.line1 = chartService.getLineChart(data);
       $scope.labels = _.map(data[0].data.feedbacks ,function(value){
-        return {id: value.option_id, value: value.option__text, color: Global.optionsColorScheme[value.option__text]};
+        return {parent_id: value.option__parent_id, id: value.option_id, value: value.option__text, color: Global.optionsColorScheme[value.option__text]};
       });    
     });
   }
@@ -27,14 +27,17 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
 
   $scope.optionClick = function (event, pos, item){
-    $scope.mainView = false;
     var option = $scope.labels[item.seriesIndex];
-    Graphs.overall_rating(option.id).$promise.then(function(data){
-      $scope.line1 = chartService.getLineChart(data);
-      $scope.labels = _.map(data[0].data.feedbacks ,function(value){
-        return {id: value.option_id, value: value.option__text, color: Global.optionsColorScheme[value.option__text]};
+    if(option.parent_id == null){
+      Graphs.overall_rating(option.id).$promise.then(function(data){
+        $scope.mainView = false;
+        $scope.line1 = chartService.getLineChart(data);
+        $scope.labels = _.map(data[0].data.feedbacks ,function(value){
+          return {id: value.option_id, value: value.option__text, color: Global.optionsColorScheme[value.option__text]};
+        });
       });
-    });
+    }
+      
   };
 
   $scope.backToMain = function(){
