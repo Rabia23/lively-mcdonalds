@@ -24,9 +24,32 @@
 		}
 	}
 	
+	&.loading{
+		.rating-holder{
+			&:after{
+				visibility: visible;
+				opacity: 1;
+			}
+		}
+	}
+	
 	.rating-holder{
 		overflow: hidden;
 		text-align: center;
+		position: relative;
+		
+		&:after{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			background: url(../assets/images/loader.gif) no-repeat;
+			width: 200px;
+			height: 200px;
+			content: "";
+			margin: -100px 0 0 -100px;
+			visibility: hidden;
+			opacity: 0;
+		}
 		
 		ul{
 			@extend .list-inline;

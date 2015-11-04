@@ -120,57 +120,59 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
   $templateCache.put("dashboard/overall-feedback/overall-feedback.tpl.html",
     "<div class=\"feedback-block\">\n" +
     "  <h2>Overall Feedback</h2>\n" +
-    "  <ul>\n" +
+    "  <ul class=\"title-list\">\n" +
     "    <li ng-repeat = \"feedback in overall_feedback\">\n" +
     "      {{feedback.name}}\n" +
     "    </li>\n" +
     "  </ul>\n" +
-    "  <ul class=\"feedback-list\">\n" +
-    "    <li class=\"{{feedback.class}}\" ng-repeat = \"feedback in overall_feedback\">\n" +
-    "      <div class=\"img-holder\">\n" +
-    "        <ul class=\"ico-list\" ng-if = \"feedback.class == 'v-good'\">\n" +
-    "          <li ng-repeat='val in feedback.columns'>\n" +
-    "            <ul>\n" +
-    "              <li><img src=\"assets/images/ico-hand.png\" alt=\"image description\"></li>\n" +
-    "              <li><img src=\"assets/images/ico-hand.png\" alt=\"image description\"></li>\n" +
-    "              <li><img src=\"assets/images/ico-hand.png\" alt=\"image description\"></li>\n" +
-    "            </ul>\n" +
-    "          </li>\n" +
-    "        </ul>\n" +
-    "        <ul class=\"ico-list\" ng-if = \"feedback.class == 'good'\">\n" +
-    "          <li ng-repeat='val in feedback.columns'>\n" +
-    "            <ul>\n" +
-    "              <li><img src=\"assets/images/ico-hand2.png\" alt=\"image description\"></li>\n" +
-    "              <li><img src=\"assets/images/ico-hand2.png\" alt=\"image description\"></li>\n" +
-    "              <li><img src=\"assets/images/ico-hand2.png\" alt=\"image description\"></li>\n" +
-    "            </ul>\n" +
-    "          </li>\n" +
-    "        </ul>\n" +
-    "        <ul class=\"ico-list\" ng-if = \"feedback.class == 'neutral'\">\n" +
-    "          <li ng-repeat='val in feedback.columns'>\n" +
-    "            <ul>\n" +
-    "              <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
-    "              <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
-    "              <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
-    "            </ul>\n" +
-    "          </li>\n" +
-    "        </ul>\n" +
-    "        <ul class=\"ico-list\" ng-if = \"feedback.class == 'negative'\">\n" +
-    "          <li ng-repeat='val in feedback.columns'>\n" +
-    "            <ul>\n" +
-    "              <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +
-    "              <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +
-    "              <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +
-    "            </ul>\n" +
-    "          </li>\n" +
-    "        </ul>\n" +
-    "      </div>\n" +
-    "      <h3>\n" +
-    "        <span class=\"count\">{{feedback.rounded_percentage}}%</span>\n" +
-    "        \n" +
-    "      </h3>\n" +
-    "    </li>\n" +
-    "  </ul>\n" +
+    "  <div class=\"feedback-holder\">\n" +
+    "  	<ul class=\"feedback-list\">\n" +
+    "  	  <li class=\"{{feedback.class}}\" ng-repeat = \"feedback in overall_feedback\">\n" +
+    "  	    <div class=\"img-holder\">\n" +
+    "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'v-good'\">\n" +
+    "  	        <li ng-repeat='val in feedback.columns'>\n" +
+    "  	          <ul>\n" +
+    "  	            <li><img src=\"assets/images/ico-hand.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><img src=\"assets/images/ico-hand.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><img src=\"assets/images/ico-hand.png\" alt=\"image description\"></li>\n" +
+    "  	          </ul>\n" +
+    "  	        </li>\n" +
+    "  	      </ul>\n" +
+    "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'good'\">\n" +
+    "  	        <li ng-repeat='val in feedback.columns'>\n" +
+    "  	          <ul>\n" +
+    "  	            <li><img src=\"assets/images/ico-hand2.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><img src=\"assets/images/ico-hand2.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><img src=\"assets/images/ico-hand2.png\" alt=\"image description\"></li>\n" +
+    "  	          </ul>\n" +
+    "  	        </li>\n" +
+    "  	      </ul>\n" +
+    "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'neutral'\">\n" +
+    "  	        <li ng-repeat='val in feedback.columns'>\n" +
+    "  	          <ul>\n" +
+    "  	            <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
+    "  	          </ul>\n" +
+    "  	        </li>\n" +
+    "  	      </ul>\n" +
+    "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'negative'\">\n" +
+    "  	        <li ng-repeat='val in feedback.columns'>\n" +
+    "  	          <ul>\n" +
+    "  	            <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +
+    "  	          </ul>\n" +
+    "  	        </li>\n" +
+    "  	      </ul>\n" +
+    "  	    </div>\n" +
+    "  	    <h3>\n" +
+    "  	      <span class=\"count\">{{feedback.rounded_percentage}}%</span>\n" +
+    "  	      \n" +
+    "  	    </h3>\n" +
+    "  	  </li>\n" +
+    "  	</ul>\n" +
+    "  </div>\n" +
     "</div>\n" +
     "  ");
 }]);

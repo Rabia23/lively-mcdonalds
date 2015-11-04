@@ -6,24 +6,60 @@
 	@include media("≥desktop"){padding: 20px 15px 0;}
 	@include media("≥widescreen"){padding: 20px 23px 0 30px;}
 	
-	h2{margin: 0 0 29px;}
+	h2{margin: 0 0 9px;}
+}
+.title-list{
+	@extend %listreset;
+	overflow: hidden;
+	text-align: center;
+	margin: 0 0 10px;
+	
+	li{
+		@include inline-block(top);
+		margin: 0 5px 5px;
+		
+		&.v-good{color: $brand-success;}
+		&.good{color: $brand-primary;}
+		&.neutral{color: $brand-warning;}
+		&.negative{color: $brand-danger;}
+	}
 }
 
+.feedback-holder{
+	width:100%;
+	overflow:hidden;
+}
 .feedback-list{
-	@extend %listreset;
+	list-style: none;
+	padding: 0;
     text-align:center;
 	margin: 0 -15px;
 	@include media("≥phone"){margin: 0;}
+	@include media("≥tablet"){
+		width: 100%;
+		text-align: justify;
+		
+		&:after{
+			display:inline-block;
+			width:100%;
+			content:'';
+			height:0;
+			font-size:0;
+			line-height:0;
+		}
+	}
 	> li{
 		@include inline-block(top);
-		text-align: center;
 		padding: 0 5px 10px;
 		width: 50%;
+		text-align: center;
 		
 		@include media("≥phone"){padding: 0 3px 10px;}
 		@include media("≥tablet"){width: 25%;}
 		@include media("≥desktop"){width: 50%;}
-		@include media("≥widescreen"){width: auto;}
+		@include media("≥widescreen"){
+			width: auto;
+		}
 		
 		.img-holder{
 			overflow: hidden;
