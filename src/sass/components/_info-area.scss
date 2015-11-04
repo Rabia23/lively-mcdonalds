@@ -16,12 +16,54 @@
 			cursor: pointer;
 		}
 	}
+	
+	&.loading{
+		.info-list{
+			&:after{
+				visibility: visible;
+				opacity: 1;
+			}
+			&:before{
+				visibility: visible;
+				opacity: 0.5;
+			}
+		}
+	}
 }
 .info-list{
 	@extend %listreset;
 	overflow: hidden;
 	letter-spacing: -6px;
 	text-align: center;
+	min-height: 250px;
+	position: relative;
+	
+	&:after{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		background: url(../assets/images/loader.gif) no-repeat;
+		width: 200px;
+		height: 200px;
+		content: "";
+		margin: -110px 0 0 -100px;
+		visibility: hidden;
+		opacity: 0;
+		z-index: 9;
+	}
+	
+	&:before{
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 20px;
+		content: "";
+		background: $celeste;
+		visibility: hidden;
+		opacity: 0;
+		position: absolute;
+		z-index: 5;
+	}
 	
 	@include media("≥widescreen"){padding: 0 36px;}
 	
