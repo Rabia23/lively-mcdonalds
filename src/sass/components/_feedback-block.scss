@@ -27,9 +27,9 @@
 		
 		.img-holder{
 			overflow: hidden;
-			margin: 0 0 10px;
-			min-height: 125px;
-			@include v-align(100%, bottom, before);
+			margin: 0 0 15px;
+			min-height: 150px;
+			@include v-align(100%, top, before);
 			&:before{min-height: inherit;}
 		}
 		
@@ -52,12 +52,22 @@
 			.ico-list{border-color: $brand-primary;}
 		}
 		&.neutral{
+			padding-top: 10px;
 			h3{color: $brand-warning;}
-			.ico-list{border-color: $brand-warning;}
+			.img-holder{margin: 0 0 5px;}
+			.ico-list{
+				border-color: $brand-warning;
+				min-height: 130px;
+			}
 		}
 		&.negative{
+			padding-top: 10px;
 			h3{color: $brand-danger;}
-			.ico-list{border-color: $brand-danger;}
+			.img-holder{margin: 0 0 5px;}
+			.ico-list{
+				border-color: $brand-danger;
+				min-height: 130px;
+			}
 		}
 	}
 }
@@ -69,7 +79,8 @@
 	border-width: 0 0 5px;
 	letter-spacing: -3px;
 	padding: 0 0 10px;
-	@include inline-block(bottom);
+	min-height: 140px;
+	@include inline-block(top);
 	
 	> li{
 		@include inline-block(top);
@@ -86,8 +97,8 @@
 				overflow: hidden;
 				margin: 0 0 8px;
 				
-				@include media("≥desktop"){margin: 0 0 5px;}
-				@include media("≥widescreen"){margin: 0 0 8px;}
+				@include media("≥desktop"){margin: 0 0 8px;}
+				@include media("≥widescreen"){margin: 0 0 10px;}
 			}
 		}
 	}

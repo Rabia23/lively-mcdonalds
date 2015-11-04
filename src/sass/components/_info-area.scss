@@ -1,13 +1,13 @@
 .info-area{
 	background: $white;
 	overflow: hidden;
-	padding: 15px;
+	padding: 15px 15px 0;
 	
-	@include media("≥desktop"){padding: 20px 15px 10px;}
-	@include media("≥widescreen"){padding: 17px 30px;}
+	@include media("≥desktop"){padding: 20px 15px 10px 0;}
+	@include media("≥widescreen"){padding: 17px 30px 0;}
 	h2{
 		letter-spacing: 1px;
-		margin: 0 0 29px;
+		margin: 0 0 9px;
 	}
 	
 	.breadcrum{
@@ -37,7 +37,7 @@
 	}
 	.graph-holder{
 		overflow: hidden;
-		margin: 0 0 20px;
+		margin: 0;
 		position: relative;
 		
 		svg{height: 200px !important;}
