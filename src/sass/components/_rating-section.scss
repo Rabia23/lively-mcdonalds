@@ -30,6 +30,10 @@
 				visibility: visible;
 				opacity: 1;
 			}
+			&:before{
+				visibility: visible;
+				opacity: 0.5;
+			}
 		}
 	}
 	
@@ -49,6 +53,20 @@
 			margin: -100px 0 0 -100px;
 			visibility: hidden;
 			opacity: 0;
+			z-index: 99;
+		}
+		
+		&:before{
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			content: "";
+			background: $celeste;
+			visibility: hidden;
+			opacity: 0;
+			position: absolute;
+			z-index: 5;
 		}
 		
 		ul{
