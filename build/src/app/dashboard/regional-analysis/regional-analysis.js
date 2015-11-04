@@ -44,6 +44,11 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.regional_view = false;
     $scope.donut_branches_data = []; 
   };
+
+  $scope.plotOptions = function(){
+    console.log("function called");
+    //console.log(region_id);
+  };
   
 })
 
@@ -53,9 +58,11 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       scope: {
         data: '=',
         type: '=',
-        options: '='
+        options: '=',
+        action: '&'
       },
       link: function(scope, ele, attrs) {
+        //console.log(scope);
         var data, func, options, type;
         data = scope.data;
         type = scope.type;
@@ -69,8 +76,11 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
         }
         morris_chart = new Morris.Donut(options);
         morris_chart.on('click', function(i, row){
-          alert(row.label);
+          console.log(scope);
+          console.log(scope.$parent.region);
           console.log(i, row);
+          console.log(attrs);          
+          scope.$apply(scope.action); 
         });
         return morris_chart;
         

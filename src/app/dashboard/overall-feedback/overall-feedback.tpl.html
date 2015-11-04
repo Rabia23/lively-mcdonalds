@@ -1,5 +1,10 @@
 <div class="feedback-block">
   <h2>Overall Feedback</h2>
+  <ul>
+    <li ng-repeat = "feedback in overall_feedback">
+      {{feedback.name}}
+    </li>
+  </ul>
   <ul class="feedback-list">
     <li class="{{feedback.class}}" ng-repeat = "feedback in overall_feedback">
       <div class="img-holder">
@@ -42,7 +47,7 @@
       </div>
       <h3>
         <span class="count">{{feedback.rounded_percentage}}%</span>
-        {{feedback.name}}
+        
       </h3>
     </li>
   </ul>

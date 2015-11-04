@@ -120,6 +120,11 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
   $templateCache.put("dashboard/overall-feedback/overall-feedback.tpl.html",
     "<div class=\"feedback-block\">\n" +
     "  <h2>Overall Feedback</h2>\n" +
+    "  <ul>\n" +
+    "    <li ng-repeat = \"feedback in overall_feedback\">\n" +
+    "      {{feedback.name}}\n" +
+    "    </li>\n" +
+    "  </ul>\n" +
     "  <ul class=\"feedback-list\">\n" +
     "    <li class=\"{{feedback.class}}\" ng-repeat = \"feedback in overall_feedback\">\n" +
     "      <div class=\"img-holder\">\n" +
@@ -162,7 +167,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "      </div>\n" +
     "      <h3>\n" +
     "        <span class=\"count\">{{feedback.rounded_percentage}}%</span>\n" +
-    "        {{feedback.name}}\n" +
+    "        \n" +
     "      </h3>\n" +
     "    </li>\n" +
     "  </ul>\n" +
@@ -221,7 +226,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "    <ul class=\"info-list\" ng-show = \"regional_view\">\n" +
     "      <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
-    "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\"></div>\n" +
+    "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action = \"plotOptions()\"></div>\n" +
     "        </div>\n" +
     "        <h3>\n" +
     "          <a ng-click = \"getRegionCities(region)\" style = \"cursor:pointer;\">{{region.name}}</a>\n" +
