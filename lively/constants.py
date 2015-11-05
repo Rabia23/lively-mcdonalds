@@ -18,3 +18,6 @@ BRANCH_ANALYSIS = '3'
 
 #------------ Daywise Data Ratting -------------
 NO_OF_DAYS = 7
+
+#------------ Negative Feedback -------------
+NEGATIVE_SCORE_LIST = [1,2]

@@ -2,6 +2,7 @@ from enum import Enum
 from django.contrib.auth.models import User
 from django.db import models
 from app.models import Branch
+from lively import constants
 
 
 class Feedback(models.Model):
@@ -19,6 +20,27 @@ class Feedback(models.Model):
         feedback = Feedback.objects.filter(objectId=objectId).first()
         if feedback:
             return feedback
+
+    def is_negative(self):
+        options = self.feedback_option.filter(option__score__in=constants.NEGATIVE_SCORE_LIST)
+        if options:
+            return True
+        return False
+
+    def selected_main_option(self):
+        main_question = Question.objects.get(type=constants.MAIN_QUESTION)
+        option_list = self.feedback_option.filter(option__in=main_question.options.filter().values_list('id')).values_list('option_id')
+        option = Option.objects.filter(pk__in=option_list).first()
+        if option:
+            return option
+
+    def selected_secondary_option(self):
+        secondary_question = Question.objects.get(type=constants.SECONDARY_QUESTION)
+        option_list = self.feedback_option.filter(option__in=secondary_question.options.filter().values_list('id')).values_list('option_id')
+        options = Option.objects.filter(pk__in=option_list)
+        if options:
+            return options
+
 
 
 class Question(models.Model):
