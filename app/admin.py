@@ -1,5 +1,5 @@
-from django.contrib import admin
 from app.models import Region, City, Branch, UserInfo
+from django.contrib import admin
 
 
 class RegionAdmin(admin.ModelAdmin):

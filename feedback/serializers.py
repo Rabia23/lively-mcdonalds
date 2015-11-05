@@ -1,12 +1,15 @@
 from rest_framework import serializers
-from app.serializers import RegionSerializer, CitySerializer, BranchSerializer
 from feedback.models import Feedback, Option, Question, FeedbackOption
 
 
 class FeedbackSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
+    comment = serializers.CharField(required=False)
+    objectId = serializers.CharField()
+
     class Meta:
         model = Feedback
-        fields = ('id', 'comment', 'objectId')
+        exclude = ('user', 'branch')
         
         
 class OptionSerializer(serializers.ModelSerializer):

@@ -1,5 +1,6 @@
 from django.db.models import Count
 from django.http.response import HttpResponse
+from django.views.generic.base import TemplateView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from app.models import Region, City, Branch
@@ -285,27 +286,26 @@ def category_performance(request):
             return Response(None)
 
 
-@api_view(['GET'])
-def data_view(request):
+class DataView(TemplateView):
+    template_name = "data_view.html"
 
-    if request.method == 'GET':
-        try:
-            all_feedbacks = Feedback.objects.all()
-            feedbacks = []
+    def get_context_data(self, **kwargs):
+        context = super(DataView, self).get_context_data(**kwargs)
 
-            for feedback in all_feedbacks:
-                feedbacks.append(
-                    {
-                        "feedback": FeedbackSerializer(feedback).data,
-                        "data": {
-                            "branch": BranchSerializer(feedback.branch).data,
-                            "main option": OptionSerializer(feedback.selected_main_option()).data,
-                            "is_negative": feedback.is_negative(),
-                            "secondary_options": OptionSerializer(feedback.selected_secondary_option(), many=True).data
-                        }
+        all_feedbacks = Feedback.objects.all()
+        feedbacks = []
+
+        for feedback in all_feedbacks:
+            feedbacks.append(
+                {
+                    "feedback": FeedbackSerializer(feedback).data,
+                    "data": {
+                        "branch": BranchSerializer(feedback.branch).data,
+                        "main option": OptionSerializer(feedback.selected_main_option()).data,
+                        "is_negative": feedback.is_negative(),
+                        "secondary_options": OptionSerializer(feedback.selected_secondary_option(), many=True).data
                     }
-                )
+                }
+            )
 
-            return HttpResponse(json.dumps(feedbacks), content_type="application/json")
-        except Exception as e:
-            return Response(None)
+        return context

@@ -29,8 +29,11 @@ def feedback(request):
                 related_branch = branch_get(data["branch"]["objectId"])
                 branch = get_related_branch(related_branch)
 
-                related_user = user_get(data["user"]["objectId"])
-                user = get_related_user(related_user)
+                if "user" in data:
+                    related_user = user_get(data["user"]["objectId"])
+                    user = get_related_user(related_user)
+                else:
+                    user = None
 
                 serializer = FeedbackSerializer(data=data)
                 feedback = save(serializer)
