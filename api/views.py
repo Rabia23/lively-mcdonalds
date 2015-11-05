@@ -120,8 +120,7 @@ def feedback_analysis(request):
                 filtered_feedback_options = get_filtered_feedback_options(feedback_options, type, object)
                 filtered_feedback_options_count = filtered_feedback_options.count()
                 filtered_feedback_options = filtered_feedback_options.values(
-                    'option_id', 'option__text', 'option__parent_id').annotate(count=Count('option_id')).\
-                    order_by('option__score')
+                    'option_id', 'option__text', 'option__parent_id').annotate(count=Count('option_id'))
                 list_feedback = generate_missing_options(question, filtered_feedback_options)
 
                 data = {'feedback_count': filtered_feedback_options_count, 'feedbacks': list_feedback}
