@@ -7478,7 +7478,7 @@ button.close {
   overflow: hidden;
   letter-spacing: -6px;
   text-align: center;
-  min-height: 300px;
+  min-height: 250px;
   position: relative;
 }
 .info-list:after {
@@ -7489,7 +7489,7 @@ button.close {
   width: 200px;
   height: 200px;
   content: "";
-  margin: -120px 0 0 -100px;
+  margin: -110px 0 0 -100px;
   visibility: hidden;
   opacity: 0;
   z-index: 9;
@@ -7498,7 +7498,7 @@ button.close {
   left: 0;
   right: 0;
   top: 0;
-  bottom: 30px;
+  bottom: 20px;
   content: "";
   background: #ccc;
   visibility: hidden;
@@ -7596,7 +7596,7 @@ button.close {
   width: 200px;
   height: 200px;
   content: "";
-  margin: -120px 0 0 -100px;
+  margin: -100px 0 0 -100px;
   visibility: hidden;
   opacity: 0;
   z-index: 99;
@@ -7605,7 +7605,7 @@ button.close {
   left: 0;
   right: 0;
   top: 0;
-  bottom: 30px;
+  bottom: 0;
   content: "";
   background: #ccc;
   visibility: hidden;
@@ -8318,8 +8318,8 @@ button.close {
 /*layouts*/
 @font-face {
   font-family: 'fontello';
-  src: url("../fonts/fontello/fontello.eot?82557438");
-  src: url("../fonts/fontello/fontello.eot?82557438#iefix") format("embedded-opentype"), url("../fonts/fontello/fontello.woff?82557438") format("woff"), url("../fonts/fontello/fontello.ttf?82557438") format("truetype"), url("../fonts/fontello/fontello.svg?82557438#fontello") format("svg");
+  src: url("/assets/fonts/fontello/fontello.eot?82557438");
+  src: url("/assets/fonts/fontello/fontello.eot?82557438#iefix") format("embedded-opentype"), url("/assets/fonts/fontello/fontello.woff?82557438") format("woff"), url("/assets/fonts/fontello/fontello.ttf?82557438") format("truetype"), url("/assets/fonts/fontello/fontello.svg?82557438#fontello") format("svg");
   font-weight: normal;
   font-style: normal;
 }

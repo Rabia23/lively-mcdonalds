@@ -121,7 +121,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "<div class=\"feedback-block\">\n" +
     "  <h2>Overall Feedback</h2>\n" +
     "  <ul class=\"title-list\">\n" +
-    "    <li ng-repeat = \"feedback in overall_feedback\">\n" +
+    "    <li ng-repeat = \"feedback in overall_feedback\" class = \"{{feedback.class}}\">\n" +
     "      {{feedback.name}}\n" +
     "    </li>\n" +
     "  </ul>\n" +
@@ -179,7 +179,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
 
 angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/overall-rating/overall-rating.tpl.html",
-    "<div class=\"rating-section\">\n" +
+    "<div class=\"rating-section\" ng-class = \"{loading: show_loading}\">\n" +
     "  <header class=\"heading-block\">\n" +
     "    <h2>Overall Rating</h2>\n" +
     "    <a ng-click = \"backToMain()\" ng-hide = \"mainView\">Back</a>\n" +
@@ -212,7 +212,7 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
 angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/regional-analysis/regional-analysis.tpl.html",
     "<div class=\"section-holder\" >\n" +
-    "  <div class=\"info-area\">\n" +
+    "  <div class=\"info-area\" ng-class=\"{loading: show_loading}\">\n" +
     "    <h2 ng-show = \"regional_view\">Regional Analysis</h2>\n" +
     "    <h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis</h2>\n" +
     "    <h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}} City Branch Analysis</h2>\n" +

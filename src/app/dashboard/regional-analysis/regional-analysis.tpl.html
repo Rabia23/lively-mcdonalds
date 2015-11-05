@@ -1,5 +1,5 @@
 <div class="section-holder" >
-  <div class="info-area">
+  <div class="info-area" ng-class="{loading: show_loading}">
     <h2 ng-show = "regional_view">Regional Analysis</h2>
     <h2 ng-show = "regional_view == false && city_view == true">{{selected_region.name}} Region City Analysis</h2>
     <h2 ng-show = "regional_view == false && city_view == false">{{selected_city.name}} City Branch Analysis</h2>
