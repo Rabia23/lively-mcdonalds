@@ -28,7 +28,8 @@ angular.module('livefeed.chart', [
       };
     },
 
-    getLineChart: function(graph_data){
+    getLineChart: function(graph_data, parent_color){
+
       var length = graph_data[0].data.feedbacks.length;
 
       var labels = _.map(graph_data[0].data.feedbacks ,function(value){
@@ -74,7 +75,15 @@ angular.module('livefeed.chart', [
               radius: 5
             }
           },
-          colors: _.map(labels, function(value){return Global.optionsColorScheme[value];}),
+          colors: _.map(labels, function(value, index){
+            if(parent_color === undefined){
+              return Global.optionsColorScheme[value];
+            }
+            else{
+              return Global.childColor(index, parent_color);
+            }
+            
+          }),
           tooltip: true,
           legend: false,
           tooltipOpts: {
@@ -93,7 +102,7 @@ angular.module('livefeed.chart', [
               var date = new Date(data.date);
               var dateString = date.toString();
               var new_date_array = dateString.split(" ");
-              var new_date = new_date_array[1] + " " + new_date_array[2] + " " + new_date_array[3];
+              var new_date = new_date_array[1] + " " + new_date_array[2];
               return [index + 1, new_date];
             })
           }

@@ -12,9 +12,27 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
     optionsColorScheme: {
-      "Food Quality": "rgb(143,26,48)",
-      "Service": "rgb(245,196,15)",
-      "Cleanliness": "rgb(41,71,76)"
+      "Food Quality": '#ac1a1a',
+      "Service": "#F5C40F",
+      "Cleanliness": '#01ad0f'
+      
+    },
+
+    childColor: function(index, parent_color){
+      console.log(index);
+      if(index === 0){
+        return "#F5C40F";
+      }
+      else if(index === 1){
+        return '#ac1a1a';
+      }
+      else if(index === 2){
+        return '#01ad0f';
+      }
+      else{
+         return one.color(parent_color).lightness((index/2)).green(0.2).hex();
+      }
+     
     }
 
   };

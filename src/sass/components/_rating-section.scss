@@ -1,115 +1,120 @@
 .rating-section{
-	overflow: hidden;
-	background: $white;
-	padding: 15px;
-	text-align: center;
-	
-	@include media("≥desktop"){padding: 20px 15px 15px;}
-	@include media("≥widescreen"){padding: 20px 28px 15px;}
-	
-	.heading-block{
-		overflow: hidden;
-		margin: 0 0 10px;
-		h2{
-			float: left;
-			margin: 0 5px 0 0;
-		}
-		
-		a{
-			float: right;
-			cursor: pointer;
-			margin: 10px 0 0 5px;
-			
-			&:hover{color: darken($dell,10%);}
-		}
-	}
-	
-	&.loading{
-		.rating-holder{
-			&:after{
-				visibility: visible;
-				opacity: 1;
-			}
-			&:before{
-				visibility: visible;
-				opacity: 0.5;
-			}
-		}
-	}
-	
-	.rating-holder{
-		overflow: hidden;
-		text-align: center;
-		position: relative;
-		
-		&:after{
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			background: url(../assets/images/loader.gif) no-repeat;
-			width: 200px;
-			height: 200px;
-			content: "";
-			margin: -100px 0 0 -100px;
-			visibility: hidden;
-			opacity: 0;
-			z-index: 99;
-		}
-		
-		&:before{
-			left: 0;
-			right: 0;
-			top: 0;
-			bottom: 0;
-			content: "";
-			background: $celeste;
-			visibility: hidden;
-			opacity: 0;
-			position: absolute;
-			z-index: 5;
-		}
-		
-		ul{
-			@extend .list-inline;
-			text-align: center;
-			overflow: hidden;
-			margin: 0;
-			letter-spacing: -6px;
-			
-			li{
-				vertical-align: top;
-				letter-spacing: 0;
-				padding: 0 5px 5px;
-				
-				@include media("≥tablet"){padding: 0 10px 10px;}
-				
-				a{
-					color: $brand-danger;
-					
-					&:hover{color: darken($brand-danger,10%);}
-				}
-				
-				&.item2{
-					a{
-						color: $brand-info;
+  overflow: hidden;
+  background: $white;
+  padding: 15px;
+  text-align: center;
+  
+  @include media("≥desktop"){padding: 20px 15px 15px;}
+  @include media("≥widescreen"){padding: 20px 28px 15px;}
+  
+  .heading-block{
+    overflow: hidden;
+    margin: 0 0 10px;
+    h2{
+      float: left;
+      margin: 0 5px 0 0;
+    }
+    
+    a{
+      float: right;
+      cursor: pointer;
+      margin: 10px 0 0 5px;
+      
+      &:hover{color: darken($dell,10%);}
+    }
+  }
+  
+  &.loading{
+    .rating-holder{
+      &:after{
+        visibility: visible;
+        opacity: 1;
+      }
+      &:before{
+        visibility: visible;
+        opacity: 0.5;
+      }
+    }
+  }
+  
+  .rating-holder{
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    
+    &:after{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background: url(../assets/images/loader.gif) no-repeat;
+      width: 200px;
+      height: 200px;
+      content: "";
+      margin: -100px 0 0 -100px;
+      visibility: hidden;
+      opacity: 0;
+      z-index: 99;
+    }
+    
+    &:before{
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      content: "";
+      background: $celeste;
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      z-index: 5;
+    }
+    
+    ul{
+      @extend .list-inline;
+      text-align: center;
+      overflow: hidden;
+      margin: 0;
+      letter-spacing: -6px;
+      
+      li{
+        vertical-align: top;
+        letter-spacing: 0;
+        padding: 0 5px 5px;
+        
+        @include media("≥tablet"){padding: 0 10px 10px;}
+        
+        a{
+          color: $brand-danger;
+          
+          &:hover{color: darken($brand-danger,10%);}
+        }
+        
+        &.item2{
+          a{
+            color: $brand-info;
 
-						&:hover{color: darken($brand-info,10%);}
-					}
-				}
-				
-				&.item3{
-					a{
-						color: $dell;
+            &:hover{color: darken($brand-info,10%);}
+          }
+        }
+        
+        &.item3{
+          a{
+            color: $dell;
 
-						&:hover{color: darken($dell,10%);}
-					}
-				}
-			}
-		}
-		.flot-tick-label{max-width: 60px !important;}
-		.ng-isolate-scope{
-			height: 200px !important;
-			> div{height: 200px !important;}
-		}
-	}
+            &:hover{color: darken($dell,10%);}
+          }
+        }
+      }
+    }
+    .flot-tick-label{max-width: 60px !important;}
+    .ng-isolate-scope{
+      height: 200px !important;
+      > div{height: 200px !important;}
+    }
+  }
+}
+
+.flotTip{
+  border: 1px solid black;
+  background-color: white;
 }

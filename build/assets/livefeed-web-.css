@@ -7657,6 +7657,11 @@ button.close {
   height: 200px !important;
 }
 
+.flotTip {
+  border: 1px solid black;
+  background-color: white;
+}
+
 .feedback-block {
   overflow: hidden;
   background: #fff;
