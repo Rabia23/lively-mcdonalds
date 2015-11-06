@@ -338,8 +338,12 @@ def positive_negative_feedback(request):
             else:
                 filtered_feedback_options = Feedback.objects.all()
 
-            negative_feedback = filtered_feedback_options.filter(feedback_option__option__score__in=constants.NEGATIVE_SCORE_LIST).order_by('-id')[:3]
-            positive_feedback = filtered_feedback_options.filter(feedback_option__option__score__in=constants.POSITIVE_SCORE_LIST).order_by('-id')[:3]
+            negative_feedback = filtered_feedback_options.filter(
+                feedback_option__option__score__in=constants.NEGATIVE_SCORE_LIST).\
+                        exclude(comment__isnull=True).exclude(comment__exact='').order_by('-id')[:3]
+            positive_feedback = filtered_feedback_options.filter(
+                feedback_option__option__score__in=constants.POSITIVE_SCORE_LIST).\
+                        exclude(comment__isnull=True).exclude(comment__exact='').order_by('-id')[:3]
 
             data = {'positive_feedbacks': positive_feedback, 'negative_feedbacks': negative_feedback}
             feedback_response = PositiveNegativeFeedbackSerializer(data)
