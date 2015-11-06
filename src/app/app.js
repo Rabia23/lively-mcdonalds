@@ -2,11 +2,7 @@ angular.module( 'livefeed', [
   'templates-app',
   'templates-common',
   'livefeed.dashboard',
-  'ui.router',
-  'parse-angular',
-  'parse-angular.enhance',
-  'livefeed.chart',
-  'factories'
+  'ui.router'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {

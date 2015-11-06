@@ -28,7 +28,9 @@ angular.module( 'factories', ['ngResource'])
                   {
                     overall_feedback: {method: "JSONP",isArray: false, params: {endpoint: "overall_feedback"}},
                     feedback_analysis: {method: "JSONP",isArray: false, params: {endpoint: "feedback_analysis"}},
-                    overall_rating: {method: "JSONP",isArray: true, params: {endpoint: "overall_rating"}}
+                    overall_rating: {method: "JSONP",isArray: true, params: {endpoint: "overall_rating"}},
+                    positive_negative_feedback: {method: "JSONP",isArray: false, params: {endpoint: "positive_negative_feedback"}}
+
 
                  });
   }
@@ -36,6 +38,10 @@ angular.module( 'factories', ['ngResource'])
   Graphs.prototype.overall_rating = function(option_id){
     option_id = option_id || "";
     return this.service.overall_rating({option: option_id});
+  };
+
+  Graphs.prototype.positive_negative_feedback = function(){
+    return this.service.positive_negative_feedback();
   };
   Graphs.prototype.overall_feedback = function(region_id, city_id, branch_id){
     region_id = region_id || "";

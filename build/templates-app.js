@@ -87,11 +87,11 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "  </div>\n" +
     "</div>\n" +
     "\n" +
-    "<div class = \"row\">\n" +
-    "  <div class = \"col-xs-12 col-sm-12 col-md-12 col-lg-12\">\n" +
-    "    <div ui-view=\"positive_negative_feedback\"></div>\n" +
+    "<section class = \"section\">\n" +
+    "  <div class=\"section-holder\" ng-controller = \"PositiveNegativeFeedbackCtrl\">\n" +
+    "      <div ui-view = \"positive_negative_feedback\"></div>\n" +
     "  </div>\n" +
-    "</div>\n" +
+    "</section>\n" +
     "\n" +
     "  ");
 }]);
@@ -120,11 +120,11 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
   $templateCache.put("dashboard/overall-feedback/overall-feedback.tpl.html",
     "<div class=\"feedback-block\">\n" +
     "  <h2>Overall Feedback</h2>\n" +
-    "  <ul class=\"title-list\">\n" +
+    "  <!-- <ul class=\"title-list\">\n" +
     "    <li ng-repeat = \"feedback in overall_feedback\" class = \"{{feedback.class}}\">\n" +
     "      {{feedback.name}}\n" +
     "    </li>\n" +
-    "  </ul>\n" +
+    "  </ul> -->\n" +
     "  <div class=\"feedback-holder\">\n" +
     "  	<ul class=\"feedback-list\">\n" +
     "  	  <li class=\"{{feedback.class}}\" ng-repeat = \"feedback in overall_feedback\">\n" +
@@ -199,12 +199,34 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
 
 angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html",
-    "<div ng-controller = \"PositiveNegativeFeedbackCtrl\">    \n" +
-    "  <section class=\"panel panel-default\">\n" +
-    "    <div class=\"panel-body\">\n" +
-    "      <h4>Positive Negative Feedback</h4>\n" +
-    "    </div>\n" +
-    "  </section>\n" +
+    "<div class=\"review-block\">\n" +
+    "  <h2>Positive Negative Feedback</h2>\n" +
+    "  <div class=\"holder\">\n" +
+    "    <ul>\n" +
+    "      <li ng-repeat = \"pos_feedback in pos_feedbacks\">\n" +
+    "        <div class=\"inner-holder\">\n" +
+    "          <div class=\"ico-holder\">\n" +
+    "            <span class=\"icon-thumbs-up\"></span>\n" +
+    "          </div>\n" +
+    "          <div class=\"text\">\n" +
+    "            <p>{{pos_feedback.comment}}</p>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </li>\n" +
+    "    </ul>\n" +
+    "    <ul class=\"add\">\n" +
+    "      <li ng-repeat = \"neg_feedback in neg_feedbacks\">\n" +
+    "        <div class=\"inner-holder\">\n" +
+    "          <div class=\"ico-holder\">\n" +
+    "            <span class=\"icon-thumbs-down\"></span>\n" +
+    "          </div>\n" +
+    "          <div class=\"text\">\n" +
+    "            <p>{{neg_feedback.comment}}</p>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </li>\n" +
+    "    </ul>\n" +
+    "  </div>\n" +
     "</div>\n" +
     "  ");
 }]);

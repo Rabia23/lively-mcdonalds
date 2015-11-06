@@ -82,8 +82,6 @@ module.exports = {
       'vendor/flot.tooltip/js/jquery.flot.tooltip.js',
       'vendor/angular-flot/angular-flot.js',
       'vendor/color/one-color-all.js'
-
-
     ],
     css: [
       'vendor/angular-chart.js/dist/angular-chart.min.css',

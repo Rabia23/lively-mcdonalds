@@ -1,8 +1,30 @@
-<div ng-controller = "PositiveNegativeFeedbackCtrl">    
-  <section class="panel panel-default">
-    <div class="panel-body">
-      <h4>Positive Negative Feedback</h4>
-    </div>
-  </section>
+<div class="review-block">
+  <h2>Positive Negative Feedback</h2>
+  <div class="holder">
+    <ul>
+      <li ng-repeat = "pos_feedback in pos_feedbacks">
+        <div class="inner-holder">
+          <div class="ico-holder">
+            <span class="icon-thumbs-up"></span>
+          </div>
+          <div class="text">
+            <p>{{pos_feedback.comment}}</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <ul class="add">
+      <li ng-repeat = "neg_feedback in neg_feedbacks">
+        <div class="inner-holder">
+          <div class="ico-holder">
+            <span class="icon-thumbs-down"></span>
+          </div>
+          <div class="text">
+            <p>{{neg_feedback.comment}}</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
   

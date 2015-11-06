@@ -1,6 +1,6 @@
 angular.module( 'helper_factories', ['ngResource'])
 
-.factory('Global', [ function() {
+.factory('Global', [ '_', function(_) {
 
   return {
     mainRatingColorScheme: {
@@ -19,8 +19,8 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
     overallFeedbackClass: {
-      "Few concerns": 'neutral',
-      "Not happy enough": 'negative',
+      "Few concerns": 'negative',
+      "Not happy enough": 'neutral',
       "Everything is on track!": 'good',
       "I'm lovin' it": 'v-good'
     },
@@ -32,8 +32,11 @@ angular.module( 'helper_factories', ['ngResource'])
       "I'm lovin' it": 1
     },
 
+    overallFeedbackColumn:{
+      ranges: [_.range(0,15), _.range(15,30), _.range(30, 45), _.range(45, 60), _.range(60, 75), _.range(75,100)]
+    },
+
     childColor: function(index, parent_color){
-      console.log(index);
       if(index === 0){
         return "#F5C40F";
       }

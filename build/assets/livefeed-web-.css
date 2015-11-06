@@ -7662,6 +7662,10 @@ button.close {
   background-color: white;
 }
 
+.flot-tick-label {
+  white-space: nowrap;
+}
+
 .feedback-block {
   overflow: hidden;
   background: #fff;
