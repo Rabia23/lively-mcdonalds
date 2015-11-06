@@ -7728,13 +7728,13 @@ button.close {
 @media (min-width: 480px) {
   .feedback-list {
     margin: 0;
-    width: 100%;
+    width: 91%;
     display: table;
   }
 }
 @media (min-width: 992px) {
   .feedback-list {
-    width: 100%;
+    width: 97%;
   }
 }
 @media (min-width: 1220px) {

@@ -40,10 +40,10 @@
 	
 	@include media("≥phone"){
 		margin: 0;
-		width: 100%;
+		width: 91%;
 		display: table;
 	}
-	@include media("≥desktop"){width: 100%;}
+	@include media("≥desktop"){width: 97%;}
 	@include media("≥widescreen"){width: 92%;}
 	> li{
 		@include inline-block(top);
