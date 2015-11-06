@@ -7,7 +7,7 @@ from app.models import Region, City, Branch
 from app.serializers import RegionSerializer, CitySerializer, BranchSerializer
 from feedback.models import Question, FeedbackOption, Option, Feedback
 from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer, \
-    FeedbackSerializer, OptionSerializer
+    FeedbackSerializer, OptionSerializer, PositiveNegativeFeedbackSerializer
 from lively import constants
 from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options
 from dateutil import rrule
@@ -286,6 +286,7 @@ def category_performance(request):
             return Response(None)
 
 
+#for admin panel
 class DataView(TemplateView):
     template_name = "data_view.html"
 
@@ -308,4 +309,41 @@ class DataView(TemplateView):
                 }
             )
 
+        context["feedbacks"] = feedbacks
         return context
+
+
+@api_view(['GET'])
+def positive_negative_feedback(request):
+
+    if request.method == 'GET':
+
+        try:
+            region_id = request.query_params.get('region', None)
+            city_id = request.query_params.get('city', None)
+            branch_id = request.query_params.get('branch', None)
+
+            if region_id and city_id and branch_id:
+                filtered_feedback_options = Feedback.objects.filter(
+                    feedback__branch__exact=branch_id,
+                    feedback__branch__city__exact=city_id,
+                    feedback__branch__city__region__exact=region_id)
+            elif region_id and city_id:
+                filtered_feedback_options = Feedback.objects.filter(
+                    feedback__branch__city__exact=city_id,
+                    feedback__branch__city__region__exact=region_id)
+            elif region_id:
+                filtered_feedback_options = Feedback.objects.filter(
+                    feedback__branch__city__region__exact=region_id)
+            else:
+                filtered_feedback_options = Feedback.objects.all()
+
+            negative_feedback = filtered_feedback_options.filter(feedback_option__option__score__in=constants.NEGATIVE_SCORE_LIST).order_by('-id')[:3]
+            positive_feedback = filtered_feedback_options.filter(feedback_option__option__score__in=constants.POSITIVE_SCORE_LIST).order_by('-id')[:3]
+
+            data = {'positive_feedbacks': positive_feedback, 'negative_feedbacks': negative_feedback}
+            feedback_response = PositiveNegativeFeedbackSerializer(data)
+            return Response(feedback_response.data)
+
+        except Exception as e:
+            return Response(None)

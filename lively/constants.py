@@ -21,3 +21,4 @@ NO_OF_DAYS = 7
 
 #------------ Negative Feedback -------------
 NEGATIVE_SCORE_LIST = [1,2]
+POSITIVE_SCORE_LIST = [3,4]

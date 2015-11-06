@@ -20,7 +20,7 @@ class OptionAdmin(admin.ModelAdmin):
 def get_admin_urls(urls):
     def get_urls():
         my_urls = patterns('',
-            (r'^data_view/$', admin.site.admin_view(DataView))
+            (r'^data_view/$', admin.site.admin_view(DataView.as_view()))
         )
         return my_urls + urls
     return get_urls

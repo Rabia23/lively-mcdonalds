@@ -63,3 +63,7 @@ class OverallRattingSerializer(serializers.Serializer):
     data = OverallFeedbackSerializer()
 
 
+class PositiveNegativeFeedbackSerializer(serializers.Serializer):
+    positive_feedbacks = FeedbackSerializer(many=True)
+    negative_feedbacks = FeedbackSerializer(many=True)
+
