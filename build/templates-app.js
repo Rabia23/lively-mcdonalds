@@ -5,59 +5,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "<div class=\"info-holder\">\n" +
     "  <h2>Category Performance Analysis</h2>\n" +
     "  <div class=\"table-holder\">\n" +
-    "    <table class=\"table\">\n" +
-    "      <thead>\n" +
-    "        <tr>\n" +
-    "          <th class=\"item1\">&nbsp;</th>\n" +
-    "          <th class=\"item2\">Grade</th>\n" +
-    "          <th class=\"item3\">Trend</th>\n" +
-    "          <th class=\"item4\">Review</th>\n" +
-    "        </tr>\n" +
-    "      </thead>\n" +
-    "      <tbody>\n" +
-    "        <tr>\n" +
-    "          <td class=\"item1\">Service</td>\n" +
-    "          <td class=\"item2\">\n" +
-    "            <ul class=\"rating\">\n" +
-    "              <li><a href=\"#\">1</a></li>\n" +
-    "              <li><a href=\"#\">2</a></li>\n" +
-    "              <li><a href=\"#\">3</a></li>\n" +
-    "              <li><a href=\"#\">4</a></li>\n" +
-    "              <li><a href=\"#\">5</a></li>\n" +
-    "            </ul>\n" +
-    "          </td>\n" +
-    "          <td class=\"item3\"><img src=\"assets/images/img1.png\" alt=\"graph img\"></td>\n" +
-    "          <td class=\"item4\"><span class=\"text\">50</span></td>\n" +
-    "        </tr>\n" +
-    "        <tr>\n" +
-    "          <td class=\"item1\">Food Quality</td>\n" +
-    "          <td class=\"item2\">\n" +
-    "            <ul class=\"rating\">\n" +
-    "              <li><a href=\"#\">1</a></li>\n" +
-    "              <li><a href=\"#\">2</a></li>\n" +
-    "              <li><a href=\"#\">3</a></li>\n" +
-    "              <li><a href=\"#\">4</a></li>\n" +
-    "            </ul>\n" +
-    "          </td>\n" +
-    "          <td class=\"item3\"><img src=\"assets/images/img2.png\" alt=\"graph img\"></td>\n" +
-    "          <td class=\"item4\"><span class=\"text\">30</span></td>\n" +
-    "        </tr>\n" +
-    "        <tr>\n" +
-    "          <td class=\"item1\">Cleanliness</td>\n" +
-    "          <td class=\"item2\">\n" +
-    "            <ul class=\"rating\">\n" +
-    "              <li><a href=\"#\">1</a></li>\n" +
-    "              <li><a href=\"#\">2</a></li>\n" +
-    "              <li><a href=\"#\">3</a></li>\n" +
-    "              <li><a href=\"#\">4</a></li>\n" +
-    "              <li><a href=\"#\">5</a></li>\n" +
-    "            </ul>\n" +
-    "          </td>\n" +
-    "          <td class=\"item3\"><img src=\"assets/images/img3.png\" alt=\"graph img\"></td>\n" +
-    "          <td class=\"item4\"><span class=\"text\">48</span></td>\n" +
-    "        </tr>\n" +
-    "      </tbody>\n" +
-    "    </table>\n" +
+    "    \n" +
     "  </div>\n" +
     "</div>\n" +
     "  ");
