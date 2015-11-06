@@ -147,7 +147,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "  	          </ul>\n" +
     "  	        </li>\n" +
     "  	      </ul>\n" +
-    "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'neutral'\">\n" +
+    "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'negative'\">\n" +
     "  	        <li ng-repeat='val in feedback.columns'>\n" +
     "  	          <ul>\n" +
     "  	            <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
@@ -156,7 +156,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "  	          </ul>\n" +
     "  	        </li>\n" +
     "  	      </ul>\n" +
-    "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'negative'\">\n" +
+    "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'neutral'\">\n" +
     "  	        <li ng-repeat='val in feedback.columns'>\n" +
     "  	          <ul>\n" +
     "  	            <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +

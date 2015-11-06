@@ -18,6 +18,20 @@ angular.module( 'helper_factories', ['ngResource'])
       
     },
 
+    overallFeedbackClass: {
+      "Few concerns": 'neutral',
+      "Not happy enough": 'negative',
+      "Everything is on track!": 'good',
+      "I'm lovin' it": 'v-good'
+    },
+
+    overallFeedbackPriority: {
+      "Few concerns": 3,
+      "Not happy enough": 4,
+      "Everything is on track!": 2,
+      "I'm lovin' it": 1
+    },
+
     childColor: function(index, parent_color){
       console.log(index);
       if(index === 0){
