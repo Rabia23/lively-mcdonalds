@@ -6,7 +6,10 @@
 	@include media("≥desktop"){padding: 20px 15px 0;}
 	@include media("≥widescreen"){padding: 20px 23px 0 30px;}
 	
-	h2{margin: 0 0 9px;}
+	h2{
+		margin: 0 0 10px;
+		@include media("≥desktop"){margin: 0 0 40px;}
+	}
 }
 .title-list{
 	@extend %listreset;
@@ -40,6 +43,8 @@
 		width: 100%;
 		display: table;
 	}
+	@include media("≥desktop"){width: 100%;}
+	@include media("≥widescreen"){width: 92%;}
 	> li{
 		@include inline-block(top);
 		padding: 0 5px 10px;
@@ -62,12 +67,12 @@
 		
 		h3{
 			word-spacing: -1px;
-			@include fontsize(13, 15);
+			@include fontsize(18, 15);
 			line-height: 1.2em;
 			text-align: center;
 			span{
 				display: block;
-				@include fontsize(18, 15);
+				@include fontsize(18, 18);
 			}
 		}
 		
