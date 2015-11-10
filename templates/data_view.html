@@ -1,13 +1,56 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-    <p>sdzxcsdcvsdv</p>
-    {% for feedback in feedbacks %}
-        {{ feedback }}
-    {% endfor %}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block body_block %}
+    <h1>Live Feed | Data View</h1>
+    {% if feedbacks %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Object Id</th>
+                    <th>Comment</th>
+                    <th>Main Option</th>
+                    <th>Secondary Option</th>
+                    <th>Branch</th>
+                    <th>City</th>
+                    <th>Region</th>
+                </tr>
+            </thead>
+            {% for feedback in feedbacks %}
+                {% if feedback %}
+                    <tr>
+                        <td>
+                            {{ feedback.objectId }}
+                        </td>
+                        <td>
+                            {{ feedback.comment }}
+                        </td>
+                        <td>
+                            {% if feedback.main_question_options %}
+                                {{ feedback.main_question_options.text }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if feedback.secondary_question_options %}
+                                {{ feedback.secondary_question_options.text }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ feedback.branch }}
+                        </td>
+                        <td>
+                            {{ feedback.city }}
+                        </td>
+                        <td>
+                            {{ feedback.region }}
+                        </td>
+                    </tr>
+
+                {% else %}
+                    <tr><td>Invalid Data</td></tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No Data Found</p>
+    {% endif %}
+{% endblock %}

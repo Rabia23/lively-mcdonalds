@@ -42,6 +42,22 @@ class Feedback(models.Model):
             return options
 
 
+    def to_dict(self):
+        try:
+            feedback = {
+                "objectId": self.objectId,
+                "comment": self.comment,
+                "branch": self.branch.name,
+                "city": self.branch.city.name,
+                "region": self.branch.city.region.name,
+                "main_question_options": self.selected_main_option(),
+                "secondary_question_options": self.selected_secondary_option(),
+            }
+            return feedback
+        except Exception as e:
+            return {}
+
+
 
 class Question(models.Model):
     text = models.TextField()

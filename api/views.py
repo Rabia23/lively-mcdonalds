@@ -297,17 +297,7 @@ class DataView(TemplateView):
         feedbacks = []
 
         for feedback in all_feedbacks:
-            feedbacks.append(
-                {
-                    "feedback": FeedbackSerializer(feedback).data,
-                    "data": {
-                        "branch": BranchSerializer(feedback.branch).data,
-                        "main option": OptionSerializer(feedback.selected_main_option()).data,
-                        "is_negative": feedback.is_negative(),
-                        "secondary_options": OptionSerializer(feedback.selected_secondary_option(), many=True).data
-                    }
-                }
-            )
+            feedbacks.append(feedback.to_dict())
 
         context["feedbacks"] = feedbacks
         return context
@@ -315,9 +305,7 @@ class DataView(TemplateView):
 
 @api_view(['GET'])
 def positive_negative_feedback(request):
-
     if request.method == 'GET':
-
         try:
             region_id = request.query_params.get('region', None)
             city_id = request.query_params.get('city', None)
