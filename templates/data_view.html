@@ -22,7 +22,7 @@
                             {{ feedback.objectId }}
                         </td>
                         <td>
-                            {{ feedback.comment }}
+                            {{ feedback.comment|slice:":60" }}
                         </td>
                         <td>
                             {% if feedback.main_question_options %}
@@ -31,7 +31,9 @@
                         </td>
                         <td>
                             {% if feedback.secondary_question_options %}
-                                {{ feedback.secondary_question_options.text }}
+                                {% for option in feedback.secondary_question_options %}
+                                    {{ option.text }}{% if not forloop.last %},{% endif %}
+                                {% endfor %}
                             {% endif %}
                         </td>
                         <td>
