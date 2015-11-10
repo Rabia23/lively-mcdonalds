@@ -43,8 +43,9 @@ def feedback(request):
                     feedback.user = user
                     feedback.save()
 
-                    context = Context({'feedback': feedback})
-                    send_negative_feedback_email(context)
+                    if feedback.is_negative():
+                        context = Context({'feedback': feedback})
+                        send_negative_feedback_email(context)
 
                 return response(data)
         except Exception as e:
