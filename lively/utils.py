@@ -5,9 +5,13 @@ from rest_framework import status
 from rest_framework.response import Response
 from feedback.models import Feedback, Option
 from feedback.serializers import FeedbackSerializer, OptionSerializer
-from lively import constants
+from lively import constants, settings
 import string,random
 from lively.parse_utils import region_get, feedback_get, option_get
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import get_template
+from django.template import Context
+
 
 __author__ = 'aamish'
 
@@ -203,3 +207,19 @@ def get_filtered_feedback_options(feedback_options, type, object):
         filtered_feedback_options = feedback_options.filter(feedback__branch__city__region__exact=object.id)
 
     return filtered_feedback_options
+
+
+def send_negative_feedback_email(context):
+    text_template = get_template('emails/negative_feedback.txt')
+    html_template = get_template('emails/negative_feedback.html')
+
+    send_mail(constants.NEGATIVE_FEEDBACK_SUBJECT, context, text_template, html_template)
+
+def send_mail(subject, context, text_template, html_template):
+    subject, from_email, to = 'MC Live Feed', settings.DEFAULT_FROM_EMAIL, ['aamish.iftikhar@arbisoft.com']
+    text_content = text_template.render(context)
+    html_content = html_template.render(context)
+    message = EmailMultiAlternatives(subject, text_content, from_email, to)
+    message.attach_alternative(html_content, "text/html")
+    message.send()
+

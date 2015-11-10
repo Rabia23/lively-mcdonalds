@@ -6,7 +6,8 @@ from feedback.serializers import FeedbackSerializer, \
 from lively import constants
 from lively.parse_utils import branch_get, user_get, feedback_get, option_get
 from lively.utils import save_and_response, save, response, get_related_branch, get_related_user, get_related_feedback, \
-    get_related_option
+    get_related_option, send_negative_feedback_email
+from django.template import Context
 
 @api_view(['GET', 'POST'])
 def feedback(request):
@@ -17,31 +18,37 @@ def feedback(request):
         return Response(serializer.data)
 
     if request.method == 'POST':
-        data = request.data["object"]
-        trigger = request.data["triggerName"]
+        try:
+            data = request.data["object"]
+            trigger = request.data["triggerName"]
 
-        if trigger == constants.TRIGGER_AFTER_SAVE:
-            feedback = Feedback.get_if_exists(data["objectId"])
-            if feedback:
-                serializer = FeedbackSerializer(feedback, data=data)
-                return save_and_response(serializer, data)
-            else:
-                related_branch = branch_get(data["branch"]["objectId"])
-                branch = get_related_branch(related_branch)
-
-                if "user" in data:
-                    related_user = user_get(data["user"]["objectId"])
-                    user = get_related_user(related_user)
+            if trigger == constants.TRIGGER_AFTER_SAVE:
+                feedback = Feedback.get_if_exists(data["objectId"])
+                if feedback:
+                    serializer = FeedbackSerializer(feedback, data=data)
+                    return save_and_response(serializer, data)
                 else:
-                    user = None
+                    related_branch = branch_get(data["branch"]["objectId"])
+                    branch = get_related_branch(related_branch)
 
-                serializer = FeedbackSerializer(data=data)
-                feedback = save(serializer)
-                feedback.branch = branch
-                feedback.user = user
-                feedback.save()
+                    if "user" in data:
+                        related_user = user_get(data["user"]["objectId"])
+                        user = get_related_user(related_user)
+                    else:
+                        user = None
 
-            return response(data)
+                    serializer = FeedbackSerializer(data=data)
+                    feedback = save(serializer)
+                    feedback.branch = branch
+                    feedback.user = user
+                    feedback.save()
+
+                    context = Context({'feedback': feedback})
+                    send_negative_feedback_email(context)
+
+                return response(data)
+        except Exception as e:
+            return response(None)
         
 
 @api_view(['GET', 'POST'])

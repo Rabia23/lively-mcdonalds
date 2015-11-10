@@ -129,6 +129,14 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mclivefeed@gmail.com'
+EMAIL_HOST_PASSWORD = 'LiveFeed123'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL='LiveFeed Support <no-reply@livefeed.com>'
+
 #------------------------- Parse Constants --------------------------
 APPLICATION_ID = "wa5gQWFuwUkIhBNgXhreiC1rNuYj97WoJZkV5m0I"
 REST_API_KEY = "gGbAgkrUAwTMuRqtr0dOMKi1YThcvAufrRo9sR4C"
