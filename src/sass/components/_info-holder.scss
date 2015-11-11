@@ -34,20 +34,42 @@
 				line-height: 1.2em;
 			}
 		}
+		.progress-block{
+			position: relative;
+			padding: 0 60px 0 0;
+			b{
+				position: absolute;
+				right: 0;
+				top: 0;
+				font-size: 22px;
+				line-height: 26px;
+			}
+		}
+		.progress-bar{
+			border-radius: 15px;
+			-webkit-border-radius: 15px;
+		}
 		.progress{
 			margin: 0;
+			box-shadow: none;
+			color: inherit;
+			border-radius: 15px;
+			-webkit-border-radius: 15px;
 		}
 		
 		&.yellow{
 			color: $golden-poppy;
+			.progress{background: $golden-poppy;}
 		}
 		
 		&.lilac{
 			color: $deep-lilac;
+			.progress{background: $deep-lilac;}
 		}
 		
 		&.blue{
 			color: $bleu-de-france;
+			.progress{background: $bleu-de-france;}
 		}
 	}
 }

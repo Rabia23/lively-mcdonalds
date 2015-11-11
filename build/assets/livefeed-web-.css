@@ -7286,17 +7286,45 @@ button.close {
   font-size: 1.33333em;
   line-height: 1.2em;
 }
+.progress-area .progress-holder .progress-block {
+  position: relative;
+  padding: 0 60px 0 0;
+}
+.progress-area .progress-holder .progress-block b {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 22px;
+  line-height: 26px;
+}
+.progress-area .progress-holder .progress-bar {
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+}
 .progress-area .progress-holder .progress {
   margin: 0;
+  box-shadow: none;
+  color: inherit;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
 }
 .progress-area .progress-holder.yellow {
   color: #ffc300;
 }
+.progress-area .progress-holder.yellow .progress {
+  background: #ffc300;
+}
 .progress-area .progress-holder.lilac {
   color: #8e44ad;
 }
+.progress-area .progress-holder.lilac .progress {
+  background: #8e44ad;
+}
 .progress-area .progress-holder.blue {
   color: #3498db;
+}
+.progress-area .progress-holder.blue .progress {
+  background: #3498db;
 }
 
 .info-area {
@@ -8135,17 +8163,17 @@ button.close {
 }
 .review-block ul li:after {
   position: absolute;
-  right: -9px;
-  bottom: -9px;
+  right: -11px;
+  bottom: -11px;
   content: "";
   width: 0;
   height: 0;
-  border-bottom: 65px solid #28530c;
-  border-left: 65px solid transparent;
+  border-bottom: 75px solid #28530c;
+  border-left: 75px solid transparent;
 }
 .review-block ul li:before {
   position: absolute;
-  right: -37px;
+  right: -42px;
   bottom: -43px;
   color: #28530c;
   content: '\Ad804';
@@ -8186,7 +8214,7 @@ button.close {
 }
 .review-block ul .inner-holder:after {
   position: absolute;
-  right: 2px;
+  right: 1px;
   bottom: -20px;
   left: 0;
   top: 0;

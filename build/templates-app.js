@@ -10,7 +10,9 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "\n" +
     "    <small><em>{{dat.name}}</em></small>\n" +
     "    \n" +
-    "    	<uib-progressbar animate=\"false\" value=\"dynamic\" type=\"success\"><b>{{dat.percentage}}%</b></uib-progressbar>\n" +
+    "    	<div class=\"progress-block\">\n" +
+    "    		<uib-progressbar animate=\"false\" value=\"dynamic\" type=\"success\"><b>{{dat.percentage}}%</b></uib-progressbar>\n" +
+    "    	</div>\n" +
     "\n" +
     "    <!--<div class=\"progress-bar progress-bar-success\" ng-transclude=\"\" style=\"min-width: 0px; transition: none 0s ease 0s ; width: 80%;\" aria-labelledby=\"progressbar\" aria-valuetext=\"80%\" ng-style=\"{width: (percent < 100 ? percent : 100) + '%'}\" aria-valuemax=\"100\" aria-valuemin=\"0\" aria-valuenow=\"80\" role=\"progressbar\" ng-class=\"type && 'progress-bar-' + type\"></div>-->\n" +
     "\n" +
