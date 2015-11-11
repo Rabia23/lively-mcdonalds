@@ -234,7 +234,11 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
   $templateCache.put("dashboard/regional-analysis/regional-analysis.tpl.html",
     "<div class=\"section-holder\" >\n" +
     "  <div class=\"info-area\" ng-class=\"{loading: show_loading}\">\n" +
-    "    <h2 ng-show = \"regional_view\">Regional Analysis</h2>\n" +
+    "    <div class=\"btn-group pull-right\">\n" +
+    "      <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\">Rating</label>\n" +
+    "      <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'SQC'\">SQC</label>\n" +
+    "    </div>\n" +
+    "    <h2 ng-show = \"regional_view\">Regional Analysis</h2>  \n" +
     "    <h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis</h2>\n" +
     "    <h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}} City Branch Analysis</h2>\n" +
     "    <div class = \"breadcrum\">\n" +
@@ -246,7 +250,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "      </span>\n" +
     "    </div>\n" +
     "\n" +
-    "    <ul class=\"info-list\" ng-show = \"regional_view\">\n" +
+    "    <ul class=\"info-list\" ng-show = \"regional_view == true && radioModel == 'Rating'\">\n" +
     "      <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
     "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action = \"plotOptions()\"></div>\n" +
@@ -256,7 +260,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "        </h3>\n" +
     "      </li>\n" +
     "    </ul>\n" +
-    "    <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == true\">\n" +
+    "    <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == true && radioModel == 'Rating'\">\n" +
     "      <li ng-repeat = \"city in donut_cities_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
     "          <div morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\"></div>\n" +
@@ -266,7 +270,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "        </h3>\n" +
     "      </li>\n" +
     "    </ul>\n" +
-    "    <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == false\">\n" +
+    "    <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == false && radioModel == 'Rating'\">\n" +
     "      <li ng-repeat = \"branch in donut_branches_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
     "          <div morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\"></div>\n" +

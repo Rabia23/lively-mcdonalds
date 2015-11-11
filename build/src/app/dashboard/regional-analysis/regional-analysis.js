@@ -1,13 +1,15 @@
 angular.module( 'livefeed.dashboard.regional_analysis', [
   'factories',
-  'livefeed.chart' 
-
+  'livefeed.chart', 
+  'ui.bootstrap'
 ])
 
 .controller( 'RegionalAnalysisCtrl', function DashboardController( $scope, _, Graphs, chartService ) {
 
   $scope.regional_view = true;
   $scope.city_view = false;
+
+  $scope.radioModel = 'Rating';
 
   $scope.show_loading = false;
 
