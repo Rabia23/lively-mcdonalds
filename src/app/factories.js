@@ -1,8 +1,11 @@
-angular.module( 'factories', ['ngResource'])
+angular.module( 'factories', [
+  'ngResource',
+  'livefeed.api_links'
+])
 
-.factory('Filters', ['$resource', function($resource) {
+.factory('Filters', ['$resource','apiLinks', function($resource, apiLinks) {
   function Filters() {
-    this.service = $resource('http://mclively.herokuapp.com/:endpoint/', {callback: "JSON_CALLBACK"},
+    this.service = $resource(apiLinks.staging, {callback: "JSON_CALLBACK"},
                   {
                     allRegions: {method: "JSONP",isArray: true, params: {endpoint: "region"}},
                     Cities: {method: "JSONP",isArray: true, params: {endpoint: "city"}},
@@ -22,9 +25,9 @@ angular.module( 'factories', ['ngResource'])
 }])
 
 
-.factory('Graphs', ['$resource', function($resource) {
+.factory('Graphs', ['$resource','apiLinks',  function($resource, apiLinks) {
   function Graphs() {
-    this.service = $resource('http://mclively.herokuapp.com/api/:endpoint/', {callback: "JSON_CALLBACK"},
+    this.service = $resource(apiLinks.staging, {callback: "JSON_CALLBACK"},
                   {
                     overall_feedback: {method: "JSONP",isArray: false, params: {endpoint: "overall_feedback"}},
                     feedback_analysis: {method: "JSONP",isArray: false, params: {endpoint: "feedback_analysis"}},
