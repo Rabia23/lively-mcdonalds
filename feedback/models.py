@@ -98,6 +98,11 @@ class FeedbackOption(models.Model):
     option = models.ForeignKey(Option, related_name='feedback_option', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def is_negative(self):
+        if self.option.score in constants.NEGATIVE_SCORE_LIST:
+            return True
+        return False
+
     def __unicode__(self):
        return self.objectId
 
