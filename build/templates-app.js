@@ -4,62 +4,22 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
   $templateCache.put("dashboard/category-performance-analysis/category-performance-analysis.tpl.html",
     "<div class=\"info-holder\">\n" +
     "  <h2>Category Performance Analysis</h2>\n" +
-    "  <div class=\"table-holder\">\n" +
-    "    <table class=\"table\">\n" +
-    "      <thead>\n" +
-    "        <tr>\n" +
-    "          <th class=\"item1\">&nbsp;</th>\n" +
-    "          <th class=\"item2\">Grade</th>\n" +
-    "          <th class=\"item3\">Trend</th>\n" +
-    "          <th class=\"item4\">Review</th>\n" +
-    "        </tr>\n" +
-    "      </thead>\n" +
-    "      <tbody>\n" +
-    "        <tr>\n" +
-    "          <td class=\"item1\">Service</td>\n" +
-    "          <td class=\"item2\">\n" +
-    "            <ul class=\"rating\">\n" +
-    "              <li><a href=\"#\">1</a></li>\n" +
-    "              <li><a href=\"#\">2</a></li>\n" +
-    "              <li><a href=\"#\">3</a></li>\n" +
-    "              <li><a href=\"#\">4</a></li>\n" +
-    "              <li><a href=\"#\">5</a></li>\n" +
-    "            </ul>\n" +
-    "          </td>\n" +
-    "          <td class=\"item3\"><img src=\"assets/images/img1.png\" alt=\"graph img\"></td>\n" +
-    "          <td class=\"item4\"><span class=\"text\">50</span></td>\n" +
-    "        </tr>\n" +
-    "        <tr>\n" +
-    "          <td class=\"item1\">Food Quality</td>\n" +
-    "          <td class=\"item2\">\n" +
-    "            <ul class=\"rating\">\n" +
-    "              <li><a href=\"#\">1</a></li>\n" +
-    "              <li><a href=\"#\">2</a></li>\n" +
-    "              <li><a href=\"#\">3</a></li>\n" +
-    "              <li><a href=\"#\">4</a></li>\n" +
-    "            </ul>\n" +
-    "          </td>\n" +
-    "          <td class=\"item3\"><img src=\"assets/images/img2.png\" alt=\"graph img\"></td>\n" +
-    "          <td class=\"item4\"><span class=\"text\">30</span></td>\n" +
-    "        </tr>\n" +
-    "        <tr>\n" +
-    "          <td class=\"item1\">Cleanliness</td>\n" +
-    "          <td class=\"item2\">\n" +
-    "            <ul class=\"rating\">\n" +
-    "              <li><a href=\"#\">1</a></li>\n" +
-    "              <li><a href=\"#\">2</a></li>\n" +
-    "              <li><a href=\"#\">3</a></li>\n" +
-    "              <li><a href=\"#\">4</a></li>\n" +
-    "              <li><a href=\"#\">5</a></li>\n" +
-    "            </ul>\n" +
-    "          </td>\n" +
-    "          <td class=\"item3\"><img src=\"assets/images/img3.png\" alt=\"graph img\"></td>\n" +
-    "          <td class=\"item4\"><span class=\"text\">48</span></td>\n" +
-    "        </tr>\n" +
-    "      </tbody>\n" +
-    "    </table>\n" +
+    "  <div ng-controller=\"CategoryPerformanceAnalysisCtrl\">\n" +
+    "\n" +
+    "    <div ng-repeat = \"dat in category_performance\">\n" +
+    "\n" +
+    "    <small><em>{{dat.name}}</em></small>\n" +
+    "    <uib-progressbar animate=\"false\" value=\"dynamic\" type=\"success\"><b>{{dat.percentage}}%</b></uib-progressbar>\n" +
+    "\n" +
+    "    <!--<div class=\"progress-bar progress-bar-success\" ng-transclude=\"\" style=\"min-width: 0px; transition: none 0s ease 0s ; width: 80%;\" aria-labelledby=\"progressbar\" aria-valuetext=\"80%\" ng-style=\"{width: (percent < 100 ? percent : 100) + '%'}\" aria-valuemax=\"100\" aria-valuemin=\"0\" aria-valuenow=\"80\" role=\"progressbar\" ng-class=\"type && 'progress-bar-' + type\"></div>-->\n" +
+    "\n" +
     "  </div>\n" +
+    "  </div>\n" +
+    "\n" +
+    "\n" +
     "</div>\n" +
+    "\n" +
+    "\n" +
     "  ");
 }]);
 
@@ -75,8 +35,8 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "\n" +
     "\n" +
     "\n" +
-    "<!--<section class = \"section\">\n" +
-    "  <div class = \"block\" ui-view = \"feedback_map\" ng-controller = \"FeedbackMapCtrl\"></div>\n" +
+    "<section class = \"section\">\n" +
+    "  <!--<div class = \"block\" ui-view = \"feedback_map\" ng-controller = \"FeedbackMapCtrl\"></div>-->\n" +
     "  <div class = \"block\" ui-view = \"category_performance_analysis\" ng-controller = \"CategoryPerformanceAnalysisCtrl\"></div>\n" +
     "</section>\n" +
     "\n" +
