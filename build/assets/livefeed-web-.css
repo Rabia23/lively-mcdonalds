@@ -7769,6 +7769,8 @@ button.close {
   overflow: hidden;
   margin: 0 0 15px;
   min-height: 150px;
+  font-size: 25px;
+  line-height: 28px;
   display: inline-block;
   vertical-align: top;
   letter-spacing: 0;
@@ -7791,6 +7793,9 @@ button.close {
 .feedback-list > li .img-holder:before {
   min-height: inherit;
 }
+.feedback-list > li .img-holder span {
+  cursor: default;
+}
 .feedback-list > li h3 {
   word-spacing: -1px;
   font-size: 18px;
@@ -7803,11 +7808,17 @@ button.close {
   font-size: 18px;
   font-size: 1em;
 }
+.feedback-list > li.v-good {
+  color: #28530c;
+}
 .feedback-list > li.v-good h3 {
   color: #28530c;
 }
 .feedback-list > li.v-good .ico-list {
   border-color: #28530c;
+}
+.feedback-list > li.good {
+  color: #01ad0f;
 }
 .feedback-list > li.good h3 {
   color: #01ad0f;
@@ -7817,6 +7828,7 @@ button.close {
 }
 .feedback-list > li.neutral {
   padding-top: 10px;
+  color: #e73a3a;
 }
 .feedback-list > li.neutral h3 {
   color: #e73a3a;
@@ -7830,6 +7842,7 @@ button.close {
 }
 .feedback-list > li.negative {
   padding-top: 10px;
+  color: #ac1a1a;
 }
 .feedback-list > li.negative h3 {
   color: #ac1a1a;
@@ -8275,6 +8288,7 @@ button.close {
   font-size: 40px;
   font-family: "fontello";
   line-height: 1em;
+  cursor: default;
 }
 .review-block ul .ico-holder {
   display: block;
@@ -8300,13 +8314,16 @@ button.close {
   vertical-align: bottom;
   max-width: 99%;
 }
+.review-block ul .ico-holder span {
+  cursor: default;
+}
 .review-block ul .inner-holder {
   position: relative;
 }
 .review-block ul .inner-holder:after {
   position: absolute;
   right: 2px;
-  bottom: -22px;
+  bottom: -20px;
   left: 0;
   top: 0;
   content: "";

@@ -29,7 +29,8 @@ angular.module( 'factories', ['ngResource'])
                     overall_feedback: {method: "JSONP",isArray: false, params: {endpoint: "overall_feedback"}},
                     feedback_analysis: {method: "JSONP",isArray: false, params: {endpoint: "feedback_analysis"}},
                     overall_rating: {method: "JSONP",isArray: true, params: {endpoint: "overall_rating"}},
-                    positive_negative_feedback: {method: "JSONP",isArray: false, params: {endpoint: "positive_negative_feedback"}}
+                    positive_negative_feedback: {method: "JSONP",isArray: false, params: {endpoint: "positive_negative_feedback"}},
+                    category_performance: {method: "JSONP",isArray: false, params: {endpoint: "category_performance"}}
 
 
                  });
@@ -59,6 +60,13 @@ angular.module( 'factories', ['ngResource'])
   Graphs.prototype.branch_analysis = function(city_id){
     city_id = city_id || "";
     return this.service.feedback_analysis({type: 3, city: city_id});
+  };
+   Graphs.prototype.category_performance = function(region_id, city_id, branch_id, option_id){
+    region_id = region_id || "";
+    city_id = city_id || "";
+    branch_id = branch_id || "";
+    option_id = option_id || "";
+    return this.service.category_performance({region: region_id, city: city_id, branch: branch_id, option: option_id});
   };
   return new Graphs();
 }]);

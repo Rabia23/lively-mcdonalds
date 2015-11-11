@@ -4,18 +4,23 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
   $templateCache.put("dashboard/category-performance-analysis/category-performance-analysis.tpl.html",
     "<div class=\"info-holder\">\n" +
     "  <h2>Category Performance Analysis</h2>\n" +
-    "  <div class=\"table-holder\">\n" +
-    "	  <div class=\"progress-holder\">\n" +
-    "	  	<uib-progressbar class=\"progress-striped\" value=\"22\" type=\"warning\">22%</uib-progressbar>\n" +
-    "	  </div>\n" +
-    "	  <div class=\"progress-holder\">\n" +
-    "	  	<uib-progressbar class=\"progress-striped\" value=\"22\" type=\"warning\">22%</uib-progressbar>\n" +
-    "	  </div>\n" +
-    "	  <div class=\"progress-holder\">\n" +
-    "	  	<uib-progressbar class=\"progress-striped\" value=\"22\" type=\"warning\">22%</uib-progressbar>\n" +
-    "	  </div>\n" +
+    "  <div ng-controller=\"CategoryPerformanceAnalysisCtrl\">\n" +
+    "\n" +
+    "    <div ng-repeat = \"dat in category_performance\">\n" +
+    "\n" +
+    "    <small><em>{{dat.name}}</em></small>\n" +
+    "    \n" +
+    "    	<uib-progressbar animate=\"false\" value=\"dynamic\" type=\"success\"><b>{{dat.percentage}}%</b></uib-progressbar>\n" +
+    "\n" +
+    "    <!--<div class=\"progress-bar progress-bar-success\" ng-transclude=\"\" style=\"min-width: 0px; transition: none 0s ease 0s ; width: 80%;\" aria-labelledby=\"progressbar\" aria-valuetext=\"80%\" ng-style=\"{width: (percent < 100 ? percent : 100) + '%'}\" aria-valuemax=\"100\" aria-valuemin=\"0\" aria-valuenow=\"80\" role=\"progressbar\" ng-class=\"type && 'progress-bar-' + type\"></div>-->\n" +
+    "\n" +
     "  </div>\n" +
+    "  </div>\n" +
+    "\n" +
+    "\n" +
     "</div>\n" +
+    "\n" +
+    "\n" +
     "  ");
 }]);
 
@@ -32,7 +37,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "\n" +
     "\n" +
     "<section class = \"section\">\n" +
-    "  <div class = \"block\" ui-view = \"feedback_map\" ng-controller = \"FeedbackMapCtrl\"></div>\n" +
+    "  <!--<div class = \"block\" ui-view = \"feedback_map\" ng-controller = \"FeedbackMapCtrl\"></div>-->\n" +
     "  <div class = \"block\" ui-view = \"category_performance_analysis\" ng-controller = \"CategoryPerformanceAnalysisCtrl\"></div>\n" +
     "</section>\n" +
     "\n" +
@@ -88,36 +93,36 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'v-good'\">\n" +
     "  	        <li ng-repeat='val in feedback.columns'>\n" +
     "  	          <ul>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
     "  	          </ul>\n" +
     "  	        </li>\n" +
     "  	      </ul>\n" +
     "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'good'\">\n" +
     "  	        <li ng-repeat='val in feedback.columns'>\n" +
     "  	          <ul>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand2.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand2.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand2.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
     "  	          </ul>\n" +
     "  	        </li>\n" +
     "  	      </ul>\n" +
     "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'neutral'\">\n" +
     "  	        <li ng-repeat='val in feedback.columns'>\n" +
     "  	          <ul>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
     "  	          </ul>\n" +
     "  	        </li>\n" +
     "  	      </ul>\n" +
     "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'negative'\">\n" +
     "  	        <li ng-repeat='val in feedback.columns'>\n" +
     "  	          <ul>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
     "  	          </ul>\n" +
     "  	        </li>\n" +
     "  	      </ul>\n" +
