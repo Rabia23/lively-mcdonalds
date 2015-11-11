@@ -63,18 +63,18 @@
 			
 			&:after{
 				position: absolute;
-				right: -9px;
-				bottom: -9px;
+				right: -11px;
+				bottom: -11px;
 				content: "";
 				width: 0; 
 				height: 0; 
-				border-bottom: 65px solid $brand-success;
-				border-left: 65px solid transparent; 
+				border-bottom: 75px solid $brand-success;
+				border-left: 75px solid transparent; 
 			}
 			
 			&:before{
 				position: absolute;
-				right: -37px;
+				right: -42px;
 				bottom: -43px;
 				color: $brand-success;
 				content: '\Ad804';
@@ -105,7 +105,7 @@
 			
 			&:after{
 				position: absolute;
-				right: 2px;
+				right: 1px;
 				bottom: -20px;
 				left: 0;
 				top: 0;

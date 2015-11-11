@@ -30,6 +30,22 @@
 			}
 		}
 	}
+	.btn-group{
+		.btn{
+			border-radius: 0;
+			-webkit-border-radius: 0;
+			
+			&:hover,
+			&:active,
+			&:focus,
+			&.active{
+				background: $golden-poppy;
+				color: $white;
+				border-color: $golden-poppy;
+				box-shadow: none;
+			}
+		}
+	}
 }
 .info-list{
 	@extend %listreset;
