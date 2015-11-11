@@ -60,9 +60,13 @@
 			overflow: hidden;
 			margin: 0 0 15px;
 			min-height: 150px;
+			font-size: 25px;
+			line-height: 28px;
 			@include inline-block(top);
 			@include v-align(100%, top, before);
 			&:before{min-height: inherit;}
+			
+			span{cursor: default;}
 		}
 		
 		h3{
@@ -77,15 +81,18 @@
 		}
 		
 		&.v-good{
+			color: $brand-success;
 			h3{color: $brand-success;}
 			.ico-list{border-color: $brand-success;}
 		}
 		&.good{
+			color: $brand-primary;
 			h3{color: $brand-primary;}
 			.ico-list{border-color: $brand-primary;}
 		}
 		&.neutral{
 			padding-top: 10px;
+			color: $brand-warning;
 			h3{color: $brand-warning;}
 			.img-holder{margin: 0 0 5px;}
 			.ico-list{
@@ -95,6 +102,7 @@
 		}
 		&.negative{
 			padding-top: 10px;
+			color: $brand-danger;
 			h3{color: $brand-danger;}
 			.img-holder{margin: 0 0 5px;}
 			.ico-list{

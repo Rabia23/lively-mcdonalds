@@ -83,6 +83,7 @@
 					family: $ico-font;
 				}
 				line-height: 1em;
+				cursor: default;
 			}
 		}
 		
@@ -95,6 +96,8 @@
 			position: relative;
 			z-index: 6;
 			color: $brand-success;
+			
+			span{cursor: default;}
 		}
 		
 		.inner-holder{
@@ -103,7 +106,7 @@
 			&:after{
 				position: absolute;
 				right: 2px;
-				bottom: -22px;
+				bottom: -20px;
 				left: 0;
 				top: 0;
 				content: "";

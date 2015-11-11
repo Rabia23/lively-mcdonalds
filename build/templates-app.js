@@ -132,36 +132,36 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'v-good'\">\n" +
     "  	        <li ng-repeat='val in feedback.columns'>\n" +
     "  	          <ul>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
     "  	          </ul>\n" +
     "  	        </li>\n" +
     "  	      </ul>\n" +
     "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'good'\">\n" +
     "  	        <li ng-repeat='val in feedback.columns'>\n" +
     "  	          <ul>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand2.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand2.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand2.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
     "  	          </ul>\n" +
     "  	        </li>\n" +
     "  	      </ul>\n" +
     "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'neutral'\">\n" +
     "  	        <li ng-repeat='val in feedback.columns'>\n" +
     "  	          <ul>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
     "  	          </ul>\n" +
     "  	        </li>\n" +
     "  	      </ul>\n" +
     "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'negative'\">\n" +
     "  	        <li ng-repeat='val in feedback.columns'>\n" +
     "  	          <ul>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
     "  	          </ul>\n" +
     "  	        </li>\n" +
     "  	      </ul>\n" +
