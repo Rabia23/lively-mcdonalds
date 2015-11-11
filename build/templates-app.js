@@ -5,7 +5,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "<div class=\"info-holder\">\n" +
     "  <h2>Category Performance Analysis</h2>\n" +
     "  <div class=\"table-holder\">\n" +
-    "	  <div class=\"progress-holder\">\n" +
+    "<!-- 	  <div class=\"progress-holder\">\n" +
     "	  	<uib-progressbar class=\"progress-striped\" value=\"22\" type=\"warning\">22%</uib-progressbar>\n" +
     "	  </div>\n" +
     "	  <div class=\"progress-holder\">\n" +
@@ -13,7 +13,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "	  </div>\n" +
     "	  <div class=\"progress-holder\">\n" +
     "	  	<uib-progressbar class=\"progress-striped\" value=\"22\" type=\"warning\">22%</uib-progressbar>\n" +
-    "	  </div>\n" +
+    "	  </div> -->\n" +
     "  </div>\n" +
     "</div>\n" +
     "  ");
