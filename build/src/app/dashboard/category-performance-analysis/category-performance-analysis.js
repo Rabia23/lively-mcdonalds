@@ -15,7 +15,6 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
       });
 
        console.log("category performance");
-       console.log(category_performance);
 
    });
   //$scope.max = 200;

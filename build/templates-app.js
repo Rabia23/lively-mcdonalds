@@ -9,7 +9,8 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "    <div ng-repeat = \"dat in category_performance\">\n" +
     "\n" +
     "    <small><em>{{dat.name}}</em></small>\n" +
-    "    <uib-progressbar animate=\"false\" value=\"dynamic\" type=\"success\"><b>{{dat.percentage}}%</b></uib-progressbar>\n" +
+    "    \n" +
+    "    	<uib-progressbar animate=\"false\" value=\"dynamic\" type=\"success\"><b>{{dat.percentage}}%</b></uib-progressbar>\n" +
     "\n" +
     "    <!--<div class=\"progress-bar progress-bar-success\" ng-transclude=\"\" style=\"min-width: 0px; transition: none 0s ease 0s ; width: 80%;\" aria-labelledby=\"progressbar\" aria-valuetext=\"80%\" ng-style=\"{width: (percent < 100 ? percent : 100) + '%'}\" aria-valuemax=\"100\" aria-valuemin=\"0\" aria-valuenow=\"80\" role=\"progressbar\" ng-class=\"type && 'progress-bar-' + type\"></div>-->\n" +
     "\n" +
@@ -41,7 +42,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "</section>\n" +
     "\n" +
     "\n" +
-    "<div class = \"row\">\n" +
+    "<!--<div class = \"row\">\n" +
     "  <div class = \"col-xs-12 col-sm-12 col-md-12 col-lg-12\">\n" +
     "    <div ui-view=\"statistics\"></div>\n" +
     "  </div>\n" +
@@ -92,36 +93,36 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'v-good'\">\n" +
     "  	        <li ng-repeat='val in feedback.columns'>\n" +
     "  	          <ul>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
     "  	          </ul>\n" +
     "  	        </li>\n" +
     "  	      </ul>\n" +
     "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'good'\">\n" +
     "  	        <li ng-repeat='val in feedback.columns'>\n" +
     "  	          <ul>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand2.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand2.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand2.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
     "  	          </ul>\n" +
     "  	        </li>\n" +
     "  	      </ul>\n" +
     "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'neutral'\">\n" +
     "  	        <li ng-repeat='val in feedback.columns'>\n" +
     "  	          <ul>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
     "  	          </ul>\n" +
     "  	        </li>\n" +
     "  	      </ul>\n" +
     "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'negative'\">\n" +
     "  	        <li ng-repeat='val in feedback.columns'>\n" +
     "  	          <ul>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +
-    "  	            <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
+    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
     "  	          </ul>\n" +
     "  	        </li>\n" +
     "  	      </ul>\n" +
@@ -194,7 +195,11 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
   $templateCache.put("dashboard/regional-analysis/regional-analysis.tpl.html",
     "<div class=\"section-holder\" >\n" +
     "  <div class=\"info-area\" ng-class=\"{loading: show_loading}\">\n" +
-    "    <h2 ng-show = \"regional_view\">Regional Analysis</h2>\n" +
+    "    <div class=\"btn-group pull-right\">\n" +
+    "      <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\">Rating</label>\n" +
+    "      <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'SQC'\">SQC</label>\n" +
+    "    </div>\n" +
+    "    <h2 ng-show = \"regional_view\">Regional Analysis</h2>  \n" +
     "    <h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis</h2>\n" +
     "    <h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}} City Branch Analysis</h2>\n" +
     "    <div class = \"breadcrum\">\n" +
@@ -206,7 +211,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "      </span>\n" +
     "    </div>\n" +
     "\n" +
-    "    <ul class=\"info-list\" ng-show = \"regional_view\">\n" +
+    "    <ul class=\"info-list\" ng-show = \"regional_view == true && radioModel == 'Rating'\">\n" +
     "      <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
     "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action = \"plotOptions()\"></div>\n" +
@@ -216,7 +221,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "        </h3>\n" +
     "      </li>\n" +
     "    </ul>\n" +
-    "    <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == true\">\n" +
+    "    <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == true && radioModel == 'Rating'\">\n" +
     "      <li ng-repeat = \"city in donut_cities_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
     "          <div morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\"></div>\n" +
@@ -226,7 +231,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "        </h3>\n" +
     "      </li>\n" +
     "    </ul>\n" +
-    "    <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == false\">\n" +
+    "    <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == false && radioModel == 'Rating'\">\n" +
     "      <li ng-repeat = \"branch in donut_branches_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
     "          <div morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\"></div>\n" +
