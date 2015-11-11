@@ -213,10 +213,13 @@ def send_negative_feedback_email(context):
     text_template = get_template('emails/negative_feedback.txt')
     html_template = get_template('emails/negative_feedback.html')
 
-    send_mail(constants.NEGATIVE_FEEDBACK_SUBJECT, context, text_template, html_template)
+    recipients = User.objects.filter(is_superuser=True)
+    send_mail(constants.NEGATIVE_FEEDBACK_SUBJECT, context, recipients, text_template, html_template)
 
-def send_mail(subject, context, text_template, html_template):
-    subject, from_email, to = 'MC Live Feed', settings.DEFAULT_FROM_EMAIL, ['aamish.iftikhar@arbisoft.com']
+
+def send_mail(subject, context, recipients, text_template, html_template):
+    email_addresses = [recipient.email for recipient in recipients]
+    subject, from_email, to = subject, settings.DEFAULT_FROM_EMAIL, email_addresses
     text_content = text_template.render(context)
     html_content = html_template.render(context)
     message = EmailMultiAlternatives(subject, text_content, from_email, to)

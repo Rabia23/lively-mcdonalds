@@ -1,21 +1,35 @@
+from django.contrib.auth import authenticate
 from django.db.models import Count
-from django.http.response import HttpResponse
 from django.views.generic.base import TemplateView
-from rest_framework.decorators import api_view
+from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from app.models import Region, City, Branch
-from app.serializers import RegionSerializer, CitySerializer, BranchSerializer
+from app.serializers import RegionSerializer, CitySerializer, UserSerializer
 from feedback.models import Question, FeedbackOption, Option, Feedback
 from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer, \
-    FeedbackSerializer, OptionSerializer, PositiveNegativeFeedbackSerializer
+    PositiveNegativeFeedbackSerializer
 from lively import constants
 from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options
 from dateutil import rrule
 from datetime import datetime, timedelta
-import json
 
 
 @api_view(['GET', 'POST'])
+def login(request):
+    if request.method == "POST":
+        username = request.data.get('username')
+        password = request.data.get('password')
+        user = authenticate(username=username, password=password)
+        if user:
+            token = Token.objects.get_or_create(user=user)
+            return Response({'status': True, 'message': 'User authenticated', 'token': token[0].key, 'user': UserSerializer(user).data})
+        return Response({'status': False, 'message': 'User not authenticated'})
+
+
+@api_view(['GET', 'POST'])
+@permission_classes((IsAuthenticated,))
 def region(request):
 
     if request.method == 'GET':
