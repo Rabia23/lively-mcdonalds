@@ -27,6 +27,12 @@ class Feedback(models.Model):
             return True
         return False
 
+    def feedback(self):
+        options = self.feedback_option.filter(option__score__in=constants.NEGATIVE_SCORE_LIST)
+        if options:
+            return True
+        return False
+
     def selected_main_option(self):
         main_question = Question.objects.get(type=constants.MAIN_QUESTION)
         option_list = self.feedback_option.filter(option__in=main_question.options.filter().values_list('id')).values_list('option_id')
