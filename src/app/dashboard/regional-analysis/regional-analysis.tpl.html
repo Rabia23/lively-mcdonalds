@@ -1,6 +1,10 @@
 <div class="section-holder" >
   <div class="info-area" ng-class="{loading: show_loading}">
-    <h2 ng-show = "regional_view">Regional Analysis</h2>
+    <div class="btn-group pull-right">
+      <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Rating'">Rating</label>
+      <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'SQC'">SQC</label>
+    </div>
+    <h2 ng-show = "regional_view">Regional Analysis</h2>  
     <h2 ng-show = "regional_view == false && city_view == true">{{selected_region.name}} Region City Analysis</h2>
     <h2 ng-show = "regional_view == false && city_view == false">{{selected_city.name}} City Branch Analysis</h2>
     <div class = "breadcrum">
@@ -12,7 +16,7 @@
       </span>
     </div>
 
-    <ul class="info-list" ng-show = "regional_view">
+    <ul class="info-list" ng-show = "regional_view == true && radioModel == 'Rating'">
       <li ng-repeat = "region in donut_graph_data.objects track by $index">
         <div class="graph-holder">
           <div morris-chart data-data="donut_graph_data.donutData[$index]" data-type="donut" data-options="donut_graph_data.donutOptions[$index]" data-action = "plotOptions()"></div>
@@ -22,7 +26,7 @@
         </h3>
       </li>
     </ul>
-    <ul class="info-list" ng-show = "regional_view == false && city_view == true">
+    <ul class="info-list" ng-show = "regional_view == false && city_view == true && radioModel == 'Rating'">
       <li ng-repeat = "city in donut_cities_data.objects track by $index">
         <div class="graph-holder">
           <div morris-chart data-data="donut_cities_data.donutData[$index]" data-type="donut" data-options="donut_cities_data.donutOptions[$index]"></div>
@@ -32,7 +36,7 @@
         </h3>
       </li>
     </ul>
-    <ul class="info-list" ng-show = "regional_view == false && city_view == false">
+    <ul class="info-list" ng-show = "regional_view == false && city_view == false && radioModel == 'Rating'">
       <li ng-repeat = "branch in donut_branches_data.objects track by $index">
         <div class="graph-holder">
           <div morris-chart data-data="donut_branches_data.donutData[$index]" data-type="donut" data-options="donut_branches_data.donutOptions[$index]"></div>

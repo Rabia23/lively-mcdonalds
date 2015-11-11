@@ -3,7 +3,7 @@
   "devDependencies": {
     "angular": "~1.4.7",
     "bootstrap": "~3.3",
-    "angular-bootstrap": "~0.14.0",
+    "angular-bootstrap": "~0.14.3",
     "angular-ui-router": "~0.2.15",
     "ngmap": "~1.13.14",
     "morris.js": "~0.5.1",
