@@ -1768,12 +1768,12 @@ ol ol {
   list-style: none;
 }
 
-.list-inline, .rating, .rating-section .rating-holder ul {
+.list-inline, .rating-section .rating-holder ul {
   padding-left: 0;
   list-style: none;
   margin-left: -5px;
 }
-.list-inline > li, .rating > li, .rating-section .rating-holder ul > li {
+.list-inline > li, .rating-section .rating-holder ul > li {
   display: inline-block;
   padding-left: 5px;
   padding-right: 5px;
@@ -7263,176 +7263,40 @@ button.close {
   letter-spacing: 1px;
 }
 
-.table-holder {
+.progress-area {
   overflow: hidden;
-  min-height: 0.01%;
-  overflow-x: auto;
 }
-
-#main .table {
-  margin: 0;
-  max-width: 100%;
-  width: 100%;
-  min-width: 420px;
+.progress-area .progress-holder {
+  overflow: hidden;
+  border-top: 1px solid #ececec;
+  padding: 15px 8px 10px;
 }
-#main .table th,
-#main .table td {
+.progress-area .progress-holder:first-child {
   border: 0;
-  padding: 0 3px 10px;
-  font-weight: 300;
-  text-align: center;
-  vertical-align: middle;
+  padding-top: 0;
 }
-@media (min-width: 1220px) {
-  #main .table th,
-  #main .table td {
-    padding: 0 3px 25px;
-  }
+.progress-area .progress-holder small {
+  display: block;
+  margin: 0 0 10px;
 }
-#main .table th.item1,
-#main .table td.item1 {
-  width: 33%;
-  text-align: left;
+.progress-area .progress-holder small em {
+  display: block;
+  font-style: normal;
   font-size: 20px;
   font-size: 1.33333em;
-  color: #656565;
+  line-height: 1.2em;
 }
-@media (min-width: 768px) {
-  #main .table th.item1,
-  #main .table td.item1 {
-    width: 36.05%;
-  }
-}
-@media (min-width: 1220px) {
-  #main .table th.item1,
-  #main .table td.item1 {
-    padding-left: 23px;
-  }
-}
-#main .table th.item2,
-#main .table td.item2 {
-  width: 25%;
-  text-align: left;
-}
-@media (min-width: 768px) {
-  #main .table th.item2,
-  #main .table td.item2 {
-    width: 21.32%;
-  }
-}
-@media (min-width: 1220px) {
-  #main .table th.item2,
-  #main .table td.item2 {
-    padding-right: 3px;
-    padding-left: 0;
-  }
-}
-#main .table th.item3,
-#main .table td.item3 {
-  width: 17%;
-}
-@media (min-width: 768px) {
-  #main .table th.item3,
-  #main .table td.item3 {
-    width: 15.7%;
-  }
-}
-@media (min-width: 1220px) {
-  #main .table th.item3,
-  #main .table td.item3 {
-    padding-right: 0;
-    padding-left: 0;
-  }
-}
-#main .table th.item4,
-#main .table td.item4 {
-  width: 25%;
-}
-@media (min-width: 768px) {
-  #main .table th.item4,
-  #main .table td.item4 {
-    width: 26.75%;
-  }
-}
-@media (min-width: 1220px) {
-  #main .table th.item4,
-  #main .table td.item4 {
-    padding-left: 18px;
-  }
-}
-#main .table th {
-  padding-bottom: 14px;
-}
-#main .table img {
-  vertical-align: middle;
-}
-#main .table .text {
-  display: inline-block;
-  vertical-align: top;
-  letter-spacing: 0;
-  width: 35px;
-  height: 35px;
-  line-height: 35px;
-  color: #fff;
-  text-align: center;
-  background: #ac1a1a;
-  position: relative;
-  left: -4px;
-  border-radius: 100%;
-  -webkit-border-radius: 100%;
-}
-#main .table .text:after {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  content: "";
-  width: 0;
-  height: 0;
-  border-bottom: 20px solid #ac1a1a;
-  border-right: 20px solid transparent;
-}
-
-.rating {
+.progress-area .progress-holder .progress {
   margin: 0;
-  letter-spacing: -6px;
 }
-.rating li {
-  vertical-align: middle;
-  letter-spacing: 0;
-  padding: 0 3px 0 0;
+.progress-area .progress-holder.yellow {
+  color: #ffc300;
 }
-.rating a {
-  display: block;
-  width: 13px;
-  height: 13px;
-  overflow: hidden;
-  text-indent: -9999px;
-  font-size: 0;
-  line-height: 0;
-  position: relative;
-  border: 2px solid #ffc300;
-  border-radius: 100%;
-  -webkit-border-radius: 100%;
-  z-index: 1;
+.progress-area .progress-holder.lilac {
+  color: #8e44ad;
 }
-.rating a:after {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  background: #ffc300;
-  width: 4px;
-  height: 4px;
-  margin: -2px 0 0 -1px;
-  content: "";
-  border-radius: 100%;
-  -webkit-border-radius: 100%;
-  z-index: -1;
-}
-.rating a:hover {
-  border-color: #cc9c00;
-}
-.rating a:hover:after {
-  background: #cc9c00;
+.progress-area .progress-holder.blue {
+  color: #3498db;
 }
 
 .info-area {

@@ -4,9 +4,9 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
   $templateCache.put("dashboard/category-performance-analysis/category-performance-analysis.tpl.html",
     "<div class=\"info-holder\">\n" +
     "  <h2>Category Performance Analysis</h2>\n" +
-    "  <div ng-controller=\"CategoryPerformanceAnalysisCtrl\">\n" +
+    "  <div class=\"progress-area\" ng-controller=\"CategoryPerformanceAnalysisCtrl\">\n" +
     "\n" +
-    "    <div ng-repeat = \"dat in category_performance\">\n" +
+    "    <div class=\"progress-holder\" ng-repeat = \"dat in category_performance\">\n" +
     "\n" +
     "    <small><em>{{dat.name}}</em></small>\n" +
     "    \n" +

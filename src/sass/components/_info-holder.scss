@@ -12,127 +12,42 @@
 	
 }
 
-.table-holder{
+.progress-area{
 	overflow: hidden;
-	min-height: 0.01%;
-    overflow-x: auto;
-}
-
-#main .table{
-	margin: 0;
-	max-width: 100%;
-    width: 100%;
-	min-width: 420px;
-	th,
-	td{
-		border: 0;
-		padding: 0 3px 10px;
-		font-weight: 300;
-		text-align: center;
-		vertical-align: middle;
-		
-		@include media("≥widescreen"){padding: 0 3px 25px;}
-		&.item1{
-			width: 33%;
-			text-align: left;
-			@include fontsize(20, 15);
-			color: $storm-dust;
-			
-			@include media("≥tablet"){width: 36.05%;}
-			@include media("≥widescreen"){padding-left: 23px;}
-		}
-		&.item2{
-			width: 25%;
-			text-align: left;
-			
-			@include media("≥tablet"){width: 21.32%;}
-			@include media("≥widescreen"){
-				padding-right: 3px;
-				padding-left: 0;
-			}
-		}
-		&.item3{
-			width: 17%;
-			
-			@include media("≥tablet"){width: 15.7%;}
-			@include media("≥widescreen"){
-				padding-right: 0;
-				padding-left: 0;
-			}
-		}
-		&.item4{
-			width: 25%;
-			
-			@include media("≥tablet"){width: 26.75%;}
-			@include media("≥widescreen"){padding-left: 18px;}
-		}
-	}
-	th{padding-bottom: 14px;}
-	img{vertical-align: middle;}
-	.text{
-		@include inline-block(top);
-		width: 35px;
-		height: 35px;
-		line-height: 35px;
-		color: $white;
-		text-align: center;
-		background: $brand-danger;
-		position: relative;
-		left: -4px;
-		@include border-radius(100%);
-		
-		&:after{
-			position: absolute;
-			left: 0;
-			bottom: 0;
-			content: "";
-			width: 0; 
-			height: 0; 
-			border-bottom: 20px solid $brand-danger;
-			border-right: 20px solid transparent; 
-		}
-	}
-}
-
-.rating{
-	@extend .list-inline;
-	margin: 0;
-	letter-spacing: -6px;
-	li{
-		vertical-align: middle;
-		letter-spacing: 0;
-		padding: 0 3px 0 0;
-	}
-	a{
-		display: block;
-		width: 13px;
-		height: 13px;
+	.progress-holder{
 		overflow: hidden;
-		text-indent: -9999px;
-		font-size: 0;
-		line-height: 0;
-		position: relative;
-		border: 2px solid $golden-poppy;
-		@include border-radius(100%);
-		z-index: 1;
+		border-top: 1px solid $cararra;
+		padding: 15px 8px 10px;
 		
-		&:after{
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			background: $golden-poppy;
-			width: 4px;
-			height: 4px;
-			margin: -2px 0 0 -1px;
-			content: "";
-			@include border-radius(100%);
-			z-index: -1;
+		&:first-child{
+			border: 0;
+			padding-top: 0;
 		}
 		
-		&:hover{
-			border-color: darken($golden-poppy,10%);
-			
-			&:after{background: darken($golden-poppy,10%);}
+		small{
+			display: block;
+			margin: 0 0 10px;
+			em{
+				display: block;
+				font-style: normal;
+				@include fontsize(20, 15);
+				line-height: 1.2em;
+			}
+		}
+		.progress{
+			margin: 0;
+		}
+		
+		&.yellow{
+			color: $golden-poppy;
+		}
+		
+		&.lilac{
+			color: $deep-lilac;
+		}
+		
+		&.blue{
+			color: $bleu-de-france;
 		}
 	}
 }
