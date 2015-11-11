@@ -75,7 +75,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "\n" +
     "\n" +
     "\n" +
-    "<section class = \"section\">\n" +
+    "<!--<section class = \"section\">\n" +
     "  <div class = \"block\" ui-view = \"feedback_map\" ng-controller = \"FeedbackMapCtrl\"></div>\n" +
     "  <div class = \"block\" ui-view = \"category_performance_analysis\" ng-controller = \"CategoryPerformanceAnalysisCtrl\"></div>\n" +
     "</section>\n" +
@@ -85,7 +85,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "  <div class = \"col-xs-12 col-sm-12 col-md-12 col-lg-12\">\n" +
     "    <div ui-view=\"statistics\"></div>\n" +
     "  </div>\n" +
-    "</div>\n" +
+    "</div> -->\n" +
     "\n" +
     "<section class = \"section\">\n" +
     "  <div class=\"section-holder\" ng-controller = \"PositiveNegativeFeedbackCtrl\">\n" +
@@ -147,7 +147,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "  	          </ul>\n" +
     "  	        </li>\n" +
     "  	      </ul>\n" +
-    "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'negative'\">\n" +
+    "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'neutral'\">\n" +
     "  	        <li ng-repeat='val in feedback.columns'>\n" +
     "  	          <ul>\n" +
     "  	            <li><img src=\"assets/images/ico-hand4.png\" alt=\"image description\"></li>\n" +
@@ -156,7 +156,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "  	          </ul>\n" +
     "  	        </li>\n" +
     "  	      </ul>\n" +
-    "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'neutral'\">\n" +
+    "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'negative'\">\n" +
     "  	        <li ng-repeat='val in feedback.columns'>\n" +
     "  	          <ul>\n" +
     "  	            <li><img src=\"assets/images/ico-hand3.png\" alt=\"image description\"></li>\n" +
@@ -167,8 +167,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "  	      </ul>\n" +
     "  	    </div>\n" +
     "  	    <h3>\n" +
-    "  	      <span class=\"count\">{{feedback.rounded_percentage}}%</span>\n" +
-    "  	      \n" +
+    "  	      <span class=\"count\">{{feedback.rounded_percentage}}%</span>  \n" +
     "  	    </h3>\n" +
     "  	  </li>\n" +
     "  	</ul>\n" +

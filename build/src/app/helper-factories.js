@@ -19,8 +19,8 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
     overallFeedbackClass: {
-      "Few concerns": 'negative',
-      "Not happy enough": 'neutral',
+      "Few concerns": 'neutral',
+      "Not happy enough": 'negative',
       "Everything is on track!": 'good',
       "I'm lovin' it": 'v-good'
     },
