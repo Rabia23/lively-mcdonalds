@@ -128,3 +128,74 @@
 		}
 	}
 }
+
+
+
+
+#scrollbox2 {
+    overflow: auto;
+    width: 400px;
+    height: 360px;
+    padding: 0 5px;
+    border: 1px solid #b7b7b7;
+	p{width: 600px;}
+}
+
+.vertical-track2 {
+    width: 17px;
+    background: #e4e6e3;
+    border: 1px solid #dfdfdd;
+}
+
+.vertical-handle2 {
+    width: 17px;
+}
+
+.vertical-handle2 .top {
+    width: 17px;
+    height: 17px;
+    background: url(http://enscrollplugin.com/images/green-vert-scrollbar.png) no-repeat;
+}
+
+.vertical-handle2 .bottom {
+    width: 17px;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    clip: rect(17px 17px 9999px 0);
+    background: url(http://enscrollplugin.com/images/green-vert-scrollbar.png) no-repeat 0 bottom;
+}
+
+.horizontal-track2 {
+    width: 100%;
+    height: 17px;
+    background: #e4e6e3;
+    border: 1px solid #dfdfdd;
+}
+
+.horizontal-handle2 {
+    height: 17px;
+}
+
+.horizontal-handle2 .left {
+    width: 17px;
+    height: 17px;
+    background: url(http://enscrollplugin.com/images/green-horiz-scrollbar.png) no-repeat;
+}
+
+.horizontal-handle2 .right {
+    width: 100%;
+    height: 17px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    clip: rect(0 9999px 17px 17px);
+    background: url(http://enscrollplugin.com/images/green-horiz-scrollbar.png) no-repeat right 0;
+}
+
+.corner2 {
+    width: 17px;
+    height: 17px;
+    background: #e4e6e3;
+    border: 1px solid #dfdfdd; 
+}

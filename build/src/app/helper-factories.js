@@ -15,7 +15,6 @@ angular.module( 'helper_factories', ['ngResource'])
       "Food Quality": '#3498db',
       "Service": "#FFc300",
       "Cleanliness": '#8e44ad'
-      
     },
 
     overallFeedbackClass: {
@@ -39,7 +38,7 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
     overallFeedbackColumn:{
-      ranges: [_.range(0,15), _.range(15,30), _.range(30, 45), _.range(45, 60), _.range(60, 75), _.range(75,100)]
+      ranges: [_.range(0,15), _.range(15,30), _.range(30, 45), _.range(45, 60), _.range(60, 75), _.range(75,101)]
     },
 
     childColor: function(index, parent_color){

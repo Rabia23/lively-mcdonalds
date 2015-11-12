@@ -1,4 +1,4 @@
-angular.module('templates-app', ['dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/statistics/statistics.tpl.html']);
+angular.module('templates-app', ['dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/statistics/statistics.tpl.html']);
 
 angular.module("dashboard/category-performance-analysis/category-performance-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/category-performance-analysis/category-performance-analysis.tpl.html",
@@ -157,9 +157,26 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "  ");
 }]);
 
+angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("dashboard/positive-negative-feedback/comments-modal.tpl.html",
+    "<div class=\"modal-header\">\n" +
+    "    <a ng-click = \"cancel()\" class=\"pull-right close-btn-font\"><i class=\"fa fa-times\"></i></a>\n" +
+    "</div>\n" +
+    "<div class=\"modal-body\">\n" +
+    "  Table goes here\n" +
+    "</div>\n" +
+    "<div class=\"modal-footer\">\n" +
+    "    <button class=\"btn btn-primary\" type=\"button\" ng-click=\"ok()\">OK</button>\n" +
+    "    <button class=\"btn btn-warning\" type=\"button\" ng-click=\"cancel()\">Cancel</button>\n" +
+    "</div>");
+}]);
+
 angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html",
     "<div class=\"review-block\">\n" +
+    "  <div class = \"pull-right\">\n" +
+    "    <a class = \"btn btn-default\" ng-click = \"open()\">View All</a>\n" +
+    "  </div>\n" +
     "  <h2>Positive Negative Feedback</h2>\n" +
     "  <div class=\"holder\">\n" +
     "    <ul>\n" +

@@ -30,7 +30,6 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
       };
     });
     $scope.overall_feedback = _.sortBy(overall_feedback, function(value){ return value.priority; });  
-    console.log($scope.overall_feedback);
 
   }); 
 
