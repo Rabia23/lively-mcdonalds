@@ -17,7 +17,7 @@
 	.progress-holder{
 		overflow: hidden;
 		border-top: 1px solid $cararra;
-		padding: 15px 8px 10px;
+		padding: 15px 8px 20px;
 		
 		&:first-child{
 			border: 0;
@@ -63,22 +63,27 @@
 			b{
 				position: absolute;
 				right: 0;
-				top: 0;
-				font-size: 22px;
-				line-height: 26px;
+				top: -1px;
+				font-size: 20px;
+				line-height: 20px;
 			  	font-weight: normal;
 			}
 		}
 		.progress-bar{
-			border-radius: 15px;
-			-webkit-border-radius: 15px;
+			border-radius: 0;
+			-webkit-border-radius: 0;
+			margin: -1px 0;
+			height: 23px;
 		}
 		.progress{
 			margin: 0;
 			box-shadow: none;
 			color: inherit;
-			border-radius: 15px;
-			-webkit-border-radius: 15px;
+			background: none;
+			border: 1px solid $alto;
+			border-left: 0;
+			border-radius: 0;
+			-webkit-border-radius: 0;
 		}
 	}
 }

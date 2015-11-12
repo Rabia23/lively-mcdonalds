@@ -18,6 +18,23 @@
 		@include media("≥desktop"){margin: 0 0 58px;}
 	}
 	
+	.btn{
+		&.btn-default{
+			border-radius: 0;
+			-webkit-border-radius: 0;
+			
+			&:hover,
+			&:active,
+			&:focus,
+			&.active{
+				background: $golden-poppy;
+				color: $white;
+				border-color: $golden-poppy;
+				box-shadow: none;
+			}
+		}
+	}
+	
 	.holder{
 		overflow: hidden;
 		@include media("≥widescreen"){padding: 0 2px;}
@@ -119,7 +136,7 @@
 		.text{
 			height: 72px;
 			position: relative;
-			padding: 0 14px;
+			padding: 0 15px;
 			overflow: hidden;
 			z-index: 6;
 			@include v-align(100%, middle, before);
@@ -130,72 +147,150 @@
 }
 
 
+.modal-1200{
+	border-radius: 0;
+	width: auto;
+	@include media("≥tablet"){width: 730px;}
+	@include media("≥desktop"){width: 970px;}
+	@include media("≥widescreen"){width: 1170px;}
+	.modal-content{border-radius: 0;}
+	.modal-header{
+		border: 0;
+		@include media("≥widescreen"){padding: 25px;}
+		h2{
+			margin: 0;
+			overflow: hidden;
+		}
+		.close-btn-font{
+			cursor: pointer;
+			color: $mountain-mist;
+			font-size: 1.3em;
+			line-height: 1.1em;
+			margin: 4px 0 0;
+		}
+	}
+	.modal-body{
+		padding: 0 0 20px;
+		> div {
+			> .vertical-track2{display: none !important;}
+		}
+		.table{
+			margin: 0;
+			@include media("<tablet"){
+				min-width: 700px;
+				width: auto !important;
+				max-width: inherit !important;
+			}
+			thead{
+				min-width: 700px;
+				th{
+					@include fontsize(16, 15);
+					line-height: 1.4em;
+					padding-top: 10px;
+					padding-bottom: 10px;
+					color: $white;
+					background: $carnelian;
+					border: 0;
+					border-left: 1px solid $white;
+					&:first-child{border-left: 0 ;}
+					
+					@include media("≥tablet"){
+						padding-top: 12px;
+						padding-bottom: 12px;
+					}
+				}
+			}
+			th,
+			td{
+				text-align: center;
+				vertical-align: middle;
+				&.item1,&.item2,&.item3,&.item4{width: 16.67%;}
+				&.item5{
+					width: 33.2%;
+					text-align: left;
+					padding-left: 10px;
+					padding-right: 22px;
+					
+					@include media("≥tablet"){
+						padding-left: 17px;
+						padding-right: 25px;
+					}
+				}
+			}
+			tbody{
+				td{
+					@include fontsize(14, 15);
+					line-height: 1.4em !important;
+					padding-top: 8px;
+					padding-bottom: 8px;
+					border: 0;
+					color: $mountain-mist;
+					border-bottom: 1px solid $alto2;
+					border-left: 1px solid $alto2;
+					&:first-child{border-left: 0 ;}
+					
+					@include media("≥tablet"){
+						padding-top: 10px;
+						padding-bottom: 10px;
+					}
+				}
+				.tel{
+					color: $mountain-mist;
+					&:hover,
+					&:active,
+					&:focus{color: darken($mountain-mist,20%);}
+				}
+			}
+		}
+	}
+}
+
+#scrollbar{
+	width: 100% !important;
+	padding: 0 !important;
+	height: auto !important;
+	> div {
+		@include media("<tablet"){width: auto!important;}
+		> .horizontal-track2{display: none !important;}
+	}
+}
 
 
 #scrollbox2 {
     overflow: auto;
-    width: 400px;
-    height: 360px;
-    padding: 0 5px;
-    border: 1px solid #b7b7b7;
-	p{width: 600px;}
+    width: 100% !important;
+    height: 250px;
+    padding: 0 !important;
+	
+	@include media("<tablet"){min-width: 700px;}
+	
+	@include media("≥tablet"){height: 517px;}
+}
+
+.horizontal-track2{
+	@include media("≥tablet"){display: none !important;}
 }
 
 .vertical-track2 {
-    width: 17px;
-    background: #e4e6e3;
-    border: 1px solid #dfdfdd;
+	width: 18px;
+	float: right;
 }
-
 .vertical-handle2 {
-    width: 17px;
-}
-
-.vertical-handle2 .top {
-    width: 17px;
-    height: 17px;
-    background: url(http://enscrollplugin.com/images/green-vert-scrollbar.png) no-repeat;
-}
-
-.vertical-handle2 .bottom {
-    width: 17px;
-    height: 100%;
-    position: absolute;
-    bottom: 0;
-    clip: rect(17px 17px 9999px 0);
-    background: url(http://enscrollplugin.com/images/green-vert-scrollbar.png) no-repeat 0 bottom;
+	width: 7px;
+	float: left;
+	background: rgba($mountain-mist,0.2);
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
 
 .horizontal-track2 {
     width: 100%;
-    height: 17px;
-    background: #e4e6e3;
-    border: 1px solid #dfdfdd;
+    height: 18px;
 }
 
 .horizontal-handle2 {
-    height: 17px;
-}
-
-.horizontal-handle2 .left {
-    width: 17px;
-    height: 17px;
-    background: url(http://enscrollplugin.com/images/green-horiz-scrollbar.png) no-repeat;
-}
-
-.horizontal-handle2 .right {
-    width: 100%;
-    height: 17px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    clip: rect(0 9999px 17px 17px);
-    background: url(http://enscrollplugin.com/images/green-horiz-scrollbar.png) no-repeat right 0;
-}
-
-.corner2 {
-    width: 17px;
-    height: 17px;
-    background: #e4e6e3;
-    border: 1px solid #dfdfdd; 
+	height: 7px;
+	background: rgba($mountain-mist,0.2);
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
 }

@@ -41,5 +41,7 @@
 .header{
 	@extend .row;
 	@extend .text-center;
-	margin-bottom: 13px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
