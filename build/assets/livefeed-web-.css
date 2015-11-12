@@ -7291,6 +7291,27 @@ button.close {
   font-size: 1.33333em;
   line-height: 1.2em;
 }
+.progress-area .progress-holder.yellow {
+  color: #ffc300;
+}
+.progress-area .progress-holder.yellow .progress-bar {
+  color: #ffc300;
+  background: #ffc300;
+}
+.progress-area .progress-holder.lilac {
+  color: #8e44ad;
+}
+.progress-area .progress-holder.lilac .progress-bar {
+  background: #8e44ad;
+  color: #8e44ad;
+}
+.progress-area .progress-holder.blue {
+  color: #3498db;
+}
+.progress-area .progress-holder.blue .progress-bar {
+  background: #3498db;
+  color: #3498db;
+}
 .progress-area .progress-holder .progress-block {
   position: relative;
   padding: 0 60px 0 0;
@@ -7301,6 +7322,7 @@ button.close {
   top: 0;
   font-size: 22px;
   line-height: 26px;
+  font-weight: normal;
 }
 .progress-area .progress-holder .progress-bar {
   border-radius: 15px;
@@ -7312,24 +7334,6 @@ button.close {
   color: inherit;
   border-radius: 15px;
   -webkit-border-radius: 15px;
-}
-.progress-area .progress-holder.yellow {
-  color: #ffc300;
-}
-.progress-area .progress-holder.yellow .progress {
-  background: #ffc300;
-}
-.progress-area .progress-holder.lilac {
-  color: #8e44ad;
-}
-.progress-area .progress-holder.lilac .progress {
-  background: #8e44ad;
-}
-.progress-area .progress-holder.blue {
-  color: #3498db;
-}
-.progress-area .progress-holder.blue .progress {
-  background: #3498db;
 }
 
 .info-area {
