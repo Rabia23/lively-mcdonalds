@@ -14,6 +14,7 @@ from lively import constants
 from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options
 from dateutil import rrule
 from datetime import datetime, timedelta
+from django.core.paginator import Paginator
 
 
 @api_view(['GET', 'POST'])
@@ -307,13 +308,18 @@ class DataView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(DataView, self).get_context_data(**kwargs)
 
+        page = self.request.GET.get('page', 1)
+
         all_feedbacks = Feedback.objects.all()
         feedbacks = []
-
         for feedback in all_feedbacks:
             feedbacks.append(feedback.to_dict())
 
-        context["feedbacks"] = feedbacks
+        paginator = Paginator(feedbacks, constants.FEEDBACKS_PER_PAGE)
+        context["feedbacks"] = paginator.page(page)
+        context["count_feedback"] = all_feedbacks.count()
+        context["num_pages"] = paginator.num_pages
+        context["pages"] = range(1, paginator.num_pages + 1)
         return context
 
 

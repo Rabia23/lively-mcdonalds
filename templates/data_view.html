@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block body_block %}
-    <h1>Live Feed | Data View <small><b>Total Feedback Count:</b> {{ feedbacks|length }}</small></h1>
+    <h1>Live Feed | Data View <small><b>Total Feedback Count:</b> {{ count_feedback }}</small></h1>
 
     {% if feedbacks %}
         <table class="table table-striped">
@@ -53,6 +53,13 @@
                 {% endif %}
             {% endfor %}
         </table>
+        <nav>
+          <ul class="pagination">
+              {% for i in pages%}
+                <li><a href="/admin/data_view/?page={{ i }}">{{ i }}</a></li>
+              {% endfor %}
+          </ul>
+        </nav>
     {% else %}
         <p>No Data Found</p>
     {% endif %}
