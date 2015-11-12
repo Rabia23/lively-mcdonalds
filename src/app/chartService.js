@@ -11,7 +11,7 @@ angular.module('livefeed.chart', [
 
   return {
     
-    getDonutChartData: function(graph_data){
+    getDonutChartData: function(graph_data, question_type){
       console.log(graph_data);
       return {
         objects: _.map(graph_data.analysis,  function(data){ return {name: data.object.name, id: data.object.id};}),
@@ -22,7 +22,7 @@ angular.module('livefeed.chart', [
           return   {
               xkey: "year",
               colors: _.map(data.data.feedbacks, function(dat){
-                return Global.mainRatingColorScheme[dat.option__text];
+                return (question_type == 1) ? Global.mainRatingColorScheme[dat.option__text] : Global.optionsColorScheme[dat.option__text];
               })
             };
         })
