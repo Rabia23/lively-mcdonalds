@@ -12,6 +12,7 @@ angular.module('livefeed.chart', [
   return {
     
     getDonutChartData: function(graph_data){
+      console.log(graph_data);
       return {
         objects: _.map(graph_data.analysis,  function(data){ return {name: data.object.name, id: data.object.id};}),
         donutData: _.map(graph_data.analysis,  function(data){ 

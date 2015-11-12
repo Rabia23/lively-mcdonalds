@@ -12,9 +12,10 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
     optionsColorScheme: {
-      "Food Quality": '#3498db',
+      "Food Quality": '#8e44ad',
       "Service": "#FFc300",
-      "Cleanliness": '#8e44ad'
+      "Cleanliness": '#3498db'
+      
     },
 
     overallFeedbackClass: {
