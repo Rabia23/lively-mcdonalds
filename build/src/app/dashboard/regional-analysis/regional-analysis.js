@@ -5,13 +5,15 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 ])
 
 .controller( 'RegionalAnalysisCtrl', function DashboardController( $scope, _, Graphs, chartService ) {
-
+ console.log("ccc");
   $scope.regional_view = true;
+
   $scope.city_view = false;
 
   $scope.radioModel = 'Rating';
 
   $scope.show_loading = false;
+
 
   Graphs.regional_analysis().$promise.then(function(data){
     $scope.donut_graph_data = chartService.getDonutChartData(data);

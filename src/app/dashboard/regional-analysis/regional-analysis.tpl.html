@@ -26,16 +26,7 @@
         </h3>
       </li>
     </ul>
-<!--     <ul class="info-list" ng-show = "regional_view == true && radioModel == 'SQC'">
-      <li ng-repeat = "region_sqc in donut_graph_data_sqc.objects track by $index">
-         <div class="graph-holder">
-          <div morris-chart data-data="donut_graph_data_sqc.donutData[$index]" data-type="donut" data-options="donut_graph_data_sqc.donutOptions[$index]"></div>
-        </div>
-        <h3>
-          <a style = "cursor:pointer;">{{region.name}}</a>
-        </h3>
-      </li>
-    </ul> -->
+
     <ul class="info-list" ng-show = "regional_view == false && city_view == true && radioModel == 'Rating'">
       <li ng-repeat = "city in donut_cities_data.objects track by $index">
         <div class="graph-holder">
