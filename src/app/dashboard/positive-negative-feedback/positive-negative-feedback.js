@@ -4,7 +4,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   'helper_factories'
 ])
 
-.controller( 'PositiveNegativeFeedbackCtrl', function DashboardController( $scope, _, Global, Graphs ) {
+.controller( 'PositiveNegativeFeedbackCtrl', function DashboardController( $scope, _, Global, Graphs,$uibModal, $log ) {
 
   Graphs.positive_negative_feedback().$promise.then(function(data){
     $scope.pos_feedbacks = data.positive_feedbacks;
@@ -14,15 +14,12 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
 
   $scope.items = ['item1', 'item2', 'item3'];
 
-  $scope.animationsEnabled = true;
-
   $scope.open = function (size) {
 
     var modalInstance = $uibModal.open({
-      animation: $scope.animationsEnabled,
-      templateUrl: 'modals/comments.tpl.html',
+      templateUrl: 'dashboard/positive-negative-feedback/comments-modal.tpl.html',
       controller: 'ModalInstanceCtrl',
-      size: size,
+      size: 1200,
       resolve: {
         items: function () {
           return $scope.items;
@@ -32,13 +29,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
 
     modalInstance.result.then(function (selectedItem) {
       $scope.selected = selectedItem;
-    }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
     });
-  };
-
-  $scope.toggleAnimation = function () {
-    $scope.animationsEnabled = !$scope.animationsEnabled;
   };
 
 })

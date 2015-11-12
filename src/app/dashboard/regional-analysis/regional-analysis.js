@@ -82,11 +82,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
           options.formatter = func;
         }
         morris_chart = new Morris.Donut(options);
-        morris_chart.on('click', function(i, row){
-          console.log(scope);
-          console.log(scope.$parent.region);
-          console.log(i, row);
-          console.log(attrs);          
+        morris_chart.on('click', function(i, row){         
           scope.$apply(scope.action); 
         });
         return morris_chart;

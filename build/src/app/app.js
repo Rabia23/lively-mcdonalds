@@ -6,7 +6,7 @@ angular.module( 'livefeed', [
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/' );
+  $urlRouterProvider.otherwise( '/dashboard' );
 })
 
 .constant('_',

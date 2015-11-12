@@ -35,7 +35,7 @@ angular.module( 'livefeed.dashboard', [
 .config(function config( $stateProvider ) {
   $stateProvider
   .state( 'dashboard', {
-    url: '/',
+    url: '/dashboard',
     views: {
       "": {
         controller: 'DashboardCtrl',
@@ -71,30 +71,6 @@ angular.module( 'livefeed.dashboard', [
       }
 
     }
-  })
-
-  .state("dashboard.comments", {
-    url: "comments",
-    controller: ['$stateParams','$state','$uibModal', function($stateParams, $state, $uibModal){
-      console.log("in the controller parent");
-      var modalInstance = $uibModal.open({
-        size: 330,
-        backdrop : 'static',
-        keyboard :false,
-        templateUrl: "modals/comments.tpl.html",
-        controller: ['$scope', '$uibModalInstance',function ($scope, $uibModalInstance) {
-          console.log("in the controller");
-          $scope.dismiss = function () {
-              $uibModalInstance.dismiss('cancel');
-              $state.go("dashboard");
-          };
-          $scope.$on('$stateChangeStart', function() {
-            $uibMmodalInstance.dismiss();
-          });
-        }]
-      });  
-      console.log(modalInstance);          
-    }]
   });
 
 })
