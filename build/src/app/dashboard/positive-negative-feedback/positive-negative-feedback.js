@@ -48,5 +48,22 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
+})
+
+.directive('customScroll', function() {
+    return {
+      restrict: 'A',
+      link: function(scope, ele, attrs) {
+        $(ele).enscroll({
+          horizontalScrolling: true,
+          verticalTrackClass: 'vertical-track2',
+          verticalHandleClass: 'vertical-handle2',
+          horizontalTrackClass: 'horizontal-track2',
+          horizontalHandleClass: 'horizontal-handle2',
+          cornerClass: 'corner2'
+        });
+        
+      }
+  };
 });
 

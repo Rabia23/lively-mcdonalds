@@ -27,7 +27,7 @@ angular.module( 'factories', [
 
 .factory('Graphs', ['$resource','apiLinks',  function($resource, apiLinks) {
   function Graphs() {
-    this.service = $resource(apiLinks.production, {callback: "JSON_CALLBACK"},
+    this.service = $resource(apiLinks.staging, {callback: "JSON_CALLBACK"},
                   {
                     overall_feedback: {method: "JSONP",isArray: false, params: {endpoint: "overall_feedback"}},
                     feedback_analysis: {method: "JSONP",isArray: false, params: {endpoint: "feedback_analysis"}},
@@ -53,16 +53,19 @@ angular.module( 'factories', [
     branch_id = branch_id || "";
     return this.service.overall_feedback({region: region_id, city: city_id, branch: branch_id});
   };
-  Graphs.prototype.regional_analysis = function(){
-    return this.service.feedback_analysis();
+  Graphs.prototype.regional_analysis = function(question_type){
+    question_type = question_type || 1;
+    return this.service.feedback_analysis({question_type: question_type});
   };
-  Graphs.prototype.city_analysis = function(region_id){
+  Graphs.prototype.city_analysis = function(region_id, question_type){
+    question_type = question_type || 1;
     region_id = region_id || "";
-    return this.service.feedback_analysis({type: 2, region: region_id});
+    return this.service.feedback_analysis({type: 2, region: region_id, question_type: question_type});
   };
-  Graphs.prototype.branch_analysis = function(city_id){
+  Graphs.prototype.branch_analysis = function(city_id, question_type){
+    question_type = question_type || 1;
     city_id = city_id || "";
-    return this.service.feedback_analysis({type: 3, city: city_id});
+    return this.service.feedback_analysis({type: 3, city: city_id, question_type: question_type});
   };
    Graphs.prototype.category_performance = function(region_id, city_id, branch_id, option_id){
     region_id = region_id || "";

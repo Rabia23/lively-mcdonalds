@@ -14,10 +14,16 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   $scope.show_loading = false;
 
-  var regional_analysis_data = Graphs.regional_analysis().$promise.then(function(data){
-    console.log("data");
-    console.log(data);
+
+  Graphs.regional_analysis().$promise.then(function(data){
     $scope.donut_graph_data = chartService.getDonutChartData(data);
+    console.log($scope.donut_graph_data);
+  });
+
+  Graphs.regional_analysis(2).$promise.then(function(data){
+    $scope.donut_graph_data_sqc = chartService.getDonutChartData(data);
+    console.log($scope.donut_graph_data_sqc);
+
   });
 
 
@@ -84,10 +90,11 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
           func = new Function('y', 'data', options.formatter);
           options.formatter = func;
         }
+        console.log(options);
         morris_chart = new Morris.Donut(options);
-        morris_chart.on('click', function(i, row){         
-          scope.$apply(scope.action); 
-        });
+        // morris_chart.on('click', function(i, row){         
+        //   scope.$apply(scope.action); 
+        // });
         return morris_chart;
         
       }

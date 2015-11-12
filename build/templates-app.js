@@ -163,7 +163,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "    <a ng-click = \"cancel()\" class=\"pull-right close-btn-font\"><i class=\"fa fa-times\"></i></a>\n" +
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
-    "  <div id=\"scrollbox2\">\n" +
+    "  <div id=\"scrollbox2\" custom-scroll>\n" +
     "  	<table class=\"table top\">\n" +
     "		<thead>\n" +
     "			<tr>\n" +
@@ -357,23 +357,14 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "    <ul class=\"info-list\" ng-show = \"regional_view == true && radioModel == 'Rating'\">\n" +
     "      <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
-    "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action = \"plotOptions()\"></div>\n" +
+    "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\"></div>\n" +
     "        </div>\n" +
     "        <h3>\n" +
     "          <a ng-click = \"getRegionCities(region)\" style = \"cursor:pointer;\">{{region.name}}</a>\n" +
     "        </h3>\n" +
     "      </li>\n" +
     "    </ul>\n" +
-    "     <ul class=\"info-list\" ng-show = \"regional_view == true && radioModel == 'SQC'\">\n" +
-    "      <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
-    "        <div class=\"graph-holder\">\n" +
-    "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action = \"plotOptions()\"></div>\n" +
-    "        </div>\n" +
-    "        <h3>\n" +
-    "          <a ng-click = \"getRegionCities(region)\" style = \"cursor:pointer;\">{{region.name}}</a>\n" +
-    "        </h3>\n" +
-    "      </li>\n" +
-    "    </ul>\n" +
+    "\n" +
     "    <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == true && radioModel == 'Rating'\">\n" +
     "      <li ng-repeat = \"city in donut_cities_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
