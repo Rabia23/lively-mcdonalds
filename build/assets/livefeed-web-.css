@@ -1,8 +1,3 @@
-.chart-legend,.bar-legend,.line-legend,.pie-legend,.radar-legend,.polararea-legend,.doughnut-legend{list-style-type:none;margin-top:5px;text-align:center;-webkit-padding-start:0;-moz-padding-start:0;padding-left:0}.chart-legend li,.bar-legend li,.line-legend li,.pie-legend li,.radar-legend li,.polararea-legend li,.doughnut-legend li{display:inline-block;white-space:nowrap;position:relative;margin-bottom:4px;border-radius:5px;padding:2px 8px 2px 28px;font-size:smaller;cursor:default}.chart-legend li span,.bar-legend li span,.line-legend li span,.pie-legend li span,.radar-legend li span,.polararea-legend li span,.doughnut-legend li span{display:block;position:absolute;left:0;top:0;width:20px;height:20px;border-radius:5px}
-/*# sourceMappingURL=angular-chart.min.css.map */
-.morris-hover{position:absolute;z-index:1000}.morris-hover.morris-default-style{border-radius:10px;padding:6px;color:#666;background:rgba(255,255,255,0.8);border:solid 2px rgba(230,230,230,0.8);font-family:sans-serif;font-size:12px;text-align:center}.morris-hover.morris-default-style .morris-hover-row-label{font-weight:bold;margin:0.25em 0}
-.morris-hover.morris-default-style .morris-hover-point{white-space:nowrap;margin:0.1em 0}
-
 @charset "UTF-8";
 /**************************************
 Load Sass
@@ -337,8 +332,8 @@ th {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url("/assets/fonts/fontello/glyphicons-halflings-regular.eot");
-  src: url("/assets/fonts/fontello/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/fontello/glyphicons-halflings-regular.woff2") format("woff2"), url("/assets/fonts/fontello/glyphicons-halflings-regular.woff") format("woff"), url("/assets/fonts/fontello/glyphicons-halflings-regular.ttf") format("truetype"), url("/assets/fonts/fontello/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
+  src: url("/assets/fonts/bootstrap/glyphicons-halflings-regular.eot");
+  src: url("/assets/fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/bootstrap/glyphicons-halflings-regular.woff2") format("woff2"), url("/assets/fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("/assets/fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("/assets/fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }
 .glyphicon {
   position: relative;
@@ -1634,7 +1629,7 @@ mark,
   text-align: left;
 }
 
-.text-right, .footer-holder .footer-container {
+.text-right {
   text-align: right;
 }
 
@@ -7274,7 +7269,7 @@ button.close {
 .progress-area .progress-holder {
   overflow: hidden;
   border-top: 1px solid #ececec;
-  padding: 15px 8px 10px;
+  padding: 15px 8px 20px;
 }
 .progress-area .progress-holder:first-child {
   border: 0;
@@ -7319,21 +7314,26 @@ button.close {
 .progress-area .progress-holder .progress-block b {
   position: absolute;
   right: 0;
-  top: 0;
-  font-size: 22px;
-  line-height: 26px;
+  top: -1px;
+  font-size: 20px;
+  line-height: 20px;
   font-weight: normal;
 }
 .progress-area .progress-holder .progress-bar {
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  margin: -1px 0;
+  height: 23px;
 }
 .progress-area .progress-holder .progress {
   margin: 0;
   box-shadow: none;
   color: inherit;
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
+  background: none;
+  border: 1px solid #dadada;
+  border-left: 0;
+  border-radius: 0;
+  -webkit-border-radius: 0;
 }
 
 .info-area {
@@ -7343,7 +7343,7 @@ button.close {
 }
 @media (min-width: 992px) {
   .info-area {
-    padding: 20px 15px 10px 0;
+    padding: 20px 15px 10px;
   }
 }
 @media (min-width: 1220px) {
@@ -8105,6 +8105,16 @@ button.close {
     margin: 0 0 58px;
   }
 }
+.review-block .btn.btn-default {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+}
+.review-block .btn.btn-default:hover, .review-block .btn.btn-default:active, .review-block .btn.btn-default:focus, .review-block .btn.btn-default.active {
+  background: #ffc300;
+  color: #fff;
+  border-color: #ffc300;
+  box-shadow: none;
+}
 .review-block .holder {
   overflow: hidden;
 }
@@ -8236,7 +8246,7 @@ button.close {
 .review-block ul .text {
   height: 72px;
   position: relative;
-  padding: 0 14px;
+  padding: 0 15px;
   overflow: hidden;
   z-index: 6;
   white-space: nowrap;
@@ -8259,74 +8269,199 @@ button.close {
   margin: 0 0 8px;
 }
 
+.modal-1200 {
+  border-radius: 0;
+  width: auto;
+}
+@media (min-width: 768px) {
+  .modal-1200 {
+    width: 730px;
+  }
+}
+@media (min-width: 992px) {
+  .modal-1200 {
+    width: 970px;
+  }
+}
+@media (min-width: 1220px) {
+  .modal-1200 {
+    width: 1170px;
+  }
+}
+.modal-1200 .modal-content {
+  border-radius: 0;
+}
+.modal-1200 .modal-header {
+  border: 0;
+}
+@media (min-width: 1220px) {
+  .modal-1200 .modal-header {
+    padding: 25px;
+  }
+}
+.modal-1200 .modal-header h2 {
+  margin: 0;
+  overflow: hidden;
+}
+.modal-1200 .modal-header .close-btn-font {
+  cursor: pointer;
+  color: #999;
+  font-size: 1.3em;
+  line-height: 1.1em;
+  margin: 4px 0 0;
+}
+.modal-1200 .modal-body {
+  padding: 0 0 20px;
+}
+.modal-1200 .modal-body > div > .vertical-track2 {
+  display: none !important;
+}
+.modal-1200 .modal-body .table {
+  margin: 0;
+}
+@media (max-width: 767px) {
+  .modal-1200 .modal-body .table {
+    min-width: 700px;
+    width: auto !important;
+    max-width: inherit !important;
+  }
+}
+.modal-1200 .modal-body .table thead {
+  min-width: 700px;
+}
+.modal-1200 .modal-body .table thead th {
+  font-size: 16px;
+  font-size: 1.06667em;
+  line-height: 1.4em;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #fff;
+  background: #ac1a1a;
+  border: 0;
+  border-left: 1px solid #fff;
+}
+.modal-1200 .modal-body .table thead th:first-child {
+  border-left: 0;
+}
+@media (min-width: 768px) {
+  .modal-1200 .modal-body .table thead th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+.modal-1200 .modal-body .table th,
+.modal-1200 .modal-body .table td {
+  text-align: center;
+  vertical-align: middle;
+}
+.modal-1200 .modal-body .table th.item1, .modal-1200 .modal-body .table th.item2, .modal-1200 .modal-body .table th.item3, .modal-1200 .modal-body .table th.item4,
+.modal-1200 .modal-body .table td.item1,
+.modal-1200 .modal-body .table td.item2,
+.modal-1200 .modal-body .table td.item3,
+.modal-1200 .modal-body .table td.item4 {
+  width: 16.67%;
+}
+.modal-1200 .modal-body .table th.item5,
+.modal-1200 .modal-body .table td.item5 {
+  width: 33.2%;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 22px;
+}
+@media (min-width: 768px) {
+  .modal-1200 .modal-body .table th.item5,
+  .modal-1200 .modal-body .table td.item5 {
+    padding-left: 17px;
+    padding-right: 25px;
+  }
+}
+.modal-1200 .modal-body .table tbody td {
+  font-size: 14px;
+  font-size: 0.93333em;
+  line-height: 1.4em !important;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border: 0;
+  color: #999;
+  border-bottom: 1px solid #d9d9d9;
+  border-left: 1px solid #d9d9d9;
+}
+.modal-1200 .modal-body .table tbody td:first-child {
+  border-left: 0;
+}
+@media (min-width: 768px) {
+  .modal-1200 .modal-body .table tbody td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+.modal-1200 .modal-body .table tbody .tel {
+  color: #999;
+}
+.modal-1200 .modal-body .table tbody .tel:hover, .modal-1200 .modal-body .table tbody .tel:active, .modal-1200 .modal-body .table tbody .tel:focus {
+  color: #666666;
+}
+
+#scrollbar {
+  width: 100% !important;
+  padding: 0 !important;
+  height: auto !important;
+}
+@media (max-width: 767px) {
+  #scrollbar > div {
+    width: auto !important;
+  }
+}
+#scrollbar > div > .horizontal-track2 {
+  display: none !important;
+}
+
 #scrollbox2 {
   overflow: auto;
-  width: 400px;
-  height: 360px;
-  padding: 0 5px;
-  border: 1px solid #b7b7b7;
+  width: 100% !important;
+  height: 250px;
+  padding: 0 !important;
 }
-#scrollbox2 p {
-  width: 600px;
+@media (max-width: 767px) {
+  #scrollbox2 {
+    min-width: 700px;
+  }
+}
+@media (min-width: 768px) {
+  #scrollbox2 {
+    height: 517px;
+  }
+}
+
+@media (min-width: 768px) {
+  .horizontal-track2 {
+    display: none !important;
+  }
 }
 
 .vertical-track2 {
-  width: 17px;
-  background: #e4e6e3;
-  border: 1px solid #dfdfdd;
+  width: 18px;
+  float: right;
 }
 
 .vertical-handle2 {
-  width: 17px;
-}
-
-.vertical-handle2 .top {
-  width: 17px;
-  height: 17px;
-  background: url(http://enscrollplugin.com/images/green-vert-scrollbar.png) no-repeat;
-}
-
-.vertical-handle2 .bottom {
-  width: 17px;
-  height: 100%;
-  position: absolute;
-  bottom: 0;
-  clip: rect(17px 17px 9999px 0);
-  background: url(http://enscrollplugin.com/images/green-vert-scrollbar.png) no-repeat 0 bottom;
+  width: 7px;
+  float: left;
+  background: rgba(153, 153, 153, 0.2);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
 .horizontal-track2 {
   width: 100%;
-  height: 17px;
-  background: #e4e6e3;
-  border: 1px solid #dfdfdd;
+  height: 18px;
 }
 
 .horizontal-handle2 {
-  height: 17px;
-}
-
-.horizontal-handle2 .left {
-  width: 17px;
-  height: 17px;
-  background: url(http://enscrollplugin.com/images/green-horiz-scrollbar.png) no-repeat;
-}
-
-.horizontal-handle2 .right {
-  width: 100%;
-  height: 17px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  clip: rect(0 9999px 17px 17px);
-  background: url(http://enscrollplugin.com/images/green-horiz-scrollbar.png) no-repeat right 0;
-}
-
-.corner2 {
-  width: 17px;
-  height: 17px;
-  background: #e4e6e3;
-  border: 1px solid #dfdfdd;
+  height: 7px;
+  background: rgba(153, 153, 153, 0.2);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
 /*layouts*/
@@ -8452,7 +8587,9 @@ button.close {
 }
 
 .header {
-  margin-bottom: 13px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #footer {
@@ -8474,6 +8611,25 @@ button.close {
 }
 #footer p {
   margin: 0;
+}
+
+.footer-holder .footer-text {
+  text-align: center;
+  margin-bottom: 5px;
+}
+@media (min-width: 768px) {
+  .footer-holder .footer-text {
+    text-align: left;
+    margin-bottom: 0;
+  }
+}
+.footer-holder .footer-container {
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .footer-holder .footer-container {
+    text-align: right;
+  }
 }
 
 * {

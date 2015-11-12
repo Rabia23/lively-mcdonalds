@@ -22,9 +22,18 @@
 .footer-holder{
 	@extend .container;
 	.frame{@extend .row;}
-	.footer-text{@extend .col-sm-6;}
-	.footer-container{
+	.footer-text{
+		text-align: center;
 		@extend .col-sm-6;
-		@extend .text-right;
+		margin-bottom: 5px;
+		@include media("≥tablet"){
+			text-align: left;
+			margin-bottom: 0;
+		}
+	}
+	.footer-container{
+		text-align: center;
+		@extend .col-sm-6;
+		@include media("≥tablet"){text-align: right;}
 	}
 }
