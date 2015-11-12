@@ -27,7 +27,7 @@ class Feedback(models.Model):
             return True
         return False
 
-    def feedback(self):
+    def customer_info(self):
         options = self.feedback_option.filter(option__score__in=constants.NEGATIVE_SCORE_LIST)
         if options:
             return True
