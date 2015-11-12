@@ -29,9 +29,7 @@ ALLOWED_HOSTS = ['*']
 # DEBUG = True
 # ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -142,7 +140,7 @@ EMAIL_HOST_USER = 'mclivefeed@gmail.com'
 EMAIL_HOST_PASSWORD = 'LiveFeed123'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL='LiveFeed Support <no-reply@livefeed.com>'
+DEFAULT_FROM_EMAIL = 'LiveFeed Support <no-reply@livefeed.com>'
 
 #------------------------- Parse Constants --------------------------
 APPLICATION_ID = "wa5gQWFuwUkIhBNgXhreiC1rNuYj97WoJZkV5m0I"

@@ -1,7 +1,7 @@
 from enum import Enum
 from django.contrib.auth.models import User
 from django.db import models
-from app.models import Branch
+from app.models import Branch, UserInfo
 from lively import constants
 
 
@@ -27,11 +27,18 @@ class Feedback(models.Model):
             return True
         return False
 
-    def customer_info(self):
-        options = self.feedback_option.filter(option__score__in=constants.NEGATIVE_SCORE_LIST)
-        if options:
-            return True
-        return False
+    def customer_name(self):
+        if self.user:
+            if self.user.first_name:
+                return self.user.first_name
+        return "Anonymous"
+
+    def customer_phone(self):
+        user_info = UserInfo.objects.filter(user=self.user).first()
+        if user_info:
+            if user_info.phone_no:
+                return user_info.phone_no
+        return "Anonymous"
 
     def selected_main_option(self):
         main_question = Question.objects.get(type=constants.MAIN_QUESTION)
@@ -104,7 +111,7 @@ class FeedbackOption(models.Model):
     option = models.ForeignKey(Option, related_name='feedback_option', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    def is_negative(self):
+    def is_negative_option(self):
         if self.option.score in constants.NEGATIVE_SCORE_LIST:
             return True
         return False

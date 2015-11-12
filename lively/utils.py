@@ -213,7 +213,7 @@ def send_negative_feedback_email(context):
     text_template = get_template('emails/negative_feedback.txt')
     html_template = get_template('emails/negative_feedback.html')
 
-    recipients = User.objects.filter(is_superuser=True)
+    recipients = User.objects.filter(is_staff=True)
     send_mail(constants.NEGATIVE_FEEDBACK_SUBJECT, context, recipients, text_template, html_template)
 
 

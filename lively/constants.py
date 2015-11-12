@@ -24,7 +24,8 @@ NEGATIVE_SCORE_LIST = [1,2]
 POSITIVE_SCORE_LIST = [3,4]
 
 #------------ Email Constants -------------
-NEGATIVE_FEEDBACK_SUBJECT = "Negative Feedback Received"
+NEGATIVE_FEEDBACK_SUBJECT = "LiveFeed | Negative Feedback Received"
 
 #------------ Feedback Constants -------------
 FEEDBACKS_PER_PAGE = 25
+COMMENTS_PER_PAGE = 10

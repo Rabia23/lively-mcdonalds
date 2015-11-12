@@ -13,6 +13,7 @@ urlpatterns = patterns('api.views',
     url(r'^overall_rating/$', 'overall_rating', name='overall_rating'),
     url(r'^category_performance/$', 'category_performance', name='category_performance'),
     url(r'^positive_negative_feedback/$', 'positive_negative_feedback', name='positive_negative_feedback'),
+    url(r'^comments/$', 'comments', name='comments'),
 )
 
 

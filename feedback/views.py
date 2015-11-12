@@ -8,6 +8,7 @@ from lively.parse_utils import branch_get, user_get, feedback_get, option_get
 from lively.utils import save_and_response, save, response, get_related_branch, get_related_user, get_related_feedback, \
     get_related_option, send_negative_feedback_email
 from django.template import Context
+from django.db.models import Q
 
 @api_view(['GET', 'POST'])
 def feedback(request):
@@ -142,8 +143,11 @@ def feedback_option(request):
                 feedback_option.option = option
                 feedback_option.save()
 
-                if feedback_option.is_negative():
-                    context = Context({'feedback': feedback})
-                    send_negative_feedback_email(context)
+                try:
+                    if feedback_option.is_negative_option():
+                        context = Context({'feedback': feedback})
+                        send_negative_feedback_email(context)
+                except Exception as e:
+                    pass
 
             return response(data)

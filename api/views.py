@@ -9,7 +9,7 @@ from app.models import Region, City, Branch
 from app.serializers import RegionSerializer, CitySerializer, UserSerializer
 from feedback.models import Question, FeedbackOption, Option, Feedback
 from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer, \
-    PositiveNegativeFeedbackSerializer
+    PositiveNegativeFeedbackSerializer, AllCommentsSerializer
 from lively import constants
 from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options
 from dateutil import rrule
@@ -115,11 +115,12 @@ def feedback_analysis(request):
 
     if request.method == 'GET':
         type = request.query_params.get('type', None)
+        question_type = request.query_params.get('question_type', constants.MAIN_QUESTION)
         objects = None
         feedbacks = []
 
         try:
-            question = Question.objects.get(type=constants.MAIN_QUESTION)
+            question = Question.objects.get(type=question_type)
             feedback_options = FeedbackOption.objects.filter(option__in=question.options.values_list('id'))
 
             if type == constants.CITY_ANALYSIS:
@@ -261,7 +262,6 @@ def category_performance(request):
             branch_id = request.query_params.get('branch', None)
 
             option_id = request.query_params.get('option', None)
-
             question = Question.objects.get(type=constants.SECONDARY_QUESTION)
 
             if option_id:
@@ -355,6 +355,41 @@ def positive_negative_feedback(request):
 
             data = {'positive_feedbacks': positive_feedback, 'negative_feedbacks': negative_feedback}
             feedback_response = PositiveNegativeFeedbackSerializer(data)
+            return Response(feedback_response.data)
+
+        except Exception as e:
+            return Response(None)
+
+
+@api_view(['GET'])
+def comments(request):
+    if request.method == 'GET':
+        try:
+            region_id = request.query_params.get('region', None)
+            city_id = request.query_params.get('city', None)
+            branch_id = request.query_params.get('branch', None)
+            page = request.query_params.get('page', 1)
+
+            filtered_feedback = Feedback.objects.filter().exclude(comment__isnull=True).exclude(comment__exact='')
+
+            if region_id and city_id and branch_id:
+                filtered_feedback = filtered_feedback.filter(
+                    branch__exact=branch_id,
+                    branch__city__exact=city_id,
+                    branch__city__region__exact=region_id)
+            elif region_id and city_id:
+                filtered_feedback = filtered_feedback.filter(
+                    branch__city__exact=city_id,
+                    branch__city__region__exact=region_id)
+            elif region_id:
+                filtered_feedback = filtered_feedback.filter(
+                    branch__city__region__exact=region_id)
+
+            filtered_feedback_count = filtered_feedback.count()
+            paginator = Paginator(filtered_feedback, constants.COMMENTS_PER_PAGE)
+
+            data = {'feedback_count': filtered_feedback_count, 'feedbacks': paginator.page(page)}
+            feedback_response = AllCommentsSerializer(data)
             return Response(feedback_response.data)
 
         except Exception as e:

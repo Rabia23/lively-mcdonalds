@@ -67,3 +67,8 @@ class PositiveNegativeFeedbackSerializer(serializers.Serializer):
     positive_feedbacks = FeedbackSerializer(many=True)
     negative_feedbacks = FeedbackSerializer(many=True)
 
+
+class AllCommentsSerializer(serializers.Serializer):
+    feedbacks = FeedbackSerializer(many=True)
+    feedback_count = serializers.IntegerField()
+
