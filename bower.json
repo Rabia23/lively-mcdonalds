@@ -10,7 +10,8 @@
     "Flot": "flot#~0.8.3",
     "flot.tooltip": "~0.8.5",
     "angular-flot": "~0.0.14",
-    "color": "~2.5.0"
+    "color": "~2.5.0",
+    "enscroll": "~0.6.0"
   },
   "dependencies": {
     "parse-angular-patch": "~0.1.2",

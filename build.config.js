@@ -82,7 +82,9 @@ module.exports = {
       'vendor/Flot/jquery.flot.resize.js',
       'vendor/flot.tooltip/js/jquery.flot.tooltip.js',
       'vendor/angular-flot/angular-flot.js',
-      'vendor/color/one-color-all.js'
+      'vendor/color/one-color-all.js',
+      'vendor/enscroll/js/mylibs/enscroll.js'
+
     ],
     css: [
       'vendor/angular-chart.js/dist/angular-chart.min.css',

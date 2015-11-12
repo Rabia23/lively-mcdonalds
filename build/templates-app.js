@@ -163,7 +163,133 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "    <a ng-click = \"cancel()\" class=\"pull-right close-btn-font\"><i class=\"fa fa-times\"></i></a>\n" +
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
-    "  Table goes here\n" +
+    "  <div id=\"scrollbox2\" custom-scroll>\n" +
+    "  	<table class=\"table top\">\n" +
+    "		<thead>\n" +
+    "			<tr>\n" +
+    "				<th class=\"item1\">Name</th>\n" +
+    "				<th class=\"item2\">Phone Number</th>\n" +
+    "				<th class=\"item3\">Branch</th>\n" +
+    "				<th class=\"item4\">Segment</th>\n" +
+    "				<th class=\"item5\">Comments</th>\n" +
+    "			</tr>\n" +
+    "		</thead>\n" +
+    "		<tbody>\n" +
+    "			<tr>\n" +
+    "				<td class=\"item1\">Amjad</td>\n" +
+    "				<td class=\"item2\"><a href=\"tel:03004700000\" class=\"tel\">0300 4700000</a></td>\n" +
+    "				<td class=\"item3\">Model Town</td>\n" +
+    "				<td class=\"item4\">Breakfast</td>\n" +
+    "				<td class=\"item5\">Lorem ipsum dolor sit amet, consectetur adipiscing </td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td class=\"item1\">Murad</td>\n" +
+    "				<td class=\"item2\"><a href=\"tel:03004700000\" class=\"tel\">0300 4700000</a></td>\n" +
+    "				<td class=\"item3\">DHA</td>\n" +
+    "				<td class=\"item4\">Lunch</td>\n" +
+    "				<td class=\"item5\">Lorem ipsum dolor sit amet, consectetur adipiscing </td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td class=\"item1\">Bilal</td>\n" +
+    "				<td class=\"item2\"><a href=\"tel:03004700000\" class=\"tel\">0300 4700000</a></td>\n" +
+    "				<td class=\"item3\">EME</td>\n" +
+    "				<td class=\"item4\">High Tea</td>\n" +
+    "				<td class=\"item5\">Lorem ipsum dolor sit amet, consectetur adipiscing </td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td class=\"item1\">Nadia</td>\n" +
+    "				<td class=\"item2\"><a href=\"tel:03004700000\" class=\"tel\">0300 4700000</a></td>\n" +
+    "				<td class=\"item3\">Thokar</td>\n" +
+    "				<td class=\"item4\">Dinner</td>\n" +
+    "				<td class=\"item5\">Lorem ipsum dolor sit amet, consectetur adipiscing </td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td class=\"item1\">Shahid</td>\n" +
+    "				<td class=\"item2\"><a href=\"tel:03004700000\" class=\"tel\">0300 4700000</a></td>\n" +
+    "				<td class=\"item3\">Garden Town</td>\n" +
+    "				<td class=\"item4\">Breakfast</td>\n" +
+    "				<td class=\"item5\">Lorem ipsum dolor sit amet, consectetur adipiscing </td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td class=\"item1\">Adnan</td>\n" +
+    "				<td class=\"item2\"><a href=\"tel:03004700000\" class=\"tel\">0300 4700000</a></td>\n" +
+    "				<td class=\"item3\">DHA</td>\n" +
+    "				<td class=\"item4\">Lunch</td>\n" +
+    "				<td class=\"item5\">Lorem ipsum dolor sit amet, consectetur adipiscing </td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td class=\"item1\">Husnain</td>\n" +
+    "				<td class=\"item2\"><a href=\"tel:03004700000\" class=\"tel\">0300 4700000</a></td>\n" +
+    "				<td class=\"item3\">Anarkali</td>\n" +
+    "				<td class=\"item4\">High Tea</td>\n" +
+    "				<td class=\"item5\">Lorem ipsum dolor sit amet, consectetur adipiscing </td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td class=\"item1\">Yasser</td>\n" +
+    "				<td class=\"item2\"><a href=\"tel:03004700000\" class=\"tel\">0300 4700000</a></td>\n" +
+    "				<td class=\"item3\">Model Town</td>\n" +
+    "				<td class=\"item4\">Dinner</td>\n" +
+    "				<td class=\"item5\">Lorem ipsum dolor sit amet, consectetur adipiscing </td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td class=\"item1\">Amjad</td>\n" +
+    "				<td class=\"item2\"><a href=\"tel:03004700000\" class=\"tel\">0300 4700000</a></td>\n" +
+    "				<td class=\"item3\">Model Town</td>\n" +
+    "				<td class=\"item4\">Breakfast</td>\n" +
+    "				<td class=\"item5\">Lorem ipsum dolor sit amet, consectetur adipiscing </td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td class=\"item1\">Murad</td>\n" +
+    "				<td class=\"item2\"><a href=\"tel:03004700000\" class=\"tel\">0300 4700000</a></td>\n" +
+    "				<td class=\"item3\">DHA</td>\n" +
+    "				<td class=\"item4\">Lunch</td>\n" +
+    "				<td class=\"item5\">Lorem ipsum dolor sit amet, consectetur adipiscing </td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td class=\"item1\">Bilal</td>\n" +
+    "				<td class=\"item2\"><a href=\"tel:03004700000\" class=\"tel\">0300 4700000</a></td>\n" +
+    "				<td class=\"item3\">EME</td>\n" +
+    "				<td class=\"item4\">High Tea</td>\n" +
+    "				<td class=\"item5\">Lorem ipsum dolor sit amet, consectetur adipiscing </td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td class=\"item1\">Nadia</td>\n" +
+    "				<td class=\"item2\"><a href=\"tel:03004700000\" class=\"tel\">0300 4700000</a></td>\n" +
+    "				<td class=\"item3\">Thokar</td>\n" +
+    "				<td class=\"item4\">Dinner</td>\n" +
+    "				<td class=\"item5\">Lorem ipsum dolor sit amet, consectetur adipiscing </td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td class=\"item1\">Shahid</td>\n" +
+    "				<td class=\"item2\"><a href=\"tel:03004700000\" class=\"tel\">0300 4700000</a></td>\n" +
+    "				<td class=\"item3\">Garden Town</td>\n" +
+    "				<td class=\"item4\">Breakfast</td>\n" +
+    "				<td class=\"item5\">Lorem ipsum dolor sit amet, consectetur adipiscing </td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td class=\"item1\">Adnan</td>\n" +
+    "				<td class=\"item2\"><a href=\"tel:03004700000\" class=\"tel\">0300 4700000</a></td>\n" +
+    "				<td class=\"item3\">DHA</td>\n" +
+    "				<td class=\"item4\">Lunch</td>\n" +
+    "				<td class=\"item5\">Lorem ipsum dolor sit amet, consectetur adipiscing </td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td class=\"item1\">Husnain</td>\n" +
+    "				<td class=\"item2\"><a href=\"tel:03004700000\" class=\"tel\">0300 4700000</a></td>\n" +
+    "				<td class=\"item3\">Anarkali</td>\n" +
+    "				<td class=\"item4\">High Tea</td>\n" +
+    "				<td class=\"item5\">Lorem ipsum dolor sit amet, consectetur adipiscing </td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td class=\"item1\">Yasser</td>\n" +
+    "				<td class=\"item2\"><a href=\"tel:03004700000\" class=\"tel\">0300 4700000</a></td>\n" +
+    "				<td class=\"item3\">Model Town</td>\n" +
+    "				<td class=\"item4\">Dinner</td>\n" +
+    "				<td class=\"item5\">Lorem ipsum dolor sit amet, consectetur adipiscing </td>\n" +
+    "			</tr>\n" +
+    "		</tbody>\n" +
+    "  	</table>\n" +
+    "  </div>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
     "    <button class=\"btn btn-primary\" type=\"button\" ng-click=\"ok()\">OK</button>\n" +
