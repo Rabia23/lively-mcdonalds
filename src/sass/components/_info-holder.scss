@@ -34,6 +34,29 @@
 				line-height: 1.2em;
 			}
 		}
+	  	&.yellow{
+			  color: $golden-poppy;
+			  .progress-bar{
+				color: $golden-poppy;
+				background: $golden-poppy;
+			  }
+		  }
+
+		  &.lilac{
+			  color: $deep-lilac;
+			  .progress-bar{
+				background: $deep-lilac;
+				 color: $deep-lilac;
+			  }
+		  }
+
+		  &.blue{
+			  color: $bleu-de-france;
+			  .progress-bar{
+				background: $bleu-de-france;
+				color: $bleu-de-france;
+			  }
+		  }
 		.progress-block{
 			position: relative;
 			padding: 0 60px 0 0;
@@ -43,6 +66,7 @@
 				top: 0;
 				font-size: 22px;
 				line-height: 26px;
+			  	font-weight: normal;
 			}
 		}
 		.progress-bar{
@@ -55,21 +79,6 @@
 			color: inherit;
 			border-radius: 15px;
 			-webkit-border-radius: 15px;
-		}
-		
-		&.yellow{
-			color: $golden-poppy;
-			.progress{background: $golden-poppy;}
-		}
-		
-		&.lilac{
-			color: $deep-lilac;
-			.progress{background: $deep-lilac;}
-		}
-		
-		&.blue{
-			color: $bleu-de-france;
-			.progress{background: $bleu-de-france;}
 		}
 	}
 }

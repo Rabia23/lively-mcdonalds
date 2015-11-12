@@ -25,6 +25,12 @@ angular.module( 'helper_factories', ['ngResource'])
       "I'm lovin' it": 'v-good'
     },
 
+    categoryPerformanceClass: {
+      "Cleanliness": 'blue',
+      "Food Quality": 'lilac',
+      "Service": 'yellow'
+    },
+
     overallFeedbackPriority: {
       "Few concerns": 3,
       "Not happy enough": 4,
