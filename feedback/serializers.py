@@ -77,6 +77,7 @@ class FeedbackCommentSerializer(serializers.Serializer):
     region = serializers.CharField()
     user_name = serializers.CharField()
     user_phone = serializers.CharField()
+    is_negative = serializers.BooleanField()
 
 
 class AllCommentsSerializer(serializers.Serializer):

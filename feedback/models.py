@@ -81,6 +81,7 @@ class Feedback(models.Model):
                 "region": self.branch.city.region.name,
                 "user_name": user_info.get_username() if user_info else None,
                 "user_phone": user_info.get_phone() if user_info else None,
+                "is_negative": self.is_negative(),
             }
             return feedback
         except Exception as e:
