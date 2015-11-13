@@ -23,8 +23,10 @@ angular.module( 'livefeed.dashboard.overall_rating', [
       $scope.show_loading = false; 
       $scope.line1 = chartService.getLineChart(data);
       $scope.labels = _.map(data[0].data.feedbacks ,function(value){
-        return {parent_id: value.option__parent_id, id: value.option_id, value: value.option__text, color: Global.optionsColorScheme[value.option__text]};
-      });   
+        return {parent_id: value.option__parent_id, id: value.option_id, value: value.option__text,
+                color: Global.optionsColorScheme[value.option__text], priority: Global.sqcPriority[value.option__text]};
+      });
+      $scope.labels = _.sortBy($scope.labels, function(value){ return value.priority; });
     });
   }
 

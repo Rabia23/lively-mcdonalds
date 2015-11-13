@@ -31,6 +31,12 @@ angular.module( 'helper_factories', ['ngResource'])
       "Service": 'yellow'
     },
 
+    sqcPriority: {
+      "Cleanliness": 3,
+      "Food Quality": 2,
+      "Service": 1
+    },
+
     overallFeedbackPriority: {
       "Few concerns": 3,
       "Not happy enough": 4,
