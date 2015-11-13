@@ -29,3 +29,6 @@ NEGATIVE_FEEDBACK_SUBJECT = "LiveFeed | Negative Feedback Received"
 #------------ Feedback Constants -------------
 FEEDBACKS_PER_PAGE = 25
 COMMENTS_PER_PAGE = 10
+
+#------------ User Constants -------------
+ANONYMOUS_TEXT = "Anonymous"

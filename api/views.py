@@ -388,7 +388,9 @@ def comments(request):
             filtered_feedback_count = filtered_feedback.count()
             paginator = Paginator(filtered_feedback, constants.COMMENTS_PER_PAGE)
 
-            data = {'feedback_count': filtered_feedback_count, 'feedbacks': paginator.page(page)}
+            feedback_comments = [feedback.feedback_comment_dict() for feedback in paginator.page(page)]
+
+            data = {'feedback_count': filtered_feedback_count, 'feedbacks': feedback_comments}
             feedback_response = AllCommentsSerializer(data)
             return Response(feedback_response.data)
 

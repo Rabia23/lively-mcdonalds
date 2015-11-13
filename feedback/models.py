@@ -31,14 +31,14 @@ class Feedback(models.Model):
         if self.user:
             if self.user.first_name:
                 return self.user.first_name
-        return "Anonymous"
+        return constants.ANONYMOUS_TEXT
 
     def customer_phone(self):
         user_info = UserInfo.objects.filter(user=self.user).first()
         if user_info:
             if user_info.phone_no:
                 return user_info.phone_no
-        return "Anonymous"
+        return constants.ANONYMOUS_TEXT
 
     def selected_main_option(self):
         main_question = Question.objects.get(type=constants.MAIN_QUESTION)
@@ -54,7 +54,6 @@ class Feedback(models.Model):
         if options:
             return options
 
-
     def to_dict(self):
         try:
             feedback = {
@@ -65,6 +64,23 @@ class Feedback(models.Model):
                 "region": self.branch.city.region.name,
                 "main_question_options": self.selected_main_option(),
                 "secondary_question_options": self.selected_secondary_option(),
+            }
+            return feedback
+        except Exception as e:
+            return {}
+
+    def feedback_comment_dict(self):
+        user_info = UserInfo.objects.filter(user=self.user).first()
+        try:
+            feedback = {
+                "id": self.id,
+                "objectId": self.objectId,
+                "comment": self.comment,
+                "branch": self.branch.name,
+                "city": self.branch.city.name,
+                "region": self.branch.city.region.name,
+                "user_name": user_info.get_username() if user_info else None,
+                "user_phone": user_info.get_phone() if user_info else None,
             }
             return feedback
         except Exception as e:

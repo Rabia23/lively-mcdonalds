@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from lively import constants
 
 
 class UserInfo(models.Model):
@@ -16,6 +17,19 @@ class UserInfo(models.Model):
         user_info = UserInfo.objects.filter(objectId=objectId).first()
         if user_info:
             return user_info
+
+    def get_username(self):
+        if self.user:
+            if self.user.first_name:
+                if self.user.last_name:
+                    return self.user.first_name + " " + self.user.last_name
+                return self.user.first_name
+        return constants.ANONYMOUS_TEXT
+
+    def get_phone(self):
+        if self.phone_no:
+            return self.phone_no
+        return constants.ANONYMOUS_TEXT
 
 
 class Region(models.Model):
