@@ -1,10 +1,9 @@
-<div class="section-holder" >
-  <div class="info-area" ng-class="{loading: show_loading}">
-    <div class="btn-group pull-right">
-      <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Rating'" ng-click = "showChart(null, 'regions')">Rating</label>
-      <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'SQC'" ng-click = "showChart(null, 'regions')">SQC</label>
-    </div>
-    <h2 ng-show = "regional_view">Regional Analysis</h2>  
+<div class="modal-header">
+    <h3 class="modal-title">Sub Category Modal</h3>
+</div>
+
+<div class="modal-body info-area" ng-controller = "RegionalAnalysisCtrl" ng-class="{loading: show_loading}">
+    <h2 ng-show = "regional_view">Regional Analysis</h2>
     <h2 ng-show = "regional_view == false && city_view == true">{{selected_region.name}} Region City Analysis</h2>
     <h2 ng-show = "regional_view == false && city_view == false">{{selected_city.name}} City Branch Analysis</h2>
     <div class = "breadcrum">
@@ -47,4 +46,7 @@
     </ul>
   </div>
 </div>
-  
+
+<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="ok()">Close</button>
+</div>
