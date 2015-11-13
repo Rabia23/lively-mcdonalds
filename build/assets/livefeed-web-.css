@@ -1,8 +1,3 @@
-.chart-legend,.bar-legend,.line-legend,.pie-legend,.radar-legend,.polararea-legend,.doughnut-legend{list-style-type:none;margin-top:5px;text-align:center;-webkit-padding-start:0;-moz-padding-start:0;padding-left:0}.chart-legend li,.bar-legend li,.line-legend li,.pie-legend li,.radar-legend li,.polararea-legend li,.doughnut-legend li{display:inline-block;white-space:nowrap;position:relative;margin-bottom:4px;border-radius:5px;padding:2px 8px 2px 28px;font-size:smaller;cursor:default}.chart-legend li span,.bar-legend li span,.line-legend li span,.pie-legend li span,.radar-legend li span,.polararea-legend li span,.doughnut-legend li span{display:block;position:absolute;left:0;top:0;width:20px;height:20px;border-radius:5px}
-/*# sourceMappingURL=angular-chart.min.css.map */
-.morris-hover{position:absolute;z-index:1000}.morris-hover.morris-default-style{border-radius:10px;padding:6px;color:#666;background:rgba(255,255,255,0.8);border:solid 2px rgba(230,230,230,0.8);font-family:sans-serif;font-size:12px;text-align:center}.morris-hover.morris-default-style .morris-hover-row-label{font-weight:bold;margin:0.25em 0}
-.morris-hover.morris-default-style .morris-hover-point{white-space:nowrap;margin:0.1em 0}
-
 @charset "UTF-8";
 /**************************************
 Load Sass
@@ -7533,30 +7528,42 @@ button.close {
 .rating-section .rating-holder ul li {
   vertical-align: top;
   letter-spacing: 0;
-  padding: 0 5px 5px;
+  padding: 0 10px 5px 8px;
+  position: relative;
+}
+.rating-section .rating-holder ul li:after {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  content: "";
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  width: 5px;
+  height: 5px;
+  margin-top: -5px;
+  background: #ffc300;
 }
 @media (min-width: 768px) {
   .rating-section .rating-holder ul li {
-    padding: 0 10px 10px;
+    padding: 0 14px 10px 12px;
+  }
+  .rating-section .rating-holder ul li:after {
+    margin-top: -8px;
+    width: 7px;
+    height: 7px;
   }
 }
 .rating-section .rating-holder ul li a {
-  color: #ac1a1a;
+  color: #b2b2b2;
 }
-.rating-section .rating-holder ul li a:hover {
-  color: #801313;
+.rating-section .rating-holder ul li a:hover, .rating-section .rating-holder ul li a:active, .rating-section .rating-holder ul li a:focus {
+  color: #999999;
 }
-.rating-section .rating-holder ul li.item2 a {
-  color: #ffc712;
+.rating-section .rating-holder ul li.item2:after {
+  background: #8e44ad;
 }
-.rating-section .rating-holder ul li.item2 a:hover {
-  color: #deaa00;
-}
-.rating-section .rating-holder ul li.item3 a {
-  color: #406728;
-}
-.rating-section .rating-holder ul li.item3 a:hover {
-  color: #29421a;
+.rating-section .rating-holder ul li.item3:after {
+  background: #3498db;
 }
 .rating-section .rating-holder .flot-tick-label {
   max-width: 60px !important;
@@ -8412,6 +8419,13 @@ button.close {
   padding: 0 !important;
   height: auto !important;
 }
+#scrollbar > div {
+  bottom: 0 !important;
+}
+#scrollbar > div > .enscroll-track.vertical-track2 {
+  height: 100% !important;
+  padding: 0 0 20px;
+}
 @media (max-width: 767px) {
   #scrollbar > div {
     width: auto !important;
@@ -8459,7 +8473,7 @@ button.close {
 
 .horizontal-track2 {
   width: 100%;
-  height: 18px;
+  height: 7px;
 }
 
 .horizontal-handle2 {

@@ -79,30 +79,43 @@
       li{
         vertical-align: top;
         letter-spacing: 0;
-        padding: 0 5px 5px;
+        padding: 0 10px 5px 8px;
+		position: relative;
+		
+		  &:after{
+			  position: absolute;
+			  left: 0;
+			  top: 50%;
+			  content: "";
+			  border-radius: 100%;
+			  -webkit-border-radius: 100%;
+			  width: 5px;
+			  height: 5px;
+			  margin-top: -5px;
+			  background: $golden-poppy;
+		  }
         
-        @include media("≥tablet"){padding: 0 10px 10px;}
-        
-        a{
-          color: $brand-danger;
-          
-          &:hover{color: darken($brand-danger,10%);}
-        }
-        
+        @include media("≥tablet"){
+			padding: 0 14px 10px 12px;
+			&:after{
+				margin-top: -8px;
+				width: 7px;
+				height: 7px;
+			}
+		}
+		  a{
+			  color: $nobel;
+			  &:hover,
+			  &:active,
+			  &:focus{color: darken($nobel,10%);}
+		  }
+       
         &.item2{
-          a{
-            color: $brand-info;
-
-            &:hover{color: darken($brand-info,10%);}
-          }
+			&:after{background: $deep-lilac;}
         }
         
         &.item3{
-          a{
-            color: $dell;
-
-            &:hover{color: darken($dell,10%);}
-          }
+			&:after{background: $bleu-de-france;}
         }
       }
     }

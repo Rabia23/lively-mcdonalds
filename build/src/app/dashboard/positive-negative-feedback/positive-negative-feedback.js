@@ -1,7 +1,8 @@
 angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   'factories',
   'livefeed.chart',
-  'helper_factories'
+  'helper_factories',
+  'infinite-scroll'
 ])
 
 .controller( 'PositiveNegativeFeedbackCtrl', function DashboardController( $scope, _, Global, Graphs,$uibModal, $log ) {
@@ -34,7 +35,13 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
 
 })
 
-.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items, Graphs) {
+
+
+  Graphs.comments().$promise.then(function(data){
+    console.log(data);
+    $scope.comments = data.feedbacks;
+  });
 
   $scope.items = items;
   $scope.selected = {

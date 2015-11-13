@@ -33,8 +33,8 @@ angular.module( 'factories', [
                     feedback_analysis: {method: "JSONP",isArray: false, params: {endpoint: "feedback_analysis"}},
                     overall_rating: {method: "JSONP",isArray: true, params: {endpoint: "overall_rating"}},
                     positive_negative_feedback: {method: "JSONP",isArray: false, params: {endpoint: "positive_negative_feedback"}},
-                    category_performance: {method: "JSONP",isArray: false, params: {endpoint: "category_performance"}}
-
+                    category_performance: {method: "JSONP",isArray: false, params: {endpoint: "category_performance"}},
+                    comments: {method: "JSONP",isArray: false, params: {endpoint: "comments"}}
 
                  });
   }
@@ -67,12 +67,17 @@ angular.module( 'factories', [
     city_id = city_id || "";
     return this.service.feedback_analysis({type: 3, city: city_id, question_type: question_type});
   };
-   Graphs.prototype.category_performance = function(region_id, city_id, branch_id, option_id){
+  Graphs.prototype.category_performance = function(region_id, city_id, branch_id, option_id){
     region_id = region_id || "";
     city_id = city_id || "";
     branch_id = branch_id || "";
     option_id = option_id || "";
     return this.service.category_performance({region: region_id, city: city_id, branch: branch_id, option: option_id});
   };
+
+  Graphs.prototype.comments = function(){
+    return this.service.comments();
+  };
+
   return new Graphs();
 }]);

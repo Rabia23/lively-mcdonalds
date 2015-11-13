@@ -83,7 +83,8 @@ module.exports = {
       'vendor/flot.tooltip/js/jquery.flot.tooltip.js',
       'vendor/angular-flot/angular-flot.js',
       'vendor/color/one-color-all.js',
-      'vendor/enscroll/js/mylibs/enscroll.js'
+      'vendor/enscroll/js/mylibs/enscroll.js',
+      'vendor/ngInfiniteScroll/build/ng-infinite-scroll.js'
 
     ],
     css: [
