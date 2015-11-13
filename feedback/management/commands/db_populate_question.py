@@ -12,7 +12,7 @@ class Command(BaseCommand):
         register(settings.APPLICATION_ID, settings.REST_API_KEY, master_key=settings.MASTER_KEY)
         parse_question = Object.factory("Question")
 
-        all_question = parse_question.Query.all()
+        all_question = parse_question.Query.all().limit(10000)
         for question in all_question:
             self.stdout.write('ObjectId : ' + question.objectId + '  IsActive : ' + str(question.isActive) + ' type : '
                               '' + str(question.type) + ' text : ' + question.text)

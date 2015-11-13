@@ -13,7 +13,7 @@ class Command(BaseCommand):
         register(settings.APPLICATION_ID, settings.REST_API_KEY, master_key=settings.MASTER_KEY)
         parse_feedback_option = Object.factory("FeedbackOption")
 
-        all_feedback_options = parse_feedback_option.Query.all().limit(1000)
+        all_feedback_options = parse_feedback_option.Query.all().limit(10000)
         for feedback_option in all_feedback_options:
 
             self.stdout.write('ObjectId : ' + feedback_option.objectId + '  Feedback : '

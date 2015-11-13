@@ -12,7 +12,7 @@ class Command(BaseCommand):
         register(settings.APPLICATION_ID, settings.REST_API_KEY, master_key=settings.MASTER_KEY)
         parse_region = Object.factory("Region")
 
-        all_region = parse_region.Query.all()
+        all_region = parse_region.Query.all().limit(10000)
         for region in all_region:
             self.stdout.write('Region : ' + region.name + '  Region Object Id : ' + region.objectId)
             local_region = Region(name=region.name, objectId=region.objectId)
