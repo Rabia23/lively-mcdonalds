@@ -75,8 +75,9 @@ angular.module( 'factories', [
     return this.service.category_performance({region: region_id, city: city_id, branch: branch_id, option: option_id});
   };
 
-  Graphs.prototype.comments = function(){
-    return this.service.comments();
+  Graphs.prototype.comments = function(page){
+    page = page || 1;
+    return this.service.comments({page: page});
   };
 
   return new Graphs();

@@ -66,12 +66,8 @@ module.exports = {
       'vendor/angular/angular.js',
       'vendor/angular-bootstrap/ui-bootstrap.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
-      'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js',
-      'vendor/parse-angular-patch/dist/parse-angular.js',
-      'vendor/Chart.js/Chart.js',
-      'vendor/angular-chart.js/dist/angular-chart.min.js',
       'vendor/underscore/underscore-min.js',
       'vendor/angular-resource/angular-resource.js',
       'vendor/ngmap/build/scripts/ng-map.js',
@@ -84,11 +80,9 @@ module.exports = {
       'vendor/angular-flot/angular-flot.js',
       'vendor/color/one-color-all.js',
       'vendor/enscroll/js/mylibs/enscroll.js',
-      'vendor/ngInfiniteScroll/build/ng-infinite-scroll.js'
 
     ],
     css: [
-      'vendor/angular-chart.js/dist/angular-chart.min.css',
       'vendor/morris.js/morris.css'
     ],
     assets: [

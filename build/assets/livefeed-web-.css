@@ -8483,6 +8483,18 @@ button.close {
   -webkit-border-radius: 5px;
 }
 
+.loading .loader {
+  display: block;
+}
+
+.loader {
+  display: none;
+  background: url(../assets/images/loading.gif) no-repeat;
+  width: 82px;
+  height: 82px;
+  margin: 20px auto;
+}
+
 /*layouts*/
 @font-face {
   font-family: 'fontello';

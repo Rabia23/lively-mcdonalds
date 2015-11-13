@@ -15,7 +15,7 @@
  			</tr>
  		</thead>
  	</table>
- 	 <div id="scrollbox2" custom-scroll>
+ 	<div id="scrollbox2" ng-class = "{loading: lock}" custom-scroll when-scrolled="getMoreComments()">
  	 	<table class="table">
  			<tbody>
  				<tr ng-repeat = "comment in comments">
@@ -29,6 +29,7 @@
  				</tr>
  			</tbody>
  	 	</table>
- 	 </div>
+ 	 	<span class="loader"></span>
+ 	</div>
  </div>
 </div>

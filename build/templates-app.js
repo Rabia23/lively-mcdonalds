@@ -176,7 +176,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     " 			</tr>\n" +
     " 		</thead>\n" +
     " 	</table>\n" +
-    " 	 <div id=\"scrollbox2\" custom-scroll>\n" +
+    " 	<div id=\"scrollbox2\" ng-class = \"{loading: lock}\" custom-scroll when-scrolled=\"getMoreComments()\">\n" +
     " 	 	<table class=\"table\">\n" +
     " 			<tbody>\n" +
     " 				<tr ng-repeat = \"comment in comments\">\n" +
@@ -190,7 +190,8 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     " 				</tr>\n" +
     " 			</tbody>\n" +
     " 	 	</table>\n" +
-    " 	 </div>\n" +
+    " 	 	<span class=\"loader\"></span>\n" +
+    " 	</div>\n" +
     " </div>\n" +
     "</div>");
 }]);

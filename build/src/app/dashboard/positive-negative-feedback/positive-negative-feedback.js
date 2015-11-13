@@ -1,8 +1,7 @@
 angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   'factories',
   'livefeed.chart',
-  'helper_factories',
-  'infinite-scroll'
+  'helper_factories'
 ])
 
 .controller( 'PositiveNegativeFeedbackCtrl', function DashboardController( $scope, _, Global, Graphs,$uibModal, $log ) {
@@ -11,9 +10,6 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     $scope.pos_feedbacks = data.positive_feedbacks;
     $scope.neg_feedbacks = data.negative_feedbacks;
   });
-
-
-  $scope.items = ['item1', 'item2', 'item3'];
 
   $scope.open = function (size) {
 
@@ -29,7 +25,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     });
 
     modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
+      //$scope.selected = selectedItem;
     });
   };
 
@@ -37,16 +33,30 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
 
 .controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items, Graphs) {
 
+  $scope.comments = [];
+  $scope.page = 1;
 
-  Graphs.comments().$promise.then(function(data){
-    console.log(data);
+  $scope.lock = false;
+
+  Graphs.comments($scope.page).$promise.then(function(data){
     $scope.comments = data.feedbacks;
   });
 
-  $scope.items = items;
-  $scope.selected = {
-    item: $scope.items[0]
+  $scope.getMoreComments = function(){
+    $scope.page = $scope.page + 1;
+    $scope.lock = true;
+    Graphs.comments($scope.page).$promise.then(function(data){
+      $scope.lock = false;
+      angular.forEach(data.feedbacks, function(value, key) {
+        $scope.comments.push(value);
+      });
+    });
   };
+
+  // $scope.items = items;
+  // $scope.selected = {
+  //   item: $scope.items[0]
+  // };
 
   $scope.ok = function () {
     $uibModalInstance.close($scope.selected.item);
@@ -71,6 +81,21 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
         });
         
       }
+  };
+})
+
+.directive('whenScrolled', function() {
+  return {
+    link: function(scope, elm, attr) {
+        var raw = elm[0];
+        elm.bind('scroll', function() {
+          if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
+            if(scope.lock === false){
+              scope.$apply(attr.whenScrolled);
+            }     
+          }
+        });
+    }
   };
 });
 
