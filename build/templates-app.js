@@ -351,7 +351,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "        <a ng-click = \"backToRegions()\" style = \"style: cursor:pointer\">Regions /</a>\n" +
     "      </span>\n" +
     "      <span ng-show = \"regional_view == false && city_view == false\">\n" +
-    "        <a ng-click = \"backToCities()\" style = \"cursor:pointer;\">{{selected_region.name}} /</a>\n" +
+    "        <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}} /</a>\n" +
     "      </span>\n" +
     "    </div>\n" +
     "\n" +

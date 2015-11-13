@@ -5,6 +5,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 ])
 
 .controller( 'RegionalAnalysisCtrl', function DashboardController( $scope, _, Graphs, chartService ) {
+  
   $scope.regional_view = true;
 
   $scope.city_view = false;
@@ -13,26 +14,25 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   $scope.show_loading = false;
 
+  $scope.getRegions = function(){
+    $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
+    $scope.donut_graph_data = [];
+    Graphs.regional_analysis($scope.question_type).$promise.then(function(data){
+      $scope.donut_graph_data = chartService.getDonutChartData(data, $scope.question_type);
+    });
+  };
 
-  Graphs.regional_analysis().$promise.then(function(data){
-    $scope.donut_graph_data = chartService.getDonutChartData(data);
-    console.log($scope.donut_graph_data);
-  });
-
-  Graphs.regional_analysis(2).$promise.then(function(data){
-    $scope.donut_graph_data_sqc = chartService.getDonutChartData(data);
-    console.log($scope.donut_graph_data_sqc);
-
-  });
 
 
   $scope.getRegionCities = function(region){
+    $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
     $scope.selected_region = region;
     $scope.regional_view = false;
     $scope.city_view = true;
     $scope.show_loading = true;
-    Graphs.city_analysis(region.id).$promise.then(function(data){
-      $scope.donut_cities_data = chartService.getDonutChartData(data);
+    $scope.donut_cities_data = [];
+    Graphs.city_analysis(region.id, $scope.question_type).$promise.then(function(data){
+      $scope.donut_cities_data = chartService.getDonutChartData(data, $scope.question_type);
       $scope.show_loading = false;
     });
   };
@@ -41,29 +41,57 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.selected_city = city;
     $scope.city_view = false;
     $scope.show_loading = true;
-    Graphs.branch_analysis(city.id).$promise.then(function(data){
-      $scope.donut_branches_data = chartService.getDonutChartData(data);
+    $scope.donut_branches_data = [];
+    Graphs.branch_analysis(city.id, $scope.question_type).$promise.then(function(data){
+      $scope.donut_branches_data = chartService.getDonutChartData(data, $scope.question_type);
       $scope.show_loading = false;
     });
   };
 
   $scope.backToRegions = function(){
+    $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
     $scope.selected_region = null;
     $scope.regional_view = true;
     $scope.city_view = false;
     $scope.donut_cities_data = [];
+    $scope.showChart(null, 'regions');
   };
 
-  $scope.backToCities = function(){
+  $scope.backToCities = function(region){
     $scope.selected_city = null;
     $scope.city_view = true;
     $scope.regional_view = false;
-    $scope.donut_branches_data = []; 
+    $scope.donut_branches_data = [];
+    $scope.showChart(region, 'cities');
   };
 
+  $scope.showChart = function(object_id, string){
+
+    $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
+    if(string === 'regions'){
+      if($scope.regional_view === true){
+        $scope.getRegions();
+      }
+      else if($scope.city_view === true){
+        $scope.getRegionCities($scope.selected_region);
+      }
+      else{
+        $scope.getCityBranches($scope.selected_city);
+      }
+      
+    }
+    else if(string === 'cities'){
+      $scope.getRegionCities(object_id);
+    }
+    else{
+      $scope.getCityBranches(object_id);
+    }
+    
+  };
+
+  $scope.showChart(null, 'regions');
+
   $scope.plotOptions = function(){
-    console.log("function called");
-    //console.log(region_id);
   };
   
 })
@@ -80,30 +108,19 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       link: function(scope, ele, attrs) {
         var data, func, options, type;
         data = scope.data;
-        console.log("data");
-        console.log(data);
         type = scope.type;
         options = angular.extend({
           element: ele[0],
           data: data
         }, scope.options);
-        console.log("options");
-        console.log(options);
         if (options.formatter) {
           func = new Function('y', 'data', options.formatter);
           options.formatter = func;
         }
-        console.log(options);
         morris_chart = new Morris.Donut(options);
-
-        morris_chart.on('click', function(i, row){
-        console.log(scope);
-        console.log("region");
-        console.log(scope.$parent.region.name);
-        console.log(i, row);
-        console.log(attrs);
-        scope.$apply(scope.action);
-        });
+        // morris_chart.on('click', function(i, row){         
+        //   scope.$apply(scope.action); 
+        // });
         return morris_chart;
         
       }
