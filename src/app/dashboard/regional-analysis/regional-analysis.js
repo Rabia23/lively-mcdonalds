@@ -49,22 +49,25 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   };
 
   $scope.backToRegions = function(){
+    $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
     $scope.selected_region = null;
     $scope.regional_view = true;
     $scope.city_view = false;
     $scope.donut_cities_data = [];
+    $scope.showChart(null, 'regions');
   };
 
-  $scope.backToCities = function(){
+  $scope.backToCities = function(region){
     $scope.selected_city = null;
     $scope.city_view = true;
     $scope.regional_view = false;
-    $scope.donut_branches_data = []; 
+    $scope.donut_branches_data = [];
+    $scope.showChart(region, 'cities');
   };
 
   $scope.showChart = function(object_id, string){
+
     $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
-    
     if(string === 'regions'){
       if($scope.regional_view === true){
         $scope.getRegions();
