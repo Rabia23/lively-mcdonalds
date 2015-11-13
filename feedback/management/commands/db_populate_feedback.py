@@ -13,7 +13,7 @@ class Command(BaseCommand):
         register(settings.APPLICATION_ID, settings.REST_API_KEY, master_key=settings.MASTER_KEY)
         parse_feedback = Object.factory("Feedback")
 
-        all_feedback = parse_feedback.Query.all().limit(1000)
+        all_feedback = parse_feedback.Query.all().limit(10000)
         for feedback in all_feedback:
             try:
                 comment = feedback.comment

@@ -12,7 +12,7 @@ class Command(BaseCommand):
         register(settings.APPLICATION_ID, settings.REST_API_KEY, master_key=settings.MASTER_KEY)
         parse_option = Object.factory("Option")
 
-        all_options = parse_option.Query.all()
+        all_options = parse_option.Query.all().limit(10000)
         for option in all_options:
 
             try:

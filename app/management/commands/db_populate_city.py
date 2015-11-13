@@ -13,7 +13,7 @@ class Command(BaseCommand):
         self.stdout.write('Populating City Table')
         parse_city = Object.factory("City")
 
-        all_city = parse_city.Query.all()
+        all_city = parse_city.Query.all().limit(10000)
         for city in all_city:
             self.stdout.write('Name : ' + city.name + ' ObjectId : ' + city.objectId + "Region ObjectId : " +
                               city.region.objectId)

@@ -13,7 +13,7 @@ class Command(BaseCommand):
         self.stdout.write('Populating Branch Table')
         parse_branch = Object.factory("Branch")
 
-        all_branch = parse_branch.Query.all()
+        all_branch = parse_branch.Query.all().limit(10000)
         for branch in all_branch:
             self.stdout.write('Name : ' + branch.name + ' ObjectId : ' + branch.objectId + "City ObjectId : " +
                               branch.city.objectId)
