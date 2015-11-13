@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 from parse_rest.connection import register
 from parse_rest.datatypes import Object
 from feedback.models import Feedback
-from app.models import Branch
+from app.models import Branch, UserInfo
 from django.conf import settings
 
 
@@ -21,7 +21,8 @@ class Command(BaseCommand):
                 comment = ''
             self.stdout.write('ObjectId : ' + feedback.objectId + '  Branch : ' + feedback.branch.name + ' Comment : '
                                                                                                          '' + comment)
-            local_feedback = Feedback(objectId=feedback.objectId, comment=comment,
+            user = UserInfo.objects.get(objectId=feedback.objectId).user
+            local_feedback = Feedback(objectId=feedback.objectId, comment=comment, user=user,
                                       branch=Branch.objects.get(objectId=feedback.branch.objectId))
             local_feedback.save()
 
