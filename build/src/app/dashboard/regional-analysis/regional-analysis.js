@@ -5,7 +5,6 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 ])
 
 .controller( 'RegionalAnalysisCtrl', function DashboardController( $scope, _, Graphs, chartService ) {
- console.log("ccc");
   $scope.regional_view = true;
 
   $scope.city_view = false;
@@ -81,20 +80,30 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       link: function(scope, ele, attrs) {
         var data, func, options, type;
         data = scope.data;
+        console.log("data");
+        console.log(data);
         type = scope.type;
         options = angular.extend({
           element: ele[0],
           data: data
         }, scope.options);
+        console.log("options");
+        console.log(options);
         if (options.formatter) {
           func = new Function('y', 'data', options.formatter);
           options.formatter = func;
         }
         console.log(options);
         morris_chart = new Morris.Donut(options);
-        // morris_chart.on('click', function(i, row){         
-        //   scope.$apply(scope.action); 
-        // });
+
+        morris_chart.on('click', function(i, row){
+        console.log(scope);
+        console.log("region");
+        console.log(scope.$parent.region.name);
+        console.log(i, row);
+        console.log(attrs);
+        scope.$apply(scope.action);
+        });
         return morris_chart;
         
       }
