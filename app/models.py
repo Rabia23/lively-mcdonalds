@@ -76,8 +76,8 @@ class City(models.Model):
 class Branch(models.Model):
     name = models.CharField(max_length=20)
     objectId = models.CharField(max_length=20)
-    latitude = models.DecimalField(max_digits=12, decimal_places=8, null=True, blank=True)
-    longitude = models.DecimalField(max_digits=12, decimal_places=8, null=True, blank=True)
+    latitude = models.DecimalField(max_digits=12, decimal_places=8)
+    longitude = models.DecimalField(max_digits=12, decimal_places=8)
     user = models.ForeignKey(User, related_name='branches', null=True, blank=True)
     city = models.ForeignKey(City, related_name='branches', null=True, blank=True)
 

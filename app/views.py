@@ -85,27 +85,14 @@ def branch(request):
 
         if trigger == constants.TRIGGER_AFTER_SAVE:
             branch = Branch.get_if_exists(data["objectId"])
-
-            longitude = data["location"]["longitude"]
-            latitude = data["location"]["latitude"]
-
             if branch:
                 serializer = BranchSerializer(branch, data=data)
-
-                branch.latitude = latitude
-                branch.longitude = longitude
-
                 return save_and_response(serializer, data)
             else:
                 related_city = city_get(data["city"]["objectId"])
                 region = get_related_city(related_city)
-
                 serializer = BranchSerializer(data=data)
                 branch = save(serializer)
-
-                branch.latitude = latitude
-                branch.longitude = longitude
-
                 branch.city = region
                 branch.save()
 
