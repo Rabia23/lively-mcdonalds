@@ -95,8 +95,8 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   $scope.open = function(size){
     if($scope.radioModel === 'SQC'){
       var modalInstance = $uibModal.open({
-      templateUrl: 'dashboard/regional-analysis/myModalContent.tpl.html',
-      controller: 'ModalInstanceCtrl',
+      templateUrl: 'dashboard/regional-analysis/sqc-modal.tpl.html',
+      controller: 'SQCModalCtrl',
       size: 1000,
       resolve: {
         items: function () {
@@ -110,7 +110,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   
 })
 
-.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+.controller('SQCModalCtrl', function ($scope, $uibModalInstance, items) {
   $scope.items = items;
   $scope.selected = {
     item: $scope.items[0]
