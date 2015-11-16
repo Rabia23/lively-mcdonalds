@@ -27,14 +27,15 @@ angular.module( 'factories', [
 
 .factory('Graphs', ['$resource','apiLinks',  function($resource, apiLinks) {
   function Graphs() {
-    this.service = $resource(apiLinks.production, {callback: "JSON_CALLBACK"},
+    this.service = $resource(apiLinks.staging, {callback: "JSON_CALLBACK"},
                   {
                     overall_feedback: {method: "JSONP",isArray: false, params: {endpoint: "overall_feedback"}},
                     feedback_analysis: {method: "JSONP",isArray: false, params: {endpoint: "feedback_analysis"}},
                     overall_rating: {method: "JSONP",isArray: true, params: {endpoint: "overall_rating"}},
                     positive_negative_feedback: {method: "JSONP",isArray: false, params: {endpoint: "positive_negative_feedback"}},
                     category_performance: {method: "JSONP",isArray: false, params: {endpoint: "category_performance"}},
-                    comments: {method: "JSONP",isArray: false, params: {endpoint: "comments"}}
+                    comments: {method: "JSONP",isArray: false, params: {endpoint: "comments"}},
+                    feedback_analysis_breakdown: {method: "JSONP",isArray: false, params: {endpoint: "feedback_analysis_breakdown"}}
 
                  });
   }
@@ -78,6 +79,14 @@ angular.module( 'factories', [
   Graphs.prototype.comments = function(page){
     page = page || 1;
     return this.service.comments({page: page});
+  };
+
+   Graphs.prototype.feedback_analysis_breakdown = function(region_id, city_id, branch_id, option_id){
+    region_id = region_id || "";
+    city_id = city_id || "";
+    branch_id = branch_id || "";
+    option_id = option_id || "";
+    return this.service.feedback_analysis_breakdown({region: region_id, city: city_id, branch: branch_id, option: option_id});
   };
 
   return new Graphs();
