@@ -91,30 +91,28 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   $scope.showChart(null, 'regions');
 
-  $scope.items = ['item1', 'item2', 'item3'];
-  $scope.open = function(size){
-    if($scope.radioModel === 'SQC'){
-      var modalInstance = $uibModal.open({
-      templateUrl: 'dashboard/regional-analysis/sqc-modal.tpl.html',
-      controller: 'SQCModalCtrl',
-      size: 1000,
-      resolve: {
-        items: function () {
-           return $scope.items;
-        }
-      }
-    });
+  $scope.open = function(region){
+    console.log("region object");
+    console.log(region);
+    Graphs.feedback_analysis_breakdown(region.id,9).$promise.then(function(data){
+
+        console.log("feedback analysis breakdown");
+        console.log(data);
+
+      });
+      if($scope.radioModel === 'SQC'){
+        var modalInstance = $uibModal.open({
+        templateUrl: 'dashboard/regional-analysis/sqc-modal.tpl.html',
+        controller: 'SQCModalCtrl',
+        size: 1000
+      });
     }
 
   };
   
 })
 
-.controller('SQCModalCtrl', function ($scope, $uibModalInstance, items) {
-  $scope.items = items;
-  $scope.selected = {
-    item: $scope.items[0]
-  };
+.controller('SQCModalCtrl', function ($scope, $uibModalInstance) {
 
   $scope.ok = function () {
     $uibModalInstance.close();
@@ -149,7 +147,6 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
             console.log(scope.$parent.region.id);
             console.log(scope.$parent.region.name);
             console.log(i, row);
-            console.log(attrs);
             scope.$apply(scope.action);
 
         });

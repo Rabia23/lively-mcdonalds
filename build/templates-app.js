@@ -322,7 +322,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "    <ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
     "      <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
-    "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open()\"></div>\n" +
+    "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open(region)\"></div>\n" +
     "        </div>\n" +
     "        <h3>\n" +
     "          <a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{region.name}}</a>\n" +
