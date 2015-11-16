@@ -4,13 +4,13 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   'ui.bootstrap'
 ])
 
-.controller( 'RegionalAnalysisCtrl', function DashboardController( $scope, _, Graphs, chartService ) {
+.controller( 'RegionalAnalysisCtrl', function DashboardController( $scope, _, Graphs, chartService, $uibModal ) {
   
   $scope.regional_view = true;
 
   $scope.city_view = false;
 
-  $scope.radioModel = 'Rating';
+  $scope.radioModel = 'SQC';
 
   $scope.show_loading = false;
 
@@ -91,10 +91,36 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   $scope.showChart(null, 'regions');
 
-  $scope.plotOptions = function(){
+  $scope.items = ['item1', 'item2', 'item3'];
+  $scope.open = function(size){
+    if($scope.radioModel === 'SQC'){
+      var modalInstance = $uibModal.open({
+      templateUrl: 'dashboard/regional-analysis/myModalContent.tpl.html',
+      controller: 'ModalInstanceCtrl',
+      size: 1000,
+      resolve: {
+        items: function () {
+           return $scope.items;
+        }
+      }
+    });
+    }
+
   };
   
 })
+
+.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+  $scope.items = items;
+  $scope.selected = {
+    item: $scope.items[0]
+  };
+
+  $scope.ok = function () {
+    $uibModalInstance.close();
+  };
+})
+
 
 .directive('morrisChart', function() {
     return {
@@ -118,12 +144,17 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
           options.formatter = func;
         }
         morris_chart = new Morris.Donut(options);
-        // morris_chart.on('click', function(i, row){         
-        //   scope.$apply(scope.action); 
-        // });
+        morris_chart.on('click', function(i, row){
+            console.log("region");
+            console.log(scope.$parent.region.id);
+            console.log(scope.$parent.region.name);
+            console.log(i, row);
+            console.log(attrs);
+            scope.$apply(scope.action);
+
+        });
         return morris_chart;
         
       }
   };
 });
-
