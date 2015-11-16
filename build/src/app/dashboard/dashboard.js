@@ -14,7 +14,6 @@
  */
 angular.module( 'livefeed.dashboard', [
   'ui.router',
-  'chart.js',
   'livefeed.chart',
   'factories', 
   'livefeed.helper',
