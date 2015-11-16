@@ -37,7 +37,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "\n" +
     "\n" +
     "<section class = \"section\">\n" +
-    "  <!--<div class = \"block\" ui-view = \"feedback_map\" ng-controller = \"FeedbackMapCtrl\"></div>-->\n" +
+    "  <div class = \"block\" ui-view = \"feedback_map\" ng-controller = \"FeedbackMapCtrl\"></div>\n" +
     "  <div class = \"block\" ui-view = \"category_performance_analysis\" ng-controller = \"CategoryPerformanceAnalysisCtrl\"></div>\n" +
     "</section>\n" +
     "\n" +
@@ -66,13 +66,22 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "      <p>Country where the user has given the Survey</p>\n" +
     "    </div>\n" +
     "    <ul class=\"list\">\n" +
-    "      <li class=\"v-good\">68%</li>\n" +
-    "      <li class=\"good\">52%</li>\n" +
-    "      <li class=\"neutral\">48%</li>\n" +
-    "      <li class=\"negative\">32%</li>\n" +
+    "      <li class=\"v-good\">200+</li>\n" +
+    "      <li class=\"negative\">200-</li>\n" +
     "    </ul>\n" +
     "  </div>\n" +
-    "  <div class=\"map-holder\"><img src=\"assets/images/img-map.jpg\" alt=\"map img\"></div>\n" +
+    "  <div class=\"map-holder\">\n" +
+    "    <div map-lazy-load=\"http://maps.google.com/maps/api/js\">\n" +
+    "      <map center=\"30,70\" zoom=\"{{zoom}}\" disable-default-u-i=\"true\">\n" +
+    "        <!-- <marker position=\"{{destination}}\" ng-repeat=\"destination in destinations\"></marker> -->\n" +
+    "        <custom-marker position=\"{{destination}}\" ng-repeat=\"destination in destinations\">\n" +
+    "          <ul class=\"list\">\n" +
+    "            <li class=\"v-good\">200+</li>\n" +
+    "          </ul>\n" +
+    "        </custom-marker>\n" +
+    "      </map>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
     "</div>\n" +
     "");
 }]);

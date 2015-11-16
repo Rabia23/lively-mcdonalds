@@ -5,11 +5,20 @@
       <p>Country where the user has given the Survey</p>
     </div>
     <ul class="list">
-      <li class="v-good">68%</li>
-      <li class="good">52%</li>
-      <li class="neutral">48%</li>
-      <li class="negative">32%</li>
+      <li class="v-good">200+</li>
+      <li class="negative">200-</li>
     </ul>
   </div>
-  <div class="map-holder"><img src="assets/images/img-map.jpg" alt="map img"></div>
+  <div class="map-holder">
+    <div map-lazy-load="http://maps.google.com/maps/api/js">
+      <map center="30,70" zoom="{{zoom}}" disable-default-u-i="true">
+        <!-- <marker position="{{destination}}" ng-repeat="destination in destinations"></marker> -->
+        <custom-marker position="{{destination}}" ng-repeat="destination in destinations">
+          <ul class="list">
+            <li class="v-good">200+</li>
+          </ul>
+        </custom-marker>
+      </map>
+    </div>
+  </div>
 </div>

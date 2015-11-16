@@ -70,7 +70,6 @@ module.exports = {
       'vendor/angular-ui-utils/modules/route/route.js',
       'vendor/underscore/underscore-min.js',
       'vendor/angular-resource/angular-resource.js',
-      'vendor/ngmap/build/scripts/ng-map.js',
       'vendor/jquery/dist/jquery.js',
       'vendor/morris.js/morris.js',
       'vendor/raphael/raphael.js',
@@ -80,6 +79,7 @@ module.exports = {
       'vendor/angular-flot/angular-flot.js',
       'vendor/color/one-color-all.js',
       'vendor/enscroll/js/mylibs/enscroll.js',
+      'vendor/ngmap/build/scripts/ng-map.min.js',
 
     ],
     css: [
