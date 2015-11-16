@@ -44,41 +44,19 @@ def feedback(request):
                     feedback.user = user
                     feedback.save()
 
+                    if "options" in data:
+                        for option_data in data["options"]:
+                            option_parse = option_get(option_data["objectId"])
+                            option = get_related_option(option_parse)
+
+                            feedback_option = FeedbackOption()
+                            feedback_option.feedback = feedback
+                            feedback_option.option = option
+                            feedback_option.save()
+
                 return response(data)
         except Exception as e:
             return response(None)
-        
-
-@api_view(['GET', 'POST'])
-def option(request):
-
-    if request.method == 'GET':
-        options = Option.objects.all()
-        serializer = OptionSerializer(options, many=True)
-        return Response(serializer.data)
-
-    if request.method == 'POST':
-        data = request.data["object"]
-        trigger = request.data["triggerName"]
-
-        if trigger == constants.TRIGGER_AFTER_SAVE:
-            option = Option.get_if_exists(data["objectId"])
-            if option:
-                serializer = OptionSerializer(option, data=data)
-                return save_and_response(serializer, data)
-            else:
-                serializer = OptionSerializer(data=data)
-                option = save(serializer)
-
-                if "subOptions" in data:
-                    for sub_option_data in data["subOptions"]:
-                        sub_option_parse = option_get(sub_option_data["objectId"])
-                        sub_option = get_related_option(sub_option_parse)
-
-                        sub_option.parent = option
-                        sub_option.save()
-
-            return response(data)
 
 
 @api_view(['GET', 'POST'])
@@ -111,8 +89,42 @@ def question(request):
                         option.save()
 
             return response(data)
+        
+
+#of no use currently
+@api_view(['GET', 'POST'])
+def option(request):
+
+    if request.method == 'GET':
+        options = Option.objects.all()
+        serializer = OptionSerializer(options, many=True)
+        return Response(serializer.data)
+
+    if request.method == 'POST':
+        data = request.data["object"]
+        trigger = request.data["triggerName"]
+
+        if trigger == constants.TRIGGER_AFTER_SAVE:
+            option = Option.get_if_exists(data["objectId"])
+            if option:
+                serializer = OptionSerializer(option, data=data)
+                return save_and_response(serializer, data)
+            else:
+                serializer = OptionSerializer(data=data)
+                option = save(serializer)
+
+                if "subOptions" in data:
+                    for sub_option_data in data["subOptions"]:
+                        sub_option_parse = option_get(sub_option_data["objectId"])
+                        sub_option = get_related_option(sub_option_parse)
+
+                        sub_option.parent = option
+                        sub_option.save()
+
+            return response(data)
 
 
+#of no use currently
 @api_view(['GET', 'POST'])
 def feedback_option(request):
 

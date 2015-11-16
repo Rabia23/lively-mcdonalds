@@ -27,7 +27,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 class FeedbackOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = FeedbackOption
-        fields = ('id', 'objectId')
+        fields = ('id')
 
 
 class OverallFeedbackSerializerSingle(serializers.Serializer):
