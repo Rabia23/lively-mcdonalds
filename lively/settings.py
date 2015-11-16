@@ -23,11 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'f#qiorpa9id!n$v#1*(ne16j9%hpa3zqo)u#)jtu=jqge#t%g!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = False
-# ALLOWED_HOSTS = ['*']
+DEBUG = False
+ALLOWED_HOSTS = ['*']
 
-DEBUG = True
-ALLOWED_HOSTS = []
+# DEBUG = True
+# ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = (
@@ -143,9 +143,10 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'LiveFeed Support <no-reply@livefeed.com>'
 
 #------------------------- Parse Constants --------------------------
-APPLICATION_ID = "wa5gQWFuwUkIhBNgXhreiC1rNuYj97WoJZkV5m0I"
-REST_API_KEY = "gGbAgkrUAwTMuRqtr0dOMKi1YThcvAufrRo9sR4C"
-MASTER_KEY = "fNK6wmRjSvLxJy9FImNC7oz1VGexIaQDKuZuylkL"
+APPLICATION_ID = "FMn5KgyYiLRjLxvi1zIh3KQNV6OpOxhZu0CswXCa"
+REST_API_KEY = "fIGO4Y5KdvgKM8dsspYQrfO5raxdfmbaDdodeQOb"
+MASTER_KEY = "dp1YtF7VkUvRYAhmCtc52hlb5jmjpBZAVFSuYexo"
+#MFS - Staging Keys
 
 try:
     from local_settings import *
