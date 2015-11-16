@@ -74,9 +74,9 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "    <div map-lazy-load=\"http://maps.google.com/maps/api/js\">\n" +
     "      <map center=\"30,70\" zoom=\"{{zoom}}\" disable-default-u-i=\"true\">\n" +
     "        <!-- <marker position=\"{{destination}}\" ng-repeat=\"destination in destinations\"></marker> -->\n" +
-    "        <custom-marker position=\"{{destination}}\" ng-repeat=\"destination in destinations\">\n" +
+    "        <custom-marker position=\"{{destination}}\" ng-repeat=\"destination in destinations\" on-click = \"zoomIn(destination)\">\n" +
     "          <ul class=\"list\">\n" +
-    "            <li class=\"v-good\">200+</li>\n" +
+    "            <li class=\"v-good\">Lahore</li>\n" +
     "          </ul>\n" +
     "        </custom-marker>\n" +
     "      </map>\n" +
