@@ -76,6 +76,8 @@ class City(models.Model):
 class Branch(models.Model):
     name = models.CharField(max_length=20)
     objectId = models.CharField(max_length=20)
+    latitude = models.DecimalField(max_digits=12, decimal_places=8)
+    longitude = models.DecimalField(max_digits=12, decimal_places=8)
     user = models.ForeignKey(User, related_name='branches', null=True, blank=True)
     city = models.ForeignKey(City, related_name='branches', null=True, blank=True)
 
@@ -87,5 +89,25 @@ class Branch(models.Model):
         branch = Branch.objects.filter(objectId=objectId).first()
         if branch:
             return branch
+
+    def branch_feedback_detail(self):
+        try:
+            branch = {
+                "id": self.id,
+                "objectId": self.objectId,
+                "name": self.name,
+                "latitude": self.latitude,
+                "longitude": self.longitude,
+                "city": self.city.name,
+                "region": self.city.region.name,
+                "feedback_count": self.get_branch_feedback_count(),
+                "count_exceeded": self.get_branch_feedback_count() >= constants.BRANCH_FEEDBACK_TARGET,
+            }
+            return branch
+        except Exception as e:
+            return {}
+
+    def get_branch_feedback_count(self):
+        return self.feedback.count()
 
 

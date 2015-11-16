@@ -87,12 +87,16 @@ def branch(request):
             branch = Branch.get_if_exists(data["objectId"])
             if branch:
                 serializer = BranchSerializer(branch, data=data)
+                branch.longitude = data["location"]["longitude"]
+                branch.latitude = data["location"]["latitude"]
                 return save_and_response(serializer, data)
             else:
                 related_city = city_get(data["city"]["objectId"])
                 region = get_related_city(related_city)
 
                 serializer = BranchSerializer(data=data)
+                branch.longitude = data["location"]["longitude"]
+                branch.latitude = data["location"]["latitude"]
                 branch = save(serializer)
                 branch.city = region
                 branch.save()

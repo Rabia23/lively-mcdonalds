@@ -84,3 +84,18 @@ class AllCommentsSerializer(serializers.Serializer):
     feedbacks = FeedbackCommentSerializer(many=True)
     feedback_count = serializers.IntegerField()
 
+
+class MapViewBranchSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    objectId = serializers.CharField()
+    name = serializers.CharField()
+    city = serializers.CharField()
+    region = serializers.CharField()
+    feedback_count = serializers.IntegerField()
+    count_exceeded = serializers.BooleanField()
+
+
+class AllBranchesSerializer(serializers.Serializer):
+    branches = MapViewBranchSerializer(many=True)
+    branch_count = serializers.IntegerField()
+

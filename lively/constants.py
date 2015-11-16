@@ -32,3 +32,6 @@ COMMENTS_PER_PAGE = 20
 
 #------------ User Constants -------------
 ANONYMOUS_TEXT = "Anonymous"
+
+#------------ Branch Constants -------------
+BRANCH_FEEDBACK_TARGET = 200

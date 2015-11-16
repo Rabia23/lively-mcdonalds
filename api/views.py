@@ -9,7 +9,7 @@ from app.models import Region, City, Branch
 from app.serializers import RegionSerializer, CitySerializer, UserSerializer
 from feedback.models import Question, FeedbackOption, Option, Feedback
 from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer, \
-    PositiveNegativeFeedbackSerializer, AllCommentsSerializer
+    PositiveNegativeFeedbackSerializer, AllCommentsSerializer, AllBranchesSerializer
 from lively import constants
 from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options
 from dateutil import rrule
@@ -392,6 +392,26 @@ def comments(request):
 
             data = {'feedback_count': filtered_feedback_count, 'feedbacks': feedback_comments}
             feedback_response = AllCommentsSerializer(data)
+            return Response(feedback_response.data)
+
+        except Exception as e:
+            return Response(None)
+
+
+@api_view(['GET'])
+def map_view(request):
+    if request.method == 'GET':
+        try:
+            branches = Branch.objects.all()
+
+            branch_detail_list = []
+            for branch in branches:
+                branch_detail_list.append(
+                    branch.branch_feedback_detail()
+                )
+
+            data = {'branch_count': branches.count(), 'branches': branch_detail_list}
+            feedback_response = AllBranchesSerializer(data)
             return Response(feedback_response.data)
 
         except Exception as e:
