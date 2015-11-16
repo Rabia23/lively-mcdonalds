@@ -15,14 +15,15 @@ class Command(BaseCommand):
 
         all_feedback = parse_feedback.Query.all().limit(10000)
         for feedback in all_feedback:
-            try:
-                comment = feedback.comment
-            except AttributeError:
-                comment = ''
+            comment = feedback.comment if hasattr(feedback, 'comment') else ''
             self.stdout.write('ObjectId : ' + feedback.objectId + '  Branch : ' + feedback.branch.name + ' Comment : '
                                                                                                          '' + comment)
-            user = UserInfo.objects.get(objectId=feedback.objectId).user
-            local_feedback = Feedback(objectId=feedback.objectId, comment=comment, user=user,
+            if hasattr(feedback, 'user'):
+                user = UserInfo.objects.get(objectId=feedback.user.objectId).user
+                local_feedback = Feedback(objectId=feedback.objectId, comment=comment, user=user,
+                                      branch=Branch.objects.get(objectId=feedback.branch.objectId))
+            else:
+                local_feedback = Feedback(objectId=feedback.objectId, comment=comment,
                                       branch=Branch.objects.get(objectId=feedback.branch.objectId))
             local_feedback.save()
 

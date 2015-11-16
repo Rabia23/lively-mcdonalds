@@ -21,10 +21,10 @@ class Command(BaseCommand):
             first_name = user.first_name if hasattr(user, 'first_name') else ''
             last_name = user.last_name if hasattr(user, 'last_name') else ''
             phone_no = user.phone_no if hasattr(user, 'phone_no') else ''
-            is_customer = user.is_customer if hasattr(user, 'is_customer') else False
+            is_customer = user.is_customer if hasattr(user, 'is_customer') else True
             username = utils.generate_username()
             self.stdout.write('objectId: ' + user.objectId + 'First Name: ' + first_name + 'Last Name : ' + last_name +
-                              ' Phone No: ' + phone_no + ' Is_Customer: ' + is_customer)
+                              ' Phone No: ' + phone_no)
 
             django_user = User(first_name=first_name, last_name=last_name, username=username)
             django_user.set_password("1234")
