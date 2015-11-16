@@ -30,10 +30,26 @@
 
 	.list{
 		li{
-					
 			&:before{
 				display: block;
-				margin: 0 0 5px;
+				margin: 0 auto 5px;
+				content: "";
+				font-size: 0;
+				line-height: 0;
+				width: 30px;
+				height: 43px;
+				transform: perspective( 400px ) rotateX( -40deg );
+				-webkit-transform: perspective( 400px ) rotateX( -40deg );
+				-moz-transform: perspective( 400px ) rotateX( -40deg );
+				-o-transform: perspective( 400px ) rotateX( -40deg );
+				-ms-transform: perspective( 400px ) rotateX( -40deg );
+			}
+
+			&.v-good{
+				&:before{background: url(../assets/images/ico-locator2.png) no-repeat;}
+			}
+			&.negative{
+				&:before{background: url(../assets/images/ico-locator.png) no-repeat;}
 			}
 		}
 	}

@@ -76,7 +76,7 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "        <!-- <marker position=\"{{destination}}\" ng-repeat=\"destination in destinations\"></marker> -->\n" +
     "        <custom-marker position=\"{{destination}}\" ng-repeat=\"destination in destinations\" on-click = \"zoomIn(destination)\">\n" +
     "          <ul class=\"list\">\n" +
-    "            <li class=\"v-good\">Lahore</li>\n" +
+    "            <li class=\"v-good\"></li>\n" +
     "          </ul>\n" +
     "        </custom-marker>\n" +
     "      </map>\n" +
