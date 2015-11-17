@@ -43,6 +43,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
 
   $scope.optionClick = function (event, pos, item){
+    console.log(item);
     var option = $scope.labels[item.seriesIndex];
     if(option.parent_id == null){
       $scope.show_loading = true; 
