@@ -248,6 +248,7 @@ angular.module("dashboard/regional-analysis/myModalContent.tpl.html", []).run(["
     "    <h3 class=\"modal-title\">Sub Category Modal</h3>\n" +
     "</div>\n" +
     "\n" +
+    "\n" +
     "<div class=\"modal-body info-area\" ng-controller = \"RegionalAnalysisCtrl\" ng-class=\"{loading: show_loading}\">\n" +
     "    <h2 ng-show = \"regional_view\">Regional Analysis</h2>\n" +
     "    <h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis</h2>\n" +
@@ -260,7 +261,7 @@ angular.module("dashboard/regional-analysis/myModalContent.tpl.html", []).run(["
     "        <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}} /</a>\n" +
     "      </span>\n" +
     "    </div>\n" +
-    "\n" +
+    "	\n" +
     "    <ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
     "      <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
@@ -371,7 +372,10 @@ angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$temp
     "        <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}} /</a>\n" +
     "      </span>\n" +
     "    </div>\n" +
-    "\n" +
+    "	\n" +
+    "	<a href=\"#\" class=\"btn-slider glyphicon glyphicon-menu-left\"></a>\n" +
+    "	<a href=\"#\" class=\"btn-slider glyphicon glyphicon-menu-right\"></a>\n" +
+    "   \n" +
     "    <ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
     "      <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
