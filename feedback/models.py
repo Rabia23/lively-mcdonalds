@@ -1,4 +1,4 @@
-from enum import Enum
+from datetime import datetime
 from django.contrib.auth.models import User
 from django.db import models
 from app.models import Branch, UserInfo
@@ -54,6 +54,32 @@ class Feedback(models.Model):
         if options:
             return options
 
+    def get_segment(self):
+
+        def get_time(constant):
+            return datetime.strptime(constant, '%H:%M').time()
+
+        start_time = get_time(constants.STARTING_TIME)
+        breakfast_time = get_time(constants.BREAKFAST_TIME)
+        lunch_time = get_time(constants.LUNCH_TIME)
+        snack_time = get_time(constants.SNACK_TIME)
+        dinner_time = get_time(constants.DINNER_TIME)
+        late_night_time = get_time(constants.LATE_NIGHT_TIME)
+
+        created_at = self.created_at.time()
+
+        if created_at >= start_time and created_at < breakfast_time:
+            return constants.Segments[constants.BREAKFAST_TIME]
+        elif created_at >= breakfast_time and created_at < lunch_time:
+            return constants.Segments[constants.LUNCH_TIME]
+        elif created_at >= lunch_time and created_at < snack_time:
+            return constants.Segments[constants.SNACK_TIME]
+        elif created_at >= snack_time and created_at < dinner_time:
+            return constants.Segments[constants.DINNER_TIME]
+        elif created_at >= dinner_time and created_at < late_night_time:
+            return constants.Segments[constants.LATE_NIGHT_TIME]
+        return ""
+
     def to_dict(self):
         try:
             feedback = {
@@ -81,6 +107,7 @@ class Feedback(models.Model):
                 "region": self.branch.city.region.name,
                 "user_name": user_info.get_username() if user_info else None,
                 "user_phone": user_info.get_phone() if user_info else None,
+                "segment": self.get_segment(),
                 "is_negative": self.is_negative(),
             }
             return feedback

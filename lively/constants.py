@@ -35,3 +35,30 @@ ANONYMOUS_TEXT = "Anonymous"
 
 #------------ Branch Constants -------------
 BRANCH_FEEDBACK_TARGET = 200
+
+#------------ Segment Constants -------------
+STARTING_TIME = "06:00"
+BREAKFAST_TIME = "11:00"
+LUNCH_TIME = "15:00"
+SNACK_TIME = "19:00"
+DINNER_TIME = "23:00"
+LATE_NIGHT_TIME = "06:00"
+
+Segments = {
+    "11:00": "Breakfast",
+    "15:00": "Lunch",
+    "19:00": "Snack",
+    "23:00": "Dinner",
+    "06:00": "Late Night",
+}
+
+#------------ Shift Constants -------------
+BREAKFAST_SHIFT_TIME = "11:00"
+OPEN_SHIFT_TIME = "19:00"
+CLOSE_SHIFT_TIME = "02:00"
+OVERNIGHT_SHIFT_TIME = "06:00"
+
+BREAKFAST_SHIFT = "Breakfast"
+OPEN_SHIFT = "Open"
+CLOSE_SHIFT = "Close"
+OVERNIGHT_SHIFT = "Overnight"

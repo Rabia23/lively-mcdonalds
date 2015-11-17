@@ -10,7 +10,6 @@ import string,random
 from lively.parse_utils import region_get, feedback_get, option_get
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
-from django.template import Context
 
 
 __author__ = 'aamish'

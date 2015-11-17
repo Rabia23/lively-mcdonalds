@@ -89,6 +89,8 @@ class MapViewBranchSerializer(serializers.Serializer):
     id = serializers.IntegerField()
     objectId = serializers.CharField()
     name = serializers.CharField()
+    latitude = serializers.CharField()
+    longitude = serializers.CharField()
     city = serializers.CharField()
     region = serializers.CharField()
     feedback_count = serializers.IntegerField()
