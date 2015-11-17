@@ -1,18 +1,27 @@
 angular.module( 'livefeed.dashboard.feedback_map', [
-	'ngMap'
+  'ngMap',
+  'factories',
+  'livefeed.map'
 ])
 
-.controller( 'FeedbackMapCtrl', function DashboardController( $scope, _ ) {
+.controller( 'FeedbackMapCtrl', function DashboardController( $scope, _, Graphs, mapService ) {
 
-	$scope.zoom = 5;
 
-	$scope.destinations = [
-		"31, 72", "31.5, 74.3"
-	];
-	// NgMap.getMap().then(function(map) {
- //    console.log(map.getCenter());
- //    console.log('markers', map.markers);
- //    console.log('shapes', map.shapes);
- //  });
+  $scope.$on('mapInitialized', function (event, map) {
+    $scope.map = map;
+  });
+
+
+
+
+  $scope.zoom = 5;
+  $scope.markers = [];
+
+  Graphs.map_view().$promise.then(function(data){
+    console.log(data);
+    _.each(data.branches, function(branch){
+      $scope.markers.push(mapService.createMarker(branch, $scope.map));
+    });
+  });
 });
 

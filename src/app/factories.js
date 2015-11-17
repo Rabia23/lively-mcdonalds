@@ -25,7 +25,7 @@ angular.module( 'factories', [
 }])
 
 
-.factory('Graphs', ['$resource','apiLinks',  function($resource, apiLinks) {
+.factory('Graphs', ['$resource','apiLinks','_',  function($resource, apiLinks, _) {
   function Graphs() {
     this.service = $resource(apiLinks.staging, {callback: "JSON_CALLBACK"},
                   {
@@ -35,14 +35,23 @@ angular.module( 'factories', [
                     positive_negative_feedback: {method: "JSONP",isArray: false, params: {endpoint: "positive_negative_feedback"}},
                     category_performance: {method: "JSONP",isArray: false, params: {endpoint: "category_performance"}},
                     comments: {method: "JSONP",isArray: false, params: {endpoint: "comments"}},
-                    feedback_analysis_breakdown: {method: "JSONP",isArray: false, params: {endpoint: "feedback_analysis_breakdown"}}
-
+                    feedback_analysis_breakdown: {method: "JSONP",isArray: false, params: {endpoint: "feedback_analysis_breakdown"}},
+                    map_view: {method: "JSONP",isArray: false, params: {endpoint: "map_view"}, transformResponse: function(data, headers){
+                      _.each(data.branches, function(branch){
+                        branch.position = branch.latitude +"," +branch.longitude;
+                      });
+                      return data;
+                    }}
                  });
   }
 
   Graphs.prototype.overall_rating = function(option_id){
     option_id = option_id || "";
     return this.service.overall_rating({option: option_id});
+  };
+
+  Graphs.prototype.map_view = function(){
+    return this.service.map_view();
   };
 
   Graphs.prototype.positive_negative_feedback = function(){

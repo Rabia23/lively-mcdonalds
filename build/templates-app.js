@@ -73,12 +73,6 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "  <div class=\"map-holder\">\n" +
     "    <div map-lazy-load=\"http://maps.google.com/maps/api/js\">\n" +
     "      <map center=\"30,70\" zoom=\"{{zoom}}\" disable-default-u-i=\"true\">\n" +
-    "        <!-- <marker position=\"{{destination}}\" ng-repeat=\"destination in destinations\"></marker> -->\n" +
-    "        <custom-marker position=\"{{destination}}\" ng-repeat=\"destination in destinations\" on-click = \"zoomIn(destination)\">\n" +
-    "          <ul class=\"list\">\n" +
-    "            <li class=\"v-good\"></li>\n" +
-    "          </ul>\n" +
-    "        </custom-marker>\n" +
     "      </map>\n" +
     "    </div>\n" +
     "  </div>\n" +
@@ -155,8 +149,8 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "  </header>\n" +
     "  <div class=\"rating-holder\">\n" +
     "    <ul>\n" +
-    "      <li ng-repeat = \"label in labels\">\n" +
-    "        <a style = \"color: {{label.color}};cursor:pointer;\" ng-click = \"labelClick(label)\">{{label.value}}</a>\n" +
+    "      <li ng-repeat = \"label in labels track by $index\" class = \"item{{$index + 1}}\">\n" +
+    "        <a style = \"cursor:pointer;\" ng-click = \"labelClick(label)\">{{label.value}}</a>\n" +
     "      </li>\n" +
     "    </ul>\n" +
     "    <!-- <div id = \"overall-rating-linechart\" data-flot-chart data-data=\"line1.data\" data-options=\"line1.options\" style=\"width: 100%; height: 300px;\" data-bind-plotclick></div> -->\n" +

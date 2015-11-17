@@ -12,12 +12,6 @@
   <div class="map-holder">
     <div map-lazy-load="http://maps.google.com/maps/api/js">
       <map center="30,70" zoom="{{zoom}}" disable-default-u-i="true">
-        <!-- <marker position="{{destination}}" ng-repeat="destination in destinations"></marker> -->
-        <custom-marker position="{{destination}}" ng-repeat="destination in destinations" on-click = "zoomIn(destination)">
-          <ul class="list">
-            <li class="v-good"></li>
-          </ul>
-        </custom-marker>
       </map>
     </div>
   </div>
