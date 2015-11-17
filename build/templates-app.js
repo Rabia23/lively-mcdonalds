@@ -1,4 +1,4 @@
-angular.module('templates-app', ['dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/myModalContent.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html']);
+angular.module('templates-app', ['dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html']);
 
 angular.module("dashboard/category-performance-analysis/category-performance-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/category-performance-analysis/category-performance-analysis.tpl.html",
@@ -242,64 +242,6 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "  ");
 }]);
 
-angular.module("dashboard/regional-analysis/myModalContent.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("dashboard/regional-analysis/myModalContent.tpl.html",
-    "<div class=\"modal-header\">\n" +
-    "    <h3 class=\"modal-title\">Sub Category Modal</h3>\n" +
-    "</div>\n" +
-    "\n" +
-    "\n" +
-    "<div class=\"modal-body info-area\" ng-controller = \"RegionalAnalysisCtrl\" ng-class=\"{loading: show_loading}\">\n" +
-    "    <h2 ng-show = \"regional_view\">Regional Analysis</h2>\n" +
-    "    <h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis</h2>\n" +
-    "    <h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}} City Branch Analysis</h2>\n" +
-    "    <div class = \"breadcrum\">\n" +
-    "      <span ng-hide = \"regional_view\">\n" +
-    "        <a ng-click = \"backToRegions()\" style = \"style: cursor:pointer\">Regions /</a>\n" +
-    "      </span>\n" +
-    "      <span ng-show = \"regional_view == false && city_view == false\">\n" +
-    "        <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}} /</a>\n" +
-    "      </span>\n" +
-    "    </div>\n" +
-    "	\n" +
-    "    <ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
-    "      <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
-    "        <div class=\"graph-holder\">\n" +
-    "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open()\"></div>\n" +
-    "        </div>\n" +
-    "        <h3>\n" +
-    "          <a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{region.name}}</a>\n" +
-    "        </h3>\n" +
-    "      </li>\n" +
-    "    </ul>\n" +
-    "\n" +
-    "    <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == true \">\n" +
-    "      <li ng-repeat = \"city in donut_cities_data.objects track by $index\">\n" +
-    "        <div class=\"graph-holder\">\n" +
-    "          <div morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\"></div>\n" +
-    "        </div>\n" +
-    "        <h3>\n" +
-    "          <a ng-click = \"showChart(city, 'branches')\" style = \"cursor:pointer;\">{{city.name}}</a>\n" +
-    "        </h3>\n" +
-    "      </li>\n" +
-    "    </ul>\n" +
-    "    <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == false\">\n" +
-    "      <li ng-repeat = \"branch in donut_branches_data.objects track by $index\">\n" +
-    "        <div class=\"graph-holder\">\n" +
-    "          <div morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\"></div>\n" +
-    "        </div>\n" +
-    "        <h3>{{branch.name}}</h3>\n" +
-    "      </li>\n" +
-    "    </ul>\n" +
-    "  </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<div class=\"modal-footer\">\n" +
-    "    <button class=\"btn btn-warning\" type=\"button\" ng-click=\"ok()\">Close</button>\n" +
-    "</div>\n" +
-    "");
-}]);
-
 angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/regional-analysis/regional-analysis.tpl.html",
     "<div class=\"section-holder\" >\n" +
@@ -323,7 +265,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "    <ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
     "      <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
-    "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open(region)\"></div>\n" +
+    "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open(option,region)\"></div>\n" +
     "        </div>\n" +
     "        <h3>\n" +
     "          <a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{region.name}}</a>\n" +
@@ -356,62 +298,36 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
 
 angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/regional-analysis/sqc-modal.tpl.html",
-    "<div class=\"modal-header\">\n" +
-    "    <h3 class=\"modal-title\">Sub Category Modal</h3>\n" +
-    "</div>\n" +
-    "\n" +
     "<div class=\"modal-body info-area\" ng-controller = \"RegionalAnalysisCtrl\" ng-class=\"{loading: show_loading}\">\n" +
     "    <h2 ng-show = \"regional_view\">Regional Analysis</h2>\n" +
-    "    <h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis</h2>\n" +
-    "    <h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}} City Branch Analysis</h2>\n" +
-    "    <div class = \"breadcrum\">\n" +
-    "      <span ng-hide = \"regional_view\">\n" +
-    "        <a ng-click = \"backToRegions()\" style = \"style: cursor:pointer\">Regions /</a>\n" +
-    "      </span>\n" +
-    "      <span ng-show = \"regional_view == false && city_view == false\">\n" +
-    "        <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}} /</a>\n" +
-    "      </span>\n" +
-    "    </div>\n" +
+    "    <!--<h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis</h2>-->\n" +
+    "    <!--<h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}} City Branch Analysis</h2>-->\n" +
+    "    <!--<div class = \"breadcrum\">-->\n" +
+    "      <!--<span ng-hide = \"regional_view\">-->\n" +
+    "        <!--<a ng-click = \"backToRegions()\" style = \"style: cursor:pointer\">Regions /</a>-->\n" +
+    "      <!--</span>-->\n" +
+    "      <!--<span ng-show = \"regional_view == false && city_view == false\">-->\n" +
+    "        <!--<a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}} /</a>-->\n" +
+    "      <!--</span>-->\n" +
+    "    <!--</div>-->\n" +
     "	\n" +
     "	<a href=\"#\" class=\"btn-slider glyphicon glyphicon-menu-left\"></a>\n" +
     "	<a href=\"#\" class=\"btn-slider glyphicon glyphicon-menu-right\"></a>\n" +
-    "   \n" +
+    "\n" +
+    "    <h2>region: {{region.name}}</h2>\n" +
     "    <ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
-    "      <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
-    "        <div class=\"graph-holder\">\n" +
-    "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open()\"></div>\n" +
-    "        </div>\n" +
-    "        <h3>\n" +
-    "          <a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{region.name}}</a>\n" +
-    "        </h3>\n" +
+    "      <li ng-repeat = \"region in regions track by $index\">\n" +
+    "            <h2>{{region.name}}</h2>\n" +
+    "            <div class=\"graph-holder\">\n" +
+    "              <div morris-chart data-data=\"donut_subgraph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_subgraph_data.donutOptions[$index]\"></div>\n" +
+    "            </div>\n" +
+    "            <h3>\n" +
+    "              <a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{region.name}}</a>\n" +
+    "            </h3>\n" +
     "      </li>\n" +
     "    </ul>\n" +
     "\n" +
-    "    <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == true \">\n" +
-    "      <li ng-repeat = \"city in donut_cities_data.objects track by $index\">\n" +
-    "        <div class=\"graph-holder\">\n" +
-    "          <div morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\"></div>\n" +
-    "        </div>\n" +
-    "        <h3>\n" +
-    "          <a ng-click = \"showChart(city, 'branches')\" style = \"cursor:pointer;\">{{city.name}}</a>\n" +
-    "        </h3>\n" +
-    "      </li>\n" +
-    "    </ul>\n" +
-    "    <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == false\">\n" +
-    "      <li ng-repeat = \"branch in donut_branches_data.objects track by $index\">\n" +
-    "        <div class=\"graph-holder\">\n" +
-    "          <div morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\"></div>\n" +
-    "        </div>\n" +
-    "        <h3>{{branch.name}}</h3>\n" +
-    "      </li>\n" +
-    "    </ul>\n" +
-    "  </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<div class=\"modal-footer\">\n" +
-    "    <button class=\"btn btn-warning\" type=\"button\" ng-click=\"ok()\">Close</button>\n" +
-    "</div>\n" +
-    "");
+    "  </div>");
 }]);
 
 angular.module("dashboard/statistics/statistics.tpl.html", []).run(["$templateCache", function($templateCache) {

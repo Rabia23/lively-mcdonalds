@@ -19,6 +19,8 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.donut_graph_data = [];
     Graphs.regional_analysis($scope.question_type).$promise.then(function(data){
       $scope.donut_graph_data = chartService.getDonutChartData(data, $scope.question_type);
+      console.log("donut_graph_data");
+      console.log($scope.donut_graph_data);
     });
   };
 
@@ -91,20 +93,26 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   $scope.showChart(null, 'regions');
 
-  $scope.open = function(region){
-    console.log("region object");
+  $scope.open = function(option,region){
+
+    $scope.region = region;
+
+    console.log("Region");
     console.log(region);
-    Graphs.feedback_analysis_breakdown(region.id,9).$promise.then(function(data){
 
-        console.log("feedback analysis breakdown");
-        console.log(data);
+    Graphs.feedback_analysis_breakdown(region.id,"","",option.id).$promise.then(function(data){
 
+        $scope.donut_subgraph_data = chartService.getSubDonutChartData(data);
+        console.log("donut_subgraph_data");
+        console.log($scope.donut_subgraph_data);
       });
+
       if($scope.radioModel === 'SQC'){
         var modalInstance = $uibModal.open({
         templateUrl: 'dashboard/regional-analysis/sqc-modal.tpl.html',
         controller: 'SQCModalCtrl',
         size: 1000
+
       });
     }
 
@@ -112,11 +120,8 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   
 })
 
-.controller('SQCModalCtrl', function ($scope, $uibModalInstance) {
+.controller('SQCModalCtrl', function ($scope, $uibModalInstance){
 
-  $scope.ok = function () {
-    $uibModalInstance.close();
-  };
 })
 
 
@@ -133,6 +138,8 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
         var data, func, options, type;
         data = scope.data;
         type = scope.type;
+        console.log("Data");
+        console.log(data);
         options = angular.extend({
           element: ele[0],
           data: data
@@ -141,13 +148,11 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
           func = new Function('y', 'data', options.formatter);
           options.formatter = func;
         }
+         console.log("options");
+        console.log(options);
         morris_chart = new Morris.Donut(options);
         morris_chart.on('click', function(i, row){
-            console.log("region");
-            console.log(scope.$parent.region.id);
-            console.log(scope.$parent.region.name);
-            console.log(i, row);
-            scope.$apply(scope.action);
+            scope.$apply(scope.action({option: row}));
 
         });
         return morris_chart;
