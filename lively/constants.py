@@ -44,7 +44,7 @@ SNACK_TIME = "19:00"
 DINNER_TIME = "23:00"
 LATE_NIGHT_TIME = "06:00"
 
-Segments = {
+segments = {
     "11:00": "Breakfast",
     "15:00": "Lunch",
     "19:00": "Snack",
@@ -58,7 +58,9 @@ OPEN_SHIFT_TIME = "19:00"
 CLOSE_SHIFT_TIME = "02:00"
 OVERNIGHT_SHIFT_TIME = "06:00"
 
-BREAKFAST_SHIFT = "Breakfast"
-OPEN_SHIFT = "Open"
-CLOSE_SHIFT = "Close"
-OVERNIGHT_SHIFT = "Overnight"
+shifts = {
+    "11:00": "Breakfast",
+    "19:00": "Open",
+    "02:00": "Close",
+    "06:00": "Overnight",
+}

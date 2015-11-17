@@ -1,8 +1,10 @@
-from datetime import datetime
 from django.contrib.auth.models import User
 from django.db import models
 from app.models import Branch, UserInfo
-from lively import constants
+from lively import constants, settings
+from datetime import datetime
+from pytz import timezone
+from datetime import timedelta
 
 
 class Feedback(models.Model):
@@ -69,15 +71,38 @@ class Feedback(models.Model):
         created_at = self.created_at.time()
 
         if created_at >= start_time and created_at < breakfast_time:
-            return constants.Segments[constants.BREAKFAST_TIME]
+            return constants.segments[constants.BREAKFAST_TIME]
         elif created_at >= breakfast_time and created_at < lunch_time:
-            return constants.Segments[constants.LUNCH_TIME]
+            return constants.segments[constants.LUNCH_TIME]
         elif created_at >= lunch_time and created_at < snack_time:
-            return constants.Segments[constants.SNACK_TIME]
+            return constants.segments[constants.SNACK_TIME]
         elif created_at >= snack_time and created_at < dinner_time:
-            return constants.Segments[constants.DINNER_TIME]
+            return constants.segments[constants.DINNER_TIME]
         elif created_at >= dinner_time and created_at < late_night_time:
-            return constants.Segments[constants.LATE_NIGHT_TIME]
+            return constants.segments[constants.LATE_NIGHT_TIME]
+        return ""
+
+    def get_shift(self):
+
+        def get_time(constant):
+            return datetime.strptime(constant, '%H:%M').time()
+
+        start_time = get_time(constants.STARTING_TIME)
+        breakfast_shift = get_time(constants.BREAKFAST_SHIFT_TIME)
+        open_shift = get_time(constants.OPEN_SHIFT_TIME)
+        close_shift = get_time(constants.CLOSE_SHIFT_TIME)
+        over_night_shift = get_time(constants.OVERNIGHT_SHIFT_TIME)
+
+        created_at = self.created_at.time()
+
+        if created_at >= start_time and created_at < breakfast_shift:
+            return constants.shifts[constants.BREAKFAST_TIME]
+        elif created_at >= breakfast_shift and created_at < open_shift:
+            return constants.shifts[constants.OPEN_SHIFT_TIME]
+        elif created_at >= open_shift and created_at < close_shift:
+            return constants.shifts[constants.CLOSE_SHIFT_TIME]
+        elif created_at >= close_shift and created_at < over_night_shift:
+            return constants.shifts[constants.OVERNIGHT_SHIFT_TIME]
         return ""
 
     def to_dict(self):
@@ -108,6 +133,7 @@ class Feedback(models.Model):
                 "user_name": user_info.get_username() if user_info else None,
                 "user_phone": user_info.get_phone() if user_info else None,
                 "segment": self.get_segment(),
+                "shift": self.get_shift(),
                 "is_negative": self.is_negative(),
             }
             return feedback
@@ -147,6 +173,9 @@ class Option(models.Model):
         option = Option.objects.filter(objectId=objectId).first()
         if option:
             return option
+
+    def is_parent(self):
+        return self.children.count() > 0
 
 
 class FeedbackOption(models.Model):

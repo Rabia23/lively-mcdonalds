@@ -75,6 +75,8 @@ class FeedbackCommentSerializer(serializers.Serializer):
     branch = serializers.CharField()
     city = serializers.CharField()
     region = serializers.CharField()
+    segment = serializers.CharField()
+    shift = serializers.CharField()
     user_name = serializers.CharField()
     user_phone = serializers.CharField()
     is_negative = serializers.BooleanField()
