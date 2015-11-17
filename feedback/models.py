@@ -3,8 +3,7 @@ from django.db import models
 from app.models import Branch, UserInfo
 from lively import constants, settings
 from datetime import datetime
-from pytz import timezone
-from datetime import timedelta
+from dateutil import tz
 
 
 class Feedback(models.Model):
@@ -57,10 +56,6 @@ class Feedback(models.Model):
             return options
 
     def get_segment(self):
-
-        def get_time(constant):
-            return datetime.strptime(constant, '%H:%M').time()
-
         start_time = get_time(constants.STARTING_TIME)
         breakfast_time = get_time(constants.BREAKFAST_TIME)
         lunch_time = get_time(constants.LUNCH_TIME)
@@ -68,7 +63,7 @@ class Feedback(models.Model):
         dinner_time = get_time(constants.DINNER_TIME)
         late_night_time = get_time(constants.LATE_NIGHT_TIME)
 
-        created_at = self.created_at.time()
+        created_at = get_converted_time(self.created_at)
 
         if created_at >= start_time and created_at < breakfast_time:
             return constants.segments[constants.BREAKFAST_TIME]
@@ -83,17 +78,13 @@ class Feedback(models.Model):
         return ""
 
     def get_shift(self):
-
-        def get_time(constant):
-            return datetime.strptime(constant, '%H:%M').time()
-
         start_time = get_time(constants.STARTING_TIME)
         breakfast_shift = get_time(constants.BREAKFAST_SHIFT_TIME)
         open_shift = get_time(constants.OPEN_SHIFT_TIME)
         close_shift = get_time(constants.CLOSE_SHIFT_TIME)
         over_night_shift = get_time(constants.OVERNIGHT_SHIFT_TIME)
 
-        created_at = self.created_at.time()
+        created_at = get_converted_time(self.created_at)
 
         if created_at >= start_time and created_at < breakfast_shift:
             return constants.shifts[constants.BREAKFAST_TIME]
@@ -199,3 +190,17 @@ class FeedbackOption(models.Model):
             return feedback_option
 
 
+def get_time(constant):
+    return datetime.strptime(constant, '%H:%M').time()
+
+
+def get_converted_time(time):
+    fmt = "%Y-%m-%d %H:%M:%S"
+    time = time.strftime(fmt)
+
+    from_zone = tz.gettz('UTC')
+    to_zone = tz.gettz('Asia/Karachi')
+    utc = datetime.strptime(str(time), fmt)
+    utc = utc.replace(tzinfo=from_zone)
+    converted_time = utc.astimezone(to_zone)
+    return converted_time.time()
