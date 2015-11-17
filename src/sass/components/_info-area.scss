@@ -102,3 +102,26 @@
 		svg{height: 200px !important;}
 	}
 }
+
+.modal-1000{
+	.modal-title{margin: 0;}
+	.modal-body{padding: 15px 30px;}
+	.info-list{
+		li{
+			width: 100%;
+		}
+	}
+	.btn-slider{
+		position: absolute;
+		left: 10px;
+		top: 50%;
+		margin-top: -15px;
+		font-size: 30px;
+		line-height: 30px;
+		
+		&.glyphicon-menu-right{
+			left: auto;
+			right: 10px;
+		}
+	}
+}

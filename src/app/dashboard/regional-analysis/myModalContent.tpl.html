@@ -2,6 +2,7 @@
     <h3 class="modal-title">Sub Category Modal</h3>
 </div>
 
+
 <div class="modal-body info-area" ng-controller = "RegionalAnalysisCtrl" ng-class="{loading: show_loading}">
     <h2 ng-show = "regional_view">Regional Analysis</h2>
     <h2 ng-show = "regional_view == false && city_view == true">{{selected_region.name}} Region City Analysis</h2>
@@ -14,7 +15,7 @@
         <a ng-click = "backToCities(selected_region)" style = "cursor:pointer;">{{selected_region.name}} /</a>
       </span>
     </div>
-
+	
     <ul class="info-list" ng-show = "regional_view == true">
       <li ng-repeat = "region in donut_graph_data.objects track by $index">
         <div class="graph-holder">

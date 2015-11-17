@@ -14,7 +14,10 @@
         <a ng-click = "backToCities(selected_region)" style = "cursor:pointer;">{{selected_region.name}} /</a>
       </span>
     </div>
-
+	
+	<a href="#" class="btn-slider glyphicon glyphicon-menu-left"></a>
+	<a href="#" class="btn-slider glyphicon glyphicon-menu-right"></a>
+   
     <ul class="info-list" ng-show = "regional_view == true">
       <li ng-repeat = "region in donut_graph_data.objects track by $index">
         <div class="graph-holder">
