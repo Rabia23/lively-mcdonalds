@@ -91,8 +91,13 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   $scope.showChart(null, 'regions');
 
-  $scope.open = function(option,region){
-
+  $scope.open = function(option,region,city,branch){
+    if (city === undefined){
+      city = null;
+    }
+    if (branch === undefined){
+      branch = null;
+    }
     if($scope.radioModel === 'SQC'){
         var modalInstance = $uibModal.open({
         templateUrl: 'dashboard/regional-analysis/sqc-modal.tpl.html',
@@ -101,6 +106,12 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
         resolve: {
           region: function () {
             return region;
+          },
+          city: function () {
+            return city;
+          },
+          branch: function () {
+            return branch;
           },
           option: function() {
               return option;
@@ -114,13 +125,74 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   
 })
 
-.controller('SQCModalCtrl', function ($scope, Graphs, chartService, $uibModalInstance, region, option){
-      $scope.region = region.name;
+.controller('SQCModalCtrl', function ($scope, Graphs, chartService, $uibModalInstance, region, city, branch, option){
+      $scope.showGraph = function(region, city, branch, option){
 
-      Graphs.feedback_analysis_breakdown(region.id,"","",option.id).$promise.then(function(data){
+          $scope.region = region;
+          $scope.donut_subgraph_data = {};
+          Graphs.feedback_analysis_breakdown(region.id,city.id,branch.id,option.id).$promise.then(function(data){
+             $scope.donut_subgraph_data = chartService.getSubDonutChartData(data);
+          });
 
-        $scope.donut_subgraph_data = chartService.getSubDonutChartData(data);
-     });
+      };
+      $scope.question_type = 2;
+      if(city == null && branch == null){
+        Graphs.regional_analysis($scope.question_type).$promise.then(function(data){
+           $scope.region_data = _.map(data.analysis,  function(dat){
+            return {name: dat.object.name, id: dat.object.id};
+           });
+         $scope.showGraph(region,"","", option);
+          //console.log("Regions data");
+          //console.log($scope.region_data);
+        });
+      }
+      if(branch == null){
+        Graphs.city_analysis(region.id, $scope.question_type).$promise.then(function(data){
+          $scope.city_data = _.map(data.analysis,  function(dat){
+            return {name: dat.object.name, id: dat.object.id};
+           });
+        $scope.showGraph(region,city,"", option);
+          //console.log("Cities data");
+          //console.log($scope.city_data);
+        });
+
+      }
+      else{
+        Graphs.branch_analysis(city.id, $scope.question_type).$promise.then(function(data){
+         $scope.branch_data = _.map(data.analysis,  function(dat){
+            return {name: dat.object.name, id: dat.object.id};
+           });
+         $scope.showGraph(region,city,branch, option);
+          //console.log("Branches data");
+          //console.log($scope.branch_data);
+        });
+      }
+      $scope.next = function(region,region_data){
+        console.log("next");
+        var indexx = _.findIndex(region_data, region);
+        console.log("indexx: "+indexx);
+        _.map(region_data, function(data, index){
+             if (_.isEqual(index, indexx+1)) {
+              next_region = data;
+              return;
+           }
+        });
+        $scope.showGraph(next_region, option);
+
+      };
+      $scope.previous = function(region,region_data){
+        console.log("previous");
+        var indexx = _.findIndex(region_data, region);
+        console.log("indexx: "+indexx);
+        _.map(region_data, function(data, index){
+             if (_.isEqual(index, indexx-1)) {
+              prev_region = data;
+              return;
+           }
+        });
+        $scope.showGraph(prev_region, option);
+
+      };
 })
 
 
@@ -168,8 +240,11 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       },
       link: function(scope, ele, attrs) {
         
+        var morris_chart_modal = null;
 
         scope.$watch('data', function(watchedData) {
+          //console.log(" outside watchedData");
+          //console.log(watchedData);
           if(watchedData !== undefined){
             var data, func, options, type;
             data = scope.data;
@@ -185,8 +260,10 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
               options.formatter = func;
             }
 
+            $(".modal-body").find("svg").remove();
+
             morris_chart_modal = new Morris.Donut(options);
-            return morris_chart_modal;        
+            return morris_chart_modal;
 
           }
         });

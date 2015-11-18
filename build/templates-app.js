@@ -259,7 +259,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "    <ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
     "      <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
-    "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open(option,region)\"></div>\n" +
+    "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open(option,region,city,branch)\"></div>\n" +
     "        </div>\n" +
     "        <h3>\n" +
     "          <a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{region.name}}</a>\n" +
@@ -270,7 +270,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "    <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == true \">\n" +
     "      <li ng-repeat = \"city in donut_cities_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
-    "          <div morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\"></div>\n" +
+    "          <div morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\" data-action=\"open(option,selected_region,city,branch)\"></div>\n" +
     "        </div>\n" +
     "        <h3>\n" +
     "          <a ng-click = \"showChart(city, 'branches')\" style = \"cursor:pointer;\">{{city.name}}</a>\n" +
@@ -280,7 +280,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "    <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == false\">\n" +
     "      <li ng-repeat = \"branch in donut_branches_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
-    "          <div morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\"></div>\n" +
+    "          <div morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\" data-action=\"open(option,selected_region,selected_city,branch)\"></div>\n" +
     "        </div>\n" +
     "        <h3>{{branch.name}}</h3>\n" +
     "      </li>\n" +
@@ -293,17 +293,16 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
 angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/regional-analysis/sqc-modal.tpl.html",
     "<div class=\"modal-body info-area\">\n" +
-    "  <h2 ng-show = \"regional_view\">Regional Analysis</h2>\n" +
-    "	<a href=\"#\" class=\"btn-slider glyphicon glyphicon-menu-left\"></a>\n" +
-    "	<a href=\"#\" class=\"btn-slider glyphicon glyphicon-menu-right\"></a>\n" +
+    "  <h2>Regional Analysis</h2>\n" +
+    "	<a href=\"#\" class=\"btn-slider glyphicon glyphicon-menu-left\" ng-click=\"previous(region,region_data)\"></a>\n" +
+    "	<a href=\"#\" class=\"btn-slider glyphicon glyphicon-menu-right\" ng-click=\"next(region,region_data)\"></a>\n" +
     "\n" +
     "  <div class=\"graph-holder\">\n" +
     "    <div morris-chart-modal data-data=\"donut_subgraph_data.donutData\" data-type=\"donut\" data-options=\"donut_subgraph_data.donutOptions\"></div>\n" +
     "  </div>\n" +
     "  <h3>\n" +
-    "    <a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{region}}</a>\n" +
+    "    <a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{ region.name }}</a>\n" +
     "  </h3>\n" +
-    "\n" +
     "\n" +
     "</div>");
 }]);
