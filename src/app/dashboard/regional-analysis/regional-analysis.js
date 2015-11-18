@@ -127,9 +127,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
 .controller('SQCModalCtrl', function ($scope, Graphs, chartService, $uibModalInstance, region, city, branch, option){
       $scope.showGraph = function(region, city, branch, option){
-
           $scope.region = region;
-          $scope.donut_subgraph_data = {};
           Graphs.feedback_analysis_breakdown(region.id,city.id,branch.id,option.id).$promise.then(function(data){
              $scope.donut_subgraph_data = chartService.getSubDonutChartData(data);
           });
@@ -137,60 +135,66 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       };
       $scope.question_type = 2;
       if(city == null && branch == null){
+        $scope.region = region;
+        $scope.city = null;
+        $scope.branch = null;
+
         Graphs.regional_analysis($scope.question_type).$promise.then(function(data){
-           $scope.region_data = _.map(data.analysis,  function(dat){
+           $scope.sqc_data = _.map(data.analysis,  function(dat){
             return {name: dat.object.name, id: dat.object.id};
            });
          $scope.showGraph(region,"","", option);
-          //console.log("Regions data");
-          //console.log($scope.region_data);
         });
       }
-      if(branch == null){
+      else if(branch == null){
+        $scope.region = region;
+        $scope.city = city;
+        $scope.branch = null;
+
         Graphs.city_analysis(region.id, $scope.question_type).$promise.then(function(data){
-          $scope.city_data = _.map(data.analysis,  function(dat){
+          $scope.sqc_data = _.map(data.analysis,  function(dat){
             return {name: dat.object.name, id: dat.object.id};
            });
         $scope.showGraph(region,city,"", option);
-          //console.log("Cities data");
-          //console.log($scope.city_data);
         });
 
       }
       else{
+        $scope.region = region;
+        $scope.city = city;
+        $scope.branch = branch;
+
         Graphs.branch_analysis(city.id, $scope.question_type).$promise.then(function(data){
-         $scope.branch_data = _.map(data.analysis,  function(dat){
+         $scope.sqc_data = _.map(data.analysis,  function(dat){
             return {name: dat.object.name, id: dat.object.id};
            });
          $scope.showGraph(region,city,branch, option);
-          //console.log("Branches data");
-          //console.log($scope.branch_data);
         });
       }
-      $scope.next = function(region,region_data){
+      $scope.next = function(region,city,branch,sqc_data){
         console.log("next");
-        var indexx = _.findIndex(region_data, region);
+        var indexx = _.findIndex(sqc_data, region);
         console.log("indexx: "+indexx);
-        _.map(region_data, function(data, index){
+        _.map(sqc_data, function(data, index){
              if (_.isEqual(index, indexx+1)) {
               next_region = data;
               return;
            }
         });
-        $scope.showGraph(next_region, option);
+        $scope.showGraph(next_region,"","", option);
 
       };
-      $scope.previous = function(region,region_data){
+      $scope.previous = function(region,city,branch,sqc_data){
         console.log("previous");
-        var indexx = _.findIndex(region_data, region);
+        var indexx = _.findIndex(sqc_data, region);
         console.log("indexx: "+indexx);
-        _.map(region_data, function(data, index){
+        _.map(sqc_data, function(data, index){
              if (_.isEqual(index, indexx-1)) {
               prev_region = data;
               return;
            }
         });
-        $scope.showGraph(prev_region, option);
+        $scope.showGraph(prev_region,"","", option);
 
       };
 })

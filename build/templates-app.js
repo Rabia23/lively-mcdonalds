@@ -294,8 +294,8 @@ angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$temp
   $templateCache.put("dashboard/regional-analysis/sqc-modal.tpl.html",
     "<div class=\"modal-body info-area\">\n" +
     "  <h2>Regional Analysis</h2>\n" +
-    "	<a href=\"#\" class=\"btn-slider glyphicon glyphicon-menu-left\" ng-click=\"previous(region,region_data)\"></a>\n" +
-    "	<a href=\"#\" class=\"btn-slider glyphicon glyphicon-menu-right\" ng-click=\"next(region,region_data)\"></a>\n" +
+    "	<a href=\"#\" class=\"btn-slider glyphicon glyphicon-menu-left\" ng-click=\"previous(region,city,branch,sqc_data)\"></a>\n" +
+    "	<a href=\"#\" class=\"btn-slider glyphicon glyphicon-menu-right\" ng-click=\"next(region,city,branch,sqc_data)\"></a>\n" +
     "\n" +
     "  <div class=\"graph-holder\">\n" +
     "    <div morris-chart-modal data-data=\"donut_subgraph_data.donutData\" data-type=\"donut\" data-options=\"donut_subgraph_data.donutOptions\"></div>\n" +
