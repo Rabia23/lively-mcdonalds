@@ -28,6 +28,16 @@ class Feedback(models.Model):
             return True
         return False
 
+    def is_bad(self):
+        options = self.feedback_option.filter(option__score=constants.BAD_SCORE)
+        if options:
+            return True
+        return False
+
+    def problems(self):
+        problems = self.feedback_option.all().exclude(option__parent=None).values("option__text")
+        return ", ".join(problem["option__text"] for problem in problems)
+
     def customer_name(self):
         if self.user:
             if self.user.first_name:
@@ -39,7 +49,7 @@ class Feedback(models.Model):
         if user_info:
             if user_info.phone_no:
                 return user_info.phone_no
-        return constants.ANONYMOUS_TEXT
+        return constants.NOT_ATTEMPTED_TEXT
 
     def selected_main_option(self):
         main_question = Question.objects.get(type=constants.MAIN_QUESTION)
@@ -132,7 +142,6 @@ class Feedback(models.Model):
             return {}
 
 
-
 class Question(models.Model):
     text = models.TextField()
     isActive = models.BooleanField(default=True)
@@ -174,6 +183,16 @@ class FeedbackOption(models.Model):
     feedback = models.ForeignKey(Feedback, related_name='feedback_option', null=True, blank=True)
     option = models.ForeignKey(Option, related_name='feedback_option', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def to_option_dict(self):
+        try:
+            feedback_option = {
+                "option_id": self.option_id,
+                "option__text": self.option.text,
+            }
+            return feedback_option
+        except Exception as e:
+            return {}
 
     def is_negative_option(self):
         if self.option.score in constants.NEGATIVE_SCORE_LIST:

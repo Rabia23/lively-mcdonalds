@@ -10,6 +10,8 @@ import string,random
 from lively.parse_utils import region_get, feedback_get, option_get
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
+from datetime import datetime
+from dateutil import tz
 
 
 __author__ = 'aamish'
@@ -198,13 +200,26 @@ def generate_missing_sub_options(option_id, data):
 
 
 def generate_segmentation(data):
-    segments = []
+    segments_list = []
     for segment in constants.segments:
-        segments.append({
+        segment_feedbacks = [feedback_option for feedback_option in data if feedback_option.feedback.get_segment() == constants.segments[segment]]
+        segments_list.append({
             "segment": constants.segments[segment],
-            "data": [feedbackOption for feedbackOption in data if feedbackOption.feedback.get_segment() == constants.segments[segment]],
+            "option_count": len(segment_feedbacks),
         })
-    return segments
+    return segments_list
+
+
+def generate_option_groups(data, options):
+    option_groups = []
+    for option in options:
+        segment_list = generate_segmentation(data.filter(option=option))
+        option_groups.append({
+            "option__text": option.text,
+            "option_id": option.id,
+            "segment_list": segment_list,
+        })
+    return option_groups
 
 
 def generate_option_group(data, options):
@@ -263,3 +278,43 @@ def apply_general_filters(data, region_id, city_id, branch_id):
             feedback__branch__city__region__exact=region_id)
     return data
 
+
+def get_time(constant):
+    return datetime.strptime(constant, '%H:%M').time()
+
+
+def get_converted_time(time):
+    time = time.strftime(constants.DATE_FORMAT)
+
+    from_zone = tz.gettz('UTC')
+    to_zone = tz.gettz('Asia/Karachi')
+    utc = datetime.strptime(str(time), constants.DATE_FORMAT)
+    utc = utc.replace(tzinfo=from_zone)
+    converted_time = utc.astimezone(to_zone)
+    return converted_time.time()
+
+
+def get_segment_time_range(segment):
+    start_time, end_time = None
+    if segment == constants.segments[constants.BREAKFAST_TIME]:
+        start_time = get_time(constants.STARTING_TIME)
+        end_time = get_time(constants.BREAKFAST_TIME)
+    elif segment == constants.segments[constants.LUNCH_TIME]:
+        start_time = get_time(constants.BREAKFAST_TIME)
+        end_time = get_time(constants.LUNCH_TIME)
+    elif segment == constants.segments[constants.SNACK_TIME]:
+        start_time = get_time(constants.LUNCH_TIME)
+        end_time = get_time(constants.SNACK_TIME)
+    elif segment == constants.segments[constants.DINNER_TIME]:
+        start_time = get_time(constants.SNACK_TIME)
+        end_time = get_time(constants.DINNER_TIME)
+    elif segment == constants.segments[constants.LATE_NIGHT_TIME]:
+        start_time = get_time(constants.DINNER_TIME)
+        end_time = get_time(constants.LATE_NIGHT_TIME)
+
+    return start_time, end_time
+
+
+# def apply_segment_filter(data, segment):
+#     start_time, end_time = get_segment_time_range(segment)
+    

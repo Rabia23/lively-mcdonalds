@@ -12,7 +12,7 @@ from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerial
     PositiveNegativeFeedbackSerializer, AllCommentsSerializer, AllBranchesSerializer, SegmentationSerializer
 from lively import constants
 from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options, \
-    generate_segmentation, generate_option_group, apply_general_filters
+    generate_segmentation, generate_option_group, apply_general_filters, generate_option_groups
 from dateutil import rrule
 from datetime import datetime, timedelta
 from django.core.paginator import Paginator
@@ -362,36 +362,21 @@ def feedback_segmentation(request):
             option_id = request.query_params.get('option', None)
 
             date = request.query_params.get('date', None)
-            if date:
+            if date and option_id:
                 date = datetime.strptime(date, constants.DATE_FORMAT).date()
+                option = Option.objects.get(id=option_id)
+                options = option.children.all()
             else:
                 return Response(None)
 
-            question = Question.objects.get(type=constants.SECONDARY_QUESTION)
-
-            if option_id:
-                option = Option.objects.get(id=option_id)
-                options = option.children.all()
-                filtered_feedback_options = FeedbackOption.objects.filter(
-                    option__in=Option.objects.filter(parent=option_id).values_list('id'),
-                    feedback__created_at__contains=date)
-            else:
-                options = question.options.all()
-                filtered_feedback_options = FeedbackOption.objects.filter(
-                    option__in=question.options.filter(parent=None).values_list('id'),
-                    feedback__created_at__contains=date)
+            filtered_feedback_options = FeedbackOption.objects.filter(
+                option__in=Option.objects.filter(parent=option_id).values_list('id'),
+                feedback__created_at__contains=date)
 
             filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id)
-            feedback_segmented_data = generate_segmentation(filtered_feedback_options)
+            feedback_segmented_list = generate_option_groups(filtered_feedback_options, options)
 
-            feedback_segmented_list = []
-            for feedback_segment in feedback_segmented_data:
-                feedback_segmented_list.append({
-                        "segment": feedback_segment["segment"],
-                        "data": generate_option_group(feedback_segment["data"], options)
-                    })
-
-            data = {'segment_count': len(feedback_segmented_list), 'segments': feedback_segmented_list}
+            data = {'option_count': len(feedback_segmented_list), 'options': feedback_segmented_list}
             feedback_response = SegmentationSerializer(data)
             return Response(feedback_response.data)
         except Exception as e:

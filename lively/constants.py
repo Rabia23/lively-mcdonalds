@@ -22,6 +22,8 @@ NO_OF_DAYS = 7
 #------------ Negative Feedback -------------
 NEGATIVE_SCORE_LIST = [1,2]
 POSITIVE_SCORE_LIST = [3,4]
+VERY_BAD_SCORE = 1
+BAD_SCORE = 2
 
 #------------ Email Constants -------------
 NEGATIVE_FEEDBACK_SUBJECT = "LiveFeed | Negative Feedback Received"
@@ -32,6 +34,7 @@ COMMENTS_PER_PAGE = 20
 
 #------------ User Constants -------------
 ANONYMOUS_TEXT = "Anonymous"
+NOT_ATTEMPTED_TEXT = "N/A"
 
 #------------ Branch Constants -------------
 BRANCH_FEEDBACK_TARGET = 200

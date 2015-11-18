@@ -104,11 +104,17 @@ class AllBranchesSerializer(serializers.Serializer):
     branch_count = serializers.IntegerField()
 
 
-class SegmentSerializer(serializers.Serializer):
+class SegmentCountSerializer(serializers.Serializer):
     segment = serializers.CharField()
-    data = OverallFeedbackSerializerSingle(many=True)
+    option_count = serializers.IntegerField()
+
+
+class SegmentSerializer(serializers.Serializer):
+    option__text = serializers.CharField()
+    option_id = serializers.IntegerField()
+    segment_list = SegmentCountSerializer(many=True)
 
 
 class SegmentationSerializer(serializers.Serializer):
-    segments = SegmentSerializer(many=True)
-    segment_count = serializers.IntegerField()
+    options = SegmentSerializer(many=True)
+    option_count = serializers.IntegerField()

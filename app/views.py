@@ -5,6 +5,7 @@ from app.serializers import RegionSerializer, CitySerializer, BranchSerializer
 from lively import constants
 from lively.parse_utils import region_get, city_get
 from lively.utils import save_and_response, get_related_region, save, response, get_related_city
+from django.db import IntegrityError, transaction
 
 
 @api_view(['GET', 'POST'])
@@ -29,6 +30,7 @@ def region(request):
 
 
 @api_view(['GET', 'POST'])
+@transaction.atomic
 def city(request):
 
     if request.method == 'GET':
@@ -65,6 +67,7 @@ def city(request):
 
 
 @api_view(['GET', 'POST'])
+@transaction.atomic
 def branch(request):
 
     if request.method == 'GET':
