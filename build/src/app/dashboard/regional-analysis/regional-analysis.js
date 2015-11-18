@@ -19,8 +19,6 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.donut_graph_data = [];
     Graphs.regional_analysis($scope.question_type).$promise.then(function(data){
       $scope.donut_graph_data = chartService.getDonutChartData(data, $scope.question_type);
-      console.log("donut_graph_data");
-      console.log($scope.donut_graph_data);
     });
   };
 
@@ -95,23 +93,19 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   $scope.open = function(option,region){
 
-    $scope.region = region;
-
-    console.log("Region");
-    console.log(region);
-
-    Graphs.feedback_analysis_breakdown(region.id,"","",option.id).$promise.then(function(data){
-
-        $scope.donut_subgraph_data = chartService.getSubDonutChartData(data);
-        console.log("donut_subgraph_data");
-        console.log($scope.donut_subgraph_data);
-      });
-
-      if($scope.radioModel === 'SQC'){
+    if($scope.radioModel === 'SQC'){
         var modalInstance = $uibModal.open({
         templateUrl: 'dashboard/regional-analysis/sqc-modal.tpl.html',
         controller: 'SQCModalCtrl',
-        size: 1000
+        size: 1000,
+        resolve: {
+          region: function () {
+            return region;
+          },
+          option: function() {
+              return option;
+          }
+      }
 
       });
     }
@@ -120,8 +114,13 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   
 })
 
-.controller('SQCModalCtrl', function ($scope, $uibModalInstance){
+.controller('SQCModalCtrl', function ($scope, Graphs, chartService, $uibModalInstance, region, option){
+      $scope.region = region.name;
 
+      Graphs.feedback_analysis_breakdown(region.id,"","",option.id).$promise.then(function(data){
+
+        $scope.donut_subgraph_data = chartService.getSubDonutChartData(data);
+     });
 })
 
 
@@ -138,8 +137,6 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
         var data, func, options, type;
         data = scope.data;
         type = scope.type;
-        console.log("Data");
-        console.log(data);
         options = angular.extend({
           element: ele[0],
           data: data
@@ -148,8 +145,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
           func = new Function('y', 'data', options.formatter);
           options.formatter = func;
         }
-         console.log("options");
-        console.log(options);
+
         morris_chart = new Morris.Donut(options);
         morris_chart.on('click', function(i, row){
             scope.$apply(scope.action({option: row}));
@@ -159,4 +155,36 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
         
       }
   };
+})
+.directive('morrisChartModal', function() {
+    return {
+      restrict: 'A',
+      scope: {
+        data: '=',
+        type: '=',
+        options: '=',
+        action: '&'
+      },
+      link: function(scope, ele, attrs) {
+        var data, func, options, type;
+
+        data = scope.data;
+        type = scope.type;
+        options = angular.extend({
+          element: ele[0],
+          data: data
+        }, scope.options);
+
+        if (options.formatter) {
+          func = new Function('y', 'data', options.formatter);
+          options.formatter = func;
+        }
+
+        morris_chart_modal = new Morris.Donut(options);
+
+        return morris_chart_modal;
+
+      }
+  };
 });
+

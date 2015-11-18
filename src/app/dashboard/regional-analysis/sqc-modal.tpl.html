@@ -14,17 +14,14 @@
 	<a href="#" class="btn-slider glyphicon glyphicon-menu-left"></a>
 	<a href="#" class="btn-slider glyphicon glyphicon-menu-right"></a>
 
-    <h2>region: {{region.name}}</h2>
-    <ul class="info-list" ng-show = "regional_view == true">
-      <li ng-repeat = "region in regions track by $index">
-            <h2>{{region.name}}</h2>
-            <div class="graph-holder">
-              <div morris-chart data-data="donut_subgraph_data.donutData[$index]" data-type="donut" data-options="donut_subgraph_data.donutOptions[$index]"></div>
-            </div>
-            <h3>
-              <a ng-click = "showChart(region, 'cities')" style = "cursor:pointer;">{{region.name}}</a>
-            </h3>
-      </li>
-    </ul>
+
+    <div class="graph-holder">
+        {{donut_subgraph_data.donutData}}
+      <div morris-chart-modal data="donut_subgraph_data.donutData" type="donut" options="donut_subgraph_data.donutOptions"></div>
+    </div>
+    <h3>
+      <a ng-click = "showChart(region, 'cities')" style = "cursor:pointer;">{{region}}</a>
+    </h3>
+
 
   </div>

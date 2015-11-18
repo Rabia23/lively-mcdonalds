@@ -12,8 +12,6 @@ angular.module('livefeed.chart', [
   return {
     
     getDonutChartData: function(graph_data, question_type){
-      console.log("Chart js graph data");
-      console.log(graph_data);
       return {
         objects: _.map(graph_data.analysis,  function(data){ return {name: data.object.name, id: data.object.id};}),
         donutData: _.map(graph_data.analysis,  function(data){ 
@@ -31,8 +29,6 @@ angular.module('livefeed.chart', [
     },
 
     getSubDonutChartData: function(graph_data){
-      console.log("Chart js sub graph data");
-      console.log(graph_data);
       return {
           donutData: _.map(graph_data.feedbacks,  function(data){
             return {label: data.option__text, value: data.count};
