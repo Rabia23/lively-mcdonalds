@@ -197,6 +197,28 @@ def generate_missing_sub_options(option_id, data):
     return list_feedback
 
 
+def generate_segmentation(data):
+    segments = []
+    for segment in constants.segments:
+        segments.append({
+            "segment": constants.segments[segment],
+            "data": [feedbackOption for feedbackOption in data if feedbackOption.feedback.get_segment() == constants.segments[segment]],
+        })
+    return segments
+
+
+def generate_option_group(data, options):
+    option_groups = []
+    for option in options:
+        list = [feedbackOption for feedbackOption in data if feedbackOption.option_id == option.id]
+        option_groups.append({
+            "option__text": option.text,
+            "option_id": option.id,
+            "count": len(list),
+        })
+    return option_groups
+
+
 def get_filtered_feedback_options(feedback_options, type, object):
     if type == constants.CITY_ANALYSIS:
         filtered_feedback_options = feedback_options.filter(feedback__branch__city__exact=object.id)
@@ -224,4 +246,20 @@ def send_mail(subject, context, recipients, text_template, html_template):
     message = EmailMultiAlternatives(subject, text_content, from_email, to)
     message.attach_alternative(html_content, "text/html")
     message.send()
+
+
+def apply_general_filters(data, region_id, city_id, branch_id):
+    if region_id and city_id and branch_id:
+        data = data.filter(
+            feedback__branch__exact=branch_id,
+            feedback__branch__city__exact=city_id,
+            feedback__branch__city__region__exact=region_id)
+    elif region_id and city_id:
+        data = data.filter(
+            feedback__branch__city__exact=city_id,
+            feedback__branch__city__region__exact=region_id)
+    elif region_id:
+        data = data.filter(
+            feedback__branch__city__region__exact=region_id)
+    return data
 

@@ -59,7 +59,7 @@ class FeedbackAnalysisSerializer(serializers.Serializer):
 
 
 class OverallRattingSerializer(serializers.Serializer):
-    date = serializers.DateTimeField()
+    date = serializers.CharField()
     data = OverallFeedbackSerializer()
 
 
@@ -103,3 +103,12 @@ class AllBranchesSerializer(serializers.Serializer):
     branches = MapViewBranchSerializer(many=True)
     branch_count = serializers.IntegerField()
 
+
+class SegmentSerializer(serializers.Serializer):
+    segment = serializers.CharField()
+    data = OverallFeedbackSerializerSingle(many=True)
+
+
+class SegmentationSerializer(serializers.Serializer):
+    segments = SegmentSerializer(many=True)
+    segment_count = serializers.IntegerField()

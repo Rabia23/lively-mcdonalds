@@ -195,12 +195,11 @@ def get_time(constant):
 
 
 def get_converted_time(time):
-    fmt = "%Y-%m-%d %H:%M:%S"
-    time = time.strftime(fmt)
+    time = time.strftime(constants.DATE_FORMAT)
 
     from_zone = tz.gettz('UTC')
     to_zone = tz.gettz('Asia/Karachi')
-    utc = datetime.strptime(str(time), fmt)
+    utc = datetime.strptime(str(time), constants.DATE_FORMAT)
     utc = utc.replace(tzinfo=from_zone)
     converted_time = utc.astimezone(to_zone)
     return converted_time.time()

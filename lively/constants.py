@@ -64,3 +64,6 @@ shifts = {
     "02:00": "Close",
     "06:00": "Overnight",
 }
+
+#------------ Date Format Constants -------------
+DATE_FORMAT = "%Y-%m-%d %H:%M:%S"

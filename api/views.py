@@ -9,9 +9,10 @@ from app.models import Region, City, Branch
 from app.serializers import RegionSerializer, CitySerializer, UserSerializer
 from feedback.models import Question, FeedbackOption, Option, Feedback
 from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer, \
-    PositiveNegativeFeedbackSerializer, AllCommentsSerializer, AllBranchesSerializer
+    PositiveNegativeFeedbackSerializer, AllCommentsSerializer, AllBranchesSerializer, SegmentationSerializer
 from lively import constants
-from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options
+from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options, \
+    generate_segmentation, generate_option_group, apply_general_filters
 from dateutil import rrule
 from datetime import datetime, timedelta
 from django.core.paginator import Paginator
@@ -83,19 +84,7 @@ def overall_feedback(request):
 
             question = Question.objects.get(type=constants.MAIN_QUESTION)
             filtered_feedback_options = FeedbackOption.objects.filter(option__in=question.options.values_list('id'))
-
-            if region_id and city_id and branch_id:
-                filtered_feedback_options = filtered_feedback_options.filter(
-                    feedback__branch__exact=branch_id,
-                    feedback__branch__city__exact=city_id,
-                    feedback__branch__city__region__exact=region_id)
-            elif region_id and city_id:
-                filtered_feedback_options = filtered_feedback_options.filter(
-                    feedback__branch__city__exact=city_id,
-                    feedback__branch__city__region__exact=region_id)
-            elif region_id:
-                filtered_feedback_options = filtered_feedback_options.filter(
-                    feedback__branch__city__region__exact=region_id)
+            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id)
 
             filtered_feedback_options_count = filtered_feedback_options.count()
             feedback_options = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').\
@@ -170,20 +159,7 @@ def feedback_analysis_breakdown(request):
                 filtered_feedback_options = FeedbackOption.objects.filter(option__in=option.children.values_list('id'),
                 feedback__in=FeedbackOption.objects.filter(option_id=option_id).values_list('feedback_id'))
 
-
-                if region_id and city_id and branch_id:
-                    filtered_feedback_options = filtered_feedback_options.filter(
-                        feedback__branch__exact=branch_id,
-                        feedback__branch__city__exact=city_id,
-                        feedback__branch__city__region__exact=region_id)
-                elif region_id and city_id:
-                    filtered_feedback_options = filtered_feedback_options.filter(
-                        feedback__branch__city__exact=city_id,
-                        feedback__branch__city__region__exact=region_id)
-                elif region_id:
-                    filtered_feedback_options = filtered_feedback_options.filter(
-                        feedback__branch__city__region__exact=region_id)
-
+                filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id)
                 filtered_feedback_options_count = filtered_feedback_options .count()
                 list_feedback = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').\
                     annotate(count=Count('option_id'))
@@ -220,18 +196,7 @@ def overall_rating(request):
                     option__in=question.options.filter(parent=None).values_list('id'),
                     created_at__gte=datetime.now() - timedelta(days=constants.NO_OF_DAYS))
 
-            if region_id and city_id and branch_id:
-                filtered_feedback_options = filtered_feedback_options.filter(
-                    feedback__branch__exact=branch_id,
-                    feedback__branch__city__exact=city_id,
-                    feedback__branch__city__region__exact=region_id)
-            elif region_id and city_id:
-                filtered_feedback_options = filtered_feedback_options.filter(
-                    feedback__branch__city__exact=city_id,
-                    feedback__branch__city__region__exact=region_id)
-            elif region_id:
-                filtered_feedback_options = filtered_feedback_options.filter(
-                    feedback__branch__city__region__exact=region_id)
+            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id)
 
             now = datetime.now()
             start_date = now - timedelta(days=constants.NO_OF_DAYS)
@@ -244,6 +209,7 @@ def overall_rating(request):
                 else:
                     list_feedback = generate_missing_options(question, filtered_feedbacks)
                 date_data = {'feedback_count': feedbacks.count(), 'feedbacks': list_feedback}
+                single_date = datetime.strptime(str(single_date), constants.DATE_FORMAT)
                 feedback_records_list.append({'date': single_date, 'data': date_data})
 
             feedback_response = OverallRattingSerializer(feedback_records_list, many=True)
@@ -273,19 +239,7 @@ def category_performance(request):
                 filtered_feedback_options = FeedbackOption.objects.filter(
                 option__in=question.options.filter(parent=None).values_list('id'))
 
-            if region_id and city_id and branch_id:
-                filtered_feedback_options = filtered_feedback_options.filter(
-                    feedback__branch__exact=branch_id,
-                    feedback__branch__city__exact=city_id,
-                    feedback__branch__city__region__exact=region_id)
-            elif region_id and city_id:
-                filtered_feedback_options = filtered_feedback_options.filter(
-                    feedback__branch__city__exact=city_id,
-                    feedback__branch__city__region__exact=region_id)
-            elif region_id:
-                filtered_feedback_options = filtered_feedback_options.filter(
-                    feedback__branch__city__region__exact=region_id)
-
+            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id)
             filtered_feedback_options_count = filtered_feedback_options.count()
             filtered_feedbacks = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').\
                 annotate(count=Count('option_id'))
@@ -333,20 +287,8 @@ def positive_negative_feedback(request):
             city_id = request.query_params.get('city', None)
             branch_id = request.query_params.get('branch', None)
 
-            if region_id and city_id and branch_id:
-                filtered_feedback_options = Feedback.objects.filter(
-                    feedback__branch__exact=branch_id,
-                    feedback__branch__city__exact=city_id,
-                    feedback__branch__city__region__exact=region_id)
-            elif region_id and city_id:
-                filtered_feedback_options = Feedback.objects.filter(
-                    feedback__branch__city__exact=city_id,
-                    feedback__branch__city__region__exact=region_id)
-            elif region_id:
-                filtered_feedback_options = Feedback.objects.filter(
-                    feedback__branch__city__region__exact=region_id)
-            else:
-                filtered_feedback_options = Feedback.objects.all()
+            filtered_feedback_options = Feedback.objects.all()
+            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id)
 
             negative_feedback = filtered_feedback_options.filter(
                 feedback_option__option__score__in=constants.NEGATIVE_SCORE_LIST).\
@@ -373,19 +315,7 @@ def comments(request):
             page = request.query_params.get('page', 1)
 
             filtered_feedback = Feedback.objects.filter().exclude(comment__isnull=True).exclude(comment__exact='')
-
-            if region_id and city_id and branch_id:
-                filtered_feedback = filtered_feedback.filter(
-                    branch__exact=branch_id,
-                    branch__city__exact=city_id,
-                    branch__city__region__exact=region_id)
-            elif region_id and city_id:
-                filtered_feedback = filtered_feedback.filter(
-                    branch__city__exact=city_id,
-                    branch__city__region__exact=region_id)
-            elif region_id:
-                filtered_feedback = filtered_feedback.filter(
-                    branch__city__region__exact=region_id)
+            filtered_feedback = apply_general_filters(filtered_feedback, region_id, city_id, branch_id)
 
             filtered_feedback_count = filtered_feedback.count()
             paginator = Paginator(filtered_feedback, constants.COMMENTS_PER_PAGE)
@@ -416,5 +346,53 @@ def map_view(request):
             feedback_response = AllBranchesSerializer(data)
             return Response(feedback_response.data)
 
+        except Exception as e:
+            return Response(None)
+
+
+@api_view(['GET'])
+def feedback_segmentation(request):
+    if request.method == 'GET':
+        feedback_records_list = []
+
+        try:
+            region_id = request.query_params.get('region', None)
+            city_id = request.query_params.get('city', None)
+            branch_id = request.query_params.get('branch', None)
+            option_id = request.query_params.get('option', None)
+
+            date = request.query_params.get('date', None)
+            if date:
+                date = datetime.strptime(date, constants.DATE_FORMAT).date()
+            else:
+                return Response(None)
+
+            question = Question.objects.get(type=constants.SECONDARY_QUESTION)
+
+            if option_id:
+                option = Option.objects.get(id=option_id)
+                options = option.children.all()
+                filtered_feedback_options = FeedbackOption.objects.filter(
+                    option__in=Option.objects.filter(parent=option_id).values_list('id'),
+                    feedback__created_at__contains=date)
+            else:
+                options = question.options.all()
+                filtered_feedback_options = FeedbackOption.objects.filter(
+                    option__in=question.options.filter(parent=None).values_list('id'),
+                    feedback__created_at__contains=date)
+
+            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id)
+            feedback_segmented_data = generate_segmentation(filtered_feedback_options)
+
+            feedback_segmented_list = []
+            for feedback_segment in feedback_segmented_data:
+                feedback_segmented_list.append({
+                        "segment": feedback_segment["segment"],
+                        "data": generate_option_group(feedback_segment["data"], options)
+                    })
+
+            data = {'segment_count': len(feedback_segmented_list), 'segments': feedback_segmented_list}
+            feedback_response = SegmentationSerializer(data)
+            return Response(feedback_response.data)
         except Exception as e:
             return Response(None)
