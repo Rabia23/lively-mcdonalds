@@ -1,27 +1,14 @@
-<div class="modal-body info-area" ng-controller = "RegionalAnalysisCtrl" ng-class="{loading: show_loading}">
-    <h2 ng-show = "regional_view">Regional Analysis</h2>
-    <!--<h2 ng-show = "regional_view == false && city_view == true">{{selected_region.name}} Region City Analysis</h2>-->
-    <!--<h2 ng-show = "regional_view == false && city_view == false">{{selected_city.name}} City Branch Analysis</h2>-->
-    <!--<div class = "breadcrum">-->
-      <!--<span ng-hide = "regional_view">-->
-        <!--<a ng-click = "backToRegions()" style = "style: cursor:pointer">Regions /</a>-->
-      <!--</span>-->
-      <!--<span ng-show = "regional_view == false && city_view == false">-->
-        <!--<a ng-click = "backToCities(selected_region)" style = "cursor:pointer;">{{selected_region.name}} /</a>-->
-      <!--</span>-->
-    <!--</div>-->
-	
+<div class="modal-body info-area">
+  <h2 ng-show = "regional_view">Regional Analysis</h2>
 	<a href="#" class="btn-slider glyphicon glyphicon-menu-left"></a>
 	<a href="#" class="btn-slider glyphicon glyphicon-menu-right"></a>
 
-
-    <div class="graph-holder">
-        {{donut_subgraph_data.donutData}}
-      <div morris-chart-modal data="donut_subgraph_data.donutData" type="donut" options="donut_subgraph_data.donutOptions"></div>
-    </div>
-    <h3>
-      <a ng-click = "showChart(region, 'cities')" style = "cursor:pointer;">{{region}}</a>
-    </h3>
-
-
+  <div class="graph-holder">
+    <div morris-chart-modal data-data="donut_subgraph_data.donutData" data-type="donut" data-options="donut_subgraph_data.donutOptions"></div>
   </div>
+  <h3>
+    <a ng-click = "showChart(region, 'cities')" style = "cursor:pointer;">{{region}}</a>
+  </h3>
+
+
+</div>

@@ -137,6 +137,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
         var data, func, options, type;
         data = scope.data;
         type = scope.type;
+
         options = angular.extend({
           element: ele[0],
           data: data
@@ -166,23 +167,29 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
         action: '&'
       },
       link: function(scope, ele, attrs) {
-        var data, func, options, type;
+        
 
-        data = scope.data;
-        type = scope.type;
-        options = angular.extend({
-          element: ele[0],
-          data: data
-        }, scope.options);
+        scope.$watch('data', function(watchedData) {
+          if(watchedData !== undefined){
+            var data, func, options, type;
+            data = scope.data;
+            type = scope.type;
 
-        if (options.formatter) {
-          func = new Function('y', 'data', options.formatter);
-          options.formatter = func;
-        }
+            options = angular.extend({
+              element: ele[0],
+              data: data
+            }, scope.options);
 
-        morris_chart_modal = new Morris.Donut(options);
+            if (options.formatter) {
+              func = new Function('y', 'data', options.formatter);
+              options.formatter = func;
+            }
 
-        return morris_chart_modal;
+            morris_chart_modal = new Morris.Donut(options);
+            return morris_chart_modal;        
+
+          }
+        });
 
       }
   };

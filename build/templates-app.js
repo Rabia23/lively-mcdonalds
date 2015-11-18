@@ -163,38 +163,38 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
 angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/positive-negative-feedback/comments-modal.tpl.html",
     "<div class=\"modal-header\">\n" +
-    "    <a ng-click = \"cancel()\" class=\"pull-right close-btn-font\"><i class=\"glyphicon glyphicon-remove\"></i></a>\n" +
-    "   	<h2>Positive Negative Feedback</h2>\n" +
+    "  <a ng-click = \"cancel()\" class=\"pull-right close-btn-font\"><i class=\"glyphicon glyphicon-remove\"></i></a>\n" +
+    "  <h2>Positive Negative Feedback</h2>\n" +
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
     " <div id=\"scrollbar\" custom-scroll>\n" +
-    " 	<table class=\"table\">\n" +
-    " 		<thead>\n" +
-    " 			<tr>\n" +
-    " 				<th class=\"item1\">Name</th>\n" +
-    " 				<th class=\"item2\">Phone Number</th>\n" +
-    " 				<th class=\"item3\">Branch</th>\n" +
-    " 				<th class=\"item4\">Segment</th>\n" +
-    " 				<th class=\"item5\">Comments</th>\n" +
-    " 			</tr>\n" +
-    " 		</thead>\n" +
-    " 	</table>\n" +
-    " 	<div id=\"scrollbox2\" ng-class = \"{loading: lock}\" custom-scroll when-scrolled=\"getMoreComments()\">\n" +
-    " 	 	<table class=\"table\">\n" +
-    " 			<tbody>\n" +
-    " 				<tr ng-repeat = \"comment in comments\">\n" +
-    " 					<td class=\"item1\">{{comment.user_name}}</td>\n" +
-    " 					<td class=\"item2\">\n" +
-    " 						<a href=\"tel:{{comment.user_phone}}\" class=\"tel\">{{comment.user_phone}}</a>\n" +
-    " 					</td>\n" +
-    " 					<td class=\"item3\">{{comment.branch}}</td>\n" +
-    " 					<td class=\"item4\">N/A</td>\n" +
-    " 					<td class=\"item5\">{{comment.comment}}</td>\n" +
-    " 				</tr>\n" +
-    " 			</tbody>\n" +
-    " 	 	</table>\n" +
-    " 	 	<span class=\"loader\"></span>\n" +
-    " 	</div>\n" +
+    "  <table class=\"table\">\n" +
+    "    <thead>\n" +
+    "      <tr>\n" +
+    "        <th class=\"item1\">Name</th>\n" +
+    "        <th class=\"item2\">Phone Number</th>\n" +
+    "        <th class=\"item3\">Branch</th>\n" +
+    "        <th class=\"item4\">Segment</th>\n" +
+    "        <th class=\"item5\">Comments</th>\n" +
+    "      </tr>\n" +
+    "    </thead>\n" +
+    "  </table>\n" +
+    "  <div id=\"scrollbox2\" ng-class = \"{loading: lock}\" custom-scroll when-scrolled=\"getMoreComments()\">\n" +
+    "    <table class=\"table\">\n" +
+    "      <tbody>\n" +
+    "        <tr ng-repeat = \"comment in comments\">\n" +
+    "          <td class=\"item1\">{{comment.user_name}}</td>\n" +
+    "          <td class=\"item2\">\n" +
+    "            <a href=\"tel:{{comment.user_phone}}\" class=\"tel\">{{comment.user_phone}}</a>\n" +
+    "          </td>\n" +
+    "          <td class=\"item3\">{{comment.branch}}</td>\n" +
+    "          <td class=\"item4\">N/A</td>\n" +
+    "          <td class=\"item5\">{{comment.comment}}</td>\n" +
+    "        </tr>\n" +
+    "      </tbody>\n" +
+    "    </table>\n" +
+    "    <span class=\"loader\"></span>\n" +
+    "  </div>\n" +
     " </div>\n" +
     "</div>");
 }]);
@@ -292,33 +292,20 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
 
 angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/regional-analysis/sqc-modal.tpl.html",
-    "<div class=\"modal-body info-area\" ng-controller = \"RegionalAnalysisCtrl\" ng-class=\"{loading: show_loading}\">\n" +
-    "    <h2 ng-show = \"regional_view\">Regional Analysis</h2>\n" +
-    "    <!--<h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis</h2>-->\n" +
-    "    <!--<h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}} City Branch Analysis</h2>-->\n" +
-    "    <!--<div class = \"breadcrum\">-->\n" +
-    "      <!--<span ng-hide = \"regional_view\">-->\n" +
-    "        <!--<a ng-click = \"backToRegions()\" style = \"style: cursor:pointer\">Regions /</a>-->\n" +
-    "      <!--</span>-->\n" +
-    "      <!--<span ng-show = \"regional_view == false && city_view == false\">-->\n" +
-    "        <!--<a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}} /</a>-->\n" +
-    "      <!--</span>-->\n" +
-    "    <!--</div>-->\n" +
-    "	\n" +
+    "<div class=\"modal-body info-area\">\n" +
+    "  <h2 ng-show = \"regional_view\">Regional Analysis</h2>\n" +
     "	<a href=\"#\" class=\"btn-slider glyphicon glyphicon-menu-left\"></a>\n" +
     "	<a href=\"#\" class=\"btn-slider glyphicon glyphicon-menu-right\"></a>\n" +
     "\n" +
-    "\n" +
-    "    <div class=\"graph-holder\">\n" +
-    "        {{donut_subgraph_data.donutData}}\n" +
-    "      <div morris-chart-modal data=\"donut_subgraph_data.donutData\" type=\"donut\" options=\"donut_subgraph_data.donutOptions\"></div>\n" +
-    "    </div>\n" +
-    "    <h3>\n" +
-    "      <a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{region}}</a>\n" +
-    "    </h3>\n" +
+    "  <div class=\"graph-holder\">\n" +
+    "    <div morris-chart-modal data-data=\"donut_subgraph_data.donutData\" data-type=\"donut\" data-options=\"donut_subgraph_data.donutOptions\"></div>\n" +
+    "  </div>\n" +
+    "  <h3>\n" +
+    "    <a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{region}}</a>\n" +
+    "  </h3>\n" +
     "\n" +
     "\n" +
-    "  </div>");
+    "</div>");
 }]);
 
 angular.module("dashboard/statistics/statistics.tpl.html", []).run(["$templateCache", function($templateCache) {

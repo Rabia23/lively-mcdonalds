@@ -53,10 +53,6 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     });
   };
 
-  // $scope.items = items;
-  // $scope.selected = {
-  //   item: $scope.items[0]
-  // };
 
   $scope.ok = function () {
     $uibModalInstance.close($scope.selected.item);
