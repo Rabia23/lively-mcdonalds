@@ -333,8 +333,6 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
         var morris_chart_modal = null;
 
         scope.$watch('data', function(watchedData) {
-          //console.log(" outside watchedData");
-          //console.log(watchedData);
           if(watchedData !== undefined){
             var data, func, options, type;
             data = scope.data;
