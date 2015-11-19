@@ -1,14 +1,13 @@
 <div class="modal-body info-area">
-  <h2 ng-show = "regional_view">Regional Analysis</h2>
-	<a href="#" class="btn-slider glyphicon glyphicon-menu-left"></a>
-	<a href="#" class="btn-slider glyphicon glyphicon-menu-right"></a>
+  <h2>Regional Analysis</h2>
+	<a href="#" class="btn-slider glyphicon glyphicon-menu-left" ng-click="previous(region,city,branch,sqc_data)"></a>
+	<a href="#" class="btn-slider glyphicon glyphicon-menu-right" ng-click="next(region,city,branch,sqc_data)"></a>
 
   <div class="graph-holder">
     <div morris-chart-modal data-data="donut_subgraph_data.donutData" data-type="donut" data-options="donut_subgraph_data.donutOptions"></div>
   </div>
   <h3>
-    <a ng-click = "showChart(region, 'cities')" style = "cursor:pointer;">{{region}}</a>
+    <a ng-click = "showChart(region, 'cities')" style = "cursor:pointer;">{{ region.name }}</a>
   </h3>
-
 
 </div>
