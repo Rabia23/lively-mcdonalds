@@ -82,22 +82,21 @@
         padding: 0 10px 5px 8px;
 		position: relative;
 		
-		  &:after{
+		  .bullet{
 			  position: absolute;
 			  left: 0;
 			  top: 50%;
-			  content: "";
 			  border-radius: 100%;
 			  -webkit-border-radius: 100%;
 			  width: 5px;
 			  height: 5px;
+        ovflow:hidden;
 			  margin-top: -5px;
-			  background: $golden-poppy;
 		  }
         
         @include media("≥tablet"){
 			padding: 0 14px 10px 12px;
-			&:after{
+			.bullet{
 				margin-top: -8px;
 				width: 7px;
 				height: 7px;

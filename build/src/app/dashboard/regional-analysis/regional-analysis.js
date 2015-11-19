@@ -115,50 +115,49 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 })
 
 .controller('SQCModalCtrl', function ($scope, Graphs, chartService, $uibModalInstance, region, option){
-      $scope.region = region.name;
+  $scope.region = region.name;
 
-      Graphs.feedback_analysis_breakdown(region.id,"","",option.id).$promise.then(function(data){
-
-        $scope.donut_subgraph_data = chartService.getSubDonutChartData(data);
-     });
+  Graphs.feedback_analysis_breakdown(region.id,"","",option.id).$promise.then(function(data){
+    $scope.donut_subgraph_data = chartService.getSubDonutChartData(data);
+ });
 })
 
 
 .directive('morrisChart', function() {
-    return {
-      restrict: 'A',
-      scope: {
-        data: '=',
-        type: '=',
-        options: '=',
-        action: '&'
-      },
-      link: function(scope, ele, attrs) {
-        var data, func, options, type;
-        data = scope.data;
-        type = scope.type;
+  return {
+    restrict: 'A',
+    scope: {
+      data: '=',
+      type: '=',
+      options: '=',
+      action: '&'
+    },
+    link: function(scope, ele, attrs) {
+      var data, func, options, type;
+      data = scope.data;
+      type = scope.type;
 
-        options = angular.extend({
-          element: ele[0],
-          data: data
-        }, scope.options);
-        if (options.formatter) {
-          func = new Function('y', 'data', options.formatter);
-          options.formatter = func;
-        }
-
-        morris_chart = new Morris.Donut(options);
-        morris_chart.on('click', function(i, row){
-            scope.$apply(scope.action({option: row}));
-
-        });
-        return morris_chart;
-        
+      options = angular.extend({
+        element: ele[0],
+        data: data
+      }, scope.options);
+      if (options.formatter) {
+        func = new Function('y', 'data', options.formatter);
+        options.formatter = func;
       }
+
+      morris_chart = new Morris.Donut(options);
+      morris_chart.on('click', function(i, row){
+          scope.$apply(scope.action({option: row}));
+
+      });
+      return morris_chart;
+      
+    }
   };
 })
 .directive('morrisChartModal', function() {
-    return {
+  return {
       restrict: 'A',
       scope: {
         data: '=',

@@ -41,13 +41,19 @@ angular.module( 'factories', [
                         branch.position = branch.latitude +"," +branch.longitude;
                       });
                       return data;
-                    }}
+                    }},
+                    feedback_segmentation: {method: "JSONP",isArray: false, params: {endpoint: "feedback_segmentation"}}
                  });
   }
 
   Graphs.prototype.overall_rating = function(option_id){
     option_id = option_id || "";
     return this.service.overall_rating({option: option_id});
+  };
+
+  Graphs.prototype.feedback_segmentation = function(date, option_id){
+    date = date || "";
+    return this.service.feedback_segmentation({date: date, option: option_id});
   };
 
   Graphs.prototype.map_view = function(){

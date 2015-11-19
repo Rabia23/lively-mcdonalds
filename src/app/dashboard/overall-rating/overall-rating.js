@@ -22,11 +22,14 @@ angular.module( 'livefeed.dashboard.overall_rating', [
     Graphs.overall_rating().$promise.then(function(data){
       $scope.show_loading = false; 
       $scope.line1 = chartService.getLineChart(data);
+      $scope.dates = _.map(data, function(value){
+        return value.date;
+      });
       $scope.labels = _.map(data[0].data.feedbacks ,function(value){
         return {parent_id: value.option__parent_id, id: value.option_id, value: value.option__text,
                 color: Global.optionsColorScheme[value.option__text], priority: Global.sqcPriority[value.option__text]};
       });
-      $scope.labels = _.sortBy($scope.labels, function(value){ return value.priority; });
+      //$scope.labels = _.sortBy($scope.labels, function(value){ return value.priority; });
     });
   }
 
@@ -43,19 +46,20 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
 
   $scope.optionClick = function (event, pos, item){
-    console.log(item);
     var option = $scope.labels[item.seriesIndex];
+    var date = $scope.dates[item.dataIndex];
     if(option.parent_id == null){
-      $scope.show_loading = true; 
       var parent_color = option.color;
-      Graphs.overall_rating(option.id).$promise.then(function(data){
-        $scope.show_loading = false; 
+      $scope.show_loading = true;
+      Graphs.feedback_segmentation(date, option.id).$promise.then(function(data){
+        console.log(data);
+        $scope.show_loading = false;
         $scope.mainView = false;
-        $scope.line1 = chartService.getLineChart(data, parent_color);
-        $scope.labels = _.map(data[0].data.feedbacks ,function(value, index){
-          return {parent_id: value.option__parent_id,id: value.option_id, value: value.option__text, color: colors(index, option.parent_id, parent_color, value.option__text)};
+        $scope.line1 = chartService.getSegmentLineChart(data, parent_color);
+        $scope.labels =  _.map(data.options,function(value, index){
+          return {value: value.option__text, parent_id: option.id, color: colors(index, option.parent_id, parent_color, value.option__text)};
         });
-      });
+      }); 
     }
       
   };
