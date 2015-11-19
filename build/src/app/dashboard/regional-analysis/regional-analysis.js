@@ -126,6 +126,9 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 })
 
 .controller('SQCModalCtrl', function ($scope, Graphs, chartService, $uibModalInstance, region, city, branch, option){
+      $scope.leftClickDisabled = false;
+      $scope.rightClickDisabled = false;
+
       $scope.showGraph = function(region, city, branch, option){
           Graphs.feedback_analysis_breakdown(region.id,city.id,branch.id,option.id).$promise.then(function(data){
              $scope.donut_subgraph_data = chartService.getSubDonutChartData(data);
@@ -177,6 +180,11 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       $scope.findNextSQC = function(sqc,sqc_data){
         var next_sqc;
         var indexx = _.findIndex(sqc_data, sqc);
+        if(indexx == sqc_data.length-1){
+          $scope.rightClickDisabled = true;
+          console.log("disabled right click");
+          return null;
+        }
         _.map(sqc_data, function(data, index){
              if (_.isEqual(index, indexx+1)) {
               next_sqc = data;
@@ -187,6 +195,11 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       $scope.findPrevSQC = function(sqc,sqc_data){
         var prev_sqc;
         var indexx = _.findIndex(sqc_data, sqc);
+        if(indexx === 0){
+          $scope.leftClickDisabled = true;
+          console.log("disabled left click");
+          return null;
+        }
         _.map(sqc_data, function(data, index){
              if (_.isEqual(index, indexx-1)) {
               prev_sqc = data;
@@ -198,56 +211,80 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
         var next_sqc_data;
         if(city == null && branch == null){
           next_sqc_data = $scope.findNextSQC(region,sqc_data);
-          $scope.region = next_sqc_data;
-          $scope.city = null;
-          $scope.branch = null;
-          $scope.sqc = next_sqc_data;
-          $scope.showGraph(next_sqc_data,"","", option);
+          if(next_sqc_data != null){
+             $scope.region = next_sqc_data;
+             $scope.city = null;
+             $scope.branch = null;
+             $scope.sqc = next_sqc_data;
+             $scope.showGraph(next_sqc_data,"","", option);
+          }
+          $scope.rightClickDisabled = false;
+          console.log("right click enabled");
         }
         else if(branch == null){
           next_sqc_data = $scope.findNextSQC(city,sqc_data);
-          $scope.region = region;
-          $scope.city = next_sqc_data;
-          $scope.branch = null;
-          $scope.sqc = next_sqc_data;
-          $scope.showGraph(region,next_sqc_data,"", option);
+          if(next_sqc_data != null){
+            $scope.region = region;
+            $scope.city = next_sqc_data;
+            $scope.branch = null;
+            $scope.sqc = next_sqc_data;
+            $scope.showGraph(region,next_sqc_data,"", option);
+          }
+           $scope.rightClickDisabled = false;
+           console.log("right click enabled");
         }
         else{
           next_sqc_data = $scope.findNextSQC(branch,sqc_data);
-          $scope.region = region;
-          $scope.city = city;
-          $scope.branch = next_sqc_data;
-          $scope.sqc = next_sqc_data;
-          $scope.showGraph(region,city,next_sqc_data, option);
+          if(next_sqc_data != null){
+            $scope.region = region;
+            $scope.city = city;
+            $scope.branch = next_sqc_data;
+            $scope.sqc = next_sqc_data;
+            $scope.showGraph(region,city,next_sqc_data, option);
+          }
+           $scope.rightClickDisabled = false;
+           console.log("right click enabled");
         }
 
 
       };
       $scope.previous = function(region,city,branch,sqc_data){
         var prev_sqc_data;
-        if(city == null && branch == null){
-          prev_sqc_data = $scope.findPrevSQC(region,sqc_data);
-          $scope.region = prev_sqc_data;
-          $scope.city = null;
-          $scope.branch = null;
-          $scope.sqc = prev_sqc_data;
-          $scope.showGraph(prev_sqc_data,"","", option);
+        if(city == null && branch == null) {
+          prev_sqc_data = $scope.findPrevSQC(region, sqc_data);
+          if (prev_sqc_data != null) {
+            $scope.region = prev_sqc_data;
+            $scope.city = null;
+            $scope.branch = null;
+            $scope.sqc = prev_sqc_data;
+            $scope.showGraph(prev_sqc_data, "", "", option);
+          }
+          $scope.leftClickDisabled = false;
+          console.log("left click enabled");
         }
         else if(branch == null){
           prev_sqc_data = $scope.findPrevSQC(city,sqc_data);
-          $scope.region = region;
-          $scope.city = prev_sqc_data;
-          $scope.branch = null;
-          $scope.sqc = prev_sqc_data;
-          $scope.showGraph(region,prev_sqc_data,"", option);
+          if (prev_sqc_data != null) {
+            $scope.region = region;
+            $scope.city = prev_sqc_data;
+            $scope.branch = null;
+            $scope.sqc = prev_sqc_data;
+            $scope.showGraph(region, prev_sqc_data, "", option);
+          }
+           $scope.leftClickDisabled = false;
+           console.log("left click enabled");
         }
         else{
           prev_sqc_data = $scope.findPrevSQC(branch,sqc_data);
-          $scope.region = region;
-          $scope.city = city;
-          $scope.branch = prev_sqc_data;
-          $scope.sqc = prev_sqc_data;
-          $scope.showGraph(region,city,prev_sqc_data, option);
+          if (prev_sqc_data != null) {
+            $scope.region = region;
+            $scope.city = city;
+            $scope.branch = prev_sqc_data;
+            $scope.sqc = prev_sqc_data;
+            $scope.showGraph(region, city, prev_sqc_data, option);
+          }
+           $scope.leftClickDisabled = false;
+           console.log("left click enabled");
         }
 
       };
