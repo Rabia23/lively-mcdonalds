@@ -301,7 +301,7 @@ angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$temp
     "    <div morris-chart-modal data-data=\"donut_subgraph_data.donutData\" data-type=\"donut\" data-options=\"donut_subgraph_data.donutOptions\"></div>\n" +
     "  </div>\n" +
     "  <h3>\n" +
-    "    <a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{ region.name }}</a>\n" +
+    "    <a style = \"cursor:pointer;\">{{ sqc.name }}</a>\n" +
     "  </h3>\n" +
     "\n" +
     "</div>");
