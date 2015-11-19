@@ -201,12 +201,12 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   $scope.findSqcData = function(region,city,branch,sqc_data,string){
     var next_sqc_data, prev_sqc_data;
     if(city == null && branch == null){
+      $scope.city = null;
+      $scope.branch = null;
       if(string == "next"){
         next_sqc_data = $scope.findNextSQC(region,sqc_data);
         if(next_sqc_data != null){
            $scope.region = next_sqc_data;
-           $scope.city = null;
-           $scope.branch = null;
            $scope.sqc = next_sqc_data;
            $scope.showGraph(next_sqc_data,"","", option);
         }
@@ -216,8 +216,6 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
         prev_sqc_data = $scope.findPrevSQC(region, sqc_data);
         if (prev_sqc_data != null) {
           $scope.region = prev_sqc_data;
-          $scope.city = null;
-          $scope.branch = null;
           $scope.sqc = prev_sqc_data;
           $scope.showGraph(prev_sqc_data, "", "", option);
         }
@@ -225,12 +223,12 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       }
     }
     else if(branch == null) {
+      $scope.region = region;
+      $scope.branch = null;
       if (string == "next") {
         next_sqc_data = $scope.findNextSQC(city, sqc_data);
         if (next_sqc_data != null) {
-          $scope.region = region;
           $scope.city = next_sqc_data;
-          $scope.branch = null;
           $scope.sqc = next_sqc_data;
           $scope.showGraph(region, next_sqc_data, "", option);
         }
@@ -239,9 +237,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       else if (string == "previous") {
         prev_sqc_data = $scope.findPrevSQC(city, sqc_data);
         if (prev_sqc_data != null) {
-          $scope.region = region;
           $scope.city = prev_sqc_data;
-          $scope.branch = null;
           $scope.sqc = prev_sqc_data;
           $scope.showGraph(region, prev_sqc_data, "", option);
         }
@@ -249,11 +245,11 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       }
     }
     else{
+      $scope.region = region;
+      $scope.city = city;
       if(string == "next"){
         next_sqc_data = $scope.findNextSQC(branch,sqc_data);
         if(next_sqc_data != null){
-          $scope.region = region;
-          $scope.city = city;
           $scope.branch = next_sqc_data;
           $scope.sqc = next_sqc_data;
           $scope.showGraph(region,city,next_sqc_data, option);
@@ -263,8 +259,6 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       else if (string == "previous") {
           prev_sqc_data = $scope.findPrevSQC(branch,sqc_data);
           if (prev_sqc_data != null) {
-            $scope.region = region;
-            $scope.city = city;
             $scope.branch = prev_sqc_data;
             $scope.sqc = prev_sqc_data;
             $scope.showGraph(region, city, prev_sqc_data, option);
