@@ -48,19 +48,27 @@ angular.module( 'helper_factories', ['ngResource'])
       ranges: [_.range(0,15), _.range(15,30), _.range(30, 45), _.range(45, 60), _.range(60, 75), _.range(75,101)]
     },
 
-    childColor: function(index, parent_color){
-      if(index === 0){
-        return "#F5C40F";
-      }
-      else if(index === 1){
-        return '#ac1a1a';
-      }
-      else if(index === 2){
-        return '#01ad0f';
-      }
-      else{
-         return one.color(parent_color).lightness((index/2)).green(0.2).hex();
-      }
+    childCholorScheme:{
+      "Cleanliness": ["#71A6D2", "#4682B4", "#193751", "#314459", "#0F4D92", "#6699CC", "#99BADD", "#0093AF", "#162A40", "#315BA1"],
+      "Food Quality": ["#F984EF", "#460B41", "#BD33A4", "#702963", "#B784A7", "#692D54", "#44012D", "#66023C", "#76395D", "#B784A7"],
+      "Service": ["#625119", "#D4AF37", "#FFC901", "#C9B35B", "#7B6608", "#E7BF05", "#F9E663", "#FDE910", "#F8F99C", "#737829"]
+    },
+
+    childColor: function(index, parent_color, parent){
+
+      return this.childCholorScheme[parent][index];
+      // if(index === 0){
+      //   return "#F5C40F";
+      // }
+      // else if(index === 1){
+      //   return '#ac1a1a';
+      // }
+      // else if(index === 2){
+      //   return '#01ad0f';
+      // }
+      // else{
+      //    return one.color(parent_color).lightness((index/2)).green(0.2).hex();
+      // }
      
     }
 

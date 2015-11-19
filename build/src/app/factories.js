@@ -96,7 +96,7 @@ angular.module( 'factories', [
     return this.service.comments({page: page});
   };
 
-   Graphs.prototype.feedback_analysis_breakdown = function(region_id, city_id, branch_id, option_id){
+  Graphs.prototype.feedback_analysis_breakdown = function(region_id, city_id, branch_id, option_id){
     region_id = region_id || "";
     city_id = city_id || "";
     branch_id = branch_id || "";

@@ -39,7 +39,7 @@ angular.module('livefeed.chart', [
        };
     },
 
-    getLineChart: function(graph_data, parent_color){
+    getLineChart: function(graph_data, parent_color, parent_value){
 
 
       var labels = _.map(graph_data[0].data.feedbacks ,function(value){
@@ -92,7 +92,7 @@ angular.module('livefeed.chart', [
               return Global.optionsColorScheme[value];
             }
             else{
-              return Global.childColor(index, parent_color);
+              return Global.childColor(index, parent_color, parent_value);
             }
             
           }),
@@ -128,7 +128,7 @@ angular.module('livefeed.chart', [
     },
 
 
-    getSegmentLineChart: function(graph_data, parent_color){
+    getSegmentLineChart: function(graph_data, parent_color, parent_value){
 
 
       var labels =  _.map(graph_data.options,function(value, index){
@@ -182,7 +182,7 @@ angular.module('livefeed.chart', [
             }
           },
           colors: _.map(labels, function(value, index){
-            return Global.childColor(index, parent_color);    
+            return Global.childColor(index, parent_color, parent_value);    
           }),
           tooltip: true,
           legend: false,
