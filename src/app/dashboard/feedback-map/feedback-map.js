@@ -18,9 +18,17 @@ angular.module( 'livefeed.dashboard.feedback_map', [
   $scope.markers = [];
 
   Graphs.map_view().$promise.then(function(data){
+    console.log("map data");
     console.log(data);
     _.each(data.branches, function(branch){
-      $scope.markers.push(mapService.createMarker(branch, $scope.map));
+      var icon;
+      if(branch.count_exceeded === false){
+         icon = '../assets/images/ico-locator.png';
+      }
+      else{
+        icon = '../assets/images/ico-locator2.png';
+      }
+      $scope.markers.push(mapService.createMarker(branch, $scope.map, icon));
     });
   });
 });
