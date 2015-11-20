@@ -8,7 +8,7 @@ angular.module('livefeed.map', [
 
 
   var infoWindow = new google.maps.InfoWindow();
-      
+
   return {
 
     createMarker: function (info, map, icon){
