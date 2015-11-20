@@ -15,7 +15,7 @@ class Command(BaseCommand):
 
         all_feedback = parse_feedback.Query.all().limit(10000)
         for feedback in all_feedback:
-            comment = feedback.comment if hasattr(feedback, 'comment') else ''
+            comment = feedback.comment.encode('utf-8') if hasattr(feedback, 'comment') else ''
             self.stdout.write('ObjectId : ' + feedback.objectId + '  Branch : ' + feedback.branch.name + ' Comment : '
                                                                                                          '' + comment)
             if hasattr(feedback, 'user'):
