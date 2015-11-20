@@ -19,6 +19,8 @@ class Command(BaseCommand):
                               branch.city.objectId)
             local_branch = Branch(name=branch.name, objectId=branch.objectId,
                                   city=City.objects.get(objectId=branch.city.objectId))
+            local_branch.latitude = "37.33233141"
+            local_branch.longitude = "-122.0312186"
             local_branch.save()
 
         self.stdout.write('Successfully Populated branch Table')
