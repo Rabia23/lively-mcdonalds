@@ -23,4 +23,8 @@ class Command(BaseCommand):
                                              option=Option.objects.get(objectId=feedback_option.option.objectId))
             local_fb_option.save()
 
+            #to override auto_now_add=True in model
+            local_fb_option.created_at = feedback_option.createdAt
+            local_fb_option.save()
+
         self.stdout.write('Successfully Populated Feedback Option Table')

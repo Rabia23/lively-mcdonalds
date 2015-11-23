@@ -15,7 +15,7 @@ class Command(BaseCommand):
 
         all_feedback = parse_feedback.Query.all().limit(10000)
         for feedback in all_feedback:
-            comment = str(feedback.comment.encode('utf-8')) if hasattr(feedback, 'comment') else ''
+            comment = feedback.comment if hasattr(feedback, 'comment') else ''
             self.stdout.write('ObjectId : ' + feedback.objectId + '  Branch : ' + feedback.branch.name + ' Comment : '
                                                                                                          '' + comment)
             if hasattr(feedback, 'user'):
@@ -26,5 +26,10 @@ class Command(BaseCommand):
                 local_feedback = Feedback(objectId=feedback.objectId, comment=comment,
                                       branch=Branch.objects.get(objectId=feedback.branch.objectId))
             local_feedback.save()
+
+            #to override auto_now_add=True in model
+            local_feedback.created_at = feedback.createdAt
+            local_feedback.save()
+
 
         self.stdout.write('Successfully Populated FeedBack Table')

@@ -9,7 +9,7 @@ from dateutil import tz
 class Feedback(models.Model):
     user = models.ForeignKey(User, related_name='feedback', null=True, blank=True)
     branch = models.ForeignKey(Branch, related_name='feedback', null=True, blank=True)
-    comment = models.TextField()
+    comment = models.CharField(max_length=1000)
     objectId = models.CharField(max_length=20, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
