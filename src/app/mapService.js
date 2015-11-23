@@ -9,14 +9,14 @@ angular.module('livefeed.map', [
 
   var infoWindow = new google.maps.InfoWindow();
 
-
   return {
 
-    createMarker: function (info, map){       
+    createMarker: function (info, map, icon){
       var marker = new google.maps.Marker({
         map: map,
         position: new google.maps.LatLng(info.latitude, info.longitude),
-        title: info.name
+        title: info.name,
+        icon: icon
       });
     
       marker.content = '<div class="infoWindowContent">' + info.name + '</div>';
