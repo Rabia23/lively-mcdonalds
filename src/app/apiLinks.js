@@ -4,8 +4,8 @@ angular.module('livefeed.api_links', [])
 
   return {
 
-      production: "http://mclively.herokuapp.com/api/:endpoint",
-      staging: "http://mclivefeed-staging.herokuapp.com/api/:endpoint"
+      production: "https://livefeed.arbisoft.com/api/:endpoint",
+      staging: "https://staginglivefeed.arbisoft.com/api/:endpoint"
 
   };
 

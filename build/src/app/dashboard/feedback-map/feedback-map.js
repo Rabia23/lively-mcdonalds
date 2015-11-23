@@ -18,6 +18,7 @@ angular.module( 'livefeed.dashboard.feedback_map', [
   $scope.markers = [];
 
   Graphs.map_view().$promise.then(function(data){
+    console.log(data);
     _.each(data.branches, function(branch){
       $scope.markers.push(mapService.createMarker(branch, $scope.map));
     });
