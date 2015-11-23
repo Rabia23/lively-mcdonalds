@@ -13,18 +13,22 @@ class Command(BaseCommand):
         register(settings.APPLICATION_ID, settings.REST_API_KEY, master_key=settings.MASTER_KEY)
         parse_feedback_option = Object.factory("FeedbackOption")
 
-        all_feedback_options = parse_feedback_option.Query.all().limit(10000)
-        for feedback_option in all_feedback_options:
+        all_feedback_options = parse_feedback_option.Query.all().limit(1000)
+        while True:
+            for feedback_option in all_feedback_options:
 
-            self.stdout.write('ObjectId : ' + feedback_option.objectId + '  Feedback : '
-                              '' + feedback_option.feedback.objectId + ' Option : ' + feedback_option.option.objectId)
-            local_fb_option = FeedbackOption(objectId=feedback_option.objectId,
-                                             feedback=Feedback.objects.get(objectId=feedback_option.feedback.objectId),
-                                             option=Option.objects.get(objectId=feedback_option.option.objectId))
-            local_fb_option.save()
+                self.stdout.write('ObjectId : ' + feedback_option.objectId + '  Feedback : '
+                                  '' + feedback_option.feedback.objectId + ' Option : ' + feedback_option.option.objectId)
+                local_fb_option = FeedbackOption(objectId=feedback_option.objectId,
+                                                 feedback=Feedback.objects.get(objectId=feedback_option.feedback.objectId),
+                                                 option=Option.objects.get(objectId=feedback_option.option.objectId))
+                local_fb_option.save()
 
-            #to override auto_now_add=True in model
-            local_fb_option.created_at = feedback_option.createdAt
-            local_fb_option.save()
+                #to override auto_now_add=True in model
+                local_fb_option.created_at = feedback_option.createdAt
+                local_fb_option.save()
+            all_feedback_options = parse_feedback_option.Query.all().skip(1000).limit(1000)
+            if all_feedback_options.count() <= 1000:
+                break
 
         self.stdout.write('Successfully Populated Feedback Option Table')
