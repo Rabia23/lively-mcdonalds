@@ -20,6 +20,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
     $scope.show_loading = true; 
 
     Graphs.overall_rating().$promise.then(function(data){
+		console.log(data);
       $scope.show_loading = false; 
       $scope.line1 = chartService.getLineChart(data);
       $scope.dates = _.map(data, function(value){

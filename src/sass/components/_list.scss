@@ -1,35 +1,31 @@
 .list{
-	@extend .list-unstyled;
-	text-align: center;
-	margin: 0 0 14px;
+	@extend .list-inline;
+	text-align: right;
+	margin: 0 0 17px;
+	color: $mountain-mist;
+	font-size: 12px;
+	line-height: 14px;
+	letter-spacing: -6px;
 	
 	li{
-		overflow: hidden;
-		color: $storm-dust;
-		margin: 0 0 4px;
+		@include inline-block(top);
+		letter-spacing: 0;
+		padding: 0 16px 0 13px;
+		position: relative;
 				
 		&:before{
-			@include inline-block(middle);
-			content: '\ad800'; 
-			font-family: $ico-font;
-			@include fontsize(28, 15);
-			line-height: 1.1em;
-			margin: 0 13px 0 -2px;
-			
-			@include media("≥widescreen"){@include fontsize(37, 15);}
+			position: absolute;
+			left: 0;
+			top: 50%;
+			content: '';
+			background: $bleu-de-france;
+			width: 6px;
+			height: 6px;
+			margin-top: -3px;
 		}
 		
-		&.v-good{
-			&:before{color: $brand-success;}
-		}
-		&.good{
-			&:before{color: $brand-primary;}
-		}
-		&.neutral{
-			&:before{color: $brand-warning;}
-		}
-		&.negative{
-			&:before{color: $brand-danger;}
+		&.item2{
+			&:before{color: $deep-lilac;}
 		}
 	}
 }

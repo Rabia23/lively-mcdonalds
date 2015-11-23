@@ -27,7 +27,7 @@ angular.module( 'factories', [
 
 .factory('Graphs', ['$resource','apiLinks','_',  function($resource, apiLinks, _) {
   function Graphs() {
-    this.service = $resource(apiLinks.production, {callback: "JSON_CALLBACK"},
+    this.service = $resource(apiLinks.staging, {callback: "JSON_CALLBACK"},
                   {
                     overall_feedback: {method: "JSONP",isArray: false, params: {endpoint: "overall_feedback"}},
                     feedback_analysis: {method: "JSONP",isArray: false, params: {endpoint: "feedback_analysis"}},

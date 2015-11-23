@@ -1,13 +1,9 @@
 #footer{
 	background: $black;
-	padding-top: 25px;
-	padding-bottom: 25px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 	color: $mikado-yellow;
-	font: {
-		family: $primary-font;
-		weight: 700;
-	}
-	@include fontsize(20, 15);
+	@include fontsize(14, 16);
 	line-height: 1em;
 	
 	a{
@@ -20,7 +16,7 @@
 }
 
 .footer-holder{
-	@extend .container;
+	@extend .container-fluid;
 	.frame{@extend .row;}
 	.footer-text{
 		text-align: center;
@@ -35,5 +31,9 @@
 		text-align: center;
 		@extend .col-sm-6;
 		@include media("≥tablet"){text-align: right;}
+	}
+	@include media("≥tablet"){
+		padding-left: 30px;
+		padding-right: 30px;
 	}
 }

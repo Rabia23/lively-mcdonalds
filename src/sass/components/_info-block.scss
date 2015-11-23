@@ -1,56 +1,27 @@
 .info-block{
 	background: $white;
 	overflow: hidden;
+	border: 1px solid $alto2;
 }
 
 .info-box{
-	text-align: center;
-	@include media("≥tablet"){
-		width: 40.2%;
-		float: left;
-		padding: 0 10px 0;
-	}
-	h2{margin-bottom: 7px;}
+	h2{margin: 0;}
 	
 	.heading{
 		overflow: hidden;
-		padding: 19px 0 18px;
+		padding: 15px;
+		border-bottom: 1px solid $alto2;
+		margin: 0 0 18px;
 		
-		@include media("≥desktop"){padding: 15px 0 5px;}
-		@include media("≥widescreen"){padding: 19px 0 18px;}
+		@include media("≥widescreen"){padding: 22px 20px 15px;}
 	}
 }
 
 .map-holder{
 	overflow: hidden;
+	padding: 0 14px 14px;
 	img{
 		display: block;
 		width: 100%;
-	}
-
-	.list{
-		li{
-			&:before{
-				display: block;
-				margin: 0 auto 5px;
-				content: "";
-				font-size: 0;
-				line-height: 0;
-				width: 30px;
-				height: 43px;
-				transform: perspective( 400px ) rotateX( -40deg );
-				-webkit-transform: perspective( 400px ) rotateX( -40deg );
-				-moz-transform: perspective( 400px ) rotateX( -40deg );
-				-o-transform: perspective( 400px ) rotateX( -40deg );
-				-ms-transform: perspective( 400px ) rotateX( -40deg );
-			}
-
-			&.v-good{
-				&:before{background: url(../assets/images/ico-locator2.png) no-repeat;}
-			}
-			&.negative{
-				&:before{background: url(../assets/images/ico-locator.png) no-repeat;}
-			}
-		}
 	}
 }

@@ -27,7 +27,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
 angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/dashboard.tpl.html",
     "<section class = \"section\">\n" +
-    "  <div class = \"block\" ui-view = \"overall_rating\" ng-controller = \"OverallRatingCtrl\"></div>\n" +
+    "  <div class = \"block\" ui-view = \"category_performance_analysis\" ng-controller = \"CategoryPerformanceAnalysisCtrl\"></div>\n" +
     "  <div class = \"block\" ui-view = \"overall_feedback\" ng-controller = \"OverallFeedbackCtrl\"></div>\n" +
     "</section>\n" +
     "\n" +
@@ -38,7 +38,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "\n" +
     "<section class = \"section\">\n" +
     "  <div class = \"block\" ui-view = \"feedback_map\" ng-controller = \"FeedbackMapCtrl\"></div>\n" +
-    "  <div class = \"block\" ui-view = \"category_performance_analysis\" ng-controller = \"CategoryPerformanceAnalysisCtrl\"></div>\n" +
+    "  <div class = \"block\" ui-view = \"overall_rating\" ng-controller = \"OverallRatingCtrl\"></div>\n" +
     "</section>\n" +
     "\n" +
     "\n" +
@@ -62,8 +62,7 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "<div class=\"info-block\">\n" +
     "  <div class=\"info-box\">\n" +
     "    <div class=\"heading\">\n" +
-    "      <h2>Feedback Map</h2>\n" +
-    "      <p>Country where the user has given the Survey</p>\n" +
+    "      <h2>Map</h2>\n" +
     "    </div>\n" +
     "    <ul class=\"list\">\n" +
     "      <li class=\"v-good\">200+</li>\n" +

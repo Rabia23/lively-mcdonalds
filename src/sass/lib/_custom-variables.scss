@@ -23,12 +23,14 @@ $bleu-de-france											: #3498db;
 $mountain-mist											: #999;
 $alto2													: #d9d9d9;
 $nobel													: #b2b2b2;
+$gallery												: #eee;
+$shark2													: #282828;
+$mountain-mist											: #929292;
 
-$base-font-size											: 1.5em;
-$base-line-height										: 1.15em;
+$base-font-size											: 1.6em;
+$base-line-height										: 1.25em;
 $base-min-width											: 320px;
 
-$primary-font											: 'Lato', sans-serif;
 $ico-font												: 'fontello';
 
 // Bootstrap Override
@@ -36,15 +38,14 @@ $ico-font												: 'fontello';
 $icon-font-path: "/assets/fonts/bootstrap/";
 
 /* Fonts */
-$font-family-sans-serif									: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-sans-serif									: 'Source Sans Pro', sans-serif;
 $font-size-base											: 15px;
 
-$headings-font-family									: 'Roboto Slab', "Helvetica Neue", Helvetica, Arial, sans-serif;
 $headings-font-weight									: 400;
 $headings-color											: $shark;
 
-$font-size-h1											: 1.4em;
-$font-size-h2											: 1.5em;
+$font-size-h1											: 1.5em;
+$font-size-h2											: 1.25em;
 $font-size-h3											: 1.3em;
 $font-size-h4											: 1.25em;
 $font-size-h5											: 12px;
@@ -59,8 +60,8 @@ $brand-warning											: $cinnabar;
 $brand-danger											: $carnelian;
 $brand-info												: $mikado-yellow2;
 
-$body-bg												: $wild-sand;
-$text-color												: $chicago;
+$body-bg												: $gallery;
+$text-color												: $shark2;
 $link-color												: $brand-success;
 
 $grid-gutter-width										: 20px;

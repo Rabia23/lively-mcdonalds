@@ -5,8 +5,12 @@
 }
 
 #main{
-	@extend .container;
+	@extend .container-fluid;
 	margin-bottom: 7px;
+	@include media("≥tablet"){
+		padding-left: 30px;
+		padding-right: 30px;
+	}
 }
 
 .section{

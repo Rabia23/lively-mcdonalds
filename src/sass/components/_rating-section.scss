@@ -1,15 +1,17 @@
 .rating-section{
   overflow: hidden;
   background: $white;
-  padding: 15px;
   text-align: center;
+  border: 1px solid $alto2;
   
-  @include media("≥desktop"){padding: 20px 15px 15px;}
-  @include media("≥widescreen"){padding: 20px 28px 15px;}
   
   .heading-block{
     overflow: hidden;
-    margin: 0 0 10px;
+    margin: 0 0 18px;
+	padding: 15px;
+	border-bottom: 1px solid $alto2;
+	  
+	@include media("≥widescreen"){padding: 22px 20px 15px;}
     h2{
       float: left;
       margin: 0 5px 0 0;
@@ -86,11 +88,9 @@
 			  position: absolute;
 			  left: 0;
 			  top: 50%;
-			  border-radius: 100%;
-			  -webkit-border-radius: 100%;
 			  width: 5px;
 			  height: 5px;
-        ovflow:hidden;
+        	  ovflow:hidden;
 			  margin-top: -5px;
 		  }
         
