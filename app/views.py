@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from app.models import Region, City, Branch
-from app.serializers import RegionSerializer, CitySerializer, BranchSerializer
+from app.models import Region, City, Branch, UserInfo
+from app.serializers import RegionSerializer, CitySerializer, BranchSerializer, UserInfoSerializer
 from lively import constants
 from lively.parse_utils import region_get, city_get
 from lively.utils import save_and_response, get_related_region, save, response, get_related_city
@@ -100,3 +100,11 @@ def branch(request):
                 branch.save()
 
             return response(data)
+
+@api_view(['GET'])
+def user_info(request):
+
+    if request.method == 'GET':
+        user_info = UserInfo.objects.all()
+        serializer = UserInfoSerializer(user_info, many=True)
+        return Response(serializer.data)

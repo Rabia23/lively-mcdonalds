@@ -14,6 +14,7 @@ class Command(BaseCommand):
         parse_feedback = Object.factory("Feedback")
 
         all_feedback = parse_feedback.Query.all().limit(1000)
+        skip_count = 0
         while True:
             for feedback in all_feedback:
                 comment = feedback.comment if hasattr(feedback, 'comment') else ''
@@ -32,7 +33,8 @@ class Command(BaseCommand):
                 local_feedback.save()
             if all_feedback.count() <= 1000:
                 break
-            all_feedback = parse_feedback.Query.all().skip(1000).limit(1000)
+            skip_count += 1000
+            all_feedback = parse_feedback.Query.all().skip(skip_count).limit(1000)
 
 
         self.stdout.write('Successfully Populated FeedBack Table')

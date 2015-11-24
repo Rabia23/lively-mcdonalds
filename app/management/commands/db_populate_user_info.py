@@ -17,6 +17,7 @@ class Command(BaseCommand):
         parse_user = Object.factory("User")
 
         all_users = parse_user.Query.all().limit(1000)
+        skip_count = 0
         while True:
             for user in all_users:
                 first_name = user.first_name if hasattr(user, 'first_name') else ''
@@ -37,6 +38,7 @@ class Command(BaseCommand):
                 local_user_info.save()
             if all_users.count() <= 1000:
                 break
-            all_users = parse_user.Query.all().skip(1000).limit(1000)
+            skip_count += 1000
+            all_users = parse_user.Query.all().skip(skip_count).limit(1000)
 
         self.stdout.write('Successfully Populated User and User Info Table')

@@ -14,6 +14,7 @@ class Command(BaseCommand):
         parse_feedback_option = Object.factory("FeedbackOption")
 
         all_feedback_options = parse_feedback_option.Query.all().limit(1000)
+        skip_count = 0
         while True:
             for feedback_option in all_feedback_options:
 
@@ -29,6 +30,7 @@ class Command(BaseCommand):
                 local_fb_option.save()
             if all_feedback_options.count() <= 1000:
                 break
-            all_feedback_options = parse_feedback_option.Query.all().skip(1000).limit(1000)
+            skip_count += 1000
+            all_feedback_options = parse_feedback_option.Query.all().skip(skip_count).limit(1000)
 
         self.stdout.write('Successfully Populated Feedback Option Table')
