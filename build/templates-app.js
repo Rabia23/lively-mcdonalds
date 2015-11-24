@@ -213,7 +213,9 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "    <ul>\n" +
     "      <li ng-repeat = \"pos_feedback in pos_feedbacks\">\n" +
     "        <div class=\"inner-holder\">\n" +
-    "            <p>{{pos_feedback.comment}}</p>\n" +
+    "            <div class=\"text\">\n" +
+    "            	<p>{{pos_feedback.comment}}</p>\n" +
+    "            </div>\n" +
     "            <span class=\"arrow\"></span>\n" +
     "        </div>\n" +
     "        <time datetime=\"2015-11-26 18:30\">26-11-2015, 6:30 PM</time>\n" +
@@ -222,7 +224,9 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "    <ul class=\"add\">\n" +
     "      <li ng-repeat = \"neg_feedback in neg_feedbacks\">\n" +
     "        <div class=\"inner-holder\">\n" +
-    "            <p>{{neg_feedback.comment}}</p>\n" +
+    "            <div class=\"text\">\n" +
+    "            	<p>{{neg_feedback.comment}}</p>\n" +
+    "            </div>\n" +
     "            <span class=\"arrow\"></span>\n" +
     "        </div>\n" +
     "        <time datetime=\"2015-11-26 18:30\">26-11-2015, 6:30 PM</time>\n" +

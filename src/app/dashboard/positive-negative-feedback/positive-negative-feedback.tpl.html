@@ -9,7 +9,9 @@
     <ul>
       <li ng-repeat = "pos_feedback in pos_feedbacks">
         <div class="inner-holder">
-            <p>{{pos_feedback.comment}}</p>
+            <div class="text">
+            	<p>{{pos_feedback.comment}}</p>
+            </div>
             <span class="arrow"></span>
         </div>
         <time datetime="2015-11-26 18:30">26-11-2015, 6:30 PM</time>
@@ -18,7 +20,9 @@
     <ul class="add">
       <li ng-repeat = "neg_feedback in neg_feedbacks">
         <div class="inner-holder">
-            <p>{{neg_feedback.comment}}</p>
+            <div class="text">
+            	<p>{{neg_feedback.comment}}</p>
+            </div>
             <span class="arrow"></span>
         </div>
         <time datetime="2015-11-26 18:30">26-11-2015, 6:30 PM</time>
