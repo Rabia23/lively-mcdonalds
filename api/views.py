@@ -354,7 +354,6 @@ def map_view(request):
 @api_view(['GET'])
 def feedback_segmentation(request):
     if request.method == 'GET':
-        feedback_records_list = []
 
         try:
             region_id = request.query_params.get('region', None)

@@ -12,6 +12,8 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from datetime import datetime
 from dateutil import tz
+from operator import itemgetter
+
 
 
 __author__ = 'aamish'
@@ -204,10 +206,11 @@ def generate_segmentation(data):
     for segment in constants.segments:
         segment_feedbacks = [feedback_option for feedback_option in data if feedback_option.feedback.get_segment() == constants.segments[segment]]
         segments_list.append({
+            "segment_end_time": segment,
             "segment": constants.segments[segment],
             "option_count": len(segment_feedbacks),
         })
-    return segments_list
+    return sorted(segments_list, key=itemgetter('segment_end_time'))
 
 
 def generate_option_groups(data, options):
