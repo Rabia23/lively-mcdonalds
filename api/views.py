@@ -9,7 +9,8 @@ from app.models import Region, City, Branch
 from app.serializers import RegionSerializer, CitySerializer, UserSerializer
 from feedback.models import Question, FeedbackOption, Option, Feedback
 from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer, \
-    PositiveNegativeFeedbackSerializer, AllCommentsSerializer, AllBranchesSerializer, SegmentationSerializer
+    PositiveNegativeFeedbackSerializer, AllCommentsSerializer, AllBranchesSerializer, SegmentationSerializer, \
+    ConcernsSerializer
 from lively import constants
 from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options, \
     generate_segmentation, generate_option_group, apply_general_filters, generate_option_groups
@@ -378,6 +379,29 @@ def feedback_segmentation(request):
 
             data = {'option_count': len(feedback_segmented_list), 'options': feedback_segmented_list}
             feedback_response = SegmentationSerializer(data)
+            return Response(feedback_response.data)
+        except Exception as e:
+            return Response(None)
+
+
+@api_view(['GET'])
+def top_concerns(request):
+    if request.method == 'GET':
+
+        try:
+            concerns = [
+                    {"item": "Ketchap", "count": "110"},
+                    {"item": "Bun", "count": "95"},
+                    {"item": "Wings", "count": "56"},
+                    {"item": "Fries", "count": "9"},
+                    {"item": "Ketchap", "count": "110"},
+                    {"item": "Bun", "count": "95"},
+                    {"item": "Wings", "count": "56"},
+                    {"item": "Fries", "count": "9"},
+                ]
+
+            data = {'concern_count': len(concerns), 'concern_list': concerns}
+            feedback_response = ConcernsSerializer(data)
             return Response(feedback_response.data)
         except Exception as e:
             return Response(None)
