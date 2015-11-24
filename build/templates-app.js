@@ -65,8 +65,8 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "      <h2>Map</h2>\n" +
     "    </div>\n" +
     "    <ul class=\"list\">\n" +
-    "      <li class=\"v-good\">200+</li>\n" +
-    "      <li class=\"negative\">200-</li>\n" +
+    "      <li class=\"v-good\">Above Benchmark</li>\n" +
+    "      <li class=\"negative\">Below Benchmark</li>\n" +
     "    </ul>\n" +
     "  </div>\n" +
     "  <div class=\"map-holder\">\n" +
