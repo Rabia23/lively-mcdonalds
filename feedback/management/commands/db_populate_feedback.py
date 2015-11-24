@@ -21,9 +21,11 @@ class Command(BaseCommand):
                 comment = feedback.comment if hasattr(feedback, 'comment') else ''
                 self.stdout.write('ObjectId : ' + feedback.objectId + '  Branch : ' + feedback.branch.name)
                 if hasattr(feedback, 'user'):
-                    user = UserInfo.objects.get(objectId=feedback.user.objectId).user
-                    local_feedback = Feedback(objectId=feedback.objectId, comment=comment, user=user,
-                                          branch=Branch.objects.get(objectId=feedback.branch.objectId))
+                    user_info = UserInfo.objects.get(objectId=feedback.user.objectId)
+                    if user_info:
+                        user = user_info.user
+                        local_feedback = Feedback(objectId=feedback.objectId, comment=comment, user=user,
+                                              branch=Branch.objects.get(objectId=feedback.branch.objectId))
                 else:
                     local_feedback = Feedback(objectId=feedback.objectId, comment=comment,
                                           branch=Branch.objects.get(objectId=feedback.branch.objectId))
