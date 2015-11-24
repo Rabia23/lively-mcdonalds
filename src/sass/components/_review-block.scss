@@ -5,14 +5,16 @@
 	
 	.heading-block{
 		overflow: hidden;
-		padding: 10px 15px;
+		padding: 10px;
 		border-bottom: 1px solid $alto2;
 		margin: 0 0 30px;
 		
+		@include media("≥widescreen"){padding: 10px 20px;}
+		
 		.btn{
-			font-size: 13px;
+			font-size: 12px;
 			line-height: 20px;
-			padding: 5px 8px;
+			padding: 5px;
 			
 			@include media("≥tablet"){
 				font-size: 16px;
@@ -38,8 +40,8 @@
 	
 	h2{
 		margin: 0;
-		line-height: 2em;
-		@include media("≥tablet"){line-height: 2.1em;}
+		line-height: 2.1em;
+		@include media("<tablet"){font-size: 1.15em;}
 	}
 	
 	.holder{

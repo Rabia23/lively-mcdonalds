@@ -1,14 +1,26 @@
 .feedback-block{
 	overflow: hidden;
 	background: $white;
-	padding: 15px 15px 0;
+	border: 1px solid $alto2;
 	
-	@include media("≥desktop"){padding: 20px 15px 0;}
-	@include media("≥widescreen"){padding: 20px 23px 0 30px;}
+	.heading-holder{
+		overflow: hidden;
+		border-bottom: 1px solid $alto2;
+		padding: 10px;
+		margin: 0 0 20px;
+		
+		@include media("≥widescreen"){
+			padding: 20px;
+			margin: 0 0 40px;
+		}
+	}
 	
-	h2{
-		margin: 0 0 10px;
-		@include media("≥desktop"){margin: 0 0 40px;}
+	h2{margin: 0;}
+	.graph-holder{
+		overflow: hidden;
+		padding: 0 10px 20px;
+		
+		@include media("≥widescreen"){padding: 0 20px 30px;}
 	}
 }
 .title-list{

@@ -93,10 +93,12 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
 angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/overall-feedback/overall-feedback.tpl.html",
     "<div class=\"feedback-block\">\n" +
-    "  <h2>Overall Feedback</h2>\n" +
-    "\n" +
-    "	<canvas id=\"bar\" class=\"chart chart-bar\" chart-data=\"data\" chart-labels=\"labels\" chart-colours=\"colours\" chart-options=\"options\"></canvas>\n" +
-    "\n" +
+    "  <div class=\"heading-holder\">\n" +
+    "  	<h2>Rating</h2>\n" +
+    "  </div>\n" +
+    "  <div class=\"graph-holder\">\n" +
+    "  	<canvas id=\"bar\" class=\"chart chart-bar\" chart-data=\"data\" chart-labels=\"labels\" chart-colours=\"colours\" chart-options=\"options\"></canvas>\n" +
+    "  </div>\n" +
     "</div>\n" +
     "  ");
 }]);
@@ -203,13 +205,15 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
   $templateCache.put("dashboard/regional-analysis/regional-analysis.tpl.html",
     "<div class=\"section-holder\" >\n" +
     "  <div class=\"info-area\" ng-class=\"{loading: show_loading}\">\n" +
-    "    <div class=\"btn-group pull-right\">\n" +
-    "      <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'regions')\">Rating</label>\n" +
-    "      <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'SQC'\" ng-click = \"showChart(null, 'regions')\">SQC</label>\n" +
+    "    <div class=\"heading-holder\">\n" +
+    "    	<div class=\"btn-group pull-right\">\n" +
+    "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'regions')\">Rating</label>\n" +
+    "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'SQC'\" ng-click = \"showChart(null, 'regions')\">SQC</label>\n" +
+    "		</div>\n" +
+    "		<h2 ng-show = \"regional_view\">Regional Analysis</h2>  \n" +
+    "		<h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis</h2>\n" +
+    "		<h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}} City Branch Analysis</h2>\n" +
     "    </div>\n" +
-    "    <h2 ng-show = \"regional_view\">Regional Analysis</h2>  \n" +
-    "    <h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis</h2>\n" +
-    "    <h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}} City Branch Analysis</h2>\n" +
     "    <div class = \"breadcrum\">\n" +
     "      <span ng-hide = \"regional_view\">\n" +
     "        <a ng-click = \"backToRegions()\" style = \"style: cursor:pointer\">Regions /</a>\n" +
