@@ -88,58 +88,9 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
   $templateCache.put("dashboard/overall-feedback/overall-feedback.tpl.html",
     "<div class=\"feedback-block\">\n" +
     "  <h2>Overall Feedback</h2>\n" +
-    "  <!-- <ul class=\"title-list\">\n" +
-    "    <li ng-repeat = \"feedback in overall_feedback\" class = \"{{feedback.class}}\">\n" +
-    "      {{feedback.name}}\n" +
-    "    </li>\n" +
-    "  </ul> -->\n" +
-    "  <div class=\"feedback-holder\">\n" +
-    "  	<ul class=\"feedback-list\">\n" +
-    "  	  <li class=\"{{feedback.class}}\" ng-repeat = \"feedback in overall_feedback\">\n" +
-    "  	    <div class=\"img-holder\">\n" +
-    "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'v-good'\">\n" +
-    "  	        <li ng-repeat='val in feedback.columns'>\n" +
-    "  	          <ul>\n" +
-    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
-    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
-    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
-    "  	          </ul>\n" +
-    "  	        </li>\n" +
-    "  	      </ul>\n" +
-    "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'good'\">\n" +
-    "  	        <li ng-repeat='val in feedback.columns'>\n" +
-    "  	          <ul>\n" +
-    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
-    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
-    "  	            <li><span class=\"icon-thumbs-up\"></span></li>\n" +
-    "  	          </ul>\n" +
-    "  	        </li>\n" +
-    "  	      </ul>\n" +
-    "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'neutral'\">\n" +
-    "  	        <li ng-repeat='val in feedback.columns'>\n" +
-    "  	          <ul>\n" +
-    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
-    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
-    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
-    "  	          </ul>\n" +
-    "  	        </li>\n" +
-    "  	      </ul>\n" +
-    "  	      <ul class=\"ico-list\" ng-if = \"feedback.class == 'negative'\">\n" +
-    "  	        <li ng-repeat='val in feedback.columns'>\n" +
-    "  	          <ul>\n" +
-    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
-    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
-    "  	            <li><span class=\"icon-thumbs-down\"></span></li>\n" +
-    "  	          </ul>\n" +
-    "  	        </li>\n" +
-    "  	      </ul>\n" +
-    "  	    </div>\n" +
-    "  	    <h3>\n" +
-    "  	      <span class=\"count\">{{feedback.rounded_percentage}}%</span>  \n" +
-    "  	    </h3>\n" +
-    "  	  </li>\n" +
-    "  	</ul>\n" +
-    "  </div>\n" +
+    "\n" +
+    "	<canvas id=\"bar\" class=\"chart chart-bar\" chart-data=\"data\" chart-labels=\"labels\" chart-colours=\"colours\" chart-options=\"options\"></canvas>\n" +
+    "\n" +
     "</div>\n" +
     "  ");
 }]);

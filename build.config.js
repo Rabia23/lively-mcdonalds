@@ -81,14 +81,17 @@ module.exports = {
       'vendor/enscroll/js/mylibs/enscroll.js',
       'vendor/ngmap/build/scripts/ng-map.min.js',
       'vendor/moment/moment.js',
-      'vendor/bootstrap-daterangepicker/daterangepicker.js',
-      'vendor/angular-daterangepicker/js/angular-daterangepicker.js'
++     'vendor/bootstrap-daterangepicker/daterangepicker.js',
++     'vendor/angular-daterangepicker/js/angular-daterangepicker.js',
+      'vendor/Chart.js/Chart.js',
+      'vendor/Chart.js/Chart.min.js',
+      'vendor/angular-chart.js/dist/angular-chart.js'
 
     ],
     css: [
       'vendor/morris.js/morris.css',
       'vendor/bootstrap-daterangepicker/daterangepicker.css',
-
+      'vendor/angular-chart.js/dist/angular-chart.css'
     ],
     assets: [
     ]

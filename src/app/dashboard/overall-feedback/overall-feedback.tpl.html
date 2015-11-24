@@ -1,56 +1,7 @@
 <div class="feedback-block">
   <h2>Overall Feedback</h2>
-  <!-- <ul class="title-list">
-    <li ng-repeat = "feedback in overall_feedback" class = "{{feedback.class}}">
-      {{feedback.name}}
-    </li>
-  </ul> -->
-  <div class="feedback-holder">
-  	<ul class="feedback-list">
-  	  <li class="{{feedback.class}}" ng-repeat = "feedback in overall_feedback">
-  	    <div class="img-holder">
-  	      <ul class="ico-list" ng-if = "feedback.class == 'v-good'">
-  	        <li ng-repeat='val in feedback.columns'>
-  	          <ul>
-  	            <li><span class="icon-thumbs-up"></span></li>
-  	            <li><span class="icon-thumbs-up"></span></li>
-  	            <li><span class="icon-thumbs-up"></span></li>
-  	          </ul>
-  	        </li>
-  	      </ul>
-  	      <ul class="ico-list" ng-if = "feedback.class == 'good'">
-  	        <li ng-repeat='val in feedback.columns'>
-  	          <ul>
-  	            <li><span class="icon-thumbs-up"></span></li>
-  	            <li><span class="icon-thumbs-up"></span></li>
-  	            <li><span class="icon-thumbs-up"></span></li>
-  	          </ul>
-  	        </li>
-  	      </ul>
-  	      <ul class="ico-list" ng-if = "feedback.class == 'neutral'">
-  	        <li ng-repeat='val in feedback.columns'>
-  	          <ul>
-  	            <li><span class="icon-thumbs-down"></span></li>
-  	            <li><span class="icon-thumbs-down"></span></li>
-  	            <li><span class="icon-thumbs-down"></span></li>
-  	          </ul>
-  	        </li>
-  	      </ul>
-  	      <ul class="ico-list" ng-if = "feedback.class == 'negative'">
-  	        <li ng-repeat='val in feedback.columns'>
-  	          <ul>
-  	            <li><span class="icon-thumbs-down"></span></li>
-  	            <li><span class="icon-thumbs-down"></span></li>
-  	            <li><span class="icon-thumbs-down"></span></li>
-  	          </ul>
-  	        </li>
-  	      </ul>
-  	    </div>
-  	    <h3>
-  	      <span class="count">{{feedback.rounded_percentage}}%</span>  
-  	    </h3>
-  	  </li>
-  	</ul>
-  </div>
+
+	<canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-colours="colours" chart-options="options"></canvas>
+
 </div>
   
