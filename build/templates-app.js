@@ -62,7 +62,12 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "<div class=\"info-block\">\n" +
     "  <div class=\"info-box\">\n" +
     "    <div class=\"heading\">\n" +
-    "      <h2>Map</h2>\n" +
+    "      <h2>Map\n" +
+    "        <span class = \"pull-right col-xs-4\">\n" +
+    "          <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"form-control date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" placeholder = \"Select Range\"/>\n" +
+    "          <i class=\"glyphicon glyphicon-calendar\" map-range-click style = \"cursor:pointer;\"></i>\n" +
+    "        </span>\n" +
+    "      </h2>\n" +
     "    </div>\n" +
     "    <ul class=\"list\">\n" +
     "      <li class=\"v-good\">Above Benchmark</li>\n" +
@@ -104,7 +109,9 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "        <a style = \"cursor:pointer\" ng-click = \"labelClick(label)\">{{label.value}}</a>\n" +
     "      </li>\n" +
     "    </ul>\n" +
-    "    <flot dataset=\"line1.data\" options=\"line1.options\" data-width = \"100%\" data-height = \"300px\" on-plot-click = \"optionClick(event, pos, item)\"></flot>\n" +
+    "    <div class=\"graph-holder\">\n" +
+    "    	<flot dataset=\"line1.data\" options=\"line1.options\" data-width = \"100%\" data-height = \"300px\" on-plot-click = \"optionClick(event, pos, item)\"></flot>\n" +
+    "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
     "  ");
@@ -152,33 +159,33 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
 angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html",
     "<div class=\"review-block\">\n" +
-    "  <div class = \"pull-right\">\n" +
-    "    <a class = \"btn btn-default\" ng-click = \"open()\">View All</a>\n" +
+    "  <div class=\"heading-block\">\n" +
+    "  	<div class = \"pull-right\">\n" +
+    "		<a class = \"btn btn-default\" ng-click = \"open()\">View All Feedback</a>\n" +
+    "	  </div>\n" +
+    "	  <h2>Positive Negative Feedback</h2>\n" +
     "  </div>\n" +
-    "  <h2>Positive Negative Feedback</h2>\n" +
     "  <div class=\"holder\">\n" +
     "    <ul>\n" +
     "      <li ng-repeat = \"pos_feedback in pos_feedbacks\">\n" +
     "        <div class=\"inner-holder\">\n" +
-    "          <div class=\"ico-holder\">\n" +
-    "            <span class=\"icon-thumbs-up\"></span>\n" +
-    "          </div>\n" +
-    "          <div class=\"text\">\n" +
-    "            <p>{{pos_feedback.comment}}</p>\n" +
-    "          </div>\n" +
+    "            <div class=\"text\">\n" +
+    "            	<p>{{pos_feedback.comment}}</p>\n" +
+    "            </div>\n" +
+    "            <span class=\"arrow\"></span>\n" +
     "        </div>\n" +
+    "        <time datetime=\"2015-11-26 18:30\">26-11-2015, 6:30 PM</time>\n" +
     "      </li>\n" +
     "    </ul>\n" +
     "    <ul class=\"add\">\n" +
     "      <li ng-repeat = \"neg_feedback in neg_feedbacks\">\n" +
     "        <div class=\"inner-holder\">\n" +
-    "          <div class=\"ico-holder\">\n" +
-    "            <span class=\"icon-thumbs-down\"></span>\n" +
-    "          </div>\n" +
-    "          <div class=\"text\">\n" +
-    "            <p>{{neg_feedback.comment}}</p>\n" +
-    "          </div>\n" +
+    "            <div class=\"text\">\n" +
+    "            	<p>{{neg_feedback.comment}}</p>\n" +
+    "            </div>\n" +
+    "            <span class=\"arrow\"></span>\n" +
     "        </div>\n" +
+    "        <time datetime=\"2015-11-26 18:30\">26-11-2015, 6:30 PM</time>\n" +
     "      </li>\n" +
     "    </ul>\n" +
     "  </div>\n" +

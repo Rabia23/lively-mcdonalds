@@ -1,7 +1,12 @@
 <div class="info-block">
   <div class="info-box">
     <div class="heading">
-      <h2>Map</h2>
+      <h2>Map
+        <span class = "pull-right col-xs-4">
+          <input date-range-picker id="daterange-map" name="daterange-map" class="form-control date-picker" type="text" ng-model="date" max="today" placeholder = "Select Range"/>
+          <i class="glyphicon glyphicon-calendar" map-range-click style = "cursor:pointer;"></i>
+        </span>
+      </h2>
     </div>
     <ul class="list">
       <li class="v-good">Above Benchmark</li>

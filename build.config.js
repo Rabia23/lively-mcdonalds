@@ -80,14 +80,10 @@ module.exports = {
       'vendor/color/one-color-all.js',
       'vendor/enscroll/js/mylibs/enscroll.js',
       'vendor/ngmap/build/scripts/ng-map.min.js',
-      'vendor/Chart.js/Chart.min.js',
-      'vendor/Chart.js/Chart.js',
-      'vendor/angular-chart.js/dist/angular-chart.js'
 
     ],
     css: [
-      'vendor/morris.js/morris.css',
-      'vendor/angular-chart.js/dist/angular-chart.css'
+      'vendor/morris.js/morris.css'
     ],
     assets: [
     ]
