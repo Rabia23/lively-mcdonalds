@@ -20,7 +20,7 @@
     a{
       float: right;
       cursor: pointer;
-      margin: 10px 0 0 5px;
+      margin: 5px 0 0 5px;
       
       &:hover{color: darken($dell,10%);}
     }
@@ -93,10 +93,11 @@
 			  width: 6px;
 			  height: 6px;
         	  overflow:hidden;
-			  margin-top: -5px;
+			  margin-top: -6px;
 		  }
         
-        @include media("≥tablet"){padding: 0 14px 5px 12px;}
+        @include media("≥tablet"){padding: 0 12px 5px 9px;}
+		@include media("≥widescreen"){padding: 0 14px 5px 12px;}
 		  a{
 			  color: $nobel;
 			  &:hover,

@@ -17,6 +17,7 @@
   "dependencies": {
     "underscore": "~1.8.3",
     "font-awesome": "fontawesome#~4.4.0",
-    "angular-resource": "~1.4.7"
+    "angular-resource": "~1.4.7",
+    "angular-daterangepicker": "~0.2.1"
   }
 }

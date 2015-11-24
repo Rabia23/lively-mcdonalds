@@ -7,7 +7,7 @@
 #main{
 	@extend .container-fluid;
 	margin-bottom: 7px;
-	@include media("≥tablet"){
+	@include media("≥widescreen"){
 		padding-left: 30px;
 		padding-right: 30px;
 	}

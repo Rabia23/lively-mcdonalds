@@ -18,14 +18,14 @@
 			left: 0;
 			top: 50%;
 			content: '';
-			background: $bleu-de-france;
+			background: $green-house;
 			width: 6px;
 			height: 6px;
 			margin-top: -3px;
 		}
 		
-		&.item2{
-			&:before{color: $deep-lilac;}
+		&.negative{
+			&:before{background: $carnelian;}
 		}
 	}
 }

@@ -25,3 +25,28 @@
 		width: 100%;
 	}
 }
+
+.calendar-holder{
+	position: relative;
+	overflow: hidden;
+
+	.glyphicon-calendar{
+		float: right;
+		pointer-events: none;
+	}
+
+	.date-picker{
+		padding: 0;
+		background: none;
+		border: 0;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		cursor: pointer;
+		width: auto !important;
+		line-height: 0;
+		color: transparent;
+	}
+}

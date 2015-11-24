@@ -32,7 +32,7 @@
 		@extend .col-sm-6;
 		@include media("≥tablet"){text-align: right;}
 	}
-	@include media("≥tablet"){
+	@include media("≥widescreen"){
 		padding-left: 30px;
 		padding-right: 30px;
 	}
