@@ -62,7 +62,12 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "<div class=\"info-block\">\n" +
     "  <div class=\"info-box\">\n" +
     "    <div class=\"heading\">\n" +
-    "      <h2>Map</h2>\n" +
+    "      <h2>Map\n" +
+    "        <span class = \"pull-right col-xs-4\">\n" +
+    "          <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"form-control date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" placeholder = \"Select Range\"/>\n" +
+    "          <i class=\"glyphicon glyphicon-calendar\" map-range-click style = \"cursor:pointer;\"></i>\n" +
+    "        </span>\n" +
+    "      </h2>\n" +
     "    </div>\n" +
     "    <ul class=\"list\">\n" +
     "      <li class=\"v-good\">Above Benchmark</li>\n" +

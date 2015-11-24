@@ -1,10 +1,17 @@
 angular.module( 'livefeed.dashboard.feedback_map', [
   'ngMap',
   'factories',
-  'livefeed.map'
+  'livefeed.map',
+  'ui.bootstrap',
+  'daterangepicker'
 ])
 
-.controller( 'FeedbackMapCtrl', function DashboardController( $scope, _, Graphs, mapService ) {
+.controller( 'FeedbackMapCtrl', function FeedbackMapController( $scope, _, Graphs, mapService ) {
+
+  $scope.datePicker = {};
+  $scope.datePicker.date = {startDate: null, endDate: null};
+
+  $scope.today = new Date();
 
 
   $scope.$on('mapInitialized', function (event, map) {
@@ -29,5 +36,18 @@ angular.module( 'livefeed.dashboard.feedback_map', [
       $scope.markers.push(mapService.createMarker(branch, $scope.map, icon));
     });
   });
+})
+
+.directive('mapRangeClick', function() {
+  return {
+    restrict: 'A',
+    link: function(scope, ele, attrs) {
+      ele.bind("click", function(event){
+        console.log("click");
+        console.log(event);
+        $(ele).prev().trigger("click");
+      });      
+    }
+  };
 });
 
