@@ -27,8 +27,8 @@ class Command(BaseCommand):
                 #to override auto_now_add=True in model
                 local_fb_option.created_at = feedback_option.createdAt
                 local_fb_option.save()
-            all_feedback_options = parse_feedback_option.Query.all().skip(1000).limit(1000)
             if all_feedback_options.count() <= 1000:
                 break
+            all_feedback_options = parse_feedback_option.Query.all().skip(1000).limit(1000)
 
         self.stdout.write('Successfully Populated Feedback Option Table')

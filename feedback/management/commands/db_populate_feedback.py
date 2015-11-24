@@ -30,9 +30,9 @@ class Command(BaseCommand):
                 #to override auto_now_add=True in model
                 local_feedback.created_at = feedback.createdAt
                 local_feedback.save()
-            all_feedback = parse_feedback.Query.all().limit(1000)
             if all_feedback.count() <= 1000:
                 break
+            all_feedback = parse_feedback.Query.all().skip(1000).limit(1000)
 
 
         self.stdout.write('Successfully Populated FeedBack Table')

@@ -35,8 +35,8 @@ class Command(BaseCommand):
                 local_user_info = UserInfo(user=django_user, phone_no=phone_no, objectId=user.objectId,
                                            is_customer=is_customer)
                 local_user_info.save()
-            all_users = parse_user.Query.all().limit(1000)
             if all_users.count() <= 1000:
                 break
+            all_users = parse_user.Query.all().skip(1000).limit(1000)
 
         self.stdout.write('Successfully Populated User and User Info Table')
