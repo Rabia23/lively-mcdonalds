@@ -80,11 +80,11 @@ angular.module('livefeed.chart', [
             },
             points: {
               show: true,
-              lineWidth: 2,
+              lineWidth: 1,
               fill: true,
               fillColor: "#ffffff",
               symbol: "circle",
-              radius: 5
+              radius: 3
             }
           },
           colors: _.map(labels, function(value, index){
@@ -174,11 +174,11 @@ angular.module('livefeed.chart', [
             },
             points: {
               show: true,
-              lineWidth: 2,
+              lineWidth: 3,
               fill: true,
               fillColor: "#ffffff",
               symbol: "circle",
-              radius: 5
+              radius: 3
             }
           },
           colors: _.map(labels, function(value, index){
