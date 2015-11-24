@@ -23,7 +23,9 @@ angular.module( 'livefeed.dashboard', [
   'livefeed.dashboard.overall_rating',
   'livefeed.dashboard.overall_feedback',
   'livefeed.dashboard.statistics',
-  'livefeed.dashboard.positive_negative_feedback'
+  'livefeed.dashboard.positive_negative_feedback',
+  'livefeed.dashboard.top_concern'
+
 ])
 
 /**
@@ -67,6 +69,11 @@ angular.module( 'livefeed.dashboard', [
       "positive_negative_feedback@dashboard":{
         controller: "PositiveNegativeFeedbackCtrl",
         templateUrl: 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html'
+      },
+
+      "top_concern@dashboard":{
+        controller: "TopConcernCtrl",
+        templateUrl: 'dashboard/top-concern/top-concern.tpl.html'
       }
 
     }

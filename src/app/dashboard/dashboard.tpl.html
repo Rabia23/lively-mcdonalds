@@ -1,8 +1,14 @@
 <section class = "section">
   <div class = "block" ui-view = "category_performance_analysis" ng-controller = "CategoryPerformanceAnalysisCtrl"></div>
-  <div class = "block" ui-view = "overall_feedback" ng-controller = "OverallFeedbackCtrl"></div>
+  
 </section>
 
+
+<section class = "section">
+  <div class = "block" ui-view = "overall_feedback" ng-controller = "OverallFeedbackCtrl"></div>
+  
+  <div class = "block" ui-view = "top_concern" ng-controller = "TopConcernCtrl"></div>
+</section>
 
 <section class = "section" ui-view="regional_analysis" ng-controller = "RegionalAnalysisCtrl"></section>
 

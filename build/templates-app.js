@@ -1,4 +1,4 @@
-angular.module('templates-app', ['dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html']);
+angular.module('templates-app', ['dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html']);
 
 angular.module("dashboard/category-performance-analysis/category-performance-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/category-performance-analysis/category-performance-analysis.tpl.html",
@@ -28,9 +28,15 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
   $templateCache.put("dashboard/dashboard.tpl.html",
     "<section class = \"section\">\n" +
     "  <div class = \"block\" ui-view = \"category_performance_analysis\" ng-controller = \"CategoryPerformanceAnalysisCtrl\"></div>\n" +
-    "  <div class = \"block\" ui-view = \"overall_feedback\" ng-controller = \"OverallFeedbackCtrl\"></div>\n" +
+    "  \n" +
     "</section>\n" +
     "\n" +
+    "\n" +
+    "<section class = \"section\">\n" +
+    "  <div class = \"block\" ui-view = \"overall_feedback\" ng-controller = \"OverallFeedbackCtrl\"></div>\n" +
+    "  \n" +
+    "  <div class = \"block\" ui-view = \"top_concern\" ng-controller = \"TopConcernCtrl\"></div>\n" +
+    "</section>\n" +
     "\n" +
     "<section class = \"section\" ui-view=\"regional_analysis\" ng-controller = \"RegionalAnalysisCtrl\"></section>\n" +
     "\n" +
@@ -270,6 +276,16 @@ angular.module("dashboard/statistics/statistics.tpl.html", []).run(["$templateCa
     "      <h4>Statistics</h4>\n" +
     "    </div>\n" +
     "  </section>\n" +
+    "</div>\n" +
+    "  ");
+}]);
+
+angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("dashboard/top-concern/top-concern.tpl.html",
+    "<div class=\"rating-section\" ng-class = \"{loading: show_loading}\">\n" +
+    "  <header class=\"heading-block\">\n" +
+    "    <h2>Top Concern</h2>\n" +
+    "  </header>\n" +
     "</div>\n" +
     "  ");
 }]);
