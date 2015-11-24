@@ -36,7 +36,7 @@ class Command(BaseCommand):
                 local_user_info = UserInfo(user=django_user, phone_no=phone_no, objectId=user.objectId,
                                            is_customer=is_customer)
                 local_user_info.save()
-            if all_users.count() <= 1000:
+            if all_users.count() < 1000:
                 break
             skip_count += 1000
             all_users = parse_user.Query.all().skip(skip_count).limit(1000)

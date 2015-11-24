@@ -31,7 +31,7 @@ class Command(BaseCommand):
                 #to override auto_now_add=True in model
                 local_feedback.created_at = feedback.createdAt
                 local_feedback.save()
-            if all_feedback.count() <= 1000:
+            if all_feedback.count() < 1000:
                 break
             skip_count += 1000
             all_feedback = parse_feedback.Query.all().skip(skip_count).limit(1000)

@@ -28,7 +28,7 @@ class Command(BaseCommand):
                 #to override auto_now_add=True in model
                 local_fb_option.created_at = feedback_option.createdAt
                 local_fb_option.save()
-            if all_feedback_options.count() <= 1000:
+            if all_feedback_options.count() < 1000:
                 break
             skip_count += 1000
             all_feedback_options = parse_feedback_option.Query.all().skip(skip_count).limit(1000)
