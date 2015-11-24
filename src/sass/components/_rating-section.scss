@@ -73,10 +73,12 @@
     
     ul{
       @extend .list-inline;
-      text-align: center;
+      text-align: right;
       overflow: hidden;
-      margin: 0;
+      margin: 0 0 15px;
       letter-spacing: -6px;
+	  font-size: 12px;
+	  line-height: 14px;
       
       li{
         vertical-align: top;
@@ -88,20 +90,13 @@
 			  position: absolute;
 			  left: 0;
 			  top: 50%;
-			  width: 5px;
-			  height: 5px;
-        	  ovflow:hidden;
+			  width: 6px;
+			  height: 6px;
+        	  overflow:hidden;
 			  margin-top: -5px;
 		  }
         
-        @include media("≥tablet"){
-			padding: 0 14px 10px 12px;
-			.bullet{
-				margin-top: -8px;
-				width: 7px;
-				height: 7px;
-			}
-		}
+        @include media("≥tablet"){padding: 0 14px 5px 12px;}
 		  a{
 			  color: $nobel;
 			  &:hover,
@@ -118,6 +113,10 @@
         }
       }
     }
+	  .graph-holder{
+		  overflow: hidden;
+		  padding: 0 14px 14px;
+	  }
     .flot-tick-label{max-width: 60px !important;}
     .ng-isolate-scope{
       height: 200px !important;

@@ -1,31 +1,27 @@
 <div class="review-block">
-  <div class = "pull-right">
-    <a class = "btn btn-default" ng-click = "open()">View All</a>
+  <div class="heading-block">
+  	<div class = "pull-right">
+		<a class = "btn btn-default" ng-click = "open()">View All Feedback</a>
+	  </div>
+	  <h2>Positive Negative Feedback</h2>
   </div>
-  <h2>Positive Negative Feedback</h2>
   <div class="holder">
     <ul>
       <li ng-repeat = "pos_feedback in pos_feedbacks">
         <div class="inner-holder">
-          <div class="ico-holder">
-            <span class="icon-thumbs-up"></span>
-          </div>
-          <div class="text">
             <p>{{pos_feedback.comment}}</p>
-          </div>
+            <span class="arrow"></span>
         </div>
+        <time datetime="2015-11-26 18:30">26-11-2015, 6:30 PM</time>
       </li>
     </ul>
     <ul class="add">
       <li ng-repeat = "neg_feedback in neg_feedbacks">
         <div class="inner-holder">
-          <div class="ico-holder">
-            <span class="icon-thumbs-down"></span>
-          </div>
-          <div class="text">
             <p>{{neg_feedback.comment}}</p>
-          </div>
+            <span class="arrow"></span>
         </div>
+        <time datetime="2015-11-26 18:30">26-11-2015, 6:30 PM</time>
       </li>
     </ul>
   </div>

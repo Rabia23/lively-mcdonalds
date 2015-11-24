@@ -1,38 +1,38 @@
 .review-block{
 	overflow: hidden;
 	background: $white;
-	padding: 15px;
-	text-align: center;
+	border: 1px solid $alto2;
 	
-	@include media("≥tablet"){
-		text-align: left;
-		padding: 20px 15px 10px;
-	}
-	@include media("≥widescreen"){padding: 24px 30px 29px;}
-	
-	h2{
-		letter-spacing: 1px;
+	.heading-block{
+		overflow: hidden;
+		padding: 10px 15px;
+		border-bottom: 1px solid $alto2;
 		margin: 0 0 30px;
 		
-		@include media("≥tablet"){margin: 0 0 40px;}
-		@include media("≥desktop"){margin: 0 0 58px;}
-	}
-	
-	.btn{
-		&.btn-default{
-			border-radius: 0;
-			-webkit-border-radius: 0;
-			
-			&:hover,
-			&:active,
-			&:focus,
-			&.active{
-				background: $golden-poppy;
-				color: $white;
-				border-color: $golden-poppy;
-				box-shadow: none;
+		.btn{
+			font-size: 16px;
+			line-height: 22px;
+			padding: 10px 20px;
+			&.btn-default{
+				border-radius: 0;
+				-webkit-border-radius: 0;
+
+				&:hover,
+				&:active,
+				&:focus,
+				&.active{
+					background: $golden-poppy;
+					color: $white;
+					border-color: $golden-poppy;
+					box-shadow: none;
+				}
 			}
 		}
+	}
+	
+	h2{
+		margin: 0;
+		line-height: 2.1em;
 	}
 	
 	.holder{
@@ -53,95 +53,48 @@
 		&.add{
 			@include media("≥widescreen"){float: right;}
 			
-			li{
-				border-color: $brand-danger;
-				
-				&:after{border-bottom-color: $brand-danger;}
-				&:before{color: $brand-danger;}
-				.ico-holder{color: $brand-danger;}
-			}
 		}
 		
 		li{
-			@include inline-block(top);
-			width: 159px;
-			height: 159px;
-			position: relative;
-			z-index: 1;
-			padding: 11px 0;
-			margin: 0 25px 40px 10px;
-			text-align: center;
-			@include border-radius(100%);
-			border: 11px solid $brand-success;
-			
-			@include media("≥phone"){margin: 0 25px 40px 10px;}
-			@include media("≥tablet"){margin: 0 3px 30px;}
-			@include media("≥widescreen"){margin: 0 4px 20px;}
-			
-			&:after{
-				position: absolute;
-				right: -11px;
-				bottom: -11px;
-				content: "";
-				width: 0; 
-				height: 0; 
-				border-bottom: 75px solid $brand-success;
-				border-left: 75px solid transparent; 
-			}
-			
-			&:before{
-				position: absolute;
-				right: -42px;
-				bottom: -43px;
-				color: $brand-success;
-				content: '\Ad804';
-				font: {
-					size: 40px;
-					family: $ico-font;
-				}
-				line-height: 1em;
-				cursor: default;
-			}
-		}
-		
-		.ico-holder{
-			display: block;
-			@include v-align(100%, bottom, before);
-			font-size: 22px;
-			line-height: 22px;
-			margin: 0 0 11px;
-			position: relative;
-			z-index: 6;
-			color: $brand-success;
-			
-			span{cursor: default;}
+			float: left;
+			clear: both;
+			margin: 0 0 24px;
 		}
 		
 		.inner-holder{
+			@extend .clearfix;
 			position: relative;
+			padding: 20px;
+			border: 1px solid $islamic-green;
+			-webkit-box-shadow: 4px 4px rgba($black,.1);
+			-moz-box-shadow: 4px 4px rgba($black,.1);
+			box-shadow: 4px 4px rgba($black,.1);
+			margin: 0 0 15px;
 			
-			&:after{
-				position: absolute;
-				right: 1px;
-				bottom: -20px;
-				left: 0;
-				top: 0;
-				content: "";
-				background: $white;
-				z-index: 5;
-				@include border-radius(100%);
-			}
+			p{margin: 0;}
 		}
 		
-		.text{
-			height: 72px;
-			position: relative;
-			padding: 0 15px;
+		.arrow {
+			width: 15px;
+			height: 8px;
+			left: 23px;
+			bottom: -8px;
+			position: absolute;
 			overflow: hidden;
-			z-index: 6;
-			@include v-align(100%, middle, before);
 			
-			p{margin: 0 0 8px;}
+			&:after{
+				content: "";
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background: $islamic-green;
+				transform: rotate(45deg);
+				top: 0;
+				left: 0;
+				-webkit-box-shadow: 4px 4px rgba($black,.1);
+				-moz-box-shadow: 4px 4px rgba($black,.1);
+				box-shadow: 4px 4px rgba($black,.1);
+			}
 		}
 	}
 }
