@@ -4,6 +4,7 @@ from parse_rest.datatypes import Object
 from feedback.models import Feedback
 from app.models import Branch, UserInfo
 from django.conf import settings
+import time
 
 
 class Command(BaseCommand):
@@ -18,7 +19,7 @@ class Command(BaseCommand):
         while True:
             for feedback in all_feedback:
                 comment = feedback.comment if hasattr(feedback, 'comment') else ''
-                self.stdout.write('ObjectId : ' + feedback.objectId + '  Branch : ' + feedback.branch.name + ' Comment :' + comment)
+                self.stdout.write('ObjectId : ' + feedback.objectId + '  Branch : ' + feedback.branch.name)
                 if hasattr(feedback, 'user'):
                     user = UserInfo.objects.get(objectId=feedback.user.objectId).user
                     local_feedback = Feedback(objectId=feedback.objectId, comment=comment, user=user,
@@ -34,6 +35,7 @@ class Command(BaseCommand):
             if all_feedback.count() < 1000:
                 break
             skip_count += 1000
+            time.sleep(5)
             all_feedback = parse_feedback.Query.all().skip(skip_count).limit(1000)
 
 
