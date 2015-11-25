@@ -16,9 +16,16 @@
 		
 		@include media("≥widescreen"){padding: 0 0 0 20px;}
 	}
-
+	
+	.holder{
+		@extend .clearfix;
+		padding: 0 10px;
+		
+		@include media("≥widescreen"){padding: 0 20px;}
+	}
 	
 	.breadcrum{
+		padding: 10px 0;
 		span{
 			@include inline-block(top);
 			cursor: pointer;
@@ -26,7 +33,7 @@
 	}
 	
 	&.loading{
-		.info-list{
+		.list-container{
 			&:after{
 				visibility: visible;
 				opacity: 1;
@@ -73,13 +80,17 @@
 		}
 	}
 }
-.info-list{
-	@extend %listreset;
-	overflow: hidden;
-	letter-spacing: -6px;
-	text-align: center;
-	min-height: 250px;
+
+.list-container{
+	margin: 0 -10px;
+	padding: 0 10px;
 	position: relative;
+	min-height: 250px;
+	
+	@include media("≥widescreen"){
+		padding: 0 36px;
+		margin: 0 -20px;
+	}
 	
 	&:after{
 		position: absolute;
@@ -99,7 +110,7 @@
 		left: 0;
 		right: 0;
 		top: 0;
-		bottom: 20px;
+		bottom: 0;
 		content: "";
 		background: $celeste;
 		visibility: hidden;
@@ -107,18 +118,41 @@
 		position: absolute;
 		z-index: 5;
 	}
-	
-	@include media("≥widescreen"){padding: 0 36px;}
+}
+
+.info-list{
+	@extend %listreset;
+	overflow: hidden;
+	letter-spacing: -6px;
+	text-align: center;
 	
 	li{
 		@include inline-block(top);
 		width: 100%;
 		text-align: center;
 		margin: 0 0 10px;
+		position: relative;
+		
+		&:after , &:before{
+			position: absolute;
+			left: -1px;
+			top: 0;
+			bottom: 0;
+			content: "";
+			width: 1px;
+			background: $platinum;
+		}
+		&:before{
+			left: auto;
+			right: 0;
+		}
 		
 		@include media("≥phone"){width: 50%;}
 		@include media("≥tablet"){width: 33.33%;}
-		@include media("≥desktop"){width: 25%;}
+		@include media("≥desktop"){
+			width: 25%;
+			margin: 0 0 20px;
+		}
 	}
 	.graph-holder{
 		overflow: hidden;
