@@ -6,15 +6,37 @@
 	h2{
 		margin: 0;
 		overflow: hidden;
-		line-height: 3em;
+		padding: 10px;
+		border-bottom: 1px solid $platinum;
+		
+		@include media("≥tablet"){
+			float: left;
+			border: 0;
+			padding: 0;
+			line-height: 3em;
+		}
 	}
 	
 	.heading-holder{
 		@extend .clearfix;
 		border-bottom: 1px solid $platinum;
-		padding: 0 0 0 10px;
 		
 		@include media("≥widescreen"){padding: 0 0 0 20px;}
+		
+		.calender-outer{
+			border-left: 1px solid $platinum;
+			padding: 14px 18px;
+			float: right;
+			
+			@include media("<tablet"){
+				width: 25%;
+				text-align: center;
+			}
+			
+			@include media("≥tablet"){padding: 17px 20px;}
+			@include media("≥desktop"){padding: 19px 20px;}
+			@include media("≥widescreen"){padding: 21px 20px;}
+		}
 	}
 	
 	.holder{
@@ -46,16 +68,20 @@
 	}
 	.btn-group{
 		margin: 0 0 -1px;
+		@include media("<tablet"){width: 100%;}
 		.btn{
 			border-radius: 0;
 			-webkit-border-radius: 0;
-			font-size: 14px;
+			font-size: 13px;
 			line-height: 20px;
-			padding: 14px 15px;
+			padding: 14px 7px;
+			text-align: center;
 			color: $battleship-grey;
 			border: 0;
 			border-left: 1px solid $platinum;
 			border-bottom: 1px solid $platinum;
+			
+			@include media("<tablet"){width: 25%;}
 			
 			@include media("≥tablet"){
 				font-size: 16px;

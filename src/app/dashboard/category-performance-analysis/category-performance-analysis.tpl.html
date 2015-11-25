@@ -1,5 +1,24 @@
-<div class="info-holder">
-  <h2>Category Performance Analysis</h2>
+<div class="section-holder ng-scope">
+	<div class="info-holder">
+  
+  <div class="heading-holder">
+  	<ul>
+  		<li><a href="#" class="btn btn-default">all</a></li>
+  		<li><a href="#" class="btn btn-default">Quality</a></li>
+  		<li><a href="#" class="btn btn-default">Services</a></li>
+  		<li><a href="#" class="btn btn-default">Cleanliness</a></li>
+  		<li>
+			<div class="calender-outer">
+				<span class = "calendar-holder pull-right">
+				  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" />
+				  <i class="glyphicon glyphicon-calendar" map-range-click></i>
+				</span>
+			</div>
+		</li>
+  	</ul>
+  	<h2>Category Performance Analysis</h2>
+  </div>
+  
   <div class="progress-area" ng-controller="CategoryPerformanceAnalysisCtrl">
 
     <div class="progress-holder {{dat.class}}" ng-repeat = "dat in category_performance">
@@ -18,3 +37,4 @@
 
 
   
+</div>

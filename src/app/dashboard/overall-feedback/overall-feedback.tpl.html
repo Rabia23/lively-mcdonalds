@@ -1,6 +1,12 @@
 <div class="feedback-block">
   <div class="heading-holder">
-  	<h2>Rating</h2>
+  	<div class="calender-outer">
+		<span class = "calendar-holder pull-right">
+		  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" />
+		  <i class="glyphicon glyphicon-calendar" map-range-click></i>
+		</span>
+	</div>
+	<h2>Rating</h2>
   </div>
   <div class="graph-holder">
   	<canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-colours="colours" chart-options="options"></canvas>

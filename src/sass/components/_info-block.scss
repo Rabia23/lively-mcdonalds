@@ -2,6 +2,24 @@
 	background: $white;
 	overflow: hidden;
 	border: 1px solid $alto2;
+	
+	.calender-outer{
+		float: right;
+		position: relative;
+		padding: 0 0 0 10px;
+		
+		&:after{
+			position: absolute;
+			left: 0;
+			top: -999px;
+			bottom: -999px;
+			content: "";
+			background: $alto2;
+			width: 1px;
+		}
+		
+		@include media("≥widescreen"){padding: 2px 0 0 20px;}
+	}
 }
 
 .info-box{
@@ -29,6 +47,7 @@
 .calendar-holder{
 	position: relative;
 	overflow: hidden;
+	@include inline-block(top);
 
 	.glyphicon-calendar{
 		float: right;
@@ -48,6 +67,7 @@
 		right: 0;
 		top: 0;
 		bottom: 0;
+		height: 100%;
 		cursor: pointer;
 		width: auto !important;
 		line-height: 0;
