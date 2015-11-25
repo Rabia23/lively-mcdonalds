@@ -207,6 +207,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "  <div class=\"info-area\" ng-class=\"{loading: show_loading}\">\n" +
     "    <div class=\"heading-holder\">\n" +
     "    	<div class=\"btn-group pull-right\">\n" +
+    "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Comments'\" ng-click = \"showChart(null, 'regions')\">Comments</label>\n" +
     "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'regions')\">Rating</label>\n" +
     "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'SQC'\" ng-click = \"showChart(null, 'regions')\">SQC</label>\n" +
     "		</div>\n" +
@@ -214,7 +215,8 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "		<h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis</h2>\n" +
     "		<h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}} City Branch Analysis</h2>\n" +
     "    </div>\n" +
-    "    <div class = \"breadcrum\">\n" +
+    "    <div class=\"holder\">\n" +
+    "    	<div class = \"breadcrum\">\n" +
     "      <span ng-hide = \"regional_view\">\n" +
     "        <a ng-click = \"backToRegions()\" style = \"style: cursor:pointer\">Regions /</a>\n" +
     "      </span>\n" +
@@ -223,7 +225,8 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "      </span>\n" +
     "    </div>\n" +
     "\n" +
-    "    <ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
+    "    <div class=\"list-container\">\n" +
+    "    	<ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
     "      <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
     "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open(option,region,city,branch)\"></div>\n" +
@@ -252,6 +255,8 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "        <h3>{{branch.name}}</h3>\n" +
     "      </li>\n" +
     "    </ul>\n" +
+    "    </div>\n" +
+    "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
     "  ");

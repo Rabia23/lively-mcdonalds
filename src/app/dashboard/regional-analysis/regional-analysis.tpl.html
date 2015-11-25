@@ -2,6 +2,7 @@
   <div class="info-area" ng-class="{loading: show_loading}">
     <div class="heading-holder">
     	<div class="btn-group pull-right">
+		  <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Comments'" ng-click = "showChart(null, 'regions')">Comments</label>
 		  <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Rating'" ng-click = "showChart(null, 'regions')">Rating</label>
 		  <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'SQC'" ng-click = "showChart(null, 'regions')">SQC</label>
 		</div>
@@ -9,7 +10,8 @@
 		<h2 ng-show = "regional_view == false && city_view == true">{{selected_region.name}} Region City Analysis</h2>
 		<h2 ng-show = "regional_view == false && city_view == false">{{selected_city.name}} City Branch Analysis</h2>
     </div>
-    <div class = "breadcrum">
+    <div class="holder">
+    	<div class = "breadcrum">
       <span ng-hide = "regional_view">
         <a ng-click = "backToRegions()" style = "style: cursor:pointer">Regions /</a>
       </span>
@@ -18,7 +20,8 @@
       </span>
     </div>
 
-    <ul class="info-list" ng-show = "regional_view == true">
+    <div class="list-container">
+    	<ul class="info-list" ng-show = "regional_view == true">
       <li ng-repeat = "region in donut_graph_data.objects track by $index">
         <div class="graph-holder">
           <div morris-chart data-data="donut_graph_data.donutData[$index]" data-type="donut" data-options="donut_graph_data.donutOptions[$index]" data-action="open(option,region,city,branch)"></div>
@@ -47,6 +50,8 @@
         <h3>{{branch.name}}</h3>
       </li>
     </ul>
+    </div>
+    </div>
   </div>
 </div>
   

@@ -144,7 +144,10 @@
 					position: absolute;
 					width: 15px;
 					height: 16px;
-					transform: rotate(45deg);
+					-moz-transform: rotate(45deg); 
+					  -webkit-transform: rotate(45deg);
+					  -o-transform: rotate(45deg);
+					  -ms-transform:rotate(45deg);
 					top: -8px;
 					left: 5px;
 					-webkit-box-shadow: 4px 4px rgba($black,.1);
