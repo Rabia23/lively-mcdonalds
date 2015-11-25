@@ -20,7 +20,7 @@
     a{
       float: right;
       cursor: pointer;
-      margin: 5px 0 0 5px;
+      margin: 2px 5px 0;
       
       &:hover{color: darken($dell,10%);}
     }
@@ -117,13 +117,15 @@
 	  .graph-holder{
 		  overflow: hidden;
 		  padding: 0 14px 14px;
+		  
+		  .ng-isolate-scope{
+			  height: 297px !important;
+			  > div{height: 297px !important;}
+			}
 	  }
     .flot-tick-label{max-width: 60px !important;}
-    .ng-isolate-scope{
-      height: 297px !important;
-      > div{height: 297px !important;}
-    }
   }
+	#bubble-chart{margin-bottom: 53px;}	
 }
 
 .flotTip{

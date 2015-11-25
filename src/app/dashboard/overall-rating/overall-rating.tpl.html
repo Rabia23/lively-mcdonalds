@@ -1,7 +1,13 @@
 <div class="rating-section" ng-class = "{loading: show_loading}">
   <header class="heading-block">
-    <h2>Overall Rating</h2>
-    <a ng-click = "backToMain()" ng-hide = "mainView">Back</a>
+    <h2>Timeline</h2>
+    <div class="pull-right">
+		<span class = "calendar-holder pull-right">
+		  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" />
+		  <i class="glyphicon glyphicon-calendar" map-range-click></i>
+		</span>
+    	<a ng-click = "backToMain()" ng-hide = "mainView">Back</a>
+    </div>
   </header>
   <div class="rating-holder">
     <ul>
