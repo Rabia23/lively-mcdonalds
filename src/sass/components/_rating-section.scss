@@ -24,6 +24,65 @@
       
       &:hover{color: darken($dell,10%);}
     }
+	  
+	.select-holder{
+		position:relative;
+		float: right;
+		margin: 0 3px;
+		
+		select{
+			@include inline-block(top);
+			padding:1px 30px 1px 2px;
+			margin:0;
+			font:inherit;
+			outline:none;
+			font-size: 16px;
+			line-height:20px;
+			height: 22px;
+			-webkit-appearance:none;
+			appearance:none;
+			width: 100%;
+			position: relative;
+			background:$white;
+			border: 0;
+			text-align: right;
+		}
+		
+		option{width: 100%;}
+		
+		&:before{
+			content:"";
+			position:absolute;
+			top:0;
+			right:0;
+			bottom:0;
+			width: 28px;
+			background:$white;
+			pointer-events:none;
+			z-index: 1;
+			pointer-events: none;
+		}
+		&:after{
+			position: absolute;
+			right:12px;
+			content:'';
+			width:12px;
+			height:12px;
+			position:absolute;
+			top:50%;
+			border:3px solid #666;
+			border-width:0 0 3px 3px;
+			-moz-transform: rotate(-45deg);
+			-ms-transform: rotate(-45deg);
+			-webkit-transform: rotate(-45deg);
+			transform: rotate(-45deg);
+			margin-top:-6px;
+			line-height: 0;
+			z-index: 1;
+			pointer-events: none;
+		}
+	}
+	select::-ms-expand {display: none;}
   }
   
   &.loading{

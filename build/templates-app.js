@@ -111,6 +111,15 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "		  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" />\n" +
     "		  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "		</span>\n" +
+    "   		<span class=\"select-holder\">\n" +
+    "   			<select>\n" +
+    "				<option>Daily</option>\n" +
+    "				<option>Weekly</option>\n" +
+    "				<option>Monthly</option>\n" +
+    "				<option>Quaterly</option>\n" +
+    "				<option>Yearly</option>\n" +
+    "			</select>\n" +
+    "   		</span>\n" +
     "    	<a ng-click = \"backToMain()\" ng-hide = \"mainView\">Back</a>\n" +
     "    </div>\n" +
     "  </header>\n" +
