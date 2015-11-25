@@ -84,7 +84,6 @@ module.exports = {
       'vendor/bootstrap-daterangepicker/daterangepicker.js',
       'vendor/angular-daterangepicker/js/angular-daterangepicker.js',
       'vendor/Chart.js/Chart.js',
-      'vendor/Chart.js/Chart.min.js',
       'vendor/angular-chart.js/dist/angular-chart.js',
       'vendor/PykCharts/pykih-charts/assets/lib/d3.min.js',
       'vendor/PykCharts/pykih-charts/assets/lib/topojson.min.js',

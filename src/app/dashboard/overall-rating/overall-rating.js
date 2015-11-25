@@ -20,7 +20,6 @@ angular.module( 'livefeed.dashboard.overall_rating', [
     $scope.show_loading = true; 
 
     Graphs.overall_rating().$promise.then(function(data){
-		console.log(data);
       $scope.show_loading = false; 
       $scope.line1 = chartService.getLineChart(data);
       $scope.dates = _.map(data, function(value){
@@ -54,7 +53,6 @@ angular.module( 'livefeed.dashboard.overall_rating', [
       var parent_value = option.value;
       $scope.show_loading = true;
       Graphs.feedback_segmentation(date, option.id).$promise.then(function(data){
-        console.log(data);
         $scope.show_loading = false;
         $scope.mainView = false;
         $scope.line1 = chartService.getSegmentLineChart(data, parent_color, parent_value);

@@ -8,25 +8,8 @@ angular.module( 'livefeed.dashboard.top_concern', [
 .controller( 'TopConcernCtrl', function TopConcernController( $scope, _, chartService, Graphs, Global ) {
 
   Graphs.top_concerns().$promise.then(function(data){
-    console.log("top concerns");
-    console.log(data.concern_list);
     $scope.data = data.concern_list;
   });
-
-  // $scope.data = [
-  //   {
-  //     "name": "Product 1",
-  //     "weight": 4800
-  //   },
-  //   {
-  //     "name": "Product 2",
-  //     "weight": 4000
-  //   },
-  //   {
-  //     "name": "Product 3",
-  //     "weight": 2500
-  //   }
-  // ];
 
 })
 .directive('pykChart', function() {
@@ -42,7 +25,6 @@ angular.module( 'livefeed.dashboard.top_concern', [
         if(watchedData !== undefined){
           var data = scope.data;
 
-          console.log(data);
           var k = new PykCharts.oneD.bubble({
             "selector": "#bubble-chart",
             "data": data,

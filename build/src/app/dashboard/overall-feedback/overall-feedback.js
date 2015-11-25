@@ -9,17 +9,16 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
   $scope.data = [];
   Graphs.overall_feedback().$promise.then(function(graph_data){
     $scope.labels = _.map(graph_data.feedbacks, function(data){return data.option__text;});
+    //$scope.bar = chartService.getBarChartData(graph);
     var bar_data = _.map(graph_data.feedbacks, function(data){return data.count;});
     $scope.data.push(bar_data);
     $scope.series = ['Series A'];
-    $scope.colours = _.map(graph_data.feedbacks, function(data){return Global.mainRatingColorScheme[data.option__text];});
+    $scope.colours = [{fillColor: _.map(graph_data.feedbacks, function(data){return Global.mainRatingColorScheme[data.option__text];})}];
     $scope.options = {
-      //scales: {
-      //    xAxes: [{
-      //        categorySpacing: 3
-      //    }]
-      //},
-      //barStrokeWidth : 2
+
+      barShowStroke : false,
+      barValueSpacing : 25,
+      scaleShowVerticalLines: false
     };
   });
 

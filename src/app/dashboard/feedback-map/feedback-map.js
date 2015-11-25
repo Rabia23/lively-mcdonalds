@@ -43,8 +43,6 @@ angular.module( 'livefeed.dashboard.feedback_map', [
     restrict: 'A',
     link: function(scope, ele, attrs) {
       ele.bind("click", function(event){
-        console.log("click");
-        console.log(event);
         $(ele).prev().trigger("click");
       });      
     }
