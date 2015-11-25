@@ -389,14 +389,14 @@ def top_concerns(request):
 
         try:
             concerns = [
-                    {"item": "Ketchap", "weight": "110"},
-                    {"item": "Bun", "weight": "95"},
-                    {"item": "Wings", "weight": "56"},
-                    {"item": "Fries", "weight": "9"},
-                    {"item": "Ketchap", "weight": "110"},
-                    {"item": "Bun", "weight": "95"},
-                    {"item": "Wings", "weight": "56"},
-                    {"item": "Fries", "weight": "9"},
+                    {"name": "Ketchap", "weight": "110"},
+                    {"name": "Bun", "weight": "95"},
+                    {"name": "Wings", "weight": "56"},
+                    {"name": "Fries", "weight": "9"},
+                    {"name": "Ketchap", "weight": "110"},
+                    {"name": "Bun", "weight": "95"},
+                    {"name": "Wings", "weight": "56"},
+                    {"name": "Fries", "weight": "9"},
                 ]
 
             data = {'concern_count': len(concerns), 'concern_list': concerns}
