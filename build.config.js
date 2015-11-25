@@ -85,13 +85,22 @@ module.exports = {
       'vendor/angular-daterangepicker/js/angular-daterangepicker.js',
       'vendor/Chart.js/Chart.js',
       'vendor/Chart.js/Chart.min.js',
-      'vendor/angular-chart.js/dist/angular-chart.js'
+      'vendor/angular-chart.js/dist/angular-chart.js',
+      'vendor/PykCharts/pykih-charts/assets/lib/d3.min.js',
+      'vendor/PykCharts/pykih-charts/assets/lib/topojson.min.js',
+      'vendor/PykCharts/pykih-charts/assets/lib/custom-hive.min.js',
+      'vendor/PykCharts/pykih-charts/assets/lib/colors.min.js',
+      'vendor/PykCharts/pykih-charts/assets/lib/paper-full.min.js',
+      'vendor/PykCharts/pykcharts.1.1.0.min.js'
+
 
     ],
     css: [
       'vendor/morris.js/morris.css',
       'vendor/bootstrap-daterangepicker/daterangepicker.css',
-      'vendor/angular-chart.js/dist/angular-chart.css'
+      'vendor/angular-chart.js/dist/angular-chart.css',
+      'vendor/PykCharts/pykcharts.1.1.0.min.css'
+
     ],
     assets: [
     ]

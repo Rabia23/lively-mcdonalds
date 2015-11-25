@@ -286,6 +286,7 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "  <header class=\"heading-block\">\n" +
     "    <h2>Top Concern</h2>\n" +
     "  </header>\n" +
+    "  <div id=\"bubble-chart\" pyk-chart data-data = \"data\"></div>\n" +
     "</div>\n" +
     "  ");
 }]);

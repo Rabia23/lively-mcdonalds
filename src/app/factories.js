@@ -42,13 +42,18 @@ angular.module( 'factories', [
                       });
                       return data;
                     }},
-                    feedback_segmentation: {method: "JSONP",isArray: false, params: {endpoint: "feedback_segmentation"}}
+                    feedback_segmentation: {method: "JSONP",isArray: false, params: {endpoint: "feedback_segmentation"}},
+                    top_concerns: {method: "JSONP", isArray: false, params: {endpoint: "top_concerns"}}
                  });
   }
 
   Graphs.prototype.overall_rating = function(option_id){
     option_id = option_id || "";
     return this.service.overall_rating({option: option_id});
+  };
+
+  Graphs.prototype.top_concerns = function(top_concerns){
+    return this.service.top_concerns();
   };
 
   Graphs.prototype.feedback_segmentation = function(date, option_id){
