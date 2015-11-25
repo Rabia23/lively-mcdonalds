@@ -122,7 +122,7 @@ class SegmentationSerializer(serializers.Serializer):
 
 class ConcernSerializer(serializers.Serializer):
     item = serializers.CharField()
-    count = serializers.IntegerField()
+    weight = serializers.IntegerField()
 
 
 class ConcernsSerializer(serializers.Serializer):

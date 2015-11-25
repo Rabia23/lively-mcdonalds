@@ -84,17 +84,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lively.wsgi.application'
 
-
-# #should comment this while using locally
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-    }
-}
-#should comment this while using locally
-import dj_database_url
-DATABASES['default'] = dj_database_url.config()
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 # #
