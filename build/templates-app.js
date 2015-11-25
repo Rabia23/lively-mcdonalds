@@ -26,9 +26,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
 
 angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/dashboard.tpl.html",
-    "<section class = \"section\">\n" +
-    "  <div class = \"block\" ui-view = \"category_performance_analysis\" ng-controller = \"CategoryPerformanceAnalysisCtrl\"></div>\n" +
-    "  \n" +
+    "<section class = \"section\" ui-view = \"category_performance_analysis\" ng-controller = \"CategoryPerformanceAnalysisCtrl\">\n" +
     "</section>\n" +
     "\n" +
     "\n" +
@@ -318,7 +316,9 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "  			<a href=\"#\">Cleanliness</a>\n" +
     "  		</li>\n" +
     "  	</ul>\n" +
-    "  	<div id=\"bubble-chart\" pyk-chart data-data = \"data\"></div>\n" +
+    "    <div class=\"graph-outer\">\n" +
+    "      <div id=\"bubble-chart\" pyk-chart data-data = \"data\"></div>\n" +
+    "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
     "  ");
