@@ -107,8 +107,14 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
   $templateCache.put("dashboard/overall-rating/overall-rating.tpl.html",
     "<div class=\"rating-section\" ng-class = \"{loading: show_loading}\">\n" +
     "  <header class=\"heading-block\">\n" +
-    "    <h2>Overall Rating</h2>\n" +
-    "    <a ng-click = \"backToMain()\" ng-hide = \"mainView\">Back</a>\n" +
+    "    <h2>Timeline</h2>\n" +
+    "    <div class=\"pull-right\">\n" +
+    "		<span class = \"calendar-holder pull-right\">\n" +
+    "		  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" />\n" +
+    "		  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
+    "		</span>\n" +
+    "    	<a ng-click = \"backToMain()\" ng-hide = \"mainView\">Back</a>\n" +
+    "    </div>\n" +
     "  </header>\n" +
     "  <div class=\"rating-holder\">\n" +
     "    <ul>\n" +
@@ -297,7 +303,23 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "  <header class=\"heading-block\">\n" +
     "    <h2>Top Concern</h2>\n" +
     "  </header>\n" +
-    "  <div id=\"bubble-chart\" pyk-chart data-data = \"data\"></div>\n" +
+    "  <div class=\"rating-holder\">\n" +
+    "  	<ul>\n" +
+    "  		<li>\n" +
+    "  			<span class=\"bullet\"></span>\n" +
+    "  			<a href=\"#\">Food Quality</a>\n" +
+    "  		</li>\n" +
+    "  		<li>\n" +
+    "  			<span class=\"bullet\"></span>\n" +
+    "  			<a href=\"#\">Services</a>\n" +
+    "  		</li>\n" +
+    "  		<li>\n" +
+    "  			<span class=\"bullet\"></span>\n" +
+    "  			<a href=\"#\">Cleanliness</a>\n" +
+    "  		</li>\n" +
+    "  	</ul>\n" +
+    "  	<div id=\"bubble-chart\" pyk-chart data-data = \"data\"></div>\n" +
+    "  </div>\n" +
     "</div>\n" +
     "  ");
 }]);
