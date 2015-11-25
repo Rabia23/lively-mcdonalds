@@ -118,6 +118,8 @@
 		position: absolute;
 		z-index: 5;
 	}
+	
+	.inner-holder{overflow: hidden;}
 }
 
 .info-list{
@@ -125,6 +127,7 @@
 	overflow: hidden;
 	letter-spacing: -6px;
 	text-align: center;
+	margin: 0 -1px;
 	
 	li{
 		@include inline-block(top);

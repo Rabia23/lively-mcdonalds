@@ -226,7 +226,8 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "    </div>\n" +
     "\n" +
     "    <div class=\"list-container\">\n" +
-    "    	<ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
+    "    	<div class=\"inner-holder\">\n" +
+    "    		<ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
     "      <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
     "        <div class=\"graph-holder\">\n" +
     "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open(option,region,city,branch)\"></div>\n" +
@@ -255,6 +256,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "        <h3>{{branch.name}}</h3>\n" +
     "      </li>\n" +
     "    </ul>\n" +
+    "    	</div>\n" +
     "    </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
