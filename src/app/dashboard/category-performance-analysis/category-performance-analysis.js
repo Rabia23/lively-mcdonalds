@@ -17,5 +17,17 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
       $scope.category_performance = _.sortBy(category_performance, function(value){ return value.priority; });
 
    });
+   $scope.randomStacked = function() {
+    $scope.stacked = [];
+    var types = ['success', 'info', 'warning', 'danger'];
+    var values = [20,30,25];
+    for (var i = 0; i < 3; i++) {
+        $scope.stacked.push({
+          value: values[i],
+          type: types[i]
+        });
+    }
+  };
+  $scope.randomStacked();
 
 });

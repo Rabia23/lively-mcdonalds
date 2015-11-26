@@ -27,16 +27,17 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  	<div class=\"holder\">\n" +
     "  		<div class=\"progress-area\" ng-controller=\"CategoryPerformanceAnalysisCtrl\">\n" +
     "\n" +
-    "			<div class=\"progress-holder\" ng-repeat = \"dat in category_performance\">\n" +
+    "			<div ng-repeat = \"dat in category_performance\">\n" +
     "\n" +
     "			<small><em>{{dat.name}}</em></small>\n" +
     "\n" +
-    "				<div class=\"progress-block\">\n" +
-    "					<uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar>\n" +
+    "				<div>\n" +
+    "					 <uib-progress><uib-bar ng-repeat=\"bar in stacked track by $index\" value=\"bar.value\" type=\"{{bar.type}}\"><span>{{bar.value}}%</span></uib-bar></uib-progress>\n" +
     "				</div>\n" +
     "\n" +
     "		  </div>\n" +
     "		</div>\n" +
+    "		\n" +
     "		<ul class=\"list add\">\n" +
     "			<li class=\"item1\"><a href=\"#\">Quality</a></li>\n" +
     "			<li class=\"item2\"><a href=\"#\">Services</a></li>\n" +
@@ -46,7 +47,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  	<div class=\"holder\">\n" +
     "  		<div class=\"progress-area\" ng-controller=\"CategoryPerformanceAnalysisCtrl\">\n" +
     "\n" +
-    "    <div class=\"progress-holder\" ng-repeat = \"dat in category_performance\">\n" +
+    "    <div class=\"progress-holder {{dat.class}}\" ng-repeat = \"dat in category_performance\">\n" +
     "\n" +
     "    <small><em>{{dat.name}}</em></small>\n" +
     "    \n" +
