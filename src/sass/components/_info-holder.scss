@@ -159,25 +159,27 @@
 				font-size: 10px;
 				line-height: 12px;
 				position: absolute;
-				left: 0;
+				left: 100%;
 				top: 100%;
+				width: 32px;
 				display: block;
-				border-left: 1px solid $white;
-				margin: 1px 0 0;
-				padding: 0 0 0 3px;
+				border-right: 1px solid $white;
+				margin: 1px 0 0 -32px;
+				padding: 0 3px 0 0;
 				color: $mountain-mist;
+				text-align: right;
 			}
 			
 			&.progress-bar-success{
-				span{border-left-color: $golden-poppy;}
+				span{border-right-color: $golden-poppy;}
 			  }
 
 			  &.progress-bar-info{
-				  span{border-left-color: $deep-lilac;}
+				  span{border-right-color: $deep-lilac;}
 			  }
 
 			  &.progress-bar-warning{
-				  span{border-left-color: $bleu-de-france;}
+				  span{border-right-color: $bleu-de-france;}
 			  }
 		}
 	}
@@ -214,8 +216,10 @@
 	}
 	
 	.progress-holder{
-		overflow: hidden;
+		@extend .clearfix;
 		margin: 0 0 30px;
+		
+		.progress{position: relative;}
 		
 		
 		.progress-bar{
@@ -224,8 +228,11 @@
 				font-size: 12px;
 				line-height: 14px;
 				position: absolute;
-				top: -4px;
+				top: -5px;
+				font-weight: normal;
 				left: 100%;
+				text-align: right;
+				width: 30px;
 				text-align: right;
 			}
 		}
@@ -256,7 +263,7 @@
 		.progress-block{
 			position: relative;
 			@extend .clearfix;
-			padding: 0 20px 0 0;
+			padding: 0 30px 0 0;
 		}
 	}
 }

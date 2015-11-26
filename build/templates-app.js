@@ -40,7 +40,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "\n" +
     "		<ul class=\"list add\">\n" +
     "			<li class=\"item1\"><a href=\"#\">Quality</a></li>\n" +
-    "			<li class=\"item2\"><a href=\"#\">Services</a></li>\n" +
+    "			<li class=\"item2\"><a href=\"#\">Service</a></li>\n" +
     "			<li class=\"item3\"><a href=\"#\">Cleanliness</a></li>\n" +
     "		</ul>\n" +
     "  	</div>\n" +
@@ -52,7 +52,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "    <small><em>{{dat.name}}</em></small>\n" +
     "    \n" +
     "    	<div class=\"progress-block\">\n" +
-    "    		<uib-progressbar animate=\"false\" value=\"dat.value\" type=\"success\"><b>{{dat.value}}</b></uib-progressbar>\n" +
+    "    		<uib-progressbar animate=\"false\" value=\"dat.value\" type=\"success\"><b>{{dat.value}}%</b></uib-progressbar>\n" +
     "    	</div>\n" +
     "\n" +
     "  </div>\n" +
