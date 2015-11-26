@@ -8,7 +8,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
         var category_performance = _.map(performance_data.feedbacks,  function(data){
         return {
             name: data.option__text,
-            percentage: Math.round((data.count/performance_data.feedback_count)*100),
+            value: Math.round((data.count/performance_data.feedback_count)*100),
             class: Global.categoryPerformanceClass[data.option__text],
             priority: Global.qscPriority[data.option__text]
         };
