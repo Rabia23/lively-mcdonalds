@@ -23,8 +23,11 @@
 			float: left;
 			margin-bottom: -1px;
 			
-			@include media("<tablet"){
-				width: 20%;
+			
+			@include media("<tablet"){width: 20%;}
+			@include media("<phone"){
+				width: auto;
+				min-width: 17.5%;
 			}
 			
 			.btn{
@@ -100,10 +103,10 @@
 .progress-container{
 	overflow: hidden;
 	position: relative;
-	margin: 0 0 20px;
+	padding: 0 10px;
 	
 	@include media("≥tablet"){
-		padding: 0 10px;
+		margin: 0 0 20px;
 		&:after{
 			position: absolute;
 			left: 50%;
@@ -116,10 +119,12 @@
 	}
 	@include media("≥widescreen"){padding: 0 30px;}
 	.holder{
-		
+		overflow: hidden;
+		margin: 0 0 20px;
 		@include media("≥tablet"){
 			float: left;
 			width: 49%;
+			margin: 0;
 			
 			+ .holder{float: right;}
 		}

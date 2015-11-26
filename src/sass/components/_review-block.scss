@@ -236,6 +236,7 @@
 			td{
 				text-align: center;
 				vertical-align: middle;
+				word-break: break-all;
 				&.item1,&.item2,&.item3,&.item4{width: 16.67%;}
 				&.item5{
 					width: 33.2%;
