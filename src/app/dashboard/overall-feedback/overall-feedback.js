@@ -6,6 +6,12 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
 ])
 
 .controller( 'OverallFeedbackCtrl', function DashboardController( $scope, _ , Graphs,chartService, Global ) {
+  
+  $scope.datePicker = {};
+  $scope.datePicker.date = {startDate: null, endDate: null};
+
+  $scope.today = new Date();
+
   $scope.data = [];
   Graphs.overall_feedback().$promise.then(function(graph_data){
     $scope.labels = _.map(graph_data.feedbacks, function(data){return data.option__text;});

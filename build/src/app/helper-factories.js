@@ -55,21 +55,12 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
     childColor: function(index, parent_color, parent){
-
       return this.childCholorScheme[parent][index];
-      // if(index === 0){
-      //   return "#F5C40F";
-      // }
-      // else if(index === 1){
-      //   return '#ac1a1a';
-      // }
-      // else if(index === 2){
-      //   return '#01ad0f';
-      // }
-      // else{
-      //    return one.color(parent_color).lightness((index/2)).green(0.2).hex();
-      // }
-     
+    },
+
+    bubbleColor: function(index){
+      var colors = ["#71A6D2", "#F984EF", "#FFC901", "#7B6608", "orange", "#FDE910", "#702963", "#e73a3a", '#ac1a1a', '#28530c', '#01ad0f'];
+      return colors[index];
     }
 
   };

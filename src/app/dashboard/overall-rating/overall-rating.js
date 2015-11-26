@@ -7,6 +7,11 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
 .controller( 'OverallRatingCtrl', function DashboardController( $scope, _, chartService, Graphs, Global ) {
 
+  $scope.datePicker = {};
+  $scope.datePicker.date = {startDate: null, endDate: null};
+
+  $scope.today = new Date();
+
   $scope.line1 = {
     data: [],
     options: {}

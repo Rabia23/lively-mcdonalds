@@ -14,6 +14,11 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   $scope.show_loading = false;
 
+  $scope.datePicker = {};
+  $scope.datePicker.date = {startDate: null, endDate: null};
+
+  $scope.today = new Date();
+
   $scope.getRegions = function(){
     $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
     $scope.donut_graph_data = [];

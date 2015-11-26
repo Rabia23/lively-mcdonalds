@@ -354,17 +354,9 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "  </header>\n" +
     "  <div class=\"rating-holder\">\n" +
     "  	<ul>\n" +
-    "  		<li>\n" +
-    "  			<span class=\"bullet\"></span>\n" +
-    "  			<a href=\"#\">Food Quality</a>\n" +
-    "  		</li>\n" +
-    "  		<li>\n" +
-    "  			<span class=\"bullet\"></span>\n" +
-    "  			<a href=\"#\">Services</a>\n" +
-    "  		</li>\n" +
-    "  		<li>\n" +
-    "  			<span class=\"bullet\"></span>\n" +
-    "  			<a href=\"#\">Cleanliness</a>\n" +
+    "  		<li ng-repeat = \"concern in data\">\n" +
+    "  			<span class=\"bullet\" style = \"background-color: {{concern.color}};\"></span>\n" +
+    "  			<a href=\"#\">{{concern.label}}</a>\n" +
     "  		</li>\n" +
     "  	</ul>\n" +
     "    <div class=\"graph-outer\">\n" +

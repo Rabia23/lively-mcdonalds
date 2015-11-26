@@ -10,17 +10,9 @@
   </header>
   <div class="rating-holder">
   	<ul>
-  		<li>
-  			<span class="bullet"></span>
-  			<a href="#">Food Quality</a>
-  		</li>
-  		<li>
-  			<span class="bullet"></span>
-  			<a href="#">Services</a>
-  		</li>
-  		<li>
-  			<span class="bullet"></span>
-  			<a href="#">Cleanliness</a>
+  		<li ng-repeat = "concern in data">
+  			<span class="bullet" style = "background-color: {{concern.color}};"></span>
+  			<a href="#">{{concern.label}}</a>
   		</li>
   	</ul>
     <div class="graph-outer">
