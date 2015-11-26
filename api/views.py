@@ -10,10 +10,11 @@ from app.serializers import RegionSerializer, CitySerializer, UserSerializer
 from feedback.models import Question, FeedbackOption, Option, Feedback
 from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer, \
     PositiveNegativeFeedbackSerializer, AllCommentsSerializer, AllBranchesSerializer, SegmentationSerializer, \
-    ConcernsSerializer
+    ConcernsSerializer, SegmentationRatingSerializer
 from lively import constants
 from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options, \
-    generate_segmentation, generate_option_group, apply_general_filters, generate_option_groups
+    generate_segmentation, generate_option_group, apply_general_filters, generate_option_groups, \
+    generate_segmentation_with_options
 from dateutil import rrule
 from datetime import datetime, timedelta
 from django.core.paginator import Paginator
@@ -401,6 +402,39 @@ def top_concerns(request):
 
             data = {'concern_count': len(concerns), 'concern_list': concerns}
             feedback_response = ConcernsSerializer(data)
+            return Response(feedback_response.data)
+        except Exception as e:
+            return Response(None)
+
+
+@api_view(['GET'])
+def segmentation_rating(request):
+    if request.method == 'GET':
+
+        try:
+            region_id = request.query_params.get('region', None)
+            city_id = request.query_params.get('city', None)
+            branch_id = request.query_params.get('branch', None)
+            option_id = request.query_params.get('option', None)
+
+            question = Question.objects.get(type=constants.SECONDARY_QUESTION)
+
+            if option_id:
+                option = Option.objects.get(id=option_id)
+                options = option.children.all()
+
+                filtered_feedback_options = FeedbackOption.objects.filter(
+                    option__in=Option.objects.filter(parent=option_id).values_list('id'))
+            else:
+                options = question.options.all()
+                filtered_feedback_options = FeedbackOption.objects.filter(
+                    option__in=options.values_list('id'))
+
+            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id)
+            feedback_segmented_list = generate_segmentation_with_options(filtered_feedback_options, options)
+
+            data = {'segment_count': len(feedback_segmented_list), 'segments': feedback_segmented_list}
+            feedback_response = SegmentationRatingSerializer(data)
             return Response(feedback_response.data)
         except Exception as e:
             return Response(None)

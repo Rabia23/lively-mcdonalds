@@ -128,3 +128,14 @@ class ConcernSerializer(serializers.Serializer):
 class ConcernsSerializer(serializers.Serializer):
     concern_list = ConcernSerializer(many=True)
     concern_count = serializers.IntegerField()
+
+
+class SegmentOptionSerializer(serializers.Serializer):
+    segment = serializers.CharField()
+    option_count = serializers.IntegerField()
+    option_data = OverallFeedbackSerializerSingle(many=True)
+
+
+class SegmentationRatingSerializer(serializers.Serializer):
+    segments = SegmentOptionSerializer(many=True)
+    segment_count = serializers.IntegerField()
