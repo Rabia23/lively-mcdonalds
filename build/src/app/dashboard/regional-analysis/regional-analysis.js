@@ -10,7 +10,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   $scope.city_view = false;
 
-  $scope.radioModel = 'SQC';
+  $scope.radioModel = 'QSC';
 
   $scope.show_loading = false;
 
@@ -103,7 +103,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     if (branch === undefined){
       branch = null;
     }
-    if($scope.radioModel === 'SQC'){
+    if($scope.radioModel === 'QSC'){
         var modalInstance = $uibModal.open({
         templateUrl: 'dashboard/regional-analysis/sqc-modal.tpl.html',
         controller: 'SQCModalCtrl',
