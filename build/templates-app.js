@@ -225,7 +225,7 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "            </div>\n" +
     "            <span class=\"arrow\"></span>\n" +
     "        </div>\n" +
-    "        <time datetime=\"2015-11-26 18:30\">26-11-2015, 6:30 PM</time>\n" +
+    "        <time>{{pos_feedback.created_at | date:\"dd-MM-yyyy',' h:mm a\"}}</time>\n" +
     "      </li>\n" +
     "    </ul>\n" +
     "    <ul class=\"add\">\n" +
@@ -236,7 +236,7 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "            </div>\n" +
     "            <span class=\"arrow\"></span>\n" +
     "        </div>\n" +
-    "        <time datetime=\"2015-11-26 18:30\">26-11-2015, 6:30 PM</time>\n" +
+    "        <time>{{neg_feedback.created_at | date:\"dd-MM-yyyy',' h:mm a\"}}</time>\n" +
     "      </li>\n" +
     "    </ul>\n" +
     "  </div>\n" +
