@@ -64,6 +64,11 @@
 			@include media("≥widescreen"){padding: 2px 0 0 20px;}
 		}
   }
+	
+	.graph-outer{
+		@include v-align(100%, middle, before);
+		.inner-holder{width: 100%;}
+	}
   
   &.loading{
     .rating-holder{

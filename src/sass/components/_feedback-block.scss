@@ -9,9 +9,11 @@
 		padding: 10px;
 		margin: 0 0 20px;
 		
+		@include media("≥desktop"){margin: 0 0 52px;}
+		
 		@include media("≥widescreen"){
 			padding: 20px;
-			margin: 0 0 40px;
+			margin: 0 0 49px;
 		}
 		
 		.calender-outer{
@@ -39,9 +41,12 @@
 	}
 	.graph-holder{
 		overflow: hidden;
+		@include v-align(100%, middle, before);
 		padding: 0 10px 20px;
 		
 		@include media("≥widescreen"){padding: 0 20px 30px;}
+		
+		.chart-container{width: 100%;}
 	}
 }
 .title-list{

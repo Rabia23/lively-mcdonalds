@@ -187,7 +187,9 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "      </li>\n" +
     "    </ul>\n" +
     "    <div class=\"graph-holder\">\n" +
-    "    	<flot dataset=\"line1.data\" options=\"line1.options\" data-width = \"100%\" data-height = \"300px\" on-plot-click = \"optionClick(event, pos, item)\"></flot>\n" +
+    "    	<div class=\"inner-holder\">\n" +
+    "    		<flot dataset=\"line1.data\" options=\"line1.options\" data-width = \"100%\" data-height = \"300px\" on-plot-click = \"optionClick(event, pos, item)\"></flot>\n" +
+    "    	</div>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
