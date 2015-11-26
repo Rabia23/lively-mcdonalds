@@ -70,3 +70,4 @@ shifts = {
 
 #------------ Date Format Constants -------------
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
+ONLY_DATE_FORMAT = "%Y-%m-%d"

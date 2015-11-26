@@ -279,7 +279,7 @@ def send_mail(subject, context, recipients, text_template, html_template):
     message.send()
 
 
-def apply_general_filters(data, region_id, city_id, branch_id):
+def apply_general_filters(data, region_id, city_id, branch_id, date_to=None, date_from=None):
     if region_id and city_id and branch_id:
         data = data.filter(
             feedback__branch__exact=branch_id,
@@ -292,6 +292,11 @@ def apply_general_filters(data, region_id, city_id, branch_id):
     elif region_id:
         data = data.filter(
             feedback__branch__city__region__exact=region_id)
+
+    if date_to and date_from:
+        date_to = datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT)
+        date_from = datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT)
+        data = data.filter(created_at__gte=date_from, created_at__lte=date_to)
     return data
 
 
@@ -329,8 +334,3 @@ def get_segment_time_range(segment):
         end_time = get_time(constants.LATE_NIGHT_TIME)
 
     return start_time, end_time
-
-
-# def apply_segment_filter(data, segment):
-#     start_time, end_time = get_segment_time_range(segment)
-    

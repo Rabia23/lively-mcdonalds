@@ -84,9 +84,13 @@ def overall_feedback(request):
             city_id = request.query_params.get('city', None)
             branch_id = request.query_params.get('branch', None)
 
+            date_to = request.query_params.get('date_to', None)
+            date_from = request.query_params.get('date_from', None)
+
             question = Question.objects.get(type=constants.MAIN_QUESTION)
             filtered_feedback_options = FeedbackOption.objects.filter(option__in=question.options.values_list('id'))
-            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id)
+            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id,
+                                                              date_to, date_from)
 
             filtered_feedback_options_count = filtered_feedback_options.count()
             feedback_options = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').\
@@ -211,7 +215,7 @@ def overall_rating(request):
                 else:
                     list_feedback = generate_missing_options(question, filtered_feedbacks)
                 date_data = {'feedback_count': feedbacks.count(), 'feedbacks': list_feedback}
-                single_date = datetime.strptime(str(single_date), constants.DATE_FORMAT)
+                single_date = datetime.strptime(str(single_date.date()), constants.ONLY_DATE_FORMAT)
                 feedback_records_list.append({'date': single_date, 'data': date_data})
 
             feedback_response = OverallRattingSerializer(feedback_records_list, many=True)
@@ -364,7 +368,7 @@ def feedback_segmentation(request):
 
             date = request.query_params.get('date', None)
             if date and option_id:
-                date = datetime.strptime(date, constants.DATE_FORMAT).date()
+                date = datetime.strptime(date, constants.ONLY_DATE_FORMAT).date()
                 option = Option.objects.get(id=option_id)
                 options = option.children.all()
             else:
