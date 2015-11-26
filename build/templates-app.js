@@ -6,6 +6,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "	<div class=\"info-holder\">\n" +
     "  \n" +
     "  <div class=\"heading-holder\">\n" +
+    "  	<h2>Overall Rating</h2>\n" +
     "  	<ul>\n" +
     "  		<li><a href=\"#\" class=\"btn btn-default\">all</a></li>\n" +
     "  		<li><a href=\"#\" class=\"btn btn-default\">Quality</a></li>\n" +
@@ -20,20 +21,44 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "			</div>\n" +
     "		</li>\n" +
     "  	</ul>\n" +
-    "  	<h2>Category Performance Analysis</h2>\n" +
     "  </div>\n" +
     "  \n" +
-    "  <div class=\"progress-area\" ng-controller=\"CategoryPerformanceAnalysisCtrl\">\n" +
+    "  <div class=\"progress-container\">\n" +
+    "  	<div class=\"holder\">\n" +
+    "  		<div class=\"progress-area\" ng-controller=\"CategoryPerformanceAnalysisCtrl\">\n" +
     "\n" +
-    "    <div class=\"progress-holder {{dat.class}}\" ng-repeat = \"dat in category_performance\">\n" +
+    "			<div class=\"progress-holder\" ng-repeat = \"dat in category_performance\">\n" +
+    "\n" +
+    "			<small><em>{{dat.name}}</em></small>\n" +
+    "\n" +
+    "				<div class=\"progress-block\">\n" +
+    "					<uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar>\n" +
+    "				</div>\n" +
+    "\n" +
+    "		  </div>\n" +
+    "		</div>\n" +
+    "		<ul class=\"list add\">\n" +
+    "			<li class=\"item1\"><a href=\"#\">Quality</a></li>\n" +
+    "			<li class=\"item2\"><a href=\"#\">Services</a></li>\n" +
+    "			<li class=\"item3\"><a href=\"#\">Cleanliness</a></li>\n" +
+    "		</ul>\n" +
+    "  	</div>\n" +
+    "  	<div class=\"holder\">\n" +
+    "  		<div class=\"progress-area\" ng-controller=\"CategoryPerformanceAnalysisCtrl\">\n" +
+    "\n" +
+    "    <div class=\"progress-holder\" ng-repeat = \"dat in category_performance\">\n" +
     "\n" +
     "    <small><em>{{dat.name}}</em></small>\n" +
     "    \n" +
     "    	<div class=\"progress-block\">\n" +
-    "    		<uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.percentage}}%</b></uib-progressbar>\n" +
+    "    		<uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar>\n" +
     "    	</div>\n" +
     "\n" +
     "  </div>\n" +
+    "  </div>\n" +
+    "  	</div>\n" +
+    "  	\n" +
+    "  	\n" +
     "  </div>\n" +
     "\n" +
     "\n" +
@@ -225,7 +250,7 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "            </div>\n" +
     "            <span class=\"arrow\"></span>\n" +
     "        </div>\n" +
-    "        <time datetime=\"2015-11-26 18:30\">26-11-2015, 6:30 PM</time>\n" +
+    "        <time>{{pos_feedback.created_at | date:\"dd-MM-yyyy',' h:mm a\"}}</time>\n" +
     "      </li>\n" +
     "    </ul>\n" +
     "    <ul class=\"add\">\n" +
@@ -236,7 +261,7 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "            </div>\n" +
     "            <span class=\"arrow\"></span>\n" +
     "        </div>\n" +
-    "        <time datetime=\"2015-11-26 18:30\">26-11-2015, 6:30 PM</time>\n" +
+    "        <time>{{neg_feedback.created_at | date:\"dd-MM-yyyy',' h:mm a\"}}</time>\n" +
     "      </li>\n" +
     "    </ul>\n" +
     "  </div>\n" +

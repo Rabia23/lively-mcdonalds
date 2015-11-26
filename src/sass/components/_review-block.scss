@@ -100,6 +100,7 @@
 			-moz-box-shadow: 4px 4px rgba($black,.1);
 			box-shadow: 4px 4px rgba($black,.1);
 			margin: 0 0 15px;
+			word-break: break-all;
 			
 			@include media("≥tablet"){padding: 10px;}
 			@include media("≥widescreen"){padding: 20px;}
@@ -235,6 +236,7 @@
 			td{
 				text-align: center;
 				vertical-align: middle;
+				word-break: break-all;
 				&.item1,&.item2,&.item3,&.item4{width: 16.67%;}
 				&.item5{
 					width: 33.2%;

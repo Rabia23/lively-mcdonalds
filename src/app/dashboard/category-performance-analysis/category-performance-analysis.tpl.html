@@ -2,6 +2,7 @@
 	<div class="info-holder">
   
   <div class="heading-holder">
+  	<h2>Overall Rating</h2>
   	<ul>
   		<li><a href="#" class="btn btn-default">all</a></li>
   		<li><a href="#" class="btn btn-default">Quality</a></li>
@@ -16,20 +17,44 @@
 			</div>
 		</li>
   	</ul>
-  	<h2>Category Performance Analysis</h2>
   </div>
   
-  <div class="progress-area" ng-controller="CategoryPerformanceAnalysisCtrl">
+  <div class="progress-container">
+  	<div class="holder">
+  		<div class="progress-area" ng-controller="CategoryPerformanceAnalysisCtrl">
 
-    <div class="progress-holder {{dat.class}}" ng-repeat = "dat in category_performance">
+			<div class="progress-holder" ng-repeat = "dat in category_performance">
+
+			<small><em>{{dat.name}}</em></small>
+
+				<div class="progress-block">
+					<uib-progressbar animate="false" value="dat.percentage" type="success"></uib-progressbar>
+				</div>
+
+		  </div>
+		</div>
+		<ul class="list add">
+			<li class="item1"><a href="#">Quality</a></li>
+			<li class="item2"><a href="#">Services</a></li>
+			<li class="item3"><a href="#">Cleanliness</a></li>
+		</ul>
+  	</div>
+  	<div class="holder">
+  		<div class="progress-area" ng-controller="CategoryPerformanceAnalysisCtrl">
+
+    <div class="progress-holder" ng-repeat = "dat in category_performance">
 
     <small><em>{{dat.name}}</em></small>
     
     	<div class="progress-block">
-    		<uib-progressbar animate="false" value="dat.percentage" type="success"><b>{{dat.percentage}}%</b></uib-progressbar>
+    		<uib-progressbar animate="false" value="dat.percentage" type="success"></uib-progressbar>
     	</div>
 
   </div>
+  </div>
+  	</div>
+  	
+  	
   </div>
 
 

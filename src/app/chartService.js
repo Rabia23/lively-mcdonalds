@@ -110,12 +110,11 @@ angular.module('livefeed.chart', [
             borderColor: "#eeeeee"
           },
           xaxis: {
-            ticks: _.map(graph_data,  function(data, index){ 
-              var date = new Date(data.date);
-              var dateString = date.toString();
-              var new_date_array = dateString.split(" ");
-              var new_date = new_date_array[1] + " " + new_date_array[2];
-              return [index + 1, new_date];
+            ticks: _.map(graph_data,  function(value, index){
+              var new_date_array = value.date.split(" ");
+              var d = new Date(new_date_array[0]);
+              var new_date = d.toString("MMMM").split(" ")[1]+" "+d.toString("MMMM").split(" ")[2];
+              return [index+1,new_date];
             })
           },
           yaxis: {
