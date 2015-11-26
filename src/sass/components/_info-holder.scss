@@ -6,34 +6,143 @@
 	.heading-holder{
 		@extend .clearfix;
 		border-bottom: 1px solid $alto2;
-		margin: 0 0 20px;
+		margin: 0 0 15px;
+		
+		@include media("≥tablet"){padding: 0 0 0 10px;}
+		@include media("≥widescreen"){padding: 0 0 0 20px;}
+	}
+	
+	ul{
+		float: right;
+		@extend %listreset;
+		text-transform: capitalize;
+		
+		@include media("<tablet"){width: 100%;}
+		
+		li{
+			float: left;
+			margin-bottom: -1px;
+			
+			@include media("<tablet"){
+				width: 20%;
+			}
+			
+			.btn{
+				border-radius: 0;
+				-webkit-border-radius: 0;
+				font-size: 13px;
+				line-height: 20px;
+				padding: 14px 7px;
+				text-align: center;
+				color: $battleship-grey;
+				border: 0;
+				border-left: 1px solid $platinum;
+				border-bottom: 1px solid $platinum;
+				
+				@include media("<tablet"){width: 100%;}
+
+				@include media("≥tablet"){
+					font-size: 16px;
+					line-height: 22px;
+					padding: 16px 15px;
+				}
+
+				@include media("≥desktop"){padding: 18px 20px;}
+				@include media("≥widescreen"){padding: 20px 30px;}
+
+				&:hover,
+				&:active,
+				&:focus,
+				&.active{
+					background: none;
+					color: $shark2;
+					border: 0;
+					border-left: 1px solid $platinum;
+					border-bottom: 1px solid $white;
+					box-shadow: none;
+				}
+			}
+			
+			.calender-outer{
+				border-left: 1px solid $platinum;
+				padding: 14px 18px;
+				overflow: hidden;
+
+				@include media("<tablet"){
+					width: 100%;
+					text-align: center;
+					
+					.calendar-holder{float: none !important;}
+				}
+
+				@include media("≥tablet"){padding: 17px 15px;}
+				@include media("≥desktop"){padding: 19px 18px;}
+				@include media("≥widescreen"){padding: 21px 20px;}
+			}
+		}
 	}
 	
 	h2{
 		margin: 0;
+		
+		@include media("<tablet"){
+			padding: 10px;
+			border-bottom: 1px solid $platinum;
+		}
+		
+		@include media("≥tablet"){
+			float: left;
+			line-height: 3em;
+		}
 	}
+}
+
+.progress-container{
+	overflow: hidden;
+	position: relative;
+	margin: 0 0 20px;
 	
+	@include media("≥tablet"){
+		padding: 0 10px;
+		&:after{
+			position: absolute;
+			left: 50%;
+			top: 0;
+			bottom: 0;
+			content: "";
+			background: $platinum;
+			width: 1px;
+		}
+	}
+	@include media("≥widescreen"){padding: 0 30px;}
+	.holder{
+		
+		@include media("≥tablet"){
+			float: left;
+			width: 49%;
+			
+			+ .holder{float: right;}
+		}
+	}
 }
 
 .progress-area{
 	overflow: hidden;
 	.progress-holder{
 		overflow: hidden;
-		border-top: 1px solid $cararra;
-		padding: 15px 8px 20px;
-		
-		&:first-child{
-			border: 0;
-			padding-top: 0;
-		}
+		margin: 0 0 25px;
 		
 		small{
 			display: block;
-			margin: 0 0 10px;
+			color: $shark2;
+			font-size: 100%;
+			margin: 0 0 5px;
+			text-transform: uppercase;
 			em{
 				display: block;
 				font-style: normal;
-				@include fontsize(20, 15);
+				@include fontsize(14, 16);
+				font-weight: 600;
 				line-height: 1.2em;
 			}
 		}
@@ -60,31 +169,19 @@
 				color: $bleu-de-france;
 			  }
 		  }
-		.progress-block{
-			position: relative;
-			padding: 0 60px 0 0;
-			b{
-				position: absolute;
-				right: 0;
-				top: -1px;
-				font-size: 20px;
-				line-height: 20px;
-			  	font-weight: normal;
-			}
-		}
+		.progress-block{position: relative;}
 		.progress-bar{
 			border-radius: 0;
 			-webkit-border-radius: 0;
-			margin: -1px 0;
-			height: 23px;
+			height: 6px;
+			background: $eminence;
 		}
 		.progress{
 			margin: 0;
+			height: 6px;
 			box-shadow: none;
 			color: inherit;
-			background: none;
-			border: 1px solid $alto;
-			border-left: 0;
+			background: $mercury;
 			border-radius: 0;
 			-webkit-border-radius: 0;
 		}

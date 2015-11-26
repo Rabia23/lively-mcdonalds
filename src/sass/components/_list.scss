@@ -28,4 +28,34 @@
 			&:before{background: $carnelian;}
 		}
 	}
+	
+	&.add{
+		text-align: left;
+		margin: 0 0 5px;
+		width: 100%;
+		
+		li{
+			&:before{
+				border-radius: 100%;
+				-webkit-border-radius: 100%;
+			}
+			
+			&.item1{
+				&:before{background: $deep-lilac;}
+			}
+			&.item2{
+				&:before{background: $golden-poppy;}
+			}
+			&.item3{
+				&:before{background: $bleu-de-france;}
+			}
+			
+			a{
+				color: $mountain-mist;
+				&:hover,
+				&:active,
+				&:focus{color: darken($mountain-mist,10%);}
+			}
+		}
+	}
 }
