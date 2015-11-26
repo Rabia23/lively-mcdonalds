@@ -52,7 +52,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "    <small><em>{{dat.name}}</em></small>\n" +
     "    \n" +
     "    	<div class=\"progress-block\">\n" +
-    "    		<uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar>\n" +
+    "    		<uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.value}}%</b></uib-progressbar>\n" +
     "    	</div>\n" +
     "\n" +
     "  </div>\n" +
