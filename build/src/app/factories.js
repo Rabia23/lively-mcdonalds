@@ -43,13 +43,13 @@ angular.module( 'factories', [
                       return data;
                     }},
                     feedback_segmentation: {method: "JSONP",isArray: false, params: {endpoint: "feedback_segmentation"}},
-                     top_concerns: {method: "JSONP", isArray: false, params: {endpoint: "top_concerns"}//transformResponse: function(data, headers){
-                    //   _.each(data.concern_list, function(concern){
-                    //     concern.label = concern.name;
-                    //     concern.name = concern.weight;
-                    //   });
-                    //   return data;
-                    // }
+                    top_concerns: {method: "JSONP", isArray: false, params: {endpoint: "top_concerns"},transformResponse: function(data, headers){
+                      _.each(data.concern_list, function(concern){
+                        concern.label = concern.name;
+                        concern.name = concern.weight.toString();
+                      });
+                      return data;
+                    }
                   }
                  });
   }

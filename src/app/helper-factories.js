@@ -59,7 +59,7 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
     bubbleColor: function(index){
-      var colors = ["#71A6D2", "#F984EF", "#FFC901", "#7B6608", "orange", "#FDE910", "#702963", "#e73a3a", '#ac1a1a', '#28530c', '#01ad0f'];
+      var colors = ["#BFA66E", "#6881C4", "#C66868", "#AF68C6", "#ECDA32", "#62A1CE", "#6FBD6F", "#EC9B9A", '#6458D4', '#A4D558'];
       return colors[index];
     }
 

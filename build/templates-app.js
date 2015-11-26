@@ -385,7 +385,7 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "  		</li>\n" +
     "  	</ul>\n" +
     "    <div class=\"graph-outer\">\n" +
-    "      <div id=\"bubble-chart\" pyk-chart data-data = \"data\"></div>\n" +
+    "      <div id=\"bubble-chart\" pyk-chart data-data = \"data\" data-colors = \"colors\"></div>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +

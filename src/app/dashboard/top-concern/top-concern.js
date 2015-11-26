@@ -11,14 +11,14 @@ angular.module( 'livefeed.dashboard.top_concern', [
   $scope.datePicker.date = {startDate: null, endDate: null};
 
   $scope.today = new Date();
+  $scope.colors = [];
 
   Graphs.top_concerns().$promise.then(function(data){
     $scope.data = data.concern_list;
     _.each($scope.data, function(value, index){
       value.color = Global.bubbleColor(index);
+      $scope.colors.push(value.color);
     });
-    console.log("sd");
-    console.log($scope.data);
   });
 
 })
@@ -26,7 +26,8 @@ angular.module( 'livefeed.dashboard.top_concern', [
   return {
     restrict: 'A',
     scope: {
-      data: '='
+      data: '=',
+      colors: '='
     },
     link: function(scope, ele, attrs) {
 
@@ -34,7 +35,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
 
         if(watchedData !== undefined){
           var data = scope.data;
-
+          var colors = scope.colors;
           var k = new PykCharts.oneD.bubble({
             "selector": "#bubble-chart",
             "data": data,
@@ -42,15 +43,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
             "chart_height": 400,
             "background_color": "#FFFFFF",
             "color_mode": "color",
-            "shade_color": "#8e44ad",
-            "chart_color": [
-                      "red",
-                      "blue",
-                      "orange",
-                      "red",
-                      "red",
-                      "red"
-            ],
+            "shade_color": "#BFA66E",
             "highlight": "Internet Explorer",
             "label_size": 13,
             "label_weight": "normal",
@@ -68,6 +61,11 @@ angular.module( 'livefeed.dashboard.top_concern', [
           });
 
           k.execute();
+
+          _.each($("circle"), function(value, index){
+            $(value).attr("fill", colors[index]);
+          });
+
         }
       });
       
