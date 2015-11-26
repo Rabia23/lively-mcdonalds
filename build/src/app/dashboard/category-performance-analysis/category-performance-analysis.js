@@ -10,7 +10,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
             name: data.option__text,
             percentage: Math.round((data.count/performance_data.feedback_count)*100),
             class: Global.categoryPerformanceClass[data.option__text],
-            priority: Global.sqcPriority[data.option__text]
+            priority: Global.qscPriority[data.option__text]
         };
       });
 

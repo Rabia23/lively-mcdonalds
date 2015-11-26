@@ -10,7 +10,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  	<ul>\n" +
     "  		<li><a href=\"#\" class=\"btn btn-default\">all</a></li>\n" +
     "  		<li><a href=\"#\" class=\"btn btn-default\">Quality</a></li>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\">Services</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\">Service</a></li>\n" +
     "  		<li><a href=\"#\" class=\"btn btn-default\">Cleanliness</a></li>\n" +
     "  		<li>\n" +
     "			<div class=\"calender-outer\">\n" +
@@ -37,7 +37,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "\n" +
     "		  </div>\n" +
     "		</div>\n" +
-    "		\n" +
+    "\n" +
     "		<ul class=\"list add\">\n" +
     "			<li class=\"item1\"><a href=\"#\">Quality</a></li>\n" +
     "			<li class=\"item2\"><a href=\"#\">Services</a></li>\n" +
@@ -287,7 +287,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "		  </div>\n" +
     "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Comments'\" ng-click = \"showChart(null, 'regions')\">Comments</label>\n" +
     "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'regions')\">Rating</label>\n" +
-    "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'SQC'\" ng-click = \"showChart(null, 'regions')\">SQC</label>\n" +
+    "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'regions')\">QSC</label>\n" +
     "		</div>\n" +
     "    </div>\n" +
     "    <div class=\"holder\">\n" +

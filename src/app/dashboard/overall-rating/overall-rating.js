@@ -32,9 +32,9 @@ angular.module( 'livefeed.dashboard.overall_rating', [
       });
       $scope.labels = _.map(data[0].data.feedbacks ,function(value){
         return {parent_id: value.option__parent_id, id: value.option_id, value: value.option__text,
-                color: Global.optionsColorScheme[value.option__text], priority: Global.sqcPriority[value.option__text]};
+                color: Global.optionsColorScheme[value.option__text], priority: Global.qscPriority[value.option__text]};
       });
-      //$scope.labels = _.sortBy($scope.labels, function(value){ return value.priority; });
+      $scope.labels = _.sortBy($scope.labels, function(value){ return value.priority; });
     });
   }
 
