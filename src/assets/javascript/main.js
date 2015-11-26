@@ -15,7 +15,7 @@ function initCustomForms() {
 // align blocks height
 function initSameHeight() {
 	jQuery('.section').sameHeight({
-		elements: '.feedback-block .graph-holder, .rating-section',
+		elements: '.feedback-block .graph-holder, .rating-section .graph-outer',
 		flexible: true,
 		multiLine: true
 	});

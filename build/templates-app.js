@@ -27,11 +27,11 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  	<div class=\"holder\">\n" +
     "  		<div class=\"progress-area\" ng-controller=\"CategoryPerformanceAnalysisCtrl\">\n" +
     "\n" +
-    "			<div ng-repeat = \"dat in category_performance\">\n" +
+    "			<div class=\"progress-section\" ng-repeat = \"dat in category_performance\">\n" +
     "\n" +
     "			<small><em>{{dat.name}}</em></small>\n" +
     "\n" +
-    "				<div>\n" +
+    "				<div class=\"inner-holder\">\n" +
     "					 <uib-progress><uib-bar ng-repeat=\"bar in stacked track by $index\" value=\"bar.value\" type=\"{{bar.type}}\"><span>{{bar.value}}%</span></uib-bar></uib-progress>\n" +
     "				</div>\n" +
     "\n" +

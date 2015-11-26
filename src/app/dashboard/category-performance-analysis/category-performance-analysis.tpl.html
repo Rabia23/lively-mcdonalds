@@ -23,11 +23,11 @@
   	<div class="holder">
   		<div class="progress-area" ng-controller="CategoryPerformanceAnalysisCtrl">
 
-			<div ng-repeat = "dat in category_performance">
+			<div class="progress-section" ng-repeat = "dat in category_performance">
 
 			<small><em>{{dat.name}}</em></small>
 
-				<div>
+				<div class="inner-holder">
 					 <uib-progress><uib-bar ng-repeat="bar in stacked track by $index" value="bar.value" type="{{bar.type}}"><span>{{bar.value}}%</span></uib-bar></uib-progress>
 				</div>
 
