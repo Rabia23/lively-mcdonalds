@@ -207,12 +207,10 @@ def overall_rating(request):
 
             if option_id:
                 filtered_feedback_options = FeedbackOption.objects.filter(
-                    option__in=Option.objects.filter(parent=option_id).values_list('id'),
-                    created_at__gte=datetime.now() - timedelta(days=constants.NO_OF_DAYS))
+                    option__in=Option.objects.filter(parent=option_id).values_list('id'))
             else:
                 filtered_feedback_options = FeedbackOption.objects.filter(
-                    option__in=question.options.filter(parent=None).values_list('id'),
-                    created_at__gte=datetime.now() - timedelta(days=constants.NO_OF_DAYS))
+                    option__in=question.options.filter(parent=None).values_list('id'))
 
             filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id,
                                             date_to, date_from)
