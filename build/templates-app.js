@@ -8,10 +8,10 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  <div class=\"heading-holder\">\n" +
     "  	<h2>Overall Rating</h2>\n" +
     "  	<ul>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\">all</a></li>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\">Quality</a></li>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\">Service</a></li>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\">Cleanliness</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'All'\" ng-click = \"getData(null)\">all</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Quality'\" ng-click = \"getData(category_performance[0].id)\">Quality</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Service'\" ng-click = \"getData(category_performance[1].id)\">Service</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Cleanliness'\" ng-click = \"getData(category_performance[2].id)\">Cleanliness</a></li>\n" +
     "  		<li>\n" +
     "			<div class=\"calender-outer\">\n" +
     "				<span class = \"calendar-holder pull-right\">\n" +
@@ -27,12 +27,12 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  	<div class=\"holder\">\n" +
     "  		<div class=\"progress-area\" ng-controller=\"CategoryPerformanceAnalysisCtrl\">\n" +
     "\n" +
-    "			<div class=\"progress-section\" ng-repeat = \"dat in category_performance\">\n" +
+    "			<div class=\"progress-section\" ng-repeat = \"segment in segments\">\n" +
     "\n" +
-    "			<small><em>{{dat.name}}</em></small>\n" +
+    "			<small><em>{{segment.name}}</em></small>\n" +
     "\n" +
     "				<div class=\"inner-holder\">\n" +
-    "					 <uib-progress><uib-bar ng-repeat=\"bar in stacked track by $index\" value=\"bar.value\" type=\"{{bar.type}}\"><span>{{bar.value}}%</span></uib-bar></uib-progress>\n" +
+    "					 <uib-progress><uib-bar ng-repeat=\"bar in segment.segment_data track by $index\" value=\"bar.value\" type=\"bar.class\"><span>{{bar.value}}%</span></uib-bar></uib-progress>\n" +
     "				</div>\n" +
     "\n" +
     "		  </div>\n" +

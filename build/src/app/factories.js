@@ -50,7 +50,8 @@ angular.module( 'factories', [
                       });
                       return data;
                     }
-                  }
+                  },
+                  segmentation_rating:{method: "JSONP",isArray: false, params: {endpoint: "segmentation_rating"}}
                  });
   }
 
@@ -114,6 +115,13 @@ angular.module( 'factories', [
     branch_id = branch_id || "";
     option_id = option_id || "";
     return this.service.feedback_analysis_breakdown({region: region_id, city: city_id, branch: branch_id, option: option_id});
+  };
+  Graphs.prototype.segmentation_rating = function(region_id, city_id, branch_id, option_id){
+    region_id = region_id || "";
+    city_id = city_id || "";
+    branch_id = branch_id || "";
+    option_id = option_id || "";
+    return this.service.segmentation_rating({region: region_id, city: city_id, branch: branch_id, option: option_id});
   };
 
   return new Graphs();

@@ -31,6 +31,12 @@ angular.module( 'helper_factories', ['ngResource'])
       "Service": 'yellow'
     },
 
+    segmentationClass: {
+      "Cleanliness": 'blue',
+      "Food Quality": 'lilac',
+      "Service": 'yellow'
+    },
+
     qscPriority: {
       "Cleanliness": 3,
       "Food Quality": 1,
