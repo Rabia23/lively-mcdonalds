@@ -4,19 +4,21 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
 ])
 
 .controller('CategoryPerformanceAnalysisCtrl', function DashboardController($scope, _, Graphs, Global) {
-    $scope.radioModel = 'All';
-    $scope.showData = function(region_id,city_id,branch_id,option_id){
-      var category_performance_analysis_data = Graphs.category_performance(region_id,city_id,branch_id,option_id).$promise.then(function(performance_data){
-       var category_performance = _.map(performance_data.feedbacks,  function(data){
-       return {
-         id: data.option_id,
-         name: data.option__text,
-         value: Math.round((data.count/performance_data.feedback_count)*100),
-         class: Global.categoryPerformanceClass[data.option__text],
-         priority: Global.qscPriority[data.option__text]
-       };
-      });
-      $scope.category_performance = _.sortBy(category_performance, function(value){ return value.priority; });
+    $scope.showData = function(region_id,city_id,branch_id,option_id,string){
+      $scope.category_data = [];
+      Graphs.category_performance(region_id,city_id,branch_id,option_id).$promise.then(function(performance_data){
+           $scope.category_data = _.map(performance_data.feedbacks,  function(data,index){
+               return {
+                 id: data.option_id,
+                 name: data.option__text,
+                 value: Math.round((data.count/performance_data.feedback_count)*100),
+                 colour: option_id == null? Global.categoryPerformanceClass[data.option__text] : Global.categoryPerformanceChildCholorScheme[string][index]
+                 //priority: Global.qscPriority[data.option__text]
+               };
+          });
+          console.log("category performance data");
+          console.log($scope.category_data);
+          //$scope.category_performance = _.sortBy( $scope.category_performance, function(value){ return value.priority; });
 
       });
 
@@ -36,24 +38,25 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
             };
         });
     });
-    $scope.getData = function(option_id){
+    $scope.getQSC_ID = function(){
 
-        console.log(option_id);
-        console.log($scope.radioModel);
+
+    };
+    $scope.onClick = function(option_id,string){
+        if(string === 'All'){
+            $scope.showData();
+        }
+        else if(string === 'Quality'){
+          $scope.showData("","","",8,string);
+        }
+        else if(string === 'Service'){
+            $scope.showData("","","",15,string);
+        }
+        else if(string === 'Cleanliness'){
+            $scope.showData("","","",1,string);
+        }
 
     };
     $scope.showData();
-  // $scope.randomStacked = function() {
-  //  $scope.stacked = [];
-  //  var types = ['success', 'info', 'warning', 'danger'];
-  //  var values = [20,30,25];
-  //  for (var i = 0; i < 3; i++) {
-  //      $scope.stacked.push({
-  //        value: values[i],
-  //        type: types[i]
-  //      });
-  //  }
-  //};
-  //$scope.randomStacked();
 
 });
