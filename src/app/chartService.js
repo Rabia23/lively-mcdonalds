@@ -120,6 +120,7 @@ angular.module('livefeed.chart', [
           yaxis: {
             minTickSize: 1,
             tickDecimals: 0
+            //tickFormatter: function(val, axis) { return val < axis.max ? val.toFixed(2) : "Complaints";}
 
           }
         }
