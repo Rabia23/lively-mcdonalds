@@ -28,7 +28,8 @@
 	.select-holder{
 		position:relative;
 		float: right;
-		padding: 0 15px;
+		margin: 0 0 0 10px;
+		padding: 0 0 0 1px;
 		
 		&:after{
 			position: absolute;
@@ -39,10 +40,6 @@
 			background: $alto2;
 			width: 1px;
 		}
-		
-		@include media("≥tablet"){padding: 1px 15px 1px 15px;}
-		@include media("≥desktop"){padding: 3px 15px 1px 15px;}
-		@include media("≥widescreen"){padding: 3px 20px 3px 20px;}
 		
 	}
 	  
@@ -193,6 +190,15 @@
 	line-height: 20px;
 	color: $dim-gray;
 	overflow: hidden;
+	margin: -10px 0;
+	padding: 10px 20px 10px 15px;
+	min-width: 100px;
+	@include media("≥tablet"){padding: 12px 20px 11px;}
+	@include media("≥desktop"){padding: 14px 20px 11px;}
+	@include media("≥widescreen"){
+		padding: 25px 30px 18px 20px;
+		margin: -22px 0 -15px;
+	}
 	
 	select {
 		z-index: 1;
@@ -212,10 +218,7 @@
 	&.jcf-drop-active{
 		.jcf-select-opener {
 			&:after{
-				transform: rotate(180deg);
-				-webkit-transform: rotate(180deg);
-				-moz-transform: rotate(180deg);
-				-ms-transform: rotate(180deg);
+				content: '\e801';
 			}
 		}
 	}
@@ -223,34 +226,30 @@
 	.jcf-select-opener {
 		position: absolute;
 		text-align: center;
-		width: 16px;
+		background: $white;
 		bottom: 0;
 		right: 0;
 		top: 0;
+		width: 20px;
+		
+		@include media("≥widescreen"){width: 30px;}
 		
 		&:after{
-			background: url(../assets/images/arrow.png) no-repeat;
-			content: "";
-			width: 16px;
-			height: 5px;
+			font: 20px/20px $ico-font;
 			position: absolute;
 			left: 0;
-			right: 0;
 			top: 50%;
-			margin-top: -2px;
+			content: '\e800';
+			margin-top: -8px;
 		}
 	}
 }
 
 body > .jcf-select-drop {
 	position: absolute;
-	margin: 15px 0 0;
+	margin: -1px 0 0;
 	z-index: 9999;
 	min-width: 100px;
-	
-	@include media("≥tablet"){margin: 17px 0 0;}
-	@include media("≥desktop"){margin: 17px 0 0;}
-	@include media("≥widescreen"){margin: 17px 0 0;}
 }
 body > .jcf-select-drop.jcf-drop-flipped {
 	margin: 1px 0 0;
@@ -268,9 +267,29 @@ body > .jcf-select-drop.jcf-drop-flipped {
 	top: auto;
 }
 .jcf-select-drop .jcf-select-drop-content {
-	border: 1px solid $platinum;
-	border-radius: 3px;
-	-webkit-border-radius: 3px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding: 5px 0 0;
+	position: relative;
+	margin: 10px 0 0;
+	
+	
+	&:after{
+		content: "";
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		margin: 0 0 -16px -8px;
+		background: $white;
+		border: 1px solid rgba(0,0,0,0.2);
+		transform: rotate(45deg);
+		-webkit-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
+		-moz-transform: rotate(45deg);
+		-o-transform: rotate(45deg);
+		bottom: 100%;
+		left: 50%;
+	}
 }
 /* multiple select styles */
 .jcf-list-box {
@@ -284,10 +303,15 @@ body > .jcf-select-drop.jcf-drop-flipped {
 	display: inline-block;
 	vertical-align: top;
 	position: relative;
+	z-index: 99;
 	background: $white;
 	line-height: 18px;
 	font-size: 14px;
 	width: 100%;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 3px 3px 1px 0 rgba(0,0,0,0.2);
+	box-shadow: 3px 3px 1px 0 rgba(0,0,0,0.2);
 }
 .jcf-list .jcf-list-content {
 	vertical-align: top;
@@ -299,6 +323,9 @@ body > .jcf-select-drop.jcf-drop-flipped {
 	list-style: none;
 	padding: 0;
 	margin: 0;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	overflow: hidden;
 }
 .jcf-list ul li {
 	overflow: hidden;
@@ -311,21 +338,26 @@ body > .jcf-select-drop.jcf-drop-flipped {
 	overflow: hidden;
 	cursor: default;
 	display: block;
-	padding: 10px;
+	padding: 8px 10px;
 	color: $storm-dust2;
 	height: 1%;
-	line-height: 18px;
-	font-size: 14px;
+	line-height: 20px;
+	font-size: 16px;
+	
+	&.jcf-selected{display: none;}
+	
+	&.jcf-option-daily{color: $glaucous;}
+	&.jcf-option-weekly{color: $fuzzy-wuzzy;}
+	&.jcf-option-monthly{color: $rich-lavender;}
+	&.jcf-option-quaterly{color: $blue-gray;}
+	&.jcf-option-yearly{color: $mantis;}
 }
 .jcf-list .jcf-disabled {
 	background: #fff !important;
 	color: #aaa !important;
 }
 .jcf-select-drop .jcf-hover,
-.jcf-list-box .jcf-selected {
-	background: $storm-dust2;
-	color: $white;
-}
+.jcf-list-box .jcf-selected {background: $iceberg;}
 .jcf-list .jcf-optgroup-caption {
 	white-space: nowrap;
 	font-weight: bold;
