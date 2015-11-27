@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.utils import timezone
 from app.models import Region, City, Branch, UserInfo
 from app.serializers import RegionSerializer, CitySerializer, BranchSerializer, UserSerializer, UserInfoSerializer
 from rest_framework import status
@@ -7,7 +8,7 @@ from feedback.models import Feedback, Option
 from feedback.serializers import FeedbackSerializer, OptionSerializer
 from lively import constants, settings
 import string,random
-from lively.parse_utils import region_get, feedback_get, option_get
+from lively.parse_utils import option_get
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from datetime import datetime
@@ -294,8 +295,15 @@ def apply_general_filters(data, region_id, city_id, branch_id, date_to=None, dat
             feedback__branch__city__region__exact=region_id)
 
     if date_to and date_from:
-        date_to = datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT)
-        date_from = datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT)
+        data = apply_date_range_filter(data, date_to=None, date_from=None)
+    return data
+
+
+def apply_date_range_filter(data, date_to=None, date_from=None):
+    if date_to and date_from:
+        current_tz = timezone.get_current_timezone()
+        date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
+        date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
         data = data.filter(created_at__gte=date_from, created_at__lte=date_to)
     return data
 

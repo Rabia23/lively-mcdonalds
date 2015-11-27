@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 from lively import constants
+from datetime import datetime
 
 
 class UserInfo(models.Model):
@@ -90,8 +92,9 @@ class Branch(models.Model):
         if branch:
             return branch
 
-    def branch_feedback_detail(self):
+    def branch_feedback_detail(self, date_from, date_to):
         try:
+            feedback_count = self.get_branch_feedback_count(date_from, date_to)
             branch = {
                 "id": self.id,
                 "objectId": self.objectId,
@@ -100,14 +103,20 @@ class Branch(models.Model):
                 "longitude": self.longitude,
                 "city": self.city.name,
                 "region": self.city.region.name,
-                "feedback_count": self.get_branch_feedback_count(),
-                "count_exceeded": self.get_branch_feedback_count() >= constants.BRANCH_FEEDBACK_TARGET,
+                "feedback_count": feedback_count,
+                "count_exceeded": feedback_count >= constants.BRANCH_FEEDBACK_TARGET,
             }
             return branch
         except Exception as e:
             return {}
 
-    def get_branch_feedback_count(self):
+    def get_branch_feedback_count(self, date_from, date_to):
+        if date_to and date_from:
+            current_tz = timezone.get_current_timezone()
+            date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
+            date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
+            data = self.feedback.filter(created_at__gte=date_from, created_at__lte=date_to)
+            return data.count()
         return self.feedback.count()
 
 

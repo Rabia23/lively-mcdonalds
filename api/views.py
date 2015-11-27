@@ -14,7 +14,7 @@ from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerial
 from lively import constants
 from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options, \
     generate_segmentation, generate_option_group, apply_general_filters, generate_option_groups, \
-    generate_segmentation_with_options
+    generate_segmentation_with_options, apply_date_range_filter
 from dateutil import rrule
 from datetime import datetime, timedelta
 from django.core.paginator import Paginator
@@ -90,7 +90,7 @@ def overall_feedback(request):
             question = Question.objects.get(type=constants.MAIN_QUESTION)
             filtered_feedback_options = FeedbackOption.objects.filter(option__in=question.options.values_list('id'))
             filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id,
-                                                              date_to, date_from)
+                                            date_to, date_from)
 
             filtered_feedback_options_count = filtered_feedback_options.count()
             feedback_options = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').\
@@ -109,14 +109,19 @@ def overall_feedback(request):
 def feedback_analysis(request):
 
     if request.method == 'GET':
-        type = request.query_params.get('type', None)
-        question_type = request.query_params.get('question_type', constants.MAIN_QUESTION)
-        objects = None
         feedbacks = []
 
         try:
+            type = request.query_params.get('type', None)
+            question_type = request.query_params.get('question_type', constants.MAIN_QUESTION)
+            objects = None
+
+            date_to = request.query_params.get('date_to', None)
+            date_from = request.query_params.get('date_from', None)
+
             question = Question.objects.get(type=question_type)
             feedback_options = FeedbackOption.objects.filter(option__in=question.options.values_list('id'))
+            feedback_options = apply_date_range_filter(feedback_options, date_to, date_from)
 
             if type == constants.CITY_ANALYSIS:
                 region_id = request.query_params.get('region', None)
@@ -191,6 +196,9 @@ def overall_rating(request):
             branch_id = request.query_params.get('branch', None)
             option_id = request.query_params.get('option', None)
 
+            date_to = request.query_params.get('date_to', None)
+            date_from = request.query_params.get('date_from', None)
+
             question = Question.objects.get(type=constants.SECONDARY_QUESTION)
 
             if option_id:
@@ -202,7 +210,8 @@ def overall_rating(request):
                     option__in=question.options.filter(parent=None).values_list('id'),
                     created_at__gte=datetime.now() - timedelta(days=constants.NO_OF_DAYS))
 
-            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id)
+            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id,
+                                            date_to, date_from)
 
             now = datetime.now()
             start_date = now - timedelta(days=constants.NO_OF_DAYS)
@@ -340,12 +349,15 @@ def comments(request):
 def map_view(request):
     if request.method == 'GET':
         try:
+            date_to = request.query_params.get('date_to', None)
+            date_from = request.query_params.get('date_from', None)
+
             branches = Branch.objects.all()
 
             branch_detail_list = []
             for branch in branches:
                 branch_detail_list.append(
-                    branch.branch_feedback_detail()
+                    branch.branch_feedback_detail(date_from, date_to)
                 )
 
             data = {'branch_count': branches.count(), 'branches': branch_detail_list}
