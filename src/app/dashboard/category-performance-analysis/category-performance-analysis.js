@@ -12,7 +12,8 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
                  id: data.option_id,
                  name: data.option__text,
                  value: Math.round((data.count/performance_data.feedback_count)*100),
-                 colour: option_id == null? Global.categoryPerformanceClass[data.option__text] : Global.categoryPerformanceChildCholorScheme[string][index]
+                 colour: option_id == null? Global.categoryPerformanceClass[data.option__text] : Global.categoryPerformanceChildCholorScheme[string][index],
+                 class: string
                  //priority: Global.qscPriority[data.option__text]
                };
           });

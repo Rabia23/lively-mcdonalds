@@ -45,7 +45,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "		</ul>\n" +
     "  	</div>\n" +
     "  	<div class=\"holder\">\n" +
-    "  		<div class=\"progress-area\">\n" +
+    "  		<div class=\"progress-area {{dat.class}}\">\n" +
     "		<div class=\"progress-holder {{dat.colour}}\" ng-repeat = \"dat in category_data\">\n" +
     "		<small style=\"background-color: {{dat.colour}};\"><em>{{dat.name}}</em></small>\n" +
     "\n" +
