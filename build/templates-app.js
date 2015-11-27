@@ -149,8 +149,16 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "	</div>\n" +
     "	<h2>Rating</h2>\n" +
     "  </div>\n" +
-    "  <div class=\"graph-holder\">\n" +
-    "  	<canvas id=\"bar\" class=\"chart chart-bar\" chart-data=\"data\" chart-labels=\"labels\" chart-colours=\"colours\" chart-options=\"options\"></canvas>\n" +
+    "  <div class=\"inner-block\">\n" +
+    "  	<ul class=\"list\">\n" +
+    "      <li class=\"v-good\"><a href=\"#\">I'm lovin' it</a></li>\n" +
+    "      <li class=\"good\"><a href=\"#\">Everything on track</a></li>\n" +
+    "      <li class=\"neutral\"><a href=\"#\">Few Concern</a></li>\n" +
+    "      <li class=\"negative\"><a href=\"#\">Not Happy Enough</a></li>\n" +
+    "    </ul>\n" +
+    "  	<div class=\"graph-holder\">\n" +
+    "		<canvas id=\"bar\" class=\"chart chart-bar\" chart-data=\"data\" chart-labels=\"labels\" chart-colours=\"colours\" chart-options=\"options\"></canvas>\n" +
+    "	  </div>\n" +
     "  </div>\n" +
     "</div>\n" +
     "  ");

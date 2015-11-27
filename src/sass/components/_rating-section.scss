@@ -29,7 +29,6 @@
 		position:relative;
 		float: right;
 		margin: 0 0 0 10px;
-		padding: 0 0 0 1px;
 		
 		&:after{
 			position: absolute;
@@ -65,6 +64,7 @@
 	.graph-outer{
 		@include v-align(100%, middle, before);
 		.inner-holder{width: 100%;}
+		@include media("<desktop"){height: auto !important;}
 	}
   
   &.loading{

@@ -10,8 +10,10 @@
 	li{
 		@include inline-block(top);
 		letter-spacing: 0;
-		padding: 0 16px 0 13px;
+		padding: 0 12px 0 9px;
 		position: relative;
+		
+		@include media("≥widescreen"){padding: 0 16px 0 13px;}
 				
 		&:before{
 			position: absolute;
@@ -27,6 +29,15 @@
 		&.negative{
 			&:before{background: $carnelian;}
 		}
+		&.neutral{
+			&:before{background: $cinnabar;}
+		}
+		&.good{
+			&:before{background: $islamic-green;}
+		}
+		&.v-good{
+			&:before{background: $green-house;}
+		}
 	}
 	
 	&.add{
@@ -36,10 +47,6 @@
 		
 		li{
 			width: auto;
-			&:before{
-				border-radius: 100%;
-				-webkit-border-radius: 100%;
-			}
 			
 			&.item1{
 				&:before{background: $deep-lilac;}

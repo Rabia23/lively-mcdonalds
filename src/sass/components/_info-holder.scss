@@ -225,10 +225,16 @@
 		@extend .clearfix;
 		margin: 0 0 30px;
 		
-		.progress{position: relative;}
+		.progress{
+			position: relative;
+			box-shadow: none !important;
+			-webkit-box-shadow: none !important;
+		}
 		
 		
 		.progress-bar{
+			box-shadow: none !important;
+			-webkit-box-shadow: none !important;
 			span,
 			b{
 				font-size: 12px;
