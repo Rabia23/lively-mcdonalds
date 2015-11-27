@@ -426,10 +426,7 @@ def top_concerns(request):
                     {"name": "Bun", "weight": "95"},
                     {"name": "Wings", "weight": "56"},
                     {"name": "Fries", "weight": "9"},
-                    {"name": "Chicken", "weight": "8"},
-                    {"name": "Environment", "weight": "54"},
-                    {"name": "Music", "weight": "78"},
-                    {"name": "Cleanliness", "weight": "13"},
+                    {"name": "Chicken", "weight": "8"}
                 ]
 
             data = {'concern_count': len(concerns), 'concern_list': concerns}
