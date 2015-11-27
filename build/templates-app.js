@@ -8,10 +8,10 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  <div class=\"heading-holder\">\n" +
     "  	<h2>Overall Rating</h2>\n" +
     "  	<ul>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'All'\" ng-click = \"getData(null)\">all</a></li>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Quality'\" ng-click = \"getData(category_performance[0].id)\">Quality</a></li>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Service'\" ng-click = \"getData(category_performance[1].id)\">Service</a></li>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Cleanliness'\" ng-click = \"getData(category_performance[2].id)\">Cleanliness</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-click = \"onClick(null, 'All')\">all</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-click = \"onClick(category_performance[0].id, 'Quality')\">Quality</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-click = \"onClick(category_performance[1].id, 'Service')\">Service</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-click = \"onClick(category_performance[2].id, 'Cleanliness')\">Cleanliness</a></li>\n" +
     "  		<li>\n" +
     "			<div class=\"calender-outer\">\n" +
     "				<span class = \"calendar-holder pull-right\">\n" +
@@ -25,12 +25,11 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  \n" +
     "  <div class=\"progress-container\">\n" +
     "  	<div class=\"holder\">\n" +
-    "  		<div class=\"progress-area\" ng-controller=\"CategoryPerformanceAnalysisCtrl\">\n" +
+    "  		<div class=\"progress-area\">\n" +
     "\n" +
     "			<div class=\"progress-section\" ng-repeat = \"segment in segments\">\n" +
     "\n" +
     "			<small><em>{{segment.name}}</em></small>\n" +
-    "				<small><em>{{segment.segment_data}}</em></small>\n" +
     "\n" +
     "				<div class=\"inner-holder\">\n" +
     "					 <uib-progress><uib-bar ng-repeat=\"bar in segment.segment_data track by $index\" value=\"bar.value\" type=\"{{bar.class}}\"><span>{{bar.value}}%</span></uib-bar></uib-progress>\n" +
@@ -46,17 +45,13 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "		</ul>\n" +
     "  	</div>\n" +
     "  	<div class=\"holder\">\n" +
-    "  		<div class=\"progress-area\" ng-controller=\"CategoryPerformanceAnalysisCtrl\">\n" +
+    "  		<div class=\"progress-area\">\n" +
+    "		<div class=\"progress-holder {{dat.colour}}\" ng-repeat = \"dat in category_data\">\n" +
+    "		<small style=\"background-color: {{dat.colour}};\"><em>{{dat.name}}</em></small>\n" +
     "\n" +
-    "    <div class=\"progress-holder {{dat.class}}\" ng-repeat = \"dat in category_performance\">\n" +
+    "			<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.value\" type=\"success\"><b>{{dat.value}}%</b></uib-progressbar></div>\n" +
     "\n" +
-    "    <small><em>{{dat.name}}</em></small>\n" +
-    "    \n" +
-    "    	<div class=\"progress-block\">\n" +
-    "    		<uib-progressbar animate=\"false\" value=\"dat.value\" type=\"success\"><b>{{dat.value}}%</b></uib-progressbar>\n" +
-    "    	</div>\n" +
-    "\n" +
-    "  </div>\n" +
+    "	  </div>\n" +
     "  </div>\n" +
     "  	</div>\n" +
     "  	\n" +
