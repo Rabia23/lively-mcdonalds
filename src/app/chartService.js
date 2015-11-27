@@ -212,13 +212,14 @@ angular.module('livefeed.chart', [
 
     getBarChartData: function(graph_data){
       return {
-        labels : _.map(graph_data.feedback,  function(data){ return data.label;}),
-        data: [_.map(graph_data.feedback,  function(data){return data.count;})],
-        colors : [{fillColor: _.map(graph_data.feedbacks, function(data){return Global.mainRatingColorScheme[data.option__text];})}],
+        labels : _.map(graph_data.feedbacks, function(data){return data.option__text;}),
+        data: [_.map(graph_data.feedbacks,  function(data){return data.count;})],
+        series: ['Series A'],
+        colours : [{fillColor: _.map(graph_data.feedbacks, function(data){return Global.mainRatingColorScheme[data.option__text];})}],
         
         options: {
           barShowStroke : false,
-          barValueSpacing : 25,
+          barValueSpacing : 35,
           scaleShowVerticalLines: false
         }
 

@@ -43,7 +43,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
             "chart_height": 400,
             "background_color": "#FFFFFF",
             "color_mode": "color",
-            "shade_color": "#BFA66E",
+            "chart_color": ["#BFA66E"],
             "highlight": "Internet Explorer",
             "label_size": 13,
             "label_weight": "normal",
@@ -54,7 +54,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
             "clubdata_enable": "yes",
             "clubdata_text": "Others",
             "clubdata_maximum_nodes": 15,
-            "chart_onhover_highlight_enable": "yes",
+            "chart_onhover_highlight_enable": "no",
             "tooltip_enable": "no",
             "credit_my_site_name": "false",
             "credit_my_site_url": "false"

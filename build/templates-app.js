@@ -142,14 +142,14 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "  <div class=\"heading-holder\">\n" +
     "  	<div class=\"calender-outer\">\n" +
     "		<span class = \"calendar-holder pull-right\">\n" +
-    "		  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" />\n" +
+    "		  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
     "		  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "		</span>\n" +
     "	</div>\n" +
     "	<h2>Rating</h2>\n" +
     "  </div>\n" +
     "  <div class=\"graph-holder\">\n" +
-    "  	<canvas id=\"bar\" class=\"chart chart-bar\" chart-data=\"data\" chart-labels=\"labels\" chart-colours=\"colours\" chart-options=\"options\"></canvas>\n" +
+    "  	<canvas id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
     "  </div>\n" +
     "</div>\n" +
     "  ");

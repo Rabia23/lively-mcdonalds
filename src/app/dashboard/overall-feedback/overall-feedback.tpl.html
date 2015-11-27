@@ -2,14 +2,14 @@
   <div class="heading-holder">
   	<div class="calender-outer">
 		<span class = "calendar-holder pull-right">
-		  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" />
+		  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption"/>
 		  <i class="glyphicon glyphicon-calendar" map-range-click></i>
 		</span>
 	</div>
 	<h2>Rating</h2>
   </div>
   <div class="graph-holder">
-  	<canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-colours="colours" chart-options="options"></canvas>
+  	<canvas id="bar" class="chart chart-bar" chart-data="bar.data" chart-labels="bar.labels" chart-colours="bar.colours" chart-options="bar.options"></canvas>
   </div>
 </div>
   

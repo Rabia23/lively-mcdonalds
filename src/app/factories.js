@@ -75,11 +75,8 @@ angular.module( 'factories', [
   Graphs.prototype.positive_negative_feedback = function(){
     return this.service.positive_negative_feedback();
   };
-  Graphs.prototype.overall_feedback = function(region_id, city_id, branch_id){
-    region_id = region_id || "";
-    city_id = city_id || "";
-    branch_id = branch_id || "";
-    return this.service.overall_feedback({region: region_id, city: city_id, branch: branch_id});
+  Graphs.prototype.overall_feedback = function(date_from, date_to){
+    return this.service.overall_feedback({date_from: date_from, date_to: date_to});
   };
   Graphs.prototype.regional_analysis = function(question_type){
     question_type = question_type || 1;
