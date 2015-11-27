@@ -23,7 +23,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  	</ul>\n" +
     "  </div>\n" +
     "  \n" +
-    "  <div class=\"progress-container\">\n" +
+    "  <div class=\"progress-container {{class}}\">\n" +
     "  	<div class=\"holder\">\n" +
     "  		<div class=\"progress-area\">\n" +
     "\n" +
@@ -32,7 +32,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "			<small><em>{{segment.name}}</em></small>\n" +
     "\n" +
     "				<div class=\"inner-holder\">\n" +
-    "					 <uib-progress><uib-bar ng-repeat=\"bar in segment.segment_data track by $index\" value=\"bar.value\" type=\"{{bar.class}}\"><span>{{bar.value}}%</span></uib-bar></uib-progress>\n" +
+    "					 <uib-progress><uib-bar ng-repeat=\"bar in segment.segment_data track by $index\" value=\"bar.percentage\" type=\"{{bar.class}}\"><span>{{bar.complaints}}</span></uib-bar></uib-progress>\n" +
     "				</div>\n" +
     "\n" +
     "		  </div>\n" +
@@ -45,11 +45,11 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "		</ul>\n" +
     "  	</div>\n" +
     "  	<div class=\"holder\">\n" +
-    "  		<div class=\"progress-area {{dat.class}}\">\n" +
+    "  		<div class=\"progress-area\">\n" +
     "		<div class=\"progress-holder {{dat.colour}}\" ng-repeat = \"dat in category_data\">\n" +
     "		<small style=\"background-color: {{dat.colour}};\"><em>{{dat.name}}</em></small>\n" +
     "\n" +
-    "			<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.value\" type=\"success\"><b>{{dat.value}}%</b></uib-progressbar></div>\n" +
+    "			<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}}</b></uib-progressbar></div>\n" +
     "\n" +
     "	  </div>\n" +
     "  </div>\n" +
