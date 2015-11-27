@@ -191,11 +191,11 @@
 	color: $dim-gray;
 	overflow: hidden;
 	margin: -10px 0;
-	padding: 12px 20px 9px 15px;
-	@include media("≥tablet"){padding: 12px 20px 11px;}
-	@include media("≥desktop"){padding: 14px 25px 11px 20px;}
+	padding: 12px 35px 9px 20px;
+	@include media("≥tablet"){padding: 12px 35px 11px 20px;}
+	@include media("≥desktop"){padding: 14px 35px 11px 20px;}
 	@include media("≥widescreen"){
-		padding: 25px 30px 18px 20px;
+		padding: 25px 35px 18px 20px;
 		margin: -22px 0 -15px;
 	}
 	
@@ -227,9 +227,7 @@
 		bottom: 0;
 		right: 0;
 		top: 0;
-		width: 20px;
-		
-		@include media("≥widescreen"){width: 30px;}
+		width: 30px;
 		
 		&:after{
 			font: 20px/20px $ico-font;
@@ -264,49 +262,12 @@ body > .jcf-select-drop.jcf-drop-flipped {
 	&.jcf-drop-flipped{
 		bottom: 100%;
 		top: auto;
-		
-		.jcf-select-drop-content {
-			margin: 0 0 10px;
-			padding: 0 0 5px;
-			
-			&:after{
-				bottom: auto;
-				top: 100%;
-				margin: -16px 0 0 -8px;
-			}
-		}
-		
-		.jcf-list {
-			-webkit-box-shadow: -3px -3px 1px 0 rgba(0,0,0,0.2);
-			box-shadow: -3px -3px 1px 0 rgba(0,0,0,0.2);
-		}
 	}
 }
 
 .jcf-select-drop .jcf-select-drop-content {
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	padding: 5px 0 0;
 	position: relative;
-	margin: 10px 0 0;
-	
-	
-	&:after{
-		content: "";
-		position: absolute;
-		width: 16px;
-		height: 16px;
-		margin: 0 0 -16px -8px;
-		background: $white;
-		border: 1px solid rgba(0,0,0,0.2);
-		transform: rotate(45deg);
-		-webkit-transform: rotate(45deg);
-		-ms-transform: rotate(45deg);
-		-moz-transform: rotate(45deg);
-		-o-transform: rotate(45deg);
-		bottom: 100%;
-		left: 50%;
-	}
+	border: 1px solid $alto2;
 }
 /* multiple select styles */
 .jcf-list-box {
@@ -325,10 +286,6 @@ body > .jcf-select-drop.jcf-drop-flipped {
 	line-height: 18px;
 	font-size: 14px;
 	width: 100%;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-webkit-box-shadow: 3px 3px 1px 0 rgba(0,0,0,0.2);
-	box-shadow: 3px 3px 1px 0 rgba(0,0,0,0.2);
 }
 .jcf-list .jcf-list-content {
 	vertical-align: top;
@@ -340,8 +297,6 @@ body > .jcf-select-drop.jcf-drop-flipped {
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
 	overflow: hidden;
 }
 .jcf-list ul li {
@@ -362,19 +317,16 @@ body > .jcf-select-drop.jcf-drop-flipped {
 	font-size: 16px;
 	
 	&.jcf-selected{display: none;}
-	
-	&.jcf-option-daily{color: $glaucous;}
-	&.jcf-option-weekly{color: $fuzzy-wuzzy;}
-	&.jcf-option-monthly{color: $rich-lavender;}
-	&.jcf-option-quaterly{color: $blue-gray;}
-	&.jcf-option-yearly{color: $mantis;}
 }
 .jcf-list .jcf-disabled {
 	background: #fff !important;
 	color: #aaa !important;
 }
 .jcf-select-drop .jcf-hover,
-.jcf-list-box .jcf-selected {background: $iceberg;}
+.jcf-list-box .jcf-selected {
+	background: $dim-gray;
+	color: $white;
+}
 .jcf-list .jcf-optgroup-caption {
 	white-space: nowrap;
 	font-weight: bold;
