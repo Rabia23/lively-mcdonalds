@@ -148,12 +148,18 @@
 			line-height: 1.2em;
 		}
 	}
+	.progress{
+		box-shadow: none;
+		-webkit-box-shadow: none;
+	}
 	.progress-section{
 		@extend .clearfix;
 		margin: 0 0 30px;
 		
 		.progress-bar{
 			position: relative;
+			box-shadow: none;
+			-webkit-box-shadow: none;
 			
 			span{
 				font-size: 10px;
@@ -170,15 +176,15 @@
 				text-align: right;
 			}
 			
-			&.progress-bar-success{
+			&.progress-bar-yellow{
 				span{border-right-color: $golden-poppy;}
 			  }
 
-			  &.progress-bar-info{
+			  &.progress-bar-lilac{
 				  span{border-right-color: $deep-lilac;}
 			  }
 
-			  &.progress-bar-warning{
+			  &.progress-bar-blue{
 				  span{border-right-color: $bleu-de-france;}
 			  }
 		}
@@ -189,17 +195,17 @@
 		height: 6px;
 		background: $eminence;
 		
-		&.progress-bar-success{
+		&.progress-bar-yellow{
 			color: $golden-poppy;
 			background: $golden-poppy;
 		  }
 
-		  &.progress-bar-info{
+		  &.progress-bar-lilac{
 			background: $deep-lilac;
 			color: $deep-lilac;
 		  }
 
-		  &.progress-bar-warning{
+		  &.progress-bar-blue{
 			background: $bleu-de-france;
 			color: $bleu-de-france;
 		  }

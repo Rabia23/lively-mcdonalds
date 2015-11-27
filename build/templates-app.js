@@ -170,11 +170,11 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "		</div>\n" +
     "   		<span class=\"select-holder\">\n" +
     "   			<select>\n" +
-    "				<option>Daily</option>\n" +
-    "				<option>Weekly</option>\n" +
-    "				<option>Monthly</option>\n" +
-    "				<option>Quaterly</option>\n" +
-    "				<option>Yearly</option>\n" +
+    "				<option class=\"daily\">Daily</option>\n" +
+    "				<option class=\"weekly\">Weekly</option>\n" +
+    "				<option class=\"monthly\">Monthly</option>\n" +
+    "				<option class=\"quaterly\">Quaterly</option>\n" +
+    "				<option class=\"yearly\">Yearly</option>\n" +
     "			</select>\n" +
     "   		</span>\n" +
     "    	<a ng-click = \"backToMain()\" ng-hide = \"mainView\">Back</a>\n" +
