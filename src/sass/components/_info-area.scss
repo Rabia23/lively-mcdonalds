@@ -182,6 +182,7 @@
 			width: 25%;
 			margin: 0 0 20px;
 		}
+		@include media("≥widescreen"){width: 20%;}
 	}
 	h3{
 		a{
@@ -201,9 +202,14 @@
 	.modal-title{margin: 0;}
 	.modal-body{padding: 15px 30px;}
 	.info-list{
-		li{
-			width: 100%;
-		}
+		li{width: 100%;}
+	}
+	h2{
+		float: none;
+		margin: 0 -30px;
+		line-height: 1.3em;
+		border-bottom: 1px solid $platinum;
+		padding: 0 30px 10px;
 	}
 	.btn-slider{
 		position: absolute;
@@ -217,5 +223,8 @@
 			left: auto;
 			right: 10px;
 		}
+	}
+	.graph-holder{
+		overflow: hidden;
 	}
 }

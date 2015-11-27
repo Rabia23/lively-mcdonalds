@@ -8,10 +8,10 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  <div class=\"heading-holder\">\n" +
     "  	<h2>Overall Rating</h2>\n" +
     "  	<ul>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\">all</a></li>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\">Quality</a></li>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\">Services</a></li>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\">Cleanliness</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'All'\" ng-click = \"getData(null)\">all</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Quality'\" ng-click = \"getData(category_performance[0].id)\">Quality</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Service'\" ng-click = \"getData(category_performance[1].id)\">Service</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Cleanliness'\" ng-click = \"getData(category_performance[2].id)\">Cleanliness</a></li>\n" +
     "  		<li>\n" +
     "			<div class=\"calender-outer\">\n" +
     "				<span class = \"calendar-holder pull-right\">\n" +
@@ -27,20 +27,21 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  	<div class=\"holder\">\n" +
     "  		<div class=\"progress-area\" ng-controller=\"CategoryPerformanceAnalysisCtrl\">\n" +
     "\n" +
-    "			<div class=\"progress-section\" ng-repeat = \"dat in category_performance\">\n" +
+    "			<div class=\"progress-section\" ng-repeat = \"segment in segments\">\n" +
     "\n" +
-    "			<small><em>{{dat.name}}</em></small>\n" +
+    "			<small><em>{{segment.name}}</em></small>\n" +
+    "				<small><em>{{segment.segment_data}}</em></small>\n" +
     "\n" +
     "				<div class=\"inner-holder\">\n" +
-    "					 <uib-progress><uib-bar ng-repeat=\"bar in stacked track by $index\" value=\"bar.value\" type=\"{{bar.type}}\"><span>{{bar.value}}%</span></uib-bar></uib-progress>\n" +
+    "					 <uib-progress><uib-bar ng-repeat=\"bar in segment.segment_data track by $index\" value=\"bar.value\" type=\"{{bar.class}}\"><span>{{bar.value}}%</span></uib-bar></uib-progress>\n" +
     "				</div>\n" +
     "\n" +
     "		  </div>\n" +
     "		</div>\n" +
-    "		\n" +
+    "\n" +
     "		<ul class=\"list add\">\n" +
     "			<li class=\"item1\"><a href=\"#\">Quality</a></li>\n" +
-    "			<li class=\"item2\"><a href=\"#\">Services</a></li>\n" +
+    "			<li class=\"item2\"><a href=\"#\">Service</a></li>\n" +
     "			<li class=\"item3\"><a href=\"#\">Cleanliness</a></li>\n" +
     "		</ul>\n" +
     "  	</div>\n" +
@@ -52,7 +53,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "    <small><em>{{dat.name}}</em></small>\n" +
     "    \n" +
     "    	<div class=\"progress-block\">\n" +
-    "    		<uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar>\n" +
+    "    		<uib-progressbar animate=\"false\" value=\"dat.value\" type=\"success\"><b>{{dat.value}}%</b></uib-progressbar>\n" +
     "    	</div>\n" +
     "\n" +
     "  </div>\n" +
@@ -187,7 +188,9 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "      </li>\n" +
     "    </ul>\n" +
     "    <div class=\"graph-holder\">\n" +
-    "    	<flot dataset=\"line1.data\" options=\"line1.options\" data-width = \"100%\" data-height = \"300px\" on-plot-click = \"optionClick(event, pos, item)\"></flot>\n" +
+    "    	<div class=\"inner-holder\">\n" +
+    "    		<flot dataset=\"line1.data\" options=\"line1.options\" data-width = \"100%\" data-height = \"300px\" on-plot-click = \"optionClick(event, pos, item)\"></flot>\n" +
+    "    	</div>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -287,7 +290,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "		  </div>\n" +
     "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Comments'\" ng-click = \"showChart(null, 'regions')\">Comments</label>\n" +
     "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'regions')\">Rating</label>\n" +
-    "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'SQC'\" ng-click = \"showChart(null, 'regions')\">SQC</label>\n" +
+    "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'regions')\">QSC</label>\n" +
     "		</div>\n" +
     "    </div>\n" +
     "    <div class=\"holder\">\n" +

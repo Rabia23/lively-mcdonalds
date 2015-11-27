@@ -28,11 +28,21 @@
 	.select-holder{
 		position:relative;
 		float: right;
-		padding: 0 15px 0 5px;
+		padding: 0 15px;
 		
-		@include media("≥tablet"){padding: 1px 20px 1px 5px;}
-		@include media("≥desktop"){padding: 3px 20px 1px 5px;}
-		@include media("≥widescreen"){padding: 3px 20px 3px 5px;}
+		&:after{
+			position: absolute;
+			left: 0;
+			top: -999px;
+			bottom: -999px;
+			content: "";
+			background: $alto2;
+			width: 1px;
+		}
+		
+		@include media("≥tablet"){padding: 1px 15px 1px 15px;}
+		@include media("≥desktop"){padding: 3px 15px 1px 15px;}
+		@include media("≥widescreen"){padding: 3px 20px 3px 20px;}
 		
 	}
 	  
@@ -54,6 +64,11 @@
 			@include media("≥widescreen"){padding: 2px 0 0 20px;}
 		}
   }
+	
+	.graph-outer{
+		@include v-align(100%, middle, before);
+		.inner-holder{width: 100%;}
+	}
   
   &.loading{
     .rating-holder{
@@ -229,9 +244,13 @@
 
 body > .jcf-select-drop {
 	position: absolute;
-	margin: -1px 0 0;
+	margin: 15px 0 0;
 	z-index: 9999;
 	min-width: 100px;
+	
+	@include media("≥tablet"){margin: 17px 0 0;}
+	@include media("≥desktop"){margin: 17px 0 0;}
+	@include media("≥widescreen"){margin: 17px 0 0;}
 }
 body > .jcf-select-drop.jcf-drop-flipped {
 	margin: 1px 0 0;
