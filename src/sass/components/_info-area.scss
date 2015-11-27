@@ -21,21 +21,46 @@
 		@extend .clearfix;
 		border-bottom: 1px solid $platinum;
 		
+		@include media("≥tablet"){padding: 0 0 0 10px;}
 		@include media("≥widescreen"){padding: 0 0 0 20px;}
 		
 		.calender-outer{
-			border-left: 1px solid $platinum;
-			padding: 14px 18px;
 			float: right;
+			position: relative;
 			
-			@include media("<tablet"){
-				width: 25%;
-				text-align: center;
+			@include media("<tablet"){width: 25%;}
+
+
+			&:after{
+				position: absolute;
+				left: -1px;
+				top: -999px;
+				bottom: -999px;
+				content: "";
+				background: $alto2;
+				width: 1px;
 			}
-			
-			@include media("≥tablet"){padding: 17px 20px;}
-			@include media("≥desktop"){padding: 19px 20px;}
-			@include media("≥widescreen"){padding: 21px 20px;}
+
+			.calendar-holder{
+				padding: 9px 10px;
+				letter-spacing: 0;
+
+				@include media("<tablet"){
+					float: none !important;
+					display: block;
+					width: 100%;
+					text-align: center;
+
+					i{
+						float: none !important;
+						@inlude inline-block(top);
+					}
+				}
+
+				@include media("≥tablet"){padding: 17px 15px;}
+				@include media("≥desktop"){padding: 19px 18px;}
+				@include media("≥widescreen"){padding: 21px 20px;}
+			}
 		}
 	}
 	
@@ -67,21 +92,27 @@
 		}
 	}
 	.btn-group{
+		overflow: hidden;
 		margin: 0 0 -1px;
+		letter-spacing: -6px;
 		@include media("<tablet"){width: 100%;}
 		.btn{
+			letter-spacing: 0;
 			border-radius: 0;
 			-webkit-border-radius: 0;
 			font-size: 13px;
 			line-height: 20px;
-			padding: 14px 7px;
+			padding: 10px 5px;
 			text-align: center;
 			color: $battleship-grey;
 			border: 0;
 			border-left: 1px solid $platinum;
 			border-bottom: 1px solid $platinum;
 			
-			@include media("<tablet"){width: 25%;}
+			@include media("<tablet"){
+				width: 25%;
+				float: left;
+			}
 			
 			@include media("≥tablet"){
 				font-size: 16px;

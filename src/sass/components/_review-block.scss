@@ -5,11 +5,13 @@
 	
 	.heading-block{
 		overflow: hidden;
-		padding: 10px;
+		padding: 5px 10px;
 		border-bottom: 1px solid $alto2;
 		margin: 0 0 30px;
 		
-		@include media("≥widescreen"){padding: 10px 20px;}
+		@include media("≥tablet"){padding: 5px 10px;}
+		@include media("≥desktop"){padding: 7px 10px;}
+		@include media("≥widescreen"){padding: 9px 20px;}
 		
 		.btn{
 			font-size: 12px;

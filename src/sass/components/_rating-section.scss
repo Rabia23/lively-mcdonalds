@@ -8,21 +8,30 @@
   .heading-block{
     overflow: hidden;
     margin: 0 0 18px;
-	padding: 10px;
 	border-bottom: 1px solid $alto2;
+	padding: 0 0 0 10px;
+	  text-align: left;
+    
+	@include media("≥tablet"){padding: 0 0 0 20px;}
 	  
-	@include media("≥widescreen"){padding: 22px 20px 15px;}
-    h2{
+	h2{
       float: left;
       margin: 0 5px 0 0;
+	  line-height: 2.55em;
+	  @include media("≥tablet"){line-height: 3em;}
     }
     
     a{
       float: right;
       cursor: pointer;
-      margin: 4px 5px 0;
+      margin: 13px 5px 0;
       
       &:hover{color: darken($dell,10%);}
+		
+		
+		@include media("≥tablet"){margin: 19px 5px 0;}
+		@include media("≥desktop"){margin: 20px 5px 0;}
+		@include media("≥widescreen"){margin: 24px 5px 0;}
     }
 	  
 	.select-holder{
@@ -43,22 +52,41 @@
 	}
 	  
 	  .calender-outer{
-			float: right;
-			position: relative;
-			padding: 0 0 0 10px;
+		float: right;
+		position: relative;
+		padding: 0;
 
-			&:after{
-				position: absolute;
-				left: 0;
-				top: -999px;
-				bottom: -999px;
-				content: "";
-				background: $alto2;
-				width: 1px;
+
+		&:after{
+			position: absolute;
+			left: 0;
+			top: -999px;
+			bottom: -999px;
+			content: "";
+			background: $alto2;
+			width: 1px;
+		}
+
+		.calendar-holder{
+			padding: 9px 18px;
+
+			@include media("<tablet"){
+				float: none !important;
+				display: block;
+				width: 100%;
+				text-align: center;
+
+				i{
+					float: none !important;
+					@inlude inline-block(top);
+				}
 			}
 
-			@include media("≥widescreen"){padding: 2px 0 0 20px;}
+			@include media("≥tablet"){padding: 17px 15px;}
+			@include media("≥desktop"){padding: 19px 18px;}
+			@include media("≥widescreen"){padding: 21px 20px;}
 		}
+	}
   }
 	
 	.graph-outer{
@@ -160,8 +188,8 @@
 		  padding: 0 14px 14px;
 		  
 		  .ng-isolate-scope{
-			  height: 297px !important;
-			  > div{height: 297px !important;}
+			  height: 299px !important;
+			  > div{height: 299px !important;}
 			}
 	  }
     .flot-tick-label{max-width: 60px !important;}
@@ -190,14 +218,10 @@
 	line-height: 20px;
 	color: $dim-gray;
 	overflow: hidden;
-	margin: -10px 0;
 	padding: 12px 35px 9px 20px;
-	@include media("≥tablet"){padding: 12px 35px 11px 20px;}
-	@include media("≥desktop"){padding: 14px 35px 11px 20px;}
-	@include media("≥widescreen"){
-		padding: 25px 35px 18px 20px;
-		margin: -22px 0 -15px;
-	}
+	@include media("≥tablet"){padding: 19px 35px 15px 20px;}
+	@include media("≥desktop"){padding: 20px 35px 18px 20px;}
+	@include media("≥widescreen"){padding: 25px 35px 18px 20px;}
 	
 	select {
 		z-index: 1;
@@ -242,7 +266,6 @@
 
 body > .jcf-select-drop {
 	position: absolute;
-	margin: -1px 0 0;
 	z-index: 9999;
 	min-width: 100px;
 }

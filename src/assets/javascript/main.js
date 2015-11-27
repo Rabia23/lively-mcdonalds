@@ -16,7 +16,9 @@ function initCustomForms() {
 function initSameHeight() {
 	jQuery('.section').sameHeight({
 		elements: '.feedback-block .graph-holder, .rating-section .graph-outer',
-		flexible: true
+		flexible: true,
+		multiLine: true,
+		biggestHeight: false
 	});
 }
 
