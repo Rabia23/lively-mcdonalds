@@ -16,8 +16,16 @@ REGIONAL_ANALYSIS = '1'
 CITY_ANALYSIS = '2'
 BRANCH_ANALYSIS = '3'
 
+DAILY_ANALYSIS = '1'
+WEEK_ANALYSIS = '2'
+MONTHLY_ANALYSIS = '3'
+YEARLY_ANALYSIS = '4'
+
 #------------ Daywise Data Ratting -------------
 NO_OF_DAYS = 7
+NO_OF_WEEKS = 7
+NO_OF_MONTHS = 7
+NO_OF_YEARS = 7
 
 #------------ Negative Feedback -------------
 NEGATIVE_SCORE_LIST = [1,2]

@@ -13,11 +13,12 @@ from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerial
     ConcernsSerializer, SegmentationRatingSerializer
 from lively import constants
 from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options, \
-    generate_segmentation, generate_option_group, apply_general_filters, generate_option_groups, \
-    generate_segmentation_with_options, apply_date_range_filter
+    apply_general_filters, generate_option_groups, generate_segmentation_with_options, apply_date_range_filter
 from dateutil import rrule
+from dateutil.relativedelta import relativedelta
 from datetime import datetime, timedelta
 from django.core.paginator import Paginator
+from django.utils import timezone
 
 
 @api_view(['GET', 'POST'])
@@ -196,6 +197,9 @@ def overall_rating(request):
             branch_id = request.query_params.get('branch', None)
             option_id = request.query_params.get('option', None)
 
+            #for grouping of data (daily, weekly, monthly, yearly)
+            type = request.query_params.get('type', None)
+
             date_to = request.query_params.get('date_to', None)
             date_from = request.query_params.get('date_from', None)
 
@@ -214,8 +218,20 @@ def overall_rating(request):
                                             date_to, date_from)
 
             now = datetime.now()
-            start_date = now - timedelta(days=constants.NO_OF_DAYS)
-            for single_date in rrule.rrule(rrule.DAILY, dtstart=start_date, until=now):
+            if type == constants.YEARLY_ANALYSIS:
+                rule = rrule.YEARLY
+                start_date = now - relativedelta(years=constants.NO_OF_YEARS)
+            elif type == constants.MONTHLY_ANALYSIS:
+                rule = rrule.MONTHLY
+                start_date = now - relativedelta(months=constants.NO_OF_MONTHS)
+            elif type == constants.WEEK_ANALYSIS:
+                rule = rrule.WEEKLY
+                start_date = now - relativedelta(weeks=constants.NO_OF_WEEKS)
+            else:
+                rule = rrule.DAILY
+                start_date = now - timedelta(days=constants.NO_OF_DAYS)
+
+            for single_date in rrule.rrule(rule, dtstart=start_date, until=now):
                 feedbacks = filtered_feedback_options.filter(created_at__day=single_date.day)
                 filtered_feedbacks = feedbacks.values('option_id', 'option__text', 'option__parent_id').\
                     annotate(count=Count('option_id'))
@@ -223,9 +239,11 @@ def overall_rating(request):
                     list_feedback = generate_missing_sub_options(option_id, filtered_feedbacks)
                 else:
                     list_feedback = generate_missing_options(question, filtered_feedbacks)
+
+                current_tz = timezone.get_current_timezone()
                 date_data = {'feedback_count': feedbacks.count(), 'feedbacks': list_feedback}
-                single_date = datetime.strptime(str(single_date.date()), constants.ONLY_DATE_FORMAT)
-                feedback_records_list.append({'date': single_date, 'data': date_data})
+                single_date = current_tz.localize(datetime.strptime(str(single_date.date()), constants.ONLY_DATE_FORMAT))
+                feedback_records_list.append({'date': single_date.date(), 'data': date_data})
 
             feedback_response = OverallRattingSerializer(feedback_records_list, many=True)
             return Response(feedback_response.data)

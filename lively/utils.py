@@ -295,7 +295,7 @@ def apply_general_filters(data, region_id, city_id, branch_id, date_to=None, dat
             feedback__branch__city__region__exact=region_id)
 
     if date_to and date_from:
-        data = apply_date_range_filter(data, date_to=None, date_from=None)
+        data = apply_date_range_filter(data, date_to, date_from)
     return data
 
 
