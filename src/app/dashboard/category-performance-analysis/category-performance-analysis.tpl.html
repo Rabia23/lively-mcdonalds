@@ -26,9 +26,10 @@
 			<div class="progress-section" ng-repeat = "segment in segments">
 
 			<small><em>{{segment.name}}</em></small>
+				<small><em>{{segment.segment_data}}</em></small>
 
 				<div class="inner-holder">
-					 <uib-progress><uib-bar ng-repeat="bar in segment.segment_data track by $index" value="bar.value" type="bar.class"><span>{{bar.value}}%</span></uib-bar></uib-progress>
+					 <uib-progress><uib-bar ng-repeat="bar in segment.segment_data track by $index" value="bar.value" type="{{bar.class}}"><span>{{bar.value}}%</span></uib-bar></uib-progress>
 				</div>
 
 		  </div>

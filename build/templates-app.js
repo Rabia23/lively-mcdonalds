@@ -30,9 +30,10 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "			<div class=\"progress-section\" ng-repeat = \"segment in segments\">\n" +
     "\n" +
     "			<small><em>{{segment.name}}</em></small>\n" +
+    "				<small><em>{{segment.segment_data}}</em></small>\n" +
     "\n" +
     "				<div class=\"inner-holder\">\n" +
-    "					 <uib-progress><uib-bar ng-repeat=\"bar in segment.segment_data track by $index\" value=\"bar.value\" type=\"bar.class\"><span>{{bar.value}}%</span></uib-bar></uib-progress>\n" +
+    "					 <uib-progress><uib-bar ng-repeat=\"bar in segment.segment_data track by $index\" value=\"bar.value\" type=\"{{bar.class}}\"><span>{{bar.value}}%</span></uib-bar></uib-progress>\n" +
     "				</div>\n" +
     "\n" +
     "		  </div>\n" +
