@@ -4,8 +4,8 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
 ])
 
 .controller('CategoryPerformanceAnalysisCtrl', function DashboardController($scope, _, Graphs, Global) {
-  $scope.show_active = true;
   $scope.show_loading = false;
+  $scope.class = '';
   $scope.showData = function(region_id,city_id,branch_id,option_id,string){
     $scope.show_loading = true;
     Graphs.category_performance(region_id,city_id,branch_id,option_id).$promise.then(function(performance_data){
@@ -49,11 +49,10 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
         }
       });
       $scope.segments = _.sortBy( $scope.segments, function(value){return value.priority;});
+      $scope.show_loading = false;
     });
-    $scope.show_loading = false;
   };
   $scope.onClick = function(option_id,string){
-    $scope.show_active = false;
     if(string === 'All'){
       $scope.class = "";
       $scope.showData();
