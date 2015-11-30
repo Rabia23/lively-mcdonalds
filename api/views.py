@@ -8,18 +8,20 @@ from rest_framework.response import Response
 from app.models import Region, City, Branch
 from app.serializers import RegionSerializer, CitySerializer, UserSerializer
 from feedback.models import Question, FeedbackOption, Option, Feedback
-from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer, \
-    PositiveNegativeFeedbackSerializer, AllCommentsSerializer, AllBranchesSerializer, SegmentationSerializer, \
-    ConcernsSerializer, SegmentationRatingSerializer, FeedbackCommentSerializer, ActionAnalysisSerializer
 from lively import constants
-from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options, \
-    apply_general_filters, generate_option_groups, generate_segmentation_with_options, apply_date_range_filter, \
-    get_filtered_feedback, generate_missing_actions
 from dateutil import rrule
 from dateutil.relativedelta import relativedelta
 from datetime import datetime, timedelta
 from django.core.paginator import Paginator
 from django.utils import timezone
+
+from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer, \
+    PositiveNegativeFeedbackSerializer, AllCommentsSerializer, AllBranchesSerializer, SegmentationSerializer, \
+    ConcernsSerializer, SegmentationRatingSerializer, FeedbackCommentSerializer, ActionAnalysisSerializer
+
+from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options, \
+    apply_general_filters, generate_option_groups, generate_segmentation_with_options, apply_date_range_filter, \
+    get_filtered_feedback, generate_missing_actions
 
 
 @api_view(['GET', 'POST'])
@@ -78,7 +80,6 @@ def branch(request):
 
 @api_view(['GET'])
 def overall_feedback(request):
-
     if request.method == 'GET':
 
         try:
@@ -109,7 +110,6 @@ def overall_feedback(request):
 
 @api_view(['GET'])
 def feedback_analysis(request):
-
     if request.method == 'GET':
         feedbacks = []
 
@@ -188,7 +188,6 @@ def feedback_analysis_breakdown(request):
 
 @api_view(['GET'])
 def overall_rating(request):
-
     if request.method == 'GET':
         feedback_records_list = []
 
@@ -196,7 +195,9 @@ def overall_rating(request):
             region_id = request.query_params.get('region', None)
             city_id = request.query_params.get('city', None)
             branch_id = request.query_params.get('branch', None)
+
             option_id = request.query_params.get('option', None)
+            question = Question.objects.get(type=constants.SECONDARY_QUESTION)
 
             #for grouping of data (daily, weekly, monthly, yearly)
             type = request.query_params.get('type', None)
@@ -204,51 +205,54 @@ def overall_rating(request):
             date_to = request.query_params.get('date_to', None)
             date_from = request.query_params.get('date_from', None)
 
-            question = Question.objects.get(type=constants.SECONDARY_QUESTION)
-
-            if option_id:
-                filtered_feedback_options = FeedbackOption.objects.filter(
-                    option__in=Option.objects.filter(parent=option_id).values_list('id'))
-            else:
-                filtered_feedback_options = FeedbackOption.objects.filter(
-                    option__in=question.options.filter(parent=None).values_list('id'))
-
-            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id,
-                                            date_to, date_from)
-
-
             current_tz = timezone.get_current_timezone()
             now = datetime.now()
 
             if date_to and date_from:
                 rule = rrule.DAILY #when evenr there is a date range
-                now = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
-                start_date = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
             elif type == constants.YEARLY_ANALYSIS:
                 rule = rrule.YEARLY
-                start_date = now - relativedelta(years=constants.NO_OF_YEARS)
+                date_from = str((now - relativedelta(years=constants.NO_OF_YEARS)).date())
+                date_to = str(now.date())
             elif type == constants.MONTHLY_ANALYSIS:
                 rule = rrule.MONTHLY
-                start_date = now - relativedelta(months=constants.NO_OF_MONTHS)
+                date_from = str((now - relativedelta(months=constants.NO_OF_MONTHS)).date())
+                date_to = str(now.date())
             elif type == constants.WEEK_ANALYSIS:
                 rule = rrule.WEEKLY
-                start_date = now - relativedelta(weeks=constants.NO_OF_WEEKS)
+                date_from = str((now - relativedelta(weeks=constants.NO_OF_WEEKS)).date())
+                date_to = str(now.date())
             else:
                 rule = rrule.DAILY
-                start_date = now - timedelta(days=constants.NO_OF_DAYS)
+                date_from = str((now - timedelta(days=constants.NO_OF_DAYS)).date())
+                date_to = str(now.date())
 
-            for single_date in rrule.rrule(rule, dtstart=start_date, until=now):
-                feedbacks = filtered_feedback_options.filter(created_at__day=single_date.day)
-                filtered_feedbacks = feedbacks.values('option_id', 'option__text', 'option__parent_id').\
-                    annotate(count=Count('option_id'))
+            date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
+            date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
+
+            section_start_date = date_from
+            for single_date in rrule.rrule(rule, dtstart=date_from, until=date_to):
+                section_end_date = single_date
+                feedback_data = FeedbackOption.objects.filter(created_at__gt=section_start_date, created_at__lte=section_end_date)
+                filtered_feedback_options = apply_general_filters(feedback_data, region_id, city_id, branch_id)
+
                 if option_id:
-                    list_feedback = generate_missing_sub_options(option_id, filtered_feedbacks)
+                    filtered_feedback_options = filtered_feedback_options.filter(option__in=Option.objects.filter(parent=option_id).values_list('id'))
                 else:
-                    list_feedback = generate_missing_options(question, filtered_feedbacks)
+                    filtered_feedback_options = filtered_feedback_options.filter(option__in=question.options.filter(parent=None).values_list('id'))
 
-                date_data = {'feedback_count': feedbacks.count(), 'feedbacks': list_feedback}
+                filtered_feedback = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').annotate(count=Count('option_id'))
+
+                if option_id:
+                    list_feedback = generate_missing_sub_options(option_id, filtered_feedback)
+                else:
+                    list_feedback = generate_missing_options(question, filtered_feedback)
+
+                date_data = {'feedback_count': filtered_feedback_options.count(), 'feedbacks': list_feedback}
                 single_date = current_tz.localize(datetime.strptime(str(single_date.date()), constants.ONLY_DATE_FORMAT))
                 feedback_records_list.append({'date': single_date.date(), 'data': date_data})
+
+                section_start_date = section_end_date
 
             if len(feedback_records_list) > constants.NO_OF_DAYS:
                 feedback_records_list = feedback_records_list[-constants.NO_OF_DAYS:]
@@ -432,7 +436,7 @@ def top_concerns(request):
 
         try:
             concerns = [
-                    {"name": "Ketchap", "weight": "110"},
+                    {"name": "Ketchup", "weight": "110"},
                     {"name": "Bun", "weight": "95"},
                     {"name": "Wings", "weight": "56"},
                     {"name": "Fries", "weight": "9"},
