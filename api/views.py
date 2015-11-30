@@ -274,6 +274,9 @@ def category_performance(request):
             city_id = request.query_params.get('city', None)
             branch_id = request.query_params.get('branch', None)
 
+            date_to = request.query_params.get('date_to', None)
+            date_from = request.query_params.get('date_from', None)
+
             option_id = request.query_params.get('option', None)
             question = Question.objects.get(type=constants.SECONDARY_QUESTION)
 
@@ -284,7 +287,8 @@ def category_performance(request):
                 filtered_feedback_options = FeedbackOption.objects.filter(
                 option__in=question.options.filter(parent=None).values_list('id'))
 
-            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id)
+            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id,
+                                                              date_to, date_from)
             filtered_feedback_options_count = filtered_feedback_options.count()
             filtered_feedbacks = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').\
                 annotate(count=Count('option_id'))
