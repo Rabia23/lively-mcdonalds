@@ -8,7 +8,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  <div class=\"heading-holder\">\n" +
     "  	<h2>Overall Rating</h2>\n" +
     "  	<ul>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-click = \"onClick(null, 'All')\">all</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-class=\"{active: show_active}\" ng-click = \"onClick(null, 'All')\">all</a></li>\n" +
     "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-click = \"onClick(QualityID, 'Quality')\">Quality</a></li>\n" +
     "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-click = \"onClick(ServiceID, 'Service')\">Service</a></li>\n" +
     "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-click = \"onClick(CleanlinessID, 'Cleanliness')\">Cleanliness</a></li>\n" +
