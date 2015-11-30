@@ -12,6 +12,7 @@ class Feedback(models.Model):
     comment = models.CharField(max_length=1000)
     objectId = models.CharField(max_length=20, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    action_taken = models.BooleanField(default=False)
 
     def __unicode__(self):
        return self.objectId
@@ -136,6 +137,7 @@ class Feedback(models.Model):
                 "segment": self.get_segment(),
                 "shift": self.get_shift(),
                 "is_negative": self.is_negative(),
+                "action_taken": self.action_taken,
             }
             return feedback
         except Exception as e:

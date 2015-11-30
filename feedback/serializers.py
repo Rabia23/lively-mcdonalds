@@ -80,6 +80,7 @@ class FeedbackCommentSerializer(serializers.Serializer):
     user_name = serializers.CharField()
     user_phone = serializers.CharField()
     is_negative = serializers.BooleanField()
+    action_taken = serializers.BooleanField()
 
 
 class AllCommentsSerializer(serializers.Serializer):
@@ -139,3 +140,23 @@ class SegmentOptionSerializer(serializers.Serializer):
 class SegmentationRatingSerializer(serializers.Serializer):
     segments = SegmentOptionSerializer(many=True)
     segment_count = serializers.IntegerField()
+
+
+class ActionTakenObjectSerializer(serializers.Serializer):
+    action_taken = serializers.BooleanField()
+    count = serializers.IntegerField()
+
+
+class ActionTakenSerializer(serializers.Serializer):
+    feedback_count = serializers.IntegerField()
+    action_analysis = ActionTakenObjectSerializer(many=True)
+
+
+class ActionAnalysisObjectSerializer(serializers.Serializer):
+    object = ObjectSerializer()
+    data = ActionTakenSerializer()
+
+
+class ActionAnalysisSerializer(serializers.Serializer):
+    count = serializers.IntegerField()
+    analysis = ActionAnalysisObjectSerializer(many=True)

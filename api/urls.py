@@ -18,6 +18,8 @@ urlpatterns = patterns('api.views',
     url(r'^feedback_segmentation/$', 'feedback_segmentation', name='feedback_segmentation'),
     url(r'^top_concerns/$', 'top_concerns', name='top_concerns'),
     url(r'^segmentation_rating/$', 'segmentation_rating', name='segmentation_rating'),
+    url(r'^action_taken/$', 'action_taken', name='action_taken'),
+    url(r'^action_analysis/$', 'action_analysis', name='action_analysis'),
 )
 
 

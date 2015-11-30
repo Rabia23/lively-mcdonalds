@@ -10,10 +10,11 @@ from app.serializers import RegionSerializer, CitySerializer, UserSerializer
 from feedback.models import Question, FeedbackOption, Option, Feedback
 from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer, \
     PositiveNegativeFeedbackSerializer, AllCommentsSerializer, AllBranchesSerializer, SegmentationSerializer, \
-    ConcernsSerializer, SegmentationRatingSerializer
+    ConcernsSerializer, SegmentationRatingSerializer, FeedbackCommentSerializer, ActionAnalysisSerializer
 from lively import constants
 from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options, \
-    apply_general_filters, generate_option_groups, generate_segmentation_with_options, apply_date_range_filter
+    apply_general_filters, generate_option_groups, generate_segmentation_with_options, apply_date_range_filter, \
+    get_filtered_feedback
 from dateutil import rrule
 from dateutil.relativedelta import relativedelta
 from datetime import datetime, timedelta
@@ -474,5 +475,68 @@ def segmentation_rating(request):
             data = {'segment_count': len(feedback_segmented_list), 'segments': feedback_segmented_list}
             feedback_response = SegmentationRatingSerializer(data)
             return Response(feedback_response.data)
+        except Exception as e:
+            return Response(None)
+
+
+@api_view(['POST'])
+def action_taken(request):
+    if request.method == 'POST':
+
+        try:
+            if "feedback_id" in request.data:
+                feedback = Feedback.objects.get(pk=request.data['feedback_id'])
+
+                feedback.action_taken = True
+                feedback.save()
+
+                feedback_response = FeedbackCommentSerializer(feedback.feedback_comment_dict())
+                return Response(feedback_response.data)
+            else:
+                return Response(None)
+        except Exception as e:
+            return Response(None)
+
+
+@api_view(['GET'])
+def action_analysis(request):
+
+    if request.method == 'GET':
+        data_list = []
+
+        try:
+            type = request.query_params.get('type', None)
+            objects = None
+
+            date_to = request.query_params.get('date_to', None)
+            date_from = request.query_params.get('date_from', None)
+
+            if type == constants.CITY_ANALYSIS:
+                region_id = request.query_params.get('region', None)
+                if region_id:
+                    region = Region.objects.get(pk=region_id)
+                    objects = region.cities.all()
+            elif type == constants.BRANCH_ANALYSIS:
+                city_id = request.query_params.get('city', None)
+                if city_id:
+                    city = City.objects.get(pk=city_id)
+                    objects = city.branches.all()
+            else:
+                objects = Region.objects.all()
+
+            for object in objects:
+                filtered_feedback = get_filtered_feedback(type, object)
+                filtered_feedback = apply_date_range_filter(filtered_feedback, date_to, date_from)
+                filtered_feedback_count = filtered_feedback.count()
+                filtered_feedback = filtered_feedback.values(
+                    'action_taken').annotate(count=Count('action_taken'))
+
+                data = {'feedback_count': filtered_feedback_count, 'action_analysis': filtered_feedback}
+                data_list.append({'object': object, 'data': data})
+
+            feedback_data = {'count': objects.count(), 'analysis': data_list}
+            feedback_response = ActionAnalysisSerializer(feedback_data)
+            return Response(feedback_response.data)
+
         except Exception as e:
             return Response(None)

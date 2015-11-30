@@ -262,6 +262,16 @@ def get_filtered_feedback_options(feedback_options, type, object):
     return filtered_feedback_options
 
 
+def get_filtered_feedback(type, object, feedback=None):
+    if type == constants.CITY_ANALYSIS:
+        filtered_feedback = feedback.filter(branch__city__exact=object.id) if feedback else Feedback.objects.filter(branch__city__exact=object.id)
+    elif type == constants.BRANCH_ANALYSIS:
+        filtered_feedback = feedback.filter(branch__exact=object.id) if feedback else Feedback.objects.filter(branch__exact=object.id)
+    else:
+        filtered_feedback = feedback.filter(branch__city__region__exact=object.id) if feedback else Feedback.objects.filter(branch__city__region__exact=object.id)
+
+    return filtered_feedback
+
 def send_negative_feedback_email(context):
     text_template = get_template('emails/negative_feedback.txt')
     html_template = get_template('emails/negative_feedback.html')
