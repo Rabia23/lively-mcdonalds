@@ -17,7 +17,12 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
                  priority:  option_id == null? Global.qscPriority[data.option__text] : " "
                };
           });
-          if( option_id == null){ $scope.category_data = _.sortBy( $scope.category_data, function(value){ return value.priority; }); }
+          if( option_id == null){
+              $scope.category_data = _.sortBy( $scope.category_data, function(value){ return value.priority; });
+              $scope.QualityID = $scope.category_data[0].id;
+              $scope.ServiceID = $scope.category_data[1].id;
+              $scope.CleanlinessID = $scope.category_data[2].id;
+          }
 
       });
       Graphs.segmentation_rating(region_id,city_id,branch_id,option_id).$promise.then(function(segment_data){
@@ -47,22 +52,21 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
       });
     };
     $scope.onClick = function(option_id,string){
-
         if(string === 'All'){
             $scope.class = "";
             $scope.showData();
         }
         else if(string === 'Quality'){
             $scope.class = string;
-          $scope.showData("","","",8,string);
+          $scope.showData("","","",option_id,string);
         }
         else if(string === 'Service'){
             $scope.class = string;
-            $scope.showData("","","",15,string);
+            $scope.showData("","","",option_id,string);
         }
         else if(string === 'Cleanliness'){
             $scope.class = string;
-            $scope.showData("","","",1,string);
+            $scope.showData("","","",option_id,string);
         }
 
     };
