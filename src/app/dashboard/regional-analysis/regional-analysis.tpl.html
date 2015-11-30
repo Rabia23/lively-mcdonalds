@@ -1,19 +1,23 @@
 <div class="section-holder" >
   <div class="info-area" ng-class="{loading: show_loading}">
     <div class="heading-holder">
-    	<h2 ng-show = "regional_view">Regional Analysis</h2>  
+    	<h2 ng-show = "regional_view">Patch Analysis</h2>
 		<h2 ng-show = "regional_view == false && city_view == true">{{selected_region.name}} Region City Analysis</h2>
 		<h2 ng-show = "regional_view == false && city_view == false">{{selected_city.name}} City Branch Analysis</h2>
     	<div class="btn-group pull-right">
-		  <div class="calender-outer">
-		  	<span class = "calendar-holder">
-			  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" />
-			  <i class="glyphicon glyphicon-calendar" map-range-click></i>
-			</span>
-		  </div>
-		  <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Comments'" ng-click = "showChart(null, 'regions')">Comments</label>
-		  <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Rating'" ng-click = "showChart(null, 'regions')">Rating</label>
-		  <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'QSC'" ng-click = "showChart(null, 'regions')">QSC</label>
+		  	  <ul>
+		  	  	<li><label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Comments'" ng-click = "showChart(null, 'regions')">Complains</label></li>
+		  	  	<li> <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Rating'" ng-click = "showChart(null, 'regions')">Rating</label></li>
+		  	  	<li><label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'QSC'" ng-click = "showChart(null, 'regions')">QSC</label></li>
+		  	  	<li>
+		  	  		<div class="calender-outer">
+					<span class = "calendar-holder">
+					  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" />
+					  <i class="glyphicon glyphicon-calendar" map-range-click></i>
+					</span>
+				  </div>
+		  	  	</li>
+		  	  </ul>
 		</div>
     </div>
     <div class="holder">

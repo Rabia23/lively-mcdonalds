@@ -2,12 +2,12 @@
 	<div class="info-holder">
   
   <div class="heading-holder">
-  	<h2>Overall Rating</h2>
+  	<h2>Business Segment Breakdown</h2>
   	<ul>
-  		<li><a href="#" class="btn btn-default"  ng-click = "onClick(null, 'All')">all</a></li>
-  		<li><a href="#" class="btn btn-default"  ng-click = "onClick(category_performance[0].id, 'Quality')">Quality</a></li>
-  		<li><a href="#" class="btn btn-default"  ng-click = "onClick(category_performance[1].id, 'Service')">Service</a></li>
-  		<li><a href="#" class="btn btn-default"  ng-click = "onClick(category_performance[2].id, 'Cleanliness')">Cleanliness</a></li>
+  		<li><a href="#" class="btn btn-default"  ng-class="{active: class == ''}" ng-click = "onClick(null, 'All')">all</a></li>
+  		<li><a href="#" class="btn btn-default"  ng-class="{active: class == 'Quality'}" ng-click = "onClick(QualityID, 'Quality')">Quality</a></li>
+  		<li><a href="#" class="btn btn-default"  ng-class="{active: class == 'Service'}" ng-click = "onClick(ServiceID, 'Service')">Service</a></li>
+  		<li><a href="#" class="btn btn-default"  ng-class="{active: class == 'Cleanliness'}" ng-click = "onClick(CleanlinessID, 'Cleanliness')">Cleanliness</a></li>
   		<li>
 			<div class="calender-outer">
 				<span class = "calendar-holder pull-right">
@@ -19,8 +19,11 @@
   	</ul>
   </div>
   
-  <div class="progress-container {{class}}">
+  <div class="progress-container {{class}}" ng-class="{loading: show_loading}">
   	<div class="holder">
+  		<ul class="list add">
+			<li ng-repeat = "dat in category_data"><a href="#">{{dat.name}}</a></li>
+		</ul>
   		<div class="progress-area">
 
 			<div class="progress-section" ng-repeat = "segment in segments">
@@ -33,30 +36,15 @@
 
 		  </div>
 		</div>
-
-		<ul class="list add">
-			<li class="item1"><a href="#">Quality</a></li>
-			<li class="item2"><a href="#">Service</a></li>
-			<li class="item3"><a href="#">Cleanliness</a></li>
-		</ul>
   	</div>
   	<div class="holder">
   		<div class="progress-area">
-		<div class="progress-holder {{dat.colour}}" ng-repeat = "dat in category_data">
-		<small style="background-color: {{dat.colour}};"><em>{{dat.name}}</em></small>
-
-			<div class="progress-block"><uib-progressbar animate="false" value="dat.percentage" type="success"><b>{{dat.complaints}}</b></uib-progressbar></div>
-
-	  </div>
-  </div>
+			<div class="progress-holder {{dat.colour}}" ng-repeat = "dat in category_data">
+				<small><em>{{dat.name}}</em></small>
+				<div class="progress-block"><uib-progressbar animate="false" value="dat.percentage" type="success"><b>{{dat.complaints}}</b></uib-progressbar></div>
+		  </div>
+  		</div>
   	</div>
-  	
-  	
   </div>
-
-
-</div>
-
-
-  
+</div> 
 </div>

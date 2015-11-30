@@ -28,12 +28,12 @@
 			float: right;
 			position: relative;
 			
-			@include media("<tablet"){width: 25%;}
+			@include media("<tablet"){width: 100%;}
 
 
 			&:after{
 				position: absolute;
-				left: -1px;
+				left: 0;
 				top: -999px;
 				bottom: -999px;
 				content: "";
@@ -96,6 +96,25 @@
 		margin: 0 0 -1px;
 		letter-spacing: -6px;
 		@include media("<tablet"){width: 100%;}
+		ul{
+			@extend %listreset;
+			@extend .clearfix;
+			li{
+				float: left;
+				@include media("<tablet"){
+					width: 25%;
+					&:first-child{
+						.btn{
+							border-left: 0;
+							&:hover,
+							&:active,
+							&:focus,
+							&.active{border-left: 0;}
+						}
+					}
+				}
+			}
+		}
 		.btn{
 			letter-spacing: 0;
 			border-radius: 0;
@@ -110,7 +129,7 @@
 			border-bottom: 1px solid $platinum;
 			
 			@include media("<tablet"){
-				width: 25%;
+				width: 100%;
 				float: left;
 			}
 			
@@ -133,6 +152,7 @@
 				border-left: 1px solid $platinum;
 				border-bottom: 1px solid $white;
 				box-shadow: none;
+				
 			}
 		}
 	}

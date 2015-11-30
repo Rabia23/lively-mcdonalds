@@ -6,12 +6,12 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "	<div class=\"info-holder\">\n" +
     "  \n" +
     "  <div class=\"heading-holder\">\n" +
-    "  	<h2>Overall Rating</h2>\n" +
+    "  	<h2>Business Segment Breakdown</h2>\n" +
     "  	<ul>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-click = \"onClick(null, 'All')\">all</a></li>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-click = \"onClick(category_performance[0].id, 'Quality')\">Quality</a></li>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-click = \"onClick(category_performance[1].id, 'Service')\">Service</a></li>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-click = \"onClick(category_performance[2].id, 'Cleanliness')\">Cleanliness</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-class=\"{active: class == ''}\" ng-click = \"onClick(null, 'All')\">all</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-class=\"{active: class == 'Quality'}\" ng-click = \"onClick(QualityID, 'Quality')\">Quality</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-class=\"{active: class == 'Service'}\" ng-click = \"onClick(ServiceID, 'Service')\">Service</a></li>\n" +
+    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-class=\"{active: class == 'Cleanliness'}\" ng-click = \"onClick(CleanlinessID, 'Cleanliness')\">Cleanliness</a></li>\n" +
     "  		<li>\n" +
     "			<div class=\"calender-outer\">\n" +
     "				<span class = \"calendar-holder pull-right\">\n" +
@@ -23,8 +23,11 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  	</ul>\n" +
     "  </div>\n" +
     "  \n" +
-    "  <div class=\"progress-container {{class}}\">\n" +
+    "  <div class=\"progress-container {{class}}\" ng-class=\"{loading: show_loading}\">\n" +
     "  	<div class=\"holder\">\n" +
+    "  		<ul class=\"list add\">\n" +
+    "			<li ng-repeat = \"dat in category_data\"><a href=\"#\">{{dat.name}}</a></li>\n" +
+    "		</ul>\n" +
     "  		<div class=\"progress-area\">\n" +
     "\n" +
     "			<div class=\"progress-section\" ng-repeat = \"segment in segments\">\n" +
@@ -37,32 +40,17 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "\n" +
     "		  </div>\n" +
     "		</div>\n" +
-    "\n" +
-    "		<ul class=\"list add\">\n" +
-    "			<li class=\"item1\"><a href=\"#\">Quality</a></li>\n" +
-    "			<li class=\"item2\"><a href=\"#\">Service</a></li>\n" +
-    "			<li class=\"item3\"><a href=\"#\">Cleanliness</a></li>\n" +
-    "		</ul>\n" +
     "  	</div>\n" +
     "  	<div class=\"holder\">\n" +
     "  		<div class=\"progress-area\">\n" +
-    "		<div class=\"progress-holder {{dat.colour}}\" ng-repeat = \"dat in category_data\">\n" +
-    "		<small style=\"background-color: {{dat.colour}};\"><em>{{dat.name}}</em></small>\n" +
-    "\n" +
-    "			<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}}</b></uib-progressbar></div>\n" +
-    "\n" +
-    "	  </div>\n" +
-    "  </div>\n" +
+    "			<div class=\"progress-holder {{dat.colour}}\" ng-repeat = \"dat in category_data\">\n" +
+    "				<small><em>{{dat.name}}</em></small>\n" +
+    "				<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}}</b></uib-progressbar></div>\n" +
+    "		  </div>\n" +
+    "  		</div>\n" +
     "  	</div>\n" +
-    "  	\n" +
-    "  	\n" +
     "  </div>\n" +
-    "\n" +
-    "\n" +
-    "</div>\n" +
-    "\n" +
-    "\n" +
-    "  \n" +
+    "</div> \n" +
     "</div>");
 }]);
 
@@ -108,7 +96,7 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "<div class=\"info-block\">\n" +
     "  <div class=\"info-box\">\n" +
     "    <div class=\"heading\">\n" +
-    "      <h2>Map</h2>\n" +
+    "      <h2>Benchmark Map</h2>\n" +
     "      <div class=\"calender-outer\">\n" +
     "        	<span class = \"calendar-holder pull-right\">\n" +
     "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
@@ -214,6 +202,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "        <th class=\"item3\">Branch</th>\n" +
     "        <th class=\"item4\">Segment</th>\n" +
     "        <th class=\"item5\">Comments</th>\n" +
+    "        <th class=\"item6\">Take Action</th>\n" +
     "      </tr>\n" +
     "    </thead>\n" +
     "  </table>\n" +
@@ -227,7 +216,13 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "          </td>\n" +
     "          <td class=\"item3\">{{comment.branch}}</td>\n" +
     "          <td class=\"item4\">N/A</td>\n" +
-    "          <td class=\"item5\">{{comment.comment}}</td>\n" +
+    "          <td class=\"item5\">\n" +
+    "          	<span class=\"ico\"></span>\n" +
+    "          	<div class=\"text\">\n" +
+    "          		{{comment.comment}}\n" +
+    "          	</div>\n" +
+    "          </td>\n" +
+    "          <td class=\"item6\"><a href=\"#\" class=\"btn btn-info\">Process</a></td>\n" +
     "        </tr>\n" +
     "      </tbody>\n" +
     "    </table>\n" +
@@ -279,19 +274,23 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "<div class=\"section-holder\" >\n" +
     "  <div class=\"info-area\" ng-class=\"{loading: show_loading}\">\n" +
     "    <div class=\"heading-holder\">\n" +
-    "    	<h2 ng-show = \"regional_view\">Regional Analysis</h2>  \n" +
+    "    	<h2 ng-show = \"regional_view\">Patch Analysis</h2>\n" +
     "		<h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis</h2>\n" +
     "		<h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}} City Branch Analysis</h2>\n" +
     "    	<div class=\"btn-group pull-right\">\n" +
-    "		  <div class=\"calender-outer\">\n" +
-    "		  	<span class = \"calendar-holder\">\n" +
-    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" />\n" +
-    "			  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
-    "			</span>\n" +
-    "		  </div>\n" +
-    "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Comments'\" ng-click = \"showChart(null, 'regions')\">Comments</label>\n" +
-    "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'regions')\">Rating</label>\n" +
-    "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'regions')\">QSC</label>\n" +
+    "		  	  <ul>\n" +
+    "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Comments'\" ng-click = \"showChart(null, 'regions')\">Complains</label></li>\n" +
+    "		  	  	<li> <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'regions')\">Rating</label></li>\n" +
+    "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'regions')\">QSC</label></li>\n" +
+    "		  	  	<li>\n" +
+    "		  	  		<div class=\"calender-outer\">\n" +
+    "					<span class = \"calendar-holder\">\n" +
+    "					  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" />\n" +
+    "					  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
+    "					</span>\n" +
+    "				  </div>\n" +
+    "		  	  	</li>\n" +
+    "		  	  </ul>\n" +
     "		</div>\n" +
     "    </div>\n" +
     "    <div class=\"holder\">\n" +
@@ -374,7 +373,8 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
   $templateCache.put("dashboard/top-concern/top-concern.tpl.html",
     "<div class=\"rating-section\" ng-class = \"{loading: show_loading}\">\n" +
     "  <header class=\"heading-block\">\n" +
-    "    <h2>Top Concern</h2>\n" +
+    "<<<<<<< HEAD\n" +
+    "    <h2>Customers Top 5 Concerns</h2>\n" +
     "<!--     <div class=\"calender-outer\">\n" +
     "  		<span class = \"calendar-holder pull-right\">\n" +
     "  		  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" />\n" +

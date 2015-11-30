@@ -168,10 +168,10 @@
         @include media("≥tablet"){padding: 0 12px 5px 9px;}
 		@include media("≥widescreen"){padding: 0 14px 5px 12px;}
 		  a{
-			  color: $nobel;
+			  color: $mountain-mist;
 			  &:hover,
 			  &:active,
-			  &:focus{color: darken($nobel,10%);}
+			  &:focus{color: darken($mountain-mist,10%);}
 		  }
        
         &.item2{
