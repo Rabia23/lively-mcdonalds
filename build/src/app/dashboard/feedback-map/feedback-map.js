@@ -19,6 +19,33 @@ angular.module( 'livefeed.dashboard.feedback_map', [
   });
 
 
+  $scope.datePickerOption = {
+    eventHandlers: {
+      'apply.daterangepicker': function(ev, picker){
+        
+        Graphs.map_view(ev.model.startDate._i, ev.model.endDate._i).$promise.then(function(data){
+          _.each(data.branches, function(branch){
+            var icon;
+            if(branch.count_exceeded === false){
+               icon = '../assets/images/ico-locator.png';
+            }
+            else{
+              icon = '../assets/images/ico-locator2.png';
+            }
+            $scope.markers.push(mapService.createMarker(branch, $scope.map, icon));
+          });
+        });
+      
+      },
+      'cancel.daterangepicker': function(ev, picker){
+        $scope.datePicker.date.startDate = null;
+        $scope.datePicker.date.endDate = null;
+      }
+
+    }
+  };
+
+
 
 
   $scope.zoom = 5;

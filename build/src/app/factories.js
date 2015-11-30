@@ -55,32 +55,29 @@ angular.module( 'factories', [
                  });
   }
 
-  Graphs.prototype.overall_rating = function(option_id){
+  Graphs.prototype.overall_rating = function(type,option_id, date_from, date_to){
     option_id = option_id || "";
-    return this.service.overall_rating({option: option_id});
+    return this.service.overall_rating({type: type, option: option_id, date_from: date_from, date_to: date_to});
   };
 
   Graphs.prototype.top_concerns = function(top_concerns){
     return this.service.top_concerns();
   };
 
-  Graphs.prototype.feedback_segmentation = function(date, option_id){
+  Graphs.prototype.feedback_segmentation = function(date, option_id, date_from, date_to){
     date = date || "";
-    return this.service.feedback_segmentation({date: date, option: option_id});
+    return this.service.feedback_segmentation({date: date, option: option_id, date_from: date_from, date_to: date_to});
   };
 
-  Graphs.prototype.map_view = function(){
-    return this.service.map_view();
+  Graphs.prototype.map_view = function(date_to, date_from){
+    return this.service.map_view({date_from: date_from, date_to: date_to});
   };
 
   Graphs.prototype.positive_negative_feedback = function(){
     return this.service.positive_negative_feedback();
   };
-  Graphs.prototype.overall_feedback = function(region_id, city_id, branch_id){
-    region_id = region_id || "";
-    city_id = city_id || "";
-    branch_id = branch_id || "";
-    return this.service.overall_feedback({region: region_id, city: city_id, branch: branch_id});
+  Graphs.prototype.overall_feedback = function(date_from, date_to){
+    return this.service.overall_feedback({date_from: date_from, date_to: date_to});
   };
   Graphs.prototype.regional_analysis = function(question_type){
     question_type = question_type || 1;

@@ -1,22 +1,22 @@
 <div class="feedback-block">
   <div class="heading-holder">
   	<div class="calender-outer">
-		<span class = "calendar-holder pull-right">
-		  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" />
-		  <i class="glyphicon glyphicon-calendar" map-range-click></i>
-		</span>
-	</div>
-	<h2>Rating</h2>
+			<span class = "calendar-holder pull-right">
+			  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption"/>
+			  <i class="glyphicon glyphicon-calendar" map-range-click></i>
+			</span>
+		</div>
+		<h2>Rating</h2>
   </div>
   <div class="inner-block">
   	<ul class="list">
-      <li class="v-good"><a href="#">I'm lovin' it</a></li>
-      <li class="good"><a href="#">Everything on track</a></li>
-      <li class="neutral"><a href="#">Few Concern</a></li>
-      <li class="negative"><a href="#">Not Happy Enough</a></li>
+      <li class="v-good">I'm lovin' it</li>
+      <li class="good">Everything on track</li>
+      <li class="neutral">Few Concern</li>
+      <li class="negative">Not Happy Enough</li>
     </ul>
   	<div class="graph-holder">
-		<canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-colours="colours" chart-options="options"></canvas>
+		<canvas id="bar" class="chart chart-bar" chart-data="bar.data" chart-labels="bar.labels" chart-colours="bar.colours" chart-options="bar.options"></canvas>
 	  </div>
   </div>
 </div>

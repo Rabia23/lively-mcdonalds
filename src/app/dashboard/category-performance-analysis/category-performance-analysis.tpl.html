@@ -2,12 +2,12 @@
 	<div class="info-holder">
   
   <div class="heading-holder">
-  	<h2>Overall Rating</h2>
+  	<h2>Business Segment Breakdown</h2>
   	<ul>
-  		<li><a href="#" class="btn btn-default"  ng-class="{active: show_active}" ng-click = "onClick(null, 'All')">all</a></li>
-  		<li><a href="#" class="btn btn-default"  ng-click = "onClick(QualityID, 'Quality')">Quality</a></li>
-  		<li><a href="#" class="btn btn-default"  ng-click = "onClick(ServiceID, 'Service')">Service</a></li>
-  		<li><a href="#" class="btn btn-default"  ng-click = "onClick(CleanlinessID, 'Cleanliness')">Cleanliness</a></li>
+  		<li><a href="#" class="btn btn-default"  ng-class="{active: class == ''}" ng-click = "onClick(null, 'All')">all</a></li>
+  		<li><a href="#" class="btn btn-default"  ng-class="{active: class == 'Quality'}" ng-click = "onClick(QualityID, 'Quality')">Quality</a></li>
+  		<li><a href="#" class="btn btn-default"  ng-class="{active: class == 'Service'}" ng-click = "onClick(ServiceID, 'Service')">Service</a></li>
+  		<li><a href="#" class="btn btn-default"  ng-class="{active: class == 'Cleanliness'}" ng-click = "onClick(CleanlinessID, 'Cleanliness')">Cleanliness</a></li>
   		<li>
 			<div class="calender-outer">
 				<span class = "calendar-holder pull-right">
@@ -20,10 +20,11 @@
   </div>
   
   <div class="progress-container {{class}}" ng-class="{loading: show_loading}">
-  	<div class="holder">
-  		<ul class="list add">
-			<li ng-repeat = "dat in category_data"><a href="#">{{dat.name}}</a></li>
-		</ul>
+  	<ul class="list add">
+		<li ng-repeat = "dat in category_data"><a href="#">{{dat.name}}</a></li>
+	</ul>
+  	<div class="inner-holder">
+  		<div class="holder">
   		<div class="progress-area">
 
 			<div class="progress-section" ng-repeat = "segment in segments">
@@ -44,6 +45,7 @@
 				<div class="progress-block"><uib-progressbar animate="false" value="dat.percentage" type="success"><b>{{dat.complaints}}</b></uib-progressbar></div>
 		  </div>
   		</div>
+  	</div>
   	</div>
   </div>
 </div> 

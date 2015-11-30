@@ -9,23 +9,26 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
   
   $scope.datePicker = {};
   $scope.datePicker.date = {startDate: null, endDate: null};
-
   $scope.today = new Date();
 
-  $scope.data = [];
-  Graphs.overall_feedback().$promise.then(function(graph_data){
-    $scope.labels = _.map(graph_data.feedbacks, function(data){return data.option__text;});
-    //$scope.bar = chartService.getBarChartData(graph);
-    var bar_data = _.map(graph_data.feedbacks, function(data){return data.count;});
-    $scope.data.push(bar_data);
-    $scope.series = ['Series A'];
-    $scope.colours = [{fillColor: _.map(graph_data.feedbacks, function(data){return Global.mainRatingColorScheme[data.option__text];})}];
-    $scope.options = {
+  $scope.datePickerOption = {
+    eventHandlers: {
+        'apply.daterangepicker': function(ev, picker){
+          Graphs.overall_feedback(ev.model.startDate._i, ev.model.endDate._i).$promise.then(function(graph_data){
+            $scope.bar = chartService.getBarChartData(graph_data);
+          });
+        },
+        'cancel.daterangepicker': function(ev, picker){
+          $scope.datePicker.date.startDate = null;
+          $scope.datePicker.date.endDate = null;
+        }
 
-      barShowStroke : false,
-      barValueSpacing : 25,
-      scaleShowVerticalLines: false
-    };
+    }
+  };
+
+  Graphs.overall_feedback().$promise.then(function(graph_data){
+
+    $scope.bar = chartService.getBarChartData(graph_data);
   });
 
 });

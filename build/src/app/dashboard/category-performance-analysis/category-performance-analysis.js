@@ -4,20 +4,21 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
 ])
 
 .controller('CategoryPerformanceAnalysisCtrl', function DashboardController($scope, _, Graphs, Global) {
-  $scope.show_active = true;
+
   $scope.show_loading = false;
+  $scope.class = '';
   $scope.showData = function(region_id,city_id,branch_id,option_id,string){
     $scope.show_loading = true;
     Graphs.category_performance(region_id,city_id,branch_id,option_id).$promise.then(function(performance_data){
       $scope.category_data = _.map(performance_data.feedbacks,  function(data,index){
-       return {
-         id: data.option_id,
-         name: data.option__text,
-         complaints: data.count,
-         percentage: Math.round((data.count/performance_data.feedback_count)*100),
-         colour: option_id == null? Global.categoryPerformanceClass[data.option__text] : Global.categoryPerformanceChildCholorScheme[string][index],
-         priority:  option_id == null? Global.qscPriority[data.option__text] : " "
-       };
+        return {
+          id: data.option_id,
+          name: data.option__text,
+          complaints: data.count,
+          percentage: Math.round((data.count/performance_data.feedback_count)*100),
+          colour: option_id == null? Global.categoryPerformanceClass[data.option__text] : Global.categoryPerformanceChildCholorScheme[string][index],
+          priority:  option_id == null? Global.qscPriority[data.option__text] : " "
+        };
       });
       if( option_id == null){
         $scope.category_data = _.sortBy( $scope.category_data, function(value){ return value.priority; });
@@ -49,11 +50,10 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
         }
       });
       $scope.segments = _.sortBy( $scope.segments, function(value){return value.priority;});
+      $scope.show_loading = false;
     });
-    $scope.show_loading = false;
   };
   $scope.onClick = function(option_id,string){
-    $scope.show_active = false;
     if(string === 'All'){
       $scope.class = "";
       $scope.showData();

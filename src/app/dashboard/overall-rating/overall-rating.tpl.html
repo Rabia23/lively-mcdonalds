@@ -4,17 +4,16 @@
     <div class="pull-right">
 		<div class="calender-outer">
 			<span class = "calendar-holder pull-right">
-			  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" />
-			  <i class="glyphicon glyphicon-calendar" map-range-click></i>
+			  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption" ng-disabled = "!mainView"/>
+			  <i class="glyphicon glyphicon-calendar" map-range-click ></i>
 			</span>
 		</div>
    		<span class="select-holder">
-   			<select>
-				<option>Daily</option>
-				<option>Weekly</option>
-				<option>Monthly</option>
-				<option>Quaterly</option>
-				<option>Yearly</option>
+   			<select ng-disabled = "!mainView" ng-model= "type" ng-change = "axisChanged()">
+				<option value = "1">Daily</option>
+				<option value = "2">Weekly</option>
+				<option value = "3">Monthly</option>
+				<option value = "4">Yearly</option>
 			</select>
    		</span>
     	<a ng-click = "backToMain()" ng-hide = "mainView">Back</a>

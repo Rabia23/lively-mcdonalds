@@ -313,6 +313,11 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
           scope.$apply(scope.action({option: row}));
 
       });
+      _.each($(".regional-analysis").find("svg"), function(value, index){
+        $(value).find("g").remove();
+        $(value).append('<g xmlns="http://www.w3.org/2000/svg" id="Page-1" stroke="none" stroke-width="1.5" fill="none" fill-rule="evenodd"><ellipse id="Oval-1" stroke="#E2E2E2" cx="129" cy="101" rx="98" ry="98"></ellipse></g>');
+      });
+      
       return morris_chart;
       
     }
@@ -350,6 +355,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
             $(".modal-body").find("svg").remove();
 
             morris_chart_modal = new Morris.Donut(options);
+
             return morris_chart_modal;
 
           }
