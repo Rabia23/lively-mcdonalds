@@ -158,6 +158,7 @@
 }
 
 .progress-area{
+	clear: both;
 	overflow: hidden;
 	
 	small{
@@ -459,10 +460,16 @@
 				}
 			}
 			&:nth-child(5) {
-				.progress-bar{background: $lochmara;}
+				.progress-bar{
+					background: $lochmara;
+					b,span{color: $denim;}
+				}
 			}
 			&:nth-child(6) {
-				.progress-bar{background: $rich-electric-blue;}
+				.progress-bar{
+					background: $rich-electric-blue;
+					b,span{color: $rich-electric-blue;}
+				}
 			}
 		}
 		.progress-section{

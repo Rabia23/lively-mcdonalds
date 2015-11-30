@@ -27,7 +27,9 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
                     return {
                         name: data.segment,
                         segment_data: _.map(data.option_data, function (dat) {
-                                return {percentage: Math.round((dat.count/data.option_count)*100), complaints: dat.count, class: Global.segmentationClass[dat.option__text]};
+                            if(dat.count !== 0){
+                                 return {percentage: Math.round((dat.count/data.option_count)*100), complaints: dat.count, class: Global.segmentationClass[dat.option__text]};
+                            }
                         }),
                         priority: Global.segmentationPriority[data.segment]
                     };
@@ -37,17 +39,17 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
             });
             _.map($scope.segments_data, function (data) {
                 if(data !== undefined){
-                    $scope.segments.push(data);
+                   data.segment_data =  _.reject(data.segment_data, function(dat) {return dat === undefined;});
+                   $scope.segments.push(data);
                 }
             });
             $scope.segments = _.sortBy( $scope.segments, function(value){return value.priority;});
-            console.log("segments");
-            console.log($scope.segments);
       });
     };
     $scope.onClick = function(option_id,string){
 
         if(string === 'All'){
+            $scope.class = "";
             $scope.showData();
         }
         else if(string === 'Quality'){

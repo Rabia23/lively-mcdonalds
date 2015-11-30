@@ -26,6 +26,13 @@
 			margin-top: -6px;
 		}
 		
+		a{
+			color: $mountain-mist;
+			&:hover,
+			&:active,
+			&:focus{color: darken($mountain-mist,10%);}
+		}
+		
 		&.negative{
 			&:before{background: $carnelian;}
 		}
