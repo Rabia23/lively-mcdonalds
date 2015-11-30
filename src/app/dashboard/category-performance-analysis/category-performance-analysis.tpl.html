@@ -21,10 +21,10 @@
   
   <div class="progress-container {{class}}">
   	<div class="holder">
-  		<ul class="list add">
-			<li class="item1"><a href="#">Quality</a></li>
-			<li class="item2"><a href="#">Service</a></li>
-			<li class="item3"><a href="#">Cleanliness</a></li>
+  		<ul class="list add" ng-repeat = "dat in category_data">
+			<li class="item1 {{class}}"><a href="#">{{dat.name}}</a></li>
+			<!--<li class="item2"><a href="#">Service</a></li>-->
+			<!--<li class="item3"><a href="#">Cleanliness</a></li>-->
 		</ul>
   		<div class="progress-area">
 
