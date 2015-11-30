@@ -5,7 +5,8 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
 
 .controller('CategoryPerformanceAnalysisCtrl', function DashboardController($scope, _, Graphs, Global) {
     $scope.showData = function(region_id,city_id,branch_id,option_id,string){
-      Graphs.category_performance(region_id,city_id,branch_id,option_id).$promise.then(function(performance_data){
+
+        Graphs.category_performance(region_id,city_id,branch_id,option_id).$promise.then(function(performance_data){
            $scope.category_data = _.map(performance_data.feedbacks,  function(data,index){
                return {
                  id: data.option_id,
@@ -20,23 +21,28 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
 
       });
       Graphs.segmentation_rating(region_id,city_id,branch_id,option_id).$promise.then(function(segment_data){
-            console.log("segments");
-            console.log(segment_data.segments);
-            $scope.segments = _.map(segment_data.segments,  function(data){
-                return {
-                    name: data.segment,
-                    segment_data: _.map(data.option_data, function (dat) {
-                        if(data.option_count === 0){
-                            return {percentage: 0};
-                        }
-                        else {
-                            return {percentage: Math.round((dat.count/data.option_count)*100), complaints: dat.count, class: Global.segmentationClass[dat.option__text]};
-                        }
-                    }),
-                    priority: Global.segmentationPriority[data.segment]
-                };
+            $scope.segments = [];
+            $scope.segments_data = _.map(segment_data.segments,  function(data){
+                if(data.option_count !== 0){
+                    return {
+                        name: data.segment,
+                        segment_data: _.map(data.option_data, function (dat) {
+                                return {percentage: Math.round((dat.count/data.option_count)*100), complaints: dat.count, class: Global.segmentationClass[dat.option__text]};
+                        }),
+                        priority: Global.segmentationPriority[data.segment]
+                    };
+
+                }
+
             });
-            $scope.segments = _.sortBy( $scope.segments, function(value){ return value.priority; });
+            _.map($scope.segments_data, function (data) {
+                if(data !== undefined){
+                    $scope.segments.push(data);
+                }
+            });
+            $scope.segments = _.sortBy( $scope.segments, function(value){return value.priority;});
+            console.log("segments");
+            console.log($scope.segments);
       });
     };
     $scope.onClick = function(option_id,string){
