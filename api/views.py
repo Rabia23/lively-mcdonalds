@@ -483,13 +483,14 @@ def segmentation_rating(request):
             return Response(None)
 
 
-@api_view(['POST'])
+@api_view(['GET'])
 def action_taken(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
 
         try:
-            if "feedback_id" in request.data:
-                feedback = Feedback.objects.get(pk=request.data['feedback_id'])
+            feedback_id = request.query_params.get('feedback_id', None)
+            if feedback_id:
+                feedback = Feedback.objects.get(pk=feedback_id)
 
                 feedback.action_taken = True
                 feedback.save()
