@@ -19,7 +19,7 @@
   	</ul>
   </div>
   
-  <div class="progress-container {{class}}">
+  <div class="progress-container {{class}}" ng-class="{loading: show_loading}">
   	<div class="holder">
   		<ul class="list add">
 			<li ng-repeat = "dat in category_data"><a href="#">{{dat.name}}</a></li>

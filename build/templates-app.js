@@ -23,7 +23,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  	</ul>\n" +
     "  </div>\n" +
     "  \n" +
-    "  <div class=\"progress-container {{class}}\">\n" +
+    "  <div class=\"progress-container {{class}}\" ng-class=\"{loading: show_loading}\">\n" +
     "  	<div class=\"holder\">\n" +
     "  		<ul class=\"list add\">\n" +
     "			<li ng-repeat = \"dat in category_data\"><a href=\"#\">{{dat.name}}</a></li>\n" +
