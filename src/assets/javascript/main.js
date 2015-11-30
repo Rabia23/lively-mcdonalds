@@ -18,7 +18,7 @@ function initSameHeight() {
 		elements: '.feedback-block .graph-holder, .rating-section .graph-outer',
 		flexible: true,
 		multiLine: true,
-		biggestHeight: false
+		biggestHeight: true
 	});
 }
 

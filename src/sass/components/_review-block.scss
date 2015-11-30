@@ -302,9 +302,8 @@
 						}
 					}
 					&.success{
-						background: $tea-green;
+						background: lighten($tea-green,10%);
 						td{
-							color: $white;
 							&.item6{
 								.btn{
 									&.btn-info{
