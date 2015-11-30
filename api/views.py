@@ -464,6 +464,9 @@ def segmentation_rating(request):
             branch_id = request.query_params.get('branch', None)
             option_id = request.query_params.get('option', None)
 
+            date_to = request.query_params.get('date_to', None)
+            date_from = request.query_params.get('date_from', None)
+
             question = Question.objects.get(type=constants.SECONDARY_QUESTION)
 
             if option_id:
@@ -477,7 +480,8 @@ def segmentation_rating(request):
                 filtered_feedback_options = FeedbackOption.objects.filter(
                     option__in=options.values_list('id'))
 
-            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id)
+            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id,
+                                                              date_to, date_from)
             feedback_segmented_list = generate_segmentation_with_options(filtered_feedback_options, options)
 
             data = {'segment_count': len(feedback_segmented_list), 'segments': feedback_segmented_list}
