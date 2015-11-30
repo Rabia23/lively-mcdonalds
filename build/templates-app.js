@@ -27,7 +27,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  	<ul class=\"list add\">\n" +
     "		<li ng-repeat = \"dat in category_data\"><a href=\"#\">{{dat.name}}</a></li>\n" +
     "	</ul>\n" +
-    "  	<div class=\"inner-holder\">\n" +
+    "  	<div class=\"main-holder\">\n" +
     "  		<div class=\"holder\">\n" +
     "  		<div class=\"progress-area\">\n" +
     "\n" +
