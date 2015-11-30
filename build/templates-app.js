@@ -209,20 +209,23 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "  <div id=\"scrollbox2\" ng-class = \"{loading: lock}\" custom-scroll when-scrolled=\"getMoreComments()\">\n" +
     "    <table class=\"table\">\n" +
     "      <tbody>\n" +
-    "        <tr ng-repeat = \"comment in comments\">\n" +
+    "        <tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.is_negative}\">\n" +
     "          <td class=\"item1\">{{comment.user_name}}</td>\n" +
     "          <td class=\"item2\">\n" +
     "            <a href=\"tel:{{comment.user_phone}}\" class=\"tel\">{{comment.user_phone}}</a>\n" +
     "          </td>\n" +
     "          <td class=\"item3\">{{comment.branch}}</td>\n" +
-    "          <td class=\"item4\">N/A</td>\n" +
+    "          <td class=\"item4\">{{comment.segment}}</td>\n" +
     "          <td class=\"item5\">\n" +
     "          	<span class=\"ico\"></span>\n" +
     "          	<div class=\"text\">\n" +
     "          		{{comment.comment}}\n" +
     "          	</div>\n" +
     "          </td>\n" +
-    "          <td class=\"item6\"><a href=\"#\" class=\"btn btn-info\">Process</a></td>\n" +
+    "          <td class=\"item6\">\n" +
+    "            <a style = \"cursor:pointer;\" class=\"btn btn-info\" ng-hide = \"comment.action_taken\" ng-click = \"processComment(comment)\">Process</a>\n" +
+    "            <span ng-show = \"comment.action_taken\">Processed</span>\n" +
+    "          </td>\n" +
     "        </tr>\n" +
     "      </tbody>\n" +
     "    </table>\n" +
@@ -373,7 +376,6 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
   $templateCache.put("dashboard/top-concern/top-concern.tpl.html",
     "<div class=\"rating-section\" ng-class = \"{loading: show_loading}\">\n" +
     "  <header class=\"heading-block\">\n" +
-    "<<<<<<< HEAD\n" +
     "    <h2>Customers Top 5 Concerns</h2>\n" +
     "<!--     <div class=\"calender-outer\">\n" +
     "  		<span class = \"calendar-holder pull-right\">\n" +

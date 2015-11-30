@@ -39,8 +39,16 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   $scope.lock = false;
 
   Graphs.comments($scope.page).$promise.then(function(data){
+    console.log(data);
     $scope.comments = data.feedbacks;
   });
+
+  $scope.processComment = function(comment){
+    Graphs.action_taken(comment.id).$promise.then(function(data){
+      comment.action_taken = true;
+    });
+
+  };
 
   $scope.getMoreComments = function(){
     $scope.page = $scope.page + 1;

@@ -51,13 +51,19 @@ angular.module( 'factories', [
                       return data;
                     }
                   },
-                  segmentation_rating:{method: "JSONP",isArray: false, params: {endpoint: "segmentation_rating"}}
+                  segmentation_rating:{method: "JSONP",isArray: false, params: {endpoint: "segmentation_rating"}},
+                  action_taken:{method: "JSONP",isArray: false, params: {endpoint: "action_taken"}}
+
                  });
   }
 
   Graphs.prototype.overall_rating = function(type,option_id, date_from, date_to){
     option_id = option_id || "";
     return this.service.overall_rating({type: type, option: option_id, date_from: date_from, date_to: date_to});
+  };
+
+  Graphs.prototype.action_taken = function(feedback_id){
+    return this.service.action_taken({feedback_id: feedback_id});
   };
 
   Graphs.prototype.top_concerns = function(top_concerns){
