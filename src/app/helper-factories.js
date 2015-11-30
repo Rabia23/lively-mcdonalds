@@ -12,7 +12,7 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
     optionsColorScheme: {
-      "Food Quality": '#8e44ad',
+      "Quality": '#8e44ad',
       "Service": "#FFc300",
       "Cleanliness": '#3498db'
       
@@ -27,7 +27,7 @@ angular.module( 'helper_factories', ['ngResource'])
 
     categoryPerformanceClass: {
       "Cleanliness": 'blue',
-      "Food Quality": 'lilac',
+      "Quality": 'lilac',
       "Service": 'yellow'
     },
 
@@ -39,7 +39,7 @@ angular.module( 'helper_factories', ['ngResource'])
 
     segmentationClass: {
       "Cleanliness": 'blue',
-      "Food Quality": 'lilac',
+      "Quality": 'lilac',
       "Service": 'yellow'
     },
 
@@ -53,7 +53,7 @@ angular.module( 'helper_factories', ['ngResource'])
 
     qscPriority: {
       "Cleanliness": 3,
-      "Food Quality": 1,
+      "Quality": 1,
       "Service": 2
     },
 
@@ -70,7 +70,7 @@ angular.module( 'helper_factories', ['ngResource'])
 
     childCholorScheme:{
       "Cleanliness": ["#71A6D2", "#4682B4", "#193751", "#314459", "#0F4D92", "#6699CC", "#99BADD", "#0093AF", "#162A40", "#315BA1"],
-      "Food Quality": ["#F984EF", "#460B41", "#BD33A4", "#702963", "#B784A7", "#692D54", "#44012D", "#66023C", "#76395D", "#B784A7"],
+      "Quality": ["#F984EF", "#460B41", "#BD33A4", "#702963", "#B784A7", "#692D54", "#44012D", "#66023C", "#76395D", "#B784A7"],
       "Service": ["#625119", "#D4AF37", "#FFC901", "#C9B35B", "#7B6608", "#E7BF05", "#F9E663", "#FDE910", "#F8F99C", "#737829"]
     },
 

@@ -20,10 +20,11 @@
   </div>
   
   <div class="progress-container {{class}}" ng-class="{loading: show_loading}">
-  	<div class="holder">
-  		<ul class="list add">
-			<li ng-repeat = "dat in category_data"><a href="#">{{dat.name}}</a></li>
-		</ul>
+  	<ul class="list add">
+		<li ng-repeat = "dat in category_data"><a href="#">{{dat.name}}</a></li>
+	</ul>
+  	<div class="main-holder">
+  		<div class="holder">
   		<div class="progress-area">
 
 			<div class="progress-section" ng-repeat = "segment in segments">
@@ -44,6 +45,7 @@
 				<div class="progress-block"><uib-progressbar animate="false" value="dat.percentage" type="success"><b>{{dat.complaints}}</b></uib-progressbar></div>
 		  </div>
   		</div>
+  	</div>
   	</div>
   </div>
 </div> 

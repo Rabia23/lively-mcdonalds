@@ -238,18 +238,32 @@
 			td{
 				text-align: center;
 				vertical-align: middle;
-				&.item1,&.item2,&.item6{width: 14.33%;}
+				&.item1,&.item2{width: 14.33%;}
+				&.item6{
+					width: 15.33%;
+					a{
+						display: block;
+						padding: 6px;
+						margin: 0 auto;
+						@include fontsize(16, 15);
+					}
+				}
 				&.item3,&.item4{width: 11.5%;}
 				&.item5{
-					width: 35%;
+					width: 34%;
 					text-align: left;
-					padding-left: 25px;
-					padding-right: 25px;
+					padding-left: 20px;
+					padding-right: 20px;
 					
+					@include media("≥tablet"){
+						padding-left: 25px;
+						padding-right: 25px;
+					}
 				}
 			}
 			tbody{
 				td{
+					position: relative;
 					word-break: break-all;
 					@include fontsize(14, 15);
 					line-height: 1.4em !important;
@@ -259,6 +273,8 @@
 					color: $mountain-mist;
 					border-bottom: 1px solid $alto2;
 					border-left: 1px solid $alto2;
+					overflow: hidden;
+					background: none;
 					&:first-child{border-left: 0 ;}
 					
 					@include media("≥tablet"){
@@ -267,26 +283,40 @@
 					}
 					.text{overflow: hidden;}
 					.ico{
-						float: left;
-						margin: 1px 5px 0 -18px;
-						
-						@include media("≥tablet"){margin: 2px 5px 0 -18px;}
-						
-						&:before{
-							@include inline-block(top);
-							font: 16px/16px $ico-font;
-							content: "\e802";
-							color: $green-house;
-						}
+						width: 10px;
+						background: $islamic-green;
+						position: absolute;
+						left: 0;
+						top: 0;
+						bottom: -9999px;
 					}
 				}
 				tr{
+					background: $white;
+					&:hover{
+						background: darken($white,2%);
+					}
 					&.negative{
 						td{
-							.ico{
-								&:before{
-									content: "\e803";
-									color: $carnelian;
+							.ico{background: $cinnabar;}
+						}
+					}
+					&.success{
+						background: lighten($tea-green,10%);
+						td{
+							&.item6{
+								.btn{
+									&.btn-info{
+										background: $islamic-green;
+										border-color: $islamic-green;
+										
+										&:hover,
+										&:active,
+										&:focus{
+											background: darken($islamic-green, 5%);
+											border-color: darken($islamic-green, 5%);
+										}
+									}
 								}
 							}
 						}

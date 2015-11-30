@@ -24,10 +24,11 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  </div>\n" +
     "  \n" +
     "  <div class=\"progress-container {{class}}\" ng-class=\"{loading: show_loading}\">\n" +
-    "  	<div class=\"holder\">\n" +
-    "  		<ul class=\"list add\">\n" +
-    "			<li ng-repeat = \"dat in category_data\"><a href=\"#\">{{dat.name}}</a></li>\n" +
-    "		</ul>\n" +
+    "  	<ul class=\"list add\">\n" +
+    "		<li ng-repeat = \"dat in category_data\"><a href=\"#\">{{dat.name}}</a></li>\n" +
+    "	</ul>\n" +
+    "  	<div class=\"main-holder\">\n" +
+    "  		<div class=\"holder\">\n" +
     "  		<div class=\"progress-area\">\n" +
     "\n" +
     "			<div class=\"progress-section\" ng-repeat = \"segment in segments\">\n" +
@@ -48,6 +49,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "				<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}}</b></uib-progressbar></div>\n" +
     "		  </div>\n" +
     "  		</div>\n" +
+    "  	</div>\n" +
     "  	</div>\n" +
     "  </div>\n" +
     "</div> \n" +
@@ -202,7 +204,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "        <th class=\"item3\">Branch</th>\n" +
     "        <th class=\"item4\">Segment</th>\n" +
     "        <th class=\"item5\">Comments</th>\n" +
-    "        <th class=\"item6\">Take Action</th>\n" +
+    "        <th class=\"item6\">Status</th>\n" +
     "      </tr>\n" +
     "    </thead>\n" +
     "  </table>\n" +
