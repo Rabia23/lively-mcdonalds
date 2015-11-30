@@ -55,22 +55,22 @@ angular.module( 'factories', [
                  });
   }
 
-  Graphs.prototype.overall_rating = function(option_id){
+  Graphs.prototype.overall_rating = function(option_id, date_from, date_to){
     option_id = option_id || "";
-    return this.service.overall_rating({option: option_id});
+    return this.service.overall_rating({option: option_id, date_from: date_from, date_to: date_to});
   };
 
   Graphs.prototype.top_concerns = function(top_concerns){
     return this.service.top_concerns();
   };
 
-  Graphs.prototype.feedback_segmentation = function(date, option_id){
+  Graphs.prototype.feedback_segmentation = function(date, option_id, date_from, date_to){
     date = date || "";
-    return this.service.feedback_segmentation({date: date, option: option_id});
+    return this.service.feedback_segmentation({date: date, option: option_id, date_from: date_from, date_to: date_to});
   };
 
-  Graphs.prototype.map_view = function(){
-    return this.service.map_view();
+  Graphs.prototype.map_view = function(date_to, date_from){
+    return this.service.map_view({date_from: date_from, date_to: date_to});
   };
 
   Graphs.prototype.positive_negative_feedback = function(){
