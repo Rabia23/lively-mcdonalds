@@ -363,7 +363,7 @@ def comments(request):
             branch_id = request.query_params.get('branch', None)
             page = request.query_params.get('page', 1)
 
-            filtered_feedback = Feedback.objects.filter().exclude(comment__isnull=True).exclude(comment__exact='')
+            filtered_feedback = Feedback.objects.filter().exclude(comment__isnull=True).exclude(comment__exact='').order_by('-id')
             filtered_feedback = apply_general_filters(filtered_feedback, region_id, city_id, branch_id)
 
             filtered_feedback_count = filtered_feedback.count()
