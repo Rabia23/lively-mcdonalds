@@ -46,7 +46,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  	</div>\n" +
     "  	<div class=\"holder\">\n" +
     "  		<div class=\"progress-area\">\n" +
-    "		<div class=\"progress-holder\" ng-repeat = \"dat in category_data\">\n" +
+    "		<div class=\"progress-holder {{dat.colour}}\" ng-repeat = \"dat in category_data\">\n" +
     "		<small><em>{{dat.name}}</em></small>\n" +
     "\n" +
     "			<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}}</b></uib-progressbar></div>\n" +
