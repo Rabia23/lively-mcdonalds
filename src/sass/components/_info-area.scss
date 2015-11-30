@@ -13,7 +13,7 @@
 			float: left;
 			border: 0;
 			padding: 0;
-			line-height: 3em;
+			line-height: 3.1em;
 		}
 	}
 	
@@ -58,7 +58,7 @@
 				}
 
 				@include media("≥tablet"){padding: 17px 15px;}
-				@include media("≥desktop"){padding: 19px 18px;}
+				@include media("≥desktop"){padding: 19px 18px 20px;}
 				@include media("≥widescreen"){padding: 21px 20px;}
 			}
 		}
@@ -139,7 +139,7 @@
 				padding: 16px 30px;
 			}
 			
-			@include media("≥desktop"){padding: 18px 30px;}
+			@include media("≥desktop"){padding: 18px 30px 19px;}
 			@include media("≥widescreen"){padding: 20px 30px;}
 			
 			&:hover,

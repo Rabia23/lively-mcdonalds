@@ -42,7 +42,7 @@
 	
 	h2{
 		margin: 0;
-		line-height: 2.1em;
+		line-height: 2.2em;
 		@include media("<tablet"){font-size: 1.15em;}
 	}
 	
@@ -241,6 +241,8 @@
 				&.item1,&.item2{width: 14.33%;}
 				&.item6{
 					width: 15.33%;
+					padding-right: 17px;
+					@include media("≥widescreen"){padding-right: 19px;}
 					a{
 						display: block;
 						padding: 6px;
@@ -253,12 +255,7 @@
 					width: 34%;
 					text-align: left;
 					padding-left: 20px;
-					padding-right: 20px;
-					
-					@include media("≥tablet"){
-						padding-left: 25px;
-						padding-right: 25px;
-					}
+					padding-right: 10px;
 				}
 			}
 			tbody{
@@ -369,7 +366,7 @@
 }
 
 .vertical-track2 {
-	width: 18px;
+	width: 15px;
 	float: right;
 }
 .vertical-handle2 {
