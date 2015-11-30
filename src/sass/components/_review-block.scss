@@ -184,7 +184,7 @@
 .modal-1200{
 	border-radius: 0;
 	width: auto;
-	@include media("≥tablet"){width: 730px;}
+	@include media("≥tablet"){width: 740px;}
 	@include media("≥desktop"){width: 970px;}
 	@include media("≥widescreen"){width: 1170px;}
 	.modal-content{border-radius: 0;}
@@ -238,22 +238,19 @@
 			td{
 				text-align: center;
 				vertical-align: middle;
-				word-break: break-all;
-				&.item1,&.item2,&.item3,&.item4{width: 16.67%;}
+				&.item1,&.item2,&.item6{width: 14.33%;}
+				&.item3,&.item4{width: 11.5%;}
 				&.item5{
-					width: 33.2%;
+					width: 35%;
 					text-align: left;
-					padding-left: 10px;
-					padding-right: 22px;
+					padding-left: 25px;
+					padding-right: 25px;
 					
-					@include media("≥tablet"){
-						padding-left: 17px;
-						padding-right: 25px;
-					}
 				}
 			}
 			tbody{
 				td{
+					word-break: break-all;
 					@include fontsize(14, 15);
 					line-height: 1.4em !important;
 					padding-top: 8px;
@@ -267,6 +264,32 @@
 					@include media("≥tablet"){
 						padding-top: 10px;
 						padding-bottom: 10px;
+					}
+					.text{overflow: hidden;}
+					.ico{
+						float: left;
+						margin: 1px 5px 0 -18px;
+						
+						@include media("≥tablet"){margin: 2px 5px 0 -18px;}
+						
+						&:before{
+							@include inline-block(top);
+							font: 16px/16px $ico-font;
+							content: "\e802";
+							color: $green-house;
+						}
+					}
+				}
+				tr{
+					&.negative{
+						td{
+							.ico{
+								&:before{
+									content: "\e803";
+									color: $carnelian;
+								}
+							}
+						}
 					}
 				}
 				.tel{

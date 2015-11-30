@@ -214,6 +214,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "        <th class=\"item3\">Branch</th>\n" +
     "        <th class=\"item4\">Segment</th>\n" +
     "        <th class=\"item5\">Comments</th>\n" +
+    "        <th class=\"item6\">Take Action</th>\n" +
     "      </tr>\n" +
     "    </thead>\n" +
     "  </table>\n" +
@@ -227,7 +228,13 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "          </td>\n" +
     "          <td class=\"item3\">{{comment.branch}}</td>\n" +
     "          <td class=\"item4\">N/A</td>\n" +
-    "          <td class=\"item5\">{{comment.comment}}</td>\n" +
+    "          <td class=\"item5\">\n" +
+    "          	<span class=\"ico\"></span>\n" +
+    "          	<div class=\"text\">\n" +
+    "          		{{comment.comment}}\n" +
+    "          	</div>\n" +
+    "          </td>\n" +
+    "          <td class=\"item6\"><a href=\"#\" class=\"btn btn-info\">Process</a></td>\n" +
     "        </tr>\n" +
     "      </tbody>\n" +
     "    </table>\n" +

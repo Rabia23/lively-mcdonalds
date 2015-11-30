@@ -12,6 +12,7 @@
         <th class="item3">Branch</th>
         <th class="item4">Segment</th>
         <th class="item5">Comments</th>
+        <th class="item6">Take Action</th>
       </tr>
     </thead>
   </table>
@@ -25,7 +26,13 @@
           </td>
           <td class="item3">{{comment.branch}}</td>
           <td class="item4">N/A</td>
-          <td class="item5">{{comment.comment}}</td>
+          <td class="item5">
+          	<span class="ico"></span>
+          	<div class="text">
+          		{{comment.comment}}
+          	</div>
+          </td>
+          <td class="item6"><a href="#" class="btn btn-info">Process</a></td>
         </tr>
       </tbody>
     </table>
