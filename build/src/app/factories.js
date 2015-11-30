@@ -99,12 +99,14 @@ angular.module( 'factories', [
     city_id = city_id || "";
     return this.service.feedback_analysis({type: 3, city: city_id, question_type: question_type});
   };
-  Graphs.prototype.category_performance = function(region_id, city_id, branch_id, option_id){
+  Graphs.prototype.category_performance = function(region_id, city_id, branch_id, option_id, start_date, end_date){
     region_id = region_id || "";
     city_id = city_id || "";
     branch_id = branch_id || "";
     option_id = option_id || "";
-    return this.service.category_performance({region: region_id, city: city_id, branch: branch_id, option: option_id});
+    start_date = start_date || "";
+    end_date = end_date || "";
+    return this.service.category_performance({region: region_id, city: city_id, branch: branch_id, option: option_id, date_from: start_date, date_to: end_date});
   };
 
   Graphs.prototype.comments = function(page){
@@ -119,12 +121,14 @@ angular.module( 'factories', [
     option_id = option_id || "";
     return this.service.feedback_analysis_breakdown({region: region_id, city: city_id, branch: branch_id, option: option_id});
   };
-  Graphs.prototype.segmentation_rating = function(region_id, city_id, branch_id, option_id){
+  Graphs.prototype.segmentation_rating = function(region_id, city_id, branch_id, option_id, start_date, end_date){
     region_id = region_id || "";
     city_id = city_id || "";
     branch_id = branch_id || "";
     option_id = option_id || "";
-    return this.service.segmentation_rating({region: region_id, city: city_id, branch: branch_id, option: option_id});
+    start_date = start_date || "";
+    end_date = end_date || "";
+    return this.service.segmentation_rating({region: region_id, city: city_id, branch: branch_id, option: option_id, date_from: start_date, date_to: end_date});
   };
 
   return new Graphs();
