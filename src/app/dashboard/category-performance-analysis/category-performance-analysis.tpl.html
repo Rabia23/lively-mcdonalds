@@ -4,14 +4,14 @@
   <div class="heading-holder">
   	<h2>Overall Rating</h2>
   	<ul>
-  		<li><a href="#" class="btn btn-default" ng-model="radioModel" uib-btn-radio="'All'" ng-click = "getData(null)">all</a></li>
-  		<li><a href="#" class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Quality'" ng-click = "getData(category_performance[0].id)">Quality</a></li>
-  		<li><a href="#" class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Service'" ng-click = "getData(category_performance[1].id)">Service</a></li>
-  		<li><a href="#" class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Cleanliness'" ng-click = "getData(category_performance[2].id)">Cleanliness</a></li>
+  		<li><a href="#" class="btn btn-default"  ng-click = "onClick(null, 'All')">all</a></li>
+  		<li><a href="#" class="btn btn-default"  ng-click = "onClick(category_performance[0].id, 'Quality')">Quality</a></li>
+  		<li><a href="#" class="btn btn-default"  ng-click = "onClick(category_performance[1].id, 'Service')">Service</a></li>
+  		<li><a href="#" class="btn btn-default"  ng-click = "onClick(category_performance[2].id, 'Cleanliness')">Cleanliness</a></li>
   		<li>
 			<div class="calender-outer">
 				<span class = "calendar-holder pull-right">
-				  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" />
+				  <input date-range-picker id="daterange-map" readonly="readonly" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" />
 				  <i class="glyphicon glyphicon-calendar" map-range-click></i>
 				</span>
 			</div>
@@ -19,17 +19,16 @@
   	</ul>
   </div>
   
-  <div class="progress-container">
+  <div class="progress-container {{class}}">
   	<div class="holder">
-  		<div class="progress-area" ng-controller="CategoryPerformanceAnalysisCtrl">
+  		<div class="progress-area">
 
 			<div class="progress-section" ng-repeat = "segment in segments">
 
 			<small><em>{{segment.name}}</em></small>
-				<small><em>{{segment.segment_data}}</em></small>
 
 				<div class="inner-holder">
-					 <uib-progress><uib-bar ng-repeat="bar in segment.segment_data track by $index" value="bar.value" type="{{bar.class}}"><span>{{bar.value}}%</span></uib-bar></uib-progress>
+					 <uib-progress><uib-bar ng-repeat="bar in segment.segment_data track by $index" value="bar.percentage" type="{{bar.class}}"><span>{{bar.complaints}}</span></uib-bar></uib-progress>
 				</div>
 
 		  </div>
@@ -42,17 +41,13 @@
 		</ul>
   	</div>
   	<div class="holder">
-  		<div class="progress-area" ng-controller="CategoryPerformanceAnalysisCtrl">
+  		<div class="progress-area">
+		<div class="progress-holder {{dat.colour}}" ng-repeat = "dat in category_data">
+		<small style="background-color: {{dat.colour}};"><em>{{dat.name}}</em></small>
 
-    <div class="progress-holder {{dat.class}}" ng-repeat = "dat in category_performance">
+			<div class="progress-block"><uib-progressbar animate="false" value="dat.percentage" type="success"><b>{{dat.complaints}}</b></uib-progressbar></div>
 
-    <small><em>{{dat.name}}</em></small>
-    
-    	<div class="progress-block">
-    		<uib-progressbar animate="false" value="dat.value" type="success"><b>{{dat.value}}%</b></uib-progressbar>
-    	</div>
-
-  </div>
+	  </div>
   </div>
   	</div>
   	

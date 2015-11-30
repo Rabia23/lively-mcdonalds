@@ -4,56 +4,60 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
 ])
 
 .controller('CategoryPerformanceAnalysisCtrl', function DashboardController($scope, _, Graphs, Global) {
-    $scope.radioModel = 'All';
-    $scope.showData = function(region_id,city_id,branch_id,option_id){
-      var category_performance_analysis_data = Graphs.category_performance(region_id,city_id,branch_id,option_id).$promise.then(function(performance_data){
-       var category_performance = _.map(performance_data.feedbacks,  function(data){
-       return {
-         id: data.option_id,
-         name: data.option__text,
-         value: Math.round((data.count/performance_data.feedback_count)*100),
-         class: Global.categoryPerformanceClass[data.option__text],
-         priority: Global.qscPriority[data.option__text]
-       };
-      });
-      $scope.category_performance = _.sortBy(category_performance, function(value){ return value.priority; });
+    $scope.showData = function(region_id,city_id,branch_id,option_id,string){
+      Graphs.category_performance(region_id,city_id,branch_id,option_id).$promise.then(function(performance_data){
+           $scope.category_data = _.map(performance_data.feedbacks,  function(data,index){
+               return {
+                 id: data.option_id,
+                 name: data.option__text,
+                 complaints: data.count,
+                 percentage: Math.round((data.count/performance_data.feedback_count)*100),
+                 colour: option_id == null? Global.categoryPerformanceClass[data.option__text] : Global.categoryPerformanceChildCholorScheme[string][index],
+                 priority:  option_id == null? Global.qscPriority[data.option__text] : " "
+               };
+          });
+          if( option_id == null){ $scope.category_data = _.sortBy( $scope.category_data, function(value){ return value.priority; }); }
 
       });
-
+      Graphs.segmentation_rating(region_id,city_id,branch_id,option_id).$promise.then(function(segment_data){
+            console.log("segments");
+            console.log(segment_data.segments);
+            $scope.segments = _.map(segment_data.segments,  function(data){
+                return {
+                    name: data.segment,
+                    segment_data: _.map(data.option_data, function (dat) {
+                        if(data.option_count === 0){
+                            return {percentage: 0};
+                        }
+                        else {
+                            return {percentage: Math.round((dat.count/data.option_count)*100), complaints: dat.count, class: Global.segmentationClass[dat.option__text]};
+                        }
+                    }),
+                    priority: Global.segmentationPriority[data.segment]
+                };
+            });
+            $scope.segments = _.sortBy( $scope.segments, function(value){ return value.priority; });
+      });
     };
-    $scope.segmentation_rating_data = Graphs.segmentation_rating().$promise.then(function(segment_data){
-        $scope.segments = _.map(segment_data.segments,  function(data){
-            return {
-                name: data.segment,
-                segment_data: _.map(data.option_data, function (dat) {
-                    if(data.option_count === 0){
-                        return {value: 0};
-                    }
-                    else {
-                        return {value: Math.round((dat.count/data.option_count)*100), class: Global.segmentationClass[dat.option__text]};
-                    }
-                })
-            };
-        });
-    });
-    $scope.getData = function(option_id){
+    $scope.onClick = function(option_id,string){
 
-        console.log(option_id);
-        console.log($scope.radioModel);
+        if(string === 'All'){
+            $scope.showData();
+        }
+        else if(string === 'Quality'){
+            $scope.class = string;
+          $scope.showData("","","",8,string);
+        }
+        else if(string === 'Service'){
+            $scope.class = string;
+            $scope.showData("","","",15,string);
+        }
+        else if(string === 'Cleanliness'){
+            $scope.class = string;
+            $scope.showData("","","",1,string);
+        }
 
     };
     $scope.showData();
-  // $scope.randomStacked = function() {
-  //  $scope.stacked = [];
-  //  var types = ['success', 'info', 'warning', 'danger'];
-  //  var values = [20,30,25];
-  //  for (var i = 0; i < 3; i++) {
-  //      $scope.stacked.push({
-  //        value: values[i],
-  //        type: types[i]
-  //      });
-  //  }
-  //};
-  //$scope.randomStacked();
 
 });

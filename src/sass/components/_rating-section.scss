@@ -8,28 +8,36 @@
   .heading-block{
     overflow: hidden;
     margin: 0 0 18px;
-	padding: 10px;
 	border-bottom: 1px solid $alto2;
+	padding: 0 0 0 10px;
+	  text-align: left;
+    
+	@include media("≥tablet"){padding: 0 0 0 20px;}
 	  
-	@include media("≥widescreen"){padding: 22px 20px 15px;}
-    h2{
+	h2{
       float: left;
       margin: 0 5px 0 0;
+	  line-height: 2.55em;
+	  @include media("≥tablet"){line-height: 3em;}
     }
     
     a{
       float: right;
       cursor: pointer;
-      margin: 4px 5px 0;
+      margin: 13px 5px 0;
       
       &:hover{color: darken($dell,10%);}
+		
+		
+		@include media("≥tablet"){margin: 19px 5px 0;}
+		@include media("≥desktop"){margin: 20px 5px 0;}
+		@include media("≥widescreen"){margin: 24px 5px 0;}
     }
 	  
 	.select-holder{
 		position:relative;
 		float: right;
 		margin: 0 0 0 10px;
-		padding: 0 0 0 1px;
 		
 		&:after{
 			position: absolute;
@@ -44,27 +52,47 @@
 	}
 	  
 	  .calender-outer{
-			float: right;
-			position: relative;
-			padding: 0 0 0 10px;
+		float: right;
+		position: relative;
+		padding: 0;
 
-			&:after{
-				position: absolute;
-				left: 0;
-				top: -999px;
-				bottom: -999px;
-				content: "";
-				background: $alto2;
-				width: 1px;
+
+		&:after{
+			position: absolute;
+			left: 0;
+			top: -999px;
+			bottom: -999px;
+			content: "";
+			background: $alto2;
+			width: 1px;
+		}
+
+		.calendar-holder{
+			padding: 9px 18px;
+
+			@include media("<tablet"){
+				float: none !important;
+				display: block;
+				width: 100%;
+				text-align: center;
+
+				i{
+					float: none !important;
+					@inlude inline-block(top);
+				}
 			}
 
-			@include media("≥widescreen"){padding: 2px 0 0 20px;}
+			@include media("≥tablet"){padding: 17px 15px;}
+			@include media("≥desktop"){padding: 19px 18px;}
+			@include media("≥widescreen"){padding: 21px 20px;}
 		}
+	}
   }
 	
 	.graph-outer{
 		@include v-align(100%, middle, before);
 		.inner-holder{width: 100%;}
+		@include media("<desktop"){height: auto !important;}
 	}
   
   &.loading{
@@ -160,8 +188,8 @@
 		  padding: 0 14px 14px;
 		  
 		  .ng-isolate-scope{
-			  height: 297px !important;
-			  > div{height: 297px !important;}
+			  height: 299px !important;
+			  > div{height: 299px !important;}
 			}
 	  }
     .flot-tick-label{max-width: 60px !important;}
@@ -190,14 +218,10 @@
 	line-height: 20px;
 	color: $dim-gray;
 	overflow: hidden;
-	margin: -10px 0;
-	padding: 12px 20px 9px 15px;
-	@include media("≥tablet"){padding: 12px 20px 11px;}
-	@include media("≥desktop"){padding: 14px 25px 11px 20px;}
-	@include media("≥widescreen"){
-		padding: 25px 30px 18px 20px;
-		margin: -22px 0 -15px;
-	}
+	padding: 12px 35px 9px 20px;
+	@include media("≥tablet"){padding: 19px 35px 15px 20px;}
+	@include media("≥desktop"){padding: 20px 35px 18px 20px;}
+	@include media("≥widescreen"){padding: 25px 35px 18px 20px;}
 	
 	select {
 		z-index: 1;
@@ -227,9 +251,7 @@
 		bottom: 0;
 		right: 0;
 		top: 0;
-		width: 20px;
-		
-		@include media("≥widescreen"){width: 30px;}
+		width: 30px;
 		
 		&:after{
 			font: 20px/20px $ico-font;
@@ -244,7 +266,6 @@
 
 body > .jcf-select-drop {
 	position: absolute;
-	margin: -1px 0 0;
 	z-index: 9999;
 	min-width: 100px;
 }
@@ -264,49 +285,12 @@ body > .jcf-select-drop.jcf-drop-flipped {
 	&.jcf-drop-flipped{
 		bottom: 100%;
 		top: auto;
-		
-		.jcf-select-drop-content {
-			margin: 0 0 10px;
-			padding: 0 0 5px;
-			
-			&:after{
-				bottom: auto;
-				top: 100%;
-				margin: -16px 0 0 -8px;
-			}
-		}
-		
-		.jcf-list {
-			-webkit-box-shadow: -3px -3px 1px 0 rgba(0,0,0,0.2);
-			box-shadow: -3px -3px 1px 0 rgba(0,0,0,0.2);
-		}
 	}
 }
 
 .jcf-select-drop .jcf-select-drop-content {
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	padding: 5px 0 0;
 	position: relative;
-	margin: 10px 0 0;
-	
-	
-	&:after{
-		content: "";
-		position: absolute;
-		width: 16px;
-		height: 16px;
-		margin: 0 0 -16px -8px;
-		background: $white;
-		border: 1px solid rgba(0,0,0,0.2);
-		transform: rotate(45deg);
-		-webkit-transform: rotate(45deg);
-		-ms-transform: rotate(45deg);
-		-moz-transform: rotate(45deg);
-		-o-transform: rotate(45deg);
-		bottom: 100%;
-		left: 50%;
-	}
+	border: 1px solid $alto2;
 }
 /* multiple select styles */
 .jcf-list-box {
@@ -325,10 +309,6 @@ body > .jcf-select-drop.jcf-drop-flipped {
 	line-height: 18px;
 	font-size: 14px;
 	width: 100%;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-webkit-box-shadow: 3px 3px 1px 0 rgba(0,0,0,0.2);
-	box-shadow: 3px 3px 1px 0 rgba(0,0,0,0.2);
 }
 .jcf-list .jcf-list-content {
 	vertical-align: top;
@@ -340,8 +320,6 @@ body > .jcf-select-drop.jcf-drop-flipped {
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
 	overflow: hidden;
 }
 .jcf-list ul li {
@@ -362,19 +340,16 @@ body > .jcf-select-drop.jcf-drop-flipped {
 	font-size: 16px;
 	
 	&.jcf-selected{display: none;}
-	
-	&.jcf-option-daily{color: $glaucous;}
-	&.jcf-option-weekly{color: $fuzzy-wuzzy;}
-	&.jcf-option-monthly{color: $rich-lavender;}
-	&.jcf-option-quaterly{color: $blue-gray;}
-	&.jcf-option-yearly{color: $mantis;}
 }
 .jcf-list .jcf-disabled {
 	background: #fff !important;
 	color: #aaa !important;
 }
 .jcf-select-drop .jcf-hover,
-.jcf-list-box .jcf-selected {background: $iceberg;}
+.jcf-list-box .jcf-selected {
+	background: $dim-gray;
+	color: $white;
+}
 .jcf-list .jcf-optgroup-caption {
 	white-space: nowrap;
 	font-weight: bold;

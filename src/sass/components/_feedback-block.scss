@@ -6,20 +6,16 @@
 	.heading-holder{
 		overflow: hidden;
 		border-bottom: 1px solid $alto2;
-		padding: 10px;
-		margin: 0 0 20px;
+		margin: 0 0 18px;
+		padding: 0 0 0 10px;
 		
-		@include media("≥desktop"){margin: 0 0 52px;}
-		
-		@include media("≥widescreen"){
-			padding: 20px;
-			margin: 0 0 49px;
-		}
+		@include media("≥widescreen"){padding: 0 0 0 20px;}
 		
 		.calender-outer{
 			float: right;
 			position: relative;
-			padding: 0 0 0 10px;
+			padding: 0;
+
 
 			&:after{
 				position: absolute;
@@ -31,18 +27,40 @@
 				width: 1px;
 			}
 
-			@include media("≥widescreen"){padding: 2px 0 0 20px;}
+			.calendar-holder{
+				padding: 9px 18px;
+
+				@include media("<tablet"){
+					float: none !important;
+					display: block;
+					width: 100%;
+					text-align: center;
+
+					i{
+						float: none !important;
+						@inlude inline-block(top);
+					}
+				}
+
+				@include media("≥tablet"){padding: 17px 15px;}
+				@include media("≥desktop"){padding: 19px 18px;}
+				@include media("≥widescreen"){padding: 21px 20px;}
+			}
 		}
 	}
 	
 	h2{
 		margin: 0;
 		overflow: hidden;
+		line-height: 2.55em;
+	 	 @include media("≥tablet"){line-height: 3em;}
 	}
 	.graph-holder{
 		overflow: hidden;
 		@include v-align(100%, middle, before);
 		padding: 0 10px 20px;
+		
+		@include media("<desktop"){height: auto !important;}
 		
 		@include media("≥widescreen"){padding: 0 20px 30px;}
 		

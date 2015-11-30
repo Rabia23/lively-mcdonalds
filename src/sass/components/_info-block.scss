@@ -6,8 +6,9 @@
 	.calender-outer{
 		float: right;
 		position: relative;
-		padding: 0 0 0 10px;
-		
+		padding: 0;
+
+
 		&:after{
 			position: absolute;
 			left: 0;
@@ -17,21 +18,45 @@
 			background: $alto2;
 			width: 1px;
 		}
-		
-		@include media("≥widescreen"){padding: 2px 0 0 20px;}
+
+		.calendar-holder{
+			float: right;
+			padding: 9px 18px;
+
+			@include media("<tablet"){
+				float: none !important;
+				display: block;
+				width: 100%;
+				text-align: center;
+
+				i{
+					float: none !important;
+					@inlude inline-block(top);
+				}
+			}
+
+			@include media("≥tablet"){padding: 17px 15px;}
+			@include media("≥desktop"){padding: 19px 18px;}
+			@include media("≥widescreen"){padding: 21px 20px;}
+		}
 	}
 }
 
 .info-box{
-	h2{margin: 0;}
+	h2{
+		float: left;
+		margin: 0;
+		line-height: 2.55em;
+		@include media("≥tablet"){line-height: 3em;}
+	}
 	
 	.heading{
 		overflow: hidden;
-		padding: 10px;
+		padding: 0 0 0 10px;
 		border-bottom: 1px solid $alto2;
 		margin: 0 0 18px;
 		
-		@include media("≥widescreen"){padding: 22px 20px 15px;}
+		@include media("≥widescreen"){padding: 0 0 0 20px;}
 	}
 }
 

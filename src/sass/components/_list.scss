@@ -1,7 +1,7 @@
 .list{
 	@extend .list-inline;
 	text-align: right;
-	margin: 0 0 17px;
+	margin: 0 0 15px;
 	color: $mountain-mist;
 	font-size: 12px;
 	line-height: 14px;
@@ -10,8 +10,10 @@
 	li{
 		@include inline-block(top);
 		letter-spacing: 0;
-		padding: 0 16px 0 13px;
+		padding: 0 12px 5px 9px;
 		position: relative;
+		
+		@include media("≥widescreen"){padding: 0 16px 5px 13px;}
 				
 		&:before{
 			position: absolute;
@@ -21,11 +23,20 @@
 			background: $green-house;
 			width: 6px;
 			height: 6px;
-			margin-top: -3px;
+			margin-top: -6px;
 		}
 		
 		&.negative{
 			&:before{background: $carnelian;}
+		}
+		&.neutral{
+			&:before{background: $cinnabar;}
+		}
+		&.good{
+			&:before{background: $islamic-green;}
+		}
+		&.v-good{
+			&:before{background: $green-house;}
 		}
 	}
 	
@@ -36,10 +47,6 @@
 		
 		li{
 			width: auto;
-			&:before{
-				border-radius: 100%;
-				-webkit-border-radius: 100%;
-			}
 			
 			&.item1{
 				&:before{background: $deep-lilac;}

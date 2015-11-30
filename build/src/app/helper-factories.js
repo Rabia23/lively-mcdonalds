@@ -31,10 +31,24 @@ angular.module( 'helper_factories', ['ngResource'])
       "Service": 'yellow'
     },
 
+     categoryPerformanceChildCholorScheme:{
+      "Cleanliness": ["#064C7C", "#085389", "#0C5E9D", "#0F6DB4", "#137ECC", "#168CE0"],
+      "Quality": ["#431051", "#4F1B5E", "#602E76", "#7A4191", "#9352AC", "#A95DC3"],
+      "Service": ["#FD8E15", "#FC9918", "#FCA91F", "#FBBC26", "#F9CF2D", "#F8E035"]
+    },
+
     segmentationClass: {
       "Cleanliness": 'blue',
       "Food Quality": 'lilac',
       "Service": 'yellow'
+    },
+
+    segmentationPriority: {
+      "Late Night": 5,
+      "Breakfast": 1,
+      "Lunch": 2,
+      "Snack": 3,
+      "Dinner": 4
     },
 
     qscPriority: {
