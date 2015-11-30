@@ -308,21 +308,39 @@
 .progress-container{
 	&.Quality{
 		.progress-holder{
-			.progress-bar{background: $clairvoyant;}
+			.progress-bar{
+				background: $clairvoyant;
+				b,span{color: $clairvoyant;}
+			}
 			&:nth-child(2) {
-				.progress-bar{background: $scarlet-gum;}
+				.progress-bar{
+					background: $scarlet-gum;
+					b,span{color: $scarlet-gum;}
+				}
 			}
 			&:nth-child(3) {
-				.progress-bar{background: $eminence2;}
+				.progress-bar{
+					background: $eminence2;
+					b,span{color: $eminence2;}
+				}
 			}
 			&:nth-child(4) {
-				.progress-bar{background: $affair;}
+				.progress-bar{
+					background: $affair;
+					b,span{color: $affair;}
+				}
 			}
 			&:nth-child(5) {
-				.progress-bar{background: $deep-lilac2;}
+				.progress-bar{
+					background: $deep-lilac2;
+					b,span{color: $deep-lilac2;}
+				}
 			}
 			&:nth-child(6) {
-				.progress-bar{background: $rich-lavender2;}
+				.progress-bar{
+					background: $rich-lavender2;
+					b,span{color: $rich-lavender2;}
+				}
 			}
 		}
 		.progress-section{
@@ -354,21 +372,39 @@
 	}
 	&.Service{
 		.progress-holder{
-			.progress-bar{background: $west-side;}
+			.progress-bar{
+				background: $west-side;
+				b,span{color: $west-side;}
+			}
 			&:nth-child(2) {
-				.progress-bar{background: $tree-poppy;}
+				.progress-bar{
+					background: $tree-poppy;
+					b,span{color: $tree-poppy;}
+				}
 			}
 			&:nth-child(3) {
-				.progress-bar{background: $my-sin;}
+				.progress-bar{
+					background: $my-sin;
+					b,span{color: $my-sin;}
+				}
 			}
 			&:nth-child(4) {
-				.progress-bar{background: $lightning-yellow;}
+				.progress-bar{
+					background: $lightning-yellow;
+					b,span{color: $lightning-yellow;}
+				}
 			}
 			&:nth-child(5) {
-				.progress-bar{background: $sunglow;}
+				.progress-bar{
+					background: $sunglow;
+					b,span{color: $sunglow;}
+				}
 			}
 			&:nth-child(6) {
-				.progress-bar{background: $banana-yellow;}
+				.progress-bar{
+					background: $banana-yellow;
+					b,span{color: $banana-yellow;}
+				}
 			}
 		}
 		.progress-section{
@@ -400,15 +436,27 @@
 	}
 	&.Cleanliness{
 		.progress-holder{
-			.progress-bar{background: $dark-cerulean;}
+			.progress-bar{
+				background: $dark-cerulean;
+				b,span{color: $dark-cerulean;}
+			}
 			&:nth-child(2) {
-				.progress-bar{background: $venice-blue;}
+				.progress-bar{
+					background: $venice-blue;
+					b,span{color: $venice-blue;}
+				}
 			}
 			&:nth-child(3) {
-				.progress-bar{background: $bahama-blue;}
+				.progress-bar{
+					background: $bahama-blue;
+					b,span{color: $bahama-blue;}
+				}
 			}
 			&:nth-child(4) {
-				.progress-bar{background: $denim;}
+				.progress-bar{
+					background: $denim;
+					b,span{color: $denim;}
+				}
 			}
 			&:nth-child(5) {
 				.progress-bar{background: $lochmara;}
@@ -443,6 +491,5 @@
 				}
 			}
 		}
-	}
-	
+	}	
 }
