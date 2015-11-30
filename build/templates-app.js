@@ -6,7 +6,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "	<div class=\"info-holder\">\n" +
     "  \n" +
     "  <div class=\"heading-holder\">\n" +
-    "  	<h2>Overall Rating</h2>\n" +
+    "  	<h2>Business Segment Breakdown</h2>\n" +
     "  	<ul>\n" +
     "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-class=\"{active: class == ''}\" ng-click = \"onClick(null, 'All')\">all</a></li>\n" +
     "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-class=\"{active: class == 'Quality'}\" ng-click = \"onClick(QualityID, 'Quality')\">Quality</a></li>\n" +
@@ -96,7 +96,7 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "<div class=\"info-block\">\n" +
     "  <div class=\"info-box\">\n" +
     "    <div class=\"heading\">\n" +
-    "      <h2>Map</h2>\n" +
+    "      <h2>Benchmark Map</h2>\n" +
     "      <div class=\"calender-outer\">\n" +
     "        	<span class = \"calendar-holder pull-right\">\n" +
     "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" />\n" +
@@ -275,12 +275,12 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "<div class=\"section-holder\" >\n" +
     "  <div class=\"info-area\" ng-class=\"{loading: show_loading}\">\n" +
     "    <div class=\"heading-holder\">\n" +
-    "    	<h2 ng-show = \"regional_view\">Regional Analysis</h2>  \n" +
+    "    	<h2 ng-show = \"regional_view\">Patch Analysis</h2>\n" +
     "		<h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis</h2>\n" +
     "		<h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}} City Branch Analysis</h2>\n" +
     "    	<div class=\"btn-group pull-right\">\n" +
     "		  	  <ul>\n" +
-    "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Comments'\" ng-click = \"showChart(null, 'regions')\">Comments</label></li>\n" +
+    "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Comments'\" ng-click = \"showChart(null, 'regions')\">Complains</label></li>\n" +
     "		  	  	<li> <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'regions')\">Rating</label></li>\n" +
     "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'regions')\">QSC</label></li>\n" +
     "		  	  	<li>\n" +
@@ -374,7 +374,7 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
   $templateCache.put("dashboard/top-concern/top-concern.tpl.html",
     "<div class=\"rating-section\" ng-class = \"{loading: show_loading}\">\n" +
     "  <header class=\"heading-block\">\n" +
-    "    <h2>Top Concern</h2>\n" +
+    "    <h2>Customers Top 5 Concerns</h2>\n" +
     "    <div class=\"calender-outer\">\n" +
     "		<span class = \"calendar-holder pull-right\">\n" +
     "		  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" />\n" +
