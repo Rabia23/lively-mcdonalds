@@ -41,7 +41,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
         return value.date;
       });
       
-      //$scope.labels = _.sortBy($scope.labels, function(value){ return value.priority; });
+      $scope.labels = _.sortBy($scope.labels, function(value){ return value.priority; });
     });
   }
 
