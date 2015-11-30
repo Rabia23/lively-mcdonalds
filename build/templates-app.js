@@ -46,8 +46,8 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  	</div>\n" +
     "  	<div class=\"holder\">\n" +
     "  		<div class=\"progress-area\">\n" +
-    "		<div class=\"progress-holder {{dat.colour}}\" ng-repeat = \"dat in category_data\">\n" +
-    "		<small style=\"background-color: {{dat.colour}};\"><em>{{dat.name}}</em></small>\n" +
+    "		<div class=\"progress-holder\" ng-repeat = \"dat in category_data\">\n" +
+    "		<small><em>{{dat.name}}</em></small>\n" +
     "\n" +
     "			<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}}</b></uib-progressbar></div>\n" +
     "\n" +
@@ -284,15 +284,19 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "		<h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis</h2>\n" +
     "		<h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}} City Branch Analysis</h2>\n" +
     "    	<div class=\"btn-group pull-right\">\n" +
-    "		  <div class=\"calender-outer\">\n" +
-    "		  	<span class = \"calendar-holder\">\n" +
-    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" />\n" +
-    "			  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
-    "			</span>\n" +
-    "		  </div>\n" +
-    "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Comments'\" ng-click = \"showChart(null, 'regions')\">Comments</label>\n" +
-    "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'regions')\">Rating</label>\n" +
-    "		  <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'regions')\">QSC</label>\n" +
+    "		  	  <ul>\n" +
+    "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Comments'\" ng-click = \"showChart(null, 'regions')\">Comments</label></li>\n" +
+    "		  	  	<li> <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'regions')\">Rating</label></li>\n" +
+    "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'regions')\">QSC</label></li>\n" +
+    "		  	  	<li>\n" +
+    "		  	  		<div class=\"calender-outer\">\n" +
+    "					<span class = \"calendar-holder\">\n" +
+    "					  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" />\n" +
+    "					  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
+    "					</span>\n" +
+    "				  </div>\n" +
+    "		  	  	</li>\n" +
+    "		  	  </ul>\n" +
     "		</div>\n" +
     "    </div>\n" +
     "    <div class=\"holder\">\n" +
