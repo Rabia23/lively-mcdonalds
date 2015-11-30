@@ -14,7 +14,7 @@ from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerial
 from lively import constants
 from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options, \
     apply_general_filters, generate_option_groups, generate_segmentation_with_options, apply_date_range_filter, \
-    get_filtered_feedback
+    get_filtered_feedback, generate_missing_actions
 from dateutil import rrule
 from dateutil.relativedelta import relativedelta
 from datetime import datetime, timedelta
@@ -528,8 +528,8 @@ def action_analysis(request):
                 filtered_feedback = get_filtered_feedback(type, object)
                 filtered_feedback = apply_date_range_filter(filtered_feedback, date_to, date_from)
                 filtered_feedback_count = filtered_feedback.count()
-                filtered_feedback = filtered_feedback.values(
-                    'action_taken').annotate(count=Count('action_taken'))
+                filtered_feedback = filtered_feedback.values('action_taken').annotate(count=Count('action_taken'))
+                filtered_feedback = generate_missing_actions(filtered_feedback)
 
                 data = {'feedback_count': filtered_feedback_count, 'action_analysis': filtered_feedback}
                 data_list.append({'object': object, 'data': data})

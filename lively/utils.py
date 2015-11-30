@@ -174,6 +174,22 @@ def generate_username():
         return uname
 
 
+def generate_missing_actions(data):
+    list_actions = [item['action_taken'] for item in data]
+    list_feedback = list(data)
+
+    if True not in list_actions:
+        list_feedback.append(
+            {'count': 0, 'action_taken': True}
+        )
+    elif False not in list_actions:
+        list_feedback.append(
+            {'count': 0, 'action_taken': False}
+        )
+
+    return list_feedback
+
+
 def generate_missing_options(question, data):
     list_feedback_option_ids = [item['option_id'] for item in data]
     list_feedback = list(data)
