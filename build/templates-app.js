@@ -26,9 +26,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  <div class=\"progress-container {{class}}\">\n" +
     "  	<div class=\"holder\">\n" +
     "  		<ul class=\"list add\">\n" +
-    "			<li class=\"item1\"><a href=\"#\">Quality</a></li>\n" +
-    "			<li class=\"item2\"><a href=\"#\">Service</a></li>\n" +
-    "			<li class=\"item3\"><a href=\"#\">Cleanliness</a></li>\n" +
+    "			<li ng-repeat = \"dat in category_data\"><a href=\"#\">{{dat.name}}</a></li>\n" +
     "		</ul>\n" +
     "  		<div class=\"progress-area\">\n" +
     "\n" +
@@ -45,23 +43,14 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  	</div>\n" +
     "  	<div class=\"holder\">\n" +
     "  		<div class=\"progress-area\">\n" +
-    "		<div class=\"progress-holder {{dat.colour}}\" ng-repeat = \"dat in category_data\">\n" +
-    "		<small><em>{{dat.name}}</em></small>\n" +
-    "\n" +
-    "			<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}}</b></uib-progressbar></div>\n" +
-    "\n" +
-    "	  </div>\n" +
-    "  </div>\n" +
+    "			<div class=\"progress-holder {{dat.colour}}\" ng-repeat = \"dat in category_data\">\n" +
+    "				<small><em>{{dat.name}}</em></small>\n" +
+    "				<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}}</b></uib-progressbar></div>\n" +
+    "		  </div>\n" +
+    "  		</div>\n" +
     "  	</div>\n" +
-    "  	\n" +
-    "  	\n" +
     "  </div>\n" +
-    "\n" +
-    "\n" +
-    "</div>\n" +
-    "\n" +
-    "\n" +
-    "  \n" +
+    "</div> \n" +
     "</div>");
 }]);
 

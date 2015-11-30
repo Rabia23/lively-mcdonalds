@@ -54,17 +54,14 @@
 		
 		li{
 			width: auto;
-			
-			&.item1{
-				&:before{background: $deep-lilac;}
-			}
-			&.item2{
+			&:before{background: $deep-lilac;}
+			&:nth-child(2) {
 				&:before{background: $golden-poppy;}
 			}
-			&.item3{
+			&:nth-child(3) {
 				&:before{background: $bleu-de-france;}
 			}
-			
+
 			a{
 				color: $mountain-mist;
 				&:hover,

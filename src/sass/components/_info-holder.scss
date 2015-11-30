@@ -152,7 +152,10 @@
 			width: 49%;
 			margin: 0;
 			
-			+ .holder{float: right;}
+			+ .holder{
+				float: right;
+				padding: 23px 0 0;
+			}
 		}
 	}
 }
@@ -370,6 +373,30 @@
 				}
 			}
 		}
+		.list{
+			&.add{
+				
+				li{
+					&:before{background: $clairvoyant;}
+					&:nth-child(2) {
+						&:before{background: $scarlet-gum;}
+					}
+					&:nth-child(3) {
+						&:before{background: $eminence2;}
+					}
+					
+					&:nth-child(4) {
+						&:before{background: $affair;}
+					}
+					&:nth-child(5) {
+						&:before{background: $deep-lilac2;}
+					}
+					&:nth-child(6) {
+						&:before{background: $rich-lavender2;}
+					}
+				}
+			}
+		}
 	}
 	&.Service{
 		.progress-holder{
@@ -434,6 +461,31 @@
 				}
 			}
 		}
+		
+		.list{
+			&.add{
+				
+				li{
+					&:before{background: $west-side;}
+					&:nth-child(2) {
+						&:before{background: $tree-poppy;}
+					}
+					&:nth-child(3) {
+						&:before{background: $my-sin;}
+					}
+					
+					&:nth-child(4) {
+						&:before{background: $lightning-yellow;}
+					}
+					&:nth-child(5) {
+						&:before{background: $sunglow;}
+					}
+					&:nth-child(6) {
+						&:before{background: $banana-yellow;}
+					}
+				}
+			}
+		}
 	}
 	&.Cleanliness{
 		.progress-holder{
@@ -495,6 +547,31 @@
 				&:nth-child(6) {
 					background: $rich-electric-blue;
 					span{border-right-color: $rich-electric-blue;}
+				}
+			}
+		}
+		
+		.list{
+			&.add{
+				
+				li{
+					&:before{background: $dark-cerulean;}
+					&:nth-child(2) {
+						&:before{background: $venice-blue;}
+					}
+					&:nth-child(3) {
+						&:before{background: $bahama-blue;}
+					}
+					
+					&:nth-child(4) {
+						&:before{background: $denim;}
+					}
+					&:nth-child(5) {
+						&:before{background: $lochmara;}
+					}
+					&:nth-child(6) {
+						&:before{background: $rich-electric-blue;}
+					}
 				}
 			}
 		}
