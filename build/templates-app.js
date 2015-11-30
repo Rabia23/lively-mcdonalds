@@ -129,7 +129,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "		  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "		</span>\n" +
     "	</div>\n" +
-    "	<h2>Rating</h2>\n" +
+    "	<h2>Overall Rating</h2>\n" +
     "  </div>\n" +
     "  <div class=\"inner-block\">\n" +
     "  	<ul class=\"list\">\n" +
