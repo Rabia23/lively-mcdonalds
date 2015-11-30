@@ -222,6 +222,7 @@ angular.module('livefeed.chart', [
           barShowStroke : false,
           barValueSpacing : 35,
           scaleShowVerticalLines: false
+          //tooltipTemplate: "<%= value %>"
         }
 
      };

@@ -20,34 +20,28 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
   $scope.show_loading = false;
 
-  $scope.label_click_check = false;
-
-  $scope.option_click_check = false;
-
-  $scope.selected_event = null;
-  $scope.selected_pos = null;
-  $scope.selected_item = null;
-  $scope.selected_option = null;
-
   $scope.start_date = null;
-  $scope.end_date = null; 
+  $scope.end_date = null;
+
+  $scope.type = "1"; 
   
   function mainRating(){
     $scope.mainView = true;
     $scope.show_loading = true; 
     $scope.label_click_check = false;
     $scope.option_click_check = false; 
-    Graphs.overall_rating(null, $scope.start_date, $scope.end_date).$promise.then(function(data){
+    Graphs.overall_rating($scope.type, null, $scope.start_date, $scope.end_date).$promise.then(function(data){
       $scope.show_loading = false; 
-      $scope.line1 = chartService.getLineChart(data);
-      $scope.dates = _.map(data, function(value){
-        return value.date;
-      });
       $scope.labels = _.map(data[0].data.feedbacks ,function(value){
         return {parent_id: value.option__parent_id, id: value.option_id, value: value.option__text,
                 color: Global.optionsColorScheme[value.option__text], priority: Global.qscPriority[value.option__text]};
       });
-      $scope.labels = _.sortBy($scope.labels, function(value){ return value.priority; });
+      $scope.line1 = chartService.getLineChart(data);
+      $scope.dates = _.map(data, function(value){
+        return value.date;
+      });
+      
+      //$scope.labels = _.sortBy($scope.labels, function(value){ return value.priority; });
     });
   }
 
@@ -64,18 +58,11 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
   $scope.datePickerOption = {
     eventHandlers: {
-      'apply.daterangepicker': function(ev, picker){
-        $scope.start_date = ev.model.startDate._i;
-        $scope.end_date = ev.model.endDate._i;
-        
+      'apply.daterangepicker': function(ev, picker){    
         if($scope.mainView){
+          $scope.start_date = ev.model.startDate._i;
+          $scope.end_date = ev.model.endDate._i;
           mainRating();
-        }
-        if($scope.label_click_check){
-          $scope.labelClick($scope.selected_option);
-        }
-        if($scope.option_click_check){
-          $scope.optionClick($scope.event, $scope.pos, $scope.item);
         }
         
       },
@@ -87,22 +74,22 @@ angular.module( 'livefeed.dashboard.overall_rating', [
     }
   };
 
+  $scope.axisChanged = function(){
+    mainRating();
+  };
+
 
   $scope.optionClick = function (event, pos, item){
-    $scope.selected_item = item;
-    $scope.selected_pos = pos;
-    $scope.selected_event = event;
     var option = $scope.labels[item.seriesIndex];
     var date = $scope.dates[item.dataIndex];
     if(option.parent_id == null){
+      $scope.type = "1";
       var parent_color = option.color;
       var parent_value = option.value;
       $scope.show_loading = true;
-      Graphs.feedback_segmentation(date, option.id, $scope.start_date, $scope.end_date).$promise.then(function(data){
+      Graphs.feedback_segmentation(date, option.id).$promise.then(function(data){
         $scope.show_loading = false;
         $scope.mainView = false;
-        $scope.label_click_check = false;
-        $scope.option_click_check = true; 
         $scope.line1 = chartService.getSegmentLineChart(data, parent_color, parent_value);
         $scope.labels =  _.map(data.options,function(value, index){
           return {value: value.option__text, parent_id: option.id, color: colors(index, option.parent_id, parent_color, value.option__text, parent_value)};
@@ -113,16 +100,12 @@ angular.module( 'livefeed.dashboard.overall_rating', [
   };
 
   $scope.labelClick = function(option){
-    $scope.selected_option = option;
     if(option.parent_id == null){
+      $scope.type = "1";
       $scope.show_loading = true;
-      console.log($scope.start_date);
-      console.log($scope.end_date); 
-      Graphs.overall_rating(option.id, $scope.start_date, $scope.end_date).$promise.then(function(data){
+      Graphs.overall_rating($scope.type, option.id).$promise.then(function(data){
         $scope.show_loading = false;
-        $scope.mainView = false;
-        $scope.label_click_check = true;
-        $scope.option_click_check = false; 
+        $scope.mainView = false; 
         var parent_color = option.color;
         var parent_value = option.value;
         $scope.line1 = chartService.getLineChart(data, parent_color, parent_value);

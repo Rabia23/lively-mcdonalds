@@ -30,7 +30,7 @@
     	<div class="inner-holder">
     		<ul class="info-list" ng-show = "regional_view == true">
       <li ng-repeat = "region in donut_graph_data.objects track by $index">
-        <div class="graph-holder">
+        <div class="graph-holder regional-analysis">
           <div morris-chart data-data="donut_graph_data.donutData[$index]" data-type="donut" data-options="donut_graph_data.donutOptions[$index]" data-action="open(option,region,city,branch)"></div>
         </div>
         <h3>

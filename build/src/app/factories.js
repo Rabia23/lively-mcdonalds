@@ -55,9 +55,9 @@ angular.module( 'factories', [
                  });
   }
 
-  Graphs.prototype.overall_rating = function(option_id, date_from, date_to){
+  Graphs.prototype.overall_rating = function(type,option_id, date_from, date_to){
     option_id = option_id || "";
-    return this.service.overall_rating({option: option_id, date_from: date_from, date_to: date_to});
+    return this.service.overall_rating({type: type, option: option_id, date_from: date_from, date_to: date_to});
   };
 
   Graphs.prototype.top_concerns = function(top_concerns){

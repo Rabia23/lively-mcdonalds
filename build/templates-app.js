@@ -145,10 +145,10 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "  </div>\n" +
     "  <div class=\"inner-block\">\n" +
     "  	<ul class=\"list\">\n" +
-    "      <li class=\"v-good\"><a href=\"#\">I'm lovin' it</a></li>\n" +
-    "      <li class=\"good\"><a href=\"#\">Everything on track</a></li>\n" +
-    "      <li class=\"neutral\"><a href=\"#\">Few Concern</a></li>\n" +
-    "      <li class=\"negative\"><a href=\"#\">Not Happy Enough</a></li>\n" +
+    "      <li class=\"v-good\">I'm lovin' it</li>\n" +
+    "      <li class=\"good\">Everything on track</li>\n" +
+    "      <li class=\"neutral\">Few Concern</li>\n" +
+    "      <li class=\"negative\">Not Happy Enough</li>\n" +
     "    </ul>\n" +
     "  	<div class=\"graph-holder\">\n" +
     "		<canvas id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
@@ -166,17 +166,16 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "    <div class=\"pull-right\">\n" +
     "		<div class=\"calender-outer\">\n" +
     "			<span class = \"calendar-holder pull-right\">\n" +
-    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
-    "			  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
+    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" ng-disabled = \"!mainView\"/>\n" +
+    "			  <i class=\"glyphicon glyphicon-calendar\" map-range-click ></i>\n" +
     "			</span>\n" +
     "		</div>\n" +
     "   		<span class=\"select-holder\">\n" +
-    "   			<select>\n" +
-    "				<option>Daily</option>\n" +
-    "				<option>Weekly</option>\n" +
-    "				<option>Monthly</option>\n" +
-    "				<option>Quaterly</option>\n" +
-    "				<option>Yearly</option>\n" +
+    "   			<select ng-disabled = \"!mainView\" ng-model= \"type\" ng-change = \"axisChanged()\">\n" +
+    "				<option value = \"1\">Daily</option>\n" +
+    "				<option value = \"2\">Weekly</option>\n" +
+    "				<option value = \"3\">Monthly</option>\n" +
+    "				<option value = \"4\">Yearly</option>\n" +
     "			</select>\n" +
     "   		</span>\n" +
     "    	<a ng-click = \"backToMain()\" ng-hide = \"mainView\">Back</a>\n" +
@@ -309,7 +308,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "    	<div class=\"inner-holder\">\n" +
     "    		<ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
     "      <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
-    "        <div class=\"graph-holder\">\n" +
+    "        <div class=\"graph-holder regional-analysis\">\n" +
     "          <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open(option,region,city,branch)\"></div>\n" +
     "        </div>\n" +
     "        <h3>\n" +
@@ -376,12 +375,12 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "<div class=\"rating-section\" ng-class = \"{loading: show_loading}\">\n" +
     "  <header class=\"heading-block\">\n" +
     "    <h2>Top Concern</h2>\n" +
-    "    <div class=\"calender-outer\">\n" +
-    "		<span class = \"calendar-holder pull-right\">\n" +
-    "		  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" />\n" +
-    "		  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
-    "		</span>\n" +
-    "	</div>\n" +
+    "<!--     <div class=\"calender-outer\">\n" +
+    "  		<span class = \"calendar-holder pull-right\">\n" +
+    "  		  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" />\n" +
+    "  		  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
+    "  		</span>\n" +
+    "	  </div> -->\n" +
     "  </header>\n" +
     "  <div class=\"rating-holder\">\n" +
     "  	<ul>\n" +

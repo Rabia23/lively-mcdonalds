@@ -20,8 +20,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
 
       });
       Graphs.segmentation_rating(region_id,city_id,branch_id,option_id).$promise.then(function(segment_data){
-            console.log("segments");
-            console.log(segment_data.segments);
+
             $scope.segments = _.map(segment_data.segments,  function(data){
                 return {
                     name: data.segment,
