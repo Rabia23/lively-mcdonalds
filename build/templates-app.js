@@ -25,10 +25,8 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  \n" +
     "  <div class=\"progress-container {{class}}\">\n" +
     "  	<div class=\"holder\">\n" +
-    "  		<ul class=\"list add\" ng-repeat = \"dat in category_data\">\n" +
-    "			<li class=\"item1 {{class}}\"><a href=\"#\">{{dat.name}}</a></li>\n" +
-    "			<!--<li class=\"item2\"><a href=\"#\">Service</a></li>-->\n" +
-    "			<!--<li class=\"item3\"><a href=\"#\">Cleanliness</a></li>-->\n" +
+    "  		<ul class=\"list add\">\n" +
+    "			<li class=\"item1 {{class}}\" ng-repeat = \"dat in category_data\"><a href=\"#\">{{dat.name}}</a></li>\n" +
     "		</ul>\n" +
     "  		<div class=\"progress-area\">\n" +
     "\n" +
