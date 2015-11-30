@@ -238,10 +238,19 @@
 			td{
 				text-align: center;
 				vertical-align: middle;
-				&.item1,&.item2,&.item6{width: 14.33%;}
+				&.item1,&.item2{width: 14.33%;}
+				&.item6{
+					width: 15.33%;
+					a{
+						display: block;
+						padding: 6px;
+						margin: 0 auto;
+						@include fontsize(16, 15);
+					}
+				}
 				&.item3,&.item4{width: 11.5%;}
 				&.item5{
-					width: 35%;
+					width: 34%;
 					text-align: left;
 					padding-left: 25px;
 					padding-right: 25px;
@@ -268,27 +277,19 @@
 					.text{overflow: hidden;}
 					.ico{
 						float: left;
-						margin: 1px 5px 0 -18px;
+						width: 10px;
+						height: 10px;
+						margin: 3px 5px 0 -15px;
+						background: $islamic-green;
 						
-						@include media("≥tablet"){margin: 2px 5px 0 -18px;}
-						
-						&:before{
-							@include inline-block(top);
-							font: 16px/16px $ico-font;
-							content: "\e802";
-							color: $green-house;
-						}
+						@include media("≥tablet"){margin: 4px 5px 0 -15px;}
+						@include media("≥desktop"){margin: 5px 5px 0 -15px;}
 					}
 				}
 				tr{
 					&.negative{
 						td{
-							.ico{
-								&:before{
-									content: "\e803";
-									color: $carnelian;
-								}
-							}
+							.ico{background: $cinnabar;}
 						}
 					}
 				}
