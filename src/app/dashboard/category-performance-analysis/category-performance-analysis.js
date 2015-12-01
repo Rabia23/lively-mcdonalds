@@ -22,7 +22,8 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
           console.log("applied");
           $scope.start_date = ev.model.startDate._i;
           $scope.end_date =  ev.model.endDate._i;
-          $scope.showData("","","",$scope.option_id,$scope.class);
+          $scope.showCategoryData("","","",$scope.option_id,$scope.class);
+          $scope.showSegmentData("","","",$scope.option_id,$scope.class);
         },
         'cancel.daterangepicker': function(ev, picker){
           $scope.datePicker.date.startDate = null;
@@ -32,7 +33,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
     }
   };
   
-  $scope.showData = function(region_id,city_id,branch_id,option_id,string){
+  $scope.showCategoryData = function(region_id,city_id,branch_id,option_id,string){
     $scope.show_loading = true;
     Graphs.category_performance(region_id,city_id,branch_id,option_id, $scope.start_date, $scope.end_date).$promise.then(function(performance_data){
       $scope.category_data = _.map(performance_data.feedbacks,  function(data,index){
@@ -53,55 +54,57 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
       }
 
     });
-    Graphs.segmentation_rating(region_id,city_id,branch_id,option_id, $scope.start_date, $scope.end_date).$promise.then(function(segment_data){
+  };
+
+  $scope.showSegmentData = function(region_id,city_id,branch_id,option_id,string) {
+    Graphs.segmentation_rating(region_id, city_id, branch_id, option_id, $scope.start_date, $scope.end_date).$promise.then(function (segment_data) {
       $scope.segments = [];
-      $scope.segments_data = _.map(segment_data.segments,  function(data){
-        if(data.option_count !== 0){
-         return {
+      $scope.segments_data = _.map(segment_data.segments, function (data) {
+        if (data.option_count !== 0) {
+          return {
             name: data.segment,
             segment_data: _.map(data.option_data, function (dat) {
-                if(dat.count !== 0){
-                     return {percentage: Math.round((dat.count/data.option_count)*100), complaints: dat.count, class: Global.segmentationClass[dat.option__text]};
-                }
+              if (dat.count !== 0) {
+                return {
+                  percentage: Math.round((dat.count / data.option_count) * 100),
+                  complaints: dat.count,
+                  class: Global.segmentationClass[dat.option__text]
+                };
+              }
             }),
             priority: Global.segmentationPriority[data.segment]
-         };
+          };
         }
       });
       _.map($scope.segments_data, function (data) {
-        if(data !== undefined){
-          data.segment_data =  _.reject(data.segment_data, function(dat) {return dat === undefined;});
+        if (data !== undefined) {
+          data.segment_data = _.reject(data.segment_data, function (dat) {
+            return dat === undefined;
+          });
           $scope.segments.push(data);
         }
       });
-      $scope.segments = _.sortBy( $scope.segments, function(value){return value.priority;});
+      $scope.segments = _.sortBy($scope.segments, function (value) {
+        return value.priority;
+      });
       $scope.show_loading = false;
     });
   };
+
+  $scope.onOptionSelect = function(string,option_id){
+    if(string === 'All'){ $scope.class = ""; $scope.showCategoryData(); $scope.showSegmentData();
+     }
+     else{ $scope.class = string; $scope.showCategoryData("","","",option_id,string); $scope.showSegmentData("","","",option_id,string);
+     }
+  };
+
   $scope.onClick = function(option_id,string){
     $scope.option_id = option_id;
     $scope.start_date = null;
     $scope.end_date = null;
-
-    
-    if(string === 'All'){
-      $scope.class = "";
-      $scope.showData();
-    }
-    else if(string === 'Quality'){
-      $scope.class = string;
-      $scope.showData("","","",option_id,string);
-    }
-    else if(string === 'Service'){
-      $scope.class = string;
-      $scope.showData("","","",option_id,string);
-    }
-    else if(string === 'Cleanliness'){
-      $scope.class = string;
-      $scope.showData("","","",option_id,string);
-    }
-
+    $scope.onOptionSelect(string,option_id);
   };
-  $scope.showData();
+  $scope.showCategoryData();
+  $scope.showSegmentData();
 
 });
