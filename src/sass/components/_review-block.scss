@@ -105,7 +105,7 @@
 			word-break: break-all;
 			
 			@include media("≥tablet"){padding: 10px;}
-			@include media("≥widescreen"){padding: 20px;}
+			@include media("≥widescreen"){padding: 15px;}
 			
 			.text{
 				overflow: hidden;
@@ -184,7 +184,7 @@
 .modal-1200{
 	border-radius: 0;
 	width: auto;
-	@include media("≥tablet"){width: 740px;}
+	@include media("≥tablet"){width: 745px;}
 	@include media("≥desktop"){width: 970px;}
 	@include media("≥widescreen"){width: 1170px;}
 	.modal-content{border-radius: 0;}
@@ -211,12 +211,12 @@
 		.table{
 			margin: 0;
 			@include media("<tablet"){
-				min-width: 700px;
+				min-width: 730px;
 				width: auto !important;
 				max-width: inherit !important;
 			}
 			thead{
-				min-width: 700px;
+				@include media("<tablet"){min-width: 730px;}
 				th{
 					@include fontsize(16, 15);
 					line-height: 1.4em;
@@ -238,9 +238,17 @@
 			td{
 				text-align: center;
 				vertical-align: middle;
-				&.item1,&.item2{width: 14.33%;}
+				padding-left: 4px;
+				padding-right: 4px;
+				
+				@include media("≥widescreen"){
+					padding-left: 8px;
+					padding-right: 8px;
+				}
+				&.item1{width: 14%;}
+				&.item2{width: 13.5%;}
 				&.item6{
-					width: 15.33%;
+					width: 12.5%;
 					padding-right: 17px;
 					@include media("≥widescreen"){padding-right: 19px;}
 					a{
@@ -250,9 +258,9 @@
 						@include fontsize(16, 15);
 					}
 				}
-				&.item3,&.item4{width: 11.5%;}
+				&.item3,&.item4{width: 10%;}
 				&.item5{
-					width: 34%;
+					width: 39%;
 					text-align: left;
 					padding-left: 20px;
 					padding-right: 10px;
@@ -356,7 +364,7 @@
     height: 250px;
     padding: 0 !important;
 	
-	@include media("<tablet"){min-width: 700px;}
+	@include media("<tablet"){min-width: 730px;}
 	
 	@include media("≥tablet"){height: 517px;}
 }

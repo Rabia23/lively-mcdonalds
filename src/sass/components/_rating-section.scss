@@ -148,6 +148,7 @@
       letter-spacing: -6px;
 	  font-size: 12px;
 	  line-height: 14px;
+	  color: $mountain-mist;
       
       li{
         vertical-align: top;
@@ -194,7 +195,7 @@
 	  }
     .flot-tick-label{max-width: 60px !important;}
   }
-	#bubble-chart{margin-bottom: 53px;}	
+  #bubble-chart{margin-bottom: 10px;}
 }
 
 .flotTip{
