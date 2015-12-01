@@ -353,8 +353,8 @@ angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$temp
   $templateCache.put("dashboard/regional-analysis/sqc-modal.tpl.html",
     "<div class=\"modal-body info-area\">\n" +
     "  <h2>Regional Analysis</h2>\n" +
-    "	<a href=\"#\" class=\"btn-slider glyphicon glyphicon-menu-left\" ng-click=\"leftClickDisabled || previous(region,city,branch,sqc_data)\"></a>\n" +
-    "	<a href=\"#\" class=\"btn-slider glyphicon glyphicon-menu-right\" ng-click=\"rightClickDisabled || next(region,city,branch,sqc_data)\" ng-model=\"isDisabled\" ng-disabled=\"isDisabled\"></a>\n" +
+    "	<a style = \"cursor:pointer;\" class=\"btn-slider glyphicon glyphicon-menu-left\" ng-click=\"leftClickDisabled || previous(region,city,branch,sqc_data)\"></a>\n" +
+    "	<a style = \"cursor:pointer;\" class=\"btn-slider glyphicon glyphicon-menu-right\" ng-click=\"rightClickDisabled || next(region,city,branch,sqc_data)\" ng-model=\"isDisabled\" ng-disabled=\"isDisabled\"></a>\n" +
     "\n" +
     "  <div class=\"graph-holder\">\n" +
     "    <div morris-chart-modal data-data=\"donut_subgraph_data.donutData\" data-type=\"donut\" data-options=\"donut_subgraph_data.donutOptions\"></div>\n" +
