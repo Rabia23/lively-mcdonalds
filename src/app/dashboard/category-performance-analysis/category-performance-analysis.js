@@ -7,9 +7,34 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
 
   $scope.show_loading = false;
   $scope.class = '';
+  $scope.option_id = null;
+
+  $scope.datePicker = {};
+  $scope.datePicker.date = {startDate: null, endDate: null};
+  $scope.today = new Date();
+
+  $scope.start_date = null;
+  $scope.end_date = null;
+
+  $scope.datePickerOption = {
+    eventHandlers: {
+        'apply.daterangepicker': function(ev, picker){
+          console.log("applied");
+          $scope.start_date = ev.model.startDate._i;
+          $scope.end_date =  ev.model.endDate._i;
+          $scope.showData("","","",$scope.option_id,$scope.class);
+        },
+        'cancel.daterangepicker': function(ev, picker){
+          $scope.datePicker.date.startDate = null;
+          $scope.datePicker.date.endDate = null;
+        }
+
+    }
+  };
+  
   $scope.showData = function(region_id,city_id,branch_id,option_id,string){
     $scope.show_loading = true;
-    Graphs.category_performance(region_id,city_id,branch_id,option_id).$promise.then(function(performance_data){
+    Graphs.category_performance(region_id,city_id,branch_id,option_id, $scope.start_date, $scope.end_date).$promise.then(function(performance_data){
       $scope.category_data = _.map(performance_data.feedbacks,  function(data,index){
         return {
           id: data.option_id,
@@ -28,7 +53,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
       }
 
     });
-    Graphs.segmentation_rating(region_id,city_id,branch_id,option_id).$promise.then(function(segment_data){
+    Graphs.segmentation_rating(region_id,city_id,branch_id,option_id, $scope.start_date, $scope.end_date).$promise.then(function(segment_data){
       $scope.segments = [];
       $scope.segments_data = _.map(segment_data.segments,  function(data){
         if(data.option_count !== 0){
@@ -54,6 +79,11 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
     });
   };
   $scope.onClick = function(option_id,string){
+    $scope.option_id = option_id;
+    $scope.start_date = null;
+    $scope.end_date = null;
+
+    
     if(string === 'All'){
       $scope.class = "";
       $scope.showData();

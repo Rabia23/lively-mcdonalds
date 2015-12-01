@@ -195,7 +195,8 @@ angular.module('livefeed.chart', [
               fillColor: "#ffffff",
               symbol: "circle",
               radius: 3
-            }
+            },
+            shadowSize: 0
           },
           colors: _.map(labels, function(value, index){
             return Global.childColor(index, parent_color, parent_value);    
@@ -238,7 +239,6 @@ angular.module('livefeed.chart', [
           barShowStroke : false,
           barValueSpacing : 35,
           scaleShowVerticalLines: false
-          //tooltipTemplate: "<%= value %>"
         }
 
      };

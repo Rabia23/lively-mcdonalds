@@ -15,7 +15,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  		<li>\n" +
     "			<div class=\"calender-outer\">\n" +
     "				<span class = \"calendar-holder pull-right\">\n" +
-    "				  <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" />\n" +
+    "				  <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
     "				  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "				</span>\n" +
     "			</div>\n" +
@@ -211,20 +211,23 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "  <div id=\"scrollbox2\" ng-class = \"{loading: lock}\" custom-scroll when-scrolled=\"getMoreComments()\">\n" +
     "    <table class=\"table\">\n" +
     "      <tbody>\n" +
-    "        <tr ng-repeat = \"comment in comments\">\n" +
+    "        <tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.is_negative}\">\n" +
     "          <td class=\"item1\">{{comment.user_name}}</td>\n" +
     "          <td class=\"item2\">\n" +
     "            <a href=\"tel:{{comment.user_phone}}\" class=\"tel\">{{comment.user_phone}}</a>\n" +
     "          </td>\n" +
     "          <td class=\"item3\">{{comment.branch}}</td>\n" +
-    "          <td class=\"item4\">N/A</td>\n" +
+    "          <td class=\"item4\">{{comment.segment}}</td>\n" +
     "          <td class=\"item5\">\n" +
     "          	<span class=\"ico\"></span>\n" +
     "          	<div class=\"text\">\n" +
     "          		{{comment.comment}}\n" +
     "          	</div>\n" +
     "          </td>\n" +
-    "          <td class=\"item6\"><a href=\"#\" class=\"btn btn-info\">Take Action</a></td>\n" +
+    "          <td class=\"item6\">\n" +
+    "            <a style = \"cursor:pointer;\" class=\"btn btn-info\" ng-hide = \"comment.action_taken\" ng-click = \"processComment(comment)\">Process</a>\n" +
+    "            <span ng-show = \"comment.action_taken\">Processed</span>\n" +
+    "          </td>\n" +
     "        </tr>\n" +
     "      </tbody>\n" +
     "    </table>\n" +
@@ -318,7 +321,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "              </li>\n" +
     "            </ul>\n" +
     "\n" +
-    "            <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == true && branch_view == false\">\n" +
+    "            <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == true\">\n" +
     "              <li ng-repeat = \"city in donut_cities_data.objects track by $index\">\n" +
     "                <div class=\"graph-holder\">\n" +
     "                  <div morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\" data-action=\"open(option,selected_region,city,branch)\"></div>\n" +
@@ -328,20 +331,12 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "                </h3>\n" +
     "              </li>\n" +
     "            </ul>\n" +
-    "            <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == false && branch_view == true\">\n" +
+    "            <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == false\">\n" +
     "              <li ng-repeat = \"branch in donut_branches_data.objects track by $index\">\n" +
     "                <div class=\"graph-holder\">\n" +
     "                  <div morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\" data-action=\"open(option,selected_region,selected_city,branch)\"></div>\n" +
     "                </div>\n" +
     "                <h3>{{branch.name}}</h3>\n" +
-    "              </li>\n" +
-    "             </ul>\n" +
-    "             <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == false && branch_view == false\">\n" +
-    "              <li ng-repeat = \"region in action_analysis.objects track by $index\">\n" +
-    "                <div class=\"graph-holder\">\n" +
-    "                  <div morris-chart data-data=\"action_analysis.donutData[$index]\" data-type=\"donut\" data-options=\"action_analysis.donutOptions[$index]\"></div>\n" +
-    "                </div>\n" +
-    "                <h3>{{region.name}}</h3>\n" +
     "              </li>\n" +
     "             </ul>\n" +
     "    	</div>\n" +
