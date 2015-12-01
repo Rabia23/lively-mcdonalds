@@ -81,7 +81,8 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
           verticalHandleClass: 'vertical-handle2',
           horizontalTrackClass: 'horizontal-track2',
           horizontalHandleClass: 'horizontal-handle2',
-          cornerClass: 'corner2'
+          cornerClass: 'corner2',
+          scrollIncrement: 100
         });
         
       }
