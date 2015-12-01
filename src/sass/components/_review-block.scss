@@ -238,10 +238,17 @@
 			td{
 				text-align: center;
 				vertical-align: middle;
-				&.item1{width: 14.5%;}
-				&.item2{width: 13%;}
+				padding-left: 4px;
+				padding-right: 4px;
+				
+				@include media("≥widescreen"){
+					padding-left: 8px;
+					padding-right: 8px;
+				}
+				&.item1{width: 14%;}
+				&.item2{width: 13.5%;}
 				&.item6{
-					width: 15%;
+					width: 12.5%;
 					padding-right: 17px;
 					@include media("≥widescreen"){padding-right: 19px;}
 					a{
@@ -251,9 +258,9 @@
 						@include fontsize(16, 15);
 					}
 				}
-				&.item3,&.item4{width: 10.5%;}
+				&.item3,&.item4{width: 10%;}
 				&.item5{
-					width: 36.5%;
+					width: 39%;
 					text-align: left;
 					padding-left: 20px;
 					padding-right: 10px;

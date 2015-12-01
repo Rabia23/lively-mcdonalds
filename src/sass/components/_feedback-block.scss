@@ -64,7 +64,13 @@
 		
 		@include media("≥widescreen"){padding: 0 20px 10px;}
 		
-		.chart-container{width: 100%;}
+		.holder{width: 100%;}
+		.chart-container{
+			@include media("<desktop"){
+				max-width: 600px;
+				margin: 0 auto;
+			}
+		}
 	}
 }
 .title-list{

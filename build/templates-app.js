@@ -25,7 +25,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  \n" +
     "  <div class=\"progress-container {{class}}\" ng-class=\"{loading: show_loading}\">\n" +
     "  	<ul class=\"list add\">\n" +
-    "		<li ng-repeat = \"dat in category_data\"><a href=\"#\">{{dat.name}}</a></li>\n" +
+    "		<li ng-repeat = \"dat in category_data\">{{dat.name}}</li>\n" +
     "	</ul>\n" +
     "  	<div class=\"main-holder\">\n" +
     "  		<div class=\"holder\">\n" +
@@ -141,7 +141,9 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "      <li class=\"negative\">Not Happy Enough</li>\n" +
     "    </ul>\n" +
     "  	<div class=\"graph-holder\">\n" +
-    "		<canvas id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
+    "		<div class=\"holder\">\n" +
+    "			<canvas id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
+    "		</div>\n" +
     "	  </div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -390,7 +392,7 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "  	<ul>\n" +
     "  		<li ng-repeat = \"concern in data\">\n" +
     "  			<span class=\"bullet\" style = \"background-color: {{concern.color}};\"></span>\n" +
-    "  			<a href=\"#\">{{concern.label}}</a>\n" +
+    "  			{{concern.label}}\n" +
     "  		</li>\n" +
     "  	</ul>\n" +
     "    <div class=\"graph-outer\">\n" +

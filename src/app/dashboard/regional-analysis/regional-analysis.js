@@ -21,14 +21,17 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   $scope.getRegions = function(){
     $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
     $scope.donut_graph_data = [];
+    $scope.show_loading = true;
     if($scope.radioModel === 'Complains'){
       Graphs.action_analysis().$promise.then(function(complains_data){
          $scope.donut_graph_data = chartService.getComplaintsDonutChartData(complains_data);
+         $scope.show_loading = false;
       });
     }
     else{
        Graphs.regional_analysis($scope.question_type).$promise.then(function(data){
           $scope.donut_graph_data = chartService.getDonutChartData(data, $scope.question_type);
+          $scope.show_loading = false;
        });
     }
   };
