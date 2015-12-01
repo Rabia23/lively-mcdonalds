@@ -62,11 +62,12 @@
 
 .map-holder{
 	overflow: hidden;
-	padding: 0 14px 14px;
+	padding: 0 14px 13px;
 	img{
 		display: block;
 		width: 100%;
 	}
+	@include media("≥widescreen"){padding: 0 14px 14px;}
 }
 
 .calendar-holder{
