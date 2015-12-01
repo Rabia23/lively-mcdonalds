@@ -52,8 +52,9 @@ angular.module( 'factories', [
                     }
                   },
                   segmentation_rating:{method: "JSONP",isArray: false, params: {endpoint: "segmentation_rating"}},
-                  action_taken:{method: "JSONP",isArray: false, params: {endpoint: "action_taken"}}
+                  action_taken:{method: "JSONP",isArray: false, params: {endpoint: "action_taken"}},
 
+                  action_analysis: {method: "JSONP",isArray: false, params: {endpoint: "action_analysis"}}
                  });
   }
 
@@ -129,6 +130,14 @@ angular.module( 'factories', [
     start_date = start_date || "";
     end_date = end_date || "";
     return this.service.segmentation_rating({region: region_id, city: city_id, branch: branch_id, option: option_id, date_from: start_date, date_to: end_date});
+  };
+  Graphs.prototype.action_analysis = function(type_id, date_from, date_to, region_id, city_id){
+    type_id = type_id || "";
+    date_from = date_from || "";
+    date_to = date_to || "";
+    region_id = region_id || "";
+    city_id = city_id || "";
+    return this.service.action_analysis({type: type_id, date_from: date_from, date_to: date_to, region: region_id, city:city_id});
   };
 
   return new Graphs();
