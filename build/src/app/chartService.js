@@ -39,6 +39,22 @@ angular.module('livefeed.chart', [
        };
     },
 
+    getComplaintsDonutChartData: function(graph_data){
+      return {
+        objects: _.map(graph_data.analysis,  function(data){ return {name: data.object.name, id: data.object.id};}),
+        donutData: _.map(graph_data.analysis,  function(data){
+          return   _.map(data.data.action_analysis,  function(dat){ return {label: dat.action_taken === false ? "Unprocessed" : "Processed", value: dat.count};});
+        }),
+        donutOptions: _.map(graph_data.analysis,  function(data){
+          return   {
+              colors: _.map(data.data.action_analysis, function(dat){
+                return dat.action_taken === false? '#e73a3a' : '#01ad0f';
+              })
+            };
+        })
+      };
+    },
+
     getLineChart: function(graph_data, parent_color, parent_value){
 
 

@@ -7,8 +7,8 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 .controller( 'RegionalAnalysisCtrl', function DashboardController( $scope, _, Graphs, chartService, $uibModal ) {
   
   $scope.regional_view = true;
-
   $scope.city_view = false;
+  $scope.branch_view = false;
 
   $scope.radioModel = 'QSC';
 
@@ -27,13 +27,12 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     });
   };
 
-
-
   $scope.getRegionCities = function(region){
     $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
     $scope.selected_region = region;
     $scope.regional_view = false;
     $scope.city_view = true;
+    $scope.branch_view = false;
     $scope.show_loading = true;
     $scope.donut_cities_data = [];
     Graphs.city_analysis(region.id, $scope.question_type).$promise.then(function(data){
@@ -45,6 +44,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   $scope.getCityBranches = function(city){
     $scope.selected_city = city;
     $scope.city_view = false;
+    $scope.branch_view = true;
     $scope.show_loading = true;
     $scope.donut_branches_data = [];
     Graphs.branch_analysis(city.id, $scope.question_type).$promise.then(function(data){
@@ -70,26 +70,40 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.showChart(region, 'cities');
   };
 
-  $scope.showChart = function(object_id, string){
+  $scope.getComplains = function(){
+    $scope.regional_view = false;
+    $scope.city_view = false;
+    $scope.branch_view = false;
+    $scope.show_loading = true;
+    Graphs.action_analysis().$promise.then(function(complains_data){
+      $scope.action_analysis = chartService.getComplaintsDonutChartData(complains_data);
+      $scope.show_loading = false;
+    });
+  };
 
-    $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
-    if(string === 'regions'){
-      if($scope.regional_view === true){
-        $scope.getRegions();
-      }
-      else if($scope.city_view === true){
-        $scope.getRegionCities($scope.selected_region);
-      }
-      else{
-        $scope.getCityBranches($scope.selected_city);
-      }
-      
-    }
-    else if(string === 'cities'){
-      $scope.getRegionCities(object_id);
+  $scope.showChart = function(object_id, string){
+    if($scope.radioModel === 'Complains'){
+      console.log($scope.radioModel);
+      $scope.getComplains();
     }
     else{
-      $scope.getCityBranches(object_id);
+      $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
+      if(string === 'regions'){
+        if($scope.regional_view === true){
+          $scope.getRegions();
+        }
+        else if($scope.city_view === true){
+          $scope.getRegionCities($scope.selected_region);
+        }
+        else{
+          $scope.getCityBranches($scope.selected_city);
+        }
+
+      }
+      else if(string === 'cities'){
+        $scope.getRegionCities(object_id);}
+      else{
+        $scope.getCityBranches(object_id);}
     }
     
   };
