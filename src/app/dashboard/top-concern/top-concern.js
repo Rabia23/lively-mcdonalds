@@ -40,7 +40,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
             "selector": "#bubble-chart",
             "data": data,
             "chart_width": 620,
-            "chart_height": 400,
+            "chart_height": 320,
             "background_color": "#FFFFFF",
             "color_mode": "color",
             "chart_color": ["#BFA66E"],
@@ -65,6 +65,8 @@ angular.module( 'livefeed.dashboard.top_concern', [
           _.each($("circle"), function(value, index){
             $(value).attr("fill", colors[index]);
           });
+
+          $("#bubble-chart").find("svg")[0].setAttribute("viewBox", "25 40 550 300");
 
         }
       });

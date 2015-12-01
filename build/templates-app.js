@@ -379,12 +379,6 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "<div class=\"rating-section\" ng-class = \"{loading: show_loading}\">\n" +
     "  <header class=\"heading-block\">\n" +
     "    <h2>Customers Top 5 Concerns</h2>\n" +
-    "<!--     <div class=\"calender-outer\">\n" +
-    "  		<span class = \"calendar-holder pull-right\">\n" +
-    "  		  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" />\n" +
-    "  		  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
-    "  		</span>\n" +
-    "	  </div> -->\n" +
     "  </header>\n" +
     "  <div class=\"rating-holder\">\n" +
     "  	<ul>\n" +
@@ -393,7 +387,7 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "  			<a href=\"#\">{{concern.label}}</a>\n" +
     "  		</li>\n" +
     "  	</ul>\n" +
-    "    <div class=\"graph-outer\">\n" +
+    "    <div class=\"graph-outer bubble-chart-parent\">\n" +
     "      <div id=\"bubble-chart\" pyk-chart data-data = \"data\" data-colors = \"colors\"></div>\n" +
     "    </div>\n" +
     "  </div>\n" +

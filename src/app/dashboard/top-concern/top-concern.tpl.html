@@ -1,12 +1,6 @@
 <div class="rating-section" ng-class = "{loading: show_loading}">
   <header class="heading-block">
     <h2>Customers Top 5 Concerns</h2>
-<!--     <div class="calender-outer">
-  		<span class = "calendar-holder pull-right">
-  		  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" />
-  		  <i class="glyphicon glyphicon-calendar" map-range-click></i>
-  		</span>
-	  </div> -->
   </header>
   <div class="rating-holder">
   	<ul>
@@ -15,7 +9,7 @@
   			<a href="#">{{concern.label}}</a>
   		</li>
   	</ul>
-    <div class="graph-outer">
+    <div class="graph-outer bubble-chart-parent">
       <div id="bubble-chart" pyk-chart data-data = "data" data-colors = "colors"></div>
     </div>
   </div>
