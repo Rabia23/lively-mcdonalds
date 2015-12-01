@@ -86,19 +86,25 @@ angular.module( 'factories', [
   Graphs.prototype.overall_feedback = function(date_from, date_to){
     return this.service.overall_feedback({date_from: date_from, date_to: date_to});
   };
-  Graphs.prototype.regional_analysis = function(question_type){
+  Graphs.prototype.regional_analysis = function(question_type, start_date, end_date){
     question_type = question_type || 1;
-    return this.service.feedback_analysis({question_type: question_type});
+    start_date = start_date || "";
+    end_date = end_date || "";
+    return this.service.feedback_analysis({question_type: question_type, date_from: start_date, date_to: end_date});
   };
-  Graphs.prototype.city_analysis = function(region_id, question_type){
+  Graphs.prototype.city_analysis = function(region_id, question_type, start_date, end_date){
     question_type = question_type || 1;
     region_id = region_id || "";
-    return this.service.feedback_analysis({type: 2, region: region_id, question_type: question_type});
+    start_date = start_date || "";
+    end_date = end_date || "";
+    return this.service.feedback_analysis({type: 2, date_from: start_date, date_to: end_date, region: region_id, question_type: question_type});
   };
-  Graphs.prototype.branch_analysis = function(city_id, question_type){
+  Graphs.prototype.branch_analysis = function(city_id, question_type, start_date, end_date){
     question_type = question_type || 1;
     city_id = city_id || "";
-    return this.service.feedback_analysis({type: 3, city: city_id, question_type: question_type});
+    start_date = start_date || "";
+    end_date = end_date || "";
+    return this.service.feedback_analysis({type: 3, date_from: start_date, date_to: end_date, city: city_id, question_type: question_type});
   };
   Graphs.prototype.category_performance = function(region_id, city_id, branch_id, option_id, start_date, end_date){
     region_id = region_id || "";
@@ -131,7 +137,7 @@ angular.module( 'factories', [
     end_date = end_date || "";
     return this.service.segmentation_rating({region: region_id, city: city_id, branch: branch_id, option: option_id, date_from: start_date, date_to: end_date});
   };
-  Graphs.prototype.action_analysis = function(type_id, date_from, date_to, region_id, city_id){
+  Graphs.prototype.action_analysis = function(type_id, region_id, city_id, date_from, date_to){
     type_id = type_id || "";
     date_from = date_from || "";
     date_to = date_to || "";

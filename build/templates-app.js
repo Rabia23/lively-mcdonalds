@@ -292,7 +292,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "		  	  	<li>\n" +
     "		  	  		<div class=\"calender-outer\">\n" +
     "					<span class = \"calendar-holder\">\n" +
-    "					  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" />\n" +
+    "					  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
     "					  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "					</span>\n" +
     "				  </div>\n" +
