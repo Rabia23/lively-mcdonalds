@@ -8,7 +8,6 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   
   $scope.regional_view = true;
   $scope.city_view = false;
-  $scope.branch_view = false;
 
   $scope.radioModel = 'QSC';
 
@@ -22,9 +21,16 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   $scope.getRegions = function(){
     $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
     $scope.donut_graph_data = [];
-    Graphs.regional_analysis($scope.question_type).$promise.then(function(data){
-      $scope.donut_graph_data = chartService.getDonutChartData(data, $scope.question_type);
-    });
+    if($scope.radioModel === 'Complains'){
+      Graphs.action_analysis().$promise.then(function(complains_data){
+         $scope.donut_graph_data = chartService.getComplaintsDonutChartData(complains_data);
+      });
+    }
+    else{
+       Graphs.regional_analysis($scope.question_type).$promise.then(function(data){
+          $scope.donut_graph_data = chartService.getDonutChartData(data, $scope.question_type);
+       });
+    }
   };
 
   $scope.getRegionCities = function(region){
@@ -32,25 +38,39 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.selected_region = region;
     $scope.regional_view = false;
     $scope.city_view = true;
-    $scope.branch_view = false;
     $scope.show_loading = true;
     $scope.donut_cities_data = [];
-    Graphs.city_analysis(region.id, $scope.question_type).$promise.then(function(data){
-      $scope.donut_cities_data = chartService.getDonutChartData(data, $scope.question_type);
-      $scope.show_loading = false;
-    });
+    if($scope.radioModel === 'Complains'){
+      Graphs.action_analysis(2,"","",region.id).$promise.then(function(complains_data){
+         $scope.donut_cities_data = chartService.getComplaintsDonutChartData(complains_data);
+         $scope.show_loading = false;
+      });
+    }
+    else {
+      Graphs.city_analysis(region.id, $scope.question_type).$promise.then(function(data){
+        $scope.donut_cities_data = chartService.getDonutChartData(data, $scope.question_type);
+        $scope.show_loading = false;
+      });
+    }
   };
 
   $scope.getCityBranches = function(city){
     $scope.selected_city = city;
     $scope.city_view = false;
-    $scope.branch_view = true;
     $scope.show_loading = true;
     $scope.donut_branches_data = [];
-    Graphs.branch_analysis(city.id, $scope.question_type).$promise.then(function(data){
-      $scope.donut_branches_data = chartService.getDonutChartData(data, $scope.question_type);
-      $scope.show_loading = false;
-    });
+    if($scope.radioModel === 'Complains'){
+      Graphs.action_analysis(3,"","","",city.id).$promise.then(function(complains_data){
+         $scope.donut_branches_data  = chartService.getComplaintsDonutChartData(complains_data);
+         $scope.show_loading = false;
+      });
+    }
+    else {
+      Graphs.branch_analysis(city.id, $scope.question_type).$promise.then(function (data) {
+        $scope.donut_branches_data = chartService.getDonutChartData(data, $scope.question_type);
+        $scope.show_loading = false;
+      });
+    }
   };
 
   $scope.backToRegions = function(){
@@ -70,24 +90,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.showChart(region, 'cities');
   };
 
-  $scope.getComplains = function(){
-    $scope.regional_view = false;
-    $scope.city_view = false;
-    $scope.branch_view = false;
-    $scope.show_loading = true;
-    Graphs.action_analysis().$promise.then(function(complains_data){
-      $scope.action_analysis = chartService.getComplaintsDonutChartData(complains_data);
-      $scope.show_loading = false;
-    });
-  };
-
   $scope.showChart = function(object_id, string){
-    if($scope.radioModel === 'Complains'){
-      console.log($scope.radioModel);
-      $scope.getComplains();
-    }
-    else{
-      $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
       if(string === 'regions'){
         if($scope.regional_view === true){
           $scope.getRegions();
@@ -104,7 +107,6 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
         $scope.getRegionCities(object_id);}
       else{
         $scope.getCityBranches(object_id);}
-    }
     
   };
 

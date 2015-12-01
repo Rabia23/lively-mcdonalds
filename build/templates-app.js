@@ -318,7 +318,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "              </li>\n" +
     "            </ul>\n" +
     "\n" +
-    "            <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == true && branch_view == false\">\n" +
+    "            <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == true\">\n" +
     "              <li ng-repeat = \"city in donut_cities_data.objects track by $index\">\n" +
     "                <div class=\"graph-holder\">\n" +
     "                  <div morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\" data-action=\"open(option,selected_region,city,branch)\"></div>\n" +
@@ -328,20 +328,12 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "                </h3>\n" +
     "              </li>\n" +
     "            </ul>\n" +
-    "            <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == false && branch_view == true\">\n" +
+    "            <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == false\">\n" +
     "              <li ng-repeat = \"branch in donut_branches_data.objects track by $index\">\n" +
     "                <div class=\"graph-holder\">\n" +
     "                  <div morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\" data-action=\"open(option,selected_region,selected_city,branch)\"></div>\n" +
     "                </div>\n" +
     "                <h3>{{branch.name}}</h3>\n" +
-    "              </li>\n" +
-    "             </ul>\n" +
-    "             <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == false && branch_view == false\">\n" +
-    "              <li ng-repeat = \"region in action_analysis.objects track by $index\">\n" +
-    "                <div class=\"graph-holder\">\n" +
-    "                  <div morris-chart data-data=\"action_analysis.donutData[$index]\" data-type=\"donut\" data-options=\"action_analysis.donutOptions[$index]\"></div>\n" +
-    "                </div>\n" +
-    "                <h3>{{region.name}}</h3>\n" +
     "              </li>\n" +
     "             </ul>\n" +
     "    	</div>\n" +
