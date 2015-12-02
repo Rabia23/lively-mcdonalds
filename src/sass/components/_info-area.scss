@@ -246,9 +246,7 @@
 		@include media("≥widescreen"){width: 16.666%;}
 	}
 	h3{
-		a{
-			color: $storm-dust2;
-		}
+		a{color: $storm-dust2;}
 	}
 	.graph-holder{
 		overflow: hidden;
