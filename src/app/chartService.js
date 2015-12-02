@@ -19,7 +19,6 @@ angular.module('livefeed.chart', [
         }),
         donutOptions: _.map(graph_data.analysis,  function(data){
           return   {
-              xkey: "year",
               colors: _.map(data.data.feedbacks, function(dat){
                 return (question_type == 1) ? Global.mainRatingColorScheme[dat.option__text] : Global.optionsColorScheme[dat.option__text];
               })
@@ -28,13 +27,13 @@ angular.module('livefeed.chart', [
       };
     },
 
-    getSubDonutChartData: function(graph_data){
+    getSubDonutChartData: function(graph_data,string){
       return {
           donutData: _.map(graph_data.feedbacks,  function(data){
             return {label: data.option__text, value: data.count};
           }),
-          donutOptions: _.map(graph_data.feedbacks,  function(data){
-            return {color: '#e73a3a'};
+          donutOptions: _.map(graph_data.feedbacks,  function(data,index){
+            return Global.categoryPerformanceChildCholorScheme[string][index];
           })
        };
     },

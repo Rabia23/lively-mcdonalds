@@ -77,6 +77,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   };
 
   $scope.getCityBranches = function(city){
+    $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
     $scope.selected_city = city;
     $scope.city_view = false;
     $scope.show_loading = true;
@@ -157,9 +158,8 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   $scope.showGraph = function(region, city, branch, option){
     Graphs.feedback_analysis_breakdown(region.id,city.id,branch.id,option.id).$promise.then(function(data){
-      $scope.donut_subgraph_data = chartService.getSubDonutChartData(data);
+      $scope.donut_subgraph_data = chartService.getSubDonutChartData(data,option.label);
     });
-
   };
   $scope.question_type = 2;
 
@@ -328,7 +328,6 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
         func = new Function('y', 'data', options.formatter);
         options.formatter = func;
       }
-
       morris_chart = new Morris.Donut(options);
       morris_chart.on('click', function(i, row){
           scope.$apply(scope.action({option: row}));
@@ -359,20 +358,17 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
         scope.$watch('data', function(watchedData) {
           if(watchedData !== undefined){
-            var data, func, options, type;
+            var data, func, options, type, option_array;
             data = scope.data;
             type = scope.type;
-
             options = angular.extend({
               element: ele[0],
               data: data
-            }, scope.options);
-
+            }, {"colors":scope.options});
             if (options.formatter) {
               func = new Function('y', 'data', options.formatter);
               options.formatter = func;
             }
-
             $(".modal-body").find("svg").remove();
 
             morris_chart_modal = new Morris.Donut(options);
