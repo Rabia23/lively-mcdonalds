@@ -5,7 +5,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 ])
 
 .controller( 'RegionalAnalysisCtrl', function DashboardController( $scope, _, Graphs, chartService, $uibModal ) {
-  
+
   $scope.regional_view = true;
   $scope.city_view = false;
 
@@ -41,7 +41,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
     $scope.donut_graph_data = [];
     $scope.show_loading = true;
-    if($scope.radioModel === 'Complains'){
+    if($scope.radioModel === 'Complaints'){
       Graphs.action_analysis("", "", "", $scope.start_date, $scope.end_date).$promise.then(function(complains_data){
          $scope.donut_graph_data = chartService.getComplaintsDonutChartData(complains_data);
          $scope.show_loading = false;
@@ -62,7 +62,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.city_view = true;
     $scope.show_loading = true;
     $scope.donut_cities_data = [];
-    if($scope.radioModel === 'Complains'){
+    if($scope.radioModel === 'Complaints'){
       Graphs.action_analysis(2, region.id, "", $scope.start_date, $scope.end_date).$promise.then(function(complains_data){
          $scope.donut_cities_data = chartService.getComplaintsDonutChartData(complains_data);
          $scope.show_loading = false;
@@ -82,7 +82,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.city_view = false;
     $scope.show_loading = true;
     $scope.donut_branches_data = [];
-    if($scope.radioModel === 'Complains'){
+    if($scope.radioModel === 'Complaints'){
       Graphs.action_analysis(3, "", city.id, $scope.start_date, $scope.end_date).$promise.then(function(complains_data){
          $scope.donut_branches_data  = chartService.getComplaintsDonutChartData(complains_data);
          $scope.show_loading = false;
@@ -113,7 +113,14 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.showChart(region, 'cities');
   };
 
+  $scope.showTitle = function(radioModel){
+    if(radioModel === 'Rating'){$scope.title = 'Patch Feedback Analysis';}
+    else if(radioModel === 'QSC'){$scope.title = 'Patch QSC Analysis';}
+    else if(radioModel === 'Complaints'){$scope.title = 'Patch Complaint Analysis';}
+  };
+
   $scope.showChart = function(object_id, string){
+      $scope.showTitle($scope.radioModel);
       $scope.object_id = object_id;
       $scope.string = string;
       if(string === 'regions'){

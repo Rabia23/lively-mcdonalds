@@ -297,20 +297,17 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "<div class=\"section-holder\" >\n" +
     "  <div class=\"info-area\" ng-class=\"{loading: show_loading}\">\n" +
     "    <div class=\"heading-holder\">\n" +
-    "    	<h2 ng-show = \"regional_view\">\n" +
-    "    		Patch Analysis\n" +
-    "    		<span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
-    "    	</h2>\n" +
-    "		<h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis <span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span></h2>\n" +
-    "		<h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}} City Branch Analysis <span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span></h2>\n" +
+    "    	<h2 ng-show = \"regional_view\">{{title}}</h2>\n" +
+    "		<h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}}'s City Analysis</h2>\n" +
+    "		<h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}}'s Branch Analysis</h2>\n" +
     "    	<div class=\"btn-group pull-right\">\n" +
     "		  	  <ul>\n" +
-    "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Complains'\" ng-click = \"showChart(null, 'regions')\" uib-tooltip=\"Click to View Overall Feedback Analysis\">Complains</label></li>\n" +
-    "		  	  	<li> <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'regions')\" uib-tooltip=\"Click to View Complain Resolution Analysis\">Rating</label></li>\n" +
-    "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'regions')\" uib-tooltip=\"Click to View Overall QSC Analysis\">QSC</label></li>\n" +
+    "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Complaints'\" ng-click = \"showChart(null, 'regions')\">Complaints</label></li>\n" +
+    "		  	  	<li> <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'regions')\">Rating</label></li>\n" +
+    "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'regions')\">QSC</label></li>\n" +
     "		  	  	<li>\n" +
     "		  	  		<div class=\"calender-outer\">\n" +
-    "					<span class = \"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
+    "					<span class = \"calendar-holder\">\n" +
     "					  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
     "					  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "					</span>\n" +
