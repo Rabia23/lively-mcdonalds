@@ -258,7 +258,11 @@
 						@include fontsize(16, 15);
 					}
 				}
-				&.item3,&.item4{width: 10%;}
+				&.item3,&.item4{
+					width: 10%;
+					word-break: normal;
+					word-wrap: break-word;
+				}
 				&.item5{
 					width: 39%;
 					text-align: left;

@@ -24,22 +24,22 @@
 			margin-bottom: -1px;
 			
 			
-			@include media("<tablet"){width: 20%;}
+			@include media("<tablet"){
+				width: 20%;
+				&:first-child{
+					.btn{
+						border-left: 0;
+						&:hover,
+						&:active,
+						&:focus,
+						&.active{border-left: 0;}
+					}
+				}
+			}
 			@include media("<phone"){
 				width: 23%;
 				
-				&:first-child{
-					width: 15%;
-					@include media("<tablet"){
-						.btn{
-							border-left: 0;
-							&:hover,
-							&:active,
-							&:focus,
-							&.active{border-left: 0;}
-						}
-					}
-				}
+				&:first-child{width: 15%;}
 				&:last-child{width: 16%;}
 			}
 			
@@ -60,7 +60,7 @@
 				@include media("≥tablet"){
 					font-size: 16px;
 					line-height: 22px;
-					padding: 16px 15px;
+					padding: 17px 15px;
 				}
 
 				@include media("≥desktop"){padding: 19px 20px;}
@@ -89,7 +89,7 @@
 				}
 				
 				.calendar-holder{
-					padding: 10px 18px 9px;
+					padding: 9px 18px;
 					
 					@include media("<tablet"){
 						float: none !important;
