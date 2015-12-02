@@ -57,6 +57,12 @@ angular.module( 'helper_factories', ['ngResource'])
       "Service": 2
     },
 
+    qscSubCategoriesPriority:{
+      "Cleanliness": {"Flies":4, "Lobby Temperature":5, "Music":6, "Lobby":2, "Rest Rooms":3, "Employees":1},
+      "Quality": {"Fries":3, "Taste":2, "Coffee Quality":5, "Buns Quality":4, "Ice Cream Quality":6, "Not Fresh":1},
+      "Service": {"Employee Attentiveness":1, "Wrong Order":3, "Speed of Service":2, "Missing Order":4}
+    },
+
     overallFeedbackPriority: {
       "Few concerns": 3,
       "Not happy enough": 4,

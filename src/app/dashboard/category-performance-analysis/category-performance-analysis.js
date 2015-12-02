@@ -43,11 +43,11 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
           complaints: data.count,
           percentage: Math.round((data.count/performance_data.feedback_count)*100),
           colour: option_id == null? Global.categoryPerformanceClass[data.option__text] : Global.categoryPerformanceChildCholorScheme[string][index],
-          priority:  option_id == null? Global.qscPriority[data.option__text] : " "
+          priority:  option_id == null? Global.qscPriority[data.option__text] : Global.qscSubCategoriesPriority[string][data.option__text]
         };
       });
+      $scope.category_data = _.sortBy( $scope.category_data, function(value){ return value.priority; });
       if( option_id == null){
-        $scope.category_data = _.sortBy( $scope.category_data, function(value){ return value.priority; });
         $scope.QualityID = $scope.category_data[0].id;
         $scope.ServiceID = $scope.category_data[1].id;
         $scope.CleanlinessID = $scope.category_data[2].id;
@@ -58,9 +58,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
 
   $scope.showSegmentData = function(region_id,city_id,branch_id,option_id,string) {
     Graphs.segmentation_rating(region_id, city_id, branch_id, option_id, $scope.start_date, $scope.end_date).$promise.then(function (segment_data) {
-      $scope.segments = [];
-      $scope.segments_data = _.map(segment_data.segments, function (data) {
-        if (data.option_count !== 0) {
+      $scope.segments = _.map(segment_data.segments, function (data) {
           return {
             name: data.segment,
             segment_data: _.map(data.option_data, function (dat) {
@@ -68,23 +66,21 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
                 return {
                   percentage: Math.round((dat.count / data.option_count) * 100),
                   complaints: dat.count,
-                  class: Global.segmentationClass[dat.option__text]
+                  class: Global.segmentationClass[dat.option__text],
+                  priority: option_id == null? Global.qscPriority[dat.option__text] : Global.qscSubCategoriesPriority[string][dat.option__text]
                 };
               }
             }),
             priority: Global.segmentationPriority[data.segment]
           };
-        }
       });
-      _.map($scope.segments_data, function (data) {
-        if (data !== undefined) {
+      _.map($scope.segments, function (data) {
           data.segment_data = _.reject(data.segment_data, function (dat) {
             return dat === undefined;
           });
-          $scope.segments.push(data);
-        }
       });
       $scope.segments = _.sortBy($scope.segments, function (value) {
+        value.segment_data = _.sortBy(value.segment_data, function (data) {return data.priority;});
         return value.priority;
       });
       $scope.show_loading = false;

@@ -18,18 +18,37 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   $scope.today = new Date();
 
+  $scope.start_date = null;
+  $scope.end_date = null;
+
+  $scope.datePickerOption = {
+    eventHandlers: {
+        'apply.daterangepicker': function(ev, picker){
+          console.log("applied");
+          $scope.start_date = ev.model.startDate._i;
+          $scope.end_date =  ev.model.endDate._i;
+          $scope.showChart($scope.object_id, $scope.string);
+        },
+        'cancel.daterangepicker': function(ev, picker){
+          $scope.datePicker.date.startDate = null;
+          $scope.datePicker.date.endDate = null;
+        }
+
+    }
+  };
+
   $scope.getRegions = function(){
     $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
     $scope.donut_graph_data = [];
     $scope.show_loading = true;
     if($scope.radioModel === 'Complains'){
-      Graphs.action_analysis().$promise.then(function(complains_data){
+      Graphs.action_analysis("", "", "", $scope.start_date, $scope.end_date).$promise.then(function(complains_data){
          $scope.donut_graph_data = chartService.getComplaintsDonutChartData(complains_data);
          $scope.show_loading = false;
       });
     }
     else{
-       Graphs.regional_analysis($scope.question_type).$promise.then(function(data){
+       Graphs.regional_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function(data){
           $scope.donut_graph_data = chartService.getDonutChartData(data, $scope.question_type);
           $scope.show_loading = false;
        });
@@ -44,13 +63,13 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.show_loading = true;
     $scope.donut_cities_data = [];
     if($scope.radioModel === 'Complains'){
-      Graphs.action_analysis(2,"","",region.id).$promise.then(function(complains_data){
+      Graphs.action_analysis(2, region.id, "", $scope.start_date, $scope.end_date).$promise.then(function(complains_data){
          $scope.donut_cities_data = chartService.getComplaintsDonutChartData(complains_data);
          $scope.show_loading = false;
       });
     }
     else {
-      Graphs.city_analysis(region.id, $scope.question_type).$promise.then(function(data){
+      Graphs.city_analysis(region.id, $scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function(data){
         $scope.donut_cities_data = chartService.getDonutChartData(data, $scope.question_type);
         $scope.show_loading = false;
       });
@@ -63,13 +82,13 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.show_loading = true;
     $scope.donut_branches_data = [];
     if($scope.radioModel === 'Complains'){
-      Graphs.action_analysis(3,"","","",city.id).$promise.then(function(complains_data){
+      Graphs.action_analysis(3, "", city.id, $scope.start_date, $scope.end_date).$promise.then(function(complains_data){
          $scope.donut_branches_data  = chartService.getComplaintsDonutChartData(complains_data);
          $scope.show_loading = false;
       });
     }
     else {
-      Graphs.branch_analysis(city.id, $scope.question_type).$promise.then(function (data) {
+      Graphs.branch_analysis(city.id, $scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function (data) {
         $scope.donut_branches_data = chartService.getDonutChartData(data, $scope.question_type);
         $scope.show_loading = false;
       });
@@ -94,57 +113,40 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   };
 
   $scope.showChart = function(object_id, string){
+      $scope.object_id = object_id;
+      $scope.string = string;
       if(string === 'regions'){
-        if($scope.regional_view === true){
-          $scope.getRegions();
-        }
-        else if($scope.city_view === true){
-          $scope.getRegionCities($scope.selected_region);
-        }
-        else{
-          $scope.getCityBranches($scope.selected_city);
-        }
-
+        if($scope.regional_view === true){ $scope.getRegions();}
+        else if($scope.city_view === true){ $scope.getRegionCities($scope.selected_region);}
+        else{ $scope.getCityBranches($scope.selected_city);}
       }
-      else if(string === 'cities'){
-        $scope.getRegionCities(object_id);}
-      else{
-        $scope.getCityBranches(object_id);}
+      else if(string === 'cities'){ $scope.getRegionCities(object_id);
+      }
+      else{ $scope.getCityBranches(object_id);
+      }
     
   };
 
   $scope.showChart(null, 'regions');
 
   $scope.open = function(option,region,city,branch){
-    if (city === undefined){
-      city = null;
+    if (city === undefined){ city = null;
     }
-    if (branch === undefined){
-      branch = null;
+    if (branch === undefined){ branch = null;
     }
     if($scope.radioModel === 'QSC'){
-        var modalInstance = $uibModal.open({
+      var modalInstance = $uibModal.open({
         templateUrl: 'dashboard/regional-analysis/sqc-modal.tpl.html',
         controller: 'SQCModalCtrl',
         size: 1000,
         resolve: {
-          region: function () {
-            return region;
-          },
-          city: function () {
-            return city;
-          },
-          branch: function () {
-            return branch;
-          },
-          option: function() {
-              return option;
-          }
-      }
-
+          region: function () {return region;},
+          city: function () {return city;},
+          branch: function () {return branch;},
+          option: function() {return option;}
+        }
       });
     }
-
   };
   
 })

@@ -50,6 +50,8 @@
 					display: block;
 					width: 100%;
 					text-align: center;
+					
+					.date-picker{width: 100% !important;}
 
 					i{
 						float: none !important;
@@ -57,7 +59,7 @@
 					}
 				}
 
-				@include media("≥tablet"){padding: 17px 15px;}
+				@include media("≥tablet"){padding: 18px 15px;}
 				@include media("≥desktop"){padding: 19px 18px 20px;}
 				@include media("≥widescreen"){padding: 21px 20px;}
 			}
@@ -136,7 +138,7 @@
 			@include media("≥tablet"){
 				font-size: 16px;
 				line-height: 22px;
-				padding: 16px 30px;
+				padding: 17px 30px;
 			}
 			
 			@include media("≥desktop"){padding: 19px 30px;}
