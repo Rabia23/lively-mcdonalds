@@ -96,12 +96,11 @@ angular.module( 'livefeed.dashboard.overall_rating', [
     var option = $scope.labels[item.seriesIndex];
     var date = $scope.dates[item.dataIndex];
     if(option.parent_id == null){
-      $scope.type = "1";
       var parent_color = option.color;
       var parent_value = option.value;
       $scope.show_loading = true;
       resetDates();
-      Graphs.feedback_segmentation(date, option.id).$promise.then(function(data){
+      Graphs.feedback_segmentation(date, option.id, $scope.type).$promise.then(function(data){
         $scope.show_loading = false;
         $scope.mainView = false;
         $scope.line1 = chartService.getSegmentLineChart(data, parent_color, parent_value);
@@ -114,7 +113,6 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
   $scope.labelClick = function(option){
     if(option.parent_id == null){
-      $scope.type = "1";
       $scope.show_loading = true;
       Graphs.overall_rating($scope.type, option.id).$promise.then(function(data){
         $scope.show_loading = false;
@@ -130,7 +128,6 @@ angular.module( 'livefeed.dashboard.overall_rating', [
   };
 
   $scope.backToMain = function(){
-    $scope.type = "1";
     mainRating();
     resetDates();
   };

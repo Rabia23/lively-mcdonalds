@@ -71,9 +71,9 @@ angular.module( 'factories', [
     return this.service.top_concerns();
   };
 
-  Graphs.prototype.feedback_segmentation = function(date, option_id, date_from, date_to){
+  Graphs.prototype.feedback_segmentation = function(date, option_id, type){
     date = date || "";
-    return this.service.feedback_segmentation({date: date, option: option_id, date_from: date_from, date_to: date_to});
+    return this.service.feedback_segmentation({date_to: date, option: option_id, type: type});
   };
 
   Graphs.prototype.map_view = function(date_to, date_from){
