@@ -227,7 +227,7 @@ angular.module('livefeed.chart', [
       };
     },
 
-    getBarChartData: function(graph_data){
+    getBarChartData: function(graph_data,max){
       return {
         labels : _.map(graph_data.feedbacks, function(data){return data.option__text;}),
         data: [_.map(graph_data.feedbacks,  function(data){return data.count;})],
@@ -238,7 +238,10 @@ angular.module('livefeed.chart', [
           barShowStroke : false,
           barValueSpacing : 35,
           scaleShowVerticalLines: false,
-          tooltipTemplate: "<%= value %>"
+          tooltipTemplate: "<%= value %>",
+          scaleOverride: true,
+          scaleSteps: 8,
+          scaleStepWidth: Math.ceil(max/8)
         }
 
      };

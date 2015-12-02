@@ -7,16 +7,16 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "\n" +
     "  <div class=\"heading-holder\">\n" +
     "  	<h2>Business Segment Breakdown\n" +
-    "			<i class=\"glyphicon glyphicon-question-sign\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></i>\n" +
-    "		</h2>\n" +
+    "  		<span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
+    "	</h2>\n" +
     "  	<ul>\n" +
-    "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == ''}\" ng-click = \"onClick(null, 'All')\" uib-tooltip=\"Get All feedback\" >All</a></li>\n" +
-    "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == 'Quality'}\" ng-click = \"onClick(QualityID, 'Quality')\">Quality</a></li>\n" +
-    "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == 'Service'}\" ng-click = \"onClick(ServiceID, 'Service')\">Service</a></li>\n" +
-    "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == 'Cleanliness'}\" ng-click = \"onClick(CleanlinessID, 'Cleanliness')\">Cleanliness</a></li>\n" +
+    "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == ''}\" ng-click = \"onClick(null, 'All')\" uib-tooltip=\"Click to view QSC Segmentation Breakdown\" >All</a></li>\n" +
+    "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == 'Quality'}\" ng-click = \"onClick(QualityID, 'Quality')\" uib-tooltip=\"Click to View Quality SubCategories Breakdown\">Quality</a></li>\n" +
+    "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == 'Service'}\" ng-click = \"onClick(ServiceID, 'Service')\" uib-tooltip=\"Click to view Service SubCategories Breakdown\">Service</a></li>\n" +
+    "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == 'Cleanliness'}\" ng-click = \"onClick(CleanlinessID, 'Cleanliness')\" uib-tooltip=\"Click to view Cleanliness SubCategories Breakdown\">Cleanliness</a></li>\n" +
     "  		<li>\n" +
     "			<div class=\"calender-outer\">\n" +
-    "				<span class = \"calendar-holder pull-right\">\n" +
+    "				<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
     "				  <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
     "				  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "				</span>\n" +
@@ -101,9 +101,12 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "<div class=\"info-block\">\n" +
     "  <div class=\"info-box\">\n" +
     "    <div class=\"heading\">\n" +
-    "      <h2>Benchmark Map</h2>\n" +
+    "      <h2>\n" +
+    "      	Benchmark Map\n" +
+    "      	<span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
+    "      </h2>\n" +
     "      <div class=\"calender-outer\">\n" +
-    "        	<span class = \"calendar-holder pull-right\">\n" +
+    "        	<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
     "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
     "			  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "			</span>\n" +
@@ -129,12 +132,15 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "<div class=\"feedback-block\">\n" +
     "  <div class=\"heading-holder\">\n" +
     "  	<div class=\"calender-outer\">\n" +
-    "			<span class = \"calendar-holder pull-right\">\n" +
+    "			<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
     "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
     "			  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "			</span>\n" +
     "		</div>\n" +
-    "		<h2>Overall Rating</h2>\n" +
+    "		<h2>\n" +
+    "			Overall Rating\n" +
+    "			<span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
+    "		</h2>\n" +
     "  </div>\n" +
     "  <div class=\"inner-block\">\n" +
     "  	<ul class=\"list\">\n" +
@@ -145,7 +151,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "    </ul>\n" +
     "  	<div class=\"graph-holder\">\n" +
     "		<div class=\"holder\">\n" +
-    "			<canvas id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
+    "			<canvas style=\" width: 608px; height: 260px;\" id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
     "		</div>\n" +
     "	  </div>\n" +
     "  </div>\n" +
@@ -157,10 +163,13 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
   $templateCache.put("dashboard/overall-rating/overall-rating.tpl.html",
     "<div class=\"rating-section\" ng-class = \"{loading: show_loading}\">\n" +
     "  <header class=\"heading-block\">\n" +
-    "    <h2>Timeline</h2>\n" +
+    "    <h2>\n" +
+    "    	Timeline\n" +
+    "    	<span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
+    "    </h2>\n" +
     "    <div class=\"pull-right\">\n" +
     "		<div class=\"calender-outer\">\n" +
-    "			<span class = \"calendar-holder pull-right\">\n" +
+    "			<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
     "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" ng-disabled = \"!mainView\"/>\n" +
     "			  <i class=\"glyphicon glyphicon-calendar\" map-range-click ></i>\n" +
     "			</span>\n" +
@@ -248,9 +257,12 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "<div class=\"review-block\">\n" +
     "  <div class=\"heading-block\">\n" +
     "  	<div class = \"pull-right\">\n" +
-    "		<a class = \"btn btn-default\" ng-click = \"open()\">View All Feedback</a>\n" +
+    "		<a class = \"btn btn-default\" ng-click = \"open()\" uib-tooltip=\"Click to View All Feedback Details\">View All Feedback</a>\n" +
     "	  </div>\n" +
-    "	  <h2>Positive Negative Feedback</h2>\n" +
+    "	  <h2>\n" +
+    "	  	Positive Negative Feedback\n" +
+    "	  	<span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
+    "	  </h2>\n" +
     "  </div>\n" +
     "  <div class=\"holder\">\n" +
     "    <ul>\n" +
@@ -285,17 +297,20 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "<div class=\"section-holder\" >\n" +
     "  <div class=\"info-area\" ng-class=\"{loading: show_loading}\">\n" +
     "    <div class=\"heading-holder\">\n" +
-    "    	<h2 ng-show = \"regional_view\">Patch Analysis</h2>\n" +
-    "		<h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis</h2>\n" +
-    "		<h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}} City Branch Analysis</h2>\n" +
+    "    	<h2 ng-show = \"regional_view\">\n" +
+    "    		Patch Analysis\n" +
+    "    		<span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
+    "    	</h2>\n" +
+    "		<h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}} Region City Analysis <span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span></h2>\n" +
+    "		<h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}} City Branch Analysis <span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span></h2>\n" +
     "    	<div class=\"btn-group pull-right\">\n" +
     "		  	  <ul>\n" +
-    "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Complains'\" ng-click = \"showChart(null, 'regions')\">Complains</label></li>\n" +
-    "		  	  	<li> <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'regions')\">Rating</label></li>\n" +
-    "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'regions')\">QSC</label></li>\n" +
+    "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Complains'\" ng-click = \"showChart(null, 'regions')\" uib-tooltip=\"Click to View Overall Feedback Analysis\">Complains</label></li>\n" +
+    "		  	  	<li> <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'regions')\" uib-tooltip=\"Click to View Complain Resolution Analysis\">Rating</label></li>\n" +
+    "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'regions')\" uib-tooltip=\"Click to View Overall QSC Analysis\">QSC</label></li>\n" +
     "		  	  	<li>\n" +
     "		  	  		<div class=\"calender-outer\">\n" +
-    "					<span class = \"calendar-holder\">\n" +
+    "					<span class = \"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
     "					  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
     "					  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "					</span>\n" +
@@ -383,7 +398,10 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
   $templateCache.put("dashboard/top-concern/top-concern.tpl.html",
     "<div class=\"rating-section\" ng-class = \"{loading: show_loading}\">\n" +
     "  <header class=\"heading-block\">\n" +
-    "    <h2>Customers Top 5 Concerns</h2>\n" +
+    "    <h2>\n" +
+    "    Customers Top 5 Concerns\n" +
+    "    <span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
+    "    </h2>\n" +
     "  </header>\n" +
     "  <div class=\"rating-holder\">\n" +
     "  	<ul>\n" +

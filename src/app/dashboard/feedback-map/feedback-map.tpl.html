@@ -1,9 +1,12 @@
 <div class="info-block">
   <div class="info-box">
     <div class="heading">
-      <h2>Benchmark Map</h2>
+      <h2>
+      	Benchmark Map
+      	<span class="icon-help" uib-popover="I appeared on mouse enter!" popover-trigger="mouseenter" popover-placement="top"></span>
+      </h2>
       <div class="calender-outer">
-        	<span class = "calendar-holder pull-right">
+        	<span class = "calendar-holder pull-right" uib-tooltip="Click to Select Custom Date Range">
 			  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption"/>
 			  <i class="glyphicon glyphicon-calendar" map-range-click></i>
 			</span>
