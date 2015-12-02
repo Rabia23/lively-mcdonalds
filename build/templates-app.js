@@ -7,8 +7,8 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "\n" +
     "  <div class=\"heading-holder\">\n" +
     "  	<h2>Business Segment Breakdown\n" +
-    "			<i class=\"glyphicon glyphicon-question-sign\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></i>\n" +
-    "		</h2>\n" +
+    "  		<span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
+    "	</h2>\n" +
     "  	<ul>\n" +
     "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == ''}\" ng-click = \"onClick(null, 'All')\" uib-tooltip=\"Get All feedback\" >All</a></li>\n" +
     "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == 'Quality'}\" ng-click = \"onClick(QualityID, 'Quality')\">Quality</a></li>\n" +

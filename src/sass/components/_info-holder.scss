@@ -114,6 +114,13 @@
 	h2{
 		margin: 0;
 		
+		span{
+			line-height: 1em;
+			color: $black;
+			@include inline-block(middle);
+			&:before{vertical-align: top;}
+		}
+		
 		@include media("<tablet"){
 			padding: 10px;
 			border-bottom: 1px solid $platinum;

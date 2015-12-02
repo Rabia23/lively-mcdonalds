@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'fontello';
-  src: url('/assets/fonts/fontello/fontello.eot?12563762');
-  src: url('/assets/fonts/fontello/fontello.eot?12563762#iefix') format('embedded-opentype'),
-       url('/assets/fonts/fontello/fontello.woff?12563762') format('woff'),
-       url('/assets/fonts/fontello/fontello.ttf?12563762') format('truetype'),
-       url('/assets/fonts/fontello/fontello.svg?12563762#fontello') format('svg');
+  src: url('/assets/fonts/fontello/fontello.eot?85286844');
+  src: url('/assets/fonts/fontello/fontello.eot?85286844#iefix') format('embedded-opentype'),
+       url('/assets/fonts/fontello/fontello.woff?85286844') format('woff'),
+       url('/assets/fonts/fontello/fontello.ttf?85286844') format('truetype'),
+       url('/assets/fonts/fontello/fontello.svg?85286844#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -25,9 +25,5 @@
 
 .icon-down-open:before { content: '\e800'; } /* '' */
 .icon-up-open:before { content: '\e801'; } /* '' */
-.icon-smile:before { content: '\e802'; } /* '' */
-.icon-frown:before { content: '\e803'; } /* '' */
-.icon-thumbs-down-alt:before { content: '\e804'; } /* '' */
-.icon-emo-unhappy:before { content: '\e805'; } /* '' */
-.icon-emo-happy:before { content: '\e806'; } /* '' */
-.icon-ico-person:before { content: '򭠄'; } /* '\ad804' */
+.icon-help:before { content: '\e802'; } /* '' */
+.icon-ico-person:before { content: '\ad804'; } /* '\ad804' */
