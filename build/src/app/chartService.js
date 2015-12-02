@@ -4,20 +4,20 @@ angular.module('livefeed.chart', [
 
 .service('chartService', function(_, Global){
 
-  var randomColorGenerator = function () { 
-      return '#' + (Math.random().toString(16) + '0000000').slice(2, 8); 
+  var randomColorGenerator = function () {
+      return '#' + (Math.random().toString(16) + '0000000').slice(2, 8);
   };
 
 
   return {
-    
+
     getDonutChartData: function(graph_data, question_type){
       return {
         objects: _.map(graph_data.analysis,  function(data){ return {name: data.object.name, id: data.object.id};}),
-        donutData: _.map(graph_data.analysis,  function(data){ 
+        donutData: _.map(graph_data.analysis,  function(data){
           return   _.map(data.data.feedbacks,  function(dat){ return {id: dat.option_id, label: dat.option__text, value: dat.count};});
         }),
-        donutOptions: _.map(graph_data.analysis,  function(data){ 
+        donutOptions: _.map(graph_data.analysis,  function(data){
           return   {
               xkey: "year",
               colors: _.map(data.data.feedbacks, function(dat){
@@ -61,16 +61,16 @@ angular.module('livefeed.chart', [
       var labels = _.map(graph_data[0].data.feedbacks ,function(value){
         return value.option__text;
       });
-      
+
       var data_array = {};
 
-            
+
       _.each(labels, function(value, index){
         var key = "" + value;
         data_array[key] = [];
       });
 
-      
+
       _.each(graph_data, function(value, upper_index){
         var feedbacks = value.data.feedbacks;
         _.each(feedbacks, function(value, index){
@@ -81,9 +81,9 @@ angular.module('livefeed.chart', [
       function getTooltip(label, x, y){
         return "Complaints: "  + y;
       }
-      
+
       return {
-        
+
         data: _.map(data_array, function(value, index){
           return {label: labels[index], data: value};
         }),
@@ -110,7 +110,7 @@ angular.module('livefeed.chart', [
             else{
               return Global.childColor(index, parent_color, parent_value);
             }
-            
+
           }),
           tooltip: true,
           legend: false,
@@ -154,17 +154,17 @@ angular.module('livefeed.chart', [
       var segments = _.map(graph_data.options[0].segment_list ,function(value){
         return value.segment;
       });
-      
+
       var data_array = {};
-      
-            
+
+
       _.each(labels, function(value, index){
         var key = "" + value;
         data_array[key] = [];
       });
 
 
-      
+
       _.each(graph_data.options, function(value, upper_index){
         var list = value.segment_list;
         _.each(list, function(list_value, index){
@@ -175,9 +175,9 @@ angular.module('livefeed.chart', [
       function getTooltip(label, x, y){
         return "Complaints: "  + y;
       }
-      
+
       return {
-        
+
         data: _.map(data_array, function(value, index){
           return {label: labels[index], data: value};
         }),
@@ -199,7 +199,7 @@ angular.module('livefeed.chart', [
             shadowSize: 0
           },
           colors: _.map(labels, function(value, index){
-            return Global.childColor(index, parent_color, parent_value);    
+            return Global.childColor(index, parent_color, parent_value);
           }),
           tooltip: true,
           legend: false,
@@ -234,11 +234,12 @@ angular.module('livefeed.chart', [
         data: [_.map(graph_data.feedbacks,  function(data){return data.count;})],
         series: ['Series A'],
         colours : [{fillColor: _.map(graph_data.feedbacks, function(data){return Global.mainRatingColorScheme[data.option__text];})}],
-        
+
         options: {
           barShowStroke : false,
           barValueSpacing : 35,
-          scaleShowVerticalLines: false
+          scaleShowVerticalLines: false,
+          tooltipTemplate: "<%= value %>"
         }
 
      };

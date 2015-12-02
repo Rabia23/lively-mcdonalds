@@ -40,7 +40,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
             "selector": "#bubble-chart",
             "data": data,
             "chart_width": 620,
-            "chart_height": 320,
+            "chart_height": 350,
             "background_color": "#FFFFFF",
             "color_mode": "color",
             "chart_color": ["#BFA66E"],
@@ -66,11 +66,11 @@ angular.module( 'livefeed.dashboard.top_concern', [
             $(value).attr("fill", colors[index]);
           });
 
-          $("#bubble-chart").find("svg")[0].setAttribute("viewBox", "25 40 550 300");
+          $("#bubble-chart").find("svg")[0].setAttribute("viewBox", "25 20 550 300");
 
         }
       });
-      
+
     }
   };
 });

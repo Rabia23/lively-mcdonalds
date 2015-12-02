@@ -7,10 +7,21 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
 .controller( 'OverallRatingCtrl', function DashboardController( $scope, _, chartService, Graphs, Global ) {
 
-  $scope.datePicker = {};
-  $scope.datePicker.date = {startDate: null, endDate: null};
+  //$scope.datePicker = {};
+  //$scope.datePicker.date = {startDate: null, endDate: null};
 
   $scope.today = new Date();
+
+
+
+  function resetDates(){
+    $scope.date = {
+        startDate: moment().subtract(1, "days"),
+        endDate: moment()
+    };
+  }
+
+  resetDates();
 
   $scope.line1 = {
     data: [],
@@ -23,15 +34,15 @@ angular.module( 'livefeed.dashboard.overall_rating', [
   $scope.start_date = null;
   $scope.end_date = null;
 
-  $scope.type = "1"; 
-  
+  $scope.type = "1";
+
   function mainRating(){
     $scope.mainView = true;
-    $scope.show_loading = true; 
+    $scope.show_loading = true;
     $scope.label_click_check = false;
-    $scope.option_click_check = false; 
+    $scope.option_click_check = false;
     Graphs.overall_rating($scope.type, null, $scope.start_date, $scope.end_date).$promise.then(function(data){
-      $scope.show_loading = false; 
+      $scope.show_loading = false;
       $scope.labels = _.map(data[0].data.feedbacks ,function(value){
         return {parent_id: value.option__parent_id, id: value.option_id, value: value.option__text,
                 color: Global.optionsColorScheme[value.option__text], priority: Global.qscPriority[value.option__text]};
@@ -40,7 +51,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
       $scope.dates = _.map(data, function(value){
         return value.date;
       });
-      
+
       $scope.labels = _.sortBy($scope.labels, function(value){ return value.priority; });
     });
   }
@@ -58,19 +69,20 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
   $scope.datePickerOption = {
     eventHandlers: {
-      'apply.daterangepicker': function(ev, picker){    
+      'apply.daterangepicker': function(ev, picker){
+        //$scope.type = "1";
+        // Chaepi
+        //console.log($("#timely").val("1"));
         if($scope.mainView){
           $scope.start_date = ev.model.startDate._i;
           $scope.end_date = ev.model.endDate._i;
           mainRating();
         }
-        
+
       },
       'cancel.daterangepicker': function(ev, picker){
-        $scope.datePicker.date.startDate = null;
-        $scope.datePicker.date.endDate = null;
+        resetDates();
       }
-
     }
   };
 
@@ -87,6 +99,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
       var parent_color = option.color;
       var parent_value = option.value;
       $scope.show_loading = true;
+      resetDates();
       Graphs.feedback_segmentation(date, option.id).$promise.then(function(data){
         $scope.show_loading = false;
         $scope.mainView = false;
@@ -94,9 +107,8 @@ angular.module( 'livefeed.dashboard.overall_rating', [
         $scope.labels =  _.map(data.options,function(value, index){
           return {value: value.option__text, parent_id: option.id, color: colors(index, option.parent_id, parent_color, value.option__text, parent_value)};
         });
-      }); 
+      });
     }
-      
   };
 
   $scope.labelClick = function(option){
@@ -105,7 +117,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
       $scope.show_loading = true;
       Graphs.overall_rating($scope.type, option.id).$promise.then(function(data){
         $scope.show_loading = false;
-        $scope.mainView = false; 
+        $scope.mainView = false;
         var parent_color = option.color;
         var parent_value = option.value;
         $scope.line1 = chartService.getLineChart(data, parent_color, parent_value);
@@ -117,7 +129,9 @@ angular.module( 'livefeed.dashboard.overall_rating', [
   };
 
   $scope.backToMain = function(){
+    $scope.type = "1";
     mainRating();
+    resetDates();
   };
 
 });

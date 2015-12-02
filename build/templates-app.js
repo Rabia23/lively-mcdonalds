@@ -163,12 +163,12 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "			</span>\n" +
     "		</div>\n" +
     "   		<span class=\"select-holder\">\n" +
-    "   			<select ng-disabled = \"!mainView\" ng-model= \"type\" ng-change = \"axisChanged()\">\n" +
-    "				<option value = \"1\">Daily</option>\n" +
-    "				<option value = \"2\">Weekly</option>\n" +
-    "				<option value = \"3\">Monthly</option>\n" +
-    "				<option value = \"4\">Yearly</option>\n" +
-    "			</select>\n" +
+    "   			<select ng-disabled = \"!mainView\" ng-model= \"type\" ng-change = \"axisChanged()\" id=\"timely\">\n" +
+    "  				<option value = \"1\">Daily</option>\n" +
+    "  				<option value = \"2\">Weekly</option>\n" +
+    "  				<option value = \"3\">Monthly</option>\n" +
+    "  				<option value = \"4\">Yearly</option>\n" +
+    "			  </select>\n" +
     "   		</span>\n" +
     "    	<a ng-click = \"backToMain()\" ng-hide = \"mainView\">Back</a>\n" +
     "    </div>\n" +
@@ -187,7 +187,7 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
-    "  ");
+    "");
 }]);
 
 angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -213,7 +213,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "  <div id=\"scrollbox2\" ng-class = \"{loading: lock}\" custom-scroll when-scrolled=\"getMoreComments()\">\n" +
     "    <table class=\"table\">\n" +
     "      <tbody>\n" +
-    "        <tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.is_negative}\">\n" +
+    "        <tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.is_negative, success: comment.action_taken}\">\n" +
     "          <td class=\"item1\">{{comment.user_name}}</td>\n" +
     "          <td class=\"item2\">\n" +
     "            <a href=\"tel:{{comment.user_phone}}\" class=\"tel\">{{comment.user_phone}}</a>\n" +
@@ -236,7 +236,8 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "    <span class=\"loader\"></span>\n" +
     "  </div>\n" +
     " </div>\n" +
-    "</div>");
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html", []).run(["$templateCache", function($templateCache) {

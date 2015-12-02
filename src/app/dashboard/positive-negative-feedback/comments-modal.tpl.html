@@ -19,7 +19,7 @@
   <div id="scrollbox2" ng-class = "{loading: lock}" custom-scroll when-scrolled="getMoreComments()">
     <table class="table">
       <tbody>
-        <tr ng-repeat = "comment in comments" ng-class = "{negative: comment.is_negative}">
+        <tr ng-repeat = "comment in comments" ng-class = "{negative: comment.is_negative, success: comment.action_taken}">
           <td class="item1">{{comment.user_name}}</td>
           <td class="item2">
             <a href="tel:{{comment.user_phone}}" class="tel">{{comment.user_phone}}</a>
