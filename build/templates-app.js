@@ -297,6 +297,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "<div class=\"section-holder\" >\n" +
     "  <div class=\"info-area\" ng-class=\"{loading: show_loading}\">\n" +
     "    <div class=\"heading-holder\">\n" +
+    "\n" +
     "    	<h2 ng-show = \"regional_view\">{{title}}\n" +
     "          <span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
     "        </h2>\n" +
@@ -307,9 +308,10 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Complaints'\" ng-click = \"showChart(null, 'regions')\" uib-tooltip=\"Click to View Complaint Resolution Analysis\">Complaints</label></li>\n" +
     "		  	  	<li> <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'regions')\" uib-tooltip=\"Click to View Overall Feedback Analysis\">Rating</label></li>\n" +
     "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'regions')\" uib-tooltip=\"Click to View Overall QSC Analysis\">QSC</label></li>\n" +
+    "\n" +
     "		  	  	<li>\n" +
     "		  	  		<div class=\"calender-outer\">\n" +
-    "					<span class = \"calendar-holder\">\n" +
+    "					<span class = \"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
     "					  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
     "					  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "					</span>\n" +
