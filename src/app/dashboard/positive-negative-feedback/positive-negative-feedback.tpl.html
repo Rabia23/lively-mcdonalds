@@ -1,9 +1,12 @@
 <div class="review-block">
   <div class="heading-block">
   	<div class = "pull-right">
-		<a class = "btn btn-default" ng-click = "open()">View All Feedback</a>
+		<a class = "btn btn-default" ng-click = "open()" uib-tooltip="Click to View All Feedback Details">View All Feedback</a>
 	  </div>
-	  <h2>Positive Negative Feedback</h2>
+	  <h2>
+	  	Positive Negative Feedback
+	  	<span class="icon-help" uib-popover="I appeared on mouse enter!" popover-trigger="mouseenter" popover-placement="top"></span>
+	  </h2>
   </div>
   <div class="holder">
     <ul>

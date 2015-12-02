@@ -15,6 +15,14 @@
 			padding: 0;
 			line-height: 3.1em;
 		}
+		
+		span{
+			line-height: 1em;
+			color: $black;
+			margin: 0 2px -5px;
+			@include inline-block(middle);
+			&:before{vertical-align: top;}
+		}
 	}
 	
 	.heading-holder{
@@ -26,24 +34,22 @@
 		
 		.calender-outer{
 			float: right;
-			position: relative;
-			
 			@include media("<tablet"){width: 100%;}
-
-
-			&:after{
-				position: absolute;
-				left: 0;
-				top: -999px;
-				bottom: -999px;
-				content: "";
-				background: $alto2;
-				width: 1px;
-			}
 
 			.calendar-holder{
 				padding: 9px 10px;
+				position: relative;
 				letter-spacing: 0;
+				
+				&:after{
+					position: absolute;
+					left: 0;
+					top: -999px;
+					bottom: -999px;
+					content: "";
+					background: $alto2;
+					width: 1px;
+				}
 
 				@include media("<tablet"){
 					float: none !important;
@@ -94,6 +100,7 @@
 		}
 	}
 	.btn-group{
+		position: static;
 		overflow: hidden;
 		margin: 0 0 -1px;
 		letter-spacing: -6px;
@@ -102,6 +109,7 @@
 			@extend %listreset;
 			@extend .clearfix;
 			li{
+				letter-spacing: 0;
 				float: left;
 				@include media("<tablet"){
 					width: 25%;
@@ -118,6 +126,7 @@
 			}
 		}
 		.btn{
+			position: relative;
 			letter-spacing: 0;
 			border-radius: 0;
 			-webkit-border-radius: 0;
@@ -279,5 +288,23 @@
 	}
 	.graph-holder{
 		overflow: hidden;
+	}
+}
+
+
+.tooltip{
+	&.top{
+		.tooltip-arrow{border-top-color: $white;}
+		.tooltip-inner{
+			background: $white;
+			color: $black;
+			max-width: 180px;
+		}
+	}
+}
+
+.popover{
+	&.top{
+		
 	}
 }

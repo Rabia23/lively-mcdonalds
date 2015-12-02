@@ -1,12 +1,15 @@
 <div class="feedback-block">
   <div class="heading-holder">
   	<div class="calender-outer">
-			<span class = "calendar-holder pull-right">
+			<span class = "calendar-holder pull-right" uib-tooltip="Click to Select Custom Date Range">
 			  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption"/>
 			  <i class="glyphicon glyphicon-calendar" map-range-click></i>
 			</span>
 		</div>
-		<h2>Overall Rating</h2>
+		<h2>
+			Overall Rating
+			<span class="icon-help" uib-popover="I appeared on mouse enter!" popover-trigger="mouseenter" popover-placement="top"></span>
+		</h2>
   </div>
   <div class="inner-block">
   	<ul class="list">

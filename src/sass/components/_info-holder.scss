@@ -117,6 +117,7 @@
 		span{
 			line-height: 1em;
 			color: $black;
+			margin: 0 2px -5px;
 			@include inline-block(middle);
 			&:before{vertical-align: top;}
 		}

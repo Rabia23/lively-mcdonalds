@@ -19,6 +19,14 @@
       margin: 0 5px 0 0;
 	  line-height: 2.55em;
 	  @include media("≥tablet"){line-height: 3.1em;}
+		
+		span{
+			line-height: 1em;
+			color: $black;
+			margin: 0 2px -5px;
+			@include inline-block(middle);
+			&:before{vertical-align: top;}
+		}
     }
     
     a{
@@ -53,22 +61,20 @@
 	  
 	  .calender-outer{
 		float: right;
-		position: relative;
 		padding: 0;
-
-
-		&:after{
-			position: absolute;
-			left: 0;
-			top: -999px;
-			bottom: -999px;
-			content: "";
-			background: $alto2;
-			width: 1px;
-		}
 
 		.calendar-holder{
 			padding: 9px 18px;
+			
+			&:after{
+				position: absolute;
+				left: 0;
+				top: -999px;
+				bottom: -999px;
+				content: "";
+				background: $alto2;
+				width: 1px;
+			}
 
 			@include media("<tablet"){
 				float: none !important;
@@ -219,10 +225,10 @@
 	line-height: 20px;
 	color: $dim-gray;
 	overflow: hidden;
-	padding: 12px 35px 9px 20px;
-	@include media("≥tablet"){padding: 19px 35px 15px 20px;}
-	@include media("≥desktop"){padding: 20px 35px 18px 20px;}
-	@include media("≥widescreen"){padding: 25px 35px 18px 20px;}
+	padding: 11px 35px 10px 20px;
+	@include media("≥tablet"){padding: 17px 35px 17px 20px;}
+	@include media("≥desktop"){padding: 19px 35px 19px 20px;}
+	@include media("≥widescreen"){padding: 21px 35px 21px 20px;}
 	
 	select {
 		z-index: 1;
@@ -260,7 +266,8 @@
 			left: 0;
 			top: 50%;
 			content: '\e800';
-			margin-top: -8px;
+			margin-top: -5px;
+			cursor: default;
 		}
 	}
 }

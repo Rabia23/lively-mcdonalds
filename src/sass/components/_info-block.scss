@@ -5,23 +5,23 @@
 	
 	.calender-outer{
 		float: right;
-		position: relative;
 		padding: 0;
-
-
-		&:after{
-			position: absolute;
-			left: 0;
-			top: -999px;
-			bottom: -999px;
-			content: "";
-			background: $alto2;
-			width: 1px;
-		}
+		
 
 		.calendar-holder{
 			float: right;
+			position: relative;
 			padding: 9px 18px;
+			
+			&:after{
+				position: absolute;
+				left: 0;
+				top: -999px;
+				bottom: -999px;
+				content: "";
+				background: $alto2;
+				width: 1px;
+			}
 
 			@include media("<tablet"){
 				float: none !important;
@@ -48,6 +48,14 @@
 		margin: 0;
 		line-height: 2.55em;
 		@include media("≥tablet"){line-height: 3.1em;}
+		
+		span{
+			line-height: 1em;
+			color: $black;
+			margin: 0 2px -5px;
+			@include inline-block(middle);
+			&:before{vertical-align: top;}
+		}
 	}
 	
 	.heading{
