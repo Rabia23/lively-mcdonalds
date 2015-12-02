@@ -4,14 +4,16 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
   $templateCache.put("dashboard/category-performance-analysis/category-performance-analysis.tpl.html",
     "<div class=\"section-holder ng-scope\">\n" +
     "	<div class=\"info-holder\">\n" +
-    "  \n" +
+    "\n" +
     "  <div class=\"heading-holder\">\n" +
-    "  	<h2>Business Segment Breakdown</h2>\n" +
+    "  	<h2>Business Segment Breakdown\n" +
+    "			<i class=\"glyphicon glyphicon-question-sign\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></i>\n" +
+    "		</h2>\n" +
     "  	<ul>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-class=\"{active: class == ''}\" ng-click = \"onClick(null, 'All')\">all</a></li>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-class=\"{active: class == 'Quality'}\" ng-click = \"onClick(QualityID, 'Quality')\">Quality</a></li>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-class=\"{active: class == 'Service'}\" ng-click = \"onClick(ServiceID, 'Service')\">Service</a></li>\n" +
-    "  		<li><a href=\"#\" class=\"btn btn-default\"  ng-class=\"{active: class == 'Cleanliness'}\" ng-click = \"onClick(CleanlinessID, 'Cleanliness')\">Cleanliness</a></li>\n" +
+    "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == ''}\" ng-click = \"onClick(null, 'All')\" uib-tooltip=\"Get All feedback\" >All</a></li>\n" +
+    "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == 'Quality'}\" ng-click = \"onClick(QualityID, 'Quality')\">Quality</a></li>\n" +
+    "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == 'Service'}\" ng-click = \"onClick(ServiceID, 'Service')\">Service</a></li>\n" +
+    "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == 'Cleanliness'}\" ng-click = \"onClick(CleanlinessID, 'Cleanliness')\">Cleanliness</a></li>\n" +
     "  		<li>\n" +
     "			<div class=\"calender-outer\">\n" +
     "				<span class = \"calendar-holder pull-right\">\n" +
@@ -22,7 +24,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "		</li>\n" +
     "  	</ul>\n" +
     "  </div>\n" +
-    "  \n" +
+    "\n" +
     "  <div class=\"progress-container {{class}}\" ng-class=\"{loading: show_loading}\">\n" +
     "  	<ul class=\"list add\">\n" +
     "		<li ng-repeat = \"dat in category_data\">{{dat.name}}</li>\n" +
@@ -52,8 +54,9 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  	</div>\n" +
     "  	</div>\n" +
     "  </div>\n" +
-    "</div> \n" +
-    "</div>");
+    "</div>\n" +
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", function($templateCache) {

@@ -1,13 +1,15 @@
 <div class="section-holder ng-scope">
 	<div class="info-holder">
-  
+
   <div class="heading-holder">
-  	<h2>Business Segment Breakdown</h2>
+  	<h2>Business Segment Breakdown
+			<i class="glyphicon glyphicon-question-sign" uib-popover="I appeared on mouse enter!" popover-trigger="mouseenter" popover-placement="top"></i>
+		</h2>
   	<ul>
-  		<li><a href="#" class="btn btn-default"  ng-class="{active: class == ''}" ng-click = "onClick(null, 'All')">all</a></li>
-  		<li><a href="#" class="btn btn-default"  ng-class="{active: class == 'Quality'}" ng-click = "onClick(QualityID, 'Quality')">Quality</a></li>
-  		<li><a href="#" class="btn btn-default"  ng-class="{active: class == 'Service'}" ng-click = "onClick(ServiceID, 'Service')">Service</a></li>
-  		<li><a href="#" class="btn btn-default"  ng-class="{active: class == 'Cleanliness'}" ng-click = "onClick(CleanlinessID, 'Cleanliness')">Cleanliness</a></li>
+  		<li><a class="btn btn-default"  ng-class="{active: class == ''}" ng-click = "onClick(null, 'All')" uib-tooltip="Get All feedback" >All</a></li>
+  		<li><a class="btn btn-default"  ng-class="{active: class == 'Quality'}" ng-click = "onClick(QualityID, 'Quality')">Quality</a></li>
+  		<li><a class="btn btn-default"  ng-class="{active: class == 'Service'}" ng-click = "onClick(ServiceID, 'Service')">Service</a></li>
+  		<li><a class="btn btn-default"  ng-class="{active: class == 'Cleanliness'}" ng-click = "onClick(CleanlinessID, 'Cleanliness')">Cleanliness</a></li>
   		<li>
 			<div class="calender-outer">
 				<span class = "calendar-holder pull-right">
@@ -18,7 +20,7 @@
 		</li>
   	</ul>
   </div>
-  
+
   <div class="progress-container {{class}}" ng-class="{loading: show_loading}">
   	<ul class="list add">
 		<li ng-repeat = "dat in category_data">{{dat.name}}</li>
@@ -48,5 +50,5 @@
   	</div>
   	</div>
   </div>
-</div> 
+</div>
 </div>

@@ -70,9 +70,10 @@ angular.module( 'livefeed.dashboard.overall_rating', [
   $scope.datePickerOption = {
     eventHandlers: {
       'apply.daterangepicker': function(ev, picker){
-        //$scope.type = "1";
+        $scope.type = "1";
         // Chaepi
         //console.log($("#timely").val("1"));
+        $(".jcf-select-text").children("span").html("Daily");
         if($scope.mainView){
           $scope.start_date = ev.model.startDate._i;
           $scope.end_date = ev.model.endDate._i;
