@@ -145,7 +145,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "    </ul>\n" +
     "  	<div class=\"graph-holder\">\n" +
     "		<div class=\"holder\">\n" +
-    "			<canvas id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
+    "			<canvas style=\" width: 608px; height: 260px;\" id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
     "		</div>\n" +
     "	  </div>\n" +
     "  </div>\n" +
