@@ -27,8 +27,8 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
   };
 
   Graphs.overall_feedback().$promise.then(function(graph_data){
-
-    $scope.bar = chartService.getBarChartData(graph_data);
+    var maximum = _.max(graph_data.feedbacks, function(data){ return data.count; });
+    $scope.bar = chartService.getBarChartData(graph_data,maximum.count);
   });
 
 });
