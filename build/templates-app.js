@@ -46,7 +46,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  		<div class=\"progress-area\">\n" +
     "			<div class=\"progress-holder {{dat.colour}}\" ng-repeat = \"dat in category_data\">\n" +
     "				<small><em>{{dat.name}}</em></small>\n" +
-    "				<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}}</b></uib-progressbar></div>\n" +
+    "				<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}} complaints</b></uib-progressbar></div>\n" +
     "		  </div>\n" +
     "  		</div>\n" +
     "  	</div>\n" +
@@ -360,7 +360,6 @@ angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$temp
     "    <div morris-chart-modal data-data=\"donut_subgraph_data.donutData\" data-type=\"donut\" data-options=\"donut_subgraph_data.donutOptions\"></div>\n" +
     "  </div>\n" +
     "  <h1 style = \"text-align: center;\">{{ sqc.name }}</h1>\n" +
-    "\n" +
     "</div>");
 }]);
 
