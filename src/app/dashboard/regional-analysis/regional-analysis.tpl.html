@@ -1,14 +1,16 @@
 <div class="section-holder" >
   <div class="info-area" ng-class="{loading: show_loading}">
     <div class="heading-holder">
-    	<h2 ng-show = "regional_view">{{title}}</h2>
+    	<h2 ng-show = "regional_view">{{title}}
+          <span class="icon-help" uib-popover="I appeared on mouse enter!" popover-trigger="mouseenter" popover-placement="top"></span>
+        </h2>
 		<h2 ng-show = "regional_view == false && city_view == true">{{selected_region.name}}'s City Analysis</h2>
 		<h2 ng-show = "regional_view == false && city_view == false">{{selected_city.name}}'s Branch Analysis</h2>
     	<div class="btn-group pull-right">
 		  	  <ul>
-		  	  	<li><label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Complaints'" ng-click = "showChart(null, 'regions')">Complaints</label></li>
-		  	  	<li> <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Rating'" ng-click = "showChart(null, 'regions')">Rating</label></li>
-		  	  	<li><label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'QSC'" ng-click = "showChart(null, 'regions')">QSC</label></li>
+		  	  	<li><label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Complaints'" ng-click = "showChart(null, 'regions')" uib-tooltip="Click to View Complaint Resolution Analysis">Complaints</label></li>
+		  	  	<li> <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'Rating'" ng-click = "showChart(null, 'regions')" uib-tooltip="Click to View Overall Feedback Analysis">Rating</label></li>
+		  	  	<li><label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'QSC'" ng-click = "showChart(null, 'regions')" uib-tooltip="Click to View Overall QSC Analysis">QSC</label></li>
 		  	  	<li>
 		  	  		<div class="calender-outer">
 					<span class = "calendar-holder">
