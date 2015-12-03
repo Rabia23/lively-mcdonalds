@@ -222,72 +222,43 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     return prev_sqc;
   }
 
+  function getNextSQC(sqc, sqc_data, region, city, branch){
+     var next_sqc_data;
+     next_sqc_data = findNextSQC(sqc,sqc_data);
+     if(next_sqc_data != null) {
+       if(city == null && branch == null){ onOptionSelect(next_sqc_data,city,branch,next_sqc_data); showGraph(next_sqc_data, "", "", option); }
+       else if(branch == null) { onOptionSelect(region,next_sqc_data,branch,next_sqc_data); showGraph(region, next_sqc_data, "", option); }
+       else { onOptionSelect(region,city,next_sqc_data,next_sqc_data); showGraph(region,city,next_sqc_data, option);}
+     }
+  }
+
+  function getPreviousSQC(sqc, sqc_data, region, city, branch){
+     var prev_sqc_data;
+     prev_sqc_data = findPrevSQC(sqc, sqc_data);
+     if(prev_sqc_data != null) {
+       if(city == null && branch == null){ onOptionSelect(prev_sqc_data,city,branch,prev_sqc_data); showGraph(prev_sqc_data, "", "", option); }
+       else if(branch == null) { onOptionSelect(region,prev_sqc_data,branch,prev_sqc_data); showGraph(region, prev_sqc_data, "", option); }
+       else { onOptionSelect(region,city,prev_sqc_data,prev_sqc_data); showGraph(region,city,prev_sqc_data, option);}
+     }
+  }
+
   function findSqcData(region,city,branch,sqc_data,string){
-    var next_sqc_data, prev_sqc_data;
     if(city == null && branch == null){
-      $scope.city = null;
-      $scope.branch = null;
-      if(string == "next"){
-        next_sqc_data = findNextSQC(region,sqc_data);
-        if(next_sqc_data != null){
-          $scope.region = next_sqc_data;
-          $scope.sqc = next_sqc_data;
-          showGraph(next_sqc_data,"","", option);
-        }
-        $scope.rightClickDisabled = false;
+      if(string == "next"){ getNextSQC(region,sqc_data,"",null,null); $scope.rightClickDisabled = false;
       }
-      else if(string == "previous"){
-        prev_sqc_data = findPrevSQC(region, sqc_data);
-        if (prev_sqc_data != null) {
-          $scope.region = prev_sqc_data;
-          $scope.sqc = prev_sqc_data;
-          showGraph(prev_sqc_data, "", "", option);
-        }
-        $scope.leftClickDisabled = false;
+      else if(string == "previous"){ getPreviousSQC(region,sqc_data,"",null,null); $scope.leftClickDisabled = false;
       }
     }
     else if(branch == null) {
-      $scope.region = region;
-      $scope.branch = null;
-      if (string == "next") {
-        next_sqc_data = findNextSQC(city, sqc_data);
-        if (next_sqc_data != null) {
-          $scope.city = next_sqc_data;
-          $scope.sqc = next_sqc_data;
-          showGraph(region, next_sqc_data, "", option);
-        }
-        $scope.rightClickDisabled = false;
+      if (string == "next") { getNextSQC(city,sqc_data,region,"",null); $scope.rightClickDisabled = false;
       }
-      else if (string == "previous") {
-        prev_sqc_data = findPrevSQC(city, sqc_data);
-        if (prev_sqc_data != null) {
-          $scope.city = prev_sqc_data;
-          $scope.sqc = prev_sqc_data;
-          showGraph(region, prev_sqc_data, "", option);
-        }
-        $scope.leftClickDisabled = false;
+      else if (string == "previous") { getPreviousSQC(city,sqc_data,region,"",null); $scope.leftClickDisabled = false;
       }
     }
     else{
-      $scope.region = region;
-      $scope.city = city;
-      if(string == "next"){
-        next_sqc_data = findNextSQC(branch,sqc_data);
-        if(next_sqc_data != null){
-          $scope.branch = next_sqc_data;
-          $scope.sqc = next_sqc_data;
-          showGraph(region,city,next_sqc_data, option);
-        }
-         $scope.rightClickDisabled = false;
+      if(string == "next"){ getNextSQC(branch,sqc_data,region,city,""); $scope.rightClickDisabled = false;
       }
-      else if (string == "previous") {
-          prev_sqc_data = findPrevSQC(branch,sqc_data);
-          if (prev_sqc_data != null) {
-            $scope.branch = prev_sqc_data;
-            $scope.sqc = prev_sqc_data;
-            showGraph(region, city, prev_sqc_data, option);
-          }
-          $scope.leftClickDisabled = false;
+      else if (string == "previous") {  getPreviousSQC(branch,sqc_data,region,city,""); $scope.leftClickDisabled = false;
       }
     }
   }
