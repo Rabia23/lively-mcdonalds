@@ -220,6 +220,8 @@
 		}
 		.table{
 			margin: 0;
+			table-layout: fixed;
+			border-collapse: separate;
 			@include media("<tablet"){
 				min-width: 730px;
 				width: auto !important;
@@ -283,6 +285,7 @@
 			tbody{
 				td{
 					position: relative;
+					z-index: 2;
 					word-break: break-all;
 					@include fontsize(14, 15);
 					line-height: 1.4em !important;
@@ -290,11 +293,11 @@
 					padding-bottom: 8px;
 					border: 0;
 					color: $mountain-mist;
-					border-bottom: 1px solid $alto2;
-					border-left: 1px solid $alto2;
+					border-bottom: 1px solid $alto2 !important;
+					border-left: 1px solid $alto2 !important;
 					overflow: hidden;
 					background: none;
-					&:first-child{border-left: 0 ;}
+					&:first-child{border-left: 0 !important;}
 					
 					@include media("≥tablet"){
 						padding-top: 10px;
