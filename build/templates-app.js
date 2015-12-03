@@ -7,7 +7,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "\n" +
     "  <div class=\"heading-holder\">\n" +
     "  	<h2>Business Segment Breakdown\n" +
-    "  		<span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
+    "  		<span class=\"icon-help\" uib-popover=\"Representation of the overall QSC breakdown for each business segment. Change the tabs for sub-categories of each main category.\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
     "	</h2>\n" +
     "  	<ul>\n" +
     "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == ''}\" ng-click = \"onClick(null, 'All')\" uib-tooltip=\"Click to view QSC Segmentation Breakdown\" >All</a></li>\n" +
@@ -103,7 +103,7 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "    <div class=\"heading\">\n" +
     "      <h2>\n" +
     "      	Benchmark Map\n" +
-    "      	<span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
+    "      	<span class=\"icon-help\" uib-popover=\"Representation of the branch-wise benchmark for daily feedback amount. A green marker is shown for branches who met their benchmark, and red is shown for branches who didn't.\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
     "      </h2>\n" +
     "      <div class=\"calender-outer\">\n" +
     "        	<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
@@ -139,7 +139,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "		</div>\n" +
     "		<h2>\n" +
     "			Overall Rating\n" +
-    "			<span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
+    "			<span class=\"icon-help\" uib-popover=\"Representation of the overall Feedback ratings for all respective branches. For a regional/branch breakdown, please see Patch Analysis\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
     "		</h2>\n" +
     "  </div>\n" +
     "  <div class=\"inner-block\">\n" +
@@ -165,7 +165,7 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "  <header class=\"heading-block\">\n" +
     "    <h2>\n" +
     "    	Timeline\n" +
-    "    	<span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
+    "    	<span class=\"icon-help\" uib-popover=\"Representation of amount of QSC complains based on their respective time. Gives a handy daily/weekly/monthly/annual complains comparison.\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
     "    </h2>\n" +
     "    <div class=\"pull-right\">\n" +
     "		<div class=\"calender-outer\">\n" +
@@ -261,7 +261,7 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "	  </div>\n" +
     "	  <h2>\n" +
     "	  	Positive Negative Feedback\n" +
-    "	  	<span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
+    "	  	<span class=\"icon-help\" uib-popover=\"Represents the positive suggestions, and negative feedbacks given by the customers. Click on View All Feedback, for more details.\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
     "	  </h2>\n" +
     "  </div>\n" +
     "  <div class=\"holder\">\n" +
@@ -299,7 +299,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "    <div class=\"heading-holder\">\n" +
     "\n" +
     "    	<h2 ng-show = \"regional_view\">{{title}}\n" +
-    "          <span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
+    "          <span class=\"icon-help\" uib-popover=\"Representation of regional/city/branch breakdown for [1] Amount of complaint resolutions; [2] Overall Ratings; [3] QSC Complaints\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
     "        </h2>\n" +
     "		<h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}}'s City Analysis</h2>\n" +
     "		<h2 ng-show = \"regional_view == false && city_view == false\">{{selected_city.name}}'s Branch Analysis</h2>\n" +
@@ -401,7 +401,7 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "  <header class=\"heading-block\">\n" +
     "    <h2>\n" +
     "    Customers Top 5 Concerns\n" +
-    "    <span class=\"icon-help\" uib-popover=\"I appeared on mouse enter!\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
+    "    <span class=\"icon-help\" uib-popover=\"Representation of the latest top 5 concerns that the customers are facing in the respective branches. The size of bubbles represents the amount of complaints.\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
     "    </h2>\n" +
     "  </header>\n" +
     "  <div class=\"rating-holder\">\n" +

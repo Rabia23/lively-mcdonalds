@@ -3,7 +3,7 @@
     <div class="heading-holder">
 
     	<h2 ng-show = "regional_view">{{title}}
-          <span class="icon-help" uib-popover="I appeared on mouse enter!" popover-trigger="mouseenter" popover-placement="top"></span>
+          <span class="icon-help" uib-popover="Representation of regional/city/branch breakdown for [1] Amount of complaint resolutions; [2] Overall Ratings; [3] QSC Complaints" popover-trigger="mouseenter" popover-placement="top"></span>
         </h2>
 		<h2 ng-show = "regional_view == false && city_view == true">{{selected_region.name}}'s City Analysis</h2>
 		<h2 ng-show = "regional_view == false && city_view == false">{{selected_city.name}}'s Branch Analysis</h2>

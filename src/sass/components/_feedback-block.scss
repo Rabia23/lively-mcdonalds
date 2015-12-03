@@ -59,6 +59,8 @@
 			color: $black;
 			margin: 0 2px;
 			@include inline-block(middle);
+			cursor: default;
+			&:before{cursor: default;}
 		}
 	}
 	.graph-holder{
