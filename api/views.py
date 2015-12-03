@@ -237,8 +237,8 @@ def overall_rating(request):
                 section_end_date = current_tz.localize(datetime.strptime(str(single_date.date()) + " 23:59:59", constants.DATE_FORMAT))
                 feedback_data = FeedbackOption.objects.filter(created_at__gt=section_start_date, created_at__lte=section_end_date)
                 filtered_feedback_options = apply_general_filters(feedback_data, region_id, city_id, branch_id)
-                filtered_feedback_options = filtered_feedback_options.filter(option__in=Option.objects.filter(parent=option_id).values_list('id'))
 
+                filtered_feedback_options = filtered_feedback_options.filter(option__in=question.options.filter(parent=option_id).values_list('id'))
                 filtered_feedback = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').annotate(count=Count('option_id'))
 
                 if option_id:
