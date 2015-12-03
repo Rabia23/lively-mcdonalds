@@ -197,6 +197,8 @@ def overall_rating(request):
             branch_id = request.query_params.get('branch', None)
 
             option_id = request.query_params.get('option', None)
+            option_id = None if not option_id else option_id
+
             question = Question.objects.get(type=constants.SECONDARY_QUESTION)
 
             #for grouping of data (daily, weekly, monthly, yearly)
