@@ -225,21 +225,17 @@ def overall_rating(request):
             else:
                 rule = rrule.DAILY
                 date_from = str((now - timedelta(days=constants.NO_OF_DAYS)).date())
-                date_to = str(now.date())
+                date_to = str((now + timedelta(days=1)).date())
 
             date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
             date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
 
             section_start_date = date_from
             for single_date in rrule.rrule(rule, dtstart=date_from, until=date_to):
-                section_end_date = single_date
+                section_end_date = current_tz.localize(datetime.strptime(str(single_date.date()) + " 23:59:59", constants.DATE_FORMAT))
                 feedback_data = FeedbackOption.objects.filter(created_at__gt=section_start_date, created_at__lte=section_end_date)
                 filtered_feedback_options = apply_general_filters(feedback_data, region_id, city_id, branch_id)
-
-                if option_id:
-                    filtered_feedback_options = filtered_feedback_options.filter(option__in=Option.objects.filter(parent=option_id).values_list('id'))
-                else:
-                    filtered_feedback_options = filtered_feedback_options.filter(option__in=question.options.filter(parent=None).values_list('id'))
+                filtered_feedback_options = filtered_feedback_options.filter(option__in=Option.objects.filter(parent=option_id).values_list('id'))
 
                 filtered_feedback = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').annotate(count=Count('option_id'))
 
@@ -249,10 +245,14 @@ def overall_rating(request):
                     list_feedback = generate_missing_options(question, filtered_feedback)
 
                 date_data = {'feedback_count': filtered_feedback_options.count(), 'feedbacks': list_feedback}
-                single_date = current_tz.localize(datetime.strptime(str(single_date.date()), constants.ONLY_DATE_FORMAT))
-                feedback_records_list.append({'date': single_date.date(), 'data': date_data})
 
-                section_start_date = section_end_date
+                if type == constants.YEARLY_ANALYSIS or type == constants.MONTHLY_ANALYSIS or type == constants.WEEK_ANALYSIS:
+                    display_date = current_tz.localize(datetime.strptime(str(section_end_date.date()), constants.ONLY_DATE_FORMAT))
+                else:
+                    display_date = current_tz.localize(datetime.strptime(str(section_start_date.date()), constants.ONLY_DATE_FORMAT))
+
+                feedback_records_list.append({'date': display_date, 'data': date_data})
+                section_start_date = current_tz.localize(datetime.strptime(str(section_end_date.date()) + " 00:00:00", constants.DATE_FORMAT))
 
             if len(feedback_records_list) > constants.NO_OF_DAYS:
                 feedback_records_list = feedback_records_list[-constants.NO_OF_DAYS:]
@@ -411,18 +411,34 @@ def feedback_segmentation(request):
             city_id = request.query_params.get('city', None)
             branch_id = request.query_params.get('branch', None)
             option_id = request.query_params.get('option', None)
+            type = request.query_params.get('type', None)
 
-            date = request.query_params.get('date', None)
-            if date and option_id:
-                date = datetime.strptime(date, constants.ONLY_DATE_FORMAT).date()
+            date_to = request.query_params.get('date_to', None)
+            date_to = datetime.strptime(date_to, constants.ONLY_DATE_FORMAT).date()
+
+            if option_id:
                 option = Option.objects.get(id=option_id)
                 options = option.children.all()
             else:
                 return Response(None)
 
+            if type == constants.YEARLY_ANALYSIS:
+                date_from = str((date_to - relativedelta(months=constants.NO_OF_MONTHS)))
+            elif type == constants.MONTHLY_ANALYSIS:
+                date_from = str((date_to - relativedelta(weeks=constants.NO_OF_WEEKS)))
+            elif type == constants.WEEK_ANALYSIS:
+                date_from = str((date_to - timedelta(days=constants.NO_OF_DAYS)))
+            else:
+                date_from = str(date_to)
+
+            date_to = str(date_to)
+            current_tz = timezone.get_current_timezone()
+            date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
+            date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
+
             filtered_feedback_options = FeedbackOption.objects.filter(
                 option__in=Option.objects.filter(parent=option_id).values_list('id'),
-                feedback__created_at__contains=date)
+                feedback__created_at__gt=date_from, created_at__lte=date_to)
 
             filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id)
             feedback_segmented_list = generate_option_groups(filtered_feedback_options, options)
@@ -440,11 +456,11 @@ def top_concerns(request):
 
         try:
             concerns = [
-                    {"name": "Ketchup", "weight": "110"},
-                    {"name": "Bun", "weight": "95"},
-                    {"name": "Wings", "weight": "56"},
-                    {"name": "Fries", "weight": "9"},
-                    {"name": "Chicken", "weight": "8"}
+                    {"name": "Ketchup", "weight": "57"},
+                    {"name": "Bun", "weight": "20"},
+                    {"name": "Wings", "weight": "41"},
+                    {"name": "Fries", "weight": "18"},
+                    {"name": "Chicken", "weight": "50"}
                 ]
 
             data = {'concern_count': len(concerns), 'concern_list': concerns}
