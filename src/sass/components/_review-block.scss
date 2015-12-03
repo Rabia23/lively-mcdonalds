@@ -285,7 +285,6 @@
 			tbody{
 				td{
 					position: relative;
-					z-index: 2;
 					word-break: break-all;
 					@include fontsize(14, 15);
 					line-height: 1.4em !important;
