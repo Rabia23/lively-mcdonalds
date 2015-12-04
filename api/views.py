@@ -522,7 +522,7 @@ def action_taken(request):
             if feedback_id:
                 feedback = Feedback.objects.get(pk=feedback_id)
 
-                feedback.action_taken = True
+                feedback.action_taken = constants.UNPROCESSED
                 feedback.save()
 
                 feedback_response = FeedbackCommentSerializer(feedback.feedback_comment_dict())

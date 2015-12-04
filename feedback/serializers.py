@@ -80,7 +80,7 @@ class FeedbackCommentSerializer(serializers.Serializer):
     user_name = serializers.CharField()
     user_phone = serializers.CharField()
     is_negative = serializers.BooleanField()
-    action_taken = serializers.BooleanField()
+    action_taken = serializers.IntegerField()
 
 
 class AllCommentsSerializer(serializers.Serializer):
@@ -143,7 +143,7 @@ class SegmentationRatingSerializer(serializers.Serializer):
 
 
 class ActionTakenObjectSerializer(serializers.Serializer):
-    action_taken = serializers.BooleanField()
+    action_taken = serializers.IntegerField()
     count = serializers.IntegerField()
 
 

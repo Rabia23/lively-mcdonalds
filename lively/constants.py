@@ -21,7 +21,7 @@ WEEK_ANALYSIS = '2'
 MONTHLY_ANALYSIS = '3'
 YEARLY_ANALYSIS = '4'
 
-#------------ Daywise Data Ratting -------------
+#------------ Day wise Data Ratting -------------
 NO_OF_DAYS = 7
 NO_OF_WEEKS = 7
 NO_OF_MONTHS = 7
@@ -79,3 +79,8 @@ shifts = {
 #------------ Date Format Constants -------------
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 ONLY_DATE_FORMAT = "%Y-%m-%d"
+
+#------------ Action Constants -------------
+PROCESSED = 2
+UNPROCESSED = 1
+DEFERRED = 3
