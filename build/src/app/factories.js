@@ -76,7 +76,7 @@ angular.module( 'factories', [
     return this.service.feedback_segmentation({date_to: date, option: option_id, type: type});
   };
 
-  Graphs.prototype.map_view = function(date_to, date_from){
+  Graphs.prototype.map_view = function(date_from, date_to){
     return this.service.map_view({date_from: date_from, date_to: date_to});
   };
 
