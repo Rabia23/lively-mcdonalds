@@ -44,6 +44,15 @@
 		margin: 0;
 		line-height: 2.2em;
 		@include media("<tablet"){font-size: 1.15em;}
+		
+		span{
+			line-height: 1em;
+			color: $black;
+			margin: 0 2px;
+			@include inline-block(middle);
+			cursor: default;
+			&:before{cursor: default;}
+		}
 	}
 	
 	.holder{
@@ -201,6 +210,7 @@
 			font-size: 1.3em;
 			line-height: 1.1em;
 			margin: 4px 0 0;
+			&:hover{color: lighten($mountain-mist,10%);}
 		}
 	}
 	.modal-body{
@@ -210,6 +220,8 @@
 		}
 		.table{
 			margin: 0;
+			table-layout: fixed;
+			border-collapse: separate;
 			@include media("<tablet"){
 				min-width: 730px;
 				width: auto !important;
@@ -280,11 +292,11 @@
 					padding-bottom: 8px;
 					border: 0;
 					color: $mountain-mist;
-					border-bottom: 1px solid $alto2;
-					border-left: 1px solid $alto2;
+					border-bottom: 1px solid $alto2 !important;
+					border-left: 1px solid $alto2 !important;
 					overflow: hidden;
 					background: none;
-					&:first-child{border-left: 0 ;}
+					&:first-child{border-left: 0 !important;}
 					
 					@include media("≥tablet"){
 						padding-top: 10px;

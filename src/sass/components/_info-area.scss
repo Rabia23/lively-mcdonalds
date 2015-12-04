@@ -21,6 +21,8 @@
 			color: $black;
 			margin: 0 2px;
 			@include inline-block(middle);
+			cursor: default;
+			&:before{cursor: default;}
 		}
 	}
 	
@@ -289,24 +291,32 @@
 
 .tooltip{
 	letter-spacing: 0;
-	font-size: 14px;
-	line-height: 18px;
-	font-family: $font-family-sans-serif;
-	
+	opacity: 1;
 	&.top{
 		opacity: 1;
 		.tooltip-arrow{
 			border-top-color: $white;
 			opacity: 1;
 		}
-		.tooltip-inner{
-			opacity: 1;
-			background: $white;
-			color: $black;
-			max-width: 180px;
-			padding: 10px 5px;
-			-webkit-box-shadow: 0 5px 10px rgba($black, 0.2);
-  			box-shadow: 0 5px 10px rgba($black, 0.2);
-		}
+	}
+	.tooltip-inner{
+		opacity: 1;
+		background: $white;
+		color: $black;
+		max-width: 180px;
+		padding: 10px 5px;
+		-webkit-box-shadow: 0 5px 10px rgba($black, 0.2);
+		box-shadow: 0 5px 10px rgba($black, 0.2);
+		@include fontsize(15,13);
+		line-height: 1.4em;
+		font-family: $font-family-sans-serif;
+	}
+}
+
+.popover{
+	.popover-content{
+		@include fontsize(15,15);
+		line-height: 1.4em;
+		font-family: $font-family-sans-serif;
 	}
 }

@@ -32,9 +32,7 @@ angular.module('livefeed.chart', [
           donutData: _.map(graph_data.feedbacks,  function(data){
             return {label: data.option__text, value: data.count};
           }),
-          donutOptions: _.map(graph_data.feedbacks,  function(data,index){
-            return Global.categoryPerformanceChildCholorScheme[string][index];
-          })
+          donutOptions: {colors: _.map(graph_data.feedbacks,  function(data,index){return Global.categoryPerformanceChildCholorScheme[string][index];})}
        };
     },
 

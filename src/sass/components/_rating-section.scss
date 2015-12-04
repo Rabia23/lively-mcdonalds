@@ -25,6 +25,8 @@
 			color: $black;
 			margin: 0 2px;
 			@include inline-block(middle);
+			cursor: default;
+			&:before{cursor: default;}
 		}
     }
     
@@ -78,7 +80,6 @@
 			@include media("<tablet"){
 				float: none !important;
 				display: block;
-				width: 100%;
 				text-align: center;
 
 				i{

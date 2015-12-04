@@ -26,7 +26,6 @@
 			@include media("<tablet"){
 				float: none !important;
 				display: block;
-				width: 100%;
 				text-align: center;
 
 				i{
@@ -54,6 +53,8 @@
 			color: $black;
 			margin: 0 2px;
 			@include inline-block(middle);
+			cursor: default;
+			&:before{cursor: default;}
 		}
 	}
 	
@@ -81,6 +82,10 @@
 	position: relative;
 	overflow: hidden;
 	@include inline-block(top);
+	
+	&:hover{
+		.glyphicon-calendar{color: lighten($dim-gray,10%);}
+	}
 
 	.glyphicon-calendar{
 		float: right;
