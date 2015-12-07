@@ -7,7 +7,7 @@ angular.module( 'livefeed.dashboard.feedback_map', [
 ])
 
 .controller( 'FeedbackMapCtrl', function FeedbackMapController( $scope, _, Graphs, mapService ) {
-
+  $scope.show_loading = false;
   $scope.datePicker = {};
   $scope.datePicker.date = {startDate: null, endDate: null};
 
@@ -24,6 +24,7 @@ angular.module( 'livefeed.dashboard.feedback_map', [
       'apply.daterangepicker': function(ev, picker){
         
         Graphs.map_view(ev.model.startDate._i, ev.model.endDate._i).$promise.then(function(data){
+          $scope.show_loading = true;
           _.each(data.branches, function(branch){
             var icon;
             if(branch.count_exceeded === false){
@@ -34,6 +35,7 @@ angular.module( 'livefeed.dashboard.feedback_map', [
             }
             $scope.markers.push(mapService.createMarker(branch, $scope.map, icon));
           });
+          $scope.show_loading = false;
         });
       
       },
@@ -52,6 +54,7 @@ angular.module( 'livefeed.dashboard.feedback_map', [
   $scope.markers = [];
 
   Graphs.map_view().$promise.then(function(data){
+    $scope.show_loading = true;
     _.each(data.branches, function(branch){
       var icon;
       if(branch.count_exceeded === false){
@@ -62,6 +65,7 @@ angular.module( 'livefeed.dashboard.feedback_map', [
       }
       $scope.markers.push(mapService.createMarker(branch, $scope.map, icon));
     });
+    $scope.show_loading = false;
   });
 })
 

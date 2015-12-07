@@ -17,7 +17,7 @@
       <li class="negative">Below Benchmark</li>
     </ul>
   </div>
-  <div class="map-holder">
+  <div class="map-holder" ng-class="{loading: show_loading}">
     <div map-lazy-load="http://maps.google.com/maps/api/js">
       <map center="30,70" zoom="{{zoom}}" disable-default-u-i="true">
       </map>

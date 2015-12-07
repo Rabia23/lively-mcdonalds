@@ -117,7 +117,7 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "      <li class=\"negative\">Below Benchmark</li>\n" +
     "    </ul>\n" +
     "  </div>\n" +
-    "  <div class=\"map-holder\">\n" +
+    "  <div class=\"map-holder\" ng-class=\"{loading: show_loading}\">\n" +
     "    <div map-lazy-load=\"http://maps.google.com/maps/api/js\">\n" +
     "      <map center=\"30,70\" zoom=\"{{zoom}}\" disable-default-u-i=\"true\">\n" +
     "      </map>\n" +
@@ -142,7 +142,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "			<span class=\"icon-help\" uib-popover=\"Representation of the overall Feedback ratings for all respective branches. For a regional/branch breakdown, please see Patch Analysis\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
     "		</h2>\n" +
     "  </div>\n" +
-    "  <div class=\"inner-block\">\n" +
+    "  <div class=\"inner-block\" ng-class=\"{loading: show_loading}\">\n" +
     "  	<ul class=\"list\">\n" +
     "      <li class=\"v-good\">I'm lovin' it</li>\n" +
     "      <li class=\"good\">Everything on track</li>\n" +
