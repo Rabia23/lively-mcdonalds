@@ -37,10 +37,10 @@
 				}
 			}
 			@include media("<phone"){
-				width: 23%;
+				width: 24.5%;
 				
-				&:first-child{width: 15%;}
-				&:last-child{width: 16%;}
+				&:first-child{width: 13%;}
+				&:last-child{width: 13.5%;}
 			}
 			
 			.btn{
@@ -89,7 +89,7 @@
 				}
 				
 				.calendar-holder{
-					padding: 9px 18px;
+					padding: 9px 3px;
 					
 					@include media("<tablet"){
 						float: none !important;
@@ -182,6 +182,7 @@
 		overflow: hidden;
 		clear: both;
 		position: relative;
+		margin: 0 -10px;
 		
 		@include media("≥tablet"){
 			margin: 0 0 20px;
@@ -199,13 +200,21 @@
 	@include media("≥widescreen"){padding: 0 30px;}
 	.holder{
 		overflow: hidden;
-		margin: 0 0 20px;
+		padding: 0 10px;
 		@include media("≥tablet"){
 			float: left;
 			width: 49%;
-			margin: 0;
+			padding: 0;
 			
-			+ .holder{float: right;}
+		}
+		+ .holder{
+			padding-top: 20px;
+			border-top: 1px solid $platinum;
+			@include media("≥tablet"){
+				float: right;
+				border-top: 0;
+				padding-top: 0;
+			}
 		}
 	}
 }

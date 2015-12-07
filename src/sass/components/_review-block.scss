@@ -58,7 +58,6 @@
 	.holder{
 		overflow: hidden;
 		position: relative;
-		padding: 0 15px;
 		@include media("≥tablet"){
 			padding: 0 10px;
 			&:after{
@@ -78,14 +77,22 @@
 		@extend %clearfix;
 		@extend %listreset;
 		width: 100%;
+		padding: 0 15px;
 		
 		@include media("≥tablet"){
 			float: left;
+			padding: 0;
 			width: 48.5%;
 		}
 		@include media("≥desktop"){width: 49%;}
 		&.add{
-			@include media("≥tablet"){float: right;}
+			padding-top: 24px;
+			border-top: 1px solid $alto2;
+			@include media("≥tablet"){
+				float: right;
+				border-top: 0;
+				padding-top: 0;
+			}
 			li{
 				.inner-holder{
 					border-color: $cinnabar;
@@ -188,6 +195,8 @@
 		}
 	}
 }
+
+.modal{z-index: 9999;}
 
 
 .modal-1200{
