@@ -261,6 +261,7 @@
 				vertical-align: middle;
 				padding-left: 4px;
 				padding-right: 4px;
+				pointer-events: all;
 				
 				@include media("≥widescreen"){
 					padding-left: 8px;
@@ -389,7 +390,10 @@
     height: 250px;
     padding: 0 !important;
 	
-	@include media("<tablet"){min-width: 730px;}
+	@include media("<tablet"){
+		min-width: 730px;
+		pointer-events: none;
+	}
 	
 	@include media("≥tablet"){height: 517px;}
 }
