@@ -2,6 +2,9 @@
 	position: relative;
 	width: 100%;
 	overflow: hidden;
+	display: table;
+	table-layout: fixed;
+	height: 100%;
 }
 
 #main{
@@ -14,26 +17,32 @@
 }
 
 .banner-holder{
-	min-height: 250px;
 	overflow: hidden;
-	background: url(../assets/images/img1.jpg) repeat-x 50% 0;
-	background-size: cover;
 	margin-left: -15px;
 	margin-right: -15px;
-	margin-bottom: 25px;
-	border-bottom: 1px solid $celeste2;
-	-webkit-box-shadow: 0 5px 5px rgba($black,.08);
-	-moz-box-shadow: 0 5px 5px rgba($black,.08);
-	box-shadow: 0 5px 5px rgba($black,.08);
+	margin-bottom: 15px;
 	
-	@include media("≥tablet"){min-height: 350px;}
+	@include media("≥tablet"){
+		min-height: 350px;
+		background: url(../assets/images/img1.jpg) repeat-x 50% 0;
+		background-size: cover;
+		margin-bottom: 25px;
+		border-bottom: 1px solid $celeste2;
+		-webkit-box-shadow: 0 5px 5px rgba($black,.08);
+		-moz-box-shadow: 0 5px 5px rgba($black,.08);
+		box-shadow: 0 5px 5px rgba($black,.08);
+	}
 	@include media("≥widescreen"){
 		margin-left: -30px;
 		margin-right: -30px;
 		min-height: 405px;
 	}
 	
-	.header{padding-top: 130px;}
+	.header{
+		padding-top: 90px;
+		@include media("≥tablet"){padding-top: 110px;}
+		@include media("≥widescreen"){padding-top: 130px;}
+	}
 }
 
 .section{
@@ -66,9 +75,13 @@
 	h1{
 		font-family: 'Times New Roman','Georgia','serif';
 		color: $lust;
+		margin: 0 0 15px;
 		
-		@include media("<tablet"){@include fontsize(40,15);}
-		@include media("<phone"){@include fontsize(30,15);}
+		@include media("<tablet"){
+			@include fontsize(35,15);
+			margin: 0 0 5px;
+		}
+		@include media("<phone"){@include fontsize(28,15);}
 		
 		span{
 			display: block;
@@ -76,13 +89,17 @@
 			margin: 0 0 20px;
 			@include fontsize(30,47);
 			@include media("<tablet"){
-				@include fontsize(30,40);
-				margin: 0 0 10px;
+				@include fontsize(27,35);
+				margin: 0 0 5px;
 			}
 			@include media("<phone"){
-				@include fontsize(25,30);
-				margin: 0 0 5px;
+				@include fontsize(24,28);
+				margin: 0;
 			}
 		}
 	}
+}
+
+.icon-help{
+	@extend .hidden-xs;
 }

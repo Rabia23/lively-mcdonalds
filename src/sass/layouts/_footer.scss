@@ -1,11 +1,16 @@
 #footer{
-	background: $black;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	color: $mikado-yellow;
-	@include fontsize(14, 16);
-	line-height: 1em;
+	display: table-footer-group;
+	height: 1%;
+	width: 100%;
 	
+	.footer-inner{
+		background: $black;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		color: $mikado-yellow;
+		@include fontsize(14, 16);
+		line-height: 1em;
+	}
 	a{
 		color: $white;
 		&:hover,
