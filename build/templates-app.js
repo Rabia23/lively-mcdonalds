@@ -421,6 +421,30 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
 
 angular.module("login/login.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("login/login.tpl.html",
-    "login html goes here\n" +
+    "<div class=\"section\">\n" +
+    "	<div class=\"login-block\">\n" +
+    "		<div class=\"login-holder\">\n" +
+    "			<div class=\"inner-holder\">\n" +
+    "				<h3>Log In</h3>\n" +
+    "				<form action=\"#\" class=\"login-form\">\n" +
+    "					<fieldset>\n" +
+    "						<input type=\"text\" class=\"form-control\" placeholder=\"User Name\">\n" +
+    "						<input type=\"password\" class=\"form-control\" placeholder=\"Password\">\n" +
+    "						<input type=\"submit\" value=\"Log in\" class=\"btn btn-info\">\n" +
+    "						<label for=\"check-1\">\n" +
+    "							<input id=\"check-1\" type=\"checkbox\">\n" +
+    "							<span class=\"fake-input\"></span>\n" +
+    "							<span class=\"fake-label\">Remember me on this computer.</span>\n" +
+    "						</label>\n" +
+    "					</fieldset>\n" +
+    "				</form>\n" +
+    "			</div>\n" +
+    "			<div class=\"btn-holder\">\n" +
+    "				<a href=\"#\">Forgot Password?</a>\n" +
+    "				<a href=\"#\">Contact Support</a>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>\n" +
     "  ");
 }]);

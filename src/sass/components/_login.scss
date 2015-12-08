@@ -1,0 +1,54 @@
+.login-block{
+	@extend .col-lg-4;
+	@extend .col-lg-offset-4;
+	@extend .col-md-6;
+	@extend .col-md-offset-3;
+	@extend .col-sm-8;
+	@extend .col-sm-offset-2;
+	@extend .col-xs-12;
+}
+
+.login-holder{
+	border: 1px solid $alto2;
+	background: $white;
+	@extend .clearfix;
+	
+	.inner-holder{
+		@extend .clearfix;
+		padding: 35px 35px 15px;
+		border-bottom: 1px solid $alto2;
+	}
+	
+	.form-control{
+		border-radius: 0;
+		-webkit-border-radius: 0;
+		float: left;
+		width: 100%;
+		margin: 0 0 20px;
+		border-color: $alto2;
+	}
+	
+	.btn-holder{
+		display: table;
+		table-layout: fixed;
+		width: 100%;
+		
+		a{
+			display: table-cell;
+			vertical-align: middle;
+			width: 50%;
+			text-align: center;
+			padding: 20px 5px;
+			background: $gallery2;
+			border-left: 1px solid $alto2;
+			
+			&:first-child{border-left: 0;}
+			
+			&:hover,
+			&:active,
+			&:focus{
+				background: darken($gallery2,5%);
+			}
+		}
+	}
+}
