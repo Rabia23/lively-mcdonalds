@@ -2,6 +2,7 @@ angular.module( 'livefeed', [
   'templates-app',
   'templates-common',
   'livefeed.dashboard',
+  'livefeed.login',
   'ui.router',
   'livefeed.offline'
 ])
