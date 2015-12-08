@@ -19,6 +19,6 @@
     "font-awesome": "fontawesome#~4.4.0",
     "angular-resource": "~1.4.7",
     "angular-daterangepicker": "~0.2.1",
-    "offline": "~0.7.14"
+    "Heyoffline": "~1.1.1"
   }
 }

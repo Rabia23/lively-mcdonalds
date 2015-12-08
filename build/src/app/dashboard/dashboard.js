@@ -15,7 +15,7 @@
 angular.module( 'livefeed.dashboard', [
   'ui.router',
   'livefeed.chart',
-  'factories', 
+  'factories',
   'livefeed.helper',
   'livefeed.dashboard.regional_analysis',
   'livefeed.dashboard.feedback_map',
@@ -84,10 +84,17 @@ angular.module( 'livefeed.dashboard', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'DashboardCtrl', function DashboardController( $scope, chartService, _ , $location, $anchorScroll, Filters, Graphs) {
+.controller( 'DashboardCtrl', function DashboardControlle( $scope, chartService, _ , $location, $anchorScroll, Filters, Graphs, $rootScope) {
 
-  var regional_analysis_data = Graphs.regional_analysis();
-  
+  //var regional_analysis_data = Graphs.regional_analysis();
+  $rootScope.$on('app-oline', function(event, args) {
+    console.log("online in dashobard");
+  });
+
+  $rootScope.$on('app-offline', function(event, args) {
+    console.log("offline in dashobard");
+  });
+
+
 
 });
-

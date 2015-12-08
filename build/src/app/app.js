@@ -15,7 +15,7 @@ angular.module( 'livefeed', [
 )
 
 .run( function run () {
-  
+
 })
 
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope, offlineService ) {
@@ -23,5 +23,6 @@ angular.module( 'livefeed', [
     brand: "LiveFeed"
   };
 
-});
+  console.log(offlineService.init());
 
+});

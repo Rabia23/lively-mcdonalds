@@ -22,7 +22,7 @@ module.exports = {
   app_files: {
     js: [ 'src/**/*.js', '!src/**/*.spec.js', 'src/assets/**/*.js' ],
     jsunit: [ 'src/**/*.spec.js' ],
-    
+
     coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
     coffeeunit: [ 'src/**/*.spec.coffee' ],
 
@@ -91,7 +91,7 @@ module.exports = {
       'vendor/PykCharts/pykih-charts/assets/lib/colors.min.js',
       'vendor/PykCharts/pykih-charts/assets/lib/paper-full.min.js',
       'vendor/PykCharts/pykcharts.1.1.0.min.js',
-      'vendor/offline/offline.js'
+      'vendor/Heyoffline/Heyoffline.js'
 
 
 
