@@ -54,8 +54,6 @@ angular.module('livefeed.chart', [
 
     getLineChart: function(graph_data, parent_color, parent_value){
 
-      console.log(graph_data);
-
       var labels = _.map(graph_data[0].data.feedbacks ,function(value){
         return value.option__text;
       });
@@ -67,13 +65,9 @@ angular.module('livefeed.chart', [
         data_array[key] = [];
       });
 
-      console.log(data_array);
-
       _.each(graph_data, function(value, upper_index){
         var feedbacks = value.data.feedbacks;
         _.each(feedbacks, function(value, index){
-          console.log(value.option__text);
-          console.log(data_array[value.option__text]);
           data_array[value.option__text].push([ upper_index + 1, value.count]);
         });
       });

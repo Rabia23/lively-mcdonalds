@@ -90,7 +90,9 @@ module.exports = {
       'vendor/PykCharts/pykih-charts/assets/lib/custom-hive.min.js',
       'vendor/PykCharts/pykih-charts/assets/lib/colors.min.js',
       'vendor/PykCharts/pykih-charts/assets/lib/paper-full.min.js',
-      'vendor/PykCharts/pykcharts.1.1.0.min.js'
+      'vendor/PykCharts/pykcharts.1.1.0.min.js',
+      'vendor/offline/offline.js'
+
 
 
     ],

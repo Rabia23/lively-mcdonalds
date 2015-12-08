@@ -2,7 +2,8 @@ angular.module( 'livefeed', [
   'templates-app',
   'templates-common',
   'livefeed.dashboard',
-  'ui.router'
+  'ui.router',
+  'livefeed.offline'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
@@ -17,11 +18,10 @@ angular.module( 'livefeed', [
   
 })
 
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope ) {
+.controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope, offlineService ) {
   $rootScope.main = {
     brand: "LiveFeed"
   };
-})
 
-;
+});
 
