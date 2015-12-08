@@ -245,6 +245,8 @@
 		@extend .clearfix;
 		margin: 0 0 30px;
 		
+		@include media("≥tablet"){margin: 0 0 45px;}
+		
 		.progress-bar{
 			position: relative;
 			box-shadow: none;

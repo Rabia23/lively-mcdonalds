@@ -11,11 +11,13 @@
 		right: 0;
 		top: 0;
 		content: "";
-		height: 28px;
+		height: 20px;
 		background: $carnelian;
 		-webkit-box-shadow: 0 5px 5px rgba($black,.08);
 		-moz-box-shadow: 0 5px 5px rgba($black,.08);
 		box-shadow: 0 5px 5px rgba($black,.08);
+		
+		@include media("≥tablet"){height: 28px;}
 	}
 	
 	&:before{
@@ -23,20 +25,27 @@
 		left: 50%;
 		top: 0;
 		width: 336px;
-		height: 28px;
+		height: 20px;
 		margin-left: -168px;
 		z-index: 2;
 		content: "";
 		background: $golden-poppy;
+		
+		@include media("≥tablet"){height: 28px;}
 	}
 	
 	.logo{
 		display: block;
-		margin: 0 auto 25px;
-		width: 118px;
-		height: 106px;
+		margin: 0 auto 15px;
+		width: 80px;
+		height: auto;
 		position: relative;
 		z-index: 3;
+		
+		@include media("≥tablet"){
+			width: 118px;
+			margin: 0 auto 25px;
+		}
 		
 		img{
 			display: block;
