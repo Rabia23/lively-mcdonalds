@@ -261,7 +261,6 @@
 				vertical-align: middle;
 				padding-left: 4px;
 				padding-right: 4px;
-				pointer-events: all;
 				
 				@include media("≥widescreen"){
 					padding-left: 8px;
@@ -396,6 +395,7 @@
 	}
 	
 	@include media("≥tablet"){height: 517px;}
+	
 }
 
 .horizontal-track2{
