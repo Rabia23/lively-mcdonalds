@@ -1,4 +1,10 @@
-angular.module('templates-app', ['dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'login/login.tpl.html']);
+angular.module('templates-app', ['coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'login/login.tpl.html']);
+
+angular.module("coupon/coupon.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("coupon/coupon.tpl.html",
+    "coupon html goes here\n" +
+    "  ");
+}]);
 
 angular.module("dashboard/category-performance-analysis/category-performance-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/category-performance-analysis/category-performance-analysis.tpl.html",
@@ -209,45 +215,47 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "  <h2>Positive Negative Feedback</h2>\n" +
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
-    " <div id=\"scrollbar\" custom-scroll>\n" +
-    "  <table class=\"table\">\n" +
-    "    <thead>\n" +
-    "      <tr>\n" +
-    "        <th class=\"item1\">Name</th>\n" +
-    "        <th class=\"item2\">Phone Number</th>\n" +
-    "        <th class=\"item3\">Branch</th>\n" +
-    "        <th class=\"item4\">Segment</th>\n" +
-    "        <th class=\"item5\">Comments</th>\n" +
-    "        <th class=\"item6\">Status</th>\n" +
-    "      </tr>\n" +
-    "    </thead>\n" +
-    "  </table>\n" +
-    "  <div id=\"scrollbox2\" ng-class = \"{loading: lock}\" custom-scroll when-scrolled=\"getMoreComments()\">\n" +
-    "    <table class=\"table\">\n" +
-    "      <tbody>\n" +
-    "        <tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.is_negative, success: comment.action_taken}\">\n" +
-    "          <td class=\"item1\">{{comment.user_name}}</td>\n" +
-    "          <td class=\"item2\">\n" +
-    "            <a href=\"tel:{{comment.user_phone}}\" class=\"tel\">{{comment.user_phone}}</a>\n" +
-    "          </td>\n" +
-    "          <td class=\"item3\">{{comment.branch}}</td>\n" +
-    "          <td class=\"item4\">{{comment.segment}}</td>\n" +
-    "          <td class=\"item5\">\n" +
-    "          	<span class=\"ico\"></span>\n" +
-    "          	<div class=\"text\">\n" +
-    "          		{{comment.comment}}\n" +
-    "          	</div>\n" +
-    "          </td>\n" +
-    "          <td class=\"item6\">\n" +
-    "            <a style = \"cursor:pointer;\" class=\"btn btn-info\" ng-hide = \"comment.action_taken\" ng-click = \"processComment(comment)\">Process</a>\n" +
-    "            <span ng-show = \"comment.action_taken\">Processed</span>\n" +
-    "          </td>\n" +
-    "        </tr>\n" +
-    "      </tbody>\n" +
-    "    </table>\n" +
-    "    <span class=\"loader\"></span>\n" +
+    "  <div class=\"table-holder\">\n" +
+    "  	<div class=\"table-block jcf-scrollable\">\n" +
+    "  		<table class=\"table\">\n" +
+    "		<thead>\n" +
+    "		  <tr>\n" +
+    "			<th class=\"item1\">Name</th>\n" +
+    "			<th class=\"item2\">Phone Number</th>\n" +
+    "			<th class=\"item3\">Branch</th>\n" +
+    "			<th class=\"item4\">Segment</th>\n" +
+    "			<th class=\"item5\">Comments</th>\n" +
+    "			<th class=\"item6\">Status</th>\n" +
+    "		  </tr>\n" +
+    "		</thead>\n" +
+    "	  </table>\n" +
+    "		<div class=\"table-container jcf-scrollable\" ng-class = \"{loading: lock}\" when-scrolled=\"getMoreComments()\">\n" +
+    "		<table class=\"table\">\n" +
+    "		  <tbody>\n" +
+    "			<tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.is_negative, success: comment.action_taken}\">\n" +
+    "			  <td class=\"item1\">{{comment.user_name}}</td>\n" +
+    "			  <td class=\"item2\">\n" +
+    "				<a href=\"tel:{{comment.user_phone}}\" class=\"tel\">{{comment.user_phone}}</a>\n" +
+    "			  </td>\n" +
+    "			  <td class=\"item3\">{{comment.branch}}</td>\n" +
+    "			  <td class=\"item4\">{{comment.segment}}</td>\n" +
+    "			  <td class=\"item5\">\n" +
+    "				<span class=\"ico\"></span>\n" +
+    "				<div class=\"text\">\n" +
+    "					{{comment.comment}}\n" +
+    "				</div>\n" +
+    "			  </td>\n" +
+    "			  <td class=\"item6\">\n" +
+    "				<a style = \"cursor:pointer;\" class=\"btn btn-info\" ng-hide = \"comment.action_taken\" ng-click = \"processComment(comment)\">Process</a>\n" +
+    "				<span ng-show = \"comment.action_taken\">Processed</span>\n" +
+    "			  </td>\n" +
+    "			</tr>\n" +
+    "		  </tbody>\n" +
+    "		</table>\n" +
+    "		<span class=\"loader\"></span>\n" +
+    "	  </div>\n" +
+    "  	</div>\n" +
     "  </div>\n" +
-    " </div>\n" +
     "</div>\n" +
     "");
 }]);

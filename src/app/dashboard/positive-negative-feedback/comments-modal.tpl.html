@@ -3,43 +3,45 @@
   <h2>Positive Negative Feedback</h2>
 </div>
 <div class="modal-body">
- <div id="scrollbar" custom-scroll>
-  <table class="table">
-    <thead>
-      <tr>
-        <th class="item1">Name</th>
-        <th class="item2">Phone Number</th>
-        <th class="item3">Branch</th>
-        <th class="item4">Segment</th>
-        <th class="item5">Comments</th>
-        <th class="item6">Status</th>
-      </tr>
-    </thead>
-  </table>
-  <div id="scrollbox2" ng-class = "{loading: lock}" custom-scroll when-scrolled="getMoreComments()">
-    <table class="table">
-      <tbody>
-        <tr ng-repeat = "comment in comments" ng-class = "{negative: comment.is_negative, success: comment.action_taken}">
-          <td class="item1">{{comment.user_name}}</td>
-          <td class="item2">
-            <a href="tel:{{comment.user_phone}}" class="tel">{{comment.user_phone}}</a>
-          </td>
-          <td class="item3">{{comment.branch}}</td>
-          <td class="item4">{{comment.segment}}</td>
-          <td class="item5">
-          	<span class="ico"></span>
-          	<div class="text">
-          		{{comment.comment}}
-          	</div>
-          </td>
-          <td class="item6">
-            <a style = "cursor:pointer;" class="btn btn-info" ng-hide = "comment.action_taken" ng-click = "processComment(comment)">Process</a>
-            <span ng-show = "comment.action_taken">Processed</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <span class="loader"></span>
+  <div class="table-holder">
+  	<div class="table-block jcf-scrollable">
+  		<table class="table">
+		<thead>
+		  <tr>
+			<th class="item1">Name</th>
+			<th class="item2">Phone Number</th>
+			<th class="item3">Branch</th>
+			<th class="item4">Segment</th>
+			<th class="item5">Comments</th>
+			<th class="item6">Status</th>
+		  </tr>
+		</thead>
+	  </table>
+		<div class="table-container jcf-scrollable" ng-class = "{loading: lock}" when-scrolled="getMoreComments()">
+		<table class="table">
+		  <tbody>
+			<tr ng-repeat = "comment in comments" ng-class = "{negative: comment.is_negative, success: comment.action_taken}">
+			  <td class="item1">{{comment.user_name}}</td>
+			  <td class="item2">
+				<a href="tel:{{comment.user_phone}}" class="tel">{{comment.user_phone}}</a>
+			  </td>
+			  <td class="item3">{{comment.branch}}</td>
+			  <td class="item4">{{comment.segment}}</td>
+			  <td class="item5">
+				<span class="ico"></span>
+				<div class="text">
+					{{comment.comment}}
+				</div>
+			  </td>
+			  <td class="item6">
+				<a style = "cursor:pointer;" class="btn btn-info" ng-hide = "comment.action_taken" ng-click = "processComment(comment)">Process</a>
+				<span ng-show = "comment.action_taken">Processed</span>
+			  </td>
+			</tr>
+		  </tbody>
+		</table>
+		<span class="loader"></span>
+	  </div>
+  	</div>
   </div>
- </div>
 </div>

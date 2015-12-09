@@ -360,71 +360,59 @@
 				}
 			}
 		}
-	}
-}
-
-#scrollbar{
-	width: 100% !important;
-	padding: 0 !important;
-	height: auto !important;
-	> div {
-		bottom: 0 !important;
-		> .enscroll-track{
-			&.vertical-track2{
-				height: 100% !important;
-				padding: 0 0 20px;
-			}
+		
+		.table-block{
+			height: 250px;
+			min-width: 730px;
+			position: relative;
+			width: 100% !important;
 		}
-		@include media("<tablet"){
-			width: auto !important;
+
+		.jcf-scrollbar-dec,
+		.jcf-scrollbar-inc{
+			width: 0 !important;
+			height: 0 !important;
 		}
-		> .horizontal-track2{display: none !important;}
+		.table-container .jcf-scrollbar-inc{height: 8px !important;}
+		.jcf-scrollbar-horizontal,
+		.jcf-scrollbar-vertical{
+			background: none !important;
+			height: 7px;
+		}
+		.jcf-scrollbar-vertical{width: 7px;}
+		.jcf-scrollbar-vertical .jcf-scrollbar-handle,
+		.jcf-scrollbar-horizontal .jcf-scrollbar-handle{
+			background: rgba($mountain-mist,0.2);
+			border-radius: 5px;
+			-webkit-border-radius: 5px;
+			height: 7px;
+		}
+		.jcf-scrollbar-vertical .jcf-scrollbar-handle{width: 7px;}
+		.table-container{
+			position: relative;
+			height: auto !important;
+			width: 100% !important;
+		}
+		.table-holder{
+			width: 100%;
+			overflow: hidden;
+		}
+		.table-container + .jcf-scrollbar.jcf-scrollbar-vertical{display: none !important;}
+		.table-block + .jcf-scrollbar.jcf-scrollbar-horizontal{display: none !important;}
+		.table-block + .jcf-scrollbar.jcf-scrollbar-vertical{
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+		.table-holder > .jcf-scrollable-wrapper{
+			height: auto !important;
+			width: 100% !important;
+		}
 	}
 }
 
+.modal{display: block !important;}
 
-#scrollbox2 {
-    overflow: auto;
-    width: 100% !important;
-    height: 250px;
-    padding: 0 !important;
-	
-	@include media("<tablet"){
-		min-width: 730px;
-		pointer-events: none;
-	}
-	
-	@include media("≥tablet"){height: 517px;}
-	
-}
-
-.horizontal-track2{
-	@include media("≥tablet"){display: none !important;}
-}
-
-.vertical-track2 {
-	width: 15px;
-	float: right;
-}
-.vertical-handle2 {
-	width: 7px;
-	float: left;
-	background: rgba($mountain-mist,0.2);
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-}
-
-.horizontal-track2 {
-    width: 100%;
-    height: 7px;
-}
-
-.horizontal-handle2 {
-	height: 7px;
-	background: rgba($mountain-mist,0.2);
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-}
 
 .loading{
 	.loader{display: block;}

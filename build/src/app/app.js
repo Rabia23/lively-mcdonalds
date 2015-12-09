@@ -3,6 +3,7 @@ angular.module( 'livefeed', [
   'templates-common',
   'livefeed.dashboard',
   'livefeed.login',
+  'livefeed.coupon',
   'ui.router',
   'livefeed.offline'
 ])
