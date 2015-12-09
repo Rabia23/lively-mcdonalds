@@ -22,39 +22,39 @@
     <script type="text/javascript" src="assets/javascript/main.js"></script>
 
   </head>
-  <body>
-  <div id= "wrapper">
-    <header id="header">
-      <div class="logo"><a href="#"><img src="assets/images/logo.jpg" alt="McDonald &reg;"></a></div>
-    </header>
-    <main id="main" role="main">
-     <div class="banner-holder">
-     	<header class="header">
-        <div class="header-holder">
-          <h1>
-          	<span>McDonald‘s</span> Customer Centric Approach
-          </h1>
-        </div>
+  <body ng-class = "{dashboard: (currentState != 'coupon' && currentState != 'login'),}">
+    <div id= "wrapper">
+      <header id="header">
+        <div class="logo"><a href="#"><img src="assets/images/logo.jpg" alt="McDonald &reg;"></a></div>
       </header>
-     </div>
-
-     <!--  <div ui-view></div> -->
-      <ui-view></ui-view>
-    </main>
-    <footer id="footer">
-      <div class="footer-inner">
-      	<div class="footer-holder">
-        <div class="frame">
-          <div class="footer-text">
-            <p>Admin Panel Feedback Survey</p>
+      <main id="main" role="main">
+       <div class="banner-holder">
+       	<header class="header">
+          <div class="header-holder">
+            <h1>
+            	<span>McDonald‘s</span> Customer Centric Approach
+            </h1>
           </div>
-          <div class="footer-container">
-            <a href="http:\\mcdonalds.com.pk" target="_blank" class="footer-link">www.mcdonalds.com.pk</a>
+        </header>
+       </div>
+
+       <!--  <div ui-view></div> -->
+        <ui-view></ui-view>
+      </main>
+      <footer id="footer">
+        <div class="footer-inner">
+        	<div class="footer-holder">
+          <div class="frame">
+            <div class="footer-text">
+              <p>Admin Panel Feedback Survey</p>
+            </div>
+            <div class="footer-container">
+              <a href="http:\\mcdonalds.com.pk" target="_blank" class="footer-link">www.mcdonalds.com.pk</a>
+            </div>
           </div>
         </div>
-      </div>
-      </div>
-    </footer>
-</div>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>

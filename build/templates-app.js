@@ -2,8 +2,25 @@ angular.module('templates-app', ['coupon/coupon.tpl.html', 'dashboard/category-p
 
 angular.module("coupon/coupon.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("coupon/coupon.tpl.html",
-    "coupon html goes here\n" +
-    "  ");
+    "<div class=\"section\">\n" +
+    "	<div class=\"login-block\">\n" +
+    "		<div class=\"form-holder\">\n" +
+    "			<div class=\"inner-holder\">\n" +
+    "				<h3>Give Away</h3>\n" +
+    "				<form action=\"#\" class=\"coupon-form\">\n" +
+    "					<fieldset>\n" +
+    "						<input type=\"text\" class=\"form-control\" placeholder=\"Enter McDonald Code\">\n" +
+    "						<input type=\"submit\" value=\"Log in\" class=\"btn btn-info\">\n" +
+    "					</fieldset>\n" +
+    "				</form>\n" +
+    "				<div class=\"form-text\">\n" +
+    "					<h4>inValid COde</h4>\n" +
+    "					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus, nunc id sagittis ornare, lorem.</p>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>");
 }]);
 
 angular.module("dashboard/category-performance-analysis/category-performance-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -431,7 +448,7 @@ angular.module("login/login.tpl.html", []).run(["$templateCache", function($temp
   $templateCache.put("login/login.tpl.html",
     "<div class=\"section\">\n" +
     "	<div class=\"login-block\">\n" +
-    "		<div class=\"login-holder\">\n" +
+    "		<div class=\"form-holder\">\n" +
     "			<div class=\"inner-holder\">\n" +
     "				<h3>Log In</h3>\n" +
     "				<form action=\"#\" class=\"login-form\">\n" +

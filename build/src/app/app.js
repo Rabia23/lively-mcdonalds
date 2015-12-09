@@ -16,7 +16,12 @@ angular.module( 'livefeed', [
     window._
 )
 
-.run( function run () {
+.run( function run ($rootScope) {
+
+	$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+    $rootScope.currentState = toState.name;
+    console.log($rootScope.currentState);
+  });
 
 })
 

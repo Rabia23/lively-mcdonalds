@@ -2,7 +2,7 @@
 	@extend .col-xs-12;
 }
 
-.login-holder{
+.form-holder{
 	max-width: 457px;
 	margin: 0 auto 10px;
 	border: 1px solid $alto2;
@@ -15,6 +15,14 @@
 		border-bottom: 1px solid $alto2;
 		
 		@include media("≥tablet"){padding: 35px 35px 15px;}
+	}
+	
+	.coupon-form{
+		padding: 0 0 5px;
+		margin: 0 0 15px;
+		border-bottom: 1px solid $alto2;
+		
+		@include media("≥tablet"){margin: 0 0 25px;}
 	}
 	
 	.form-control{
@@ -151,6 +159,21 @@
 			&:focus{
 				background: darken($gallery2,5%);
 			}
+		}
+	}
+	.form-text{
+		text-align: center;
+		overflow: hidden;
+		margin: 0 0 10px;
+		color: $suva-gray;
+		font-size: 14px;
+		
+		h4{
+			@extend .text-uppercase;
+			@include fontsize(18,14);
+			font-weight: bold;
+			color: $carnelian;
+			margin: 0 0 10px;
 		}
 	}
 }
