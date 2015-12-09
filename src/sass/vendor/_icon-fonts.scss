@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'fontello';
-  src: url('/assets/fonts/fontello/fontello.eot?19263364');
-  src: url('/assets/fonts/fontello/fontello.eot?19263364#iefix') format('embedded-opentype'),
-       url('/assets/fonts/fontello/fontello.woff?19263364') format('woff'),
-       url('/assets/fonts/fontello/fontello.ttf?19263364') format('truetype'),
-       url('/assets/fonts/fontello/fontello.svg?19263364#fontello') format('svg');
+  src: url('/assets/fonts/fontello/fontello.eot?5287127');
+  src: url('/assets/fonts/fontello/fontello.eot?5287127#iefix') format('embedded-opentype'),
+       url('/assets/fonts/fontello/fontello.woff?5287127') format('woff'),
+       url('/assets/fonts/fontello/fontello.ttf?5287127') format('truetype'),
+       url('/assets/fonts/fontello/fontello.svg?5287127#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -27,4 +27,5 @@
 .icon-up-open:before { content: '\e801'; } /* '' */
 .icon-help:before { content: '\e803'; } /* '' */
 .icon-help-circled-alt:before { content: '\e803'; } /* '' */
+.icon-check:before { content: '\e804'; } /* '' */
 .icon-ico-person:before { content: '\ad804'; } /* '\ad804' */

@@ -1,22 +1,20 @@
 .login-block{
-	@extend .col-lg-4;
-	@extend .col-lg-offset-4;
-	@extend .col-md-6;
-	@extend .col-md-offset-3;
-	@extend .col-sm-8;
-	@extend .col-sm-offset-2;
 	@extend .col-xs-12;
 }
 
 .login-holder{
+	max-width: 457px;
+	margin: 0 auto 10px;
 	border: 1px solid $alto2;
 	background: $white;
 	@extend .clearfix;
 	
 	.inner-holder{
 		@extend .clearfix;
-		padding: 35px 35px 15px;
+		padding: 15px;
 		border-bottom: 1px solid $alto2;
+		
+		@include media("≥tablet"){padding: 35px 35px 15px;}
 	}
 	
 	.form-control{
@@ -24,10 +22,111 @@
 		-webkit-border-radius: 0;
 		float: left;
 		width: 100%;
-		margin: 0 0 20px;
+		margin: 0 0 15px;
 		border-color: $alto2;
+		height: 38px;
+		font-size: 14px;
+		line-height: 20px;
+		padding: 9px 12px;
+		color: $suva-gray;
+		
+		@include media("≥tablet"){margin: 0 0 20px;}
 	}
 	
+	h3{
+		@include fontsize(24,16);
+		text-align: center;
+		font-weight: normal;
+		margin: 0 0 15px;
+		
+		@include media("≥tablet"){margin: 0 0 25px;}
+	}
+	
+	.btn{
+		&.btn-info{
+			border-radius: 0;
+			-webkit-border-radius: 0;
+			width: 100%;
+			float: left;
+			@extend .text-uppercase;
+			font-size: 15px;
+			font-weight: bold;
+			line-height: 1.5em;
+			color: $drab;
+			text-shadow: 0 1px rgba($white,.75);
+			margin: 0 0 15px;
+			border-color: $wattle;
+			background: $kournikova;
+			background: -moz-linear-gradient(top, $kournikova 0%, $kournikova1 23%, $kournikova2 80%, $kournikova3 100%);
+			background: -webkit-linear-gradient(top, $kournikova 0%,$kournikova1 23%,$kournikova2 80%,$kournikova3 100%);
+			background: linear-gradient(to bottom, $kournikova 0%,$kournikova1 23%,$kournikova2 80%,$kournikova3 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$kournikova', endColorstr='$kournikova3',GradientType=0 );
+			
+			@include media("≥tablet"){
+				font-size: 18px;
+				margin: 0 0 20px;
+			}
+			
+			&:hover,
+			&:active,
+			&:focus{
+				background: $kournikova3;
+				background: -moz-linear-gradient(top, $kournikova3 0%, $kournikova2 20%, $kournikova1 77%, $kournikova 100%);
+				background: -webkit-linear-gradient(top, $kournikova3 0%,$kournikova2 20%,$kournikova1 77%,$kournikova 100%);
+				background: linear-gradient(to bottom, $kournikova3 0%,$kournikova2 20%,$kournikova1 77%,$kournikova 100%);
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$kournikova3', endColorstr='$kournikova',GradientType=0 );
+			}
+		}
+	}
+	
+	label{
+		float: left;
+		font-size: 14px;
+		line-height: 17px;
+		font-weight: normal;
+		position: relative;
+		margin: 0 0 0 22px;
+	}
+	
+	[type="checkbox"]{
+		position:fixed;
+		left:0;
+		top:0;
+		opacity:0;
+		z-index: -1;
+	}
+	
+	.fake-input{
+		position: absolute;
+		left: -22px;
+		top: 1px;
+		width:14px;
+		height:14px;
+		border:1px solid $shady-lady;
+		background: $gainsboro;
+	}
+	
+	[type="checkbox"] + .fake-input:before{
+		content:'\e804';
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin: -3px 0 0 -3px;
+		opacity: 0;
+		font: 10px/10px $ico-font;
+		color: $carnelian;
+	}
+	
+	[type="checkbox"]:checked + .fake-input:before{opacity:1;}
+	
+	[type="checkbox"]:checked + .fake-input{
+		background: $banana-yellow;
+		border-color: $banana-yellow;
+	}
+	
+	input:disabled + .fake-input,
+	input:disabled ~ .fake-label{opacity: .5;}
+
 	.btn-holder{
 		display: table;
 		table-layout: fixed;
@@ -38,11 +137,14 @@
 			vertical-align: middle;
 			width: 50%;
 			text-align: center;
-			padding: 20px 5px;
+			padding: 15px 5px;
 			background: $gallery2;
+			color: $tundora;
 			border-left: 1px solid $alto2;
 			
 			&:first-child{border-left: 0;}
+			
+			@include media("≥tablet"){padding: 19px 5px;}
 			
 			&:hover,
 			&:active,
