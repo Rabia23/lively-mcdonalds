@@ -203,7 +203,8 @@ def generate_missing_options(question, data):
             list_feedback.append({'count': 0,
                                   'option_id': option.id,
                                   'option__text': option.text,
-                                  'option__parent_id': option.parent_id})
+                                  'option__parent_id': option.parent_id,
+                                  'option__score': option.score})
 
     return list_feedback
 

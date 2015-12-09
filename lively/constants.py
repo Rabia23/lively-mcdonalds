@@ -45,7 +45,9 @@ ANONYMOUS_TEXT = "Anonymous"
 NOT_ATTEMPTED_TEXT = "N/A"
 
 #------------ Branch Constants -------------
-BRANCH_FEEDBACK_TARGET = 200
+#BRANCH_FEEDBACK_TARGET = 200
+BRANCH_FEEDBACK_TARGET = 10
+
 
 #------------ Segment Constants -------------
 STARTING_TIME = "06:00"

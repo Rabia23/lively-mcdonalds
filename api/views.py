@@ -14,6 +14,7 @@ from dateutil.relativedelta import relativedelta
 from datetime import datetime, timedelta
 from django.core.paginator import Paginator
 from django.utils import timezone
+from operator import itemgetter
 
 from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer, \
     PositiveNegativeFeedbackSerializer, AllCommentsSerializer, AllBranchesSerializer, SegmentationSerializer, \
@@ -96,11 +97,11 @@ def overall_feedback(request):
                                             date_to, date_from)
 
             filtered_feedback_options_count = filtered_feedback_options.count()
-            feedback_options = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').\
+            feedback_options = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id', 'option__score').\
                 annotate(count=Count('option_id'))
             list_feedback = generate_missing_options(question, feedback_options)
 
-            data = {'feedback_count': filtered_feedback_options_count, 'feedbacks': list_feedback}
+            data = {'feedback_count': filtered_feedback_options_count, 'feedbacks': sorted(list_feedback, reverse=True, key=itemgetter('option__score'))}
             feedback_response = OverallFeedbackSerializer(data)
             return Response(feedback_response.data)
 
