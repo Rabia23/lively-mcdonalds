@@ -1,7 +1,8 @@
 angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   'factories',
   'livefeed.chart',
-  'helper_factories'
+  'helper_factories',
+   'ui.bootstrap'
 ])
 
 .controller( 'PositiveNegativeFeedbackCtrl', function DashboardController( $scope, _, Global, Graphs,$uibModal, $log ) {
@@ -39,6 +40,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   $scope.lock = false;
 
   Graphs.comments($scope.page).$promise.then(function(data){
+    console.log("comments data");
     console.log(data);
     $scope.comments = data.feedbacks;
   });

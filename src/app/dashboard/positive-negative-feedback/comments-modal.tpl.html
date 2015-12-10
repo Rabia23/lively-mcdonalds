@@ -33,10 +33,23 @@
 					{{comment.comment}}
 				</div>
 			  </td>
-			  <td class="item6">
-				<a style = "cursor:pointer;" class="btn btn-info" ng-hide = "comment.action_taken" ng-click = "processComment(comment)">Process</a>
-				<span ng-show = "comment.action_taken">Processed</span>
-			  </td>
+			  <!--<td class="item6">-->
+				<!--<a style = "cursor:pointer;" class="btn btn-info" ng-hide = "comment.action_taken" ng-click = "processComment(comment)">Process</a>-->
+				<!--<span ng-show = "comment.action_taken">Processed</span>-->
+			  <!--</td>-->
+				 <td class="item6">
+					<div class="btn-group" uib-dropdown>
+					  <button id="split-button" type="button" class="btn btn-danger">Action</button>
+					  <button type="button" class="btn btn-danger" uib-dropdown-toggle>
+						<span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+					  </button>
+					  <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+						<li role="menuitem"><a href="#">Action</a></li>
+						<li role="menuitem"><a href="#">Another action</a></li>
+					  </ul>
+					</div>
+              </td>
 			</tr>
 		  </tbody>
 		</table>
