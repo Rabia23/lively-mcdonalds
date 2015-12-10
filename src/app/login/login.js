@@ -17,7 +17,8 @@ angular.module( 'livefeed.login', [
   'livefeed.chart',
   'livefeed.authService',
   'factories',
-  'flash'
+  'flash',
+  'ngAnimate'
 
 ])
 
@@ -70,7 +71,7 @@ angular.module( 'livefeed.login', [
         }
         else{
           var message = data.message;
-          Flash.create('success', message, 'show-alert');
+          Flash.create('danger', message, 'show-alert');
         }
       
       });

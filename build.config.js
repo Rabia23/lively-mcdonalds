@@ -92,7 +92,9 @@ module.exports = {
       'vendor/PykCharts/pykih-charts/assets/lib/paper-full.min.js',
       'vendor/PykCharts/pykcharts.1.1.0.min.js',
       'vendor/Heyoffline/Heyoffline.js',
-      'vendor/angular-flash-alert/dist/angular-flash.js'
+      'vendor/angular-flash-alert/dist/angular-flash.js',
+      'vendor/angular-animate/angular-animate.min.js'
+
 
 
 
