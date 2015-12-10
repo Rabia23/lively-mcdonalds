@@ -15,7 +15,9 @@
 angular.module( 'livefeed.login', [
   'ui.router',
   'livefeed.chart',
-  'factories'
+  'livefeed.authService',
+  'factories',
+  'flash'
 
 ])
 
@@ -33,9 +35,8 @@ angular.module( 'livefeed.login', [
         controller: 'LoginCtrl',
         templateUrl: 'login/login.tpl.html'
       }
-
-
-    }
+    },
+    authenticate: false
   });
 
 })
@@ -43,9 +44,13 @@ angular.module( 'livefeed.login', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'LoginCtrl', function LoginController( $scope,  _ , $rootScope) {
+.controller( 'LoginCtrl', function LoginController( $scope,  _ , $rootScope, $state, Authentication, TokenHandler, Flash) {
 
   //var regional_analysis_data = Graphs.regional_analysis();
+  $scope.submitted = false;
+
+  $scope.authenticate = {};
+
   $rootScope.$on('app-online', function(event, args) {
     console.log("online in login");
   });
@@ -53,6 +58,24 @@ angular.module( 'livefeed.login', [
   $rootScope.$on('app-offline', function(event, args) {
     console.log("offline in login");
   });
+
+  $scope.login = function(valid){
+    $scope.submitted = true;
+    if(valid){   
+      Authentication.login($scope.authenticate).$promise.then(function(data){
+        
+        if(data.status){
+          TokenHandler.store_token(data.token, data.user.id);
+          $state.go("dashboard");
+        }
+        else{
+          var message = data.message;
+          Flash.create('success', message, 'show-alert');
+        }
+      
+      });
+    }
+  };
 
 
 

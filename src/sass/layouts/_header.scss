@@ -39,9 +39,48 @@
 		background: $golden-poppy;
 		
 		@include media("≥tablet"){
+			margin-left: -125px;
+			width: 250px;
+			height: 28px;
+		}
+		
+		@include media("≥desktop"){
+			margin-left: -150px;
+			width: 300px;
+		}
+		
+		@include media("≥widescreen"){
 			margin-left: -168px;
 			width: 336px;
-			height: 28px;
+		}
+	}
+	
+	.header-list{
+		float: right;
+		@extend .list-inline;
+		margin: 0;
+		font-size: 14px;
+		line-height: 16px;
+		padding: 1px 0 0;
+		position: relative;
+		z-index: 99;
+		text-transform: capitalize;
+		
+		@include media("≥tablet"){padding: 6px 0 0;}
+		
+		li{
+			vertical-align: top;
+			padding: 0 15px 0 0;
+			color: $white;
+			
+			@include media("≥tablet"){padding: 0 15px 0 5px;}
+			
+			a{
+				color: $white;
+				&:hover{color: $banana-yellow;}
+			}
+			
+			&.name{@extend .hidden-xs;}
 		}
 	}
 	
@@ -58,7 +97,8 @@
 			margin: 0 auto 25px;
 		}
 		
-		@include media("≥desktop"){width: 118px;}
+		@include media("≥desktop"){width: 110px;}
+		@include media("≥widescreen"){width: 118px;}
 		
 		img{
 			display: block;

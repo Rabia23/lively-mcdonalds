@@ -91,7 +91,8 @@ module.exports = {
       'vendor/PykCharts/pykih-charts/assets/lib/colors.min.js',
       'vendor/PykCharts/pykih-charts/assets/lib/paper-full.min.js',
       'vendor/PykCharts/pykcharts.1.1.0.min.js',
-      'vendor/Heyoffline/Heyoffline.js'
+      'vendor/Heyoffline/Heyoffline.js',
+      'vendor/angular-flash-alert/dist/angular-flash.js'
 
 
 
@@ -100,7 +101,8 @@ module.exports = {
       'vendor/morris.js/morris.css',
       'vendor/bootstrap-daterangepicker/daterangepicker.css',
       'vendor/angular-chart.js/dist/angular-chart.css',
-      'vendor/PykCharts/pykcharts.1.1.0.min.css'
+      'vendor/PykCharts/pykcharts.1.1.0.min.css',
+      'vendor/angular-flash-alert/dist/angular-flash.css'
 
     ],
     assets: [

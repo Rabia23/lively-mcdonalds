@@ -24,6 +24,22 @@ angular.module( 'factories', [
   return new Filters();
 }])
 
+.factory('Authentication', ['$resource','apiLinks', function($resource, apiLinks) {
+  function Authentication() {
+    this.service = $resource(apiLinks.staging,{callback: "JSON_CALLBACK"},
+                  {
+                    login: {method: "JSONP",isArray: false, params: {endpoint: "login/"}, transformResponse: function(data, headers){
+                      console.log(data);
+                      return data;
+                    }}
+                 });
+  }
+  Authentication.prototype.login = function(authentication){
+    return this.service.login({username: authentication.username, password: authentication.password});
+  };
+  return new Authentication();
+}])
+
 
 .factory('Graphs', ['$resource','apiLinks','_',  function($resource, apiLinks, _) {
   function Graphs() {
@@ -37,6 +53,7 @@ angular.module( 'factories', [
                     comments: {method: "JSONP",isArray: false, params: {endpoint: "comments"}},
                     feedback_analysis_breakdown: {method: "JSONP",isArray: false, params: {endpoint: "feedback_analysis_breakdown"}},
                     map_view: {method: "JSONP",isArray: false, params: {endpoint: "map_view"}, transformResponse: function(data, headers){
+                      console.log(data);
                       _.each(data.branches, function(branch){
                         branch.position = branch.latitude +"," +branch.longitude;
                       });

@@ -1,12 +1,15 @@
+<div flash-message="5000" ></div> 
 <div class="section">
 	<div class="login-block">
 		<div class="form-holder">
 			<div class="inner-holder">
 				<h3>Log In</h3>
-				<form action="#" class="login-form">
+				<form class="login-form" name = "LoginForm" ng-submit="login(LoginForm.$valid)" novalidate>
 					<fieldset>
-						<input type="text" class="form-control" placeholder="User Name">
-						<input type="password" class="form-control" placeholder="Password">
+						<input type="text" class="form-control" placeholder="User Name" required name = "username" ng-model = "authenticate.username">
+						<div ng-show="LoginForm.username.$error.required && (!LoginForm.username.$pristine || submitted == true)" class="form-error-message pull-left">Username is required.</div>
+						<input type="password" class="form-control" placeholder="Password" required name = "password" ng-model = "authenticate.password">
+						<div ng-show="LoginForm.password.$error.required && (!LoginForm.password.$pristine || submitted == true)" class="form-error-message pull-left">Password is required.</div>
 						<input type="submit" value="Log in" class="btn btn-info">
 						<label for="check-1">
 							<input id="check-1" type="checkbox">
