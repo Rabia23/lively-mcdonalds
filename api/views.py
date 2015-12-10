@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate
 from django.db.models import Count
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
@@ -18,26 +19,32 @@ from operator import itemgetter
 
 from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer, \
     PositiveNegativeFeedbackSerializer, AllCommentsSerializer, AllBranchesSerializer, SegmentationSerializer, \
-    ConcernsSerializer, SegmentationRatingSerializer, FeedbackCommentSerializer, ActionAnalysisSerializer
+    ConcernsSerializer, SegmentationRatingSerializer, FeedbackCommentSerializer, ActionAnalysisSerializer, \
+    LoginSerializer
 
 from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options, \
     apply_general_filters, generate_option_groups, generate_segmentation_with_options, apply_date_range_filter, \
     get_filtered_feedback, generate_missing_actions
 
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def login(request):
-    if request.method == "POST":
+
+    if request.method == "GET":
         username = request.data.get('username')
         password = request.data.get('password')
         user = authenticate(username=username, password=password)
         if user:
             token = Token.objects.get_or_create(user=user)
-            return Response({'status': True, 'message': 'User authenticated', 'token': token[0].key, 'user': UserSerializer(user).data})
-        return Response({'status': False, 'message': 'User not authenticated'})
+            data = {'status': True, 'message': 'User authenticated', 'token': token[0].key, 'user': user}
+        else:
+            data = {'status': False, 'message': 'User not authenticated', 'token': None, 'user': None}
+
+        serializer = LoginSerializer(data)
+        return Response(serializer.data)
 
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 @permission_classes((IsAuthenticated,))
 def region(request):
 
@@ -47,7 +54,7 @@ def region(request):
         return Response(serializer.data)
 
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def city(request):
 
     if request.method == 'GET':
@@ -63,7 +70,7 @@ def city(request):
         return Response(serializer.data)
 
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def branch(request):
 
     if request.method == 'GET':
@@ -296,6 +303,7 @@ def category_performance(request):
 
             filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id,
                                                               date_to, date_from)
+
             filtered_feedback_options_count = filtered_feedback_options.count()
             filtered_feedbacks = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').\
                 annotate(count=Count('option_id'))
@@ -303,7 +311,6 @@ def category_performance(request):
                 list_feedback = generate_missing_sub_options(option_id, filtered_feedbacks)
             else:
                 list_feedback = generate_missing_options(question, filtered_feedbacks)
-
 
             data = {'feedback_count': filtered_feedback_options_count, 'feedbacks': list_feedback}
             feedback_response = OverallFeedbackSerializer(data)
@@ -523,7 +530,7 @@ def action_taken(request):
             if feedback_id:
                 feedback = Feedback.objects.get(pk=feedback_id)
 
-                feedback.action_taken = constants.UNPROCESSED
+                feedback.action_taken = constants.PROCESSED
                 feedback.save()
 
                 feedback_response = FeedbackCommentSerializer(feedback.feedback_comment_dict())

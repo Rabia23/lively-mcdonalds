@@ -11,7 +11,7 @@ class UserInfo(models.Model):
     is_customer = models.BooleanField()
     objectId = models.CharField(max_length=20)
 
-    def __unicode__(self):
+    def __str__(self):
        return self.name
 
     @staticmethod
@@ -38,7 +38,7 @@ class Region(models.Model):
     name = models.CharField(max_length=20)
     objectId = models.CharField(max_length=20)
 
-    def __unicode__(self):
+    def __str__(self):
        return self.name
 
     @staticmethod
@@ -59,7 +59,11 @@ class City(models.Model):
     objectId = models.CharField(max_length=20)
     region = models.ForeignKey(Region, related_name='cities', null=True, blank=True)
 
-    def __unicode__(self):
+    class Meta:
+        verbose_name = 'City'
+        verbose_name_plural = 'Cities'
+
+    def __str__(self):
        return self.name
 
     @staticmethod
@@ -83,7 +87,11 @@ class Branch(models.Model):
     user = models.ForeignKey(User, related_name='branches', null=True, blank=True)
     city = models.ForeignKey(City, related_name='branches', null=True, blank=True)
 
-    def __unicode__(self):
+    class Meta:
+        verbose_name = 'Branch'
+        verbose_name_plural = 'Branches'
+
+    def __str__(self):
        return self.name
 
     @staticmethod

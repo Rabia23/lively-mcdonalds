@@ -12,6 +12,7 @@ class CityAdmin(admin.ModelAdmin):
 
 class BranchAdmin(admin.ModelAdmin):
     list_display = ('name',)
+    verbose_name_plural = "Branches"
 
 
 class UserInfoAdmin(admin.ModelAdmin):

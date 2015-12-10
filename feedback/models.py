@@ -14,7 +14,7 @@ class Feedback(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     action_taken = models.IntegerField(default=constants.UNPROCESSED)
 
-    def __unicode__(self):
+    def __str__(self):
        return self.objectId
 
     @staticmethod
@@ -150,7 +150,7 @@ class Question(models.Model):
     type = models.IntegerField()
     objectId = models.CharField(max_length=20)
 
-    def __unicode__(self):
+    def __str__(self):
        return self.text
 
     @staticmethod
@@ -167,7 +167,7 @@ class Option(models.Model):
     question = models.ForeignKey(Question, related_name='options', null=True, blank=True)
     parent = models.ForeignKey('self', null=True, blank=True, related_name='children')
 
-    def __unicode__(self):
+    def __str__(self):
        return self.text
 
     @staticmethod
@@ -201,7 +201,7 @@ class FeedbackOption(models.Model):
             return True
         return False
 
-    def __unicode__(self):
+    def __str__(self):
        return self.objectId
 
     @staticmethod

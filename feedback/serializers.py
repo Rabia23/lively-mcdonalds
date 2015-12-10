@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from app.serializers import UserSerializer
 from feedback.models import Feedback, Option, Question, FeedbackOption
 
 
@@ -160,3 +161,10 @@ class ActionAnalysisObjectSerializer(serializers.Serializer):
 class ActionAnalysisSerializer(serializers.Serializer):
     count = serializers.IntegerField()
     analysis = ActionAnalysisObjectSerializer(many=True)
+
+
+class LoginSerializer(serializers.Serializer):
+    status = serializers.BooleanField()
+    message = serializers.CharField()
+    token = serializers.CharField()
+    user = UserSerializer()
