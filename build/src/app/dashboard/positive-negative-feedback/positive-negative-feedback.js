@@ -2,7 +2,8 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   'factories',
   'livefeed.chart',
   'helper_factories',
-   'ui.bootstrap'
+   'ui.bootstrap',
+   'livefeed.scroll'
 ])
 
 .controller( 'PositiveNegativeFeedbackCtrl', function DashboardController( $scope, _, Global, Graphs,$uibModal, $log ) {
@@ -103,10 +104,22 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
 //   };
 // })
 
-.directive('customScroll', function(){
+.directive('customScroll', function(scollService){
   return {
     restrict: 'A',
+    scope: {
+      comments: '='
+    },
     link: function(scope, ele, attrs){
+      scope.$watch('comments', function(watchedComments) {
+        if(watchedComments.length > 0){
+          
+          console.log("in the watch");
+          console.log(watchedComments);
+          scollService.init();
+
+        }
+      });
       
     }
   };
