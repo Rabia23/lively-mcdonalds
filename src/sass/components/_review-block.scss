@@ -278,7 +278,7 @@
 					padding-right: 17px;
 					overflow: visible;
 					@include media("≥widescreen"){padding-right: 19px;}
-					a{
+					.btn{
 						display: block;
 						padding: 6px;
 						margin: 0 auto;

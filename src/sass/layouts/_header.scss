@@ -31,28 +31,34 @@
 		position: absolute;
 		left: 50%;
 		top: 0;
-		width: 336px;
+		width: 120px;
 		height: 20px;
-		margin-left: -168px;
+		margin-left: -60px;
 		z-index: 2;
 		content: "";
 		background: $golden-poppy;
 		
-		@include media("≥tablet"){height: 28px;}
+		@include media("≥tablet"){
+			margin-left: -168px;
+			width: 336px;
+			height: 28px;
+		}
 	}
 	
 	.logo{
 		display: block;
 		margin: 0 auto 15px;
-		width: 80px;
+		width: 75px;
 		height: auto;
 		position: relative;
 		z-index: 3;
 		
 		@include media("≥tablet"){
-			width: 118px;
+			width: 100px;
 			margin: 0 auto 25px;
 		}
+		
+		@include media("≥desktop"){width: 118px;}
 		
 		img{
 			display: block;
