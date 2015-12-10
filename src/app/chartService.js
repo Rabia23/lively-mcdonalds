@@ -40,12 +40,12 @@ angular.module('livefeed.chart', [
       return {
         objects: _.map(graph_data.analysis,  function(data){ return {name: data.object.name, id: data.object.id};}),
         donutData: _.map(graph_data.analysis,  function(data){
-          return   _.map(data.data.action_analysis,  function(dat){ return {label: dat.action_taken === false ? "Unprocessed" : "Processed", value: dat.count};});
+          return   _.map(data.data.action_analysis,  function(dat){ return {label: dat.action_taken === 2 ? "Unprocessed" : "Processed", value: dat.count};});
         }),
         donutOptions: _.map(graph_data.analysis,  function(data){
           return   {
               colors: _.map(data.data.action_analysis, function(dat){
-                return dat.action_taken === false? '#e73a3a' : '#01ad0f';
+                return dat.action_taken === 2 ? '#e73a3a' : '#01ad0f';
               })
             };
         })

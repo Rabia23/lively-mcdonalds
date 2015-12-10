@@ -58,12 +58,12 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     });
   });
 
-  $scope.processComment = function(comment){
-    Graphs.action_taken(comment.id).$promise.then(function(data){
-      comment.action_taken = true;
-    });
-
-  };
+  //$scope.processComment = function(comment){
+  //  Graphs.action_taken(comment.id).$promise.then(function(data){
+  //    comment.action_taken = true;
+  //  });
+  //
+  //};
 
   $scope.getMoreComments = function(){
     $scope.page = $scope.page + 1;
