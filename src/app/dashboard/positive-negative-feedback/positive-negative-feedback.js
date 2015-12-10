@@ -71,35 +71,44 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   };
 })
 
-.directive('customScroll', function() {
-    return {
-      restrict: 'A',
-      link: function(scope, ele, attrs) {
-        $(ele).enscroll({
-          horizontalScrolling: true,
-          verticalTrackClass: 'vertical-track2',
-          verticalHandleClass: 'vertical-handle2',
-          horizontalTrackClass: 'horizontal-track2',
-          horizontalHandleClass: 'horizontal-handle2',
-          cornerClass: 'corner2',
-          scrollIncrement: 100
-        });
+// .directive('customScroll', function() {
+//     return {
+//       restrict: 'A',
+//       link: function(scope, ele, attrs) {
+//         $(ele).enscroll({
+//           horizontalScrolling: true,
+//           verticalTrackClass: 'vertical-track2',
+//           verticalHandleClass: 'vertical-handle2',
+//           horizontalTrackClass: 'horizontal-track2',
+//           horizontalHandleClass: 'horizontal-handle2',
+//           cornerClass: 'corner2',
+//           scrollIncrement: 100
+//         });
         
-      }
+//       }
+//   };
+// })
+
+.directive('customScroll', function(){
+  return {
+    restrict: 'A',
+    link: function(scope, ele, attrs){
+      
+    }
   };
 })
 
 .directive('whenScrolled', function() {
   return {
     link: function(scope, elm, attr) {
-        var raw = elm[0];
-        elm.bind('scroll', function() {
-          if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
-            if(scope.lock === false){
-              scope.$apply(attr.whenScrolled);
-            }     
-          }
-        });
+      var raw = elm[0];
+      elm.bind('scroll', function() {
+        if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
+          if(scope.lock === false){
+            scope.$apply(attr.whenScrolled);
+          }     
+        }
+      });
     }
   };
 });

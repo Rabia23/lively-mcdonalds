@@ -233,7 +233,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
     "  <div class=\"table-holder\">\n" +
-    "  	<div class=\"table-block jcf-scrollable\">\n" +
+    "  	<div class=\"table-block jcf-scrollable\" custom-scroll>\n" +
     "  		<table class=\"table\">\n" +
     "		<thead>\n" +
     "		  <tr>\n" +
@@ -446,15 +446,18 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
 
 angular.module("login/login.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("login/login.tpl.html",
+    "<div flash-message=\"5000\" ></div> \n" +
     "<div class=\"section\">\n" +
     "	<div class=\"login-block\">\n" +
     "		<div class=\"form-holder\">\n" +
     "			<div class=\"inner-holder\">\n" +
     "				<h3>Log In</h3>\n" +
-    "				<form action=\"#\" class=\"login-form\">\n" +
+    "				<form class=\"login-form\" name = \"LoginForm\" ng-submit=\"login(LoginForm.$valid)\" novalidate>\n" +
     "					<fieldset>\n" +
-    "						<input type=\"text\" class=\"form-control\" placeholder=\"User Name\">\n" +
-    "						<input type=\"password\" class=\"form-control\" placeholder=\"Password\">\n" +
+    "						<input type=\"text\" class=\"form-control\" placeholder=\"User Name\" required name = \"username\" ng-model = \"authenticate.username\">\n" +
+    "						<div ng-show=\"LoginForm.username.$error.required && (!LoginForm.username.$pristine || submitted == true)\" class=\"form-error-message pull-left\">Username is required.</div>\n" +
+    "						<input type=\"password\" class=\"form-control\" placeholder=\"Password\" required name = \"password\" ng-model = \"authenticate.password\">\n" +
+    "						<div ng-show=\"LoginForm.password.$error.required && (!LoginForm.password.$pristine || submitted == true)\" class=\"form-error-message pull-left\">Password is required.</div>\n" +
     "						<input type=\"submit\" value=\"Log in\" class=\"btn btn-info\">\n" +
     "						<label for=\"check-1\">\n" +
     "							<input id=\"check-1\" type=\"checkbox\">\n" +

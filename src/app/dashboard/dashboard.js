@@ -24,7 +24,9 @@ angular.module( 'livefeed.dashboard', [
   'livefeed.dashboard.overall_feedback',
   'livefeed.dashboard.statistics',
   'livefeed.dashboard.positive_negative_feedback',
-  'livefeed.dashboard.top_concern'
+  'livefeed.dashboard.top_concern',
+  'flash',
+  'livefeed.authService'
 
 ])
 
@@ -76,7 +78,8 @@ angular.module( 'livefeed.dashboard', [
         templateUrl: 'dashboard/top-concern/top-concern.tpl.html'
       }
 
-    }
+    },
+    authenticate: true
   });
 
 })
@@ -84,7 +87,7 @@ angular.module( 'livefeed.dashboard', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'DashboardCtrl', function DashboardControlle( $scope, chartService, _ , $location, $anchorScroll, Filters, Graphs, $rootScope) {
+.controller( 'DashboardCtrl', function DashboardControlle( $scope, chartService, _ , $location, $anchorScroll, Filters, Graphs, $rootScope, TokenHandler, Auth) {
 
   //var regional_analysis_data = Graphs.regional_analysis();
   $rootScope.$on('app-oline', function(event, args) {
@@ -94,6 +97,8 @@ angular.module( 'livefeed.dashboard', [
   $rootScope.$on('app-offline', function(event, args) {
     console.log("offline in dashobard");
   });
+
+  var user_id = TokenHandler.get_uid();
 
 
 
