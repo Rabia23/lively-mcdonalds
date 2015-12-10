@@ -136,7 +136,7 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "        </div>\n" +
     "    </div>\n" +
     "    <ul class=\"list\">\n" +
-    "      <li class=\"v-good\">Above Benchmark</li>\n" +
+    "      <li class=\"good\">Above Benchmark</li>\n" +
     "      <li class=\"negative\">Below Benchmark</li>\n" +
     "    </ul>\n" +
     "  </div>\n" +

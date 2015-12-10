@@ -279,12 +279,12 @@
 		width: 30px;
 		
 		&:after{
-			font: 20px/20px $ico-font;
+			font: 20px $ico-font;
 			position: absolute;
 			left: 0;
 			top: 50%;
 			content: '\e800';
-			margin-top: -5px;
+			margin-top: -10px;
 			height: 10px;
 			cursor: default;
 		}

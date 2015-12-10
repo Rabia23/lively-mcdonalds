@@ -114,9 +114,9 @@
 			position: relative;
 			padding: 15px;
 			border: 1px solid $islamic-green;
-			-webkit-box-shadow: 4px 4px rgba($black,.1);
-			-moz-box-shadow: 4px 4px rgba($black,.1);
 			box-shadow: 4px 4px rgba($black,.1);
+			-moz-box-shadow: 4px 4px rgba($black,.1);
+			-webkit-box-shadow: 4px 4px rgba($black,.1);
 			margin: 0 0 15px;
 			word-break: break-all;
 			
@@ -137,6 +137,7 @@
 				width: 0;
 				position: absolute;
 				pointer-events: none;
+				z-index: 999;
 			}
 
 			&:after {
@@ -152,42 +153,46 @@
 			}
 			
 			.arrow{
-				width: 22px;
+				width: 20px;
 				height: 16px;
-				left: 21px;
-				bottom: -16px;
+				left: 36px;
+				bottom: -21px;
 				position: absolute;
-				overflow: hidden;
+				z-index: 0;
 				&:after {
-					content: "";
+					top: 0;
+					left: 0;
+					border: solid transparent;
+					content: " ";
+					height: 0;
+					width: 0;
 					position: absolute;
-					width: 15px;
-					height: 16px;
-					-moz-transform: rotate(45deg); 
-					  -webkit-transform: rotate(45deg);
-					  -o-transform: rotate(45deg);
-					  -ms-transform:rotate(45deg);
-					top: -8px;
-					left: 5px;
-					-webkit-box-shadow: 4px 4px rgba($black,.1);
-					-moz-box-shadow: 4px 4px rgba($black,.1);
-					box-shadow: 4px 4px rgba($black,.1);
+					pointer-events: none;
+					border-color: rgba(136, 183, 213, 0);
+					border-top-color: #e5e5e5;
+					border-width: 9px;
+					margin-left: -9px;
+					-moz-transform: rotate(0deg); 
+					  -webkit-transform: rotate(0deg);
+					  -o-transform: rotate(0deg);
+					  -ms-transform:rotate(0deg);
 				}
 			}
 		}
 		time{
 			float: left;
 			position: relative;
+			z-index: 999;
 			padding: 0 0 0 14px;
 			color: $mountain-mist;
 			font-size: 12px;
 			line-height: 16px;
-			margin: -8px 0 0 40px;
+			margin: -5px 0 0 40px;
 			
 			&:after{
 				position: absolute;
 				left: 0;
-				top: 2px;
+				top: 3px;
 				font: 11px/11px $ico-font;
 				content: '\ad804';
 				color: $islamic-green;
