@@ -250,9 +250,9 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "		<table class=\"table\">\n" +
     "		  <tbody>\n" +
     "			<tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.is_negative, success: comment.action_taken}\">\n" +
-    "			  <td class=\"item1\">{{comment.user_name}}</td>\n" +
+    "			  <td class=\"item1\">{{comment.name}}</td>\n" +
     "			  <td class=\"item2\">\n" +
-    "				<a href=\"tel:{{comment.user_phone}}\" class=\"tel\">{{comment.user_phone}}</a>\n" +
+    "				<a href=\"tel:{{comment.phone_no}}\" class=\"tel\">{{comment.user_phone}}</a>\n" +
     "			  </td>\n" +
     "			  <td class=\"item3\">{{comment.branch}}</td>\n" +
     "			  <td class=\"item4\">{{comment.segment}}</td>\n" +
@@ -262,23 +262,21 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "					{{comment.comment}}\n" +
     "				</div>\n" +
     "			  </td>\n" +
-    "			  <!--<td class=\"item6\">-->\n" +
-    "				<!--<a style = \"cursor:pointer;\" class=\"btn btn-info\" ng-hide = \"comment.action_taken\" ng-click = \"processComment(comment)\">Process</a>-->\n" +
-    "				<!--<span ng-show = \"comment.action_taken\">Processed</span>-->\n" +
-    "			  <!--</td>-->\n" +
-    "				 <td class=\"item6\">\n" +
-    "					<div class=\"btn-group\" uib-dropdown>\n" +
-    "					  <button id=\"split-button\" type=\"button\" class=\"btn btn-danger\">Action</button>\n" +
-    "					  <button type=\"button\" class=\"btn btn-danger\" uib-dropdown-toggle>\n" +
-    "						<span class=\"caret\"></span>\n" +
-    "						<span class=\"sr-only\">Split button!</span>\n" +
-    "					  </button>\n" +
-    "					  <ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"split-button\">\n" +
-    "						<li role=\"menuitem\"><a href=\"#\">Action</a></li>\n" +
-    "						<li role=\"menuitem\"><a href=\"#\">Another action</a></li>\n" +
-    "					  </ul>\n" +
-    "					</div>\n" +
-    "              </td>\n" +
+    "			  <td class=\"item6\">\n" +
+    "				<div class=\"btn-group\" uib-dropdown ng-show = \"comment.action_taken\">\n" +
+    "				  <button id=\"split-button\" type=\"button\" class=\"btn btn-info\" ng-click=\"selectedValue('Process',comment)\">Process</button>\n" +
+    "				  <button type=\"button\" class=\"btn btn-info\" uib-dropdown-toggle>\n" +
+    "					<span class=\"caret\"></span>\n" +
+    "					<span class=\"sr-only\">Split button!</span>\n" +
+    "				  </button>\n" +
+    "				  <ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"split-button\">\n" +
+    "					<li role=\"menuitem\">\n" +
+    "						<a style = \"cursor:pointer;\" ng-click=\"selectedValue('Defer',comment)\">Defer</a>\n" +
+    "					</li>\n" +
+    "				  </ul>\n" +
+    "				</div>\n" +
+    "				<span ng-hide = \"comment.action_taken\">{{comment.action_string}}</span>\n" +
+    "			   </td>\n" +
     "			</tr>\n" +
     "		  </tbody>\n" +
     "		</table>\n" +

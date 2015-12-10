@@ -39,10 +39,23 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
 
   $scope.lock = false;
 
+  $scope.selectedValue = function(value, comment){
+    comment.action_taken = false;
+    comment.action_string = value == "Process" ? "Processed" : "Deferred";
+  };
+
   Graphs.comments($scope.page).$promise.then(function(data){
-    console.log("comments data");
-    console.log(data);
-    $scope.comments = data.feedbacks;
+    $scope.comments = _.map(data.feedbacks,  function(data){
+      return {
+        name: data.user_name,
+        phone_no: data.user_phone,
+        branch: data.branch,
+        segment: data.segment,
+        comment: data.comment,
+        action_taken: data.action_taken === 1 ?  true : false,
+        action_string: data.action_taken === 2 ? "Processed" : data.action_taken === 3 ? "Deferred" : ""
+      };
+    });
   });
 
   $scope.processComment = function(comment){
@@ -62,7 +75,6 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
       });
     });
   };
-
 
   $scope.ok = function () {
     $uibModalInstance.close($scope.selected.item);
