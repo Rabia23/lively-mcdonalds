@@ -31,8 +31,8 @@ from lively.utils import generate_missing_options, get_filtered_feedback_options
 def login(request):
 
     if request.method == "GET":
-        username = request.data.get('username')
-        password = request.data.get('password')
+        username = request.query_params.get('username')
+        password = request.query_params.get('password')
         user = authenticate(username=username, password=password)
         if user:
             token = Token.objects.get_or_create(user=user)
