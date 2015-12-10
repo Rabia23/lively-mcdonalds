@@ -155,11 +155,21 @@
 	  font-size: 12px;
 	  line-height: 14px;
 	  color: $mountain-mist;
+		
+		@include media("≥tablet"){
+			font-size: 13px;
+			line-height: 16px;
+		}
+		
+		@include media("≥widescreen"){
+			font-size: 14px;
+			line-height: 16px;
+		}
       
       li{
         vertical-align: top;
         letter-spacing: 0;
-        padding: 0 10px 5px 8px;
+        padding: 0 10px 6px 9px;
 		position: relative;
 		
 		  .bullet{
@@ -170,10 +180,18 @@
 			  height: 6px;
         	  overflow:hidden;
 			  margin-top: -6px;
+			  border-radius: 100%;
+			  -webkit-border-radius: 100%;
+			  
+			  @include media("≥widescreen"){
+				  width: 8px;
+				  height: 8px;
+				  margin-top: -7px;
+			  }
 		  }
         
-        @include media("≥tablet"){padding: 0 12px 5px 9px;}
-		@include media("≥widescreen"){padding: 0 14px 5px 12px;}
+        @include media("≥tablet"){padding: 0 10px 6px 9px;}
+		@include media("≥widescreen"){padding: 0 14px 6px;}
 		  a{
 			  color: $mountain-mist;
 			  &:hover,
@@ -261,12 +279,13 @@
 		width: 30px;
 		
 		&:after{
-			font: 20px/20px $ico-font;
+			font: 20px $ico-font;
 			position: absolute;
 			left: 0;
 			top: 50%;
 			content: '\e800';
-			margin-top: -5px;
+			margin-top: -10px;
+			height: 10px;
 			cursor: default;
 		}
 	}

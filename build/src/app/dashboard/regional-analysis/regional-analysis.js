@@ -43,6 +43,8 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.show_loading = true;
     if($scope.radioModel === 'Complaints'){
       Graphs.action_analysis("", "", "", $scope.start_date, $scope.end_date).$promise.then(function(complains_data){
+        console.log("Complains data");
+        console.log(complains_data);
          $scope.donut_graph_data = chartService.getComplaintsDonutChartData(complains_data);
          $scope.show_loading = false;
       });
