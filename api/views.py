@@ -233,25 +233,21 @@ def overall_rating(request):
             elif type == constants.YEARLY_ANALYSIS:
                 rule = rrule.YEARLY
                 date_from = str((now - relativedelta(years=constants.NO_OF_YEARS)).date())
-                date_to = str(now.date())
             elif type == constants.MONTHLY_ANALYSIS:
                 rule = rrule.MONTHLY
                 date_from = str((now - relativedelta(months=constants.NO_OF_MONTHS)).date())
-                date_to = str(now.date())
             elif type == constants.WEEK_ANALYSIS:
                 rule = rrule.WEEKLY
                 date_from = str((now - relativedelta(weeks=constants.NO_OF_WEEKS)).date())
-                date_to = str(now.date())
             else:
                 rule = rrule.DAILY
                 date_from = str((now - timedelta(days=constants.NO_OF_DAYS)).date())
-                date_to = str((now + timedelta(days=1)).date())
 
             date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
-            date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
+            date_to = current_tz.localize(datetime.strptime(str(now.date()) + " 23:59:59", constants.DATE_FORMAT))
 
-            section_start_date = date_from
             for single_date in rrule.rrule(rule, dtstart=date_from, until=date_to):
+                section_start_date = current_tz.localize(datetime.strptime(str(single_date.date()) + " 00:00:00", constants.DATE_FORMAT))
                 section_end_date = current_tz.localize(datetime.strptime(str(single_date.date()) + " 23:59:59", constants.DATE_FORMAT))
                 feedback_data = FeedbackOption.objects.filter(created_at__gt=section_start_date, created_at__lte=section_end_date)
                 filtered_feedback_options = apply_general_filters(feedback_data, region_id, city_id, branch_id)
@@ -276,7 +272,7 @@ def overall_rating(request):
                     display_date = current_tz.localize(datetime.strptime(str(section_start_date.date()), constants.ONLY_DATE_FORMAT))
 
                 feedback_records_list.append({'date': display_date.date(), 'data': date_data})
-                section_start_date = current_tz.localize(datetime.strptime(str(section_end_date.date()) + " 00:00:00", constants.DATE_FORMAT))
+
 
             if len(feedback_records_list) > constants.NO_OF_DAYS:
                 feedback_records_list = feedback_records_list[-constants.NO_OF_DAYS:]
