@@ -374,6 +374,7 @@
 		.table-block{
 			position: relative;
 			width: 100% !important;
+			height: auto !important;
 		}
 
 		.jcf-scrollbar-dec,
@@ -399,15 +400,15 @@
 		.table-container{
 			position: relative;
 			width: 100% !important;
-			height: 250px;
+			height: 500px;
 			min-width: 730px;
 		}
 		.table-holder{
 			width: 100%;
 			overflow: hidden;
 		}
-		.table-container + .jcf-scrollbar.jcf-scrollbar-vertical{display: none !important;}
-		.table-block + .jcf-scrollbar.jcf-scrollbar-horizontal{display: none !important;}
+		.table-block + .jcf-scrollbar.jcf-scrollbar-vertical{display: none !important;}
+		.table-container + .jcf-scrollbar.jcf-scrollbar-horizontal{display: none !important;}
 		.table-block + .jcf-scrollbar.jcf-scrollbar-vertical{
 			position: absolute;
 			right: 0;
