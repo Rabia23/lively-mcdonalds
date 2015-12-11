@@ -64,7 +64,6 @@ angular.module( 'livefeed.login', [
     $scope.submitted = true;
     if(valid){   
       Authentication.login($scope.authenticate).$promise.then(function(data){
-        
         if(data.status){
           TokenHandler.store_token(data.token, data.user.id);
           $state.go("dashboard");
