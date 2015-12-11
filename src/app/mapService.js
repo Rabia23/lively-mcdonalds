@@ -15,14 +15,14 @@ angular.module('livefeed.map', [
       var marker = new google.maps.Marker({
         map: map,
         position: new google.maps.LatLng(info.latitude, info.longitude),
-        title: info.name,
+        //title: info.name,
         icon: icon
       });
     
-      marker.content = '<div class="infoWindowContent">' + info.name + '</div>';
-    
+      marker.content = '<div class="infoWindowContent">' + info.feedback_count + '</div>';
+
       google.maps.event.addListener(marker, 'mouseover', function(){
-          infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+          infoWindow.setContent('<h2>' + info.name + '</h2>' + '<h2>' + marker.content + '</h2>');
           infoWindow.open(map, this);
       });
 
