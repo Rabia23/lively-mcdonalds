@@ -372,8 +372,6 @@
 		}
 		
 		.table-block{
-			height: 250px;
-			min-width: 730px;
 			position: relative;
 			width: 100% !important;
 		}
@@ -400,8 +398,9 @@
 		.jcf-scrollbar-vertical .jcf-scrollbar-handle{width: 7px;}
 		.table-container{
 			position: relative;
-			height: auto !important;
 			width: 100% !important;
+			height: 250px;
+			min-width: 730px;
 		}
 		.table-holder{
 			width: 100%;
