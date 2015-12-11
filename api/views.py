@@ -344,6 +344,7 @@ class DataView(TemplateView):
 
 
 @api_view(['GET'])
+# @permission_classes((IsAuthenticated,))
 def positive_negative_feedback(request):
     if request.method == 'GET':
         try:
