@@ -174,7 +174,8 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "    </ul>\n" +
     "  	<div class=\"graph-holder\" data-mydata = \"bar.data\" same-bar-height >\n" +
     "		<div class=\"holder\">\n" +
-    "			<canvas style=\" width: 608px; height: 260px;\" id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
+    "			<canvas ng-show = \"show_canvas\" style=\" width: 608px; height: 260px;\" id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
+    "			<div ng-hide = \"show_canvas\"><h2>No data Available</h2></div>\n" +
     "		</div>\n" +
     "	  </div>\n" +
     "  </div>\n" +

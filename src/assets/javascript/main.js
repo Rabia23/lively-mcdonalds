@@ -20,6 +20,20 @@ function initSameHeight() {
 		multiLine: true,
 		biggestHeight: true
 	});
+
+	jQuery('.info-list').sameHeight({
+		elements: '.graph-holder',
+		flexible: true,
+		multiLine: true,
+		biggestHeight: true
+	});
+
+	jQuery('.section').sameHeight({
+		elements: '.info-block .map-holder, .rating-section .rating-holder',
+		flexible: true,
+		multiLine: true,
+		biggestHeight: true
+	});
 }
 
 /*

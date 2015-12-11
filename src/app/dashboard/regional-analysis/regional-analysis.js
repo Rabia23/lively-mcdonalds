@@ -51,6 +51,8 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     }
     else{
        Graphs.regional_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function(data){
+          console.log("regional Analysis");
+          console.log(data);
           $scope.donut_graph_data = chartService.getDonutChartData(data, $scope.question_type);
           $scope.show_loading = false;
        });
