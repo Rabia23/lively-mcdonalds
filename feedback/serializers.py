@@ -23,7 +23,7 @@ class OptionSerializer(serializers.ModelSerializer):
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ('id', 'text', 'isActive', 'type', 'objectId', 'isPromotion')
+        fields = ('id', 'text', 'isActive', 'type', 'objectId', 'isPromotion', 'promotion')
 
 
 class PromotionSerializer(serializers.ModelSerializer):

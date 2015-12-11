@@ -1,13 +1,12 @@
 from django.contrib.auth import authenticate
 from django.db.models import Count
-from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from app.models import Region, City, Branch
-from app.serializers import RegionSerializer, CitySerializer, UserSerializer
+from app.serializers import RegionSerializer, CitySerializer
 from feedback.models import Question, FeedbackOption, Option, Feedback
 from lively import constants
 from dateutil import rrule
@@ -49,6 +48,10 @@ def login(request):
 @permission_classes((IsAuthenticated,))
 def region(request):
 
+    """
+    Get all the regions
+    """
+
     if request.method == 'GET':
         regions = Region.objects.all()
         serializer = RegionSerializer(regions, many=True)
@@ -57,6 +60,12 @@ def region(request):
 
 @api_view(['GET'])
 def city(request):
+
+    """
+    Get all cities of specific region
+
+    region -- search by region
+    """
 
     if request.method == 'GET':
         cities = None

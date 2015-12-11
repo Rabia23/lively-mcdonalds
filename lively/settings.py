@@ -125,28 +125,28 @@ CORS_ORIGIN_WHITELIST = (
 CORS_ORIGIN_ALLOW_ALL = True
 
 
-SWAGGER_SETTINGS = {
-    'exclude_namespaces': [],
-    'api_version': '0.1',
-    'api_path': '/',
-    'enabled_methods': [
-        'get',
-        'post',
-        'put',
-        'patch',
-        'delete'
-    ],
-    'api_key': '',
-    'is_authenticated': False,
-    'is_superuser': False,
-    'permission_denied_handler': None,
-    'resource_access_handler': None,
-    'base_path':'172.16.11.113:8000/docs',
-    'info': {
-        'title': 'Swagger LiveFeed',
-    },
-    'doc_expansion': 'none',
-}
+# SWAGGER_SETTINGS = {
+#     'exclude_namespaces': [],
+#     'api_version': '0.1',
+#     'api_path': '/',
+#     'enabled_methods': [
+#         'get',
+#         'post',
+#         'put',
+#         'patch',
+#         'delete'
+#     ],
+#     'api_key': '',
+#     'is_authenticated': False,
+#     'is_superuser': False,
+#     'permission_denied_handler': None,
+#     'resource_access_handler': None,
+#     'base_path':'172.16.11.113:8000/docs',
+#     'info': {
+#         'title': 'Swagger LiveFeed',
+#     },
+#     'doc_expansion': 'none',
+# }
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
