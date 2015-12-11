@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^', include(app_urls)),
     url(r'^', include(feedback_urls)),
     url(r'^api/', include(api_urls)),
+    url(r'^docs/', include('rest_framework_swagger.urls')),
 ]
 
 if not settings.DEBUG:

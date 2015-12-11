@@ -16,6 +16,7 @@ from datetime import datetime, timedelta
 from django.core.paginator import Paginator
 from django.utils import timezone
 from operator import itemgetter
+from lively.utils import valid_action_id
 
 from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer, \
     PositiveNegativeFeedbackSerializer, AllCommentsSerializer, AllBranchesSerializer, SegmentationSerializer, \
@@ -527,10 +528,13 @@ def action_taken(request):
 
         try:
             feedback_id = request.query_params.get('feedback_id', None)
-            if feedback_id:
+            action_id = request.query_params.get('action_id', None)
+
+            action_id = int(action_id) if action_id else None
+            if feedback_id and action_id and valid_action_id(action_id):
                 feedback = Feedback.objects.get(pk=feedback_id)
 
-                feedback.action_taken = constants.PROCESSED
+                feedback.action_taken = action_id
                 feedback.save()
 
                 feedback_response = FeedbackCommentSerializer(feedback.feedback_comment_dict())

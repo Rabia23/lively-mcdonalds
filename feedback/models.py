@@ -13,6 +13,7 @@ class Feedback(models.Model):
     objectId = models.CharField(max_length=20, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     action_taken = models.IntegerField(default=constants.UNPROCESSED)
+    gro_name = models.CharField(max_length=25, null=True, blank=True)
 
     def __str__(self):
        return self.objectId
@@ -144,11 +145,28 @@ class Feedback(models.Model):
             return {}
 
 
+class Promotion(models.Model):
+    title = models.TextField()
+    isActive = models.BooleanField(default=True)
+    objectId = models.CharField(max_length=20)
+
+    def __str__(self):
+       return self.title
+
+    @staticmethod
+    def get_if_exists(objectId):
+        promotion = Promotion.objects.filter(objectId=objectId).first()
+        if promotion:
+            return promotion
+
+
 class Question(models.Model):
     text = models.TextField()
     isActive = models.BooleanField(default=True)
     type = models.IntegerField()
     objectId = models.CharField(max_length=20)
+    isPromotion = models.BooleanField(default=True)
+    promotion = models.ForeignKey(Promotion, related_name='promotion', null=True, blank=True)
 
     def __str__(self):
        return self.text
@@ -181,7 +199,6 @@ class Option(models.Model):
 
 
 class FeedbackOption(models.Model):
-    objectId = models.CharField(max_length=20)
     feedback = models.ForeignKey(Feedback, related_name='feedback_option', null=True, blank=True)
     option = models.ForeignKey(Option, related_name='feedback_option', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -207,6 +224,12 @@ class FeedbackOption(models.Model):
     @staticmethod
     def get_if_exists(objectId):
         feedback_option = FeedbackOption.objects.filter(objectId=objectId).first()
+        if feedback_option:
+            return feedback_option
+
+    @staticmethod
+    def get_if_exists(feedback_id, option_id):
+        feedback_option = FeedbackOption.objects.filter(feedback_id=feedback_id, option_id=option_id).first()
         if feedback_option:
             return feedback_option
 

@@ -86,6 +86,7 @@ class Branch(models.Model):
     longitude = models.DecimalField(max_digits=20, decimal_places=16)
     user = models.ForeignKey(User, related_name='branches', null=True, blank=True)
     city = models.ForeignKey(City, related_name='branches', null=True, blank=True)
+    benchmark_count = models.IntegerField()
 
     class Meta:
         verbose_name = 'Branch'
@@ -112,7 +113,7 @@ class Branch(models.Model):
                 "city": self.city.name,
                 "region": self.city.region.name,
                 "feedback_count": feedback_count,
-                "count_exceeded": feedback_count >= constants.BRANCH_FEEDBACK_TARGET,
+                "count_exceeded": feedback_count >= self.benchmark_count,
             }
             return branch
         except Exception as e:

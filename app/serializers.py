@@ -20,7 +20,7 @@ class CitySerializer(serializers.ModelSerializer):
 class BranchSerializer(serializers.ModelSerializer):
     class Meta:
         model = Branch
-        fields = ('id', 'name', 'objectId', 'latitude', 'longitude')
+        fields = ('id', 'name', 'objectId', 'latitude', 'longitude', 'benchmark_count')
 
 
 class UserInfoSerializer(serializers.ModelSerializer):
@@ -42,6 +42,6 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'first_name', 'last_name', 'username', 'password')
+        fields = ('id', 'first_name', 'last_name', 'username', 'password', 'email')
 
 

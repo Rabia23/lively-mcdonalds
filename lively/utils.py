@@ -94,6 +94,10 @@ def get_related_branch(data):
 
 def get_related_user(data):
     user_info = UserInfo.get_if_exists(data["objectId"])
+
+    data['username'] = generate_username()
+    data['password'] = constants.CUSTOMER_PASSWORD
+
     if user_info:
         user_info_serializer = UserInfoSerializer(user_info, data=data)
         user_serializer = UserSerializer(user_info.user, data=data)
@@ -102,9 +106,6 @@ def get_related_user(data):
         user = save(user_serializer)
         return user
     else:
-        data['username'] = generate_username()
-        data['password'] = constants.CUSTOMER_PASSWORD
-
         user_info_serializer = UserInfoSerializer(data=data)
         user_info = save(user_info_serializer)
 
@@ -373,3 +374,7 @@ def get_segment_time_range(segment):
         end_time = get_time(constants.LATE_NIGHT_TIME)
 
     return start_time, end_time
+
+
+def valid_action_id(action_id):
+    return True if action_id == 1 or action_id == 2 or action_id ==3 else False

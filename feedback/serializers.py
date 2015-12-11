@@ -1,12 +1,13 @@
 from rest_framework import serializers
 from app.serializers import UserSerializer
-from feedback.models import Feedback, Option, Question, FeedbackOption
+from feedback.models import Feedback, Option, Question, FeedbackOption, Promotion
 
 
 class FeedbackSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
     comment = serializers.CharField(required=False)
     objectId = serializers.CharField()
+    gro_name = serializers.CharField(required=False)
 
     class Meta:
         model = Feedback
@@ -22,7 +23,13 @@ class OptionSerializer(serializers.ModelSerializer):
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ('id', 'text', 'isActive', 'type', 'objectId')
+        fields = ('id', 'text', 'isActive', 'type', 'objectId', 'isPromotion')
+
+
+class PromotionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Promotion
+        fields = ('id', 'title', 'isActive', 'objectId')
 
 
 class FeedbackOptionSerializer(serializers.ModelSerializer):
