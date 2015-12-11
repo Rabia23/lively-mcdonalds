@@ -28,10 +28,7 @@ angular.module( 'factories', [
   function Authentication() {
     this.service = $resource(apiLinks.staging,{callback: "JSON_CALLBACK"},
                   {
-                    login: {method: "JSONP",isArray: false, params: {endpoint: "login/"}, transformResponse: function(data, headers){
-                      console.log(data);
-                      return data;
-                    }}
+                    login: {method: "JSONP",isArray: false, params: {endpoint: "login/"}}
                  });
   }
   Authentication.prototype.login = function(authentication){
@@ -53,9 +50,8 @@ angular.module( 'factories', [
                     comments: {method: "JSONP",isArray: false, params: {endpoint: "comments"}},
                     feedback_analysis_breakdown: {method: "JSONP",isArray: false, params: {endpoint: "feedback_analysis_breakdown"}},
                     map_view: {method: "JSONP",isArray: false, params: {endpoint: "map_view"}, transformResponse: function(data, headers){
-                      console.log(data);
                       _.each(data.branches, function(branch){
-                        branch.position = branch.latitude +"," +branch.longitude;
+                        branch.position = branch.latitude + "," +branch.longitude;
                       });
                       return data;
                     }},

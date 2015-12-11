@@ -20,6 +20,7 @@
     "angular-resource": "~1.4.7",
     "angular-daterangepicker": "~0.2.1",
     "Heyoffline": "~1.1.1",
-    "angular-flash-alert": "~1.1.1"
+    "angular-flash-alert": "~1.1.1",
+    "angular-animate": "~1.4.8"
   }
 }

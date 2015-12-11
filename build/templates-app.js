@@ -233,7 +233,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
     "  <div class=\"table-holder\">\n" +
-    "  	<div class=\"table-block jcf-scrollable\" custom-scroll>\n" +
+    "  	<div class=\"table-block jcf-scrollable\">\n" +
     "  		<table class=\"table\">\n" +
     "		<thead>\n" +
     "		  <tr>\n" +
@@ -246,7 +246,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "		  </tr>\n" +
     "		</thead>\n" +
     "	  </table>\n" +
-    "		<div class=\"table-container jcf-scrollable\" ng-class = \"{loading: lock}\" when-scrolled=\"getMoreComments()\">\n" +
+    "		<div class=\"table-container jcf-scrollable\" custom-scroll data-comments = \"comments\" ng-class = \"{loading: lock}\" when-scrolled=\"getMoreComments()\">\n" +
     "		<table class=\"table\">\n" +
     "		  <tbody>\n" +
     "			<tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.is_negative, success: comment.action_taken}\">\n" +
