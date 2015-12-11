@@ -6,11 +6,11 @@ angular.module( 'factories', [
 
 .factory('Filters', ['$resource','apiLinks', function($resource, apiLinks) {
   function Filters() {
-    this.service = $resource(apiLinks.staging, {callback: "JSON_CALLBACK"},
+    this.service = $resource(apiLinks.staging, {},
                   {
-                    allRegions: {method: "JSONP",isArray: true, params: {endpoint: "region"}},
-                    Cities: {method: "JSONP",isArray: true, params: {endpoint: "city"}},
-                    Branches: {method: "JSONP",isArray: true, params: {endpoint: "branch"}}
+                    allRegions: {method: "GET",isArray: true, params: {endpoint: "region"}},
+                    Cities: {method: "GET",isArray: true, params: {endpoint: "city"}},
+                    Branches: {method: "GET",isArray: true, params: {endpoint: "branch"}}
                  });
   }
   Filters.prototype.allRegions = function(){
@@ -27,9 +27,9 @@ angular.module( 'factories', [
 
 .factory('Authentication', ['$resource','apiLinks', function($resource, apiLinks) {
  function Authentication() {
-     this.service = $resource(apiLinks.staging,{callback: "JSON_CALLBACK"},
+     this.service = $resource(apiLinks.staging,{},
          {
-             login: {method: "JSONP",isArray: false, params: {endpoint: "login/"}}
+             login: {method: "GET",isArray: false, params: {endpoint: "login/"}}
          });
    }
 
@@ -42,34 +42,21 @@ angular.module( 'factories', [
 
 .factory('Graphs', ['$resource','apiLinks','_','TokenHandler','$http',  function($resource, apiLinks, _, TokenHandler, $http) {
   function Graphs() {
-    this.service = $resource(apiLinks.staging, {callback: "JSON_CALLBACK"},
+    this.service = $resource(apiLinks.staging, {},
                   {
-                    overall_feedback: {method: "JSONP",isArray: false, params: {endpoint: "overall_feedback"}},
-                    feedback_analysis: {method: "JSONP",isArray: false, params: {endpoint: "feedback_analysis"}},
-                    overall_rating: {method: "JSONP",isArray: true, params: {endpoint: "overall_rating"}},
-                    positive_negative_feedback: {method: "JSONP",isArray: false, params: {endpoint: "positive_negative_feedback"}},
-                    category_performance: {method: "JSONP",isArray: false, params: {endpoint: "category_performance"}},
-                    comments: {method: "JSONP",isArray: false, params: {endpoint: "comments"}},
-                    feedback_analysis_breakdown: {method: "JSONP",isArray: false, params: {endpoint: "feedback_analysis_breakdown"}},
-                    map_view: {method: "JSONP",isArray: false, params: {endpoint: "map_view"}, transformResponse: function(data, headers){
-                      _.each(data.branches, function(branch){
-                        branch.position = branch.latitude + "," +branch.longitude;
-                      });
-                      return data;
-                    }},
-                    feedback_segmentation: {method: "JSONP",isArray: false, params: {endpoint: "feedback_segmentation"}},
-                    top_concerns: {method: "JSONP", isArray: false, params: {endpoint: "top_concerns"},transformResponse: function(data, headers){
-                      _.each(data.concern_list, function(concern){
-                        concern.label = concern.name;
-                        concern.name = concern.weight.toString();
-                      });
-                      return data;
-                    }
-                  },
-                  segmentation_rating:{method: "JSONP",isArray: false, params: {endpoint: "segmentation_rating"}},
-                  action_taken:{method: "JSONP",isArray: false, params: {endpoint: "action_taken"}},
-
-                  action_analysis: {method: "JSONP",isArray: false, params: {endpoint: "action_analysis"}}
+                    overall_feedback: {method: "GET",isArray: false, params: {endpoint: "overall_feedback/"}},
+                    feedback_analysis: {method: "GET",isArray: false, params: {endpoint: "feedback_analysis/"}},
+                    overall_rating: {method: "GET",isArray: true, params: {endpoint: "overall_rating/"}},
+                    positive_negative_feedback: {method: "GET",isArray: false, params: {endpoint: "positive_negative_feedback/"}},
+                    category_performance: {method: "GET",isArray: false, params: {endpoint: "category_performance/"}},
+                    comments: {method: "GET",isArray: false, params: {endpoint: "comments/"}},
+                    feedback_analysis_breakdown: {method: "GET",isArray: false, params: {endpoint: "feedback_analysis_breakdown/"}},
+                    map_view: {method: "GET",isArray: false, params: {endpoint: "map_view/"}},
+                    feedback_segmentation: {method: "GET",isArray: false, params: {endpoint: "feedback_segmentation/"}},
+                    top_concerns: {method: "GET", isArray: false, params: {endpoint: "top_concerns/"}},
+                    segmentation_rating:{method: "GET",isArray: false, params: {endpoint: "segmentation_rating/"}},
+                    action_taken:{method: "GET",isArray: false, params: {endpoint: "action_taken/"}},
+                    action_analysis: {method: "GET",isArray: false, params: {endpoint: "action_analysis/"}}
                  });
   }
 
@@ -97,7 +84,7 @@ angular.module( 'factories', [
 
   Graphs.prototype.positive_negative_feedback = function(){
     console.log($http.defaults.headers);
-    $http.defaults.headers.token = "Token " + TokenHandler.get_token();
+    $http.defaults.headers.Authorization = "Token " + TokenHandler.get_token();
     console.log($http.defaults.headers);
 
     return this.service.positive_negative_feedback();
