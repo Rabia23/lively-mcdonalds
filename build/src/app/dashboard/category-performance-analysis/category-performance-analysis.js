@@ -47,8 +47,6 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
         };
       });
       $scope.category_data = _.sortBy( $scope.category_data, function(value){ return value.priority; });
-      console.log("category data");
-      console.log($scope.category_data);
       if( option_id == null){
         $scope.QualityID = $scope.category_data[0].id;
         $scope.ServiceID = $scope.category_data[1].id;

@@ -13,7 +13,11 @@ angular.module('livefeed.chart', [
 
     getDonutChartData: function(graph_data, question_type){
       return {
-        objects: _.map(graph_data.analysis,  function(data){ return {name: data.object.name, id: data.object.id};}),
+        objects: _.map(graph_data.analysis,  function(data){
+          return {
+            name: data.object.name, id: data.object.id, show_chart: data.data.feedback_count === 0 ? false : true
+          };
+        }),
         donutData: _.map(graph_data.analysis,  function(data){
           return   _.map(data.data.feedbacks,  function(dat){ return {id: dat.option_id, label: dat.option__text, value: dat.count};});
         }),

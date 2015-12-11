@@ -43,16 +43,14 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.show_loading = true;
     if($scope.radioModel === 'Complaints'){
       Graphs.action_analysis("", "", "", $scope.start_date, $scope.end_date).$promise.then(function(complains_data){
-        console.log("Complains data");
-        console.log(complains_data);
+        //console.log("Complains data");
+        //console.log(complains_data);
          $scope.donut_graph_data = chartService.getComplaintsDonutChartData(complains_data);
          $scope.show_loading = false;
       });
     }
     else{
        Graphs.regional_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function(data){
-          console.log("regional Analysis");
-          console.log(data);
           $scope.donut_graph_data = chartService.getDonutChartData(data, $scope.question_type);
           $scope.show_loading = false;
        });
@@ -362,6 +360,8 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       },
       link: function(scope, ele, attrs) {
         scope.$watch('data', function(watchedData) {
+          console.log("Same Region Height");
+          console.log(watchedData);
           if(watchedData !== undefined){
             window.initSameHeight();
           }

@@ -86,7 +86,6 @@ angular.module( 'livefeed.dashboard.feedback_map', [
       restrict: 'A',
       link: function(scope, ele, attrs) {
             window.initSameHeight();
-        });
       }
   };
 });

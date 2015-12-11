@@ -84,15 +84,8 @@ angular.module( 'livefeed.dashboard.feedback_map', [
 .directive('sameMapHeight', function() {
   return {
       restrict: 'A',
-      scope: {
-        data: '='
-      },
       link: function(scope, ele, attrs) {
-        scope.$watch('data', function(watchedData) {
-          if(watchedData !== undefined){
             window.initSameHeight();
-          }
-        });
       }
   };
 });
