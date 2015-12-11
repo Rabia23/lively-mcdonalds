@@ -19,6 +19,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
       value.color = Global.bubbleColor(index);
       $scope.colors.push(value.color);
     });
+
   });
 
 })
@@ -72,5 +73,21 @@ angular.module( 'livefeed.dashboard.top_concern', [
       });
 
     }
+  };
+})
+
+.directive('sameHeight', function() {
+  return {
+      restrict: 'A',
+      scope: {
+        mydata: '='
+      },
+      link: function(scope, ele, attrs) {
+        scope.$watch('mydata', function(watchedData) {
+          if(watchedData !== undefined){
+            window.initSameHeight();
+          }
+        });
+      }
   };
 });

@@ -172,7 +172,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "      <li class=\"neutral\">Few Concern</li>\n" +
     "      <li class=\"negative\">Not Happy Enough</li>\n" +
     "    </ul>\n" +
-    "  	<div class=\"graph-holder\">\n" +
+    "  	<div class=\"graph-holder\" data-mydata = \"bar.data\" same-bar-height >\n" +
     "		<div class=\"holder\">\n" +
     "			<canvas style=\" width: 608px; height: 260px;\" id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
     "		</div>\n" +
@@ -198,7 +198,7 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "			</span>\n" +
     "		</div>\n" +
     "   		<span class=\"select-holder\">\n" +
-    "   			<select ng-disabled = \"!mainView\" ng-model= \"type\" ng-change = \"axisChanged()\" id=\"timely\">\n" +
+    "   			<select ng-disabled = \"!mainView\" ng-model= \"type\" ng-change = \"axisChanged()\" id=\"timely\" custom-form>\n" +
     "  				<option value = \"1\">Daily</option>\n" +
     "  				<option value = \"2\">Weekly</option>\n" +
     "  				<option value = \"3\">Monthly</option>\n" +
@@ -233,7 +233,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
     "  <div class=\"table-holder\">\n" +
-    "  	<div class=\"table-block jcf-scrollable\">\n" +
+    "  	<div class=\"table-block jcf-scrollable\" custom-form>\n" +
     "  		<table class=\"table\">\n" +
     "		<thead>\n" +
     "		  <tr>\n" +
@@ -246,7 +246,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "		  </tr>\n" +
     "		</thead>\n" +
     "	  </table>\n" +
-    "		<div class=\"table-container jcf-scrollable\" custom-scroll data-comments = \"comments\" ng-class = \"{loading: lock}\" when-scrolled=\"getMoreComments()\">\n" +
+    "		<div class=\"table-container jcf-scrollable\" data-comments = \"comments\" ng-class = \"{loading: lock}\" when-scrolled=\"getMoreComments()\" custom-form>\n" +
     "		<table class=\"table\">\n" +
     "		  <tbody>\n" +
     "			<tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.is_negative, success: comment.action_taken}\">\n" +
@@ -447,7 +447,7 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "  			{{concern.label}}\n" +
     "  		</li>\n" +
     "  	</ul>\n" +
-    "    <div class=\"graph-outer bubble-chart-parent\">\n" +
+    "    <div class=\"graph-outer bubble-chart-parent\" same-height data-mydata = \"data\">\n" +
     "      <div id=\"bubble-chart\" pyk-chart data-data = \"data\" data-colors = \"colors\"></div>\n" +
     "    </div>\n" +
     "  </div>\n" +

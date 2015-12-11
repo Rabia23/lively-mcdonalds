@@ -1,7 +1,6 @@
 // page init
 jQuery(function(){
-	initCustomForms();
-	initSameHeight();
+	//initCustomForms();
 });
 
 // initialize custom form elements

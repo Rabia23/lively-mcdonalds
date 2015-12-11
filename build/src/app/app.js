@@ -41,4 +41,14 @@ angular.module( 'livefeed', [
 
   console.log(offlineService.init());
 
+})
+
+.directive('customForm', function() {
+  return {
+      restrict: 'A',
+      link: function(scope, ele, attrs) {
+        console.log("in the link function");
+        window.initCustomForms();
+      }
+  };
 });

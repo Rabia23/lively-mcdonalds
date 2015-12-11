@@ -16,7 +16,6 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
         'apply.daterangepicker': function(ev, picker){
           $scope.show_loading = true;
           Graphs.overall_feedback(ev.model.startDate._i, ev.model.endDate._i).$promise.then(function(graph_data){
-             console.log($scope.show_loading);
             $scope.maximum = _.max(graph_data.feedbacks, function(data){ return data.count; });
             $scope.bar = chartService.getBarChartData(graph_data,$scope.maximum.count);
             $scope.show_loading = false;
@@ -35,5 +34,24 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
     $scope.bar = chartService.getBarChartData(graph_data,$scope.maximum.count);
   });
 
+})
+
+.directive('sameBarHeight', function() {
+  return {
+      restrict: 'A',
+      scope: {
+        mydata: '='
+      },
+      link: function(scope, ele, attrs) {
+        scope.$watch('mydata', function(watchedData) {
+          if(watchedData !== undefined){
+            window.initSameHeight();
+          }
+        });
+      }
+  };
 });
+
+ 
+
 
