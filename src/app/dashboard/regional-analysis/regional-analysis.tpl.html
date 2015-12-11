@@ -38,7 +38,7 @@
     	<div class="inner-holder">
     		<ul class="info-list" ng-show = "regional_view == true">
               <li ng-repeat = "region in donut_graph_data.objects track by $index">
-                <div class="graph-holder regional-analysis">
+                <div class="graph-holder regional-analysis" same-region-height data-data="donut_graph_data.donutData[$index]">
                   <div morris-chart data-data="donut_graph_data.donutData[$index]" data-type="donut" data-options="donut_graph_data.donutOptions[$index]" data-action="open(option,region,city,branch)"></div>
                 </div>
                 <h3>
@@ -49,7 +49,7 @@
 
             <ul class="info-list" ng-show = "regional_view == false && city_view == true">
               <li ng-repeat = "city in donut_cities_data.objects track by $index">
-                <div class="graph-holder">
+                <div class="graph-holder" same-city-height data-data = "donut_cities_data.donutData[$index]">
                   <div morris-chart data-data="donut_cities_data.donutData[$index]" data-type="donut" data-options="donut_cities_data.donutOptions[$index]" data-action="open(option,selected_region,city,branch)"></div>
                 </div>
                 <h3>
@@ -59,7 +59,7 @@
             </ul>
             <ul class="info-list" ng-show = "regional_view == false && city_view == false">
               <li ng-repeat = "branch in donut_branches_data.objects track by $index">
-                <div class="graph-holder">
+                <div class="graph-holder" same-branch-height  data-data = "donut_branches_data.donutData[$index]">
                   <div morris-chart data-data="donut_branches_data.donutData[$index]" data-type="donut" data-options="donut_branches_data.donutOptions[$index]" data-action="open(option,selected_region,selected_city,branch)"></div>
                 </div>
                 <h3>{{branch.name}}</h3>

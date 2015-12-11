@@ -29,7 +29,7 @@
         <a style = "cursor:pointer" ng-click = "labelClick(label)">{{label.value}}</a>
       </li>
     </ul>
-    <div class="graph-holder">
+    <div class="graph-holder" same-rating-height data-data = "line1.data">
     	<div class="inner-holder">
     		<flot dataset="line1.data" options="line1.options" data-width = "100%" data-height = "300px" on-plot-click = "optionClick(event, pos, item)"></flot>
     	</div>

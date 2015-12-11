@@ -140,7 +140,7 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "      <li class=\"negative\">Below Benchmark</li>\n" +
     "    </ul>\n" +
     "  </div>\n" +
-    "  <div class=\"map-holder\" ng-class=\"{loading: show_loading}\">\n" +
+    "  <div class=\"map-holder\" ng-class=\"{loading: show_loading}\" same-map-height>\n" +
     "    <div map-lazy-load=\"http://maps.google.com/maps/api/js\">\n" +
     "      <map center=\"30,70\" zoom=\"{{zoom}}\" disable-default-u-i=\"true\">\n" +
     "      </map>\n" +
@@ -216,7 +216,7 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "        <a style = \"cursor:pointer\" ng-click = \"labelClick(label)\">{{label.value}}</a>\n" +
     "      </li>\n" +
     "    </ul>\n" +
-    "    <div class=\"graph-holder\">\n" +
+    "    <div class=\"graph-holder\" same-rating-height data-data = \"line1.data\">\n" +
     "    	<div class=\"inner-holder\">\n" +
     "    		<flot dataset=\"line1.data\" options=\"line1.options\" data-width = \"100%\" data-height = \"300px\" on-plot-click = \"optionClick(event, pos, item)\"></flot>\n" +
     "    	</div>\n" +
@@ -371,7 +371,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "    	<div class=\"inner-holder\">\n" +
     "    		<ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
     "              <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
-    "                <div class=\"graph-holder regional-analysis\">\n" +
+    "                <div class=\"graph-holder regional-analysis\" same-region-height data-data=\"donut_graph_data.donutData[$index]\">\n" +
     "                  <div morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open(option,region,city,branch)\"></div>\n" +
     "                </div>\n" +
     "                <h3>\n" +
@@ -382,7 +382,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "\n" +
     "            <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == true\">\n" +
     "              <li ng-repeat = \"city in donut_cities_data.objects track by $index\">\n" +
-    "                <div class=\"graph-holder\">\n" +
+    "                <div class=\"graph-holder\" same-city-height data-data = \"donut_cities_data.donutData[$index]\">\n" +
     "                  <div morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\" data-action=\"open(option,selected_region,city,branch)\"></div>\n" +
     "                </div>\n" +
     "                <h3>\n" +
@@ -392,7 +392,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "            </ul>\n" +
     "            <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == false\">\n" +
     "              <li ng-repeat = \"branch in donut_branches_data.objects track by $index\">\n" +
-    "                <div class=\"graph-holder\">\n" +
+    "                <div class=\"graph-holder\" same-branch-height  data-data = \"donut_branches_data.donutData[$index]\">\n" +
     "                  <div morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\" data-action=\"open(option,selected_region,selected_city,branch)\"></div>\n" +
     "                </div>\n" +
     "                <h3>{{branch.name}}</h3>\n" +

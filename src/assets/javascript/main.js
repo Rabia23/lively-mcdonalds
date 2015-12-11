@@ -29,7 +29,7 @@ function initSameHeight() {
 	});
 
 	jQuery('.section').sameHeight({
-		elements: '.info-block .map-holder, .rating-section .rating-holder',
+		elements: '.info-block .map-holder, .rating-section .graph-holder',
 		flexible: true,
 		multiLine: true,
 		biggestHeight: true
