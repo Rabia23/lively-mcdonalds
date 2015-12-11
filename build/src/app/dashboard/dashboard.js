@@ -87,15 +87,23 @@ angular.module( 'livefeed.dashboard', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'DashboardCtrl', function DashboardControlle( $scope, chartService, _ , $location, $anchorScroll, Filters, Graphs, $rootScope, TokenHandler, Auth) {
+.controller( 'DashboardCtrl', function DashboardController( $scope, $state, chartService, _ , $location, $anchorScroll, Filters, $rootScope, TokenHandler, Auth) {
+   if (Auth.is_logged_in()) {
+     $rootScope.show_username = true;
+     $rootScope.username = TokenHandler.get_username();
+   }
+   $rootScope.logout = function(){
+     Auth.is_logged_out();
+     $rootScope.show_username = false;
+     $state.go('login');
+   };
 
-  //var regional_analysis_data = Graphs.regional_analysis();
-  $rootScope.$on('app-oline', function(event, args) {
-    console.log("online in dashobard");
+  $rootScope.$on('app-online', function(event, args) {
+    console.log("online in dashboard");
   });
 
   $rootScope.$on('app-offline', function(event, args) {
-    console.log("offline in dashobard");
+    console.log("offline in dashboard");
   });
 
   var user_id = TokenHandler.get_uid();

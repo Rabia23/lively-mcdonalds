@@ -22,14 +22,14 @@
     <script type="text/javascript" src="assets/javascript/main.js"></script>
 
   </head>
-  <body ng-class = "{dashboard: (currentState != 'coupon' && currentState != 'login'),}">
+  <body ng-class = "{dashboard: (currentState != 'coupon' && currentState != 'login')}">
     <div id= "wrapper">
       <header id="header">
-       	<ul class="header-list">
+       	<ul class="header-list" ng-show = "show_username">
        		<li class="name">
-       			Welcome <span class="name">John Doe</span>
+       			Welcome <span class="name">{{username}}</span>
        		</li>
-       		<li><a href="#">Log out</a></li>
+       		<li><a style = "cursor:pointer;" ng-click="logout()">Log out</a></li>
        	</ul>
         <div class="logo"><a href="http:\\mcdonalds.com.pk" target="_blank"><img src="assets/images/logo.jpg" alt="McDonald &reg;"></a></div>
       </header>

@@ -17,8 +17,7 @@ angular.module( 'livefeed.login', [
   'livefeed.chart',
   'livefeed.authService',
   'factories',
-  'flash',
-  'ngAnimate'
+  'flash'
 
 ])
 
@@ -47,7 +46,6 @@ angular.module( 'livefeed.login', [
  */
 .controller( 'LoginCtrl', function LoginController( $scope,  _ , $rootScope, $state, Authentication, TokenHandler, Flash) {
 
-  //var regional_analysis_data = Graphs.regional_analysis();
   $scope.submitted = false;
 
   $scope.authenticate = {};
@@ -65,7 +63,7 @@ angular.module( 'livefeed.login', [
     if(valid){   
       Authentication.login($scope.authenticate).$promise.then(function(data){
         if(data.status){
-          TokenHandler.store_token(data.token, data.user.id);
+          TokenHandler.store_token(data.token, data.user.id, data.user.username);
           $state.go("dashboard");
         }
         else{
