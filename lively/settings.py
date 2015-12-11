@@ -117,11 +117,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-CORS_ORIGIN_WHITELIST = (
-    'staginglivefeed.arbisoft.com',
-    'livefeed.arbisoft.com',
-    'localhost:3000',
-)
+# CORS_ORIGIN_WHITELIST = (
+#     'staginglivefeed.arbisoft.com',
+#     'livefeed.arbisoft.com',
+#     'localhost:3000',
+# )
 CORS_ORIGIN_ALLOW_ALL = True
 
 
