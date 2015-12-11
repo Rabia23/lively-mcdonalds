@@ -26,12 +26,13 @@ angular.module( 'factories', [
 }])
 
 .factory('Authentication', ['$resource','apiLinks', function($resource, apiLinks) {
-  function Authentication() {
-    this.service = $resource(apiLinks.staging,{callback: "JSON_CALLBACK"},
-                  {
-                    login: {method: "JSONP",isArray: false, params: {endpoint: "login/"}}
-                 });
-  }
+ function Authentication() {
+     this.service = $resource(apiLinks.staging,{callback: "JSON_CALLBACK"},
+         {
+             login: {method: "JSONP",isArray: false, params: {endpoint: "login/"}}
+         });
+   }
+
   Authentication.prototype.login = function(authentication){
     return this.service.login({username: authentication.username, password: authentication.password});
   };

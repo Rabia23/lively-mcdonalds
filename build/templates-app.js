@@ -161,7 +161,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "			</span>\n" +
     "		</div>\n" +
     "		<h2>\n" +
-    "			Overall Rating\n" +
+    "			Overall Experience\n" +
     "			<span class=\"icon-help\" uib-popover=\"Representation of the overall Feedback ratings for all respective branches. For a regional/branch breakdown, please see Patch Analysis\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
     "		</h2>\n" +
     "  </div>\n" +
