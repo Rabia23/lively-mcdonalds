@@ -9,6 +9,8 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
 .controller( 'PositiveNegativeFeedbackCtrl', function DashboardController( $scope, _, Global, Graphs,$uibModal, $log ) {
 
   Graphs.positive_negative_feedback().$promise.then(function(data){
+    console.log("positive");
+    console.log(data);
     $scope.pos_feedbacks = data.positive_feedbacks;
     $scope.neg_feedbacks = data.negative_feedbacks;
   });

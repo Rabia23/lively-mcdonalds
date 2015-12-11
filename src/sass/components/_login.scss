@@ -198,3 +198,10 @@
     -webkit-transform: translate3d(0px, 0px, 0px);
     transform: translate3d(0px, 0px, 0px);
 }
+
+.show-alert{
+	position: absolute;
+	right: 10px;
+	top: 20px;
+	z-index: 999;
+}

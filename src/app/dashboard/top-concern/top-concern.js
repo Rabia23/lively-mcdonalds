@@ -16,6 +16,8 @@ angular.module( 'livefeed.dashboard.top_concern', [
   Graphs.top_concerns().$promise.then(function(data){
     $scope.data = data.concern_list;
     _.each($scope.data, function(value, index){
+      value.label = value.name;
+      value.name = value.weight.toString();
       value.color = Global.bubbleColor(index);
       $scope.colors.push(value.color);
     });
