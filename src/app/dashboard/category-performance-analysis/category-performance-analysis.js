@@ -41,12 +41,14 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
           id: data.option_id,
           name: data.option__text,
           complaints: data.count,
-          percentage: Math.round((data.count/performance_data.feedback_count)*100),
+          percentage: data.count === 0 ? 0 : Math.round((data.count/performance_data.feedback_count)*100),
           colour: option_id == null? Global.categoryPerformanceClass[data.option__text] : Global.categoryPerformanceChildCholorScheme[string][index],
           priority:  option_id == null? Global.qscPriority[data.option__text] : Global.qscSubCategoriesPriority[string][data.option__text]
         };
       });
       $scope.category_data = _.sortBy( $scope.category_data, function(value){ return value.priority; });
+      console.log("category data");
+      console.log($scope.category_data);
       if( option_id == null){
         $scope.QualityID = $scope.category_data[0].id;
         $scope.ServiceID = $scope.category_data[1].id;

@@ -54,9 +54,8 @@ angular.module( 'livefeed.dashboard.feedback_map', [
   $scope.markers = [];
 
   Graphs.map_view().$promise.then(function(data){
-    console.log("map data");
-    console.log(data);
     $scope.show_loading = true;
+
     _.each(data.branches, function(branch){
       var icon;
       if(branch.count_exceeded === false){
@@ -79,6 +78,16 @@ angular.module( 'livefeed.dashboard.feedback_map', [
         $(ele).prev().trigger("click");
       });      
     }
+  };
+})
+
+.directive('sameMapHeight', function() {
+  return {
+      restrict: 'A',
+      link: function(scope, ele, attrs) {
+            window.initSameHeight();
+        });
+      }
   };
 });
 
