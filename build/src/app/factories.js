@@ -1,6 +1,7 @@
 angular.module( 'factories', [
   'ngResource',
-  'livefeed.api_links'
+  'livefeed.api_links',
+  'livefeed.authService'
 ])
 
 .factory('Filters', ['$resource','apiLinks', function($resource, apiLinks) {
@@ -38,7 +39,7 @@ angular.module( 'factories', [
 }])
 
 
-.factory('Graphs', ['$resource','apiLinks','_',  function($resource, apiLinks, _) {
+.factory('Graphs', ['$resource','apiLinks','_','TokenHandler','$http',  function($resource, apiLinks, _, TokenHandler, $http) {
   function Graphs() {
     this.service = $resource(apiLinks.staging, {callback: "JSON_CALLBACK"},
                   {
@@ -94,6 +95,10 @@ angular.module( 'factories', [
   };
 
   Graphs.prototype.positive_negative_feedback = function(){
+    console.log($http.defaults.headers);
+    $http.defaults.headers.token = "Token " + TokenHandler.get_token();
+    console.log($http.defaults.headers);
+
     return this.service.positive_negative_feedback();
   };
   Graphs.prototype.overall_feedback = function(date_from, date_to){
