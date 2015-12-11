@@ -339,7 +339,7 @@ class DataView(TemplateView):
 
         page = self.request.GET.get('page', 1)
 
-        all_feedbacks = Feedback.objects.all()
+        all_feedbacks = Feedback.objects.all().order_by('-created_at')
         feedbacks = []
         for feedback in all_feedbacks:
             feedbacks.append(feedback.to_dict())
