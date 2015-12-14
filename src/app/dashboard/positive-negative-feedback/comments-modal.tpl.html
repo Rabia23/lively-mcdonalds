@@ -22,16 +22,16 @@
 		  <tbody>
 			<tr ng-repeat = "comment in comments" ng-class = "{negative: comment.is_negative, success: comment.action_taken}">
 
-			  <td class="item1">{{comment.name}}</td>
+			  <td class="item1">{{comment.data.user_name}}</td>
 			  <td class="item2">
-				<a href="tel:{{comment.phone_no}}" class="tel">{{comment.user_phone}}</a>
+				<a href="tel:{{comment.data.user_phone}}" class="tel">{{comment.user_phone}}</a>
 			  </td>
-			  <td class="item3">{{comment.branch}}</td>
-			  <td class="item4">{{comment.segment}}</td>
+			  <td class="item3">{{comment.data.branch}}</td>
+			  <td class="item4">{{comment.data.segment}}</td>
 			  <td class="item5">
 				<span class="ico"></span>
 				<div class="text">
-					{{comment.comment}}
+					{{comment.data.comment}}
 				</div>
 			  </td>
 			  <td class="item6">
