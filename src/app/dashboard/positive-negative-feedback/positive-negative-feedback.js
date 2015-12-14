@@ -45,15 +45,13 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     var action_id = value == "Process" ? 2 : 3;
     Graphs.action_taken(comment.id,action_id).$promise.then(function(data){
       comment.action_taken = false;
-      console.log("action taken");
-      console.log(data);
     });
   };
 
   Graphs.comments($scope.page).$promise.then(function(data){
-    console.log(data);
     $scope.comments = _.map(data.feedbacks,  function(data){
       return {
+        id: data.id,
         name: data.user_name,
         phone_no: data.user_phone,
         branch: data.branch,

@@ -52,7 +52,6 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
         $scope.ServiceID = $scope.category_data[1].id;
         $scope.CleanlinessID = $scope.category_data[2].id;
       }
-
     });
   };
 

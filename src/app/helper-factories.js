@@ -32,9 +32,9 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
      categoryPerformanceChildCholorScheme:{
-      "Cleanliness": ["#064C7C", "#085389", "#0C5E9D", "#0F6DB4", "#137ECC", "#168CE0"],
-      "Quality": ["#431051", "#4F1B5E", "#602E76", "#7A4191", "#9352AC", "#A95DC3"],
-      "Service": ["#FD8E15", "#FC9918", "#FCA91F", "#FBBC26", "#F9CF2D", "#F8E035"]
+      "Cleanliness": ["#B6E1FF", "#78BEEE", "#4A90C0", "#1C6292", "#003565", "#000737"],
+      "Quality": ["#A572B3", "#683576", "#511E5F", "#420F50", "#2B0039", "#1C002A"],
+      "Service": ["#FFFFBF", "#FFFF87", "#FFD259", "#FFA42B", "#E67700", "#B84900"]
     },
 
     segmentationClass: {
