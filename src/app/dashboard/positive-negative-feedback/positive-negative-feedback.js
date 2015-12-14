@@ -2,8 +2,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   'factories',
   'livefeed.chart',
   'helper_factories',
-   'ui.bootstrap',
-   'livefeed.scroll'
+   'ui.bootstrap'
 ])
 
 .controller( 'PositiveNegativeFeedbackCtrl', function DashboardController( $scope, _, Global, Graphs,$uibModal, $log ) {
@@ -60,12 +59,6 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     });
   });
 
-  //$scope.processComment = function(comment){
-  //  Graphs.action_taken(comment.id).$promise.then(function(data){
-  //    comment.action_taken = true;
-  //  });
-  //
-  //};
 
   $scope.getMoreComments = function(){
     $scope.page = $scope.page + 1;
@@ -87,25 +80,8 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   };
 })
 
-// .directive('customScroll', function() {
-//     return {
-//       restrict: 'A',
-//       link: function(scope, ele, attrs) {
-//         $(ele).enscroll({
-//           horizontalScrolling: true,
-//           verticalTrackClass: 'vertical-track2',
-//           verticalHandleClass: 'vertical-handle2',
-//           horizontalTrackClass: 'horizontal-track2',
-//           horizontalHandleClass: 'horizontal-handle2',
-//           cornerClass: 'corner2',
-//           scrollIncrement: 100
-//         });
-        
-//       }
-//   };
-// })
 
-.directive('customScroll', function(scollService){
+.directive('customForm', function(){
   return {
     restrict: 'A',
     scope: {
@@ -113,11 +89,12 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     },
     link: function(scope, ele, attrs){
       scope.$watch('comments', function(watchedComments) {
-        if(watchedComments.length > 0){
-          
+        console.log("comments");
+        console.log(watchedComments);
+        if(watchedComments !== undefined){
           console.log("in the watch");
           console.log(watchedComments);
-          scollService.init();
+          window.initCustomForms();
 
         }
       });
