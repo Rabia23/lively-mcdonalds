@@ -183,11 +183,11 @@ def generate_missing_actions(data):
         list_feedback.append(
             {'count': 0, 'action_taken': constants.UNPROCESSED}
         )
-    elif constants.PROCESSED not in list_actions:
+    if constants.PROCESSED not in list_actions:
         list_feedback.append(
             {'count': 0, 'action_taken': constants.PROCESSED}
         )
-    elif constants.DEFERRED not in list_actions:
+    if constants.DEFERRED not in list_actions:
         list_feedback.append(
             {'count': 0, 'action_taken': constants.DEFERRED}
         )

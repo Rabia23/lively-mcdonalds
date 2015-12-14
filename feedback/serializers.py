@@ -94,6 +94,7 @@ class FeedbackCommentSerializer(serializers.Serializer):
 class AllCommentsSerializer(serializers.Serializer):
     feedbacks = FeedbackCommentSerializer(many=True)
     feedback_count = serializers.IntegerField()
+    is_last_page = serializers.BooleanField()
 
 
 class MapViewBranchSerializer(serializers.Serializer):
