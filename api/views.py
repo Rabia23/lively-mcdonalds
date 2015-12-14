@@ -2,8 +2,7 @@ from django.contrib.auth import authenticate
 from django.db.models import Count
 from django.views.generic.base import TemplateView
 from rest_framework.authtoken.models import Token
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from app.models import Region, City, Branch
 from app.serializers import RegionSerializer, CitySerializer
@@ -15,6 +14,7 @@ from datetime import datetime, timedelta
 from django.core.paginator import Paginator
 from django.utils import timezone
 from operator import itemgetter
+from lively.decorators import my_login_required
 from lively.utils import valid_action_id
 
 from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer, \
@@ -45,8 +45,8 @@ def login(request):
 
 
 @api_view(['GET'])
-@permission_classes((IsAuthenticated,))
-def region(request):
+@my_login_required
+def region(request, user):
 
     """
     Get all the regions
@@ -59,7 +59,8 @@ def region(request):
 
 
 @api_view(['GET'])
-def city(request):
+@my_login_required
+def city(request, user):
 
     """
     Get all cities of specific region
@@ -81,7 +82,8 @@ def city(request):
 
 
 @api_view(['GET'])
-def branch(request):
+@my_login_required
+def branch(request, user):
 
     if request.method == 'GET':
         branches = None
@@ -97,7 +99,8 @@ def branch(request):
 
 
 @api_view(['GET'])
-def overall_feedback(request):
+@my_login_required
+def overall_feedback(request, user):
     if request.method == 'GET':
 
         try:
@@ -127,7 +130,8 @@ def overall_feedback(request):
 
 
 @api_view(['GET'])
-def feedback_analysis(request):
+@my_login_required
+def feedback_analysis(request, user):
     if request.method == 'GET':
         feedbacks = []
 
@@ -175,7 +179,8 @@ def feedback_analysis(request):
 
 
 @api_view(['GET'])
-def feedback_analysis_breakdown(request):
+@my_login_required
+def feedback_analysis_breakdown(request, user):
 
     if request.method == 'GET':
         option_id = request.query_params.get('option', None)
@@ -205,7 +210,8 @@ def feedback_analysis_breakdown(request):
 
 
 @api_view(['GET'])
-def overall_rating(request):
+@my_login_required
+def overall_rating(request, user):
     if request.method == 'GET':
         feedback_records_list = []
 
@@ -285,7 +291,8 @@ def overall_rating(request):
 
 
 @api_view(['GET'])
-def category_performance(request):
+@my_login_required
+def category_performance(request, user):
 
     if request.method == 'GET':
 
@@ -349,8 +356,8 @@ class DataView(TemplateView):
 
 
 @api_view(['GET'])
-# @permission_classes((IsAuthenticated,))
-def positive_negative_feedback(request):
+@my_login_required
+def positive_negative_feedback(request, user):
     if request.method == 'GET':
         try:
             region_id = request.query_params.get('region', None)
@@ -376,7 +383,8 @@ def positive_negative_feedback(request):
 
 
 @api_view(['GET'])
-def comments(request):
+@my_login_required
+def comments(request, user):
     if request.method == 'GET':
         try:
             region_id = request.query_params.get('region', None)
@@ -401,7 +409,8 @@ def comments(request):
 
 
 @api_view(['GET'])
-def map_view(request):
+@my_login_required
+def map_view(request, user):
     if request.method == 'GET':
         try:
             date_to = request.query_params.get('date_to', None)
@@ -424,7 +433,8 @@ def map_view(request):
 
 
 @api_view(['GET'])
-def feedback_segmentation(request):
+@my_login_required
+def feedback_segmentation(request, user):
     if request.method == 'GET':
 
         try:
@@ -472,7 +482,8 @@ def feedback_segmentation(request):
 
 
 @api_view(['GET'])
-def top_concerns(request):
+@my_login_required
+def top_concerns(request, user):
     if request.method == 'GET':
 
         try:
@@ -492,7 +503,8 @@ def top_concerns(request):
 
 
 @api_view(['GET'])
-def segmentation_rating(request):
+@my_login_required
+def segmentation_rating(request, user):
     if request.method == 'GET':
 
         try:
@@ -529,7 +541,8 @@ def segmentation_rating(request):
 
 
 @api_view(['GET'])
-def action_taken(request):
+@my_login_required
+def action_taken(request, user):
     if request.method == 'GET':
 
         try:
@@ -552,7 +565,8 @@ def action_taken(request):
 
 
 @api_view(['GET'])
-def action_analysis(request):
+@my_login_required
+def action_analysis(request, user):
 
     if request.method == 'GET':
         data_list = []
