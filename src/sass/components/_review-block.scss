@@ -312,6 +312,7 @@
 					text-align: left;
 					padding-left: 20px;
 					padding-right: 10px;
+					overflow: hidden;
 				}
 			}
 			.dropdown-menu{
@@ -361,10 +362,10 @@
 					.ico{
 						width: 10px;
 						background: $islamic-green;
+						margin-left: -20px;
 						position: absolute;
-						left: 0;
 						top: 0;
-						bottom: -9999px;
+						bottom: -999px;
 					}
 				}
 				tr{
@@ -397,11 +398,11 @@
 		.table-block{
 			position: relative;
 			width: 100% !important;
-			min-height: 250px !important;
+			min-height: 200px !important;
 			height: auto !important;
 			
-			@include media("≥tablet"){min-height: 400px !important;}
-			@include media("≥widescreen"){min-height: 500px !important;}
+			@include media("≥tablet"){min-height: 300px !important;}
+			@include media("≥widescreen"){min-height: 400px !important;}
 		}
 
 		.jcf-scrollbar-dec,
@@ -427,17 +428,17 @@
 		.table-container{
 			position: relative;
 			width: 100% !important;
-			min-height: 250px !important;
-			height: 250px;
+			min-height: 200px !important;
+			height: 200px;
 			min-width: 730px;
 			
 			@include media("≥tablet"){
-				min-height: 400px !important;
-				height: 400px;
+				min-height: 300px !important;
+				height: 300px;
 			}
 			@include media("≥widescreen"){
-				min-height: 500px !important;
-				height: 500px;
+				min-height: 400px !important;
+				height: 400px;
 			}
 		}
 		.table-holder{

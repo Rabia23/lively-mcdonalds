@@ -8,6 +8,7 @@
 	border: 1px solid $alto2;
 	background: $white;
 	@extend .clearfix;
+	position: relative;
 	
 	.inner-holder{
 		@extend .clearfix;
@@ -198,10 +199,18 @@
     -webkit-transform: translate3d(0px, 0px, 0px);
     transform: translate3d(0px, 0px, 0px);
 }
-
 .show-alert{
 	position: absolute;
-	right: 10px;
-	top: 20px;
-	z-index: 999;
+	z-index: 99;
+	right: 0;
+	width: 100%;
+	top: -60px;
+}
+
+.form-error-message{
+	margin: 0 0 10px;
+	display: block;
+	color: red;
+
+	@include media("≥tablet"){margin: -10px 0 10px;}
 }

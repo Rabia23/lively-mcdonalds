@@ -473,10 +473,10 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
 
 angular.module("login/login.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("login/login.tpl.html",
-    "<div flash-message=\"5000\" ></div> \n" +
     "<div class=\"section\">\n" +
     "	<div class=\"login-block\">\n" +
     "		<div class=\"form-holder\">\n" +
+    "			<div flash-message=\"5000\" ></div> \n" +
     "			<div class=\"inner-holder\">\n" +
     "				<h3>Log In</h3>\n" +
     "				<form class=\"login-form\" name = \"LoginForm\" ng-submit=\"login(LoginForm.$valid)\" novalidate>\n" +

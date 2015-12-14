@@ -61,9 +61,10 @@
 
 .section{
 	@extend .row;
-	overflow: hidden;
 	margin-bottom: 18px;
 }
+
+.dashboard .section{overflow: hidden;}
 
 .section-holder{
 	@extend .col-xs-12;
