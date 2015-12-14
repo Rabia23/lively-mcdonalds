@@ -138,6 +138,9 @@
 	}
 }
 
-.icon-help{
+#wrapper .icon-help{
 	@extend .hidden-xs;
+	font-family: "Arial" ,"Helvetica" ,"sans-serif";
+	color: $cinnabar;
+	font-size: 80%;
 }

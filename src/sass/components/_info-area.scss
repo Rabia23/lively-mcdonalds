@@ -224,6 +224,7 @@
 		text-align: center;
 		margin: 0 0 10px;
 		position: relative;
+		padding: 0 3px;
 		
 		&:after , &:before{
 			position: absolute;
@@ -254,7 +255,11 @@
 		overflow: hidden;
 		margin: 0;
 		position: relative;
+		@include v-align(100%, middle, before);
 		
+		> * .graph-inner{
+			width: 100%;
+		}
 		svg{height: 200px !important;}
 	}
 }

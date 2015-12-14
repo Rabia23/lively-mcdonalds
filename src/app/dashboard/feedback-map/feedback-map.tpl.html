@@ -12,15 +12,20 @@
 			</span>
         </div>
     </div>
-    <ul class="list">
+  </div>
+  <div class="map-detail" ng-class="{loading: show_loading}">
+  	<ul class="list">
       <li class="good">Above Benchmark</li>
       <li class="negative">Below Benchmark</li>
     </ul>
+  	<div class="map-holder" same-map-height>
+		<div class="inner-holder">
+			<div map-lazy-load="http://maps.google.com/maps/api/js">
+			  <map center="30,70" zoom="{{zoom}}" disable-default-u-i="true">
+			  </map>
+			</div>
+		</div>
+	  </div>
   </div>
-  <div class="map-holder" ng-class="{loading: show_loading}" same-map-height>
-    <div map-lazy-load="http://maps.google.com/maps/api/js">
-      <map center="30,70" zoom="{{zoom}}" disable-default-u-i="true">
-      </map>
-    </div>
-  </div>
+  
 </div>

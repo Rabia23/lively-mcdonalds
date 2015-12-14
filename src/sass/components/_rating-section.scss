@@ -211,6 +211,9 @@
 	  .graph-holder{
 		  overflow: hidden;
 		  padding: 0 14px 14px;
+		  @include v-align(100%, middle, before);
+		  
+		  > * {width: 100%;}
 		  
 		  .ng-isolate-scope{
 			  height: 299px !important;

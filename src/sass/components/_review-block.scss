@@ -283,6 +283,8 @@
 						padding: 6px;
 						margin: 0 auto;
 						@include fontsize(16, 15);
+						@include media("≥tablet"){@include fontsize(14, 15);}
+						@include media("≥desktop"){@include fontsize(16, 15);}
 					}
 				}
 				&.item3,&.item4{
@@ -300,6 +302,9 @@
 			.dropdown-menu{
 				left: auto;
 				right: 0;
+				width: 100%;
+				min-width: 60px;
+				padding: 0;
 			}
 			tbody{
 				td{
