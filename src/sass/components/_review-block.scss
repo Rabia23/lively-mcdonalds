@@ -275,7 +275,7 @@
 				&.item2{width: 13.5%;}
 				&.item6{
 					width: 12.5%;
-					padding-right: 17px;
+					padding-right: 15px;
 					overflow: visible;
 					@include media("≥widescreen"){padding-right: 19px;}
 					.btn{
@@ -349,6 +349,9 @@
 									&.btn-info{
 										background: $islamic-green;
 										border-color: $islamic-green;
+										padding: 6px 4px;
+										
+										@include media("≥desktop"){padding: 6px;}
 										
 										&:hover,
 										&:active,
@@ -374,7 +377,11 @@
 		.table-block{
 			position: relative;
 			width: 100% !important;
+			min-height: 250px !important;
 			height: auto !important;
+			
+			@include media("≥tablet"){min-height: 400px !important;}
+			@include media("≥widescreen"){min-height: 500px !important;}
 		}
 
 		.jcf-scrollbar-dec,
@@ -400,20 +407,28 @@
 		.table-container{
 			position: relative;
 			width: 100% !important;
-			height: 500px;
+			min-height: 250px !important;
+			height: 250px;
 			min-width: 730px;
+			
+			@include media("≥tablet"){
+				min-height: 400px !important;
+				height: 400px;
+			}
+			@include media("≥widescreen"){
+				min-height: 500px !important;
+				height: 500px;
+			}
 		}
 		.table-holder{
-			width: 100%;
-			overflow: hidden;
+			@extend .clearfix;
 		}
-		.table-block + .jcf-scrollbar.jcf-scrollbar-vertical{display: none !important;}
-		.table-container + .jcf-scrollbar.jcf-scrollbar-horizontal{display: none !important;}
-		.table-block + .jcf-scrollbar.jcf-scrollbar-vertical{
+		.table-block > .jcf-scrollable-wrapper > .jcf-scrollbar.jcf-scrollbar-vertical{
 			position: absolute;
-			right: 0;
+			right: 3px;
 			top: 0;
 		}
+		.table-holder > .jcf-scrollable-wrapper > .jcf-scrollbar.jcf-scrollbar-vertical{display: none !important;}
 		.table-holder > .jcf-scrollable-wrapper{
 			height: auto !important;
 			width: 100% !important;
