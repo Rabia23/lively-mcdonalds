@@ -43,7 +43,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     comment.action_taken = false;
     comment.action_string = value == "Process" ? "Processed" : "Deferred";
     var action_id = value == "Process" ? 2 : 3;
-    Graphs.action_taken(comment.id,action_id).$promise.then(function(data){
+    Graphs.action_taken(comment.data.id,action_id).$promise.then(function(data){
       comment.action_taken = false;
     });
   };
@@ -51,12 +51,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   Graphs.comments($scope.page).$promise.then(function(data){
     $scope.comments = _.map(data.feedbacks,  function(data){
       return {
-        id: data.id,
-        name: data.user_name,
-        phone_no: data.user_phone,
-        branch: data.branch,
-        segment: data.segment,
-        comment: data.comment,
+        data: data,
         action_taken: data.action_taken === 1 ?  true : false,
         action_string: data.action_taken === 2 ? "Processed" : data.action_taken === 3 ? "Deferred" : ""
       };

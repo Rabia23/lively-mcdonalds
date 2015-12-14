@@ -256,16 +256,16 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "		<table class=\"table\">\n" +
     "		  <tbody>\n" +
     "			<tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.is_negative, success: comment.action_taken}\">\n" +
-    "			  <td class=\"item1\">{{comment.name}}</td>\n" +
+    "			  <td class=\"item1\">{{comment.data.user_name}}</td>\n" +
     "			  <td class=\"item2\">\n" +
-    "				<a href=\"tel:{{comment.phone_no}}\" class=\"tel\">{{comment.user_phone}}</a>\n" +
+    "				<a href=\"tel:{{comment.data.user_phone}}\" class=\"tel\">{{comment.user_phone}}</a>\n" +
     "			  </td>\n" +
-    "			  <td class=\"item3\">{{comment.branch}}</td>\n" +
-    "			  <td class=\"item4\">{{comment.segment}}</td>\n" +
+    "			  <td class=\"item3\">{{comment.data.branch}}</td>\n" +
+    "			  <td class=\"item4\">{{comment.data.segment}}</td>\n" +
     "			  <td class=\"item5\">\n" +
     "				<span class=\"ico\"></span>\n" +
     "				<div class=\"text\">\n" +
-    "					{{comment.comment}}\n" +
+    "					{{comment.data.comment}}\n" +
     "				</div>\n" +
     "			  </td>\n" +
     "			  <td class=\"item6\">\n" +
