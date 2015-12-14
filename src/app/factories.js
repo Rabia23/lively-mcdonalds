@@ -41,6 +41,9 @@ angular.module( 'factories', [
 
 
 .factory('Graphs', ['$resource','apiLinks','_','TokenHandler','$http',  function($resource, apiLinks, _, TokenHandler, $http) {
+  
+  var token = TokenHandler.get_token();
+  
   function Graphs() {
     this.service = $resource(apiLinks.staging, {},
                   {
@@ -62,55 +65,52 @@ angular.module( 'factories', [
 
   Graphs.prototype.overall_rating = function(type,option_id, date_from, date_to){
     option_id = option_id || "";
-    return this.service.overall_rating({type: type, option: option_id, date_from: date_from, date_to: date_to});
+    return this.service.overall_rating({token: token, type: type, option: option_id, date_from: date_from, date_to: date_to});
   };
 
   Graphs.prototype.action_taken = function(feedback_id,action_id){
-    return this.service.action_taken({feedback_id: feedback_id, action_id: action_id});
+    return this.service.action_taken({token:  token, feedback_id: feedback_id, action_id: action_id});
   };
 
   Graphs.prototype.top_concerns = function(top_concerns){
-    return this.service.top_concerns();
+    return this.service.top_concerns({token:  token});
   };
 
   Graphs.prototype.feedback_segmentation = function(date, option_id, type){
     date = date || "";
-    return this.service.feedback_segmentation({date_to: date, option: option_id, type: type});
+    return this.service.feedback_segmentation({token:  token,date_to: date, option: option_id, type: type});
   };
 
   Graphs.prototype.map_view = function(date_from, date_to){
-    return this.service.map_view({date_from: date_from, date_to: date_to});
+    return this.service.map_view({token:  token,date_from: date_from, date_to: date_to});
   };
 
   Graphs.prototype.positive_negative_feedback = function(){
-    //console.log($http.defaults.headers);
-    $http.defaults.headers.Authorization = "Token " + TokenHandler.get_token();
-    //console.log($http.defaults.headers);
 
-    return this.service.positive_negative_feedback();
+    return this.service.positive_negative_feedback({token:  token});
   };
   Graphs.prototype.overall_feedback = function(date_from, date_to){
-    return this.service.overall_feedback({date_from: date_from, date_to: date_to});
+    return this.service.overall_feedback({token: token,date_from: date_from, date_to: date_to});
   };
   Graphs.prototype.regional_analysis = function(question_type, start_date, end_date){
     question_type = question_type || 1;
     start_date = start_date || "";
     end_date = end_date || "";
-    return this.service.feedback_analysis({question_type: question_type, date_from: start_date, date_to: end_date});
+    return this.service.feedback_analysis({token: token,question_type: question_type, date_from: start_date, date_to: end_date});
   };
   Graphs.prototype.city_analysis = function(region_id, question_type, start_date, end_date){
     question_type = question_type || 1;
     region_id = region_id || "";
     start_date = start_date || "";
     end_date = end_date || "";
-    return this.service.feedback_analysis({type: 2, date_from: start_date, date_to: end_date, region: region_id, question_type: question_type});
+    return this.service.feedback_analysis({token:  token,type: 2, date_from: start_date, date_to: end_date, region: region_id, question_type: question_type});
   };
   Graphs.prototype.branch_analysis = function(city_id, question_type, start_date, end_date){
     question_type = question_type || 1;
     city_id = city_id || "";
     start_date = start_date || "";
     end_date = end_date || "";
-    return this.service.feedback_analysis({type: 3, date_from: start_date, date_to: end_date, city: city_id, question_type: question_type});
+    return this.service.feedback_analysis({token:  token,type: 3, date_from: start_date, date_to: end_date, city: city_id, question_type: question_type});
   };
   Graphs.prototype.category_performance = function(region_id, city_id, branch_id, option_id, start_date, end_date){
     region_id = region_id || "";
@@ -119,12 +119,12 @@ angular.module( 'factories', [
     option_id = option_id || "";
     start_date = start_date || "";
     end_date = end_date || "";
-    return this.service.category_performance({region: region_id, city: city_id, branch: branch_id, option: option_id, date_from: start_date, date_to: end_date});
+    return this.service.category_performance({token:  token,region: region_id, city: city_id, branch: branch_id, option: option_id, date_from: start_date, date_to: end_date});
   };
 
   Graphs.prototype.comments = function(page){
     page = page || 1;
-    return this.service.comments({page: page});
+    return this.service.comments({token:  token,page: page});
   };
 
   Graphs.prototype.feedback_analysis_breakdown = function(region_id, city_id, branch_id, option_id){
@@ -132,7 +132,7 @@ angular.module( 'factories', [
     city_id = city_id || "";
     branch_id = branch_id || "";
     option_id = option_id || "";
-    return this.service.feedback_analysis_breakdown({region: region_id, city: city_id, branch: branch_id, option: option_id});
+    return this.service.feedback_analysis_breakdown({token:  token,region: region_id, city: city_id, branch: branch_id, option: option_id});
   };
   Graphs.prototype.segmentation_rating = function(region_id, city_id, branch_id, option_id, start_date, end_date){
     region_id = region_id || "";
@@ -141,7 +141,7 @@ angular.module( 'factories', [
     option_id = option_id || "";
     start_date = start_date || "";
     end_date = end_date || "";
-    return this.service.segmentation_rating({region: region_id, city: city_id, branch: branch_id, option: option_id, date_from: start_date, date_to: end_date});
+    return this.service.segmentation_rating({token:  token,region: region_id, city: city_id, branch: branch_id, option: option_id, date_from: start_date, date_to: end_date});
   };
   Graphs.prototype.action_analysis = function(type_id, region_id, city_id, date_from, date_to){
     type_id = type_id || "";
@@ -149,7 +149,7 @@ angular.module( 'factories', [
     date_to = date_to || "";
     region_id = region_id || "";
     city_id = city_id || "";
-    return this.service.action_analysis({type: type_id, date_from: date_from, date_to: date_to, region: region_id, city:city_id});
+    return this.service.action_analysis({token:  token,type: type_id, date_from: date_from, date_to: date_to, region: region_id, city:city_id});
   };
 
   return new Graphs();

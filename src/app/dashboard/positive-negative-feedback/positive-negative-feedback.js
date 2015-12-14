@@ -94,13 +94,8 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     },
     link: function(scope, ele, attrs){
       scope.$watch('comments', function(watchedComments) {
-        console.log("comments");
-        console.log(watchedComments);
         if(watchedComments !== undefined){
-          console.log("in the watch");
-          console.log(watchedComments);
           window.initCustomForms();
-
         }
       });
       
