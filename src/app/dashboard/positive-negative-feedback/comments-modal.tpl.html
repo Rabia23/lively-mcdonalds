@@ -21,6 +21,7 @@
 		<table class="table">
 		  <tbody>
 			<tr ng-repeat = "comment in comments" ng-class = "{negative: comment.is_negative, success: comment.action_taken}">
+
 			  <td class="item1">{{comment.name}}</td>
 			  <td class="item2">
 				<a href="tel:{{comment.phone_no}}" class="tel">{{comment.user_phone}}</a>
