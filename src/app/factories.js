@@ -65,8 +65,8 @@ angular.module( 'factories', [
     return this.service.overall_rating({type: type, option: option_id, date_from: date_from, date_to: date_to});
   };
 
-  Graphs.prototype.action_taken = function(feedback_id){
-    return this.service.action_taken({feedback_id: feedback_id});
+  Graphs.prototype.action_taken = function(feedback_id,action_id){
+    return this.service.action_taken({feedback_id: feedback_id, action_id: action_id});
   };
 
   Graphs.prototype.top_concerns = function(top_concerns){
@@ -83,9 +83,9 @@ angular.module( 'factories', [
   };
 
   Graphs.prototype.positive_negative_feedback = function(){
-    console.log($http.defaults.headers);
+    //console.log($http.defaults.headers);
     $http.defaults.headers.Authorization = "Token " + TokenHandler.get_token();
-    console.log($http.defaults.headers);
+    //console.log($http.defaults.headers);
 
     return this.service.positive_negative_feedback();
   };
