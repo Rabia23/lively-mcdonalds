@@ -50,8 +50,8 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "\n" +
     "  <div class=\"progress-container {{class}}\" ng-class=\"{loading: show_loading}\">\n" +
     "  	<ul class=\"list add\">\n" +
-    "		<li ng-repeat = \"dat in category_data\">{{dat.name}}</li>\n" +
-    "	</ul>\n" +
+    "		  <li ng-repeat = \"dat in category_data\">{{dat.name}}</li>\n" +
+    "	  </ul>\n" +
     "  	<div class=\"main-holder\">\n" +
     "  		<div class=\"holder\">\n" +
     "  		<div class=\"progress-area\">\n" +
@@ -69,7 +69,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  	</div>\n" +
     "  	<div class=\"holder\">\n" +
     "  		<div class=\"progress-area\">\n" +
-    "			<div class=\"progress-holder {{dat.colour}}\" ng-repeat = \"dat in category_data\">\n" +
+    "			<div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" progress-bar-background>\n" +
     "				<small><em>{{dat.name}}</em></small>\n" +
     "				<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}} complaints</b></uib-progressbar></div>\n" +
     "		  </div>\n" +

@@ -26,9 +26,9 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
     categoryPerformanceClass: {
-      "Cleanliness": 'blue',
-      "Quality": 'lilac',
-      "Service": 'yellow'
+      "Cleanliness": '#3498db',
+      "Quality": '#9352ac',
+      "Service": '#ffc300'
     },
 
      categoryPerformanceChildCholorScheme:{
