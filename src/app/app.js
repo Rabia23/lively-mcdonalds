@@ -40,7 +40,7 @@ angular.module( 'livefeed', [
     brand: "LiveFeed"
   };
 
-  console.log("Offline service: "+offlineService.init());
+  //console.log("Offline service: "+offlineService.init());
 
 })
 
@@ -48,7 +48,7 @@ angular.module( 'livefeed', [
   return {
       restrict: 'A',
       link: function(scope, ele, attrs) {
-        console.log("in the link function");
+        //console.log("in the link function");
         window.initCustomForms();
       }
   };

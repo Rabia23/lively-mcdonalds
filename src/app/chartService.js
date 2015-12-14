@@ -42,7 +42,11 @@ angular.module('livefeed.chart', [
 
     getComplaintsDonutChartData: function(graph_data){
       return {
-        objects: _.map(graph_data.analysis,  function(data){ return {name: data.object.name, id: data.object.id};}),
+        objects: _.map(graph_data.analysis,  function(data){
+          return {
+            name: data.object.name, id: data.object.id, show_chart: data.data.feedback_count === 0 ? false : true
+          };
+        }),
         donutData: _.map(graph_data.analysis,  function(data){
           return   _.map(data.data.action_analysis,  function(dat){ return {label: dat.action_taken === 2 ? "Unprocessed" : "Processed", value: dat.count};});
         }),
