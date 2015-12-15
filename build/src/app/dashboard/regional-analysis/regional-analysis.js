@@ -48,10 +48,10 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       });
     }
     else{
-       Graphs.regional_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function(data){
+      Graphs.regional_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function(data){
           $scope.donut_graph_data = chartService.getDonutChartData(data, $scope.question_type);
           $scope.show_loading = false;
-       });
+      });
     }
   };
 
@@ -157,6 +157,10 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   
 })
 
+// REFRACTOR 1. Why we are passing region, city, branch, option in the controller
+// REFRACTOR 2. Take the SQCModalCtrl to new module and inject that module in this module
+// REFRACTOR 3. Statements in condition should be in the next line
+
 .controller('SQCModalCtrl', function ($scope, Graphs, chartService, $uibModalInstance, region, city, branch, option){
   $scope.leftClickDisabled = false;
   $scope.rightClickDisabled = false;
@@ -244,7 +248,8 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   function findSqcData(region,city,branch,sqc_data,string){
     if(city == null && branch == null){
-      if(string == "next"){ getNextSQC(region,sqc_data,"",null,null); $scope.rightClickDisabled = false;
+      if(string == "next"){ 
+        getNextSQC(region,sqc_data,"",null,null); $scope.rightClickDisabled = false;
       }
       else if(string == "previous"){ getPreviousSQC(region,sqc_data,"",null,null); $scope.leftClickDisabled = false;
       }

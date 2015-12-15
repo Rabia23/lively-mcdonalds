@@ -43,7 +43,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
             "selector": "#bubble-chart",
             "data": data,
             "chart_width": 620,
-            "chart_height": 350,
+            "chart_height": 275,
             "background_color": "#FFFFFF",
             "color_mode": "color",
             "chart_color": ["#BFA66E"],
@@ -66,10 +66,15 @@ angular.module( 'livefeed.dashboard.top_concern', [
           k.execute();
 
           _.each($("circle"), function(value, index){
-            $(value).attr("fill", colors[index]);
+              var id = $(value).data("id");
+            _.each(data, function(item, index){
+              if(item.name == id){
+                $(value).attr("fill", item.color);
+              }
+            });
           });
 
-          $("#bubble-chart").find("svg")[0].setAttribute("viewBox", "25 20 550 300");
+          $("#bubble-chart").find("svg")[0].setAttribute("viewBox", "75 30 400 220");
 
         }
       });

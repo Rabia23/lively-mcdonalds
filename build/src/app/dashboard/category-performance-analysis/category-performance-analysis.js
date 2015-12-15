@@ -87,10 +87,13 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
   };
 
   $scope.onOptionSelect = function(string,option_id){
-    if(string === 'All'){ $scope.class = ""; $scope.showCategoryData(); $scope.showSegmentData();
-     }
-     else{ $scope.class = string; $scope.showCategoryData("","","",option_id,string); $scope.showSegmentData("","","",option_id,string);
-     }
+    if(string === 'All'){ 
+      $scope.class = ""; $scope.showCategoryData(); $scope.showSegmentData();
+    }
+    else{ 
+      $scope.class = string; $scope.showCategoryData("","","",option_id,string); 
+      $scope.showSegmentData("","","",option_id,string);
+    }
   };
 
   $scope.onClick = function(option_id,string){
@@ -106,19 +109,19 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
 
 .directive('progressBarBackground', function() {
   return {
-      restrict: 'A',
-      
-      scope: {
-        data: '=',
-        color: "="
-      },
-      link: function(scope, ele, attrs) {
-        scope.$watch('data', function(watchedData) {
-          if(watchedData !== undefined){
-            $(ele).find(".progress-bar").css("background-color", ('' + scope.color));
-            $(ele).find(".progress-bar").css("color", ('' + scope.color));
-          }
-        });
-      }
+    restrict: 'A',
+    
+    scope: {
+      data: '=',
+      color: "="
+    },
+    link: function(scope, ele, attrs) {
+      scope.$watch('data', function(watchedData) {
+        if(watchedData !== undefined){
+          $(ele).find(".progress-bar").css("background-color", ('' + scope.color));
+          $(ele).find(".progress-bar").css("color", ('' + scope.color));
+        }
+      });
+    }
   };
 });

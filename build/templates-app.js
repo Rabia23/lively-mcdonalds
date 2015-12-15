@@ -241,53 +241,53 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "  <div class=\"table-holder\">\n" +
     "  	<div class=\"table-block jcf-scrollable\" custom-form>\n" +
     "  		<table class=\"table\">\n" +
-    "		<thead>\n" +
-    "		  <tr>\n" +
-    "			<th class=\"item1\">Name</th>\n" +
-    "			<th class=\"item2\">Phone Number</th>\n" +
-    "			<th class=\"item3\">Branch</th>\n" +
-    "			<th class=\"item4\">Segment</th>\n" +
-    "			<th class=\"item5\">Comments</th>\n" +
-    "			<th class=\"item6\">Status</th>\n" +
-    "		  </tr>\n" +
-    "		</thead>\n" +
-    "	  </table>\n" +
+    "				<thead>\n" +
+    "				  <tr>\n" +
+    "					<th class=\"item1\">Name</th>\n" +
+    "					<th class=\"item2\">Phone Number</th>\n" +
+    "					<th class=\"item3\">Branch</th>\n" +
+    "					<th class=\"item4\">Segment</th>\n" +
+    "					<th class=\"item5\">Comments</th>\n" +
+    "					<th class=\"item6\">Status</th>\n" +
+    "				  </tr>\n" +
+    "				</thead>\n" +
+    "	  	</table>\n" +
     "		<div class=\"table-container jcf-scrollable\" data-comments = \"comments\" ng-class = \"{loading: lock}\" when-scrolled=\"getMoreComments()\" custom-form>\n" +
-    "		<table class=\"table\">\n" +
-    "		  <tbody>\n" +
-    "			<tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.is_negative, success: comment.action_taken}\">\n" +
+    "			<table class=\"table\">\n" +
+    "			  <tbody>\n" +
+    "					<tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.is_negative, success: comment.action_taken}\">\n" +
     "\n" +
-    "			  <td class=\"item1\">{{comment.data.user_name}}</td>\n" +
-    "			  <td class=\"item2\">\n" +
-    "				<a href=\"tel:{{comment.data.user_phone}}\" class=\"tel\">{{comment.user_phone}}</a>\n" +
-    "			  </td>\n" +
-    "			  <td class=\"item3\">{{comment.data.branch}}</td>\n" +
-    "			  <td class=\"item4\">{{comment.data.segment}}</td>\n" +
-    "			  <td class=\"item5\">\n" +
-    "				<span class=\"ico\"></span>\n" +
-    "				<div class=\"text\">\n" +
-    "					{{comment.data.comment}}\n" +
-    "				</div>\n" +
-    "			  </td>\n" +
-    "			  <td class=\"item6\">\n" +
-    "				<div class=\"btn-group\" uib-dropdown ng-show = \"comment.action_taken\">\n" +
-    "				  <button id=\"split-button\" type=\"button\" class=\"btn btn-info\" ng-click=\"selectedValue('Process',comment)\">Process</button>\n" +
-    "				  <button type=\"button\" class=\"btn btn-info\" uib-dropdown-toggle>\n" +
-    "					<span class=\"caret\"></span>\n" +
-    "					<span class=\"sr-only\">Split button!</span>\n" +
-    "				  </button>\n" +
-    "				  <ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"split-button\">\n" +
-    "					<li role=\"menuitem\">\n" +
-    "						<a style = \"cursor:pointer;\" ng-click=\"selectedValue('Defer',comment)\">Defer</a>\n" +
-    "					</li>\n" +
-    "				  </ul>\n" +
-    "				</div>\n" +
-    "				<span ng-hide = \"comment.action_taken\">{{comment.action_string}}</span>\n" +
-    "			   </td>\n" +
-    "			</tr>\n" +
-    "		  </tbody>\n" +
-    "		</table>\n" +
-    "		<span class=\"loader\"></span>\n" +
+    "					  <td class=\"item1\">{{comment.data.user_name}}</td>\n" +
+    "					  <td class=\"item2\">\n" +
+    "						<a href=\"tel:{{comment.data.user_phone}}\" class=\"tel\">{{comment.user_phone}}</a>\n" +
+    "					  </td>\n" +
+    "					  <td class=\"item3\">{{comment.data.branch}}</td>\n" +
+    "					  <td class=\"item4\">{{comment.data.segment}}</td>\n" +
+    "					  <td class=\"item5\">\n" +
+    "						<span class=\"ico\"></span>\n" +
+    "						<div class=\"text\">\n" +
+    "							{{comment.data.comment}}\n" +
+    "						</div>\n" +
+    "					  </td>\n" +
+    "					  <td class=\"item6\">\n" +
+    "						<div class=\"btn-group\" uib-dropdown ng-show = \"comment.action_taken\">\n" +
+    "						  <button id=\"split-button\" type=\"button\" class=\"btn btn-info\" ng-click=\"selectedValue('Process',comment)\">Process</button>\n" +
+    "						  <button type=\"button\" class=\"btn btn-info\" uib-dropdown-toggle>\n" +
+    "							<span class=\"caret\"></span>\n" +
+    "							<span class=\"sr-only\">Split button!</span>\n" +
+    "						  </button>\n" +
+    "						  <ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"split-button\">\n" +
+    "							<li role=\"menuitem\">\n" +
+    "								<a style = \"cursor:pointer;\" ng-click=\"selectedValue('Defer',comment)\">Defer</a>\n" +
+    "							</li>\n" +
+    "						  </ul>\n" +
+    "						</div>\n" +
+    "						<span ng-hide = \"comment.action_taken\">{{comment.action_string}}</span>\n" +
+    "					   </td>\n" +
+    "					</tr>\n" +
+    "			  </tbody>\n" +
+    "			</table>\n" +
+    "			<span class=\"loader\"></span>\n" +
     "	  </div>\n" +
     "  	</div>\n" +
     "  </div>\n" +
