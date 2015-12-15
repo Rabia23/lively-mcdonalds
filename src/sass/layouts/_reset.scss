@@ -16,6 +16,7 @@ body {
 	line-height: $base-line-height;
 	min-width: $base-min-width;
 	height: 100%;
+	-ms-overflow-style: scrollbar;
 }
 
 a {

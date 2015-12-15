@@ -69,7 +69,6 @@
 			background: -moz-linear-gradient(top, $kournikova 0%, $kournikova1 23%, $kournikova2 80%, $kournikova3 100%);
 			background: -webkit-linear-gradient(top, $kournikova 0%,$kournikova1 23%,$kournikova2 80%,$kournikova3 100%);
 			background: linear-gradient(to bottom, $kournikova 0%,$kournikova1 23%,$kournikova2 80%,$kournikova3 100%);
-			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$kournikova', endColorstr='$kournikova3',GradientType=0 );
 			
 			@include media("≥tablet"){
 				font-size: 18px;
@@ -83,7 +82,6 @@
 				background: -moz-linear-gradient(top, $kournikova3 0%, $kournikova2 20%, $kournikova1 77%, $kournikova 100%);
 				background: -webkit-linear-gradient(top, $kournikova3 0%,$kournikova2 20%,$kournikova1 77%,$kournikova 100%);
 				background: linear-gradient(to bottom, $kournikova3 0%,$kournikova2 20%,$kournikova1 77%,$kournikova 100%);
-				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$kournikova3', endColorstr='$kournikova',GradientType=0 );
 			}
 		}
 	}

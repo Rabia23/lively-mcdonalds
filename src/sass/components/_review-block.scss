@@ -362,8 +362,8 @@
 					.ico{
 						width: 10px;
 						background: $islamic-green;
-						margin-left: -20px;
 						position: absolute;
+						margin-left: -20px;
 						top: 0;
 						bottom: -999px;
 					}
@@ -384,6 +384,24 @@
 					&.defer{
 						background: lighten($yellow,35%);
 						&:hover{background: lighten($yellow,37%);}
+					}
+					&:last-child{
+						td{
+							.dropdown{
+								&.open{
+									.caret{
+										@include rotate (180deg);
+									}
+								}
+							}
+							.dropdown-menu{
+								box-shadow: 0 -6px 12px rgba($black, 0.175);
+								-webkit-box-shadow: 0 -6px 12px rgba($black, 0.175);
+								top: auto;
+								bottom: 100%;
+								margin: 0 0 2px;
+							}
+						}
 					}
 				}
 				.tel{
