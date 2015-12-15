@@ -40,11 +40,11 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   $scope.lock = false;
 
   $scope.selectedValue = function(value, comment){
-    comment.action_taken = false;
+    comment.show_dropdown = false;
     comment.action_string = value == "Process" ? "Processed" : "Deferred";
     var action_id = value == "Process" ? 2 : 3;
     Graphs.action_taken(comment.data.id,action_id).$promise.then(function(data){
-      comment.action_taken = false;
+      comment.data.action_taken = data.action_taken;
     });
   };
 
@@ -52,19 +52,24 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     $scope.comments = _.map(data.feedbacks,  function(data){
       return {
         data: data,
-        action_taken: data.action_taken === 1 ?  true : false,
+        show_dropdown: data.action_taken === 1 ?  true : false,
         action_string: data.action_taken === 2 ? "Processed" : data.action_taken === 3 ? "Deferred" : ""
       };
     });
   });
 
   $scope.getMoreComments = function(){
+    var show_dropdown, action_string;
     $scope.page = $scope.page + 1;
     $scope.lock = true;
     Graphs.comments($scope.page).$promise.then(function(data){
+      console.log("get more comments");
+      console.log(data.is_last_page);
       $scope.lock = false;
       angular.forEach(data.feedbacks, function(value, key) {
-        $scope.comments.push(value);
+        show_dropdown = value.action_taken === 1 ?  true : false;
+        action_string = value.action_taken === 2 ? "Processed" : value.action_taken === 3 ? "Deferred" : "";
+        $scope.comments.push({data:value, show_dropdown: show_dropdown, action_string: action_string});
       });
     });
   };
