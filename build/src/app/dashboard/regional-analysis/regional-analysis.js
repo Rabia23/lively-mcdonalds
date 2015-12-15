@@ -13,10 +13,14 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   $scope.show_loading = false;
 
-  $scope.datePicker = {};
-  $scope.datePicker.date = {startDate: null, endDate: null};
+  function resetDates(){
+    $scope.date = {
+        startDate: moment().subtract(1, "days"),
+        endDate: moment()
+    };
+  }
 
-  $scope.today = new Date();
+  resetDates();
 
   $scope.start_date = null;
   $scope.end_date = null;

@@ -6,10 +6,17 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
 ])
 
 .controller( 'OverallFeedbackCtrl', function DashboardController( $scope, _ , Graphs,chartService, Global ) {
+  
   $scope.show_loading = false;
-  $scope.datePicker = {};
-  $scope.datePicker.date = {startDate: null, endDate: null};
-  $scope.today = new Date();
+
+   function resetDates(){
+    $scope.date = {
+        startDate: moment().subtract(1, "days"),
+        endDate: moment()
+    };
+  }
+
+  resetDates();
 
   $scope.datePickerOption = {
     eventHandlers: {
