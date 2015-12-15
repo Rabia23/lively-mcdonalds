@@ -35,7 +35,7 @@
 				</div>
 			  </td>
 			  <td class="item6">
-				<div class="btn-group" uib-dropdown ng-show = "comment.action_taken">
+				<div class="btn-group" uib-dropdown ng-show = "comment.show_dropdown">
 				  <button id="split-button" type="button" class="btn btn-info" ng-click="selectedValue('Process',comment)">Process</button>
 				  <button type="button" class="btn btn-info" uib-dropdown-toggle>
 					<span class="caret"></span>
@@ -47,7 +47,7 @@
 					</li>
 				  </ul>
 				</div>
-				<span ng-hide = "comment.action_taken">{{comment.action_string}}</span>
+				<span ng-hide = "comment.show_dropdown">{{comment.action_string}}</span>
 			   </td>
 			</tr>
 		  </tbody>

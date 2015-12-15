@@ -270,7 +270,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "				</div>\n" +
     "			  </td>\n" +
     "			  <td class=\"item6\">\n" +
-    "				<div class=\"btn-group\" uib-dropdown ng-show = \"comment.action_taken\">\n" +
+    "				<div class=\"btn-group\" uib-dropdown ng-show = \"comment.show_dropdown\">\n" +
     "				  <button id=\"split-button\" type=\"button\" class=\"btn btn-info\" ng-click=\"selectedValue('Process',comment)\">Process</button>\n" +
     "				  <button type=\"button\" class=\"btn btn-info\" uib-dropdown-toggle>\n" +
     "					<span class=\"caret\"></span>\n" +
@@ -282,7 +282,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "					</li>\n" +
     "				  </ul>\n" +
     "				</div>\n" +
-    "				<span ng-hide = \"comment.action_taken\">{{comment.action_string}}</span>\n" +
+    "				<span ng-hide = \"comment.show_dropdown\">{{comment.action_string}}</span>\n" +
     "			   </td>\n" +
     "			</tr>\n" +
     "		  </tbody>\n" +
