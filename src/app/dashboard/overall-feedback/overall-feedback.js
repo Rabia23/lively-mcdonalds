@@ -21,8 +21,6 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
             $scope.bar = chartService.getBarChartData(graph_data,$scope.maximum.count);
             $scope.show_loading = false;
           });
-          console.log("bar chart data");
-          console.log($scope.bar);
         },
         'cancel.daterangepicker': function(ev, picker){
           $scope.datePicker.date.startDate = null;

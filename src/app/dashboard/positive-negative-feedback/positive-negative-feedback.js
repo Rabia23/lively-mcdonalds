@@ -32,7 +32,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
 
 })
 
-.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items, Graphs) {
+.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items, Graphs, commentService) {
 
   $scope.comments = [];
   $scope.page = 1;
@@ -49,12 +49,10 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   };
 
   Graphs.comments($scope.page).$promise.then(function(data){
-    $scope.comments = _.map(data.feedbacks,  function(data){
-      return {
-        data: data,
-        show_dropdown: data.action_taken === 1 ?  true : false,
-        action_string: data.action_taken === 2 ? "Processed" : data.action_taken === 3 ? "Deferred" : ""
-      };
+
+    _.each(data.feedbacks, function(feedback, index){
+      var comment_data = commentService.getComment(feedback);
+      $scope.comments.push(comment_data);
     });
   });
 
@@ -63,13 +61,10 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     $scope.page = $scope.page + 1;
     $scope.lock = true;
     Graphs.comments($scope.page).$promise.then(function(data){
-      console.log("get more comments");
-      console.log(data.is_last_page);
       $scope.lock = false;
       angular.forEach(data.feedbacks, function(value, key) {
-        show_dropdown = value.action_taken === 1 ?  true : false;
-        action_string = value.action_taken === 2 ? "Processed" : value.action_taken === 3 ? "Deferred" : "";
-        $scope.comments.push({data:value, show_dropdown: show_dropdown, action_string: action_string});
+        var comment_data = commentService.getComment(value);
+        $scope.comments.push(comment_data);
       });
     });
   };
@@ -114,5 +109,22 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
       });
     }
   };
+})
+
+.service('commentService', function(_){
+  return {
+
+      getComment: function(comment_data){
+        var data = comment_data;
+        var username = comment_data.user_name === null ? "Anonymous" : comment_data.user_name;
+        var phone_no = comment_data.user_phone === null ? "N/A" : comment_data.user_phone;
+        var show_dropdown = comment_data.action_taken === 1 ?  true : false;
+        var action_string = comment_data.action_taken === 2 ? "Processed" : comment_data.action_taken === 3 ? "Deferred" : "";
+
+        return {data: data, username: username, phone_no: phone_no, show_dropdown: show_dropdown, action_string: action_string};
+      }
+
+  };
+
 });
 

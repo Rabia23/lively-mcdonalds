@@ -257,9 +257,9 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "		  <tbody>\n" +
     "			<tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.data.is_negative, success: comment.data.action_taken === 2, defer: comment.data.action_taken === 3}\">\n" +
     "\n" +
-    "			  <td class=\"item1\">{{comment.data.user_name}}</td>\n" +
+    "			  <td class=\"item1\">{{comment.username}}</td>\n" +
     "			  <td class=\"item2\">\n" +
-    "				<a href=\"tel:{{comment.data.user_phone}}\" class=\"tel\">{{comment.data.user_phone}}</a>\n" +
+    "				<a href=\"tel:{{comment.phone_no}}\" class=\"tel\">{{comment.phone_no}}</a>\n" +
     "			  </td>\n" +
     "			  <td class=\"item3\">{{comment.data.branch}}</td>\n" +
     "			  <td class=\"item4\">{{comment.data.segment}}</td>\n" +

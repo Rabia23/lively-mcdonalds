@@ -231,10 +231,6 @@ angular.module('livefeed.chart', [
     },
 
     getBarChartData: function(graph_data,max){
-       console.log("maximum value");
-       console.log(max);
-       console.log("bar chart graph data");
-       console.log(graph_data);
       return {
         labels : _.map(graph_data.feedbacks, function(data){return data.option__text;}),
         data: [_.map(graph_data.feedbacks,  function(data){return data.count;})],
