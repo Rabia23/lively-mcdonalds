@@ -173,6 +173,32 @@ def feedback_analysis(request, user):
             return Response(None)
 
 
+@api_view(['GET'])
+@my_login_required
+def feedback_analysis_breakdown(request, user):
+
+    if request.method == 'GET':
+        try:
+            option_id = request.query_params.get('option', None)
+
+            region_id = request.query_params.get('region', None)
+            city_id = request.query_params.get('city', None)
+            branch_id = request.query_params.get('branch', None)
+
+            option = Option.objects.get(id=option_id)
+            if option.is_parent():
+                feedback_options = FeedbackOption.manager.children(option).feedback(option).\
+                                        filters(region_id, city_id, branch_id)
+                list_feedback = feedback_options.values('option_id', 'option__text', 'option__parent_id').\
+                    annotate(count=Count('option_id'))
+
+                data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
+                feedback_response = OverallFeedbackSerializer(data)
+                return Response(feedback_response.data)
+
+            return Response(None)
+        except Exception as e:
+            return Response(None)
 
 
 @api_view(['GET'])
@@ -542,6 +568,3 @@ def action_analysis(request, user):
 
         except Exception as e:
             return Response(None)
-
-
-
