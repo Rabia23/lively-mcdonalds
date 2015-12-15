@@ -244,7 +244,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "				<thead>\n" +
     "				  <tr>\n" +
     "					<th class=\"item1\">Name</th>\n" +
-    "					<th class=\"item2\">Phone Number</th>\n" +
+    "					<th class=\"item2\">Phone Number/ Email</th>\n" +
     "					<th class=\"item3\">Branch</th>\n" +
     "					<th class=\"item4\">Segment</th>\n" +
     "					<th class=\"item5\">Comments</th>\n" +
@@ -257,9 +257,10 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "			  <tbody>\n" +
     "				<tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.data.is_negative, success: comment.data.action_taken === 2, defer: comment.data.action_taken === 3}\">\n" +
     "\n" +
-    "				  <td class=\"item1\">{{comment.username}}</td>\n" +
+    "				  <td class=\"item1\">{{comment.data.user_name}}</td>\n" +
     "				  <td class=\"item2\">\n" +
-    "					<a href=\"tel:{{comment.phone_no}}\" class=\"tel\">{{comment.phone_no}}</a>\n" +
+    "					<a href=\"tel:{{comment.phone_no}}\" class=\"tel\">{{comment.phone_no}}</a><br>\n" +
+    "					<a href=\"\">{{comment.email}}</a>\n" +
     "				  </td>\n" +
     "				  <td class=\"item3\">{{comment.data.branch}}</td>\n" +
     "				  <td class=\"item4\">{{comment.data.segment}}</td>\n" +
