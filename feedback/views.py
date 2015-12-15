@@ -89,7 +89,7 @@ def question(request):
             question = Question.get_if_exists(data["objectId"])
             if question:
                 serializer = QuestionSerializer(question, data=data)
-                parse_response =  save_and_response(serializer, data)
+                parse_response = save_and_response(serializer, data)
             else:
                 serializer = QuestionSerializer(data=data)
                 question = save(serializer)

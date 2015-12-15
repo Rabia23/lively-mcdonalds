@@ -196,6 +196,7 @@ class Feedback(models.Model):
                 "shift": self.get_shift(),
                 "is_negative": self.is_negative(),
                 "action_taken": self.action_taken,
+                "email": self.user.email,
             }
             return feedback
         except Exception as e:

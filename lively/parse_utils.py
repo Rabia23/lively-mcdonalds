@@ -26,21 +26,26 @@ def region_get(object_id):
     response = make_request('GET', "application/json", '/1/classes/Region/%s' % object_id, '')
     return response
 
+
 def city_get(object_id):
     response = make_request('GET', "application/json", '/1/classes/City/%s' % object_id, '')
     return response
+
 
 def branch_get(object_id):
     response = make_request('GET', "application/json", '/1/classes/Branch/%s' % object_id, '')
     return response
 
+
 def user_get(object_id):
     response = make_request('GET', "application/json", '/1/classes/User/%s' % object_id, '')
     return response
 
+
 def option_get(object_id):
     response = make_request('GET', "application/json", '/1/classes/Option/%s' % object_id, '')
     return response
+
 
 def feedback_get(object_id):
     response = make_request('GET', "application/json", '/1/classes/Feedback/%s' % object_id, '')

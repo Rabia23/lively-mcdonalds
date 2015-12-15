@@ -25,9 +25,6 @@ SECRET_KEY = 'f#qiorpa9id!n$v#1*(ne16j9%hpa3zqo)u#)jtu=jqge#t%g!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 ALLOWED_HOSTS = ['*']
-#
-# DEBUG = True
-# ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = (
@@ -89,22 +86,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lively.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-# #
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql_psycopg2",
-#         "NAME": "analytics_app",
-#         "USER": "aamish",
-#         "PASSWORD": "arbisoft",
-#         "HOST": "localhost",
-#         "PORT": "",
-#     }
-# }
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -124,29 +105,6 @@ USE_TZ = True
 # )
 CORS_ORIGIN_ALLOW_ALL = True
 
-
-# SWAGGER_SETTINGS = {
-#     'exclude_namespaces': [],
-#     'api_version': '0.1',
-#     'api_path': '/',
-#     'enabled_methods': [
-#         'get',
-#         'post',
-#         'put',
-#         'patch',
-#         'delete'
-#     ],
-#     'api_key': '',
-#     'is_authenticated': False,
-#     'is_superuser': False,
-#     'permission_denied_handler': None,
-#     'resource_access_handler': None,
-#     'base_path':'172.16.11.113:8000/docs',
-#     'info': {
-#         'title': 'Swagger LiveFeed',
-#     },
-#     'doc_expansion': 'none',
-# }
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/

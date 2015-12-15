@@ -89,6 +89,7 @@ class FeedbackCommentSerializer(serializers.Serializer):
     user_phone = serializers.CharField()
     is_negative = serializers.BooleanField()
     action_taken = serializers.IntegerField()
+    email = serializers.CharField()
 
 
 class AllCommentsSerializer(serializers.Serializer):
