@@ -11,8 +11,6 @@ import string,random
 from lively.parse_utils import option_get
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
-from datetime import datetime
-from dateutil import tz
 from operator import itemgetter
 
 
@@ -69,14 +67,6 @@ def get_related_city(data):
 
     if serializer.is_valid():
         city = serializer.save()
-
-        #will use this after testing the nested example otherwise will remove this code
-        # related_region = region_get(data["region"]["objectId"])
-        # region = get_related_region(related_region)
-        #
-        # city.region = region
-        # city.save()
-
         return city
 
 
@@ -158,6 +148,8 @@ def get_related_feedback(data):
         feedback = serializer.save()
         return feedback
 
+
+#**************** Util Methods ****************
 
 #copied
 def generate_username():
@@ -273,27 +265,6 @@ def generate_option_group(data, options):
     return option_groups
 
 
-def get_filtered_feedback_options(feedback_options, type, object):
-    if type == constants.CITY_ANALYSIS:
-        filtered_feedback_options = feedback_options.filter(feedback__branch__city__exact=object.id)
-    elif type == constants.BRANCH_ANALYSIS:
-        filtered_feedback_options = feedback_options.filter(feedback__branch__exact=object.id)
-    else:
-        filtered_feedback_options = feedback_options.filter(feedback__branch__city__region__exact=object.id)
-
-    return filtered_feedback_options
-
-
-def get_filtered_feedback(type, object, feedback=None):
-    if type == constants.CITY_ANALYSIS:
-        filtered_feedback = feedback.filter(branch__city__exact=object.id) if feedback else Feedback.objects.filter(branch__city__exact=object.id)
-    elif type == constants.BRANCH_ANALYSIS:
-        filtered_feedback = feedback.filter(branch__exact=object.id) if feedback else Feedback.objects.filter(branch__exact=object.id)
-    else:
-        filtered_feedback = feedback.filter(branch__city__region__exact=object.id) if feedback else Feedback.objects.filter(branch__city__region__exact=object.id)
-
-    return filtered_feedback
-
 def send_negative_feedback_email(context):
     text_template = get_template('emails/negative_feedback.txt')
     html_template = get_template('emails/negative_feedback.html')
@@ -312,54 +283,10 @@ def send_mail(subject, context, recipients, text_template, html_template):
     message.send()
 
 
-def apply_general_filters(data, region_id, city_id, branch_id, date_to=None, date_from=None):
-    if region_id and city_id and branch_id:
-        data = data.filter(
-            feedback__branch__exact=branch_id,
-            feedback__branch__city__exact=city_id,
-            feedback__branch__city__region__exact=region_id)
-    elif region_id and city_id:
-        data = data.filter(
-            feedback__branch__city__exact=city_id,
-            feedback__branch__city__region__exact=region_id)
-    elif region_id:
-        data = data.filter(
-            feedback__branch__city__region__exact=region_id)
-
-    if date_to and date_from:
-        data = apply_date_range_filter(data, date_to, date_from)
-    return data
-
-
-def apply_date_range_filter(data, date_to=None, date_from=None):
-    if date_to and date_from:
-        current_tz = timezone.get_current_timezone()
-        date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
-        date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
-        data = data.filter(created_at__gte=date_from, created_at__lte=date_to)
-    return data
-
-
-# def get_segment_time_range(segment):
-#     start_time, end_time = None
-#     if segment == constants.segments[constants.BREAKFAST_TIME]:
-#         start_time = get_time(constants.STARTING_TIME)
-#         end_time = get_time(constants.BREAKFAST_TIME)
-#     elif segment == constants.segments[constants.LUNCH_TIME]:
-#         start_time = get_time(constants.BREAKFAST_TIME)
-#         end_time = get_time(constants.LUNCH_TIME)
-#     elif segment == constants.segments[constants.SNACK_TIME]:
-#         start_time = get_time(constants.LUNCH_TIME)
-#         end_time = get_time(constants.SNACK_TIME)
-#     elif segment == constants.segments[constants.DINNER_TIME]:
-#         start_time = get_time(constants.SNACK_TIME)
-#         end_time = get_time(constants.DINNER_TIME)
-#     elif segment == constants.segments[constants.LATE_NIGHT_TIME]:
-#         start_time = get_time(constants.DINNER_TIME)
-#         end_time = get_time(constants.LATE_NIGHT_TIME)
-#
-#     return start_time, end_time
-
-
 def valid_action_id(action_id):
     return True if action_id == 1 or action_id == 2 or action_id ==3 else False
+
+
+def get_param(request, key, default):
+    key = request.query_params.get(key, default)
+    return key if key != "" else default

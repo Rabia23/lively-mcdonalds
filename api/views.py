@@ -15,24 +15,23 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from operator import itemgetter
 from lively.decorators import my_login_required
-from lively.utils import valid_action_id
+from lively.utils import valid_action_id, get_param
 
 from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer, \
     PositiveNegativeFeedbackSerializer, AllCommentsSerializer, AllBranchesSerializer, SegmentationSerializer, \
     ConcernsSerializer, SegmentationRatingSerializer, FeedbackCommentSerializer, ActionAnalysisSerializer, \
     LoginSerializer
 
-from lively.utils import generate_missing_options, get_filtered_feedback_options, generate_missing_sub_options, \
-    apply_general_filters, generate_option_groups, generate_segmentation_with_options, apply_date_range_filter, \
-    get_filtered_feedback, generate_missing_actions
+from lively.utils import generate_missing_options, generate_missing_sub_options, generate_option_groups, \
+    generate_segmentation_with_options, generate_missing_actions
 
 
 @api_view(['GET'])
 def login(request):
 
     if request.method == "GET":
-        username = request.query_params.get('username')
-        password = request.query_params.get('password')
+        username = get_param(request, 'username', None)
+        password = get_param(request, 'password', None)
         user = authenticate(username=username, password=password)
         if user:
             token = Token.objects.get_or_create(user=user)
@@ -70,7 +69,7 @@ def city(request, user):
 
     if request.method == 'GET':
         cities = None
-        region_id = request.query_params.get('region', None)
+        region_id = get_param(request, 'region', None)
         if region_id:
             region = Region.get_by_id(region_id)
             if region:
@@ -87,7 +86,7 @@ def branch(request, user):
 
     if request.method == 'GET':
         branches = None
-        city_id = request.query_params.get('city', None)
+        city_id = get_param(request, 'city', None)
         if city_id:
             city = City.get_by_id(city_id)
             if city:
@@ -105,12 +104,12 @@ def overall_feedback(request, user):
         now = datetime.now()
 
         try:
-            region_id = request.query_params.get('region', None)
-            city_id = request.query_params.get('city', None)
-            branch_id = request.query_params.get('branch', None)
+            region_id = get_param(request, 'region', None)
+            city_id = get_param(request, 'city', None)
+            branch_id = get_param(request, 'branch', None)
 
-            date_to = request.query_params.get('date_to', str(now.date()))
-            date_from = request.query_params.get('date_from', str((now - timedelta(days=1)).date()))
+            date_to = get_param(request, 'date_to', str(now.date()))
+            date_from = get_param(request, 'date_from', str((now - timedelta(days=1)).date()))
 
             feedback_options = FeedbackOption.manager.question(constants.TYPE_1).\
                                             date(date_from, date_to).filters(region_id, city_id, branch_id)
@@ -135,21 +134,21 @@ def feedback_analysis(request, user):
         objects = None
 
         try:
-            type = request.query_params.get('type', None)
-            question_type = request.query_params.get('question_type', constants.TYPE_1)
+            type = get_param(request, 'type', None)
+            question_type = get_param(request, 'question_type', constants.TYPE_1)
 
-            date_to = request.query_params.get('date_to', str(now.date()))
-            date_from = request.query_params.get('date_from', str((now - timedelta(days=1)).date()))
+            date_to = get_param(request, 'date_to', str(now.date()))
+            date_from = get_param(request, 'date_from', str((now - timedelta(days=1)).date()))
 
             feedback_options = FeedbackOption.manager.question(question_type).date(date_from, date_to)
 
             if type == constants.CITY_ANALYSIS:
-                region_id = request.query_params.get('region', None)
+                region_id = get_param(request, 'region', None)
                 if region_id:
                     region = Region.objects.get(pk=region_id)
                     objects = region.cities.all()
             elif type == constants.BRANCH_ANALYSIS:
-                city_id = request.query_params.get('city', None)
+                city_id = get_param(request, 'city', None)
                 if city_id:
                     city = City.objects.get(pk=city_id)
                     objects = city.branches.all()
@@ -179,11 +178,11 @@ def feedback_analysis_breakdown(request, user):
 
     if request.method == 'GET':
         try:
-            option_id = request.query_params.get('option', None)
+            option_id = get_param(request, 'option', None)
 
-            region_id = request.query_params.get('region', None)
-            city_id = request.query_params.get('city', None)
-            branch_id = request.query_params.get('branch', None)
+            region_id = get_param(request, 'region', None)
+            city_id = get_param(request, 'city', None)
+            branch_id = get_param(request, 'branch', None)
 
             option = Option.objects.get(id=option_id)
             if option.is_parent():
@@ -208,20 +207,20 @@ def overall_rating(request, user):
         feedback_records_list = []
 
         try:
-            region_id = request.query_params.get('region', None)
-            city_id = request.query_params.get('city', None)
-            branch_id = request.query_params.get('branch', None)
+            region_id = get_param(request, 'region', None)
+            city_id = get_param(request, 'city', None)
+            branch_id = get_param(request, 'branch', None)
 
-            option_id = request.query_params.get('option', None)
+            option_id = get_param(request, 'option', None)
             option = Option.objects.get(id=option_id) if option_id else None
 
             question = Question.objects.get(type=constants.TYPE_2)
 
             #for grouping of data (daily, weekly, monthly, yearly)
-            type = request.query_params.get('type', None)
+            type = get_param(request, 'type', None)
 
-            date_to = request.query_params.get('date_to', None)
-            date_from = request.query_params.get('date_from', None)
+            date_to = get_param(request, 'date_to', None)
+            date_from = get_param(request, 'date_from', None)
 
             current_tz = timezone.get_current_timezone()
             now = datetime.now()
@@ -276,14 +275,14 @@ def category_performance(request, user):
         now = datetime.now()
 
         try:
-            region_id = request.query_params.get('region', None)
-            city_id = request.query_params.get('city', None)
-            branch_id = request.query_params.get('branch', None)
+            region_id = get_param(request, 'region', None)
+            city_id = get_param(request, 'city', None)
+            branch_id = get_param(request, 'branch', None)
 
-            date_to = request.query_params.get('date_to', str(now.date()))
-            date_from = request.query_params.get('date_from', str((now - timedelta(days=1)).date()))
+            date_to = get_param(request, 'date_to', str(now.date()))
+            date_from = get_param(request, 'date_from', str((now - timedelta(days=1)).date()))
 
-            option_id = request.query_params.get('option', None)
+            option_id = get_param(request, 'option', None)
             option = Option.objects.get(id=option_id) if option_id else None
             question = Question.objects.get(type=constants.TYPE_2)
 
@@ -336,9 +335,9 @@ class DataView(TemplateView):
 def positive_negative_feedback(request, user):
     if request.method == 'GET':
         try:
-            region_id = request.query_params.get('region', None)
-            city_id = request.query_params.get('city', None)
-            branch_id = request.query_params.get('branch', None)
+            region_id = get_param(request, 'region', None)
+            city_id = get_param(request, 'city', None)
+            branch_id = get_param(request, 'branch', None)
 
             feedback = Feedback.manager.filters(region_id, city_id, branch_id)
 
@@ -358,10 +357,10 @@ def positive_negative_feedback(request, user):
 def comments(request, user):
     if request.method == 'GET':
         try:
-            region_id = request.query_params.get('region', None)
-            city_id = request.query_params.get('city', None)
-            branch_id = request.query_params.get('branch', None)
-            page = request.query_params.get('page', 1)
+            region_id = get_param(request, 'region', None)
+            city_id = get_param(request, 'city', None)
+            branch_id = get_param(request, 'branch', None)
+            page = int(get_param(request, 'page', 1))
 
             feedback = Feedback.manager.comments().filters(region_id, city_id, branch_id)
             paginator = Paginator(feedback, constants.COMMENTS_PER_PAGE)
@@ -385,8 +384,8 @@ def map_view(request, user):
         now = datetime.now()
 
         try:
-            date_to = request.query_params.get('date_to', str(now.date()))
-            date_from = request.query_params.get('date_from', str((now - timedelta(days=1)).date()))
+            date_to = get_param(request, 'date_to', str(now.date()))
+            date_from = get_param(request, 'date_from', str((now - timedelta(days=1)).date()))
 
             branches = Branch.objects.all()
 
@@ -410,15 +409,15 @@ def feedback_segmentation(request, user):
     if request.method == 'GET':
 
         try:
-            region_id = request.query_params.get('region', None)
-            city_id = request.query_params.get('city', None)
-            branch_id = request.query_params.get('branch', None)
-            type = request.query_params.get('type', None)
+            region_id = get_param(request, 'region', None)
+            city_id = get_param(request, 'city', None)
+            branch_id = get_param(request, 'branch', None)
+            type = get_param(request, 'type', None)
 
-            option_id = request.query_params.get('option', None)
+            option_id = get_param(request, 'option', None)
             option = Option.objects.get(id=option_id) if option_id else None
 
-            date_to = request.query_params.get('date_to', None)
+            date_to = get_param(request, 'date_to', None)
             date_to = datetime.strptime(date_to, constants.ONLY_DATE_FORMAT).date()
 
             if option:
@@ -478,15 +477,15 @@ def segmentation_rating(request, user):
         now = datetime.now()
 
         try:
-            region_id = request.query_params.get('region', None)
-            city_id = request.query_params.get('city', None)
-            branch_id = request.query_params.get('branch', None)
+            region_id = get_param(request, 'region', None)
+            city_id = get_param(request, 'city', None)
+            branch_id = get_param(request, 'branch', None)
 
-            option_id = request.query_params.get('option', None)
+            option_id = get_param(request, 'option', None)
             option = Option.objects.get(id=option_id) if option_id else None
 
-            date_to = request.query_params.get('date_to', str(now.date()))
-            date_from = request.query_params.get('date_from', str((now - timedelta(days=1)).date()))
+            date_to = get_param(request, 'date_to', str(now.date()))
+            date_from = get_param(request, 'date_from', str((now - timedelta(days=1)).date()))
 
             question = Question.objects.get(type=constants.TYPE_2)
 
@@ -508,8 +507,8 @@ def action_taken(request, user):
     if request.method == 'GET':
 
         try:
-            feedback_id = request.query_params.get('feedback_id', None)
-            action_id = request.query_params.get('action_id', None)
+            feedback_id = get_param(request, 'feedback_id', None)
+            action_id = get_param(request, 'action_id', None)
 
             action_id = int(action_id) if action_id else None
             if feedback_id and action_id and valid_action_id(action_id):
@@ -536,18 +535,18 @@ def action_analysis(request, user):
         objects = None
 
         try:
-            type = request.query_params.get('type', None)
+            type = get_param(request, 'type', None)
 
-            date_to = request.query_params.get('date_to', str(now.date()))
-            date_from = request.query_params.get('date_from', str((now - timedelta(days=1)).date()))
+            date_to = get_param(request, 'date_to', str(now.date()))
+            date_from = get_param(request, 'date_from', str((now - timedelta(days=1)).date()))
 
             if type == constants.CITY_ANALYSIS:
-                region_id = request.query_params.get('region', None)
+                region_id = get_param(request, 'region', None)
                 if region_id:
                     region = Region.objects.get(pk=region_id)
                     objects = region.cities.all()
             elif type == constants.BRANCH_ANALYSIS:
-                city_id = request.query_params.get('city', None)
+                city_id = get_param(request, 'city', None)
                 if city_id:
                     city = City.objects.get(pk=city_id)
                     objects = city.branches.all()
