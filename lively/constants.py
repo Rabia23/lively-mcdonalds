@@ -8,8 +8,8 @@ TRIGGER_AFTER_SAVE = "afterSave"
 CUSTOMER_PASSWORD = "customerpassword"
 
 #------------ Question Types -------------
-MAIN_QUESTION = 1
-SECONDARY_QUESTION = 2
+TYPE_1 = 1
+TYPE_2 = 2
 
 #------------ Feedback Analysis -------------
 REGIONAL_ANALYSIS = '1'

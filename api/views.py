@@ -102,26 +102,23 @@ def branch(request, user):
 @my_login_required
 def overall_feedback(request, user):
     if request.method == 'GET':
+        now = datetime.now()
 
         try:
             region_id = request.query_params.get('region', None)
             city_id = request.query_params.get('city', None)
             branch_id = request.query_params.get('branch', None)
 
-            date_to = request.query_params.get('date_to', None)
-            date_from = request.query_params.get('date_from', None)
+            date_to = request.query_params.get('date_to', str(now.date()))
+            date_from = request.query_params.get('date_from', str((now - timedelta(days=1)).date()))
 
-            question = Question.objects.get(type=constants.MAIN_QUESTION)
-            filtered_feedback_options = FeedbackOption.objects.filter(option__in=question.options.values_list('id'))
-            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id,
-                                            date_to, date_from)
-
-            filtered_feedback_options_count = filtered_feedback_options.count()
-            feedback_options = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id', 'option__score').\
+            feedback_options = FeedbackOption.manager.question(constants.TYPE_1).\
+                                            date(date_from, date_to).filters(region_id, city_id, branch_id)
+            feedback_options_dict = feedback_options.values('option_id', 'option__text', 'option__parent_id', 'option__score').\
                 annotate(count=Count('option_id'))
-            list_feedback = generate_missing_options(question, feedback_options)
+            list_feedback = generate_missing_options(Question.objects.get(type=constants.TYPE_1), feedback_options_dict)
 
-            data = {'feedback_count': filtered_feedback_options_count, 'feedbacks': sorted(list_feedback, reverse=True, key=itemgetter('option__score'))}
+            data = {'feedback_count': feedback_options.count(), 'feedbacks': sorted(list_feedback, reverse=True, key=itemgetter('option__score'))}
             feedback_response = OverallFeedbackSerializer(data)
             return Response(feedback_response.data)
 
@@ -133,19 +130,18 @@ def overall_feedback(request, user):
 @my_login_required
 def feedback_analysis(request, user):
     if request.method == 'GET':
+        now = datetime.now()
         feedbacks = []
+        objects = None
 
         try:
             type = request.query_params.get('type', None)
-            question_type = request.query_params.get('question_type', constants.MAIN_QUESTION)
-            objects = None
+            question_type = request.query_params.get('question_type', constants.TYPE_1)
 
-            date_to = request.query_params.get('date_to', None)
-            date_from = request.query_params.get('date_from', None)
+            date_to = request.query_params.get('date_to', str(now.date()))
+            date_from = request.query_params.get('date_from', str((now - timedelta(days=1)).date()))
 
-            question = Question.objects.get(type=question_type)
-            feedback_options = FeedbackOption.objects.filter(option__in=question.options.values_list('id'))
-            feedback_options = apply_date_range_filter(feedback_options, date_to, date_from)
+            feedback_options = FeedbackOption.manager.question(question_type).date(date_from, date_to)
 
             if type == constants.CITY_ANALYSIS:
                 region_id = request.query_params.get('region', None)
@@ -161,13 +157,12 @@ def feedback_analysis(request, user):
                 objects = Region.objects.all()
 
             for object in objects:
-                filtered_feedback_options = get_filtered_feedback_options(feedback_options, type, object)
-                filtered_feedback_options_count = filtered_feedback_options.count()
-                filtered_feedback_options = filtered_feedback_options.values(
+                related_feedback_options = feedback_options.related_filters(type, object)
+                filtered_feedback_options = related_feedback_options.values(
                     'option_id', 'option__text', 'option__parent_id').annotate(count=Count('option_id'))
-                list_feedback = generate_missing_options(question, filtered_feedback_options)
+                list_feedback = generate_missing_options(Question.objects.get(type=question_type), filtered_feedback_options)
 
-                data = {'feedback_count': filtered_feedback_options_count, 'feedbacks': list_feedback}
+                data = {'feedback_count': related_feedback_options.count(), 'feedbacks': list_feedback}
                 feedbacks.append({'object': object, 'data': data})
 
             feedback_data = {'count': objects.count(), 'analysis': feedbacks}
@@ -183,24 +178,21 @@ def feedback_analysis(request, user):
 def feedback_analysis_breakdown(request, user):
 
     if request.method == 'GET':
-        option_id = request.query_params.get('option', None)
-
-        region_id = request.query_params.get('region', None)
-        city_id = request.query_params.get('city', None)
-        branch_id = request.query_params.get('branch', None)
-
         try:
+            option_id = request.query_params.get('option', None)
+
+            region_id = request.query_params.get('region', None)
+            city_id = request.query_params.get('city', None)
+            branch_id = request.query_params.get('branch', None)
+
             option = Option.objects.get(id=option_id)
             if option.is_parent():
-                filtered_feedback_options = FeedbackOption.objects.filter(option__in=option.children.values_list('id'),
-                feedback__in=FeedbackOption.objects.filter(option_id=option_id).values_list('feedback_id'))
-
-                filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id)
-                filtered_feedback_options_count = filtered_feedback_options .count()
-                list_feedback = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').\
+                feedback_options = FeedbackOption.manager.children(option).feedback(option).\
+                                        filters(region_id, city_id, branch_id)
+                list_feedback = feedback_options.values('option_id', 'option__text', 'option__parent_id').\
                     annotate(count=Count('option_id'))
 
-                data = {'feedback_count': filtered_feedback_options_count, 'feedbacks': list_feedback}
+                data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
                 feedback_response = OverallFeedbackSerializer(data)
                 return Response(feedback_response.data)
 
@@ -221,9 +213,9 @@ def overall_rating(request, user):
             branch_id = request.query_params.get('branch', None)
 
             option_id = request.query_params.get('option', None)
-            option_id = None if not option_id else option_id
+            option = Option.objects.get(id=option_id) if option_id else None
 
-            question = Question.objects.get(type=constants.SECONDARY_QUESTION)
+            question = Question.objects.get(type=constants.TYPE_2)
 
             #for grouping of data (daily, weekly, monthly, yearly)
             type = request.query_params.get('type', None)
@@ -253,31 +245,17 @@ def overall_rating(request, user):
             date_to = current_tz.localize(datetime.strptime(str(now.date()) + " 23:59:59", constants.DATE_FORMAT))
 
             for single_date in rrule.rrule(rule, dtstart=date_from, until=date_to):
-                section_start_date = current_tz.localize(datetime.strptime(str(single_date.date()) + " 00:00:00", constants.DATE_FORMAT))
-                section_end_date = current_tz.localize(datetime.strptime(str(single_date.date()) + " 23:59:59", constants.DATE_FORMAT))
-                feedback_data = FeedbackOption.objects.filter(created_at__gt=section_start_date, created_at__lte=section_end_date)
-                filtered_feedback_options = apply_general_filters(feedback_data, region_id, city_id, branch_id)
+                feedback_options = FeedbackOption.manager.date(str(single_date.date()), str(single_date.date())).\
+                                        filters(region_id, city_id, branch_id)
+                feedback_options = feedback_options.children(option) if option else feedback_options.\
+                                        question_parent_options(question)
+                filtered_feedback = feedback_options.values('option_id', 'option__text', 'option__parent_id').\
+                                        annotate(count=Count('option_id'))
+                list_feedback = generate_missing_sub_options(option_id, filtered_feedback) if option else \
+                                    generate_missing_options(question, filtered_feedback)
 
-                if option_id:
-                    filtered_feedback_options = filtered_feedback_options.filter(option__in=Option.objects.filter(parent=option_id).values_list('id'))
-                else:
-                    filtered_feedback_options = filtered_feedback_options.filter(option__in=question.options.filter(parent=option_id).values_list('id'))
-
-                filtered_feedback = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').annotate(count=Count('option_id'))
-
-                if option_id:
-                    list_feedback = generate_missing_sub_options(option_id, filtered_feedback)
-                else:
-                    list_feedback = generate_missing_options(question, filtered_feedback)
-
-                date_data = {'feedback_count': filtered_feedback_options.count(), 'feedbacks': list_feedback}
-
-                if type == constants.YEARLY_ANALYSIS or type == constants.MONTHLY_ANALYSIS or type == constants.WEEK_ANALYSIS:
-                    display_date = current_tz.localize(datetime.strptime(str(section_end_date.date()), constants.ONLY_DATE_FORMAT))
-                else:
-                    display_date = current_tz.localize(datetime.strptime(str(section_start_date.date()), constants.ONLY_DATE_FORMAT))
-
-                feedback_records_list.append({'date': display_date.date(), 'data': date_data})
+                date_data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
+                feedback_records_list.append({'date': single_date.date(), 'data': date_data})
 
 
             if len(feedback_records_list) > constants.NO_OF_DAYS:
@@ -295,37 +273,33 @@ def overall_rating(request, user):
 def category_performance(request, user):
 
     if request.method == 'GET':
+        now = datetime.now()
 
         try:
             region_id = request.query_params.get('region', None)
             city_id = request.query_params.get('city', None)
             branch_id = request.query_params.get('branch', None)
 
-            date_to = request.query_params.get('date_to', None)
-            date_from = request.query_params.get('date_from', None)
+            date_to = request.query_params.get('date_to', str(now.date()))
+            date_from = request.query_params.get('date_from', str((now - timedelta(days=1)).date()))
 
             option_id = request.query_params.get('option', None)
-            question = Question.objects.get(type=constants.SECONDARY_QUESTION)
+            option = Option.objects.get(id=option_id) if option_id else None
+            question = Question.objects.get(type=constants.TYPE_2)
 
-            if option_id:
-                filtered_feedback_options = FeedbackOption.objects.filter(
-                    option__in=Option.objects.filter(parent=option_id).values_list('id'))
+            if option:
+                feedback_options = FeedbackOption.manager.children(option).date(date_to, date_from).\
+                                                filters(region_id, city_id, branch_id)
             else:
-                filtered_feedback_options = FeedbackOption.objects.filter(
-                option__in=question.options.filter(parent=None).values_list('id'))
+                feedback_options = FeedbackOption.manager.question_parent_options(question).\
+                                                date(date_to, date_from).filters(region_id, city_id, branch_id)
 
-            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id,
-                                                              date_to, date_from)
+            filtered_feedback_options = feedback_options.values('option_id', 'option__text', 'option__parent_id').\
+                                            annotate(count=Count('option_id'))
+            list_feedback = generate_missing_sub_options(option_id, filtered_feedback_options) if option else \
+                                generate_missing_options(question, filtered_feedback_options)
 
-            filtered_feedback_options_count = filtered_feedback_options.count()
-            filtered_feedbacks = filtered_feedback_options.values('option_id', 'option__text', 'option__parent_id').\
-                annotate(count=Count('option_id'))
-            if option_id:
-                list_feedback = generate_missing_sub_options(option_id, filtered_feedbacks)
-            else:
-                list_feedback = generate_missing_options(question, filtered_feedbacks)
-
-            data = {'feedback_count': filtered_feedback_options_count, 'feedbacks': list_feedback}
+            data = {'feedback_count': filtered_feedback_options.count(), 'feedbacks': list_feedback}
             feedback_response = OverallFeedbackSerializer(data)
             return Response(feedback_response.data)
 
@@ -339,19 +313,21 @@ class DataView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(DataView, self).get_context_data(**kwargs)
-
         page = self.request.GET.get('page', 1)
+        feedback_list = []
 
-        all_feedbacks = Feedback.objects.all().order_by('-created_at')
-        feedbacks = []
-        for feedback in all_feedbacks:
-            feedbacks.append(feedback.to_dict())
+        all_feedback = Feedback.objects.all().order_by('-created_at')
 
-        paginator = Paginator(feedbacks, constants.FEEDBACKS_PER_PAGE)
+        for feedback in all_feedback:
+            feedback_list.append(feedback.to_dict())
+
+        paginator = Paginator(feedback_list, constants.FEEDBACKS_PER_PAGE)
+
         context["feedbacks"] = paginator.page(page)
-        context["count_feedback"] = all_feedbacks.count()
+        context["count_feedback"] = all_feedback.count()
         context["num_pages"] = paginator.num_pages
         context["pages"] = range(1, paginator.num_pages + 1)
+
         return context
 
 
@@ -364,15 +340,10 @@ def positive_negative_feedback(request, user):
             city_id = request.query_params.get('city', None)
             branch_id = request.query_params.get('branch', None)
 
-            filtered_feedback_options = Feedback.objects.all()
-            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id)
+            feedback = Feedback.manager.filters(region_id, city_id, branch_id)
 
-            negative_feedback = filtered_feedback_options.filter(
-                feedback_option__option__score__in=constants.NEGATIVE_SCORE_LIST).\
-                        exclude(comment__isnull=True).exclude(comment__exact='').order_by('-id')[:3]
-            positive_feedback = filtered_feedback_options.filter(
-                feedback_option__option__score__in=constants.POSITIVE_SCORE_LIST).\
-                        exclude(comment__isnull=True).exclude(comment__exact='').order_by('-id')[:3]
+            negative_feedback = feedback.top_comments(constants.NEGATIVE_SCORE_LIST)
+            positive_feedback = feedback.top_comments(constants.POSITIVE_SCORE_LIST)
 
             data = {'positive_feedbacks': positive_feedback, 'negative_feedbacks': negative_feedback}
             feedback_response = PositiveNegativeFeedbackSerializer(data)
@@ -392,15 +363,12 @@ def comments(request, user):
             branch_id = request.query_params.get('branch', None)
             page = request.query_params.get('page', 1)
 
-            filtered_feedback = Feedback.objects.filter().exclude(comment__isnull=True).exclude(comment__exact='').order_by('-id')
-            filtered_feedback = apply_general_filters(filtered_feedback, region_id, city_id, branch_id)
-
-            filtered_feedback_count = filtered_feedback.count()
-            paginator = Paginator(filtered_feedback, constants.COMMENTS_PER_PAGE)
+            feedback = Feedback.manager.comments().filters(region_id, city_id, branch_id)
+            paginator = Paginator(feedback, constants.COMMENTS_PER_PAGE)
 
             feedback_comments = [feedback.feedback_comment_dict() for feedback in paginator.page(page)]
 
-            data = {'feedback_count': filtered_feedback_count,
+            data = {'feedback_count': feedback.count(),
                     'feedbacks': feedback_comments,
                     'is_last_page': paginator.num_pages == int(page)}
             feedback_response = AllCommentsSerializer(data)
@@ -414,9 +382,11 @@ def comments(request, user):
 @my_login_required
 def map_view(request, user):
     if request.method == 'GET':
+        now = datetime.now()
+
         try:
-            date_to = request.query_params.get('date_to', None)
-            date_from = request.query_params.get('date_from', None)
+            date_to = request.query_params.get('date_to', str(now.date()))
+            date_from = request.query_params.get('date_from', str((now - timedelta(days=1)).date()))
 
             branches = Branch.objects.all()
 
@@ -443,14 +413,15 @@ def feedback_segmentation(request, user):
             region_id = request.query_params.get('region', None)
             city_id = request.query_params.get('city', None)
             branch_id = request.query_params.get('branch', None)
-            option_id = request.query_params.get('option', None)
             type = request.query_params.get('type', None)
+
+            option_id = request.query_params.get('option', None)
+            option = Option.objects.get(id=option_id) if option_id else None
 
             date_to = request.query_params.get('date_to', None)
             date_to = datetime.strptime(date_to, constants.ONLY_DATE_FORMAT).date()
 
-            if option_id:
-                option = Option.objects.get(id=option_id)
+            if option:
                 options = option.children.all()
             else:
                 return Response(None)
@@ -469,12 +440,8 @@ def feedback_segmentation(request, user):
             date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
             date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
 
-            filtered_feedback_options = FeedbackOption.objects.filter(
-                option__in=Option.objects.filter(parent=option_id).values_list('id'),
-                feedback__created_at__gt=date_from, created_at__lte=date_to)
-
-            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id)
-            feedback_segmented_list = generate_option_groups(filtered_feedback_options, options)
+            feedback_options = FeedbackOption.manager.children(option).date(date_from, date_to).filters(region_id, city_id, branch_id)
+            feedback_segmented_list = generate_option_groups(feedback_options, options)
 
             data = {'option_count': len(feedback_segmented_list), 'options': feedback_segmented_list}
             feedback_response = SegmentationSerializer(data)
@@ -508,32 +475,25 @@ def top_concerns(request, user):
 @my_login_required
 def segmentation_rating(request, user):
     if request.method == 'GET':
+        now = datetime.now()
 
         try:
             region_id = request.query_params.get('region', None)
             city_id = request.query_params.get('city', None)
             branch_id = request.query_params.get('branch', None)
+
             option_id = request.query_params.get('option', None)
+            option = Option.objects.get(id=option_id) if option_id else None
 
-            date_to = request.query_params.get('date_to', None)
-            date_from = request.query_params.get('date_from', None)
+            date_to = request.query_params.get('date_to', str(now.date()))
+            date_from = request.query_params.get('date_from', str((now - timedelta(days=1)).date()))
 
-            question = Question.objects.get(type=constants.SECONDARY_QUESTION)
+            question = Question.objects.get(type=constants.TYPE_2)
 
-            if option_id:
-                option = Option.objects.get(id=option_id)
-                options = option.children.all()
-
-                filtered_feedback_options = FeedbackOption.objects.filter(
-                    option__in=Option.objects.filter(parent=option_id).values_list('id'))
-            else:
-                options = question.options.all()
-                filtered_feedback_options = FeedbackOption.objects.filter(
-                    option__in=options.values_list('id'))
-
-            filtered_feedback_options = apply_general_filters(filtered_feedback_options, region_id, city_id, branch_id,
-                                                              date_to, date_from)
-            feedback_segmented_list = generate_segmentation_with_options(filtered_feedback_options, options)
+            options = option.children.all() if option else question.options.all()
+            feedback_options = FeedbackOption.manager.options(options).date(date_from, date_to).\
+                                    filters(region_id, city_id, branch_id)
+            feedback_segmented_list = generate_segmentation_with_options(feedback_options, options)
 
             data = {'segment_count': len(feedback_segmented_list), 'segments': feedback_segmented_list}
             feedback_response = SegmentationRatingSerializer(data)
@@ -571,14 +531,15 @@ def action_taken(request, user):
 def action_analysis(request, user):
 
     if request.method == 'GET':
+        now = datetime.now()
         data_list = []
+        objects = None
 
         try:
             type = request.query_params.get('type', None)
-            objects = None
 
-            date_to = request.query_params.get('date_to', None)
-            date_from = request.query_params.get('date_from', None)
+            date_to = request.query_params.get('date_to', str(now.date()))
+            date_from = request.query_params.get('date_from', str((now - timedelta(days=1)).date()))
 
             if type == constants.CITY_ANALYSIS:
                 region_id = request.query_params.get('region', None)
@@ -594,13 +555,11 @@ def action_analysis(request, user):
                 objects = Region.objects.all()
 
             for object in objects:
-                filtered_feedback = get_filtered_feedback(type, object)
-                filtered_feedback = apply_date_range_filter(filtered_feedback, date_to, date_from)
-                filtered_feedback_count = filtered_feedback.count()
-                filtered_feedback = filtered_feedback.values('action_taken').annotate(count=Count('action_taken'))
+                feedback = Feedback.manager.related_filters(type, object).date(date_from, date_to)
+                filtered_feedback = feedback.values('action_taken').annotate(count=Count('action_taken'))
                 filtered_feedback = generate_missing_actions(filtered_feedback)
 
-                data = {'feedback_count': filtered_feedback_count, 'action_analysis': filtered_feedback}
+                data = {'feedback_count': feedback.count(), 'action_analysis': filtered_feedback}
                 data_list.append({'object': object, 'data': data})
 
             feedback_data = {'count': objects.count(), 'analysis': data_list}

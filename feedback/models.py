@@ -4,6 +4,59 @@ from app.models import Branch, UserInfo
 from lively import constants, settings
 from datetime import datetime
 from dateutil import tz
+from django.utils import timezone
+
+
+class FeedbackQuerySet(models.QuerySet):
+
+    def date(self, date_from, date_to):
+        if date_to and date_from:
+            current_tz = timezone.get_current_timezone()
+            date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
+            date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
+            return self.filter(created_at__gte=date_from, created_at__lte=date_to)
+        return self
+
+    def filters(self, region_id, city_id, branch_id):
+        if region_id and city_id and branch_id:
+            return self.filter(
+                branch__exact=branch_id,
+                branch__city__exact=city_id,
+                branch__city__region__exact=region_id)
+        elif region_id and city_id:
+            return self.filter(
+                branch__city__exact=city_id,
+                branch__city__region__exact=region_id)
+        elif region_id:
+            return self.filter(
+                branch__city__region__exact=region_id)
+        return self
+
+    def related_filters(self, type, object):
+        if type == constants.CITY_ANALYSIS:
+            return self.filter(branch__city__exact=object.id)
+        elif type == constants.BRANCH_ANALYSIS:
+            return self.filter(branch__exact=object.id)
+        else:
+            return self.filter(branch__city__region__exact=object.id)
+
+    def top_comments(self, comment_type):
+        return self.filter(feedback_option__option__score__in=comment_type).\
+                        exclude(comment__isnull=True).exclude(comment__exact='').order_by('-id')[:3]
+
+    def comments(self):
+        return self.filter(comment__isnull=False).exclude(comment__exact='').order_by('-id')
+
+
+class FeedbackManager(models.Manager):
+    def get_query_set(self):
+        return FeedbackQuerySet(Feedback)
+
+    def __getattr__(self, attr, *args):
+        try:
+            return getattr(self.__class__, attr, *args)
+        except AttributeError:
+            return getattr(self.get_query_set(), attr, *args)
 
 
 class Feedback(models.Model):
@@ -14,6 +67,10 @@ class Feedback(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     action_taken = models.IntegerField(default=constants.UNPROCESSED)
     gro_name = models.CharField(max_length=25, null=True, blank=True)
+
+    objects = models.Manager()
+    manager = FeedbackManager()
+
 
     def __str__(self):
        return self.objectId
@@ -54,14 +111,14 @@ class Feedback(models.Model):
         return constants.NOT_ATTEMPTED_TEXT
 
     def selected_main_option(self):
-        main_question = Question.objects.get(type=constants.MAIN_QUESTION)
+        main_question = Question.objects.get(type=constants.TYPE_1)
         option_list = self.feedback_option.filter(option__in=main_question.options.filter().values_list('id')).values_list('option_id')
         option = Option.objects.filter(pk__in=option_list).first()
         if option:
             return option
 
     def selected_secondary_option(self):
-        secondary_question = Question.objects.get(type=constants.SECONDARY_QUESTION)
+        secondary_question = Question.objects.get(type=constants.TYPE_2)
         option_list = self.feedback_option.filter(option__in=secondary_question.options.filter().values_list('id')).values_list('option_id')
         options = Option.objects.filter(pk__in=option_list)
         if options:
@@ -199,10 +256,77 @@ class Option(models.Model):
         return self.children.count() > 0
 
 
+class FeedbackOptionQuerySet(models.QuerySet):
+    def question(self, question_type):
+        question = Question.objects.get(type=question_type)
+        return self.filter(option__in=question.options.values_list('id'))
+
+    def date(self, date_from, date_to):
+        if date_to and date_from:
+            current_tz = timezone.get_current_timezone()
+            date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
+            date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
+            return self.filter(created_at__gte=date_from, created_at__lte=date_to)
+        return self
+
+    def filters(self, region_id, city_id, branch_id):
+        if region_id and city_id and branch_id:
+            return self.filter(
+                feedback__branch__exact=branch_id,
+                feedback__branch__city__exact=city_id,
+                feedback__branch__city__region__exact=region_id)
+        elif region_id and city_id:
+            return self.filter(
+                feedback__branch__city__exact=city_id,
+                feedback__branch__city__region__exact=region_id)
+        elif region_id:
+            return self.filter(
+                feedback__branch__city__region__exact=region_id)
+        return self
+
+    def related_filters(self, type, object):
+        if type == constants.CITY_ANALYSIS:
+            return self.filter(feedback__branch__city__exact=object.id)
+        elif type == constants.BRANCH_ANALYSIS:
+            return self.filter(feedback__branch__exact=object.id)
+        else:
+            return self.filter(feedback__branch__city__region__exact=object.id)
+
+
+    def feedback(self, option):
+        return self.filter(feedback__in=FeedbackOption.objects.filter(option=option).values_list('feedback_id'))
+
+    def children(self, option):
+        return self.filter(option__in=option.children.values_list('id'))
+
+    def question_children(self, question, option):
+        return self.filter(option__in=question.options.filter(parent=option.id).values_list('id'))
+
+    def question_parent_options(self, question):
+        return self.filter(option__in=question.options.filter(parent=None).values_list('id'))
+
+    def options(self, options):
+        return self.filter(option__in=options.values_list('id'))
+
+
+class FeedbackOptionManager(models.Manager):
+    def get_query_set(self):
+        return FeedbackOptionQuerySet(FeedbackOption)
+
+    def __getattr__(self, attr, *args):
+        try:
+            return getattr(self.__class__, attr, *args)
+        except AttributeError:
+            return getattr(self.get_query_set(), attr, *args)
+
+
 class FeedbackOption(models.Model):
     feedback = models.ForeignKey(Feedback, related_name='feedback_option', null=True, blank=True)
     option = models.ForeignKey(Option, related_name='feedback_option', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    objects = models.Manager()
+    manager = FeedbackOptionManager()
 
     def to_option_dict(self):
         try:
@@ -218,9 +342,6 @@ class FeedbackOption(models.Model):
         if self.option.score in constants.NEGATIVE_SCORE_LIST:
             return True
         return False
-
-    def __str__(self):
-       return self.objectId
 
     @staticmethod
     def get_if_exists(objectId):

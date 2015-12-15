@@ -210,11 +210,11 @@ def generate_missing_options(question, data):
     return list_feedback
 
 
-def generate_missing_sub_options(option_id, data):
+def generate_missing_sub_options(option, data):
     list_feedback_option_ids = [item['option_id'] for item in data]
     list_feedback = list(data)
 
-    for option in Option.objects.filter(parent=option_id):
+    for option in Option.objects.filter(parent=option):
         if option.id not in list_feedback_option_ids:
             list_feedback.append({'count': 0,
                                   'option_id': option.id,
