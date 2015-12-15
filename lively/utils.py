@@ -340,40 +340,25 @@ def apply_date_range_filter(data, date_to=None, date_from=None):
     return data
 
 
-def get_time(constant):
-    return datetime.strptime(constant, '%H:%M').time()
-
-
-def get_converted_time(time):
-    time = time.strftime(constants.DATE_FORMAT)
-
-    from_zone = tz.gettz('UTC')
-    to_zone = tz.gettz('Asia/Karachi')
-    utc = datetime.strptime(str(time), constants.DATE_FORMAT)
-    utc = utc.replace(tzinfo=from_zone)
-    converted_time = utc.astimezone(to_zone)
-    return converted_time.time()
-
-
-def get_segment_time_range(segment):
-    start_time, end_time = None
-    if segment == constants.segments[constants.BREAKFAST_TIME]:
-        start_time = get_time(constants.STARTING_TIME)
-        end_time = get_time(constants.BREAKFAST_TIME)
-    elif segment == constants.segments[constants.LUNCH_TIME]:
-        start_time = get_time(constants.BREAKFAST_TIME)
-        end_time = get_time(constants.LUNCH_TIME)
-    elif segment == constants.segments[constants.SNACK_TIME]:
-        start_time = get_time(constants.LUNCH_TIME)
-        end_time = get_time(constants.SNACK_TIME)
-    elif segment == constants.segments[constants.DINNER_TIME]:
-        start_time = get_time(constants.SNACK_TIME)
-        end_time = get_time(constants.DINNER_TIME)
-    elif segment == constants.segments[constants.LATE_NIGHT_TIME]:
-        start_time = get_time(constants.DINNER_TIME)
-        end_time = get_time(constants.LATE_NIGHT_TIME)
-
-    return start_time, end_time
+# def get_segment_time_range(segment):
+#     start_time, end_time = None
+#     if segment == constants.segments[constants.BREAKFAST_TIME]:
+#         start_time = get_time(constants.STARTING_TIME)
+#         end_time = get_time(constants.BREAKFAST_TIME)
+#     elif segment == constants.segments[constants.LUNCH_TIME]:
+#         start_time = get_time(constants.BREAKFAST_TIME)
+#         end_time = get_time(constants.LUNCH_TIME)
+#     elif segment == constants.segments[constants.SNACK_TIME]:
+#         start_time = get_time(constants.LUNCH_TIME)
+#         end_time = get_time(constants.SNACK_TIME)
+#     elif segment == constants.segments[constants.DINNER_TIME]:
+#         start_time = get_time(constants.SNACK_TIME)
+#         end_time = get_time(constants.DINNER_TIME)
+#     elif segment == constants.segments[constants.LATE_NIGHT_TIME]:
+#         start_time = get_time(constants.DINNER_TIME)
+#         end_time = get_time(constants.LATE_NIGHT_TIME)
+#
+#     return start_time, end_time
 
 
 def valid_action_id(action_id):

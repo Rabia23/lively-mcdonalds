@@ -555,7 +555,7 @@ def action_analysis(request, user):
                 objects = Region.objects.all()
 
             for object in objects:
-                feedback = Feedback.manager.related_filters(type, object).date(date_from, date_to)
+                feedback = Feedback.manager.related_filters(type, object).date(date_from, date_to).normal_feedback()
                 filtered_feedback = feedback.values('action_taken').annotate(count=Count('action_taken'))
                 filtered_feedback = generate_missing_actions(filtered_feedback)
 
