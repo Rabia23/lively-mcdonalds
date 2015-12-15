@@ -13,6 +13,8 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   $scope.show_loading = false;
 
+  $scope.today = new Date();
+
   function resetDates(){
     $scope.date = {
         startDate: moment().subtract(1, "days"),
@@ -34,8 +36,8 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
           $scope.showChart($scope.object_id, $scope.string);
         },
         'cancel.daterangepicker': function(ev, picker){
-          $scope.datePicker.date.startDate = null;
-          $scope.datePicker.date.endDate = null;
+          //$scope.datePicker.date.startDate = null;
+          //$scope.datePicker.date.endDate = null;
         }
 
     }

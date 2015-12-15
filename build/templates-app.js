@@ -144,7 +144,7 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "  	<div class=\"map-holder\" same-map-height>\n" +
     "		<div class=\"inner-holder\">\n" +
     "			<div map-lazy-load=\"http://maps.google.com/maps/api/js\">\n" +
-    "			  <map center=\"30,70\" zoom=\"{{zoom}}\" disable-default-u-i=\"true\" default-style=\"false\">\n" +
+    "			  <map center=\"30,70\" zoom=\"{{zoom}}\" disable-default-u-i=\"true\">\n" +
     "			  </map>\n" +
     "			</div>\n" +
     "		</div>\n" +

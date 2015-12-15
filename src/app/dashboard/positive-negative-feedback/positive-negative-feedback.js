@@ -49,7 +49,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   };
 
   Graphs.comments($scope.page).$promise.then(function(data){
-
+    console.log(data);
     $scope.comments = _.map(data.feedbacks,  function(data){
       return commentService.getComment(data);
     });

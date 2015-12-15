@@ -7,7 +7,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
 .controller( 'OverallRatingCtrl', function DashboardController( $scope, _, chartService, Graphs, Global ) {
 
-  //$scope.today = new Date();
+  $scope.today = new Date();
 
   function resetDates(){
     $scope.date = {
@@ -76,7 +76,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
       },
       'cancel.daterangepicker': function(ev, picker){
-        resetDates();
+        //resetDates();
       }
     }
   };

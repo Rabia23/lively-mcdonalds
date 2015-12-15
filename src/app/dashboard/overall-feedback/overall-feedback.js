@@ -9,6 +9,8 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
   
   $scope.show_loading = false;
 
+  $scope.today = new Date();
+
    function resetDates(){
     $scope.date = {
         startDate: moment().subtract(1, "days"),
@@ -30,8 +32,8 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
           });
         },
         'cancel.daterangepicker': function(ev, picker){
-          $scope.datePicker.date.startDate = null;
-          $scope.datePicker.date.endDate = null;
+          //$scope.datePicker.date.startDate = null;
+          //$scope.datePicker.date.endDate = null;
         }
 
     }

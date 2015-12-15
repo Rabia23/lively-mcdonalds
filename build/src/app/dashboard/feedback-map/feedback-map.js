@@ -11,7 +11,7 @@ angular.module( 'livefeed.dashboard.feedback_map', [
   // $scope.datePicker = {};
   // $scope.datePicker.date = {startDate: null, endDate: null};
 
-  // $scope.today = new Date();
+  $scope.today = new Date();
 
   function resetDates(){
     $scope.date = {
@@ -60,7 +60,7 @@ angular.module( 'livefeed.dashboard.feedback_map', [
   $scope.markers = [];
 
   Graphs.map_view().$promise.then(function(data){
-     $scope.show_loading = false;
+    $scope.show_loading = false;
     _.each(data.branches, function(branch){
       var icon;
       if(branch.count_exceeded === false){

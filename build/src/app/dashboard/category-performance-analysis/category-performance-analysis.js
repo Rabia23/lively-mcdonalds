@@ -9,6 +9,8 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
   $scope.class = '';
   $scope.option_id = null;
 
+  $scope.today = new Date();
+
 
   function resetDates(){
     $scope.date = {
