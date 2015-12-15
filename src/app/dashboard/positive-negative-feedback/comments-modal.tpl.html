@@ -20,36 +20,36 @@
 		<div class="table-container jcf-scrollable" data-comments = "comments" ng-class = "{loading: lock}" when-scrolled="getMoreComments()" custom-form>
 			<table class="table">
 			  <tbody>
-					<tr ng-repeat = "comment in comments" ng-class = "{negative: comment.is_negative, success: comment.action_taken}">
+				<tr ng-repeat = "comment in comments" ng-class = "{negative: comment.data.is_negative, success: comment.data.action_taken === 2, defer: comment.data.action_taken === 3}">
 
-					  <td class="item1">{{comment.data.user_name}}</td>
-					  <td class="item2">
-						<a href="tel:{{comment.data.user_phone}}" class="tel">{{comment.user_phone}}</a>
-					  </td>
-					  <td class="item3">{{comment.data.branch}}</td>
-					  <td class="item4">{{comment.data.segment}}</td>
-					  <td class="item5">
-						<span class="ico"></span>
-						<div class="text">
-							{{comment.data.comment}}
-						</div>
-					  </td>
-					  <td class="item6">
-						<div class="btn-group" uib-dropdown ng-show = "comment.action_taken">
-						  <button id="split-button" type="button" class="btn btn-info" ng-click="selectedValue('Process',comment)">Process</button>
-						  <button type="button" class="btn btn-info" uib-dropdown-toggle>
-							<span class="caret"></span>
-							<span class="sr-only">Split button!</span>
-						  </button>
-						  <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
-							<li role="menuitem">
-								<a style = "cursor:pointer;" ng-click="selectedValue('Defer',comment)">Defer</a>
-							</li>
-						  </ul>
-						</div>
-						<span ng-hide = "comment.action_taken">{{comment.action_string}}</span>
-					   </td>
-					</tr>
+				  <td class="item1">{{comment.username}}</td>
+				  <td class="item2">
+					<a href="tel:{{comment.phone_no}}" class="tel">{{comment.phone_no}}</a>
+				  </td>
+				  <td class="item3">{{comment.data.branch}}</td>
+				  <td class="item4">{{comment.data.segment}}</td>
+				  <td class="item5">
+					<span class="ico"></span>
+					<div class="text">
+						{{comment.data.comment}}
+					</div>
+				  </td>
+				  <td class="item6">
+					<div class="btn-group" uib-dropdown ng-show = "comment.show_dropdown">
+					  <button id="split-button" type="button" class="btn btn-info" ng-click="selectedValue('Process',comment)">Process</button>
+					  <button type="button" class="btn btn-info" uib-dropdown-toggle>
+						<span class="caret"></span>
+						<span class="sr-only">Split button!</span>
+					  </button>
+					  <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+						<li role="menuitem">
+							<a style = "cursor:pointer;" ng-click="selectedValue('Defer',comment)">Defer</a>
+						</li>
+					  </ul>
+					</div>
+					<span ng-hide = "comment.show_dropdown">{{comment.action_string}}</span>
+				   </td>
+				</tr>
 			  </tbody>
 			</table>
 			<span class="loader"></span>

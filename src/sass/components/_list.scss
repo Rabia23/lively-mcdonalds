@@ -2,7 +2,7 @@
 	@extend .list-inline;
 	text-align: right;
 	margin: 0 0 15px;
-	color: $mountain-mist;
+	color: $tundora;
 	font-size: 12px;
 	line-height: 14px;
 	letter-spacing: -6px;
@@ -44,10 +44,10 @@
 		}
 		
 		a{
-			color: $mountain-mist;
+			color: $tundora;
 			&:hover,
 			&:active,
-			&:focus{color: darken($mountain-mist,10%);}
+			&:focus{color: lighten($tundora,10%);}
 		}
 		
 		&.negative{
@@ -80,10 +80,10 @@
 			}
 
 			a{
-				color: $mountain-mist;
+				color: $tundora;
 				&:hover,
 				&:active,
-				&:focus{color: darken($mountain-mist,10%);}
+				&:focus{color: lighten($tundora,10%);}
 			}
 		}
 	}

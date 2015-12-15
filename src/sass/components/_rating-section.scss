@@ -154,7 +154,7 @@
       letter-spacing: -6px;
 	  font-size: 12px;
 	  line-height: 14px;
-	  color: $mountain-mist;
+	  color: $tundora;
 		
 		@include media("≥tablet"){
 			font-size: 13px;
@@ -193,10 +193,10 @@
         @include media("≥tablet"){padding: 0 10px 6px 9px;}
 		@include media("≥widescreen"){padding: 0 14px 6px;}
 		  a{
-			  color: $mountain-mist;
+			  color: $tundora;
 			  &:hover,
 			  &:active,
-			  &:focus{color: darken($mountain-mist,10%);}
+			  &:focus{color: lighten($tundora,10%);}
 		  }
        
         &.item2{
