@@ -1,8 +1,14 @@
 from django.contrib.auth.models import User
-from app.models import Region, City, Branch, UserInfo
+from app.models import Region, City, Branch, UserInfo, Area
 from rest_framework import serializers
 
 __author__ = 'aamish'
+
+
+class AreaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Area
+        fields = ('id', 'name', 'objectId')
 
 
 class RegionSerializer(serializers.ModelSerializer):

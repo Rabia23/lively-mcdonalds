@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
-from app.models import Region, City, Branch, UserInfo
-from app.serializers import RegionSerializer, CitySerializer, BranchSerializer, UserSerializer, UserInfoSerializer
+from app.models import Region, City, Branch, UserInfo, Area
+from app.serializers import RegionSerializer, CitySerializer, BranchSerializer, UserSerializer, UserInfoSerializer, \
+    AreaSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from feedback.models import Feedback, Option
@@ -43,6 +44,18 @@ def response(data):
 
 #**************** Related Objects Methods ****************
 #all need to be refactored -  can be converted into one method
+
+
+def get_related_area(data):
+    area = Area.get_if_exists(data["objectId"])
+    if area:
+        serializer = AreaSerializer(area, data=data)
+    else:
+        serializer = AreaSerializer(data=data)
+
+    if serializer.is_valid():
+        area = serializer.save()
+        return area
 
 
 def get_related_region(data):

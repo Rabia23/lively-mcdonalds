@@ -22,6 +22,11 @@ def make_request(method, content_type, request_url, request_data):
     return json.loads(str_response)
 
 
+def area_get(object_id):
+    response = make_request('GET', "application/json", '/1/classes/Area/%s' % object_id, '')
+    return response
+
+
 def region_get(object_id):
     response = make_request('GET', "application/json", '/1/classes/Region/%s' % object_id, '')
     return response

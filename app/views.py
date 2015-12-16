@@ -1,14 +1,36 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from app.models import Region, City, Branch, UserInfo
-from app.serializers import RegionSerializer, CitySerializer, BranchSerializer, UserInfoSerializer
+from app.models import Region, City, Branch, UserInfo, Area
+from app.serializers import RegionSerializer, CitySerializer, BranchSerializer, UserInfoSerializer, AreaSerializer
 from lively import constants
-from lively.parse_utils import region_get, city_get
-from lively.utils import save_and_response, get_related_region, save, response, get_related_city
+from lively.parse_utils import region_get, city_get, area_get
+from lively.utils import save_and_response, get_related_region, save, response, get_related_city, get_related_area
 from django.db import IntegrityError, transaction
 
 
 @api_view(['GET', 'POST'])
+def area(request):
+
+    if request.method == 'GET':
+        areas = Area.objects.all()
+        serializer = AreaSerializer(areas, many=True)
+        return Response(serializer.data)
+
+    if request.method == 'POST':
+        data = request.data["object"]
+        trigger = request.data["triggerName"]
+
+        if trigger == constants.TRIGGER_AFTER_SAVE:
+            area = Area.get_if_exists(data["objectId"])
+            if region:
+                serializer = AreaSerializer(area, data=data)
+            else:
+                serializer = AreaSerializer(data=data)
+            return save_and_response(serializer, data)
+
+
+@api_view(['GET', 'POST'])
+@transaction.atomic
 def region(request):
 
     if request.method == 'GET':
@@ -24,9 +46,17 @@ def region(request):
             region = Region.get_if_exists(data["objectId"])
             if region:
                 serializer = RegionSerializer(region, data=data)
+                return save_and_response(serializer, data)
             else:
+                related_area = area_get(data["area"]["objectId"])
+                area = get_related_area(related_area)
+                
                 serializer = RegionSerializer(data=data)
-            return save_and_response(serializer, data)
+                region = save(serializer)
+                region.area = area
+                region.save()
+
+            return response(data)
 
 
 @api_view(['GET', 'POST'])

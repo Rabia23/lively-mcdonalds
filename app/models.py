@@ -21,9 +21,30 @@ class UserInfo(models.Model):
             return user_info
 
 
+class Area(models.Model):
+    name = models.CharField(max_length=20)
+    objectId = models.CharField(max_length=20)
+
+    def __str__(self):
+       return self.name
+
+    @staticmethod
+    def get_if_exists(objectId):
+        area = Area.objects.filter(objectId=objectId).first()
+        if area:
+            return area
+
+    @staticmethod
+    def get_by_id(area_id):
+        area = Area.objects.filter(pk=area_id).first() if area_id else None
+        if area:
+            return area
+
+
 class Region(models.Model):
     name = models.CharField(max_length=20)
     objectId = models.CharField(max_length=20)
+    area = models.ForeignKey(Area, related_name='regions', null=True, blank=True)
 
     def __str__(self):
        return self.name
