@@ -10,7 +10,6 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-conventional-changelog');
   grunt.loadNpmTasks('grunt-bump');
@@ -189,9 +188,9 @@ module.exports = function ( grunt ) {
        * code and all specified vendor source code into a single file.
        */
       compile_js: {
-        options: {
-          banner: '<%= meta.banner %>'
-        },
+        // options: {
+        //   banner: '<%= meta.banner %>'
+        // },
         src: [ 
           '<%= vendor_files.js %>', 
           'module.prefix', 
@@ -246,36 +245,15 @@ module.exports = function ( grunt ) {
      */
     uglify: {
       compile: {
-        options: {
-          banner: '<%= meta.banner %>'
-        },
+        // options: {
+        //   banner: '<%= meta.banner %>'
+        // },
         files: {
           '<%= concat.compile_js.dest %>': '<%= concat.compile_js.dest %>'
         }
       }
     },
 
-    /**
-     * `grunt-contrib-less` handles our LESS compilation and uglification automatically.
-     * Only our `main.less` file is included in compilation; all other files
-     * must be imported from this file.
-     */
-    less: {
-      build: {
-        files: {
-          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less %>'
-        }
-      },
-      compile: {
-        files: {
-          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less %>'
-        },
-        options: {
-          cleancss: true,
-          compress: true
-        }
-      }
-    },
 
     sass: {
       dev: {
@@ -498,13 +476,6 @@ module.exports = function ( grunt ) {
         tasks: [ 'html2js' ]
       },
 
-      /**
-       * When the CSS files change, we need to compile and minify them.
-       */
-      less: {
-        files: [ 'src/**/*.less' ],
-        tasks: [ 'less:build' ]
-      },
 
       sass: {
         files: ['src/**/*.scss'],
@@ -592,7 +563,7 @@ module.exports = function ( grunt ) {
    * minifying your code.
    */
   grunt.registerTask( 'compile', [
-    'less:compile', 'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile'
+    'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile'
   ]);
 
   /**

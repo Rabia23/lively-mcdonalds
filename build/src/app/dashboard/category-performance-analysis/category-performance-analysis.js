@@ -3,7 +3,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
     'ui.bootstrap'
 ])
 
-.controller('CategoryPerformanceAnalysisCtrl', function DashboardController($scope, _, Graphs, Global) {
+.controller('CategoryPerformanceAnalysisCtrl', ["$scope", "_", "Graphs", "Global", function DashboardController($scope, _, Graphs, Global) {
 
   $scope.show_loading = false;
   $scope.class = '';
@@ -113,7 +113,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
   $scope.showCategoryData();
   $scope.showSegmentData();
 
-})
+}])
 
 .directive('progressBarBackground', function() {
   return {
