@@ -42,7 +42,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
         return {parent_id: value.option__parent_id, id: value.option_id, value: value.option__text,
                 color: Global.optionsColorScheme[value.option__text], priority: Global.qscPriority[value.option__text]};
       });
-      $scope.line1 = chartService.getLineChart(data);
+      $scope.line1 = chartService.getLineChart(data, $scope.type);
       $scope.dates = _.map(data, function(value){
         return value.date;
       });
@@ -113,7 +113,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
         $scope.mainView = false;
         var parent_color = option.color;
         var parent_value = option.value;
-        $scope.line1 = chartService.getLineChart(data, parent_color, parent_value);
+        $scope.line1 = chartService.getLineChart(data, $scope.type, parent_color, parent_value);
         $scope.labels = _.map(data[0].data.feedbacks ,function(value, index){
           return {parent_id: value.option__parent_id,id: value.option_id, value: value.option__text, color: colors(index, option.parent_id, parent_color, value.option__text, parent_value)};
         });

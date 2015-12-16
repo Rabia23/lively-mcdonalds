@@ -64,7 +64,7 @@ angular.module('livefeed.chart', [
       };
     },
 
-    getLineChart: function(graph_data, parent_color, parent_value){
+    getLineChart: function(graph_data, type, parent_color, parent_value){
 
       var labels = _.map(graph_data[0].data.feedbacks ,function(value){
         return value.option__text;
@@ -133,9 +133,16 @@ angular.module('livefeed.chart', [
           },
           xaxis: {
             ticks: _.map(graph_data,  function(value, index){
+              var new_date = null;
               var new_date_array = value.date.split(" ");
               var d = new Date(new_date_array[0]);
-              var new_date = d.toString("MMMM").split(" ")[1]+" "+d.toString("MMMM").split(" ")[2];
+              if(type == 4){
+                new_date = d.toString("MMMM").split(" ")[1]+" "+d.toString().split(" ")[2]+", "+d.getFullYear();
+                // d.getFullYear().toString().substr(2, 2)
+              }
+              else{
+                new_date = d.toString("MMMM").split(" ")[1]+" "+d.toString().split(" ")[2];
+              }
               return [index+1,new_date];
             })
           },
