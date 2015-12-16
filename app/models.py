@@ -10,6 +10,7 @@ class UserInfo(models.Model):
     phone_no = models.CharField(max_length=20, null=True, blank=True)
     is_customer = models.BooleanField()
     objectId = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
        return self.name
@@ -24,6 +25,7 @@ class UserInfo(models.Model):
 class Area(models.Model):
     name = models.CharField(max_length=20)
     objectId = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
        return self.name
@@ -45,6 +47,7 @@ class Region(models.Model):
     name = models.CharField(max_length=20)
     objectId = models.CharField(max_length=20)
     area = models.ForeignKey(Area, related_name='regions', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
        return self.name
@@ -66,6 +69,7 @@ class City(models.Model):
     name = models.CharField(max_length=20)
     objectId = models.CharField(max_length=20)
     region = models.ForeignKey(Region, related_name='cities', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = 'City'
@@ -95,6 +99,7 @@ class Branch(models.Model):
     user = models.ForeignKey(User, related_name='branches', null=True, blank=True)
     city = models.ForeignKey(City, related_name='branches', null=True, blank=True)
     benchmark_count = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = 'Branch'

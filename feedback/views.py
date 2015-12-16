@@ -8,7 +8,7 @@ from lively.parse_utils import branch_get, user_get, feedback_get, option_get
 from lively.utils import save_and_response, save, response, get_related_branch, get_related_user, get_related_feedback, \
     get_related_option, send_negative_feedback_email
 from django.template import Context
-from django.db import IntegrityError, transaction
+from django.db import transaction
 
 @api_view(['GET', 'POST'])
 @transaction.atomic

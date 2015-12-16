@@ -227,9 +227,10 @@ class Feedback(models.Model):
 
 
 class Promotion(models.Model):
-    title = models.TextField()
+    title = models.CharField(max_length=255)
     isActive = models.BooleanField(default=True)
     objectId = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
        return self.title
@@ -242,12 +243,13 @@ class Promotion(models.Model):
 
 
 class Question(models.Model):
-    text = models.TextField()
+    text = models.CharField(max_length=255)
     isActive = models.BooleanField(default=True)
     type = models.IntegerField()
     objectId = models.CharField(max_length=20)
     isPromotion = models.BooleanField(default=True)
     promotion = models.ForeignKey(Promotion, related_name='promotion', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
        return self.text
@@ -260,12 +262,13 @@ class Question(models.Model):
 
 
 class Option(models.Model):
-    text = models.TextField()
-    objectId = models.CharField(max_length=20)
+    text = models.CharField(max_length=255)
+    objectId = models.CharField(db_index=True, max_length=20)
     score = models.IntegerField(default=0)
     question = models.ForeignKey(Question, related_name='options', null=True, blank=True)
     parent = models.ForeignKey('self', null=True, blank=True, related_name='children')
     code = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
        return self.text

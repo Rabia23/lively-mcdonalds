@@ -279,7 +279,7 @@ def category_performance(request, user):
             question = Question.objects.get(type=constants.TYPE_2)
 
             if option:
-                feedback_options = FeedbackOption.manager.children(option).date(date_to, date_from).\
+                feedback_options = FeedbackOption.manager.children(option).date(date_from, date_to).\
                                                 filters(region_id, city_id, branch_id)
             else:
                 feedback_options = FeedbackOption.manager.question_parent_options(question).\
