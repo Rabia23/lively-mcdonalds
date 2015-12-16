@@ -44,6 +44,9 @@ def feedback(request):
                 else:
                     user = None
 
+                if (not feedback.comment) or (feedback.comment == ''):
+                    feedback.action_taken = constants.DEFERRED
+
                 feedback.branch = branch
                 feedback.user = user
                 feedback.save()

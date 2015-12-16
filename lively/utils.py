@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-from django.utils import timezone
 from app.models import Region, City, Branch, UserInfo
 from app.serializers import RegionSerializer, CitySerializer, BranchSerializer, UserSerializer, UserInfoSerializer
 from rest_framework import status

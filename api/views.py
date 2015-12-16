@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from app.models import Region, City, Branch
 from app.serializers import RegionSerializer, CitySerializer
 from feedback.models import Question, FeedbackOption, Option, Feedback
+from feedback.serializers import ObjectSerializer, FeedbackCommentSerializer, FeedbackSerializer
 from lively import constants
 from dateutil import rrule
 from dateutil.relativedelta import relativedelta
@@ -16,12 +17,6 @@ from django.utils import timezone
 from operator import itemgetter
 from lively.decorators import my_login_required
 from lively.utils import valid_action_id, get_param
-
-from feedback.serializers import OverallFeedbackSerializer, OverallRattingSerializer, FeedbackAnalysisSerializer, \
-    PositiveNegativeFeedbackSerializer, AllCommentsSerializer, AllBranchesSerializer, SegmentationSerializer, \
-    ConcernsSerializer, SegmentationRatingSerializer, FeedbackCommentSerializer, ActionAnalysisSerializer, \
-    LoginSerializer
-
 from lively.utils import generate_missing_options, generate_missing_sub_options, generate_option_groups, \
     generate_segmentation_with_options, generate_missing_actions
 
@@ -39,8 +34,7 @@ def login(request):
         else:
             data = {'status': False, 'message': 'User not authenticated', 'token': None, 'user': None}
 
-        serializer = LoginSerializer(data)
-        return Response(serializer.data)
+        return Response(data)
 
 
 @api_view(['GET'])
@@ -118,8 +112,7 @@ def overall_feedback(request, user):
             list_feedback = generate_missing_options(Question.objects.get(type=constants.TYPE_1), feedback_options_dict)
 
             data = {'feedback_count': feedback_options.count(), 'feedbacks': sorted(list_feedback, reverse=True, key=itemgetter('option__score'))}
-            feedback_response = OverallFeedbackSerializer(data)
-            return Response(feedback_response.data)
+            return Response(data)
 
         except Exception as e:
             return Response(None)
@@ -162,11 +155,10 @@ def feedback_analysis(request, user):
                 list_feedback = generate_missing_options(Question.objects.get(type=question_type), filtered_feedback_options)
 
                 data = {'feedback_count': related_feedback_options.count(), 'feedbacks': list_feedback}
-                feedbacks.append({'object': object, 'data': data})
+                feedbacks.append({'object': ObjectSerializer(object).data, 'data': data})
 
             feedback_data = {'count': objects.count(), 'analysis': feedbacks}
-            feedback_response = FeedbackAnalysisSerializer(feedback_data)
-            return Response(feedback_response.data)
+            return Response(feedback_data)
 
         except Exception as e:
             return Response(None)
@@ -192,8 +184,7 @@ def feedback_analysis_breakdown(request, user):
                     annotate(count=Count('option_id'))
 
                 data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
-                feedback_response = OverallFeedbackSerializer(data)
-                return Response(feedback_response.data)
+                return Response(data)
 
             return Response(None)
         except Exception as e:
@@ -227,21 +218,23 @@ def overall_rating(request, user):
 
             if date_to and date_from:
                 rule = rrule.DAILY #when evenr there is a date range
-            elif type == constants.YEARLY_ANALYSIS:
-                rule = rrule.YEARLY
-                date_from = str((now - relativedelta(years=constants.NO_OF_YEARS)).date())
-            elif type == constants.MONTHLY_ANALYSIS:
-                rule = rrule.MONTHLY
-                date_from = str((now - relativedelta(months=constants.NO_OF_MONTHS)).date())
-            elif type == constants.WEEK_ANALYSIS:
-                rule = rrule.WEEKLY
-                date_from = str((now - relativedelta(weeks=constants.NO_OF_WEEKS)).date())
             else:
-                rule = rrule.DAILY
-                date_from = str((now - timedelta(days=constants.NO_OF_DAYS)).date())
+                date_to = str(now.date())
+                if type == constants.YEARLY_ANALYSIS:
+                    rule = rrule.YEARLY
+                    date_from = str((now - relativedelta(years=constants.NO_OF_YEARS)).date())
+                elif type == constants.MONTHLY_ANALYSIS:
+                    rule = rrule.MONTHLY
+                    date_from = str((now - relativedelta(months=constants.NO_OF_MONTHS)).date())
+                elif type == constants.WEEK_ANALYSIS:
+                    rule = rrule.WEEKLY
+                    date_from = str((now - relativedelta(weeks=constants.NO_OF_WEEKS)).date())
+                else:
+                    rule = rrule.DAILY
+                    date_from = str((now - timedelta(days=constants.NO_OF_DAYS)).date())
 
             date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
-            date_to = current_tz.localize(datetime.strptime(str(now.date()) + " 23:59:59", constants.DATE_FORMAT))
+            date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
 
             for single_date in rrule.rrule(rule, dtstart=date_from, until=date_to):
                 feedback_options = FeedbackOption.manager.date(str(single_date.date()), str(single_date.date())).\
@@ -260,8 +253,7 @@ def overall_rating(request, user):
             if len(feedback_records_list) > constants.NO_OF_DAYS:
                 feedback_records_list = feedback_records_list[-constants.NO_OF_DAYS:]
 
-            feedback_response = OverallRattingSerializer(feedback_records_list, many=True)
-            return Response(feedback_response.data)
+            return Response(feedback_records_list)
 
         except Exception as e:
             return Response(None)
@@ -291,7 +283,7 @@ def category_performance(request, user):
                                                 filters(region_id, city_id, branch_id)
             else:
                 feedback_options = FeedbackOption.manager.question_parent_options(question).\
-                                                date(date_to, date_from).filters(region_id, city_id, branch_id)
+                                                date(date_from, date_to).filters(region_id, city_id, branch_id)
 
             filtered_feedback_options = feedback_options.values('option_id', 'option__text', 'option__parent_id').\
                                             annotate(count=Count('option_id'))
@@ -299,8 +291,7 @@ def category_performance(request, user):
                                 generate_missing_options(question, filtered_feedback_options)
 
             data = {'feedback_count': filtered_feedback_options.count(), 'feedbacks': list_feedback}
-            feedback_response = OverallFeedbackSerializer(data)
-            return Response(feedback_response.data)
+            return Response(data)
 
         except Exception as e:
             return Response(None)
@@ -344,9 +335,9 @@ def positive_negative_feedback(request, user):
             negative_feedback = feedback.top_comments(constants.NEGATIVE_SCORE_LIST)
             positive_feedback = feedback.top_comments(constants.POSITIVE_SCORE_LIST)
 
-            data = {'positive_feedbacks': positive_feedback, 'negative_feedbacks': negative_feedback}
-            feedback_response = PositiveNegativeFeedbackSerializer(data)
-            return Response(feedback_response.data)
+            data = {'positive_feedbacks': FeedbackSerializer(positive_feedback, many=True).data,
+                    'negative_feedbacks': FeedbackSerializer(negative_feedback, many=True).data}
+            return Response(data)
 
         except Exception as e:
             return Response(None)
@@ -370,8 +361,7 @@ def comments(request, user):
             data = {'feedback_count': feedback.count(),
                     'feedbacks': feedback_comments,
                     'is_last_page': paginator.num_pages == int(page)}
-            feedback_response = AllCommentsSerializer(data)
-            return Response(feedback_response.data)
+            return Response(data)
 
         except Exception as e:
             return Response(None)
@@ -388,16 +378,10 @@ def map_view(request, user):
             date_from = get_param(request, 'date_from', str((now - timedelta(days=1)).date()))
 
             branches = Branch.objects.all()
-
-            branch_detail_list = []
-            for branch in branches:
-                branch_detail_list.append(
-                    branch.branch_feedback_detail(date_from, date_to)
-                )
+            branch_detail_list = [branch.branch_feedback_detail(date_from, date_to) for branch in branches]
 
             data = {'branch_count': branches.count(), 'branches': branch_detail_list}
-            feedback_response = AllBranchesSerializer(data)
-            return Response(feedback_response.data)
+            return Response(data)
 
         except Exception as e:
             return Response(None)
@@ -443,8 +427,7 @@ def feedback_segmentation(request, user):
             feedback_segmented_list = generate_option_groups(feedback_options, options)
 
             data = {'option_count': len(feedback_segmented_list), 'options': feedback_segmented_list}
-            feedback_response = SegmentationSerializer(data)
-            return Response(feedback_response.data)
+            return Response(data)
         except Exception as e:
             return Response(None)
 
@@ -464,8 +447,7 @@ def top_concerns(request, user):
                 ]
 
             data = {'concern_count': len(concerns), 'concern_list': concerns}
-            feedback_response = ConcernsSerializer(data)
-            return Response(feedback_response.data)
+            return Response(data)
         except Exception as e:
             return Response(None)
 
@@ -495,8 +477,7 @@ def segmentation_rating(request, user):
             feedback_segmented_list = generate_segmentation_with_options(feedback_options, options)
 
             data = {'segment_count': len(feedback_segmented_list), 'segments': feedback_segmented_list}
-            feedback_response = SegmentationRatingSerializer(data)
-            return Response(feedback_response.data)
+            return Response(data)
         except Exception as e:
             return Response(None)
 
@@ -559,11 +540,10 @@ def action_analysis(request, user):
                 filtered_feedback = generate_missing_actions(filtered_feedback)
 
                 data = {'feedback_count': feedback.count(), 'action_analysis': filtered_feedback}
-                data_list.append({'object': object, 'data': data})
+                data_list.append({'object': ObjectSerializer(object).data, 'data': data})
 
             feedback_data = {'count': objects.count(), 'analysis': data_list}
-            feedback_response = ActionAnalysisSerializer(feedback_data)
-            return Response(feedback_response.data)
+            return Response(feedback_data)
 
         except Exception as e:
             return Response(None)

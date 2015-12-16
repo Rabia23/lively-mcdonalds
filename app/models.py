@@ -111,8 +111,7 @@ class Branch(models.Model):
             current_tz = timezone.get_current_timezone()
             date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
             date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
-            data = self.feedback.filter(created_at__gte=date_from, created_at__lte=date_to)
-            return data.count()
+            return self.feedback.filter(created_at__gte=date_from, created_at__lte=date_to).count()
         return self.feedback.count()
 
 

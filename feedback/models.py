@@ -48,7 +48,7 @@ class FeedbackQuerySet(models.QuerySet):
         return self.filter(comment__isnull=False).exclude(comment__exact='').order_by('-id')
 
     def normal_feedback(self):
-        return self.filter(feedback_option__option__question__isPromotion=False)
+        return self.exclude(feedback_option__option__question__isPromotion=True)
 
 
 class FeedbackManager(models.Manager):
