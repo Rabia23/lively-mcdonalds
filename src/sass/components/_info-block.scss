@@ -116,8 +116,13 @@
 	position: relative;
 	padding: 0 14px 13px;
 	@include v-align(100%, middle, before);
+	
+	&:before{margin: 0 0 0 -4px;}
 		  
-	> .inner-holder{width: 100%;}
+	> .inner-holder{
+		width: 100%;
+		max-width: inherit;
+	}
 	
 	img{
 		display: block;

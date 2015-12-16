@@ -7,16 +7,11 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
 .controller( 'OverallRatingCtrl', function DashboardController( $scope, _, chartService, Graphs, Global ) {
 
-  //$scope.datePicker = {};
-  //$scope.datePicker.date = {startDate: null, endDate: null};
-
   $scope.today = new Date();
-
-
 
   function resetDates(){
     $scope.date = {
-        startDate: moment().subtract(1, "days"),
+        startDate: moment().subtract(6, "days"),
         endDate: moment()
     };
   }
@@ -72,7 +67,6 @@ angular.module( 'livefeed.dashboard.overall_rating', [
       'apply.daterangepicker': function(ev, picker){
         $scope.type = "1";
         // Chaepi
-        //console.log($("#timely").val("1"));
         $(".jcf-select-text").children("span").html("Daily");
         if($scope.mainView){
           $scope.start_date = ev.model.startDate._i;
@@ -82,7 +76,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
       },
       'cancel.daterangepicker': function(ev, picker){
-        resetDates();
+        //resetDates();
       }
     }
   };

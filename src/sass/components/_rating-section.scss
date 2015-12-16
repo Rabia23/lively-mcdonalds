@@ -213,11 +213,16 @@
 		  padding: 0 14px 14px;
 		  @include v-align(100%, middle, before);
 		  
-		  > * {width: 100%;}
+		  &:before{margin: 0 0 0 -4px;}
+		  
+		  > * {
+			  width: 100%;
+			  max-width: inherit;
+		  }
 		  
 		  .ng-isolate-scope{
-			  height: 299px !important;
-			  > div{height: 299px !important;}
+			  height: 270px !important;
+			  > div{height: 270px !important;}
 			}
 	  }
     .flot-tick-label{max-width: 60px !important;}

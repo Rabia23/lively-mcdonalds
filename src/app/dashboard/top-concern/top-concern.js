@@ -21,9 +21,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
       value.color = Global.bubbleColor(index);
       $scope.colors.push(value.color);
     });
-
   });
-
 })
 .directive('pykChart', function() {
   return {

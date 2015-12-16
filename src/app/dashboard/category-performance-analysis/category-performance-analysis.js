@@ -9,9 +9,17 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
   $scope.class = '';
   $scope.option_id = null;
 
-  $scope.datePicker = {};
-  $scope.datePicker.date = {startDate: null, endDate: null};
   $scope.today = new Date();
+
+
+  function resetDates(){
+    $scope.date = {
+        startDate: moment().subtract(1, "days"),
+        endDate: moment()
+    };
+  }
+
+  resetDates();
 
   $scope.start_date = null;
   $scope.end_date = null;
@@ -26,8 +34,8 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
           $scope.showSegmentData("","","",$scope.option_id,$scope.class);
         },
         'cancel.daterangepicker': function(ev, picker){
-          $scope.datePicker.date.startDate = null;
-          $scope.datePicker.date.endDate = null;
+          //$scope.datePicker.date.startDate = null;
+          //$scope.datePicker.date.endDate = null;
         }
 
     }
