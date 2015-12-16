@@ -49,11 +49,9 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   };
 
   Graphs.comments($scope.page).$promise.then(function(data){
-    console.log(data);
     $scope.comments = _.map(data.feedbacks,  function(data){
       return commentService.getComment(data);
     });
-
   });
 
   $scope.getMoreComments = function(){
@@ -62,7 +60,6 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     $scope.lock = true;
     Graphs.comments($scope.page).$promise.then(function(data){
       $scope.lock = false;
-    
       angular.forEach(data.feedbacks, function(value, key) {
         var comment_data = commentService.getComment(value);
         $scope.comments.push(comment_data);
@@ -117,12 +114,12 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
 
       getComment: function(comment_data){
         var data = comment_data;
-        var username = comment_data.user_name === null ? "Anonymous" : comment_data.user_name;
-        var phone_no = comment_data.user_phone === null ? "N/A" : comment_data.user_phone;
+        var phone_no = comment_data.user_phone == "N/A" ? ( comment_data.email == "N/A" ? "N/A" : "" ) : comment_data.user_phone;
+        var email = comment_data.email == "N/A" ? "" : comment_data.email;
         var show_dropdown = comment_data.action_taken === 1 ?  true : false;
         var action_string = comment_data.action_taken === 2 ? "Processed" : comment_data.action_taken === 3 ? "Deferred" : "";
 
-        return {data: data, username: username, phone_no: phone_no, show_dropdown: show_dropdown, action_string: action_string};
+        return {data: data, email: email, phone_no: phone_no, show_dropdown: show_dropdown, action_string: action_string};
       }
 
   };
