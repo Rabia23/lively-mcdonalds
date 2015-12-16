@@ -42,6 +42,7 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
   Graphs.overall_feedback().$promise.then(function(graph_data){
     $scope.show_canvas = graph_data.feedback_count === 0 ? false : true;
     $scope.maximum = _.max(graph_data.feedbacks, function(data){ return data.count; });
+    $scope.bar = {};
     $scope.bar = chartService.getBarChartData(graph_data,$scope.maximum.count);
   });
 

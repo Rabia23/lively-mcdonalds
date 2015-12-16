@@ -2,7 +2,7 @@ angular.module('livefeed.chart', [
   'helper_factories'
 ])
 
-.service('chartService', ["_", "Global", function(_, Global){
+.service('chartService', function(_, Global){
 
   var randomColorGenerator = function () {
       return '#' + (Math.random().toString(16) + '0000000').slice(2, 8);
@@ -141,7 +141,8 @@ angular.module('livefeed.chart', [
           },
           yaxis: {
             minTickSize: 1,
-            tickDecimals: 0
+            tickDecimals: 0,
+             min:0
             //tickFormatter: function(val, axis) { return val < axis.max ? val.toFixed(2) : "Complaints";}
 
           }
@@ -255,4 +256,4 @@ angular.module('livefeed.chart', [
     }
   };
 
-}]);
+});
