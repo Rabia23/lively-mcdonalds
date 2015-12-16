@@ -271,12 +271,26 @@
 	.info-list{
 		li{width: 100%;}
 	}
+	.close-btn-font{
+		position: absolute;
+		right: 10px;
+		top: 14px;
+		font-size: 18px;
+		line-height: 18px;
+		z-index: 999;
+		cursor: pointer;
+		color: $storm-dust2;
+		
+		&:hover{color: lighten($storm-dust2,10%);}
+		
+		@include media("≥desktop"){top: 17px;}
+	}
 	h2{
 		float: none;
 		margin: 0 -30px;
 		line-height: 1.3em;
 		border-bottom: 1px solid $platinum;
-		padding: 0 30px 10px;
+		padding: 0 30px 15px;
 	}
 	.btn-slider{
 		position: absolute;
@@ -291,7 +305,10 @@
 			right: 10px;
 		}
 	}
-	.graph-holder{overflow: hidden;}
+	.graph-holder{
+		overflow: hidden;
+		min-height: 200px;
+	}
 }
 
 

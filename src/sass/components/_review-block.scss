@@ -370,7 +370,7 @@
 				}
 				tr{
 					background: $white;
-					&:hover{background: darken($white,2%);}
+					&:hover{background: darken($white,3%);}
 					&.negative{
 						td{
 							.ico{background: $cinnabar;}
@@ -378,12 +378,12 @@
 					}
 					&.success{
 						background: lighten($tea-green,10%);
-						&:hover{background: lighten($tea-green,12%);}
+						&:hover{background: lighten($tea-green,9%);}
 					}
 					
 					&.defer{
 						background: lighten($yellow,35%);
-						&:hover{background: lighten($yellow,37%);}
+						&:hover{background: lighten($yellow,34%);}
 					}
 					&:last-child{
 						td{
