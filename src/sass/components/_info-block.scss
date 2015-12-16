@@ -136,17 +136,38 @@
 	overflow: hidden;
 	@include inline-block(top);
 	
+	@include media("≥tablet"){
+		width: 60px;
+		text-align: center;
+	}
+	
+	@include media("≥desktop"){width: 72px;}
+	
 	&:hover{
-		.glyphicon-calendar{color: lighten($dim-gray,10%);}
+		i{color: lighten($dim-gray,10%);}
 	}
 
-	.glyphicon-calendar{
+	i{
 		float: right;
 		pointer-events: none;
-		font-size: 18px;
-		line-height: 20px;
+		font-size: 16px;
+		line-height: 17px;
 		color: $dim-gray;
 		cursor: pointer;
+		
+		@include media("≥tablet"){line-height: 16px;}
+		
+		@include media("≥widescreen"){line-height: 15px;}
+		
+		@include media("≥tablet"){
+			float: none !important;
+			@include inline-block(top);
+		}
+		
+		&:before{
+			font-family: $ico-font;
+			content: '\e806';
+		}
 	}
 
 	.date-picker{

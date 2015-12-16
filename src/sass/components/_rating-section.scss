@@ -17,7 +17,7 @@
 	h2{
       float: left;
       margin: 0 5px 0 0;
-	  line-height: 2.55em;
+	  line-height: 2.565em;
 	  @include media("≥tablet"){line-height: 3.1em;}
 		
 		span{
@@ -40,7 +40,7 @@
 		
 		@include media("≥tablet"){margin: 19px 5px 0;}
 		@include media("≥desktop"){margin: 20px 5px 0;}
-		@include media("≥widescreen"){margin: 24px 5px 0;}
+		@include media("≥widescreen"){margin: 22px 5px 0;}
     }
 	  
 	.select-holder{
@@ -90,7 +90,7 @@
 
 			@include media("≥tablet"){padding: 17px 15px;}
 			@include media("≥desktop"){padding: 19px 18px;}
-			@include media("≥widescreen"){padding: 21px 20px;}
+			@include media("≥widescreen"){padding: 19px 20px 23px;}
 		}
 	}
   }
@@ -251,10 +251,10 @@
 	line-height: 20px;
 	color: $dim-gray;
 	overflow: hidden;
-	padding: 11px 35px 10px 20px;
+	padding: 11px 35px 9px 20px;
 	@include media("≥tablet"){padding: 17px 35px 17px 20px;}
 	@include media("≥desktop"){padding: 19px 35px 19px 20px;}
-	@include media("≥widescreen"){padding: 21px 35px 21px 20px;}
+	@include media("≥widescreen"){padding: 21px 35px 20px 20px;}
 	
 	select {
 		z-index: 1;
@@ -326,6 +326,7 @@ body > .jcf-select-drop.jcf-drop-flipped {
 .jcf-select-drop .jcf-select-drop-content {
 	position: relative;
 	border: 1px solid $alto2;
+	margin: 1px 0 0;
 }
 /* multiple select styles */
 .jcf-list-box {

@@ -66,7 +66,7 @@
 					}
 				}
 
-				@include media("≥tablet"){padding: 18px 15px;}
+				@include media("≥tablet"){padding: 17px 15px;}
 				@include media("≥desktop"){padding: 19px 18px 20px;}
 				@include media("≥widescreen"){padding: 21px 20px;}
 			}
@@ -174,7 +174,7 @@
 	margin: 0 -10px;
 	padding: 0 10px;
 	position: relative;
-	min-height: 250px;
+	min-height: 262px;
 	
 	@include media("≥widescreen"){
 		padding: 0 36px;
@@ -255,6 +255,7 @@
 		overflow: hidden;
 		margin: 0;
 		position: relative;
+		min-height: 204px;
 		@include v-align(100%, middle, before);
 		
 		> * .graph-inner{

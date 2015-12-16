@@ -4,7 +4,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   'ui.bootstrap'
 ])
 
-.controller( 'RegionalAnalysisCtrl', ["$scope", "_", "Graphs", "chartService", "$uibModal", function DashboardController( $scope, _, Graphs, chartService, $uibModal ) {
+.controller( 'RegionalAnalysisCtrl', function DashboardController( $scope, _, Graphs, chartService, $uibModal ) {
 
   $scope.regional_view = true;
   $scope.city_view = false;
@@ -161,13 +161,13 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     }
   };
   
-}])
+})
 
 // REFRACTOR 1. Why we are passing region, city, branch, option in the controller
 // REFRACTOR 2. Take the SQCModalCtrl to new module and inject that module in this module
 // REFRACTOR 3. Statements in condition should be in the next line
 
-.controller('SQCModalCtrl', ["$scope", "Graphs", "chartService", "$uibModalInstance", "region", "city", "branch", "option", function ($scope, Graphs, chartService, $uibModalInstance, region, city, branch, option){
+.controller('SQCModalCtrl', function ($scope, Graphs, chartService, $uibModalInstance, region, city, branch, option){
   $scope.leftClickDisabled = false;
   $scope.rightClickDisabled = false;
 
@@ -283,7 +283,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     var string = "previous";
     findSqcData(region,city,branch,sqc_data,string);
   };
-}])
+})
 
 
 .directive('morrisChart', function() {
