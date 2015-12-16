@@ -241,16 +241,16 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "  <div class=\"table-holder\">\n" +
     "  	<div class=\"table-block jcf-scrollable\" custom-form>\n" +
     "  		<table class=\"table\">\n" +
-    "				<thead>\n" +
-    "				  <tr>\n" +
-    "					<th class=\"item1\">Name</th>\n" +
-    "					<th class=\"item2\">Phone Number/ Email</th>\n" +
-    "					<th class=\"item3\">Branch</th>\n" +
-    "					<th class=\"item4\">Segment</th>\n" +
-    "					<th class=\"item5\">Comments</th>\n" +
-    "					<th class=\"item6\">Status</th>\n" +
-    "				  </tr>\n" +
-    "				</thead>\n" +
+    "			<thead>\n" +
+    "			  <tr>\n" +
+    "				<th class=\"item1\">Name</th>\n" +
+    "				<th class=\"item2\">Phone Number/ Email</th>\n" +
+    "				<th class=\"item3\">Branch</th>\n" +
+    "				<th class=\"item4\">Segment</th>\n" +
+    "				<th class=\"item5\">Comments</th>\n" +
+    "				<th class=\"item6\">Status</th>\n" +
+    "			  </tr>\n" +
+    "			</thead>\n" +
     "	  	</table>\n" +
     "		<div class=\"table-container jcf-scrollable\" data-comments = \"comments\" ng-class = \"{loading: lock}\" when-scrolled=\"getMoreComments()\" custom-form>\n" +
     "			<table class=\"table\">\n" +
@@ -425,6 +425,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
 angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/regional-analysis/sqc-modal.tpl.html",
     "<div class=\"modal-body info-area\">\n" +
+    "  <a ng-click = \"cancel()\" class=\"pull-right close-btn-font\"><i class=\"glyphicon glyphicon-remove\"></i></a>\n" +
     "  <h2>Regional Analysis</h2>\n" +
     "	<a style = \"cursor:pointer;\" class=\"btn-slider glyphicon glyphicon-menu-left\" ng-click=\"leftClickDisabled || previous(region,city,branch,sqc_data)\"></a>\n" +
     "	<a style = \"cursor:pointer;\" class=\"btn-slider glyphicon glyphicon-menu-right\" ng-click=\"rightClickDisabled || next(region,city,branch,sqc_data)\"></a>\n" +
