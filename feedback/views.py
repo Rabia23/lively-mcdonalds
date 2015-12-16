@@ -34,7 +34,7 @@ def feedback(request):
                 user = None
 
             feedback_params = data
-            feedback_params['user'] = user.id
+            feedback_params['user'] = user.id if user else None
             feedback_params['branch'] = branch.id
 
             feedback = Feedback.get_if_exists(data["objectId"])
