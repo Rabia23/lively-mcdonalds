@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from app.models import Branch, UserInfo
-from lively import constants, settings
+from lively import constants
 from datetime import datetime
 from dateutil import tz
 from django.utils import timezone

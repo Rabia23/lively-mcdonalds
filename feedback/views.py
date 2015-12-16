@@ -20,59 +20,56 @@ def feedback(request):
         return Response(serializer.data)
 
     if request.method == 'POST':
-        try:
-            data = request.data["object"]
-            trigger = request.data["triggerName"]
+        data = request.data["object"]
+        trigger = request.data["triggerName"]
 
-            if trigger == constants.TRIGGER_AFTER_SAVE:
-                feedback = Feedback.get_if_exists(data["objectId"])
-                if feedback:
-                    serializer = FeedbackSerializer(feedback, data=data)
-                    parse_response = save_and_response(serializer, data)
-                else:
-                    serializer = FeedbackSerializer(data=data)
-                    feedback = save(serializer)
+        if trigger == constants.TRIGGER_AFTER_SAVE:
+            feedback = Feedback.get_if_exists(data["objectId"])
+            if feedback:
+                serializer = FeedbackSerializer(feedback, data=data)
+                parse_response = save_and_response(serializer, data)
+            else:
+                serializer = FeedbackSerializer(data=data)
+                feedback = save(serializer)
 
-                    parse_response = response(data)
+                parse_response = response(data)
 
-                related_branch = branch_get(data["branch"]["objectId"])
-                branch = get_related_branch(related_branch)
+            related_branch = branch_get(data["branch"]["objectId"])
+            branch = get_related_branch(related_branch)
 
-                if "user" in data:
-                    related_user = user_get(data["user"]["objectId"])
-                    user = get_related_user(related_user)
-                else:
-                    user = None
+            if "user" in data:
+                related_user = user_get(data["user"]["objectId"])
+                user = get_related_user(related_user)
+            else:
+                user = None
 
-                if (not feedback.comment) or (feedback.comment == ''):
-                    feedback.action_taken = constants.DEFERRED
+            if (not feedback.comment) or (feedback.comment == ''):
+                feedback.action_taken = constants.DEFERRED
 
-                feedback.branch = branch
-                feedback.user = user
-                feedback.save()
+            feedback.branch = branch
+            feedback.user = user
+            feedback.save()
 
-                if "options" in data:
-                    for option_data in data["options"]:
-                        option_parse = option_get(option_data["objectId"])
-                        option = get_related_option(option_parse)
+            if "options" in data:
+                for option_data in data["options"]:
+                    option_parse = option_get(option_data["objectId"])
+                    option = get_related_option(option_parse)
 
-                        feedback_option = FeedbackOption.get_if_exists(feedback.id, option.id)
-                        if not feedback_option:
-                            feedback_option = FeedbackOption()
-                            feedback_option.feedback = feedback
-                            feedback_option.option = option
-                            feedback_option.save()
+                    feedback_option = FeedbackOption.get_if_exists(feedback.id, option.id)
+                    if not feedback_option:
+                        feedback_option = FeedbackOption()
+                        feedback_option.feedback = feedback
+                        feedback_option.option = option
+                        feedback_option.save()
 
-                try:
-                    if feedback.is_negative():
-                        context = Context({'feedback': feedback})
-                        send_negative_feedback_email(context)
-                except Exception as e:
-                    pass
+            try:
+                if feedback.is_negative():
+                    context = Context({'feedback': feedback})
+                    send_negative_feedback_email(context)
+            except Exception as e:
+                pass
 
-                return parse_response
-        except Exception as e:
-            return response(None)
+            return parse_response
 
 
 @api_view(['GET', 'POST'])
