@@ -122,7 +122,11 @@
 	> .inner-holder{
 		width: 100%;
 		max-width: inherit;
+
+		> div{height: 270px;}
 	}
+
+	map{height: 270px;}
 	
 	img{
 		display: block;
