@@ -32,11 +32,15 @@ angular.module('livefeed.chart', [
     },
 
     getSubDonutChartData: function(graph_data,string){
+      //console.log(graph_data.feedback_count);
       return {
           donutData: _.map(graph_data.feedbacks,  function(data){
             return {label: data.option__text, value: data.count};
           }),
-          donutOptions: {colors: _.map(graph_data.feedbacks,  function(data,index){return Global.categoryPerformanceChildCholorScheme[string][index];})}
+          donutOptions: {colors: _.map(graph_data.feedbacks,  function(data,index){
+            return Global.categoryPerformanceChildCholorScheme[string][index];
+            })
+          }
        };
     },
 
@@ -137,7 +141,8 @@ angular.module('livefeed.chart', [
           },
           yaxis: {
             minTickSize: 1,
-            tickDecimals: 0
+            tickDecimals: 0,
+             min:0
             //tickFormatter: function(val, axis) { return val < axis.max ? val.toFixed(2) : "Complaints";}
 
           }

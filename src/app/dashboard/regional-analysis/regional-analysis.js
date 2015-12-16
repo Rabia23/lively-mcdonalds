@@ -54,10 +54,10 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       });
     }
     else{
-      Graphs.regional_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function(data){
+       Graphs.regional_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function(data){
           $scope.donut_graph_data = chartService.getDonutChartData(data, $scope.question_type);
           $scope.show_loading = false;
-      });
+       });
     }
   };
 
@@ -173,17 +173,24 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   $scope.question_type = 2;
 
-  function showGraph(region, city, branch, option){
-    Graphs.feedback_analysis_breakdown(region.id,city.id,branch.id,option.id).$promise.then(function(data){
+  $scope.show_div = false;
+
+  function showGraph(region, city, branch, option) {
+    Graphs.feedback_analysis_breakdown(region.id,city.id,branch.id,option.id).$promise.then(function(data) {
+      $scope.show_div = data.feedback_count === 0? true: false;
       $scope.donut_subgraph_data = chartService.getSubDonutChartData(data,option.label);
     });
   }
 
-  function getSQCdata(data){
-    return _.map(data.analysis,  function(dat){return {name: dat.object.name, id: dat.object.id};});
+  function getSQCdata(data) {
+    return _.map(data.analysis,  function(dat) {
+        return {name: dat.object.name, id: dat.object.id
+      };
+    });
   }
 
   function onOptionSelect(region, city, branch, sqc){
+    console.log("On option select");
     $scope.region = region;
     $scope.city = city;
     $scope.branch = branch;
@@ -192,34 +199,37 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   if(city == null && branch == null){
     onOptionSelect(region, null, null, region);
-    Graphs.regional_analysis($scope.question_type).$promise.then(function(data){
+    Graphs.regional_analysis($scope.question_type).$promise.then(function(data) {
       $scope.sqc_data = getSQCdata(data);
       showGraph(region,"","", option);
     });
   }
-  else if(branch == null){
+  else if(branch == null) {
     onOptionSelect(region, city, null, city);
-    Graphs.city_analysis(region.id, $scope.question_type).$promise.then(function(data){
-      $scope.sqc_data = getSQCdata(data);
-      showGraph(region,city,"", option);
+    Graphs.city_analysis(region.id, $scope.question_type).$promise.then(function(data) {
+       $scope.sqc_data = getSQCdata(data);
+       showGraph(region,city,"", option);
     });
   }
   else{
     onOptionSelect(region, city, branch, branch);
-    Graphs.branch_analysis(city.id, $scope.question_type).$promise.then(function(data){
-     $scope.sqc_data = getSQCdata(data);
-     showGraph(region,city,branch, option);
+    Graphs.branch_analysis(city.id, $scope.question_type).$promise.then(function(data) {
+      $scope.sqc_data = getSQCdata(data);
+      showGraph(region,city,branch, option);
     });
   }
 
   function findSqcIndex(sqc, sqc_data){
-    return _.findIndex(sqc_data, sqc);
+    return _.findIndex(sqc_data, {id: sqc.id});
   }
 
   function findNextSQC(sqc,sqc_data){
     var next_sqc;
     var index = findSqcIndex(sqc, sqc_data);
-    if(index == sqc_data.length-1){ $scope.rightClickDisabled = true; return null; }
+    if(index == sqc_data.length-1){
+      $scope.rightClickDisabled = true;
+      return null;
+    }
     next_sqc = sqc_data[index + 1];
     return next_sqc;
   }
@@ -227,7 +237,10 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   function findPrevSQC(sqc,sqc_data){
     var prev_sqc;
     var index = findSqcIndex(sqc, sqc_data);
-    if(index === 0){ $scope.leftClickDisabled = true; return null; }
+    if(index === 0){
+      $scope.leftClickDisabled = true;
+      return null;
+    }
     prev_sqc = sqc_data[index -1];
     return prev_sqc;
   }
@@ -235,10 +248,20 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   function getNextSQC(sqc, sqc_data, region, city, branch){
      var next_sqc_data;
      next_sqc_data = findNextSQC(sqc,sqc_data);
+
      if(next_sqc_data != null) {
-       if(city == null && branch == null){ onOptionSelect(next_sqc_data,city,branch,next_sqc_data); showGraph(next_sqc_data, "", "", option); }
-       else if(branch == null) { onOptionSelect(region,next_sqc_data,branch,next_sqc_data); showGraph(region, next_sqc_data, "", option); }
-       else { onOptionSelect(region,city,next_sqc_data,next_sqc_data); showGraph(region,city,next_sqc_data, option);}
+       if(city == null && branch == null){
+         onOptionSelect(next_sqc_data,city,branch,next_sqc_data);
+         showGraph(next_sqc_data, "", "", option);
+       }
+       else if(branch == null) {
+         onOptionSelect(region,next_sqc_data,branch,next_sqc_data);
+         showGraph(region, next_sqc_data, "", option);
+       }
+       else {
+         onOptionSelect(region,city,next_sqc_data,next_sqc_data);
+         showGraph(region,city,next_sqc_data, option);
+       }
      }
   }
 
@@ -246,42 +269,61 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
      var prev_sqc_data;
      prev_sqc_data = findPrevSQC(sqc, sqc_data);
      if(prev_sqc_data != null) {
-       if(city == null && branch == null){ onOptionSelect(prev_sqc_data,city,branch,prev_sqc_data); showGraph(prev_sqc_data, "", "", option); }
-       else if(branch == null) { onOptionSelect(region,prev_sqc_data,branch,prev_sqc_data); showGraph(region, prev_sqc_data, "", option); }
-       else { onOptionSelect(region,city,prev_sqc_data,prev_sqc_data); showGraph(region,city,prev_sqc_data, option);}
+       if(city == null && branch == null){
+         onOptionSelect(prev_sqc_data,city,branch,prev_sqc_data);
+         showGraph(prev_sqc_data, "", "", option);
+       }
+       else if(branch == null) {
+         onOptionSelect(region,prev_sqc_data,branch,prev_sqc_data);
+         showGraph(region, prev_sqc_data, "", option);
+       }
+       else {
+         onOptionSelect(region,city,prev_sqc_data,prev_sqc_data);
+         showGraph(region,city,prev_sqc_data, option);
+       }
      }
   }
 
   function findSqcData(region,city,branch,sqc_data,string){
+
     if(city == null && branch == null){
-      if(string == "next"){ 
-        getNextSQC(region,sqc_data,"",null,null); $scope.rightClickDisabled = false;
+      if(string == "next"){
+        getNextSQC(region,sqc_data,"",null,null);
+        $scope.rightClickDisabled = false;
       }
-      else if(string == "previous"){ getPreviousSQC(region,sqc_data,"",null,null); $scope.leftClickDisabled = false;
+      else if(string == "previous"){
+        getPreviousSQC(region,sqc_data,"",null,null);
+        $scope.leftClickDisabled = false;
       }
     }
     else if(branch == null) {
-      if (string == "next") { getNextSQC(city,sqc_data,region,"",null); $scope.rightClickDisabled = false;
+      if (string == "next") {
+        getNextSQC(city,sqc_data,region,"",null);
+        $scope.rightClickDisabled = false;
       }
-      else if (string == "previous") { getPreviousSQC(city,sqc_data,region,"",null); $scope.leftClickDisabled = false;
+      else if (string == "previous") {
+        getPreviousSQC(city,sqc_data,region,"",null);
+        $scope.leftClickDisabled = false;
       }
     }
     else{
-      if(string == "next"){ getNextSQC(branch,sqc_data,region,city,""); $scope.rightClickDisabled = false;
+      if(string == "next"){
+        getNextSQC(branch,sqc_data,region,city,"");
+        $scope.rightClickDisabled = false;
       }
-      else if (string == "previous") {  getPreviousSQC(branch,sqc_data,region,city,""); $scope.leftClickDisabled = false;
+      else if (string == "previous") {
+        getPreviousSQC(branch,sqc_data,region,city,"");
+        $scope.leftClickDisabled = false;
       }
     }
   }
 
   $scope.next = function(region,city,branch,sqc_data){
-    var string = "next";
-    findSqcData(region,city,branch,sqc_data,string);
+    findSqcData(region,city,branch,sqc_data,"next");
   };
 
   $scope.previous = function(region,city,branch,sqc_data){
-    var string = "previous";
-    findSqcData(region,city,branch,sqc_data,string);
+    findSqcData(region,city,branch,sqc_data,"previous");
   };
 })
 
@@ -408,4 +450,3 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       }
   };
 });
-

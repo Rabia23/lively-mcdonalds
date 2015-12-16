@@ -4,26 +4,20 @@ angular.module('livefeed.authService', [])
   
   return {
     
-    store_token: function(token, id, username){
+    store_token: function(token, username){
       window.sessionStorage.setItem('token', token);
       window.sessionStorage.setItem('loggedin', 'true');
-      window.sessionStorage.setItem('uid', id);
       window.sessionStorage.setItem('username', username);
     },
 
     remove_token: function(){
       window.sessionStorage.setItem('token',"");
       window.sessionStorage.setItem('loggedin', "false");
-      window.sessionStorage.setItem('uid', null);
       window.sessionStorage.setItem('username', "");
     },
 
     get_token: function(){
       return window.sessionStorage.getItem("token");
-    },
-
-    get_uid: function(){
-      return window.sessionStorage.getItem("id");
     },
 
     get_username: function(){

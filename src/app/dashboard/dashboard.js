@@ -106,8 +106,4 @@ angular.module( 'livefeed.dashboard', [
     console.log("offline in dashboard");
   });
 
-  var user_id = TokenHandler.get_uid();
-
-
-
 });
