@@ -21,7 +21,7 @@ class FeedbackCommentSerializer(serializers.Serializer):
 
 class FeedbackSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
-    comment = serializers.CharField(required=False)
+    comment = serializers.CharField(required=False, allow_blank=True, allow_null=True)
     objectId = serializers.CharField()
     gro_name = serializers.CharField(required=False)
 
