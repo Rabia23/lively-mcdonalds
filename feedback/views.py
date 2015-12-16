@@ -24,16 +24,6 @@ def feedback(request):
         trigger = request.data["triggerName"]
 
         if trigger == constants.TRIGGER_AFTER_SAVE:
-            feedback = Feedback.get_if_exists(data["objectId"])
-            if feedback:
-                serializer = FeedbackSerializer(feedback, data=data)
-                parse_response = save_and_response(serializer, data)
-            else:
-                serializer = FeedbackSerializer(data=data)
-                feedback = save(serializer)
-
-                parse_response = response(data)
-
             related_branch = branch_get(data["branch"]["objectId"])
             branch = get_related_branch(related_branch)
 
@@ -43,12 +33,18 @@ def feedback(request):
             else:
                 user = None
 
-            if (not feedback.comment) or (feedback.comment == ''):
-                feedback.action_taken = constants.DEFERRED
+            feedback_params = data
+            feedback_params['user'] = user.id
+            feedback_params['branch'] = branch.id
 
-            feedback.branch = branch
-            feedback.user = user
-            feedback.save()
+            feedback = Feedback.get_if_exists(data["objectId"])
+            if feedback:
+                serializer = FeedbackSerializer(feedback, data=feedback_params)
+                parse_response = save_and_response(serializer, data)
+            else:
+                serializer = FeedbackSerializer(data=feedback_params)
+                feedback = save(serializer)
+                parse_response = response(data)
 
             if "options" in data:
                 for option_data in data["options"]:
@@ -57,17 +53,11 @@ def feedback(request):
 
                     feedback_option = FeedbackOption.get_if_exists(feedback.id, option.id)
                     if not feedback_option:
-                        feedback_option = FeedbackOption()
-                        feedback_option.feedback = feedback
-                        feedback_option.option = option
-                        feedback_option.save()
+                        FeedbackOption(feedback=feedback, option=option).save()
 
-            try:
-                if feedback.is_negative():
-                    context = Context({'feedback': feedback})
-                    send_negative_feedback_email(context)
-            except Exception as e:
-                pass
+            if feedback.is_negative():
+                context = Context({'feedback': feedback})
+                send_negative_feedback_email(context)
 
             return parse_response
 
@@ -107,78 +97,6 @@ def question(request):
             return parse_response
         
 
-#of no use currently
-@api_view(['GET', 'POST'])
-def option(request):
-
-    if request.method == 'GET':
-        options = Option.objects.all()
-        serializer = OptionSerializer(options, many=True)
-        return Response(serializer.data)
-
-    if request.method == 'POST':
-        data = request.data["object"]
-        trigger = request.data["triggerName"]
-
-        if trigger == constants.TRIGGER_AFTER_SAVE:
-            option = Option.get_if_exists(data["objectId"])
-            if option:
-                serializer = OptionSerializer(option, data=data)
-                return save_and_response(serializer, data)
-            else:
-                serializer = OptionSerializer(data=data)
-                option = save(serializer)
-
-                if "subOptions" in data:
-                    for sub_option_data in data["subOptions"]:
-                        sub_option_parse = option_get(sub_option_data["objectId"])
-                        sub_option = get_related_option(sub_option_parse)
-
-                        sub_option.parent = option
-                        sub_option.save()
-
-            return response(data)
-
-
-#of no use currently
-@api_view(['GET', 'POST'])
-def feedback_option(request):
-
-    if request.method == 'GET':
-        feedback_options = FeedbackOption.objects.all()
-        serializer = FeedbackOptionSerializer(feedback_options, many=True)
-        return Response(serializer.data)
-
-    if request.method == 'POST':
-        data = request.data["object"]
-        trigger = request.data["triggerName"]
-
-        if trigger == constants.TRIGGER_AFTER_SAVE:
-            feedback_option = FeedbackOption.get_if_exists(data["objectId"])
-            if feedback_option:
-                serializer = FeedbackOptionSerializer(feedback_option, data=data)
-                return save_and_response(serializer, data)
-            else:
-                related_feedback = feedback_get(data["feedback"]["objectId"])
-                feedback = get_related_feedback(related_feedback)
-
-                related_option = option_get(data["option"]["objectId"])
-                option = get_related_option(related_option)
-
-                serializer = FeedbackOptionSerializer(data=data)
-                feedback_option = save(serializer)
-                feedback_option.feedback = feedback
-                feedback_option.option = option
-                feedback_option.save()
-
-                try:
-                    if feedback_option.is_negative_option():
-                        context = Context({'feedback': feedback})
-                        send_negative_feedback_email(context)
-                except Exception as e:
-                    pass
-
-            return response(data)
 
 
 #NOTE: Please insert questions before inserting the promotion row in Parse

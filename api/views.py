@@ -290,7 +290,7 @@ def category_performance(request, user):
             list_feedback = generate_missing_sub_options(option_id, filtered_feedback_options) if option else \
                                 generate_missing_options(question, filtered_feedback_options)
 
-            data = {'feedback_count': filtered_feedback_options.count(), 'feedbacks': list_feedback}
+            data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
             return Response(data)
 
         except Exception as e:

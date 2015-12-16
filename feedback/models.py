@@ -63,13 +63,13 @@ class FeedbackManager(models.Manager):
 
 
 class Feedback(models.Model):
+    comment = models.CharField(max_length=1000, db_index=True)
+    objectId = models.CharField(max_length=20, null=True, blank=True, db_index=True)
+    action_taken = models.IntegerField(default=constants.UNPROCESSED, db_index=True)
+    gro_name = models.CharField(max_length=25, null=True, blank=True, db_index=True)
     user = models.ForeignKey(User, related_name='feedback', null=True, blank=True)
-    branch = models.ForeignKey(Branch, related_name='feedback', null=True, blank=True)
-    comment = models.CharField(max_length=1000)
-    objectId = models.CharField(max_length=20, null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    action_taken = models.IntegerField(default=constants.UNPROCESSED)
-    gro_name = models.CharField(max_length=25, null=True, blank=True)
+    branch = models.ForeignKey(Branch, related_name='feedback')
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     objects = models.Manager()
     manager = FeedbackManager()
@@ -228,9 +228,9 @@ class Feedback(models.Model):
 
 class Promotion(models.Model):
     title = models.CharField(max_length=255)
-    isActive = models.BooleanField(default=True)
-    objectId = models.CharField(max_length=20)
-    created_at = models.DateTimeField(auto_now_add=True)
+    isActive = models.BooleanField(default=True, db_index=True)
+    objectId = models.CharField(max_length=20, db_index=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     def __str__(self):
        return self.title
@@ -244,12 +244,12 @@ class Promotion(models.Model):
 
 class Question(models.Model):
     text = models.CharField(max_length=255)
-    isActive = models.BooleanField(default=True)
-    type = models.IntegerField()
-    objectId = models.CharField(max_length=20)
-    isPromotion = models.BooleanField(default=True)
+    isActive = models.BooleanField(default=True, db_index=True)
+    type = models.IntegerField(db_index=True)
+    objectId = models.CharField(max_length=20, db_index=True)
+    isPromotion = models.BooleanField(default=True, db_index=True)
     promotion = models.ForeignKey(Promotion, related_name='promotion', null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     def __str__(self):
        return self.text
@@ -263,12 +263,12 @@ class Question(models.Model):
 
 class Option(models.Model):
     text = models.CharField(max_length=255)
-    objectId = models.CharField(db_index=True, max_length=20)
-    score = models.IntegerField(default=0)
+    objectId = models.CharField(max_length=20, db_index=True)
+    score = models.IntegerField(default=0, db_index=True)
+    code = models.CharField(max_length=20, db_index=True)
     question = models.ForeignKey(Question, related_name='options', null=True, blank=True)
     parent = models.ForeignKey('self', null=True, blank=True, related_name='children')
-    code = models.CharField(max_length=20)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     def __str__(self):
        return self.text
@@ -348,9 +348,9 @@ class FeedbackOptionManager(models.Manager):
 
 
 class FeedbackOption(models.Model):
-    feedback = models.ForeignKey(Feedback, related_name='feedback_option', null=True, blank=True)
-    option = models.ForeignKey(Option, related_name='feedback_option', null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    feedback = models.ForeignKey(Feedback, related_name='feedback_option')
+    option = models.ForeignKey(Option, related_name='feedback_option')
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     objects = models.Manager()
     manager = FeedbackOptionManager()

@@ -43,18 +43,19 @@ def region(request):
         trigger = request.data["triggerName"]
 
         if trigger == constants.TRIGGER_AFTER_SAVE:
+            related_area = area_get(data["area"]["objectId"])
+            area = get_related_area(related_area)
+
+            region_params = data
+            region_params['area'] = area.id
+
             region = Region.get_if_exists(data["objectId"])
             if region:
-                serializer = RegionSerializer(region, data=data)
+                serializer = RegionSerializer(region, data=region_params)
                 return save_and_response(serializer, data)
             else:
-                related_area = area_get(data["area"]["objectId"])
-                area = get_related_area(related_area)
-                
-                serializer = RegionSerializer(data=data)
-                region = save(serializer)
-                region.area = area
-                region.save()
+                serializer = RegionSerializer(data=region_params)
+                save(serializer)
 
             return response(data)
 
@@ -80,18 +81,19 @@ def city(request):
         trigger = request.data["triggerName"]
 
         if trigger == constants.TRIGGER_AFTER_SAVE:
+            related_region = region_get(data["region"]["objectId"])
+            region = get_related_region(related_region)
+
+            city_params = data
+            city_params['region'] = region.id
+
             city = City.get_if_exists(data["objectId"])
             if city:
-                serializer = CitySerializer(city, data=data)
+                serializer = CitySerializer(city, data=city_params)
                 return save_and_response(serializer, data)
             else:
-                related_region = region_get(data["region"]["objectId"])
-                region = get_related_region(related_region)
-
-                serializer = CitySerializer(data=data)
-                city = save(serializer)
-                city.region = region
-                city.save()
+                serializer = CitySerializer(data=city_params)
+                save(serializer)
 
             return response(data)
 
@@ -117,17 +119,19 @@ def branch(request):
         trigger = request.data["triggerName"]
 
         if trigger == constants.TRIGGER_AFTER_SAVE:
+            related_city = city_get(data["city"]["objectId"])
+            city = get_related_city(related_city)
+
+            branch_params = data
+            branch_params['city'] = city.id
+
             branch = Branch.get_if_exists(data["objectId"])
             if branch:
                 serializer = BranchSerializer(branch, data=data)
                 return save_and_response(serializer, data)
             else:
-                related_city = city_get(data["city"]["objectId"])
-                region = get_related_city(related_city)
                 serializer = BranchSerializer(data=data)
-                branch = save(serializer)
-                branch.city = region
-                branch.save()
+                save(serializer)
 
             return response(data)
 

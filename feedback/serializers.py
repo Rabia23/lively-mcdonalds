@@ -27,7 +27,6 @@ class FeedbackSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Feedback
-        exclude = ('user', 'branch')
 
 
 class ObjectSerializer(serializers.Serializer):
@@ -57,4 +56,4 @@ class PromotionSerializer(serializers.ModelSerializer):
 class FeedbackOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = FeedbackOption
-        fields = ('id')
+        fields = ('id', 'feedback', 'option')

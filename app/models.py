@@ -6,11 +6,11 @@ from datetime import datetime
 
 
 class UserInfo(models.Model):
-    user = models.ForeignKey(User, related_name='info', null=True, blank=True)
-    phone_no = models.CharField(max_length=20, null=True, blank=True)
-    is_customer = models.BooleanField()
-    objectId = models.CharField(max_length=20)
-    created_at = models.DateTimeField(auto_now_add=True)
+    phone_no = models.CharField(max_length=20, null=True, blank=True, db_index=True)
+    is_customer = models.BooleanField(db_index=True)
+    objectId = models.CharField(max_length=20, db_index=True)
+    user = models.ForeignKey(User, related_name='info')
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     def __str__(self):
        return self.name
@@ -24,8 +24,8 @@ class UserInfo(models.Model):
 
 class Area(models.Model):
     name = models.CharField(max_length=20)
-    objectId = models.CharField(max_length=20)
-    created_at = models.DateTimeField(auto_now_add=True)
+    objectId = models.CharField(max_length=20, db_index=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     def __str__(self):
        return self.name
@@ -45,9 +45,9 @@ class Area(models.Model):
 
 class Region(models.Model):
     name = models.CharField(max_length=20)
-    objectId = models.CharField(max_length=20)
-    area = models.ForeignKey(Area, related_name='regions', null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    objectId = models.CharField(max_length=20, db_index=True)
+    area = models.ForeignKey(Area, related_name='regions')
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     def __str__(self):
        return self.name
@@ -67,9 +67,9 @@ class Region(models.Model):
 
 class City(models.Model):
     name = models.CharField(max_length=20)
-    objectId = models.CharField(max_length=20)
-    region = models.ForeignKey(Region, related_name='cities', null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    objectId = models.CharField(max_length=20, db_index=True)
+    region = models.ForeignKey(Region, related_name='cities')
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     class Meta:
         verbose_name = 'City'
@@ -93,13 +93,12 @@ class City(models.Model):
 
 class Branch(models.Model):
     name = models.CharField(max_length=20)
-    objectId = models.CharField(max_length=20)
+    objectId = models.CharField(max_length=20, db_index=True)
     latitude = models.DecimalField(max_digits=20, decimal_places=16)
     longitude = models.DecimalField(max_digits=20, decimal_places=16)
-    user = models.ForeignKey(User, related_name='branches', null=True, blank=True)
-    city = models.ForeignKey(City, related_name='branches', null=True, blank=True)
-    benchmark_count = models.IntegerField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    city = models.ForeignKey(City, related_name='branches')
+    benchmark_count = models.IntegerField(db_index=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     class Meta:
         verbose_name = 'Branch'

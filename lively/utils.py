@@ -49,83 +49,62 @@ def response(data):
 def get_related_area(data):
     area = Area.get_if_exists(data["objectId"])
     if area:
-        serializer = AreaSerializer(area, data=data)
-    else:
-        serializer = AreaSerializer(data=data)
-
-    if serializer.is_valid():
-        area = serializer.save()
         return area
 
 
 def get_related_region(data):
     region = Region.get_if_exists(data["objectId"])
     if region:
-        serializer = RegionSerializer(region, data=data)
-    else:
-        serializer = RegionSerializer(data=data)
-
-    if serializer.is_valid():
-        region = serializer.save()
         return region
 
 
 def get_related_city(data):
     city = City.get_if_exists(data["objectId"])
     if city:
-        serializer = CitySerializer(city, data=data)
-    else:
-        serializer = CitySerializer(data=data)
-
-    if serializer.is_valid():
-        city = serializer.save()
         return city
 
 
 def get_related_branch(data):
     branch = Branch.get_if_exists(data["objectId"])
     if branch:
-        serializer = BranchSerializer(branch, data=data)
-    else:
-        serializer = BranchSerializer(data=data)
-
-    if serializer.is_valid():
-        branch = serializer.save()
         return branch
 
 
 def get_related_user(data):
     user_info = UserInfo.get_if_exists(data["objectId"])
-
-    data['username'] = generate_username()
-    data['password'] = constants.CUSTOMER_PASSWORD
-
     if user_info:
-        user_info_serializer = UserInfoSerializer(user_info, data=data)
-        user_serializer = UserSerializer(user_info.user, data=data)
-
-        save(user_info_serializer)
-        user = save(user_serializer)
-        return user
+        return get_existing_related_user(data, user_info)
     else:
-        user_info_serializer = UserInfoSerializer(data=data)
-        user_info = save(user_info_serializer)
-
-        if user_info:
-            user_serializer = UserSerializer(data=data)
-            user = save(user_serializer)
-
-            return associate_info_to_user(user, user_info)
+        return get_new_related_user(data)
 
 
-def associate_info_to_user(user, user_info):
-    if user:
-        user_info.user = user
-        user_info.save()
+def get_existing_related_user(data, user_info):
+    data['username'] = user_info.user.username
+    data['password'] = user_info.user.password
 
-        return user
-    else:
-        user_info.delete()
+    user_serializer = UserSerializer(user_info.user, data=data)
+    user = save(user_serializer)
+
+    data['user'] = user.id
+
+    user_info_serializer = UserInfoSerializer(user_info, data=data)
+    save(user_info_serializer)
+    return user
+
+
+def get_new_related_user(data):
+    data['username'] = generate_username()
+    data['password'] = generate_password()
+
+    user_serializer = UserSerializer(data=data)
+    user = save(user_serializer)
+
+    data['user'] = user.id
+
+    user_info_serializer = UserInfoSerializer(data=data)
+    user_info = save(user_info_serializer)
+    user_info.save()
+    return user
 
 
 def get_related_option(data):
@@ -177,6 +156,17 @@ def generate_username():
         return generate_username()
     except User.DoesNotExist:
         return uname
+
+#copied
+def generate_password():
+    # Python 3 uses ascii_letters. If not available, fallback to letters
+    try:
+        letters = string.ascii_letters
+    except AttributeError:
+        letters = string.letters
+    password = ''.join([random.choice(letters + string.digits)
+                     for i in range(10)])
+    return password
 
 
 def generate_missing_actions(data):
