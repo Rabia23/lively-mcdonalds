@@ -30,9 +30,9 @@ def login(request):
         user = authenticate(username=username, password=password)
         if user:
             token = Token.objects.get_or_create(user=user)
-            data = {'status': True, 'message': 'User authenticated', 'token': token[0].key, 'user': user}
+            data = {'status': True, 'message': 'User authenticated', 'token': token[0].key}
         else:
-            data = {'status': False, 'message': 'User not authenticated', 'token': None, 'user': None}
+            data = {'status': False, 'message': 'User not authenticated', 'token': None}
 
         return Response(data)
 
