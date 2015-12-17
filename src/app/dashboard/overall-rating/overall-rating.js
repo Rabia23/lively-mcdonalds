@@ -101,6 +101,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
         $scope.labels =  _.map(data.options,function(value, index){
           return {value: value.option__text, parent_id: option.id, color: colors(index, option.parent_id, parent_color, value.option__text, parent_value)};
         });
+        $scope.qsc_labels = $scope.labels;
       });
     }
   };
@@ -117,6 +118,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
         $scope.labels = _.map(data[0].data.feedbacks ,function(value, index){
           return {parent_id: value.option__parent_id,id: value.option_id, value: value.option__text, color: colors(index, option.parent_id, parent_color, value.option__text, parent_value)};
         });
+        $scope.qsc_labels = $scope.labels;
       });
     }
   };
