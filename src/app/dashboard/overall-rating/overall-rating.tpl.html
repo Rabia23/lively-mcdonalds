@@ -24,7 +24,7 @@
   </header>
   <div class="rating-holder">
     <ul>
-      <li ng-repeat = "label in labels track by $index">
+      <li ng-repeat = "label in qsc_labels track by $index">
         <span class="bullet" style = "background-color: {{label.color}}"></span>
         <a style = "cursor:pointer" ng-click = "labelClick(label)">{{label.value}}</a>
       </li>
