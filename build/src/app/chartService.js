@@ -2,7 +2,7 @@ angular.module('livefeed.chart', [
   'helper_factories'
 ])
 
-.service('chartService', function(_, Global){
+.service('chartService', ["_", "Global", function(_, Global){
 
   var randomColorGenerator = function () {
       return '#' + (Math.random().toString(16) + '0000000').slice(2, 8);
@@ -263,4 +263,4 @@ angular.module('livefeed.chart', [
     }
   };
 
-});
+}]);
