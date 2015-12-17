@@ -265,7 +265,6 @@ class Option(models.Model):
     text = models.CharField(max_length=255)
     objectId = models.CharField(max_length=20, db_index=True)
     score = models.IntegerField(default=0, db_index=True)
-    code = models.CharField(max_length=20, db_index=True)
     question = models.ForeignKey(Question, related_name='options', null=True, blank=True)
     parent = models.ForeignKey('self', null=True, blank=True, related_name='children')
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
