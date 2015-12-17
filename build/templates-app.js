@@ -216,7 +216,7 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "  </header>\n" +
     "  <div class=\"rating-holder\">\n" +
     "    <ul>\n" +
-    "      <li ng-repeat = \"label in labels track by $index\">\n" +
+    "      <li ng-repeat = \"label in qsc_labels track by $index\">\n" +
     "        <span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>\n" +
     "        <a style = \"cursor:pointer\" ng-click = \"labelClick(label)\">{{label.value}}</a>\n" +
     "      </li>\n" +
