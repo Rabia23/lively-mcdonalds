@@ -139,6 +139,7 @@
 	overflow: hidden;
 	position: relative;
 	padding: 0 10px;
+	min-height: 200px;
 	
 	&.loading{
 	&:after{

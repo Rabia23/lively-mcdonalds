@@ -376,7 +376,8 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "\n" +
     "    <div class=\"list-container\">\n" +
     "    	<div class=\"inner-holder\">\n" +
-    "    		<ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
+    "    		<div class=\"list-inner\">\n" +
+    "    			<ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
     "              <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
     "                <div class=\"graph-holder regional-analysis\" same-region-height data-data=\"donut_graph_data.donutData[$index]\">\n" +
     "                  <div class=\"graph-inner\">\n" +
@@ -418,6 +419,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "              </li>\n" +
     "             </ul>\n" +
     "             <div ng-show=\"show_string && regional_view == false && city_view == false\">No branch available</div>\n" +
+    "    		</div>\n" +
     "    	</div>\n" +
     "    </div>\n" +
     "    </div>\n" +

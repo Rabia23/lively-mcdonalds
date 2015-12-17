@@ -36,7 +36,8 @@
 
     <div class="list-container">
     	<div class="inner-holder">
-    		<ul class="info-list" ng-show = "regional_view == true">
+    		<div class="list-inner">
+    			<ul class="info-list" ng-show = "regional_view == true">
               <li ng-repeat = "region in donut_graph_data.objects track by $index">
                 <div class="graph-holder regional-analysis" same-region-height data-data="donut_graph_data.donutData[$index]">
                   <div class="graph-inner">
@@ -78,6 +79,7 @@
               </li>
              </ul>
              <div ng-show="show_string && regional_view == false && city_view == false">No branch available</div>
+    		</div>
     	</div>
     </div>
     </div>
