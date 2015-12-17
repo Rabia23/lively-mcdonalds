@@ -218,6 +218,7 @@ def overall_rating(request, user):
 
             if date_to and date_from:
                 rule = rrule.DAILY #when evenr there is a date range
+                type = constants.DAILY_ANALYSIS
             else:
                 date_to = str(now.date())
                 if type == constants.YEARLY_ANALYSIS:
