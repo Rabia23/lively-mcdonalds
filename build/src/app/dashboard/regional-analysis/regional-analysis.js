@@ -325,6 +325,10 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   $scope.previous = function(region,city,branch,sqc_data){
     findSqcData(region,city,branch,sqc_data,"previous");
   };
+
+  $scope.ok = function () {
+    $uibModalInstance.close();
+  };
 })
 
 
