@@ -174,7 +174,6 @@
 	margin: 0 -10px;
 	padding: 0 10px;
 	position: relative;
-	min-height: 262px;
 	
 	@include media("≥widescreen"){
 		padding: 0 36px;
@@ -208,7 +207,19 @@
 		z-index: 5;
 	}
 	
-	.inner-holder{overflow: hidden;}
+	.inner-holder{
+		overflow: hidden;
+		min-height: 262px;
+		@include v-align(100%, middle, before);
+		
+		&:before{min-height: inherit;}
+		
+		.list-inner{
+			width: 100%;
+			max-width: 100%;
+			> div{margin: 0 0 20px;}
+		}
+	}
 }
 
 .info-list{
