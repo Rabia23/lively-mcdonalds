@@ -52,19 +52,14 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     $scope.comments = _.map(data.feedbacks,  function(data){
       return commentService.getComment(data);
     });
-     console.log("comments");
-     console.log($scope.comments);
   });
 
   $scope.getMoreComments = function(){
-    console.log("get more comments");
     var show_dropdown, action_string;
     $scope.page = $scope.page + 1;
     $scope.lock = true;
-    console.log($scope.lock);
     Graphs.comments($scope.page).$promise.then(function(data){
       $scope.lock = false;
-      console.log($scope.lock);
       angular.forEach(data.feedbacks, function(value, key) {
         var comment_data = commentService.getComment(value);
         $scope.comments.push(comment_data);
