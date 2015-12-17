@@ -4,8 +4,8 @@ from django.views.generic.base import TemplateView
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from app.models import Region, City, Branch
-from app.serializers import RegionSerializer, CitySerializer
+from app.models import Region, City, Branch, Area
+from app.serializers import RegionSerializer, CitySerializer, AreaSerializer
 from feedback.models import Question, FeedbackOption, Option, Feedback
 from feedback.serializers import ObjectSerializer, FeedbackCommentSerializer, FeedbackSerializer
 from lively import constants
@@ -35,6 +35,16 @@ def login(request):
             data = {'status': False, 'message': 'User not authenticated', 'token': None, 'username': None}
 
         return Response(data)
+
+
+@api_view(['GET'])
+@my_login_required
+def area(request, user):
+
+    if request.method == 'GET':
+        areas = Area.objects.all()
+        serializer = AreaSerializer(areas, many=True)
+        return Response(serializer.data)
 
 
 @api_view(['GET'])
@@ -145,8 +155,11 @@ def feedback_analysis(request, user):
                 if city_id:
                     city = City.objects.get(pk=city_id)
                     objects = city.branches.all()
-            else:
-                objects = Region.objects.all()
+            elif type == constants.REGIONAL_ANALYSIS:
+                area_id = get_param(request, 'area', None)
+                if area_id:
+                    area = Area.objects.get(pk=area_id)
+                    objects = area.regions.all()
 
             for object in objects:
                 related_feedback_options = feedback_options.related_filters(type, object)
@@ -170,12 +183,11 @@ def feedback_analysis_breakdown(request, user):
 
     if request.method == 'GET':
         try:
-            option_id = get_param(request, 'option', None)
-
             region_id = get_param(request, 'region', None)
             city_id = get_param(request, 'city', None)
             branch_id = get_param(request, 'branch', None)
 
+            option_id = get_param(request, 'option', None)
             option = Option.objects.get(id=option_id)
             if option.is_parent():
                 feedback_options = FeedbackOption.manager.children(option).feedback(option).\
@@ -538,8 +550,11 @@ def action_analysis(request, user):
                 if city_id:
                     city = City.objects.get(pk=city_id)
                     objects = city.branches.all()
-            else:
-                objects = Region.objects.all()
+            elif type == constants.REGIONAL_ANALYSIS:
+                area_id = get_param(request, 'area', None)
+                if area_id:
+                    area = Area.objects.get(pk=area_id)
+                    objects = area.regions.all()
 
             for object in objects:
                 feedback = Feedback.manager.related_filters(type, object).date(date_from, date_to).normal_feedback()
