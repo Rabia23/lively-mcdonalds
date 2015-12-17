@@ -38,6 +38,8 @@
 		line-height: 20px;
 		padding: 9px 12px;
 		color: $suva-gray;
+		box-shadow: none;
+		-webkit-box-shadow: none;
 		
 		@include media("≥tablet"){margin: 0 0 20px;}
 	}

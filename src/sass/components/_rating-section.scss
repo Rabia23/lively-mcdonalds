@@ -33,14 +33,15 @@
     a{
       float: right;
       cursor: pointer;
-      margin: 14px 5px 0;
+	  font-size: 14px;
+	  line-height: 18px;
+      margin: 12px 5px 0;
       
       &:hover{color: darken($dell,10%);}
 		
-		
-		@include media("≥tablet"){margin: 22px 5px 0;}
+		@include media("≥tablet"){margin: 19px 5px 0;}
 		@include media("≥desktop"){margin: 21px 5px 0;}
-		@include media("≥widescreen"){margin: 22px 5px 0;}
+		@include media("≥widescreen"){margin: 24px 5px 0;}
     }
 	  
 	.select-holder{
@@ -88,9 +89,9 @@
 				}
 			}
 
-			@include media("≥tablet"){padding: 17px 15px;}
+			@include media("≥tablet"){padding: 16px 15px 17px;}
 			@include media("≥desktop"){padding: 19px 18px;}
-			@include media("≥widescreen"){padding: 19px 20px 23px;}
+			@include media("≥widescreen"){padding: 20px 20px 21px;}
 		}
 	}
   }
@@ -251,10 +252,10 @@
 	line-height: 20px;
 	color: $dim-gray;
 	overflow: hidden;
-	padding: 10px 35px 10px 20px;
-	@include media("≥tablet"){padding: 18px 35px 16px 20px;}
-	@include media("≥desktop"){padding: 20px 35px 18px 20px;}
-	@include media("≥widescreen"){padding: 21px 35px 20px 20px;}
+	padding: 10px 36px 10px 22px;
+	@include media("≥tablet"){padding: 17px 36px 16px 22px;}
+	@include media("≥desktop"){padding: 21px 36px 18px 22px;}
+	@include media("≥widescreen"){padding: 22px 35px 19px 22px;}
 	
 	select {
 		z-index: 1;
@@ -296,8 +297,8 @@
 			height: 10px;
 			cursor: default;
 			
-			@include media("≥tablet"){margin-top: -8px;}
-			@include media("≥desktop"){margin-top: -8px;}
+			@include media("≥tablet"){margin-top: -10px;}
+			@include media("≥desktop"){margin-top: -10px;}
 			@include media("≥widescreen"){margin-top: -10px;}
 		}
 	}
