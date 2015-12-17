@@ -13,6 +13,8 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 
   $scope.show_loading = false;
 
+  $scope.show_string = false;
+
   $scope.today = new Date();
 
   function resetDates(){
@@ -43,18 +45,24 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     }
   };
 
+  function showString(data_count){
+    $scope.show_string = data_count === 0? true:false;
+  }
+
   $scope.getRegions = function(){
     $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
     $scope.donut_graph_data = [];
     $scope.show_loading = true;
     if($scope.radioModel === 'Complaints'){
       Graphs.action_analysis("", "", "", $scope.start_date, $scope.end_date).$promise.then(function(complains_data){
+         showString(complains_data.count);
          $scope.donut_graph_data = chartService.getComplaintsDonutChartData(complains_data);
          $scope.show_loading = false;
       });
     }
     else{
        Graphs.regional_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function(data){
+          showString(data.count);
           $scope.donut_graph_data = chartService.getDonutChartData(data, $scope.question_type);
           $scope.show_loading = false;
        });
@@ -70,12 +78,14 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.donut_cities_data = [];
     if($scope.radioModel === 'Complaints'){
       Graphs.action_analysis(2, region.id, "", $scope.start_date, $scope.end_date).$promise.then(function(complains_data){
+         showString(complains_data.count);
          $scope.donut_cities_data = chartService.getComplaintsDonutChartData(complains_data);
          $scope.show_loading = false;
       });
     }
     else {
       Graphs.city_analysis(region.id, $scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function(data){
+        showString(data.count);
         $scope.donut_cities_data = chartService.getDonutChartData(data, $scope.question_type);
         $scope.show_loading = false;
       });
@@ -90,12 +100,14 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.donut_branches_data = [];
     if($scope.radioModel === 'Complaints'){
       Graphs.action_analysis(3, "", city.id, $scope.start_date, $scope.end_date).$promise.then(function(complains_data){
+         showString(complains_data.count);
          $scope.donut_branches_data  = chartService.getComplaintsDonutChartData(complains_data);
          $scope.show_loading = false;
       });
     }
     else {
       Graphs.branch_analysis(city.id, $scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function (data) {
+        showString(data.count);
         $scope.donut_branches_data = chartService.getDonutChartData(data, $scope.question_type);
         $scope.show_loading = false;
       });
