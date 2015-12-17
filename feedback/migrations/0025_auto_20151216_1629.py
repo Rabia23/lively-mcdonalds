@@ -17,9 +17,9 @@ class Migration(migrations.Migration):
             name='branch',
             field=models.ForeignKey(related_name='feedback', to='app.Branch'),
         ),
-        migrations.AlterField(
-            model_name='feedback',
-            name='user',
-            field=models.ForeignKey(related_name='feedback', to=settings.AUTH_USER_MODEL),
-        ),
+        # migrations.AlterField(
+        #     model_name='feedback',
+        #     name='user',
+        #     field=models.ForeignKey(related_name='feedback', to=settings.AUTH_USER_MODEL),
+        # ),
     ]
