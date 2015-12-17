@@ -236,9 +236,17 @@ def overall_rating(request, user):
             date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
             date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
 
+            section_start_date = str(date_from.date())
             for single_date in rrule.rrule(rule, dtstart=date_from, until=date_to):
-                feedback_options = FeedbackOption.manager.date(str(single_date.date()), str(single_date.date())).\
+                if type != constants.DAILY_ANALYSIS:
+                    section_end_date = str(single_date.date())
+                    feedback_options = FeedbackOption.manager.date(section_start_date, section_end_date).\
                                         filters(region_id, city_id, branch_id)
+                    section_start_date = section_end_date
+                else:
+                    feedback_options = FeedbackOption.manager.date(str(single_date.date()), str(single_date.date())).\
+                                        filters(region_id, city_id, branch_id)
+
                 feedback_options = feedback_options.children(option) if option else feedback_options.\
                                         question_parent_options(question)
                 filtered_feedback = feedback_options.values('option_id', 'option__text', 'option__parent_id').\
@@ -248,6 +256,7 @@ def overall_rating(request, user):
 
                 date_data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
                 feedback_records_list.append({'date': single_date.date(), 'data': date_data})
+
 
 
             if len(feedback_records_list) > constants.NO_OF_DAYS:
@@ -419,9 +428,6 @@ def feedback_segmentation(request, user):
                 date_from = str(date_to)
 
             date_to = str(date_to)
-            current_tz = timezone.get_current_timezone()
-            date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
-            date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
 
             feedback_options = FeedbackOption.manager.children(option).date(date_from, date_to).filters(region_id, city_id, branch_id)
             feedback_segmented_list = generate_option_groups(feedback_options, options)

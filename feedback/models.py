@@ -14,7 +14,7 @@ class FeedbackQuerySet(models.QuerySet):
             current_tz = timezone.get_current_timezone()
             date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
             date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
-            return self.filter(created_at__gte=date_from, created_at__lte=date_to)
+            return self.filter(created_at__gt=date_from, created_at__lte=date_to)
         return self
 
     def filters(self, region_id, city_id, branch_id):
@@ -293,7 +293,7 @@ class FeedbackOptionQuerySet(models.QuerySet):
             current_tz = timezone.get_current_timezone()
             date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
             date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
-            return self.filter(created_at__gte=date_from, created_at__lte=date_to)
+            return self.filter(created_at__gt=date_from, created_at__lte=date_to)
         return self
 
     def filters(self, region_id, city_id, branch_id):
