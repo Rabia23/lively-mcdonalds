@@ -294,7 +294,7 @@
 		
 		&:hover{color: lighten($storm-dust2,10%);}
 		
-		@include media("≥desktop"){top: 17px;}
+		@include media("≥desktop"){top: 18px;}
 	}
 	h2{
 		float: none;
@@ -316,9 +316,18 @@
 			right: 10px;
 		}
 	}
-	.graph-holder{
+	.graph-container{
 		overflow: hidden;
 		min-height: 200px;
+		@include v-align(inherit, middle, before);
+		
+		.holder{
+			width: 100%;
+			max-width: 100%;
+		}
+	}
+	.graph-holder{
+		overflow: hidden;
 	}
 }
 
