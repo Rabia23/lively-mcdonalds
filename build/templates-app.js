@@ -40,7 +40,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  		<li>\n" +
     "			<div class=\"calender-outer\">\n" +
     "				<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "				  <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
+    "				  <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"submit\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
     "				  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "				</span>\n" +
     "			</div>\n" +
@@ -130,7 +130,7 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "      </h2>\n" +
     "      <div class=\"calender-outer\">\n" +
     "        	<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
+    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"submit\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
     "			  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "			</span>\n" +
     "        </div>\n" +
@@ -161,7 +161,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "  <div class=\"heading-holder\">\n" +
     "  	<div class=\"calender-outer\">\n" +
     "			<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
+    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"submit\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
     "			  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "			</span>\n" +
     "		</div>\n" +
@@ -199,7 +199,7 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "    <div class=\"pull-right\">\n" +
     "		<div class=\"calender-outer\">\n" +
     "			<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" ng-disabled = \"!mainView\"/>\n" +
+    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"submit\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" ng-disabled = \"!mainView\"/>\n" +
     "			  <i class=\"glyphicon glyphicon-calendar\" map-range-click ></i>\n" +
     "			</span>\n" +
     "		</div>\n" +
@@ -356,7 +356,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "		  	  	<li>\n" +
     "		  	  		<div class=\"calender-outer\">\n" +
     "					<span class = \"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "					  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
+    "					  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"submit\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
     "					  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "					</span>\n" +
     "				  </div>\n" +
