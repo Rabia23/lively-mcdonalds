@@ -244,7 +244,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "			<thead>\n" +
     "			  <tr>\n" +
     "				<th class=\"item1\">Name</th>\n" +
-    "				<th class=\"item2\">Phone Number/ Email</th>\n" +
+    "				<th class=\"item2\">Phone <span>Number</span><span class=\"no\">No</span>/ Email</th>\n" +
     "				<th class=\"item3\">Branch</th>\n" +
     "				<th class=\"item4\">Segment</th>\n" +
     "				<th class=\"item5\">Comments</th>\n" +

@@ -258,6 +258,23 @@
 						padding-top: 12px;
 						padding-bottom: 12px;
 					}
+					
+					
+					@include media("<desktop"){
+						span{
+							display: none;
+							&.no{
+								display: inline-block;
+								vertical-align: top;
+							}
+						}
+					}
+					
+					@include media("≥desktop"){
+						span{		
+							&.no{display: none;}
+						}
+					}
 				}
 			}
 			th,
