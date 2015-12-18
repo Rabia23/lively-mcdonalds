@@ -223,8 +223,10 @@
 			color: $mountain-mist;
 			font-size: 1.3em;
 			line-height: 1.1em;
-			margin: 4px 0 0;
+			margin: 1px 0 0;
 			&:hover{color: lighten($mountain-mist,10%);}
+			
+			@include media("≥tablet"){margin: 4px 0 0;}
 		}
 	}
 	.modal-body{
@@ -340,6 +342,7 @@
 				padding: 0;
 				border: 0;
 				border-radius: 5px;
+				z-index: 999;
 				> li{
 					> a{
 						padding: 5px;

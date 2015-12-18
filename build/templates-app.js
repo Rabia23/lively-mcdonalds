@@ -271,13 +271,13 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "					</div>\n" +
     "				  </td>\n" +
     "				  <td class=\"item6\">\n" +
-    "					<div class=\"btn-group\" uib-dropdown ng-show = \"comment.show_dropdown\">\n" +
-    "					  <button id=\"split-button\" type=\"button\" class=\"btn btn-info\" ng-click=\"selectedValue('Process',comment)\">Process</button>\n" +
-    "					  <button type=\"button\" class=\"btn btn-info\" uib-dropdown-toggle>\n" +
+    "					<div class=\"btn-group\" uib-dropdown dropdown-append-to-body ng-show = \"comment.show_dropdown\">\n" +
+    "					  <button type=\"button\" class=\"btn btn-info\" ng-click=\"selectedValue('Process',comment)\">Process</button>\n" +
+    "					  <button id=\"btn-append-to-body\" type=\"button\" class=\"btn btn-info\" uib-dropdown-toggle>\n" +
     "						<span class=\"caret\"></span>\n" +
     "						<span class=\"sr-only\">Split button!</span>\n" +
     "					  </button>\n" +
-    "					  <ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"split-button\">\n" +
+    "					  <ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"btn-append-to-body\">\n" +
     "						<li role=\"menuitem\">\n" +
     "							<a style = \"cursor:pointer;\" ng-click=\"selectedValue('Defer',comment)\">Defer</a>\n" +
     "						</li>\n" +
