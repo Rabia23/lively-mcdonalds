@@ -54,15 +54,18 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "	  </ul>\n" +
     "  	<div class=\"main-holder\">\n" +
     "  		<div class=\"holder\">\n" +
-    "  		<div class=\"progress-area\">\n" +
+    "  		<div class=\"progress-area\" data-data = \"segments\" segment-progress-bar-background>\n" +
     "\n" +
-    "			<div class=\"progress-section\" ng-repeat = \"segment in segments\">\n" +
+    "			<div class=\"progress-section\" ng-repeat = \"segment in segments\" >\n" +
     "\n" +
     "			<small><em>{{segment.name}}</em></small>\n" +
     "\n" +
-    "				<div class=\"inner-holder\">\n" +
-    "					 <uib-progress><uib-bar ng-repeat=\"bar in segment.segment_data track by $index\" value=\"bar.percentage\" type=\"{{bar.class}}\"><span>{{bar.complaints}}</span></uib-bar></uib-progress>\n" +
-    "				</div>\n" +
+    "			<div class=\"inner-holder\">\n" +
+    "				 <uib-progress>\n" +
+    "					 <uib-bar ng-repeat=\"bar in segment.segment_data\" value=\"bar.percentage\" data-color = \"{{bar.colour}}\">\n" +
+    "						 <span>{{bar.complaints}}</span></uib-bar>\n" +
+    "				 </uib-progress>\n" +
+    "			</div>\n" +
     "\n" +
     "		  </div>\n" +
     "		</div>\n" +
@@ -389,6 +392,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "                </h3>\n" +
     "              </li>\n" +
     "            </ul>\n" +
+    "\n" +
     "            <div ng-show=\"show_string && regional_view == true\">No region available</div>\n" +
     "\n" +
     "            <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == true\">\n" +
@@ -404,6 +408,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "                </h3>\n" +
     "              </li>\n" +
     "            </ul>\n" +
+    "\n" +
     "            <div ng-show=\"show_string && regional_view == false && city_view == true\">No city available</div>\n" +
     "\n" +
     "            <ul class=\"info-list\" ng-show = \"regional_view == false && city_view == false\">\n" +
@@ -417,6 +422,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "                <h3>{{branch.name}}</h3>\n" +
     "              </li>\n" +
     "             </ul>\n" +
+    "\n" +
     "             <div ng-show=\"show_string && regional_view == false && city_view == false\">No branch available</div>\n" +
     "    	</div>\n" +
     "    </div>\n" +

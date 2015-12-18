@@ -27,15 +27,18 @@
 	  </ul>
   	<div class="main-holder">
   		<div class="holder">
-  		<div class="progress-area">
+  		<div class="progress-area" data-data = "segments" segment-progress-bar-background>
 
-			<div class="progress-section" ng-repeat = "segment in segments">
+			<div class="progress-section" ng-repeat = "segment in segments" >
 
 			<small><em>{{segment.name}}</em></small>
 
-				<div class="inner-holder">
-					 <uib-progress><uib-bar ng-repeat="bar in segment.segment_data track by $index" value="bar.percentage" type="{{bar.class}}"><span>{{bar.complaints}}</span></uib-bar></uib-progress>
-				</div>
+			<div class="inner-holder">
+				 <uib-progress>
+					 <uib-bar ng-repeat="bar in segment.segment_data" value="bar.percentage" data-color = "{{bar.colour}}">
+						 <span>{{bar.complaints}}</span></uib-bar>
+				 </uib-progress>
+			</div>
 
 		  </div>
 		</div>
