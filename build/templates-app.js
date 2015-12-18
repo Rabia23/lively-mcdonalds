@@ -244,7 +244,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "			<thead>\n" +
     "			  <tr>\n" +
     "				<th class=\"item1\">Name</th>\n" +
-    "				<th class=\"item2\">Phone Number/ Email</th>\n" +
+    "				<th class=\"item2\">Phone <span>Number</span><span class=\"no\">No</span>/ Email</th>\n" +
     "				<th class=\"item3\">Branch</th>\n" +
     "				<th class=\"item4\">Segment</th>\n" +
     "				<th class=\"item5\">Comments</th>\n" +
@@ -436,10 +436,14 @@ angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$temp
     "	<a style = \"cursor:pointer;\" class=\"btn-slider glyphicon glyphicon-menu-left\" ng-click=\"leftClickDisabled || previous(region,city,branch,sqc_data)\"></a>\n" +
     "	<a style = \"cursor:pointer;\" class=\"btn-slider glyphicon glyphicon-menu-right\" ng-click=\"rightClickDisabled || next(region,city,branch,sqc_data)\"></a>\n" +
     "\n" +
-    "  <div class=\"graph-holder\">\n" +
-    "    <div morris-chart-modal data-data=\"donut_subgraph_data.donutData\" data-type=\"donut\" data-options=\"donut_subgraph_data.donutOptions\"></div>\n" +
+    "  <div class=\"graph-container\">\n" +
+    "  	<div class=\"holder\">\n" +
+    "  		<div class=\"graph-holder\">\n" +
+    "		<div morris-chart-modal data-data=\"donut_subgraph_data.donutData\" data-type=\"donut\" data-options=\"donut_subgraph_data.donutOptions\"></div>\n" +
+    "	  </div>\n" +
+    "	  <div style = \"text-align: center;\" ng-show=\"show_div\">No data available</div>\n" +
+    "  	</div>\n" +
     "  </div>\n" +
-    "  <div style = \"text-align: center;\" ng-show=\"show_div\">No data available</div>\n" +
     "  <h1 style = \"text-align: center;\">{{ sqc.name }}</h1>\n" +
     "</div>");
 }]);

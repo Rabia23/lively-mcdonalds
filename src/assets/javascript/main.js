@@ -1669,7 +1669,7 @@ jQuery.onFontResize = (function($) {
 		},
 		onScroll: function() {
 			this.redrawScrollbars();
-			if (!$(document.activeElement).is(':input')) {
+			if ($(document.activeElement).is(':input')) {
 				this.rebuildScrollbars();
 			}
 		},
