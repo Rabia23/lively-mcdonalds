@@ -11,7 +11,7 @@
 		.calendar-holder{
 			float: right;
 			position: relative;
-			padding: 9px 18px;
+			padding: 10px 18px;
 			
 			&:after{
 				position: absolute;
@@ -35,8 +35,8 @@
 			}
 
 			@include media("≥tablet"){padding: 17px 15px;}
-			@include media("≥desktop"){padding: 19px 18px;}
-			@include media("≥widescreen"){padding: 21px 20px;}
+			@include media("≥desktop"){padding: 19px 18px 20px;}
+			@include media("≥widescreen"){padding: 21px 20px 20px;}
 		}
 	}
 }
@@ -45,8 +45,9 @@
 	h2{
 		float: left;
 		margin: 0;
-		line-height: 2.55em;
-		@include media("≥tablet"){line-height: 3.1em;}
+		line-height: 2.565em;
+	  @include media("≥tablet"){line-height: 3.14em;}
+	  @include media("≥widescreen"){line-height: 3.1em;}
 		
 		span{
 			line-height: 1em;
@@ -158,6 +159,7 @@
 		line-height: 17px;
 		color: $dim-gray;
 		cursor: pointer;
+		height: 21px;
 		
 		@include media("≥tablet"){line-height: 16px;}
 		

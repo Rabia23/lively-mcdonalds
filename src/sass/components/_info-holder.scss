@@ -89,7 +89,7 @@
 				}
 				
 				.calendar-holder{
-					padding: 9px 3px;
+					padding: 10px 3px;
 					
 					@include media("<tablet"){
 						float: none !important;
@@ -103,9 +103,9 @@
 						}
 					}
 					
-					@include media("≥tablet"){padding: 17px 15px;}
+					@include media("≥tablet"){padding: 17px 15px 18px;}
 					@include media("≥desktop"){padding: 19px 18px 20px;}
-					@include media("≥widescreen"){padding: 21px 20px;}
+					@include media("≥widescreen"){padding: 21px 20px 20px;}
 				}
 			}
 		}
@@ -130,8 +130,9 @@
 		
 		@include media("≥tablet"){
 			float: left;
-			line-height: 3.1em;
+			line-height: 3.14em;
 		}
+		@include media("≥widescreen"){line-height: 3.1em;}
 	}
 }
 

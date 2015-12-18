@@ -9,12 +9,13 @@
 		padding: 10px;
 		border-bottom: 1px solid $platinum;
 		
-		@include media("≥tablet"){
-			float: left;
+	 @include media("≥tablet"){
+		 line-height: 3.14em;
+		 float: left;
 			border: 0;
 			padding: 0;
-			line-height: 3.1em;
-		}
+	 }
+	   @include media("≥widescreen"){line-height: 3.1em;}
 		
 		span{
 			line-height: 1em;
@@ -38,7 +39,7 @@
 			@include media("<tablet"){width: 100%;}
 
 			.calendar-holder{
-				padding: 9px 10px;
+				padding: 9px 10px 10px;
 				position: relative;
 				letter-spacing: 0;
 				
@@ -66,9 +67,9 @@
 					}
 				}
 
-				@include media("≥tablet"){padding: 17px 15px;}
-				@include media("≥desktop"){padding: 19px 18px 20px;}
-				@include media("≥widescreen"){padding: 21px 20px;}
+				@include media("≥tablet"){padding: 17px 15px 18px;}
+				@include media("≥desktop"){padding: 20px 18px;}
+				@include media("≥widescreen"){padding: 21px 20px 20px;}
 			}
 		}
 	}
@@ -151,7 +152,7 @@
 				padding: 17px 30px;
 			}
 			
-			@include media("≥desktop"){padding: 19px 30px;}
+			@include media("≥desktop"){padding: 19px 30px 20px;}
 			@include media("≥widescreen"){padding: 20px 30px;}
 			
 			&:hover,
