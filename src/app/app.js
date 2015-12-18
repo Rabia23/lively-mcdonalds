@@ -48,8 +48,19 @@ angular.module( 'livefeed', [
   return {
       restrict: 'A',
       link: function(scope, ele, attrs) {
-        //console.log("in the link function");
         window.initCustomForms();
+      }
+  };
+})
+
+.directive('stopDefault', function() {
+  return {
+      restrict: 'A',
+      link: function(scope, ele, attrs) {
+        ele.bind("click", function(e){
+          console.log(e);
+          e.preventDefault();
+        });
       }
   };
 });

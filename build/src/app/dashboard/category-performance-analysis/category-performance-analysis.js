@@ -19,6 +19,8 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
     };
   }
 
+  resetDates();
+
   $scope.start_date = null;
   $scope.end_date = null;
 
@@ -41,9 +43,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
   $scope.showCategoryData = function(region_id,city_id,branch_id,option_id,string){
     $scope.show_loading = true;
     Graphs.category_performance(region_id,city_id,branch_id,option_id, $scope.start_date, $scope.end_date).$promise.then(function(performance_data){
-      console.log("dates");
-      console.log($scope.start_date);
-      console.log($scope.end_date);
+
       $scope.category_data = _.map(performance_data.feedbacks,  function(data,index){
         return {
           id: data.option_id,

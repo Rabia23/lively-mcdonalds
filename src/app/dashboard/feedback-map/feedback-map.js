@@ -8,9 +8,6 @@ angular.module( 'livefeed.dashboard.feedback_map', [
 
 .controller( 'FeedbackMapCtrl', function FeedbackMapController( $scope, _, Graphs, mapService ) {
 
-  // $scope.datePicker = {};
-  // $scope.datePicker.date = {startDate: null, endDate: null};
-
   $scope.today = new Date();
 
   function resetDates(){
