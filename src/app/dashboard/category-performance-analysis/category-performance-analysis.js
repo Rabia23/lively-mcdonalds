@@ -19,15 +19,12 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
     };
   }
 
-  resetDates();
-
   $scope.start_date = null;
   $scope.end_date = null;
 
   $scope.datePickerOption = {
     eventHandlers: {
         'apply.daterangepicker': function(ev, picker){
-          console.log("applied");
           $scope.start_date = ev.model.startDate._i;
           $scope.end_date =  ev.model.endDate._i;
           $scope.showCategoryData("","","",$scope.option_id,$scope.class);
@@ -44,6 +41,9 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
   $scope.showCategoryData = function(region_id,city_id,branch_id,option_id,string){
     $scope.show_loading = true;
     Graphs.category_performance(region_id,city_id,branch_id,option_id, $scope.start_date, $scope.end_date).$promise.then(function(performance_data){
+      console.log("dates");
+      console.log($scope.start_date);
+      console.log($scope.end_date);
       $scope.category_data = _.map(performance_data.feedbacks,  function(data,index){
         return {
           id: data.option_id,
@@ -96,20 +96,22 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
 
   $scope.onOptionSelect = function(string,option_id){
     if(string === 'All'){ 
-      $scope.class = ""; $scope.showCategoryData(); $scope.showSegmentData();
+      $scope.class = "";
+      $scope.showCategoryData();
+      $scope.showSegmentData();
     }
     else{ 
-      $scope.class = string; $scope.showCategoryData("","","",option_id,string); 
+      $scope.class = string;
+      $scope.showCategoryData("","","",option_id,string);
       $scope.showSegmentData("","","",option_id,string);
     }
   };
 
   $scope.onClick = function(option_id,string){
     $scope.option_id = option_id;
-    $scope.start_date = null;
-    $scope.end_date = null;
     $scope.onOptionSelect(string,option_id);
   };
+  resetDates();
   $scope.showCategoryData();
   $scope.showSegmentData();
 
