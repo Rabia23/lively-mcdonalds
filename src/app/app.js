@@ -51,16 +51,4 @@ angular.module( 'livefeed', [
         window.initCustomForms();
       }
   };
-})
-
-.directive('stopDefault', function() {
-  return {
-      restrict: 'A',
-      link: function(scope, ele, attrs) {
-        ele.bind("click", function(e){
-          console.log(e);
-          e.preventDefault();
-        });
-      }
-  };
 });
