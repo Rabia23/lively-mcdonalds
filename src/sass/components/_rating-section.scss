@@ -126,10 +126,10 @@
       left: 50%;
       top: 50%;
       background: url(../assets/images/loader.gif) no-repeat;
-      width: 200px;
-      height: 200px;
+      width: 70px;
+      height: 75px;
       content: "";
-      margin: -100px 0 0 -100px;
+      margin: -37px 0 0 -35px;
       visibility: hidden;
       opacity: 0;
       z-index: 99;
@@ -141,7 +141,7 @@
       top: 0;
       bottom: 0;
       content: "";
-      background: $celeste;
+      background: $white;
       visibility: hidden;
       opacity: 0;
       position: absolute;
@@ -403,5 +403,5 @@ body > .jcf-select-drop.jcf-drop-flipped {
 	padding-left: 30px;
 }
 /* common custom form elements styles */
-.jcf-disabled {background: #ddd !important;}
+.jcf-disabled {background: #fff !important;}
 .jcf-focus, .jcf-focus * {border-color: #f00 !important;}
