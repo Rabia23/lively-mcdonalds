@@ -1669,6 +1669,9 @@ jQuery.onFontResize = (function($) {
 		},
 		onScroll: function() {
 			this.redrawScrollbars();
+			if ($(document.activeElement).is(':input')) {
+				this.rebuildScrollbars();
+			}
 		},
 		onResize: function() {
 			// do not rebuild scrollbars if form field is in focus

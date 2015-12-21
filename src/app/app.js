@@ -48,7 +48,6 @@ angular.module( 'livefeed', [
   return {
       restrict: 'A',
       link: function(scope, ele, attrs) {
-        //console.log("in the link function");
         window.initCustomForms();
       }
   };

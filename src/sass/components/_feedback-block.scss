@@ -12,10 +12,10 @@
 		  left: 50%;
 		  top: 50%;
 		  background: url(../assets/images/loader.gif) no-repeat;
-		  width: 200px;
-		  height: 200px;
+		  width: 70px;
+		  height: 75px;
 		  content: "";
-		  margin: -100px 0 0 -100px;
+		  margin: -37px 0 0 -35px;
 		  visibility: hidden;
 		  opacity: 0;
 		  z-index: 99;
@@ -27,7 +27,7 @@
 		  top: 0;
 		  bottom: 0;
 		  content: "";
-		  background: $celeste;
+		  background: $white;
 		  visibility: hidden;
 		  opacity: 0;
 		  position: absolute;
@@ -60,7 +60,7 @@
 
 			.calendar-holder{
 				position: relative;
-				padding: 9px 18px;
+				padding: 10px 18px;
 				
 				&:after{
 					position: absolute;
@@ -84,8 +84,8 @@
 				}
 
 				@include media("≥tablet"){padding: 17px 15px;}
-				@include media("≥desktop"){padding: 19px 18px;}
-				@include media("≥widescreen"){padding: 21px 20px;}
+				@include media("≥desktop"){padding: 19px 18px 20px;}
+				@include media("≥widescreen"){padding: 21px 20px 20px;}
 			}
 		}
 	}
@@ -93,8 +93,9 @@
 	h2{
 		margin: 0;
 		overflow: hidden;
-		line-height: 2.55em;
-	 	@include media("≥tablet"){line-height: 3.1em;}
+		line-height: 2.565em;
+		  @include media("≥tablet"){line-height: 3.14em;}
+		  @include media("≥widescreen"){line-height: 3.1em;}
 		
 		span{
 			line-height: 1em;

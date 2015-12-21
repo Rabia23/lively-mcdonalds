@@ -18,7 +18,8 @@
       float: left;
       margin: 0 5px 0 0;
 	  line-height: 2.565em;
-	  @include media("≥tablet"){line-height: 3.1em;}
+	  @include media("≥tablet"){line-height: 3.14em;}
+	  @include media("≥widescreen"){line-height: 3.1em;}
 		
 		span{
 			line-height: 1em;
@@ -33,14 +34,15 @@
     a{
       float: right;
       cursor: pointer;
-      margin: 14px 5px 0;
+	  font-size: 14px;
+	  line-height: 18px;
+      margin: 12px 5px 0;
       
       &:hover{color: darken($dell,10%);}
 		
-		
-		@include media("≥tablet"){margin: 22px 5px 0;}
-		@include media("≥desktop"){margin: 21px 5px 0;}
-		@include media("≥widescreen"){margin: 22px 5px 0;}
+		@include media("≥tablet"){margin: 19px 5px 0;}
+		@include media("≥desktop"){margin: 22px 5px 0;}
+		@include media("≥widescreen"){margin: 23px 5px 0;}
     }
 	  
 	.select-holder{
@@ -65,7 +67,7 @@
 		padding: 0;
 
 		.calendar-holder{
-			padding: 9px 18px 10px;
+			padding: 10px 18px;
 			
 			&:after{
 				position: absolute;
@@ -89,8 +91,8 @@
 			}
 
 			@include media("≥tablet"){padding: 17px 15px;}
-			@include media("≥desktop"){padding: 19px 18px;}
-			@include media("≥widescreen"){padding: 19px 20px 23px;}
+			@include media("≥desktop"){padding: 19px 18px 20px;}
+			@include media("≥widescreen"){padding: 20px 20px 21px;}
 		}
 	}
   }
@@ -124,10 +126,10 @@
       left: 50%;
       top: 50%;
       background: url(../assets/images/loader.gif) no-repeat;
-      width: 200px;
-      height: 200px;
+      width: 70px;
+      height: 75px;
       content: "";
-      margin: -100px 0 0 -100px;
+      margin: -37px 0 0 -35px;
       visibility: hidden;
       opacity: 0;
       z-index: 99;
@@ -139,7 +141,7 @@
       top: 0;
       bottom: 0;
       content: "";
-      background: $celeste;
+      background: $white;
       visibility: hidden;
       opacity: 0;
       position: absolute;
@@ -251,10 +253,10 @@
 	line-height: 20px;
 	color: $dim-gray;
 	overflow: hidden;
-	padding: 10px 35px 10px 20px;
-	@include media("≥tablet"){padding: 18px 35px 16px 20px;}
-	@include media("≥desktop"){padding: 20px 35px 18px 20px;}
-	@include media("≥widescreen"){padding: 21px 35px 20px 20px;}
+	padding: 11px 36px 10px 22px;
+	@include media("≥tablet"){padding: 18px 36px 17px 22px;}
+	@include media("≥desktop"){padding: 21px 36px 19px 22px;}
+	@include media("≥widescreen"){padding: 22px 35px 20px 22px;}
 	
 	select {
 		z-index: 1;
@@ -296,8 +298,8 @@
 			height: 10px;
 			cursor: default;
 			
-			@include media("≥tablet"){margin-top: -8px;}
-			@include media("≥desktop"){margin-top: -8px;}
+			@include media("≥tablet"){margin-top: -10px;}
+			@include media("≥desktop"){margin-top: -10px;}
 			@include media("≥widescreen"){margin-top: -10px;}
 		}
 	}
@@ -330,7 +332,6 @@ body > .jcf-select-drop.jcf-drop-flipped {
 .jcf-select-drop .jcf-select-drop-content {
 	position: relative;
 	border: 1px solid $alto2;
-	margin: 1px 0 0;
 }
 /* multiple select styles */
 .jcf-list-box {
@@ -402,5 +403,5 @@ body > .jcf-select-drop.jcf-drop-flipped {
 	padding-left: 30px;
 }
 /* common custom form elements styles */
-.jcf-disabled {background: #ddd !important;}
+.jcf-disabled {background: #fff !important;}
 .jcf-focus, .jcf-focus * {border-color: #f00 !important;}

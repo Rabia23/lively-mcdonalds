@@ -9,7 +9,7 @@
 			<thead>
 			  <tr>
 				<th class="item1">Name</th>
-				<th class="item2">Phone Number/ Email</th>
+				<th class="item2">Phone <span>Number</span><span class="no">No</span>/ Email</th>
 				<th class="item3">Branch</th>
 				<th class="item4">Segment</th>
 				<th class="item5">Comments</th>
@@ -36,13 +36,13 @@
 					</div>
 				  </td>
 				  <td class="item6">
-					<div class="btn-group" uib-dropdown ng-show = "comment.show_dropdown">
-					  <button id="split-button" type="button" class="btn btn-info" ng-click="selectedValue('Process',comment)">Process</button>
-					  <button type="button" class="btn btn-info" uib-dropdown-toggle>
+					<div class="btn-group" uib-dropdown dropdown-append-to-body ng-show = "comment.show_dropdown">
+					  <button type="button" class="btn btn-info" ng-click="selectedValue('Process',comment)">Process</button>
+					  <button id="btn-append-to-body" type="button" class="btn btn-info" uib-dropdown-toggle>
 						<span class="caret"></span>
 						<span class="sr-only">Split button!</span>
 					  </button>
-					  <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+					  <ul class="dropdown-menu" role="menu" aria-labelledby="btn-append-to-body">
 						<li role="menuitem">
 							<a style = "cursor:pointer;" ng-click="selectedValue('Defer',comment)">Defer</a>
 						</li>

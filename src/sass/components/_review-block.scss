@@ -223,8 +223,10 @@
 			color: $mountain-mist;
 			font-size: 1.3em;
 			line-height: 1.1em;
-			margin: 4px 0 0;
+			margin: 1px 0 0;
 			&:hover{color: lighten($mountain-mist,10%);}
+			
+			@include media("≥tablet"){margin: 4px 0 0;}
 		}
 	}
 	.modal-body{
@@ -257,6 +259,23 @@
 					@include media("≥tablet"){
 						padding-top: 12px;
 						padding-bottom: 12px;
+					}
+					
+					
+					@include media("<desktop"){
+						span{
+							display: none;
+							&.no{
+								display: inline-block;
+								vertical-align: top;
+							}
+						}
+					}
+					
+					@include media("≥desktop"){
+						span{		
+							&.no{display: none;}
+						}
 					}
 				}
 			}
@@ -323,6 +342,7 @@
 				padding: 0;
 				border: 0;
 				border-radius: 5px;
+				z-index: 999;
 				> li{
 					> a{
 						padding: 5px;
@@ -384,24 +404,6 @@
 					&.defer{
 						background: lighten($yellow,35%);
 						&:hover{background: lighten($yellow,34%);}
-					}
-					&:last-child{
-						td{
-							.dropdown{
-								&.open{
-									.caret{
-										@include rotate (180deg);
-									}
-								}
-							}
-							.dropdown-menu{
-								box-shadow: 0 -6px 12px rgba($black, 0.175);
-								-webkit-box-shadow: 0 -6px 12px rgba($black, 0.175);
-								top: auto;
-								bottom: 100%;
-								margin: 0 0 2px;
-							}
-						}
 					}
 				}
 				.tel{

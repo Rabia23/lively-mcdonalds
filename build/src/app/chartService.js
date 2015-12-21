@@ -32,7 +32,6 @@ angular.module('livefeed.chart', [
     },
 
     getSubDonutChartData: function(graph_data,string){
-      //console.log(graph_data.feedback_count);
       return {
           donutData: _.map(graph_data.feedbacks,  function(data){
             return {label: data.option__text, value: data.count};

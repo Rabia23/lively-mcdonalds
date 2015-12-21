@@ -40,7 +40,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  		<li>\n" +
     "			<div class=\"calender-outer\">\n" +
     "				<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "				  <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
+    "				  <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
     "				  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "				</span>\n" +
     "			</div>\n" +
@@ -133,7 +133,7 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "      </h2>\n" +
     "      <div class=\"calender-outer\">\n" +
     "        	<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
+    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
     "			  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "			</span>\n" +
     "        </div>\n" +
@@ -164,7 +164,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "  <div class=\"heading-holder\">\n" +
     "  	<div class=\"calender-outer\">\n" +
     "			<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
+    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
     "			  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "			</span>\n" +
     "		</div>\n" +
@@ -202,7 +202,7 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "    <div class=\"pull-right\">\n" +
     "		<div class=\"calender-outer\">\n" +
     "			<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" ng-disabled = \"!mainView\"/>\n" +
+    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" ng-disabled = \"!mainView\" readonly=\"true\"/>\n" +
     "			  <i class=\"glyphicon glyphicon-calendar\" map-range-click ></i>\n" +
     "			</span>\n" +
     "		</div>\n" +
@@ -247,7 +247,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "			<thead>\n" +
     "			  <tr>\n" +
     "				<th class=\"item1\">Name</th>\n" +
-    "				<th class=\"item2\">Phone Number/ Email</th>\n" +
+    "				<th class=\"item2\">Phone <span>Number</span><span class=\"no\">No</span>/ Email</th>\n" +
     "				<th class=\"item3\">Branch</th>\n" +
     "				<th class=\"item4\">Segment</th>\n" +
     "				<th class=\"item5\">Comments</th>\n" +
@@ -274,13 +274,13 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "					</div>\n" +
     "				  </td>\n" +
     "				  <td class=\"item6\">\n" +
-    "					<div class=\"btn-group\" uib-dropdown ng-show = \"comment.show_dropdown\">\n" +
-    "					  <button id=\"split-button\" type=\"button\" class=\"btn btn-info\" ng-click=\"selectedValue('Process',comment)\">Process</button>\n" +
-    "					  <button type=\"button\" class=\"btn btn-info\" uib-dropdown-toggle>\n" +
+    "					<div class=\"btn-group\" uib-dropdown dropdown-append-to-body ng-show = \"comment.show_dropdown\">\n" +
+    "					  <button type=\"button\" class=\"btn btn-info\" ng-click=\"selectedValue('Process',comment)\">Process</button>\n" +
+    "					  <button id=\"btn-append-to-body\" type=\"button\" class=\"btn btn-info\" uib-dropdown-toggle>\n" +
     "						<span class=\"caret\"></span>\n" +
     "						<span class=\"sr-only\">Split button!</span>\n" +
     "					  </button>\n" +
-    "					  <ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"split-button\">\n" +
+    "					  <ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"btn-append-to-body\">\n" +
     "						<li role=\"menuitem\">\n" +
     "							<a style = \"cursor:pointer;\" ng-click=\"selectedValue('Defer',comment)\">Defer</a>\n" +
     "						</li>\n" +
@@ -359,7 +359,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "		  	  	<li>\n" +
     "		  	  		<div class=\"calender-outer\">\n" +
     "					<span class = \"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "					  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\"/>\n" +
+    "					  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
     "					  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
     "					</span>\n" +
     "				  </div>\n" +
@@ -379,7 +379,8 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "\n" +
     "    <div class=\"list-container\">\n" +
     "    	<div class=\"inner-holder\">\n" +
-    "    		<ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
+    "    		<div class=\"list-inner\">\n" +
+    "    			<ul class=\"info-list\" ng-show = \"regional_view == true\">\n" +
     "              <li ng-repeat = \"region in donut_graph_data.objects track by $index\">\n" +
     "                <div class=\"graph-holder regional-analysis\" same-region-height data-data=\"donut_graph_data.donutData[$index]\">\n" +
     "                  <div class=\"graph-inner\">\n" +
@@ -424,6 +425,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "             </ul>\n" +
     "\n" +
     "             <div ng-show=\"show_string && regional_view == false && city_view == false\">No branch available</div>\n" +
+    "    		</div>\n" +
     "    	</div>\n" +
     "    </div>\n" +
     "    </div>\n" +
@@ -440,10 +442,14 @@ angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$temp
     "	<a style = \"cursor:pointer;\" class=\"btn-slider glyphicon glyphicon-menu-left\" ng-click=\"leftClickDisabled || previous(region,city,branch,sqc_data)\"></a>\n" +
     "	<a style = \"cursor:pointer;\" class=\"btn-slider glyphicon glyphicon-menu-right\" ng-click=\"rightClickDisabled || next(region,city,branch,sqc_data)\"></a>\n" +
     "\n" +
-    "  <div class=\"graph-holder\">\n" +
-    "    <div morris-chart-modal data-data=\"donut_subgraph_data.donutData\" data-type=\"donut\" data-options=\"donut_subgraph_data.donutOptions\"></div>\n" +
+    "  <div class=\"graph-container\">\n" +
+    "  	<div class=\"holder\">\n" +
+    "  		<div class=\"graph-holder\">\n" +
+    "		<div morris-chart-modal data-data=\"donut_subgraph_data.donutData\" data-type=\"donut\" data-options=\"donut_subgraph_data.donutOptions\"></div>\n" +
+    "	  </div>\n" +
+    "	  <div style = \"text-align: center;\" ng-show=\"show_div\">No data available</div>\n" +
+    "  	</div>\n" +
     "  </div>\n" +
-    "  <div style = \"text-align: center;\" ng-show=\"show_div\">No data available</div>\n" +
     "  <h1 style = \"text-align: center;\">{{ sqc.name }}</h1>\n" +
     "</div>");
 }]);

@@ -4,9 +4,13 @@
 	<a style = "cursor:pointer;" class="btn-slider glyphicon glyphicon-menu-left" ng-click="leftClickDisabled || previous(region,city,branch,sqc_data)"></a>
 	<a style = "cursor:pointer;" class="btn-slider glyphicon glyphicon-menu-right" ng-click="rightClickDisabled || next(region,city,branch,sqc_data)"></a>
 
-  <div class="graph-holder">
-    <div morris-chart-modal data-data="donut_subgraph_data.donutData" data-type="donut" data-options="donut_subgraph_data.donutOptions"></div>
+  <div class="graph-container">
+  	<div class="holder">
+  		<div class="graph-holder">
+		<div morris-chart-modal data-data="donut_subgraph_data.donutData" data-type="donut" data-options="donut_subgraph_data.donutOptions"></div>
+	  </div>
+	  <div style = "text-align: center;" ng-show="show_div">No data available</div>
+  	</div>
   </div>
-  <div style = "text-align: center;" ng-show="show_div">No data available</div>
   <h1 style = "text-align: center;">{{ sqc.name }}</h1>
 </div>

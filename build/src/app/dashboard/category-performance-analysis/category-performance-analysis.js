@@ -19,6 +19,8 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
     };
   }
 
+  resetDates();
+
   $scope.start_date = null;
   $scope.end_date = null;
 
