@@ -50,6 +50,7 @@
                 </h3>
               </li>
             </ul>
+
             <div ng-show="show_string && regional_view == true">No region available</div>
 
             <ul class="info-list" ng-show = "regional_view == false && city_view == true">
@@ -65,6 +66,7 @@
                 </h3>
               </li>
             </ul>
+
             <div ng-show="show_string && regional_view == false && city_view == true">No city available</div>
 
             <ul class="info-list" ng-show = "regional_view == false && city_view == false">
@@ -78,6 +80,7 @@
                 <h3>{{branch.name}}</h3>
               </li>
              </ul>
+
              <div ng-show="show_string && regional_view == false && city_view == false">No branch available</div>
     		</div>
     	</div>

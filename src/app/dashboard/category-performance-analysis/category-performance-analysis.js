@@ -41,20 +41,21 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
   };
   
   $scope.showCategoryData = function(region_id,city_id,branch_id,option_id,string){
+    var categories_data = null;
     $scope.show_loading = true;
     Graphs.category_performance(region_id,city_id,branch_id,option_id, $scope.start_date, $scope.end_date).$promise.then(function(performance_data){
-
       $scope.category_data = _.map(performance_data.feedbacks,  function(data,index){
         return {
           id: data.option_id,
           name: data.option__text,
           complaints: data.count,
           percentage: data.count === 0 ? 0 : Math.round((data.count/performance_data.feedback_count)*100),
-          colour: option_id == null? Global.categoryPerformanceClass[data.option__text] : Global.categoryPerformanceChildCholorScheme[string][index],
-          priority:  option_id == null? Global.qscPriority[data.option__text] : Global.qscSubCategoriesPriority[string][data.option__text]
+          priority:  option_id == null? Global.qscPriority[data.option__text] : Global.qscSubCategoriesData[string][data.option__text].priority,
+          colour: option_id == null? Global.categoryPerformanceClass[data.option__text] : Global.qscSubCategoriesData[string][data.option__text].color
         };
       });
       $scope.category_data = _.sortBy( $scope.category_data, function(value){ return value.priority; });
+
       if( option_id == null){
         $scope.QualityID = $scope.category_data[0].id;
         $scope.ServiceID = $scope.category_data[1].id;
@@ -64,17 +65,19 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
   };
 
   $scope.showSegmentData = function(region_id,city_id,branch_id,option_id,string) {
+    var segments = null;
     Graphs.segmentation_rating(region_id, city_id, branch_id, option_id, $scope.start_date, $scope.end_date).$promise.then(function (segment_data) {
       $scope.segments = _.map(segment_data.segments, function (data) {
           return {
             name: data.segment,
-            segment_data: _.map(data.option_data, function (dat) {
+            segment_data: _.map(data.option_data, function (dat,index) {
               if (dat.count !== 0) {
                 return {
                   percentage: Math.round((dat.count / data.option_count) * 100),
                   complaints: dat.count,
                   class: Global.segmentationClass[dat.option__text],
-                  priority: option_id == null? Global.qscPriority[dat.option__text] : Global.qscSubCategoriesPriority[string][dat.option__text]
+                  priority: option_id == null? Global.qscPriority[dat.option__text] : Global.qscSubCategoriesData[string][dat.option__text].priority,
+                  colour: option_id == null? Global.categoryPerformanceClass[dat.option__text] : Global.qscSubCategoriesData[string][dat.option__text].color
                 };
               }
             }),
@@ -130,6 +133,29 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
         if(watchedData !== undefined){
           $(ele).find(".progress-bar").css("background-color", ('' + scope.color));
           $(ele).find(".progress-bar").css("color", ('' + scope.color));
+        }
+      });
+    }
+  };
+})
+
+.directive('segmentProgressBarBackground', function($timeout) {
+  return {
+    restrict: 'A',
+
+    scope: {
+      data: '='
+    },
+    link: function(scope, ele, attrs) {
+      scope.$watch('data', function(watchedData) {
+        if(watchedData !== undefined){
+          $timeout(function(){
+            var bars = $(ele).find(".progress-bar");
+            _.each(bars, function(value, index){
+              var color = $(value).data("color");
+              $(value).css("background-color", color);
+            });
+          }, 700);
         }
       });
     }

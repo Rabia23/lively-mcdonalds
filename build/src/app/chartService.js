@@ -234,7 +234,8 @@ angular.module('livefeed.chart', [
           },
           yaxis: {
             minTickSize: 1,
-            tickDecimals: 0
+            tickDecimals: 0,
+            min:0
 
           }
         }

@@ -46,7 +46,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   };
 
   function showString(data_count){
-    $scope.show_string = data_count === 0? true:false;
+    $scope.show_string = data_count === 0 || data_count === undefined? true:false;
   }
 
   $scope.getRegions = function(){
@@ -142,13 +142,21 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       $scope.object_id = object_id;
       $scope.string = string;
       if(string === 'regions'){
-        if($scope.regional_view === true){ $scope.getRegions();}
-        else if($scope.city_view === true){ $scope.getRegionCities($scope.selected_region);}
-        else{ $scope.getCityBranches($scope.selected_city);}
+        if($scope.regional_view === true){
+          $scope.getRegions();
+        }
+        else if($scope.city_view === true){
+          $scope.getRegionCities($scope.selected_region);
+        }
+        else{ $scope.getCityBranches(
+            $scope.selected_city);
+        }
       }
-      else if(string === 'cities'){ $scope.getRegionCities(object_id);
+      else if(string === 'cities'){
+        $scope.getRegionCities(object_id);
       }
-      else{ $scope.getCityBranches(object_id);
+      else{
+        $scope.getCityBranches(object_id);
       }
     
   };
