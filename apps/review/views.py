@@ -1,3 +1,4 @@
+from django.db import transaction
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from apps.branch.models import Branch
@@ -20,6 +21,7 @@ class FeedbackView(APIView):
         serializer = FeedbackSerializer(feedback, many=True)
         return Response(serializer.data)
 
+    @transaction.atomic
     def post(self, request, format=None):
         data = request.data["object"]
         trigger = request.data["triggerName"]

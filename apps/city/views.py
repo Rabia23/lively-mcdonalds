@@ -6,6 +6,7 @@ from apps.region.models import Region
 from apps.region.utils import region_get
 from apps import constants
 from apps.utils import save_and_response
+from django.db import transaction
 
 
 class CityView(APIView):
@@ -21,6 +22,7 @@ class CityView(APIView):
         serializer = CitySerializer(cities, many=True)
         return Response(serializer.data)
 
+    @transaction.atomic
     def post(self, request, format=None):
         data = request.data["object"]
         trigger = request.data["triggerName"]

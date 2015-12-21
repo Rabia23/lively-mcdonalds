@@ -5,6 +5,7 @@ from apps.promotion.serializers import PromotionSerializer
 from apps.question.models import Question
 from apps import constants
 from apps.utils import save, response
+from django.db import transaction
 
 
 class PromotionView(APIView):
@@ -13,6 +14,7 @@ class PromotionView(APIView):
         serializer = PromotionSerializer(promotions, many=True)
         return Response(serializer.data)
 
+    @transaction.atomic
     def post(self, request, format=None):
         data = request.data["object"]
         trigger = request.data["triggerName"]

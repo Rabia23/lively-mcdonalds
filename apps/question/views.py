@@ -5,6 +5,7 @@ from apps.question.models import Question
 from apps.question.serializers import QuestionSerializer
 from apps import constants
 from apps.utils import save, response
+from django.db import transaction
 
 
 class QuestionView(APIView):
@@ -13,6 +14,7 @@ class QuestionView(APIView):
         serializer = QuestionSerializer(questions, many=True)
         return Response(serializer.data)
 
+    @transaction.atomic
     def post(self, request, format=None):
         data = request.data["object"]
         trigger = request.data["triggerName"]

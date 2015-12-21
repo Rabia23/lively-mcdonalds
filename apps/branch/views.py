@@ -7,6 +7,7 @@ from apps.city.serializers import CitySerializer
 from apps.city.utils import city_get
 from apps import constants
 from apps.utils import save_and_response
+from django.db import transaction
 
 
 class BranchView(APIView):
@@ -22,6 +23,7 @@ class BranchView(APIView):
         serializer = CitySerializer(branches, many=True)
         return Response(serializer.data)
 
+    @transaction.atomic
     def post(self, request, format=None):
         data = request.data["object"]
         trigger = request.data["triggerName"]

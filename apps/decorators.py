@@ -10,7 +10,7 @@ def my_login_required(f):
         if token:
             auth = Token.objects.filter(key=token).first()
             if auth:
-                return f(request, auth.user, *args, **kwargs)
+                return f(request.request, auth.user, *args, **kwargs)
             return Response({"message": "User not Authenticated"})
         return Response({"message": "Authentication is Required"})
     return wrap

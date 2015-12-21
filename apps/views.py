@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate
 from django.db.models import Count
 from django.views.generic.base import TemplateView
 from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from apps.area.models import Area
@@ -96,6 +97,8 @@ class FeedbackAnalysisView(APIView):
                 if area_id:
                     area = Area.objects.get(pk=area_id)
                     objects = area.regions.all()
+                else:
+                    objects = Region.objects.all()
 
             for object in objects:
                 related_feedback_options = feedback_options.related_filters(type, object)
