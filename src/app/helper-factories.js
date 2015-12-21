@@ -6,7 +6,7 @@ angular.module( 'helper_factories', ['ngResource'])
     mainRatingColorScheme: {
       "Few concerns": '#e73a3a',
       "Not happy enough": '#ac1a1a',
-      "Everything is on track!": '#01ad0f',
+      "Everything on track": '#01ad0f',
       "I'm lovin' it": '#0E590A'
 
     },

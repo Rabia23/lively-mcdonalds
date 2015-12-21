@@ -263,7 +263,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "				  <td class=\"item1\">{{comment.data.user_name}}</td>\n" +
     "				  <td class=\"item2\">\n" +
     "					<a href=\"tel:{{comment.phone_no}}\" class=\"tel\">{{comment.phone_no}}</a><br>\n" +
-    "					<a href=\"\">{{comment.email}}</a>\n" +
+    "					<a>{{comment.email}}</a>\n" +
     "				  </td>\n" +
     "				  <td class=\"item3\">{{comment.data.branch}}</td>\n" +
     "				  <td class=\"item4\">{{comment.data.segment}}</td>\n" +
