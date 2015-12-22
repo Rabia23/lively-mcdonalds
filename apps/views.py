@@ -444,6 +444,8 @@ class ActionAnalysisView(APIView):
                 if area_id:
                     area = Area.objects.get(pk=area_id)
                     objects = area.regions.all()
+            else:
+                objects = Area.objects.all()
 
             for object in objects:
                 feedback = Feedback.manager.related_filters(type, object).date(date_from, date_to).normal_feedback()
