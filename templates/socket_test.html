@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+
+    <script>
+            var ws = new WebSocket("ws://172.16.11.113:5678/"),
+                messages = document.createElement('ul');
+            ws.onmessage = function (event) {
+                var messages = document.getElementsByTagName('ul')[0],
+                    message = document.createElement('li'),
+                    content = document.createTextNode(event.data);
+                message.appendChild(content);
+                messages.appendChild(message);
+            };
+            document.body.appendChild(messages);
+    </script>
+
+{% endblock %}

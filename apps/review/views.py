@@ -5,14 +5,13 @@ from apps.branch.models import Branch
 from apps.branch.utils import branch_get
 from apps.option.utils import option_get, get_related_option
 from apps.person.utils import user_get, get_related_user
-from apps.question.models import Question
-from apps.question.serializers import QuestionSerializer
 from apps.review.models import Feedback, FeedbackOption
 from apps.review.serializers import FeedbackSerializer
 from apps.review.utils import send_negative_feedback_email
 from apps import constants
 from apps.utils import save, response
 from django.template import Context
+from apps.redis_queue import RedisQueue
 
 
 class FeedbackView(APIView):
@@ -20,6 +19,7 @@ class FeedbackView(APIView):
         feedback = Feedback.objects.all()
         serializer = FeedbackSerializer(feedback, many=True)
         return Response(serializer.data)
+
 
     @transaction.atomic
     def post(self, request, format=None):
@@ -53,8 +53,17 @@ class FeedbackView(APIView):
                     if not feedback_option:
                         FeedbackOption(feedback=feedback, option=option).save()
 
+
+            q = RedisQueue('test')
+            q.put("hello")
+
+
             if feedback.is_negative():
                 context = Context({'feedback': feedback})
                 send_negative_feedback_email(context)
 
             return response(data)
+
+
+
+

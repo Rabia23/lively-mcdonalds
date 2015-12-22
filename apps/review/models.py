@@ -19,7 +19,7 @@ class FeedbackQuerySet(models.QuerySet):
             return self.filter(created_at__gt=date_from, created_at__lte=date_to)
         return self
 
-    def filters(self, region_id, city_id, branch_id):
+    def filters(self, region_id, city_id, branch_id, area_id=None):
         if region_id and city_id and branch_id:
             return self.filter(
                 branch__exact=branch_id,
@@ -32,6 +32,9 @@ class FeedbackQuerySet(models.QuerySet):
         elif region_id:
             return self.filter(
                 branch__city__region__exact=region_id)
+        elif area_id:
+            return self.filter(
+                branch__city__region__area__exact=area_id)
         return self
 
     def related_filters(self, type, object):
@@ -39,8 +42,10 @@ class FeedbackQuerySet(models.QuerySet):
             return self.filter(branch__city__exact=object.id)
         elif type == constants.BRANCH_ANALYSIS:
             return self.filter(branch__exact=object.id)
-        else:
+        elif type == constants.REGIONAL_ANALYSIS:
             return self.filter(branch__city__region__exact=object.id)
+        else:
+            return self.filter(branch__city__region__area__exact=object.id)
 
     def top_comments(self, comment_type):
         return self.filter(feedback_option__option__score__in=comment_type). \
@@ -208,7 +213,6 @@ class Feedback(models.Model):
             return {}
 
     def feedback_comment_dict(self):
-        user_info = UserInfo.objects.filter(user=self.user).first()
         try:
             feedback = {
                 "id": self.id,
@@ -230,8 +234,6 @@ class Feedback(models.Model):
             return {}
 
 
-
-
 class FeedbackOptionQuerySet(models.QuerySet):
     def question(self, question_type):
         question = Question.objects.get(type=question_type)
@@ -245,7 +247,7 @@ class FeedbackOptionQuerySet(models.QuerySet):
             return self.filter(created_at__gt=date_from, created_at__lte=date_to)
         return self
 
-    def filters(self, region_id, city_id, branch_id):
+    def filters(self, region_id, city_id, branch_id, area_id=None):
         if region_id and city_id and branch_id:
             return self.filter(
                 feedback__branch__exact=branch_id,
@@ -258,6 +260,9 @@ class FeedbackOptionQuerySet(models.QuerySet):
         elif region_id:
             return self.filter(
                 feedback__branch__city__region__exact=region_id)
+        elif area_id:
+            return self.filter(
+                feedback__branch__city__region__area__exact=area_id)
         return self
 
     def related_filters(self, type, object):
@@ -265,8 +270,10 @@ class FeedbackOptionQuerySet(models.QuerySet):
             return self.filter(feedback__branch__city__exact=object.id)
         elif type == constants.BRANCH_ANALYSIS:
             return self.filter(feedback__branch__exact=object.id)
-        else:
+        elif type == constants.REGIONAL_ANALYSIS:
             return self.filter(feedback__branch__city__region__exact=object.id)
+        else:
+            return self.filter(feedback__branch__city__region__area__exact=object.id)
 
 
     def feedback(self, option):

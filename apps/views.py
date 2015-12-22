@@ -99,6 +99,8 @@ class FeedbackAnalysisView(APIView):
                     objects = area.regions.all()
                 else:
                     objects = Region.objects.all()
+            else:
+                objects = Area.objects.all()
 
             for object in objects:
                 related_feedback_options = feedback_options.related_filters(type, object)
@@ -122,12 +124,13 @@ class FeedbackAnalysisBreakdownView(APIView):
             region_id = get_param(request, 'region', None)
             city_id = get_param(request, 'city', None)
             branch_id = get_param(request, 'branch', None)
+            area_id = get_param(request, 'area', None)
 
             option_id = get_param(request, 'option', None)
             option = Option.objects.get(id=option_id)
             if option.is_parent():
                 feedback_options = FeedbackOption.manager.children(option).feedback(option).\
-                                        filters(region_id, city_id, branch_id)
+                                        filters(region_id, city_id, branch_id, area_id)
                 list_feedback = feedback_options.values('option_id', 'option__text', 'option__parent_id').\
                     annotate(count=Count('option_id'))
 
@@ -457,25 +460,3 @@ class ActionAnalysisView(APIView):
             return Response(None)
 
 
-#for admin panel
-class DataView(TemplateView):
-    template_name = "data_view.html"
-
-    def get_context_data(self, **kwargs):
-        context = super(DataView, self).get_context_data(**kwargs)
-        page = self.request.GET.get('page', 1)
-        feedback_list = []
-
-        all_feedback = Feedback.objects.all().order_by('-created_at')
-
-        for feedback in all_feedback:
-            feedback_list.append(feedback.to_dict())
-
-        paginator = Paginator(feedback_list, constants.FEEDBACKS_PER_PAGE)
-
-        context["feedbacks"] = paginator.page(page)
-        context["count_feedback"] = all_feedback.count()
-        context["num_pages"] = paginator.num_pages
-        context["pages"] = range(1, paginator.num_pages + 1)
-
-        return context
