@@ -84,6 +84,9 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
             priority: Global.segmentationPriority[data.segment]
           };
       });
+
+      // REFRACTOR
+
       _.map($scope.segments, function (data) {
           data.segment_data = _.reject(data.segment_data, function (dat) {
             return dat === undefined;
