@@ -71,14 +71,20 @@
 		
 		li{
 			width: auto !important;
-			&:before{background: $deep-lilac;}
-			&:nth-child(2) {
-				&:before{background: $golden-poppy;}
-			}
-			&:nth-child(3) {
-				&:before{background: $bleu-de-france;}
-			}
-
+		    .bullet{
+			  position: absolute;
+			  left: 0;
+			  top: 50%;
+			  width: 6px;
+			  height: 6px;
+        	  overflow:hidden;
+			  margin-top: -6px;
+			  @include media("≥widescreen"){
+				  width: 8px;
+				  height: 8px;
+				  margin-top: -7px;
+			  }
+		    }
 			a{
 				color: $tundora;
 				&:hover,
