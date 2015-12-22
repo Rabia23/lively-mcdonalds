@@ -28,7 +28,6 @@ urlpatterns = [
     url(r'^api/', include(api_urls)),
     url(r'^dashboard/', include(dashboard_urls)),
     url(r'^swagger/', include('rest_framework_swagger.urls')),
-    url(r'^django-rq/', include('django_rq.urls')),
 ]
 
 if not settings.DEBUG:
