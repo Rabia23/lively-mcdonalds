@@ -59,7 +59,8 @@ angular.module( 'factories', [
                     top_concerns: {method: "GET", isArray: false, params: {endpoint: "top_concerns/"}},
                     segmentation_rating:{method: "GET",isArray: false, params: {endpoint: "segmentation_rating/"}},
                     action_taken:{method: "GET",isArray: false, params: {endpoint: "action_taken/"}},
-                    action_analysis: {method: "GET",isArray: false, params: {endpoint: "action_analysis/"}}
+                    action_analysis: {method: "GET",isArray: false, params: {endpoint: "action_analysis/"}},
+                    area_analysis: {method: "GET",isArray: true, params: {endpoint: "area/"}}
                  });
   }
 
@@ -92,11 +93,21 @@ angular.module( 'factories', [
   Graphs.prototype.overall_feedback = function(date_from, date_to){
     return this.service.overall_feedback({token: token,date_from: date_from, date_to: date_to});
   };
-  Graphs.prototype.regional_analysis = function(question_type, start_date, end_date){
+  Graphs.prototype.area = function(){
+    return this.service.area_analysis({token: token});
+  };
+  Graphs.prototype.area_analysis = function(question_type, start_date, end_date){
     question_type = question_type || 1;
     start_date = start_date || "";
     end_date = end_date || "";
-    return this.service.feedback_analysis({token: token,question_type: question_type, date_from: start_date, date_to: end_date});
+    return this.service.feedback_analysis({token: token, question_type: question_type, date_from: start_date, date_to: end_date});
+  };
+  Graphs.prototype.regional_analysis = function(question_type, start_date, end_date, area_id){
+    question_type = question_type || 1;
+    area_id = area_id || "";
+    start_date = start_date || "";
+    end_date = end_date || "";
+    return this.service.feedback_analysis({token: token,type: 1, question_type: question_type, area: area_id, date_from: start_date, date_to: end_date});
   };
   Graphs.prototype.city_analysis = function(region_id, question_type, start_date, end_date){
     question_type = question_type || 1;
@@ -127,12 +138,13 @@ angular.module( 'factories', [
     return this.service.comments({token:  token,page: page});
   };
 
-  Graphs.prototype.feedback_analysis_breakdown = function(region_id, city_id, branch_id, option_id){
+  Graphs.prototype.feedback_analysis_breakdown = function(area_id, region_id, city_id, branch_id, option_id){
+    area_id = area_id || "";
     region_id = region_id || "";
     city_id = city_id || "";
     branch_id = branch_id || "";
     option_id = option_id || "";
-    return this.service.feedback_analysis_breakdown({token:  token,region: region_id, city: city_id, branch: branch_id, option: option_id});
+    return this.service.feedback_analysis_breakdown({token:  token, area: area_id, region: region_id, city: city_id, branch: branch_id, option: option_id});
   };
   Graphs.prototype.segmentation_rating = function(region_id, city_id, branch_id, option_id, start_date, end_date){
     region_id = region_id || "";
@@ -143,13 +155,14 @@ angular.module( 'factories', [
     end_date = end_date || "";
     return this.service.segmentation_rating({token:  token,region: region_id, city: city_id, branch: branch_id, option: option_id, date_from: start_date, date_to: end_date});
   };
-  Graphs.prototype.action_analysis = function(type_id, region_id, city_id, date_from, date_to){
+  Graphs.prototype.action_analysis = function(type_id, region_id, city_id, date_from, date_to, area_id){
     type_id = type_id || "";
     date_from = date_from || "";
     date_to = date_to || "";
     region_id = region_id || "";
     city_id = city_id || "";
-    return this.service.action_analysis({token:  token,type: type_id, date_from: date_from, date_to: date_to, region: region_id, city:city_id});
+    area_id = area_id || "";
+    return this.service.action_analysis({token:  token,type: type_id, date_from: date_from, date_to: date_to, area: area_id, region: region_id, city:city_id});
   };
 
   return new Graphs();

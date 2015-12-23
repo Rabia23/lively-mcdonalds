@@ -21,9 +21,9 @@
   	</ul>
   </div>
 
-  <div class="progress-container {{class}}" ng-class="{loading: show_loading}">
+  <div class="progress-container" ng-class="{loading: show_loading}">
   	<ul class="list add">
-		  <li ng-repeat = "dat in category_data">{{dat.name}}</li>
+		  <li ng-repeat = "dat in category_data"><span class="bullet" style = "background-color: {{dat.colour}}"></span>{{dat.name}}</li>
 	  </ul>
   	<div class="main-holder">
   		<div class="holder">

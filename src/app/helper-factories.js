@@ -6,7 +6,7 @@ angular.module( 'helper_factories', ['ngResource'])
     mainRatingColorScheme: {
       "Few concerns": '#e73a3a',
       "Not happy enough": '#ac1a1a',
-      "Everything is on track!": '#01ad0f',
+      "Everything on track": '#01ad0f',
       "I'm lovin' it": '#0E590A'
 
     },
@@ -69,9 +69,9 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
     childCholorScheme:{
-      "Cleanliness": ["#71A6D2", "#4682B4", "#193751", "#314459", "#0F4D92", "#6699CC", "#99BADD", "#0093AF", "#162A40", "#315BA1"],
-      "Quality": ["#F984EF", "#460B41", "#BD33A4", "#702963", "#B784A7", "#692D54", "#44012D", "#66023C", "#76395D", "#B784A7"],
-      "Service": ["#625119", "#D4AF37", "#FFC901", "#C9B35B", "#7B6608", "#E7BF05", "#F9E663", "#FDE910", "#F8F99C", "#737829"]
+      "Cleanliness": ["#000737", "#003565", "#1C6292", "#4A90C0", "#78BEEE", "#B6E1FF"],
+      "Quality": ["#420F50", "#511E5F", "#683576", "#A572B3", "#1C002A", "#2B0039"],
+      "Service": ["#B84900", "#E67700", "#FFA42B", "#FFD259"]
     },
 
     childColor: function(index, parent_color, parent){
