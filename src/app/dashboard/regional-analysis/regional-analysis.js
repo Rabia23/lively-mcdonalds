@@ -61,7 +61,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
        });
     }
     else {
-     Graphs.area_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function (area_data) {
+     Graphs.area_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function (area_data){
        showString(area_data.count);
        $scope.donut_graph_data = chartService.getDonutChartData(area_data, $scope.question_type);
        $scope.show_loading = false;
