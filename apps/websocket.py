@@ -14,7 +14,7 @@ def ping(websocket, path):
             return
         if not q.empty():
             greeting = q.get()
-            print("DATA RECIEVED ======================== " + str(greeting))
+            print("DATA RECIEVED: " + str(greeting))
             yield from websocket.send("Hello")
 
 start_server = websockets.serve(ping, settings.WEBSOCKET_ADDRESS, settings.WEBSOCKET_PORT)

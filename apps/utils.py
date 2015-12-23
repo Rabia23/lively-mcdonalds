@@ -83,3 +83,13 @@ def generate_password():
 def get_param(request, key, default):
     key = request.query_params.get(key, default)
     return key if key != "" else default
+
+
+def get_data_param(request, key, default):
+    key = request.data.get(key, default)
+    return key if key != "" else default
+
+
+def get_default_param(request, key, default):
+    key = request.query_params.get(key, request.data.get(key, default))
+    return key if key != "" else default

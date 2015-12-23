@@ -1,8 +1,6 @@
 from django.contrib.auth import authenticate
 from django.db.models import Count
-from django.views.generic.base import TemplateView
 from rest_framework.authtoken.models import Token
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from apps.area.models import Area
@@ -25,13 +23,15 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from operator import itemgetter
 from apps.decorators import my_login_required
-from apps.utils import get_param
+from apps.utils import get_param, get_data_param
+from django.utils.decorators import method_decorator
 
 
 class LoginView(APIView):
-    def get(self, request, format=None):
-        username = get_param(request, 'username', None)
-        password = get_param(request, 'password', None)
+
+    def post(self, request, format=None):
+        username = get_data_param(request, 'username', None)
+        password = get_data_param(request, 'password', None)
         user = authenticate(username=username, password=password)
         if user:
             token = Token.objects.get_or_create(user=user)
@@ -43,6 +43,8 @@ class LoginView(APIView):
 
 
 class OverallFeedbackView(APIView):
+
+    @method_decorator(my_login_required)
     def get(self, request, format=None):
         now = datetime.now()
 
@@ -68,6 +70,8 @@ class OverallFeedbackView(APIView):
 
 
 class FeedbackAnalysisView(APIView):
+
+    @method_decorator(my_login_required)
     def get(self, request, format=None):
         now = datetime.now()
         feedbacks = []
@@ -119,6 +123,8 @@ class FeedbackAnalysisView(APIView):
 
 
 class FeedbackAnalysisBreakdownView(APIView):
+
+    @method_decorator(my_login_required)
     def get(self, request, format=None):
         try:
             region_id = get_param(request, 'region', None)
@@ -143,6 +149,8 @@ class FeedbackAnalysisBreakdownView(APIView):
 
 
 class OverallRatingView(APIView):
+
+    @method_decorator(my_login_required)
     def get(self, request, format=None):
         feedback_records_list = []
 
@@ -219,6 +227,8 @@ class OverallRatingView(APIView):
 
 
 class CategoryPerformanceView(APIView):
+
+    @method_decorator(my_login_required)
     def get(self, request, format=None):
         now = datetime.now()
 
@@ -254,6 +264,8 @@ class CategoryPerformanceView(APIView):
 
 
 class PositiveNegativeFeedbackView(APIView):
+
+    @method_decorator(my_login_required)
     def get(self, request, format=None):
         try:
             region_id = get_param(request, 'region', None)
@@ -274,6 +286,8 @@ class PositiveNegativeFeedbackView(APIView):
 
 
 class CommentsView(APIView):
+
+    @method_decorator(my_login_required)
     def get(self, request, format=None):
         try:
             region_id = get_param(request, 'region', None)
@@ -296,6 +310,8 @@ class CommentsView(APIView):
 
 
 class MapView(APIView):
+
+    @method_decorator(my_login_required)
     def get(self, request, format=None):
         now = datetime.now()
 
@@ -314,6 +330,8 @@ class MapView(APIView):
 
 
 class FeedbackSegmentationView(APIView):
+
+    @method_decorator(my_login_required)
     def get(self, request, format=None):
         try:
             region_id = get_param(request, 'region', None)
@@ -353,6 +371,8 @@ class FeedbackSegmentationView(APIView):
 
 
 class TopConcernsView(APIView):
+
+    @method_decorator(my_login_required)
     def get(self, request, format=None):
         try:
             concerns = [
@@ -370,6 +390,8 @@ class TopConcernsView(APIView):
 
 
 class SegmentationRatingView(APIView):
+
+    @method_decorator(my_login_required)
     def get(self, request, format=None):
         now = datetime.now()
         try:
@@ -397,10 +419,12 @@ class SegmentationRatingView(APIView):
 
 
 class ActionTakenView(APIView):
-    def get(self, request, format=None):
+
+    @method_decorator(my_login_required)
+    def post(self, request, format=None):
         try:
-            feedback_id = get_param(request, 'feedback_id', None)
-            action_id = get_param(request, 'action_id', None)
+            feedback_id = get_data_param(request, 'feedback_id', None)
+            action_id = get_data_param(request, 'action_id', None)
 
             action_id = int(action_id) if action_id else None
             if feedback_id and action_id and valid_action_id(action_id):
@@ -418,6 +442,8 @@ class ActionTakenView(APIView):
 
 
 class ActionAnalysisView(APIView):
+
+    @method_decorator(my_login_required)
     def get(self, request, format=None):
         now = datetime.now()
         data_list = []

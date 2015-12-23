@@ -109,13 +109,13 @@ WEBSOCKET_ADDRESS = '172.16.11.113'
 WEBSOCKET_PORT = '5678'
 
 #------------------------- Parse Constants --------------------------
+#MFS - Staging Keys
 APPLICATION_ID = "FMn5KgyYiLRjLxvi1zIh3KQNV6OpOxhZu0CswXCa"
 REST_API_KEY = "fIGO4Y5KdvgKM8dsspYQrfO5raxdfmbaDdodeQOb"
 MASTER_KEY = "dp1YtF7VkUvRYAhmCtc52hlb5jmjpBZAVFSuYexo"
-#MFS - Staging Keys
 
 
 try:
-    from local_settings import *
+    from lively.local_settings import *
 except ImportError:
     pass
