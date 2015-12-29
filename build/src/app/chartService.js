@@ -51,7 +51,7 @@ angular.module('livefeed.chart', [
           };
         }),
         donutData: _.map(graph_data.analysis,  function(data){
-          return   _.map(data.data.action_analysis,  function(dat){ return {label: dat.action_taken === 1 ? "Unprocessed" : dat.action_taken === 2 ? "Processed" : "Deferred", value: dat.count};});
+          return   _.map(data.data.action_analysis,  function(dat){ return {label: dat.action_taken === 1 ? "Unprocessed" : dat.action_taken === 2 ? "Processed" : "Deferred", value: dat.count, action_taken: dat.action_taken};});
         }),
         donutOptions: _.map(graph_data.analysis,  function(data){
           return   {
