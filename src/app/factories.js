@@ -29,7 +29,7 @@ angular.module( 'factories', [
  function Authentication() {
      this.service = $resource(apiLinks.staging,{},
          {
-             login: {method: "GET",isArray: false, params: {endpoint: "login/"}}
+             login: {method: "POST",isArray: false, params: {endpoint: "login/"}}
          });
    }
 
@@ -58,7 +58,7 @@ angular.module( 'factories', [
                     feedback_segmentation: {method: "GET",isArray: false, params: {endpoint: "feedback_segmentation/"}},
                     top_concerns: {method: "GET", isArray: false, params: {endpoint: "top_concerns/"}},
                     segmentation_rating:{method: "GET",isArray: false, params: {endpoint: "segmentation_rating/"}},
-                    action_taken:{method: "GET",isArray: false, params: {endpoint: "action_taken/"}},
+                    action_taken:{method: "POST",isArray: false, params: {endpoint: "action_taken/"}},
                     action_analysis: {method: "GET",isArray: false, params: {endpoint: "action_analysis/"}},
                     area_analysis: {method: "GET",isArray: true, params: {endpoint: "area/"}}
                  });
