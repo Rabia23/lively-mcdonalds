@@ -25,7 +25,7 @@ angular.module("coupon/coupon.tpl.html", []).run(["$templateCache", function($te
 
 angular.module("dashboard/category-performance-analysis/category-performance-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/category-performance-analysis/category-performance-analysis.tpl.html",
-    "<div class=\"section-holder ng-scope\">\n" +
+    "<!-- <div class=\"section-holder ng-scope\">\n" +
     "	<div class=\"info-holder\">\n" +
     "\n" +
     "  <div class=\"heading-holder\">\n" +
@@ -81,6 +81,95 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "  	</div>\n" +
     "  </div>\n" +
     "</div>\n" +
+    "</div> -->\n" +
+    "\n" +
+    "\n" +
+    "<div class=\"same-height-block add\">\n" +
+    "  <div class=\"ibox float-e-margins\">\n" +
+    "      <div class=\"title-outer\">\n" +
+    "          <div class=\"ibox-title\">\n" +
+    "              <h5>Business Segment Breakdown</h5>\n" +
+    "              <div class=\"ibox-tools\">\n" +
+    "                  <ul class=\"tab-links\">\n" +
+    "                      <li><a href=\"#\">All</a></li>\n" +
+    "                      <li class=\"item2\"><a href=\"#\">Quality</a></li>\n" +
+    "                      <li class=\"item3\"><a href=\"#\">Service</a></li>\n" +
+    "                      <li class=\"item4\"><a href=\"#\">Cleanliness</a></li>\n" +
+    "                      <li class=\"item5\">\n" +
+    "                          <div class=\"calender-outer\">\n" +
+    "                              <span class=\"calendar-holder\">\n" +
+    "                                  <i class=\"fa fa-calendar\"></i>\n" +
+    "                              </span>\n" +
+    "                          </div>\n" +
+    "                      </li>\n" +
+    "                  </ul>\n" +
+    "              </div>\n" +
+    "          </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"content-holder\">\n" +
+    "          <div class=\"ibox-content add\">\n" +
+    "              <div class=\"chart-outer\">\n" +
+    "                  <div id=\"morris-area-chart\"></div>\n" +
+    "              </div>\n" +
+    "              <div class=\"list-holder\">\n" +
+    "                  <div class=\"row\">\n" +
+    "                      <div class=\"morris-block-holder\">\n" +
+    "                          <div class=\"morris-content-holder\">\n" +
+    "                              <div class=\"morris-graph-holder\">\n" +
+    "                                 <div class=\"morris-holder\">\n" +
+    "                                      <div>\n" +
+    "                                          <canvas id=\"doughnutChart1\" height=\"140\"></canvas>\n" +
+    "                                      </div>\n" +
+    "                                 </div>\n" +
+    "                              </div>\n" +
+    "                              <strong class=\"title\"><a href=\"#\">BREAKFAST</a></strong>   \n" +
+    "                          </div>\n" +
+    "                          <div class=\"morris-content-holder\">\n" +
+    "                              <div class=\"morris-graph-holder\">\n" +
+    "                                 <div class=\"morris-holder\">\n" +
+    "                                      <div>\n" +
+    "                                          <canvas id=\"doughnutChart2\" height=\"140\"></canvas>\n" +
+    "                                      </div>\n" +
+    "                                 </div>\n" +
+    "                              </div>\n" +
+    "                              <strong class=\"title\"><a href=\"#\">LUNCH</a></strong>   \n" +
+    "                          </div>\n" +
+    "                          <div class=\"morris-content-holder\">\n" +
+    "                              <div class=\"morris-graph-holder\">\n" +
+    "                                 <div class=\"morris-holder\">\n" +
+    "                                      <div>\n" +
+    "                                          <canvas id=\"doughnutChart3\" height=\"140\"></canvas>\n" +
+    "                                      </div>\n" +
+    "                                 </div>\n" +
+    "                              </div>\n" +
+    "                              <strong class=\"title\"><a href=\"#\">SNACK</a></strong>   \n" +
+    "                          </div>\n" +
+    "                          <div class=\"morris-content-holder\">\n" +
+    "                              <div class=\"morris-graph-holder\">\n" +
+    "                                 <div class=\"morris-holder\">\n" +
+    "                                      <div>\n" +
+    "                                          <canvas id=\"doughnutChart4\" height=\"140\"></canvas>\n" +
+    "                                      </div>\n" +
+    "                                 </div>\n" +
+    "                              </div>\n" +
+    "                              <strong class=\"title\"><a href=\"#\">DINNER</a></strong>   \n" +
+    "                          </div>\n" +
+    "                          <div class=\"morris-content-holder\">\n" +
+    "                              <div class=\"morris-graph-holder\">\n" +
+    "                                 <div class=\"morris-holder\">\n" +
+    "                                      <div>\n" +
+    "                                          <canvas id=\"doughnutChart5\" height=\"140\"></canvas>\n" +
+    "                                      </div>\n" +
+    "                                 </div>\n" +
+    "                              </div>\n" +
+    "                              <strong class=\"title\"><a href=\"#\">LATE NIGHT</a></strong>   \n" +
+    "                          </div>\n" +
+    "                      </div>\n" +
+    "                  </div>\n" +
+    "              </div>\n" +
+    "          </div>\n" +
+    "      </div>\n" +
+    "  </div>\n" +
     "</div>\n" +
     "");
 }]);
@@ -102,328 +191,202 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "    </nav>\n" +
     "    <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
     "        <div class=\"header-visual\">\n" +
-    "            <nav class=\"navbar dashboard\" role=\"navigation\" style=\"margin-bottom: 0\">\n" +
-    "                <div class=\"navbar-header\">\n" +
-    "                    <a class=\"navbar-minimalize minimalize-styl-2 btn btn-primary \" href=\"#\"><i class=\"fa fa-bars\"></i> </a>\n" +
-    "                    <form role=\"search\" class=\"navbar-form-custom\" action=\"search_results.html\">\n" +
-    "                        <div class=\"form-group\">\n" +
-    "                            <input type=\"text\" placeholder=\"Search for something...\" class=\"form-control\" name=\"top-search\" id=\"top-search\">\n" +
-    "                        </div>\n" +
-    "                    </form>\n" +
+    "          <nav class=\"navbar dashboard\" role=\"navigation\" style=\"margin-bottom: 0\">\n" +
+    "            <div class=\"navbar-header\">\n" +
+    "              <a class=\"navbar-minimalize minimalize-styl-2 btn btn-primary \" href=\"#\"><i class=\"fa fa-bars\"></i> </a>\n" +
+    "              <form role=\"search\" class=\"navbar-form-custom\" action=\"search_results.html\">\n" +
+    "                <div class=\"form-group\">\n" +
+    "                  <input type=\"text\" placeholder=\"Search for something...\" class=\"form-control\" name=\"top-search\" id=\"top-search\">\n" +
     "                </div>\n" +
-    "                <ul class=\"nav navbar-top-links navbar-right\">\n" +
-    "                  <li>\n" +
-    "                      <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">{{username}}</span></span>\n" +
-    "                  </li>\n" +
-    "                  <li>\n" +
-    "                      <a style = \"cursor:pointer;\" ng-click = \"logout()\">\n" +
-    "                          <i class=\"fa fa-sign-out\"></i> Log out\n" +
-    "                      </a>\n" +
-    "                  </li>\n" +
-    "                </ul>\n" +
-    "\n" +
-    "            </nav>\n" +
-    "\n" +
-    "            <div class=\"img-holder\">\n" +
-    "                <div class=\"inner-holder\"><img alt=\"image\" class=\"img-responsive\" src=\"/assets/images/img1.jpg\" /></div>\n" +
+    "              </form>\n" +
     "            </div>\n" +
-    "            <div class=\"header-caption animated fadeInRight\">\n" +
-    "                <h1>Customer Centric Approch</h1>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"comment-block\">\n" +
-    "            <a href=\"#\" class=\"nav-opener\">\n" +
-    "                <i class=\"fa fa-comments-o\"></i>\n" +
-    "                <span class=\"count\">2</span>\n" +
-    "            </a>\n" +
-    "            <div class=\"comments-drop\">\n" +
-    "                <a href=\"#\" class=\"nav-opener\">\n" +
-    "                    <i class=\"fa fa-times\"></i>\n" +
+    "            <ul class=\"nav navbar-top-links navbar-right\">\n" +
+    "              <li>\n" +
+    "                <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">{{username}}</span></span>\n" +
+    "              </li>\n" +
+    "              <li>\n" +
+    "                <a style = \"cursor:pointer;\" ng-click = \"logout()\">\n" +
+    "                  <i class=\"fa fa-sign-out\"></i> Log out\n" +
     "                </a>\n" +
-    "                <div class=\"inner-holder\">\n" +
-    "                    <div class=\"heading-holder\">\n" +
-    "                        <div class=\"holder\">\n" +
-    "                            <div class=\"icon-holder\">\n" +
-    "                                <i class=\"fa fa-comments-o\"></i>\n" +
-    "                            </div>\n" +
-    "                            <h2>Positive/Negative Feedback</h2>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"comments-holder\">\n" +
-    "                        <ul class=\"comments-list list-unstyled\">\n" +
-    "                            <li class=\"negative deferred\">\n" +
-    "                                <p>Chicken was all red inside</p>\n" +
-    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                            </li>\n" +
-    "                            <li class=\"positive processed\">\n" +
-    "                                <p>We want pratha n omlete</p>\n" +
-    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                            </li>\n" +
-    "                            <li class=\"positive\">\n" +
-    "                                <p>People are too choosy here!!</p>\n" +
-    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                            </li>\n" +
-    "                            <li class=\"negative\">\n" +
-    "                                <p>Value meal price should be less then 285 for students</p>\n" +
-    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                            </li>\n" +
-    "                            <li class=\"positive\">\n" +
-    "                                <p>Overall good, your fries quantity is less</p>\n" +
-    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                            </li>\n" +
-    "                            <li class=\"positive\">\n" +
-    "                                <p>People are too choosy here!!</p>\n" +
-    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                            </li>\n" +
-    "                            <li class=\"negative\">\n" +
-    "                                <p>Chicken was all red inside</p>\n" +
-    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                            </li>\n" +
-    "                            <li class=\"positive\">\n" +
-    "                                <p>We want pratha n omlete</p>\n" +
-    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                            </li>\n" +
-    "                            <li class=\"positive\">\n" +
-    "                                <p>People are too choosy here!!</p>\n" +
-    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                            </li>\n" +
-    "                        </ul>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"btn-holder\">\n" +
-    "                        <a href=\"#\" class=\"btn btn-info pull-right\">View All</a>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
-    "        <div class=\"row same-height-parent\">\n" +
-    "            <div class=\"col-lg-6 col-lg-push-6 business-segment\">\n" +
-    "                <div class=\"same-height-block add\">\n" +
-    "                    <div class=\"ibox float-e-margins\">\n" +
-    "                        <div class=\"title-outer\">\n" +
-    "                            <div class=\"ibox-title\">\n" +
-    "                                <h5>Business Segment Breakdown</h5>\n" +
-    "                                <div class=\"ibox-tools\">\n" +
-    "                                    <ul class=\"tab-links\">\n" +
-    "                                        <li><a href=\"#\">All</a></li>\n" +
-    "                                        <li class=\"item2\"><a href=\"#\">Quality</a></li>\n" +
-    "                                        <li class=\"item3\"><a href=\"#\">Service</a></li>\n" +
-    "                                        <li class=\"item4\"><a href=\"#\">Cleanliness</a></li>\n" +
-    "                                        <li class=\"item5\">\n" +
-    "                                            <div class=\"calender-outer\">\n" +
-    "                                                <span class=\"calendar-holder\">\n" +
-    "                                                    <i class=\"fa fa-calendar\"></i>\n" +
-    "                                                </span>\n" +
-    "                                            </div>\n" +
-    "                                        </li>\n" +
-    "                                    </ul>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"content-holder\">\n" +
-    "                            <div class=\"ibox-content add\">\n" +
-    "                                <div class=\"chart-outer\">\n" +
-    "                                    <div id=\"morris-area-chart\"></div>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"list-holder\">\n" +
-    "                                    <div class=\"row\">\n" +
-    "                                        <div class=\"morris-block-holder\">\n" +
-    "                                            <div class=\"morris-content-holder\">\n" +
-    "                                                <div class=\"morris-graph-holder\">\n" +
-    "                                                   <div class=\"morris-holder\">\n" +
-    "                                                        <div>\n" +
-    "                                                            <canvas id=\"doughnutChart1\" height=\"140\"></canvas>\n" +
-    "                                                        </div>\n" +
-    "                                                   </div>\n" +
-    "                                                </div>\n" +
-    "                                                <strong class=\"title\"><a href=\"#\">BREAKFAST</a></strong>   \n" +
-    "                                            </div>\n" +
-    "                                            <div class=\"morris-content-holder\">\n" +
-    "                                                <div class=\"morris-graph-holder\">\n" +
-    "                                                   <div class=\"morris-holder\">\n" +
-    "                                                        <div>\n" +
-    "                                                            <canvas id=\"doughnutChart2\" height=\"140\"></canvas>\n" +
-    "                                                        </div>\n" +
-    "                                                   </div>\n" +
-    "                                                </div>\n" +
-    "                                                <strong class=\"title\"><a href=\"#\">LUNCH</a></strong>   \n" +
-    "                                            </div>\n" +
-    "                                            <div class=\"morris-content-holder\">\n" +
-    "                                                <div class=\"morris-graph-holder\">\n" +
-    "                                                   <div class=\"morris-holder\">\n" +
-    "                                                        <div>\n" +
-    "                                                            <canvas id=\"doughnutChart3\" height=\"140\"></canvas>\n" +
-    "                                                        </div>\n" +
-    "                                                   </div>\n" +
-    "                                                </div>\n" +
-    "                                                <strong class=\"title\"><a href=\"#\">SNACK</a></strong>   \n" +
-    "                                            </div>\n" +
-    "                                            <div class=\"morris-content-holder\">\n" +
-    "                                                <div class=\"morris-graph-holder\">\n" +
-    "                                                   <div class=\"morris-holder\">\n" +
-    "                                                        <div>\n" +
-    "                                                            <canvas id=\"doughnutChart4\" height=\"140\"></canvas>\n" +
-    "                                                        </div>\n" +
-    "                                                   </div>\n" +
-    "                                                </div>\n" +
-    "                                                <strong class=\"title\"><a href=\"#\">DINNER</a></strong>   \n" +
-    "                                            </div>\n" +
-    "                                            <div class=\"morris-content-holder\">\n" +
-    "                                                <div class=\"morris-graph-holder\">\n" +
-    "                                                   <div class=\"morris-holder\">\n" +
-    "                                                        <div>\n" +
-    "                                                            <canvas id=\"doughnutChart5\" height=\"140\"></canvas>\n" +
-    "                                                        </div>\n" +
-    "                                                   </div>\n" +
-    "                                                </div>\n" +
-    "                                                <strong class=\"title\"><a href=\"#\">LATE NIGHT</a></strong>   \n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "            <div class=\"col-lg-6 col-lg-pull-6\">\n" +
-    "                <div class=\"same-height-block\">\n" +
-    "                    <div class=\"row\">\n" +
-    "                        <div class=\"col-lg-8 same-height-col\">\n" +
-    "                            <ui-view name = \"overall_feedback\"></ui-view>\n" +
-    "                            <ui-view name = \"top_concern\"></ui-view>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-lg-4 same-height-col\">\n" +
-    "                            <div class=\"row inner-row\">\n" +
-    "                                <div class=\"col-sm-6 col-lg-12\">\n" +
-    "                                    <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                                        <div class=\"title-outer\">\n" +
-    "                                            <div class=\"ibox-title\">\n" +
-    "                                                <span class=\"label label-primary pull-right\">Monthly</span>\n" +
-    "                                                <h5>Income</h5>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"content-holder\">\n" +
-    "                                            <div class=\"ibox-content\">\n" +
-    "                                                <h1 class=\"no-margins\">22 285,400</h1>\n" +
-    "                                                <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "                                                <small>New orders</small>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"col-sm-6 col-lg-12\">\n" +
-    "                                    <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                                        <div class=\"title-outer\">\n" +
-    "                                            <div class=\"ibox-title\">\n" +
-    "                                                <span class=\"label label-primary pull-right\">Monthly</span>\n" +
-    "                                                <h5>Income</h5>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"content-holder\">\n" +
-    "                                            <div class=\"ibox-content\">\n" +
-    "                                                <h1 class=\"no-margins\">22 285,400</h1>\n" +
-    "                                                <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "                                                <small>New orders</small>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row inner-row add\">\n" +
-    "                                <div class=\"col-sm-6 col-lg-12\">\n" +
-    "                                    <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                                        <div class=\"title-outer\">\n" +
-    "                                            <div class=\"ibox-title\">\n" +
-    "                                                <span class=\"label label-primary pull-right\">Monthly</span>\n" +
-    "                                                <h5>Income</h5>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"content-holder\">\n" +
-    "                                            <div class=\"ibox-content\">\n" +
-    "                                                <h1 class=\"no-margins\">22 285,400</h1>\n" +
-    "                                                <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "                                                <small>New orders</small>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"col-sm-6 col-lg-12\">\n" +
-    "                                    <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                                        <div class=\"title-outer\">\n" +
-    "                                            <div class=\"ibox-title\">\n" +
-    "                                                <span class=\"label label-primary pull-right\">Monthly</span>\n" +
-    "                                                <h5>Income</h5>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"content-holder\">\n" +
-    "                                            <div class=\"ibox-content\">\n" +
-    "                                                <h1 class=\"no-margins\">22 285,400</h1>\n" +
-    "                                                <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "                                                <small>New orders</small>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"row\">\n" +
-    "          <div class=\"col-xs-12 patch-section\">\n" +
-    "            <ui-view name = \"regional_analysis\"></ui-view>\n" +
+    "              </li>\n" +
+    "            </ul>\n" +
+    "          </nav>\n" +
+    "\n" +
+    "          <div class=\"img-holder\">\n" +
+    "            <div class=\"inner-holder\"><img alt=\"image\" class=\"img-responsive\" src=\"/assets/images/img1.jpg\" /></div>\n" +
+    "          </div>\n" +
+    "          <div class=\"header-caption animated fadeInRight\">\n" +
+    "            <h1>Customer Centric Approch</h1>\n" +
     "          </div>\n" +
     "        </div>\n" +
-    "        <div class=\"row same-height-parent\">\n" +
-    "            <div class=\"col-lg-6 map-section\">\n" +
-    "                <div class=\"ibox float-e-margins\">\n" +
-    "                    <div class=\"ibox-title\">\n" +
-    "                        <h5>Benchmark Map</h5>\n" +
-    "                        <div class=\"ibox-tools\">\n" +
-    "                            <ul class=\"tab-links\">\n" +
-    "                                <li>\n" +
-    "                                    <div class=\"calender-outer\">\n" +
-    "                                        <span class=\"calendar-holder\">\n" +
-    "                                            <i class=\"fa fa-calendar\"></i>\n" +
-    "                                        </span>\n" +
-    "                                    </div>\n" +
-    "                                </li>\n" +
-    "                            </ul>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"ibox-content same-height\">\n" +
-    "                        <div class=\"block-holder\">\n" +
-    "                            <div id=\"world-map\"></div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
+    "        <div class=\"comment-block\">\n" +
+    "          <a href=\"#\" class=\"nav-opener\">\n" +
+    "            <i class=\"fa fa-comments-o\"></i>\n" +
+    "            <span class=\"count\">2</span>\n" +
+    "          </a>\n" +
+    "          <div class=\"comments-drop\">\n" +
+    "              <a href=\"#\" class=\"nav-opener\">\n" +
+    "                  <i class=\"fa fa-times\"></i>\n" +
+    "              </a>\n" +
+    "              <div class=\"inner-holder\">\n" +
+    "                  <div class=\"heading-holder\">\n" +
+    "                      <div class=\"holder\">\n" +
+    "                          <div class=\"icon-holder\">\n" +
+    "                              <i class=\"fa fa-comments-o\"></i>\n" +
+    "                          </div>\n" +
+    "                          <h2>Positive/Negative Feedback</h2>\n" +
+    "                      </div>\n" +
+    "                  </div>\n" +
+    "                  <div class=\"comments-holder\">\n" +
+    "                      <ul class=\"comments-list list-unstyled\">\n" +
+    "                          <li class=\"negative deferred\">\n" +
+    "                              <p>Chicken was all red inside</p>\n" +
+    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                          </li>\n" +
+    "                          <li class=\"positive processed\">\n" +
+    "                              <p>We want pratha n omlete</p>\n" +
+    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                          </li>\n" +
+    "                          <li class=\"positive\">\n" +
+    "                              <p>People are too choosy here!!</p>\n" +
+    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                          </li>\n" +
+    "                          <li class=\"negative\">\n" +
+    "                              <p>Value meal price should be less then 285 for students</p>\n" +
+    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                          </li>\n" +
+    "                          <li class=\"positive\">\n" +
+    "                              <p>Overall good, your fries quantity is less</p>\n" +
+    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                          </li>\n" +
+    "                          <li class=\"positive\">\n" +
+    "                              <p>People are too choosy here!!</p>\n" +
+    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                          </li>\n" +
+    "                          <li class=\"negative\">\n" +
+    "                              <p>Chicken was all red inside</p>\n" +
+    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                          </li>\n" +
+    "                          <li class=\"positive\">\n" +
+    "                              <p>We want pratha n omlete</p>\n" +
+    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                          </li>\n" +
+    "                          <li class=\"positive\">\n" +
+    "                              <p>People are too choosy here!!</p>\n" +
+    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                          </li>\n" +
+    "                      </ul>\n" +
+    "                  </div>\n" +
+    "                  <div class=\"btn-holder\">\n" +
+    "                      <a href=\"#\" class=\"btn btn-info pull-right\">View All</a>\n" +
+    "                  </div>\n" +
+    "              </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
+    "          <div class=\"row same-height-parent\">\n" +
+    "            <div class=\"col-lg-6 col-lg-push-6 business-segment\">\n" +
+    "              <ui-view name = \"category_performance_analysis\"></ui-view>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-lg-6 col-lg-pull-6\">\n" +
+    "              <div class=\"same-height-block\">\n" +
+    "                <div class=\"row\">\n" +
+    "                  <div class=\"col-lg-8 same-height-col\">\n" +
+    "                    <ui-view name = \"overall_feedback\"></ui-view>\n" +
+    "                    <ui-view name = \"top_concern\"></ui-view>\n" +
+    "                  </div>\n" +
+    "                  <div class=\"col-lg-4 same-height-col\">\n" +
+    "                      <div class=\"row inner-row\">\n" +
+    "                          <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                              <div class=\"ibox float-e-margins detail-block\">\n" +
+    "                                  <div class=\"title-outer\">\n" +
+    "                                      <div class=\"ibox-title\">\n" +
+    "                                          <span class=\"label label-primary pull-right\">Monthly</span>\n" +
+    "                                          <h5>Income</h5>\n" +
+    "                                      </div>\n" +
+    "                                  </div>\n" +
+    "                                  <div class=\"content-holder\">\n" +
+    "                                      <div class=\"ibox-content\">\n" +
+    "                                          <h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "                                          <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "                                          <small>New orders</small>\n" +
+    "                                      </div>\n" +
+    "                                  </div>\n" +
+    "                              </div>\n" +
+    "                          </div>\n" +
+    "                          <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                              <div class=\"ibox float-e-margins detail-block\">\n" +
+    "                                  <div class=\"title-outer\">\n" +
+    "                                      <div class=\"ibox-title\">\n" +
+    "                                          <span class=\"label label-primary pull-right\">Monthly</span>\n" +
+    "                                          <h5>Income</h5>\n" +
+    "                                      </div>\n" +
+    "                                  </div>\n" +
+    "                                  <div class=\"content-holder\">\n" +
+    "                                      <div class=\"ibox-content\">\n" +
+    "                                          <h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "                                          <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "                                          <small>New orders</small>\n" +
+    "                                      </div>\n" +
+    "                                  </div>\n" +
+    "                              </div>\n" +
+    "                          </div>\n" +
+    "                      </div>\n" +
+    "                      <div class=\"row inner-row add\">\n" +
+    "                          <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                              <div class=\"ibox float-e-margins detail-block\">\n" +
+    "                                  <div class=\"title-outer\">\n" +
+    "                                      <div class=\"ibox-title\">\n" +
+    "                                          <span class=\"label label-primary pull-right\">Monthly</span>\n" +
+    "                                          <h5>Income</h5>\n" +
+    "                                      </div>\n" +
+    "                                  </div>\n" +
+    "                                  <div class=\"content-holder\">\n" +
+    "                                      <div class=\"ibox-content\">\n" +
+    "                                          <h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "                                          <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "                                          <small>New orders</small>\n" +
+    "                                      </div>\n" +
+    "                                  </div>\n" +
+    "                              </div>\n" +
+    "                          </div>\n" +
+    "                          <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                              <div class=\"ibox float-e-margins detail-block\">\n" +
+    "                                  <div class=\"title-outer\">\n" +
+    "                                      <div class=\"ibox-title\">\n" +
+    "                                          <span class=\"label label-primary pull-right\">Monthly</span>\n" +
+    "                                          <h5>Income</h5>\n" +
+    "                                      </div>\n" +
+    "                                  </div>\n" +
+    "                                  <div class=\"content-holder\">\n" +
+    "                                      <div class=\"ibox-content\">\n" +
+    "                                          <h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "                                          <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "                                          <small>New orders</small>\n" +
+    "                                      </div>\n" +
+    "                                  </div>\n" +
+    "                              </div>\n" +
+    "                          </div>\n" +
+    "                      </div>\n" +
+    "                  </div>\n" +
     "                </div>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div class=\"row\">\n" +
+    "            <div class=\"col-xs-12 patch-section\">\n" +
+    "              <ui-view name = \"regional_analysis\"></ui-view>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "          <div class=\"row same-height-parent\">\n" +
+    "            <div class=\"col-lg-6 map-section\">\n" +
+    "              <ui-view name = \"feedback_map\"></ui-view>\n" +
     "            </div>\n" +
     "            <div class=\"col-lg-6 timeline-section\">\n" +
-    "                <div class=\"ibox float-e-margins\">\n" +
-    "                    <div class=\"ibox-title\">\n" +
-    "                        <h5>Timeline</h5>\n" +
-    "                        <div class=\"ibox-tools\">\n" +
-    "                            <ul class=\"tab-links\">\n" +
-    "                                <li>\n" +
-    "                                    <div class=\"calender-outer\">\n" +
-    "                                        <span class=\"calendar-holder\">\n" +
-    "                                            <i class=\"fa fa-calendar\"></i>\n" +
-    "                                        </span>\n" +
-    "                                    </div>\n" +
-    "                                </li>\n" +
-    "                            </ul>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"ibox-content same-height\">\n" +
-    "                        <div class=\"block-holder\">\n" +
-    "                            <canvas id=\"lineChart\" height=\"140\"></canvas>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
+    "              <ui-view name = \"overall_rating\"></ui-view>\n" +
     "            </div>\n" +
-    "        </div></div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
     "        <div class=\"footer\">\n" +
     "            <div class=\"pull-right\">\n" +
     "                10GB of <strong>250GB</strong> Free.\n" +
@@ -441,7 +404,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
 
 angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/feedback-map/feedback-map.tpl.html",
-    "<div class=\"info-block\">\n" +
+    "<!-- <div class=\"info-block\">\n" +
     "  <div class=\"info-box\">\n" +
     "    <div class=\"heading\">\n" +
     "      <h2>\n" +
@@ -471,7 +434,30 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "	  </div>\n" +
     "  </div>\n" +
     "  \n" +
-    "</div>\n" +
+    "</div> -->\n" +
+    "\n" +
+    "\n" +
+    " <div class=\"ibox float-e-margins\">\n" +
+    "                  <div class=\"ibox-title\">\n" +
+    "                      <h5>Benchmark Map</h5>\n" +
+    "                      <div class=\"ibox-tools\">\n" +
+    "                          <ul class=\"tab-links\">\n" +
+    "                              <li>\n" +
+    "                                  <div class=\"calender-outer\">\n" +
+    "                                      <span class=\"calendar-holder\">\n" +
+    "                                          <i class=\"fa fa-calendar\"></i>\n" +
+    "                                      </span>\n" +
+    "                                  </div>\n" +
+    "                              </li>\n" +
+    "                          </ul>\n" +
+    "                      </div>\n" +
+    "                  </div>\n" +
+    "                  <div class=\"ibox-content same-height\">\n" +
+    "                      <div class=\"block-holder\">\n" +
+    "                          <div id=\"world-map\"></div>\n" +
+    "                      </div>\n" +
+    "                  </div>\n" +
+    "              </div>\n" +
     "");
 }]);
 
@@ -541,7 +527,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
 
 angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/overall-rating/overall-rating.tpl.html",
-    "<div class=\"rating-section\" ng-class = \"{loading: show_loading}\">\n" +
+    "<!-- <div class=\"rating-section\" ng-class = \"{loading: show_loading}\">\n" +
     "  <header class=\"heading-block\">\n" +
     "    <h2>\n" +
     "    	Timeline\n" +
@@ -578,7 +564,31 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "    	</div>\n" +
     "    </div>\n" +
     "  </div>\n" +
-    "</div>\n" +
+    "</div> -->\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "<div class=\"ibox float-e-margins\">\n" +
+    "                    <div class=\"ibox-title\">\n" +
+    "                        <h5>Timeline</h5>\n" +
+    "                        <div class=\"ibox-tools\">\n" +
+    "                            <ul class=\"tab-links\">\n" +
+    "                                <li>\n" +
+    "                                    <div class=\"calender-outer\">\n" +
+    "                                        <span class=\"calendar-holder\">\n" +
+    "                                            <i class=\"fa fa-calendar\"></i>\n" +
+    "                                        </span>\n" +
+    "                                    </div>\n" +
+    "                                </li>\n" +
+    "                            </ul>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"ibox-content same-height\">\n" +
+    "                        <div class=\"block-holder\">\n" +
+    "                            <canvas id=\"lineChart\" height=\"140\"></canvas>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
     "");
 }]);
 
@@ -689,121 +699,7 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
 
 angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/regional-analysis/regional-analysis.tpl.html",
-    "<!-- <div class=\"section-holder\" >\n" +
-    "  <div class=\"info-area\" ng-class=\"{loading: show_loading}\">\n" +
-    "    <div class=\"heading-holder\">\n" +
-    "\n" +
-    "    	<h2 ng-show = \"area_view\">{{title}}\n" +
-    "          <span class=\"icon-help\" uib-popover=\"Representation of regional/city/branch breakdown for [1] Amount of complaint resolutions; [2] Overall Ratings; [3] QSC Complaints\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
-    "        </h2>\n" +
-    "        <h2 ng-show = \"area_view == false && regional_view == true\">{{selected_area.name}}'s Region Analysis</h2>\n" +
-    "		<h2 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}}'s City Analysis</h2>\n" +
-    "		<h2 ng-show = \"area_view == false && regional_view == false && city_view == false\">{{selected_city.name}}'s Branch Analysis</h2>\n" +
-    "    	<div class=\"btn-group pull-right\">\n" +
-    "		  	  <ul>\n" +
-    "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Complaints'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Complaint Resolution Analysis\">Complaints</label></li>\n" +
-    "		  	  	<li> <label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Overall Feedback Analysis\">Rating</label></li>\n" +
-    "		  	  	<li><label class=\"btn btn-default\" ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Overall QSC Analysis\">QSC</label></li>\n" +
-    "\n" +
-    "		  	  	<li>\n" +
-    "		  	  		<div class=\"calender-outer\">\n" +
-    "					<span class = \"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "					  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
-    "					  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
-    "					</span>\n" +
-    "				  </div>\n" +
-    "		  	  	</li>\n" +
-    "		  	  </ul>\n" +
-    "		</div>\n" +
-    "    </div>\n" +
-    "    <div class=\"holder\">\n" +
-    "     <div class = \"breadcrum\">\n" +
-    "        <span ng-hide = \"area_view\">\n" +
-    "         <a ng-click = \"backToAreas()\" style = \"cursor:pointer\">Area/</a>\n" +
-    "       </span>\n" +
-    "       <span ng-show = \"area_view == false && regional_view == false\">\n" +
-    "         <a ng-click = \"backToRegions(selected_area)\" style = \"cursor:pointer\">{{selected_area.name}}/</a>\n" +
-    "       </span>\n" +
-    "       <span ng-show = \"area_view == false && regional_view == false && city_view == false\">\n" +
-    "         <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}}/</a>\n" +
-    "       </span>\n" +
-    "     </div>\n" +
-    "\n" +
-    "    <div class=\"list-container\">\n" +
-    "    	<div class=\"inner-holder\">\n" +
-    "    		<div class=\"list-inner\">\n" +
-    "\n" +
-    "             <ul class=\"info-list\" ng-show = \"area_view == true\">\n" +
-    "              <li ng-repeat = \"area in donut_graph_data.objects track by $index\">\n" +
-    "                <div class=\"graph-holder regional-analysis\" same-region-height data-data=\"donut_graph_data.donutData[$index]\">\n" +
-    "                  <div class=\"graph-inner\">\n" +
-    "                     <div ng-show=\"area.show_chart\" morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open(option,area,region,city,branch)\"></div>\n" +
-    "                  </div>\n" +
-    "                    <div ng-hide=\"area.show_chart\">No data available</div>\n" +
-    "                </div>\n" +
-    "                <h3>\n" +
-    "                  <a ng-click = \"showChart(area, 'regions')\" style = \"cursor:pointer;\">{{area.name}}</a>\n" +
-    "                </h3>\n" +
-    "              </li>\n" +
-    "            </ul>\n" +
-    "\n" +
-    "            <div ng-show=\"show_string && area_view == true\">No area available</div>\n" +
-    "\n" +
-    "    		<ul class=\"info-list\" ng-show = \"area_view == false && regional_view == true\">\n" +
-    "              <li ng-repeat = \"region in donut_regions_data.objects track by $index\">\n" +
-    "                <div class=\"graph-holder regional-analysis\" same-region-height data-data=\"donut_regions_data.donutData[$index]\">\n" +
-    "                  <div class=\"graph-inner\">\n" +
-    "                     <div ng-show=\"region.show_chart\" morris-chart data-data=\"donut_regions_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_regions_data.donutOptions[$index]\" data-action=\"open(option,selected_area,region,city,branch)\"></div>\n" +
-    "                  </div>\n" +
-    "                  <div ng-hide=\"region.show_chart\">No data available</div>\n" +
-    "                </div>\n" +
-    "                <h3>\n" +
-    "                  <a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{region.name}}</a>\n" +
-    "                </h3>\n" +
-    "              </li>\n" +
-    "            </ul>\n" +
-    "\n" +
-    "            <div ng-show=\"show_string && area_view == false && regional_view == true\">No region available</div>\n" +
-    "\n" +
-    "            <ul class=\"info-list\" ng-show = \"area_view == false && regional_view == false && city_view == true\">\n" +
-    "              <li ng-repeat = \"city in donut_cities_data.objects track by $index\">\n" +
-    "                <div class=\"graph-holder\" same-city-height data-data = \"donut_cities_data.donutData[$index]\">\n" +
-    "                  <div class=\"graph-inner\">\n" +
-    "                  	 <div ng-show=\"city.show_chart\" morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\" data-action=\"open(option,selected_area,selected_region,city,branch)\"></div>\n" +
-    "                  </div>\n" +
-    "                  <div ng-hide=\"city.show_chart\">No data available</div>\n" +
-    "                </div>\n" +
-    "                <h3>\n" +
-    "                  <a ng-click = \"showChart(city, 'branches')\" style = \"cursor:pointer;\">{{city.name}}</a>\n" +
-    "                </h3>\n" +
-    "              </li>\n" +
-    "            </ul>\n" +
-    "\n" +
-    "            <div ng-show=\"show_string && area_view == false && regional_view == false && city_view == true\">No city available</div>\n" +
-    "\n" +
-    "            <ul class=\"info-list\" ng-show = \"area_view == false && regional_view == false && city_view == false\">\n" +
-    "              <li ng-repeat = \"branch in donut_branches_data.objects track by $index\">\n" +
-    "                <div class=\"graph-holder\" same-branch-height  data-data = \"donut_branches_data.donutData[$index]\">\n" +
-    "                 <div class=\"graph-inner\">\n" +
-    "                 	 <div ng-show=\"branch.show_chart\" morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\" data-action=\"open(option,selected_area,selected_region,selected_city,branch)\"></div>\n" +
-    "                 </div>\n" +
-    "                  <div ng-hide=\"branch.show_chart\">No data available</div>\n" +
-    "                </div>\n" +
-    "                <h3>{{branch.name}}</h3>\n" +
-    "              </li>\n" +
-    "             </ul>\n" +
-    "\n" +
-    "             <div ng-show=\"show_string && area_view == false && regional_view == false && city_view == false\">No branch available</div>\n" +
-    "    		</div>\n" +
-    "    	</div>\n" +
-    "    </div>\n" +
-    "    </div>\n" +
-    "  </div>\n" +
-    "</div> -->\n" +
-    "\n" +
-    "\n" +
-    "\n" +
-    " <div class=\"ibox float-e-margins\">\n" +
+    "<div class=\"ibox float-e-margins\">\n" +
     "    <div class=\"ibox-title\">\n" +
     "        <h5 ng-show = \"area_view\">{{title}}</h5>\n" +
     "        <h5 ng-show = \"area_view == false && regional_view == true\">{{selected_area.name}}'s Region Analysis</h5>\n" +
