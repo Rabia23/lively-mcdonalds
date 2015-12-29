@@ -29,29 +29,31 @@
 
 
 <div class="row inner-row rating">
-                                <div class="col-xs-12">
-                                    <div class="ibox float-e-margins">
-                                        <div class="title-outer">
-                                            <div class="ibox-title">
-                                                <h5>Overall Rating</h5>
-                                                <ul class="tab-links">
-                                                    <li>
-                                                        <div class="calender-outer">
-                                                            <span class="calendar-holder">
-                                                                <i class="fa fa-calendar"></i>
-                                                            </span>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="content-holder">
-                                            <div class="ibox-content float-chart-block">
-                                                <div class="flot-chart">
-                                                    <div class="flot-chart-content" id="flot-bar-chart"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+    <div class="col-xs-12">
+        <div class="ibox float-e-margins">
+            <div class="title-outer">
+                <div class="ibox-title">
+                    <h5>Overall Rating</h5>
+                    <ul class="tab-links">
+                        <li>
+                            <div class="calender-outer">
+                                <span class = "calendar-holder pull-right" uib-tooltip="Click to Select Custom Date Range">
+                                  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption" readonly="true"/>
+                                  <i class="glyphicon glyphicon-calendar" map-range-click></i>
+                                </span>
                             </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content-holder" ng-class="{loading: show_loading}">
+                <div class="ibox-content float-chart-block">
+                    <div class="flot-chart">
+                        <canvas ng-show = "show_canvas"  id="bar" class="chart chart-bar" chart-data="bar.data" chart-labels="bar.labels" chart-colours="bar.colours" chart-options="bar.options"></canvas>
+                        <div ng-hide = "show_canvas"><h2>No data Available</h2></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
