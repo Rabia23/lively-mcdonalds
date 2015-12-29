@@ -108,7 +108,6 @@ module.exports = {
 
     ],
     assets: [
-      'vendor/font-awesome/fonts/**',
 
     ]
   }

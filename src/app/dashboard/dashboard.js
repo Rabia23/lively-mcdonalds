@@ -88,6 +88,7 @@ angular.module( 'livefeed.dashboard', [
  * And of course we define a controller for our route.
  */
 .controller( 'DashboardCtrl', function DashboardController( $scope, $state, chartService, _ , $location, $anchorScroll, Filters, $rootScope, TokenHandler, Auth) {
+  
   if (Auth.is_logged_in()) {
     $rootScope.show_username = true;
     $rootScope.username = TokenHandler.get_username();

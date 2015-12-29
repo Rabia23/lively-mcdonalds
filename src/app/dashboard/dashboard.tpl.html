@@ -24,10 +24,10 @@
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                   <li>
-                      <span class="m-r-sm text-muted welcome-message">Welcome <span class="name">Name</span></span>
+                      <span class="m-r-sm text-muted welcome-message">Welcome <span class="name">{{username}}</span></span>
                   </li>
                   <li>
-                      <a href="login.html">
+                      <a style = "cursor:pointer;" ng-click = "logout()">
                           <i class="fa fa-sign-out"></i> Log out
                       </a>
                   </li>
@@ -283,76 +283,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 patch-section">
-                <!-- <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Patch QSC Analysis</h5>
-                        <div class="ibox-tools">
-                            <ul class="tab-links">
-                                <li class="active"><a href="#">Complaints</a></li>
-                                <li><a href="#">Rating</a></li>
-                                <li><a href="#">QSC</a></li>
-                                <li>
-                                    <div class="calender-outer">
-                                        <span class="calendar-holder"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </li>
-                              </ul>
-                        </div>
-                    </div>
-                    <div class="ibox-content morris-content-outer">
-                        <div class="morris-content-holder">
-                            <div class="morris-graph-holder">
-                               <div class="morris-holder">
-                                   <div id="morris-donut-chart1"></div>
-                               </div>
-                            </div>
-                            <strong class="title"><a href="#">Name</a></strong>   
-                        </div>
-                        <div class="morris-content-holder">
-                            <div class="morris-graph-holder">
-                               <div class="morris-holder">
-                                   <div id="morris-donut-chart2"></div>
-                               </div>
-                            </div>
-                            <strong class="title"><a href="#">Name</a></strong>   
-                        </div>
-                        <div class="morris-content-holder">
-                            <div class="morris-graph-holder">
-                               <div class="morris-holder">
-                                   <div id="morris-donut-chart3"></div>
-                               </div>
-                            </div>
-                            <strong class="title"><a href="#">Name</a></strong>   
-                        </div>
-                        <div class="morris-content-holder">
-                            <div class="morris-graph-holder">
-                               <div class="morris-holder">
-                                   <div id="morris-donut-chart4"></div>
-                               </div>
-                            </div>
-                            <strong class="title"><a href="#">Name</a></strong>   
-                        </div>
-                        <div class="morris-content-holder">
-                            <div class="morris-graph-holder">
-                               <div class="morris-holder">
-                                   <div id="morris-donut-chart5"></div>
-                               </div>
-                            </div>
-                            <strong class="title"><a href="#">Name</a></strong>   
-                        </div>
-                        <div class="morris-content-holder">
-                            <div class="morris-graph-holder">
-                               <div class="morris-holder">
-                                   <div id="morris-donut-chart6"></div>
-                               </div>
-                            </div>
-                            <strong class="title"><a href="#">Name</a></strong>   
-                        </div>
-                    </div>
-                </div> -->
-                <ui-view name = "regional_analysis"></ui-view>
-            </div>
+          <div class="col-xs-12 patch-section">
+            <ui-view name = "regional_analysis"></ui-view>
+          </div>
         </div>
         <div class="row same-height-parent">
             <div class="col-lg-6 map-section">

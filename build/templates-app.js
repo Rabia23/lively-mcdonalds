@@ -113,10 +113,10 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                </div>\n" +
     "                <ul class=\"nav navbar-top-links navbar-right\">\n" +
     "                  <li>\n" +
-    "                      <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">Name</span></span>\n" +
+    "                      <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">{{username}}</span></span>\n" +
     "                  </li>\n" +
     "                  <li>\n" +
-    "                      <a href=\"login.html\">\n" +
+    "                      <a style = \"cursor:pointer;\" ng-click = \"logout()\">\n" +
     "                          <i class=\"fa fa-sign-out\"></i> Log out\n" +
     "                      </a>\n" +
     "                  </li>\n" +
@@ -372,76 +372,9 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"row\">\n" +
-    "            <div class=\"col-xs-12 patch-section\">\n" +
-    "                <!-- <div class=\"ibox float-e-margins\">\n" +
-    "                    <div class=\"ibox-title\">\n" +
-    "                        <h5>Patch QSC Analysis</h5>\n" +
-    "                        <div class=\"ibox-tools\">\n" +
-    "                            <ul class=\"tab-links\">\n" +
-    "                                <li class=\"active\"><a href=\"#\">Complaints</a></li>\n" +
-    "                                <li><a href=\"#\">Rating</a></li>\n" +
-    "                                <li><a href=\"#\">QSC</a></li>\n" +
-    "                                <li>\n" +
-    "                                    <div class=\"calender-outer\">\n" +
-    "                                        <span class=\"calendar-holder\"><i class=\"fa fa-calendar\"></i></span>\n" +
-    "                                    </div>\n" +
-    "                                </li>\n" +
-    "                              </ul>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"ibox-content morris-content-outer\">\n" +
-    "                        <div class=\"morris-content-holder\">\n" +
-    "                            <div class=\"morris-graph-holder\">\n" +
-    "                               <div class=\"morris-holder\">\n" +
-    "                                   <div id=\"morris-donut-chart1\"></div>\n" +
-    "                               </div>\n" +
-    "                            </div>\n" +
-    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
-    "                        </div>\n" +
-    "                        <div class=\"morris-content-holder\">\n" +
-    "                            <div class=\"morris-graph-holder\">\n" +
-    "                               <div class=\"morris-holder\">\n" +
-    "                                   <div id=\"morris-donut-chart2\"></div>\n" +
-    "                               </div>\n" +
-    "                            </div>\n" +
-    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
-    "                        </div>\n" +
-    "                        <div class=\"morris-content-holder\">\n" +
-    "                            <div class=\"morris-graph-holder\">\n" +
-    "                               <div class=\"morris-holder\">\n" +
-    "                                   <div id=\"morris-donut-chart3\"></div>\n" +
-    "                               </div>\n" +
-    "                            </div>\n" +
-    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
-    "                        </div>\n" +
-    "                        <div class=\"morris-content-holder\">\n" +
-    "                            <div class=\"morris-graph-holder\">\n" +
-    "                               <div class=\"morris-holder\">\n" +
-    "                                   <div id=\"morris-donut-chart4\"></div>\n" +
-    "                               </div>\n" +
-    "                            </div>\n" +
-    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
-    "                        </div>\n" +
-    "                        <div class=\"morris-content-holder\">\n" +
-    "                            <div class=\"morris-graph-holder\">\n" +
-    "                               <div class=\"morris-holder\">\n" +
-    "                                   <div id=\"morris-donut-chart5\"></div>\n" +
-    "                               </div>\n" +
-    "                            </div>\n" +
-    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
-    "                        </div>\n" +
-    "                        <div class=\"morris-content-holder\">\n" +
-    "                            <div class=\"morris-graph-holder\">\n" +
-    "                               <div class=\"morris-holder\">\n" +
-    "                                   <div id=\"morris-donut-chart6\"></div>\n" +
-    "                               </div>\n" +
-    "                            </div>\n" +
-    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div> -->\n" +
-    "                <ui-view name = \"regional_analysis\"></ui-view>\n" +
-    "            </div>\n" +
+    "          <div class=\"col-xs-12 patch-section\">\n" +
+    "            <ui-view name = \"regional_analysis\"></ui-view>\n" +
+    "          </div>\n" +
     "        </div>\n" +
     "        <div class=\"row same-height-parent\">\n" +
     "            <div class=\"col-lg-6 map-section\">\n" +
@@ -995,23 +928,23 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "</div> -->\n" +
     "\n" +
     "\n" +
-    "  <div class=\"row inner-row add\">\n" +
-    "    <div class=\"col-xs-12\">\n" +
-    "        <div class=\"ibox float-e-margins float-e-margin-none\">\n" +
-    "            <div class=\"title-outer\">\n" +
-    "                <div class=\"ibox-title\">\n" +
-    "                    <h5>Top Concerns</h5>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "            <div class=\"content-holder\">\n" +
-    "                <div class=\"ibox-content\">\n" +
-    "                    <div class=\"graph-block\">\n" +
-    "                        <canvas id=\"doughnutChart\" height=\"140\"></canvas>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
+    "<div class=\"row inner-row add\">\n" +
+    "  <div class=\"col-xs-12\">\n" +
+    "    <div class=\"ibox float-e-margins float-e-margin-none\">\n" +
+    "      <div class=\"title-outer\">\n" +
+    "        <div class=\"ibox-title\">\n" +
+    "          <h5>Top Concerns</h5>\n" +
     "        </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"content-holder\">\n" +
+    "        <div class=\"ibox-content\">\n" +
+    "          <div class=\"graph-block\">\n" +
+    "            <canvas id=\"doughnutChart\" height=\"140\"></canvas>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
     "    </div>\n" +
+    "  </div>\n" +
     "</div>\n" +
     "");
 }]);
