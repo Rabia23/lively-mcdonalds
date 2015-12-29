@@ -871,72 +871,89 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "\n" +
     "\n" +
     " <div class=\"ibox float-e-margins\">\n" +
-    "                    <div class=\"ibox-title\">\n" +
-    "                        <h5>Patch QSC Analysis</h5>\n" +
-    "                        <div class=\"ibox-tools\">\n" +
-    "                            <ul class=\"tab-links\">\n" +
-    "                                <li class=\"active\"><a href=\"#\">Complaints</a></li>\n" +
-    "                                <li><a href=\"#\">Rating</a></li>\n" +
-    "                                <li><a href=\"#\">QSC</a></li>\n" +
-    "                                <li>\n" +
-    "                                    <div class=\"calender-outer\">\n" +
-    "                                        <span class=\"calendar-holder\"><i class=\"fa fa-calendar\"></i></span>\n" +
-    "                                    </div>\n" +
-    "                                </li>\n" +
-    "                              </ul>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"ibox-content morris-content-outer\">\n" +
-    "                        <div class=\"morris-content-holder\">\n" +
-    "                            <div class=\"morris-graph-holder\">\n" +
-    "                               <div class=\"morris-holder\">\n" +
-    "                                   <div id=\"morris-donut-chart1\"></div>\n" +
-    "                               </div>\n" +
-    "                            </div>\n" +
-    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
-    "                        </div>\n" +
-    "                        <div class=\"morris-content-holder\">\n" +
-    "                            <div class=\"morris-graph-holder\">\n" +
-    "                               <div class=\"morris-holder\">\n" +
-    "                                   <div id=\"morris-donut-chart2\"></div>\n" +
-    "                               </div>\n" +
-    "                            </div>\n" +
-    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
-    "                        </div>\n" +
-    "                        <div class=\"morris-content-holder\">\n" +
-    "                            <div class=\"morris-graph-holder\">\n" +
-    "                               <div class=\"morris-holder\">\n" +
-    "                                   <div id=\"morris-donut-chart3\"></div>\n" +
-    "                               </div>\n" +
-    "                            </div>\n" +
-    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
-    "                        </div>\n" +
-    "                        <div class=\"morris-content-holder\">\n" +
-    "                            <div class=\"morris-graph-holder\">\n" +
-    "                               <div class=\"morris-holder\">\n" +
-    "                                   <div id=\"morris-donut-chart4\"></div>\n" +
-    "                               </div>\n" +
-    "                            </div>\n" +
-    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
-    "                        </div>\n" +
-    "                        <div class=\"morris-content-holder\">\n" +
-    "                            <div class=\"morris-graph-holder\">\n" +
-    "                               <div class=\"morris-holder\">\n" +
-    "                                   <div id=\"morris-donut-chart5\"></div>\n" +
-    "                               </div>\n" +
-    "                            </div>\n" +
-    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
-    "                        </div>\n" +
-    "                        <div class=\"morris-content-holder\">\n" +
-    "                            <div class=\"morris-graph-holder\">\n" +
-    "                               <div class=\"morris-holder\">\n" +
-    "                                   <div id=\"morris-donut-chart6\"></div>\n" +
-    "                               </div>\n" +
-    "                            </div>\n" +
-    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
+    "    <div class=\"ibox-title\">\n" +
+    "        <h5 ng-show = \"area_view\">{{title}}</h5>\n" +
+    "        <h5 ng-show = \"area_view == false && regional_view == true\">{{selected_area.name}}'s Region Analysis</h5>\n" +
+    "		<h5 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}}'s City Analysis</h5>\n" +
+    "		<h5 ng-show = \"area_view == false && regional_view == false && city_view == false\">{{selected_city.name}}'s Branch Analysis</h5>\n" +
+    "        <div class=\"ibox-tools\">\n" +
+    "            <ul class=\"tab-links\">\n" +
+    "                <li class=\"active\"><a  ng-model=\"radioModel\" uib-btn-radio=\"'Complaints'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Complaint Resolution Analysis\">Complaints</a></li>\n" +
+    "                <li><a  ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Overall Feedback Analysis\">Rating</a></li>\n" +
+    "                <li><a  ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Overall QSC Analysis\">QSC</a></li>\n" +
+    "                <li>\n" +
+    "                    <div class=\"calender-outer\">\n" +
+    "					<span class = \"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
+    "					  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
+    "					  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
+    "					</span>\n" +
+    "				  </div>\n" +
+    "                </li>\n" +
+    "              </ul>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "     <div class = \"breadcrum\">\n" +
+    "        <span ng-hide = \"area_view\">\n" +
+    "         <a ng-click = \"backToAreas()\" style = \"cursor:pointer\">Area/</a>\n" +
+    "       </span>\n" +
+    "       <span ng-show = \"area_view == false && regional_view == false\">\n" +
+    "         <a ng-click = \"backToRegions(selected_area)\" style = \"cursor:pointer\">{{selected_area.name}}/</a>\n" +
+    "       </span>\n" +
+    "       <span ng-show = \"area_view == false && regional_view == false && city_view == false\">\n" +
+    "         <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}}/</a>\n" +
+    "       </span>\n" +
+    "     </div>\n" +
+    "\n" +
+    "    <div class=\"ibox-content morris-content-outer\">\n" +
+    "      <div class=\"morris-content-holder\" ng-repeat = \"area in donut_graph_data.objects track by $index\" ng-show = \"area_view == true\">\n" +
+    "        <div class=\"morris-graph-holder\" same-region-height data-data=\"donut_graph_data.donutData[$index]\">\n" +
+    "           <div class=\"morris-holder\">\n" +
+    "               <div ng-show=\"area.show_chart\" morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open(option,area,region,city,branch)\"></div>\n" +
+    "           </div>\n" +
+    "            <div ng-hide=\"area.show_chart\">No data available</div>\n" +
+    "        </div>\n" +
+    "        <strong class=\"title\"><a ng-click = \"showChart(area, 'regions')\" style = \"cursor:pointer;\">{{area.name}}</a></strong>\n" +
+    "      </div>\n" +
+    "       <div ng-show=\"show_string && area_view == true\">No area available</div>\n" +
+    "\n" +
+    "\n" +
+    "      <div class=\"morris-content-holder\" ng-repeat = \"region in donut_regions_data.objects track by $index\" ng-show = \"area_view == false && regional_view == true\">\n" +
+    "        <div class=\"morris-graph-holder\" same-region-height data-data=\"donut_regions_data.donutData[$index]\">\n" +
+    "           <div class=\"morris-holder\">\n" +
+    "               <div ng-show=\"region.show_chart\" morris-chart data-data=\"donut_regions_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_regions_data.donutOptions[$index]\" data-action=\"open(option,selected_area,region,city,branch)\"></div>\n" +
+    "           </div>\n" +
+    "            <div ng-hide=\"region.show_chart\">No data available</div>\n" +
+    "          </div>\n" +
+    "          <strong class=\"title\"><a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{region.name}}</a></strong>\n" +
+    "        </div>\n" +
+    "        <div ng-show=\"show_string && area_view == false && regional_view == true\">No region available</div>\n" +
+    "\n" +
+    "\n" +
+    "      <div class=\"morris-content-holder\" ng-repeat = \"city in donut_cities_data.objects track by $index\" ng-show = \"area_view == false && regional_view == false && city_view == true\">\n" +
+    "        <div class=\"morris-graph-holder\" same-city-height data-data = \"donut_cities_data.donutData[$index]\">\n" +
+    "           <div class=\"morris-holder\">\n" +
+    "               <div ng-show=\"city.show_chart\" morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\" data-action=\"open(option,selected_area,selected_region,city,branch)\"></div>\n" +
+    "           </div>\n" +
+    "            <div ng-hide=\"city.show_chart\">No data available</div>\n" +
+    "          </div>\n" +
+    "          <strong class=\"title\"><a ng-click = \"showChart(city, 'branches')\" style = \"cursor:pointer;\">{{city.name}}</a></strong>\n" +
+    "        </div>\n" +
+    "        <div ng-show=\"show_string && area_view == false && regional_view == false && city_view == true\">No city available</div>\n" +
+    "\n" +
+    "\n" +
+    "      <div class=\"morris-content-holder\" ng-repeat = \"branch in donut_branches_data.objects track by $index\" ng-show = \"area_view == false && regional_view == false && city_view == false\">\n" +
+    "        <div class=\"morris-graph-holder\" same-branch-height  data-data = \"donut_branches_data.donutData[$index]\">\n" +
+    "           <div class=\"morris-holder\">\n" +
+    "               <div ng-show=\"branch.show_chart\" morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\" data-action=\"open(option,selected_area,selected_region,selected_city,branch)\"></div>\n" +
+    "           </div>\n" +
+    "            <div ng-hide=\"branch.show_chart\">No data available</div>\n" +
+    "          </div>\n" +
+    "          <strong class=\"title\">{{branch.name}}</strong>\n" +
+    "        </div>\n" +
+    "        <div ng-show=\"show_string && area_view == false && regional_view == false && city_view == false\">No branch available</div>\n" +
+    "\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "");
 }]);
 

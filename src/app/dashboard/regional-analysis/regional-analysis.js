@@ -62,6 +62,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     }
     else {
      Graphs.area_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function (area_data){
+       console.log(area_data);
        showString(area_data.count);
        $scope.donut_graph_data = chartService.getDonutChartData(area_data, $scope.question_type);
        $scope.show_loading = false;
@@ -170,6 +171,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   };
 
   $scope.showChart = function(object_id, string){
+      console.log(string);
       $scope.showTitle($scope.radioModel);
       $scope.object_id = object_id;
       $scope.string = string;
