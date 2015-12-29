@@ -112,14 +112,14 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                    </form>\n" +
     "                </div>\n" +
     "                <ul class=\"nav navbar-top-links navbar-right\">\n" +
-    "                    <li>\n" +
-    "                        <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">Name</span></span>\n" +
-    "                    </li>\n" +
-    "                    <li>\n" +
-    "                        <a href=\"login.html\">\n" +
-    "                            <i class=\"fa fa-sign-out\"></i> Log out\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
+    "                  <li>\n" +
+    "                      <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">Name</span></span>\n" +
+    "                  </li>\n" +
+    "                  <li>\n" +
+    "                      <a href=\"login.html\">\n" +
+    "                          <i class=\"fa fa-sign-out\"></i> Log out\n" +
+    "                      </a>\n" +
+    "                  </li>\n" +
     "                </ul>\n" +
     "\n" +
     "            </nav>\n" +
@@ -290,34 +290,8 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                <div class=\"same-height-block\">\n" +
     "                    <div class=\"row\">\n" +
     "                        <div class=\"col-lg-8 same-height-col\">\n" +
-    "                            <div class=\"row inner-row rating\">\n" +
-    "                                <div class=\"col-xs-12\">\n" +
-    "                                    <div class=\"ibox float-e-margins\">\n" +
-    "                                        <div class=\"title-outer\">\n" +
-    "                                            <div class=\"ibox-title\">\n" +
-    "                                                <h5>Overall Rating</h5>\n" +
-    "                                                <ul class=\"tab-links\">\n" +
-    "                                                    <li>\n" +
-    "                                                        <div class=\"calender-outer\">\n" +
-    "                                                            <span class=\"calendar-holder\">\n" +
-    "                                                                <i class=\"fa fa-calendar\"></i>\n" +
-    "                                                            </span>\n" +
-    "                                                        </div>\n" +
-    "                                                    </li>\n" +
-    "                                                </ul>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"content-holder\">\n" +
-    "                                            <div class=\"ibox-content float-chart-block\">\n" +
-    "                                                <div class=\"flot-chart\">\n" +
-    "                                                    <div class=\"flot-chart-content\" id=\"flot-bar-chart\"></div>\n" +
-    "                                                </div>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"row inner-row add\">\n" +
+    "                            <ui-view name = \"overall_feedback\"></ui-view>\n" +
+    "                          <!--   <div class=\"row inner-row add\">\n" +
     "                                <div class=\"col-xs-12\">\n" +
     "                                    <div class=\"ibox float-e-margins float-e-margin-none\">\n" +
     "                                        <div class=\"title-outer\">\n" +
@@ -334,7 +308,8 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
-    "                            </div>\n" +
+    "                            </div> -->\n" +
+    "                            <ui-view name = \"top_concern\"></ui-view>\n" +
     "                        </div>\n" +
     "                        <div class=\"col-lg-4 same-height-col\">\n" +
     "                            <div class=\"row inner-row\">\n" +
@@ -586,7 +561,7 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
 
 angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/overall-feedback/overall-feedback.tpl.html",
-    "<div class=\"feedback-block\">\n" +
+    "<!-- <div class=\"feedback-block\">\n" +
     "  <div class=\"heading-holder\">\n" +
     "  	<div class=\"calender-outer\">\n" +
     "			<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
@@ -613,7 +588,36 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "		</div>\n" +
     "	  </div>\n" +
     "  </div>\n" +
-    "</div>\n" +
+    "</div> -->\n" +
+    "\n" +
+    "\n" +
+    "<div class=\"row inner-row rating\">\n" +
+    "                                <div class=\"col-xs-12\">\n" +
+    "                                    <div class=\"ibox float-e-margins\">\n" +
+    "                                        <div class=\"title-outer\">\n" +
+    "                                            <div class=\"ibox-title\">\n" +
+    "                                                <h5>Overall Rating</h5>\n" +
+    "                                                <ul class=\"tab-links\">\n" +
+    "                                                    <li>\n" +
+    "                                                        <div class=\"calender-outer\">\n" +
+    "                                                            <span class=\"calendar-holder\">\n" +
+    "                                                                <i class=\"fa fa-calendar\"></i>\n" +
+    "                                                            </span>\n" +
+    "                                                        </div>\n" +
+    "                                                    </li>\n" +
+    "                                                </ul>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"content-holder\">\n" +
+    "                                            <div class=\"ibox-content float-chart-block\">\n" +
+    "                                                <div class=\"flot-chart\">\n" +
+    "                                                    <div class=\"flot-chart-content\" id=\"flot-bar-chart\"></div>\n" +
+    "                                                </div>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
     "");
 }]);
 
@@ -915,7 +919,7 @@ angular.module("dashboard/statistics/statistics.tpl.html", []).run(["$templateCa
 
 angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/top-concern/top-concern.tpl.html",
-    "<div class=\"rating-section\" ng-class = \"{loading: show_loading}\">\n" +
+    "<!-- <div class=\"rating-section\" ng-class = \"{loading: show_loading}\">\n" +
     "  <header class=\"heading-block\">\n" +
     "    <h2>\n" +
     "    Customers Top 5 Concerns\n" +
@@ -933,7 +937,27 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "      <div id=\"bubble-chart\" pyk-chart data-data = \"data\" data-colors = \"colors\"></div>\n" +
     "    </div>\n" +
     "  </div>\n" +
-    "</div>\n" +
+    "</div> -->\n" +
+    "\n" +
+    "\n" +
+    "  <div class=\"row inner-row add\">\n" +
+    "                                <div class=\"col-xs-12\">\n" +
+    "                                    <div class=\"ibox float-e-margins float-e-margin-none\">\n" +
+    "                                        <div class=\"title-outer\">\n" +
+    "                                            <div class=\"ibox-title\">\n" +
+    "                                                <h5>Top Concerns</h5>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"content-holder\">\n" +
+    "                                            <div class=\"ibox-content\">\n" +
+    "                                                <div class=\"graph-block\">\n" +
+    "                                                    <canvas id=\"doughnutChart\" height=\"140\"></canvas>\n" +
+    "                                                </div>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
     "");
 }]);
 

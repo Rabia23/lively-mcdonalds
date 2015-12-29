@@ -10,7 +10,7 @@ angular.module( 'livefeed', [
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/login' );
+  $urlRouterProvider.otherwise( '/dashboard' );
 })
 
 .constant('_',
@@ -19,17 +19,17 @@ angular.module( 'livefeed', [
 
 .run( function run ($rootScope, Auth, $state) {
 
-   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-    if (toState.authenticate && !Auth.is_logged_in()) {
-      event.preventDefault(); 
-      $state.go('login');
-    }
+  //  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+  //   if (toState.authenticate && !Auth.is_logged_in()) {
+  //     event.preventDefault(); 
+  //     $state.go('login');
+  //   }
   
-  });
+  // });
 
-  $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-    $rootScope.currentState = toState.name;
-  });
+  // $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+  //   $rootScope.currentState = toState.name;
+  // });
 
 })
 

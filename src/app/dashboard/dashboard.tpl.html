@@ -23,14 +23,14 @@
                     </form>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
-                    <li>
-                        <span class="m-r-sm text-muted welcome-message">Welcome <span class="name">Name</span></span>
-                    </li>
-                    <li>
-                        <a href="login.html">
-                            <i class="fa fa-sign-out"></i> Log out
-                        </a>
-                    </li>
+                  <li>
+                      <span class="m-r-sm text-muted welcome-message">Welcome <span class="name">Name</span></span>
+                  </li>
+                  <li>
+                      <a href="login.html">
+                          <i class="fa fa-sign-out"></i> Log out
+                      </a>
+                  </li>
                 </ul>
 
             </nav>
@@ -201,34 +201,8 @@
                 <div class="same-height-block">
                     <div class="row">
                         <div class="col-lg-8 same-height-col">
-                            <div class="row inner-row rating">
-                                <div class="col-xs-12">
-                                    <div class="ibox float-e-margins">
-                                        <div class="title-outer">
-                                            <div class="ibox-title">
-                                                <h5>Overall Rating</h5>
-                                                <ul class="tab-links">
-                                                    <li>
-                                                        <div class="calender-outer">
-                                                            <span class="calendar-holder">
-                                                                <i class="fa fa-calendar"></i>
-                                                            </span>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="content-holder">
-                                            <div class="ibox-content float-chart-block">
-                                                <div class="flot-chart">
-                                                    <div class="flot-chart-content" id="flot-bar-chart"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row inner-row add">
+                            <ui-view name = "overall_feedback"></ui-view>
+                          <!--   <div class="row inner-row add">
                                 <div class="col-xs-12">
                                     <div class="ibox float-e-margins float-e-margin-none">
                                         <div class="title-outer">
@@ -245,7 +219,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
+                            <ui-view name = "top_concern"></ui-view>
                         </div>
                         <div class="col-lg-4 same-height-col">
                             <div class="row inner-row">
