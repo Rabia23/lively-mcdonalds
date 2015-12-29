@@ -202,24 +202,6 @@
                     <div class="row">
                         <div class="col-lg-8 same-height-col">
                             <ui-view name = "overall_feedback"></ui-view>
-                          <!--   <div class="row inner-row add">
-                                <div class="col-xs-12">
-                                    <div class="ibox float-e-margins float-e-margin-none">
-                                        <div class="title-outer">
-                                            <div class="ibox-title">
-                                                <h5>Top Concerns</h5>
-                                            </div>
-                                        </div>
-                                        <div class="content-holder">
-                                            <div class="ibox-content">
-                                                <div class="graph-block">
-                                                    <canvas id="doughnutChart" height="140"></canvas>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                             <ui-view name = "top_concern"></ui-view>
                         </div>
                         <div class="col-lg-4 same-height-col">
@@ -302,7 +284,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12 patch-section">
-                <div class="ibox float-e-margins">
+                <!-- <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>Patch QSC Analysis</h5>
                         <div class="ibox-tools">
@@ -368,7 +350,8 @@
                             <strong class="title"><a href="#">Name</a></strong>   
                         </div>
                     </div>
-                </div>
+                </div> -->
+                <ui-view name = "regional_analysis"></ui-view>
             </div>
         </div>
         <div class="row same-height-parent">

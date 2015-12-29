@@ -291,24 +291,6 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                    <div class=\"row\">\n" +
     "                        <div class=\"col-lg-8 same-height-col\">\n" +
     "                            <ui-view name = \"overall_feedback\"></ui-view>\n" +
-    "                          <!--   <div class=\"row inner-row add\">\n" +
-    "                                <div class=\"col-xs-12\">\n" +
-    "                                    <div class=\"ibox float-e-margins float-e-margin-none\">\n" +
-    "                                        <div class=\"title-outer\">\n" +
-    "                                            <div class=\"ibox-title\">\n" +
-    "                                                <h5>Top Concerns</h5>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"content-holder\">\n" +
-    "                                            <div class=\"ibox-content\">\n" +
-    "                                                <div class=\"graph-block\">\n" +
-    "                                                    <canvas id=\"doughnutChart\" height=\"140\"></canvas>\n" +
-    "                                                </div>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                            </div> -->\n" +
     "                            <ui-view name = \"top_concern\"></ui-view>\n" +
     "                        </div>\n" +
     "                        <div class=\"col-lg-4 same-height-col\">\n" +
@@ -391,7 +373,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "        </div>\n" +
     "        <div class=\"row\">\n" +
     "            <div class=\"col-xs-12 patch-section\">\n" +
-    "                <div class=\"ibox float-e-margins\">\n" +
+    "                <!-- <div class=\"ibox float-e-margins\">\n" +
     "                    <div class=\"ibox-title\">\n" +
     "                        <h5>Patch QSC Analysis</h5>\n" +
     "                        <div class=\"ibox-tools\">\n" +
@@ -457,7 +439,8 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
     "                        </div>\n" +
     "                    </div>\n" +
-    "                </div>\n" +
+    "                </div> -->\n" +
+    "                <ui-view name = \"regional_analysis\"></ui-view>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"row same-height-parent\">\n" +
@@ -771,7 +754,7 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
 
 angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/regional-analysis/regional-analysis.tpl.html",
-    "<div class=\"section-holder\" >\n" +
+    "<!-- <div class=\"section-holder\" >\n" +
     "  <div class=\"info-area\" ng-class=\"{loading: show_loading}\">\n" +
     "    <div class=\"heading-holder\">\n" +
     "\n" +
@@ -881,7 +864,77 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "    </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
-    "</div>\n" +
+    "</div> -->\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    " <div class=\"ibox float-e-margins\">\n" +
+    "                    <div class=\"ibox-title\">\n" +
+    "                        <h5>Patch QSC Analysis</h5>\n" +
+    "                        <div class=\"ibox-tools\">\n" +
+    "                            <ul class=\"tab-links\">\n" +
+    "                                <li class=\"active\"><a href=\"#\">Complaints</a></li>\n" +
+    "                                <li><a href=\"#\">Rating</a></li>\n" +
+    "                                <li><a href=\"#\">QSC</a></li>\n" +
+    "                                <li>\n" +
+    "                                    <div class=\"calender-outer\">\n" +
+    "                                        <span class=\"calendar-holder\"><i class=\"fa fa-calendar\"></i></span>\n" +
+    "                                    </div>\n" +
+    "                                </li>\n" +
+    "                              </ul>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"ibox-content morris-content-outer\">\n" +
+    "                        <div class=\"morris-content-holder\">\n" +
+    "                            <div class=\"morris-graph-holder\">\n" +
+    "                               <div class=\"morris-holder\">\n" +
+    "                                   <div id=\"morris-donut-chart1\"></div>\n" +
+    "                               </div>\n" +
+    "                            </div>\n" +
+    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
+    "                        </div>\n" +
+    "                        <div class=\"morris-content-holder\">\n" +
+    "                            <div class=\"morris-graph-holder\">\n" +
+    "                               <div class=\"morris-holder\">\n" +
+    "                                   <div id=\"morris-donut-chart2\"></div>\n" +
+    "                               </div>\n" +
+    "                            </div>\n" +
+    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
+    "                        </div>\n" +
+    "                        <div class=\"morris-content-holder\">\n" +
+    "                            <div class=\"morris-graph-holder\">\n" +
+    "                               <div class=\"morris-holder\">\n" +
+    "                                   <div id=\"morris-donut-chart3\"></div>\n" +
+    "                               </div>\n" +
+    "                            </div>\n" +
+    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
+    "                        </div>\n" +
+    "                        <div class=\"morris-content-holder\">\n" +
+    "                            <div class=\"morris-graph-holder\">\n" +
+    "                               <div class=\"morris-holder\">\n" +
+    "                                   <div id=\"morris-donut-chart4\"></div>\n" +
+    "                               </div>\n" +
+    "                            </div>\n" +
+    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
+    "                        </div>\n" +
+    "                        <div class=\"morris-content-holder\">\n" +
+    "                            <div class=\"morris-graph-holder\">\n" +
+    "                               <div class=\"morris-holder\">\n" +
+    "                                   <div id=\"morris-donut-chart5\"></div>\n" +
+    "                               </div>\n" +
+    "                            </div>\n" +
+    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
+    "                        </div>\n" +
+    "                        <div class=\"morris-content-holder\">\n" +
+    "                            <div class=\"morris-graph-holder\">\n" +
+    "                               <div class=\"morris-holder\">\n" +
+    "                                   <div id=\"morris-donut-chart6\"></div>\n" +
+    "                               </div>\n" +
+    "                            </div>\n" +
+    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
     "");
 }]);
 
@@ -941,23 +994,23 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "\n" +
     "\n" +
     "  <div class=\"row inner-row add\">\n" +
-    "                                <div class=\"col-xs-12\">\n" +
-    "                                    <div class=\"ibox float-e-margins float-e-margin-none\">\n" +
-    "                                        <div class=\"title-outer\">\n" +
-    "                                            <div class=\"ibox-title\">\n" +
-    "                                                <h5>Top Concerns</h5>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"content-holder\">\n" +
-    "                                            <div class=\"ibox-content\">\n" +
-    "                                                <div class=\"graph-block\">\n" +
-    "                                                    <canvas id=\"doughnutChart\" height=\"140\"></canvas>\n" +
-    "                                                </div>\n" +
-    "                                            </div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
+    "    <div class=\"col-xs-12\">\n" +
+    "        <div class=\"ibox float-e-margins float-e-margin-none\">\n" +
+    "            <div class=\"title-outer\">\n" +
+    "                <div class=\"ibox-title\">\n" +
+    "                    <h5>Top Concerns</h5>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"content-holder\">\n" +
+    "                <div class=\"ibox-content\">\n" +
+    "                    <div class=\"graph-block\">\n" +
+    "                        <canvas id=\"doughnutChart\" height=\"140\"></canvas>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "");
 }]);
 
