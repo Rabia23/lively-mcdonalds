@@ -4,7 +4,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   'ui.bootstrap'
 ])
 
-.controller( 'RegionalAnalysisCtrl', ["$scope", "_", "Graphs", "chartService", "$uibModal", function DashboardController( $scope, _, Graphs, chartService, $uibModal ) {
+.controller( 'RegionalAnalysisCtrl', function DashboardController( $scope, _, Graphs, chartService, $uibModal ) {
    $scope.today = new Date();
 
   function resetDates(){
@@ -222,9 +222,9 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     }
   };
   
-}])
+})
 
-.controller('SQCModalCtrl', ["$scope", "Graphs", "chartService", "$uibModalInstance", "area", "region", "city", "branch", "option", function ($scope, Graphs, chartService, $uibModalInstance, area, region, city, branch, option){
+.controller('SQCModalCtrl', function ($scope, Graphs, chartService, $uibModalInstance, area, region, city, branch, option){
 
   $scope.leftClickDisabled = false;
   $scope.rightClickDisabled = false;
@@ -413,7 +413,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   $scope.ok = function () {
     $uibModalInstance.close();
   };
-}])
+})
 
 
 .directive('morrisChart', function() {

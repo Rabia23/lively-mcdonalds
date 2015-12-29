@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html ng-app="livefeed" ng-controller="AppCtrl" class="no-js">
   <head>
-    <title ng-bind="pageTitle"></title>
+    
+    <title>Macdonald Dashbaord</title>
 
     <meta charset="utf-8">
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -9,7 +10,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <script src="http://maps.google.com/maps/api/js"></script>
 
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
@@ -19,48 +19,31 @@
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
 
-    <script type="text/javascript" src="assets/javascript/main.js"></script>
+    <script type="text/javascript" src="assets/javascript/jquery.main.js"></script>
+
+        <!-- Morris demo data-->
+    <script src="assets/javascript/morris-Updated.js"></script>
+
+    <!-- Flot demo data -->
+    <script src="assets/javascript/flot-Updated.js"></script>
+
+    <script src="assets/javascript/chartjs-Updated.js"></script>
+
+    <script src="assets/javascript/inspinia.js"></script>
+
+    <script src="assets/javascript/jquery.slimscroll.min.js"></script>
+
+
+<!--      <link rel="stylesheet" type="text/css" src= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css"> -->
+
+
 
   </head>
-  <body ng-class = "{dashboard: (currentState != 'coupon' && currentState != 'login')}">
-    <div id= "wrapper">
-      <header id="header">
-       	<ul class="header-list" ng-show = "show_username">
-       		<li class="name">
-       			Welcome <span class="name">{{username}}</span>
-       		</li>
-       		<li><a style = "cursor:pointer;" ng-click="logout()">Log out</a></li>
-       	</ul>
-        <div class="logo"><a href="http:\\mcdonalds.com.pk" target="_blank"><img src="assets/images/logo.jpg" alt="McDonald &reg;"></a></div>
-      </header>
-      <main id="main" role="main">
-       <div class="banner-holder">
-       	<header class="header">
-          <div class="header-holder">
-            <h1>
-            	<span>McDonald's</span> Customer Centric Approach
-            </h1>
-          </div>
-        </header>
-       </div>
 
-       <!--  <div ui-view></div> -->
-        <ui-view></ui-view>
-      </main>
-      <footer id="footer">
-        <div class="footer-inner">
-        	<div class="footer-holder">
-          <div class="frame">
-            <div class="footer-text">
-              <p>Admin Panel Feedback Survey</p>
-            </div>
-            <div class="footer-container">
-              <a href="http:\\mcdonalds.com.pk" target="_blank" class="footer-link">www.mcdonalds.com.pk</a>
-            </div>
-          </div>
-        </div>
-        </div>
-      </footer>
-    </div>
+  <body>
+
+  <ui-view></ui-view>
+
   </body>
+
 </html>

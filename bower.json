@@ -12,7 +12,8 @@
     "angular-flot": "~0.0.14",
     "color": "~2.5.0",
     "enscroll": "~0.6.0",
-    "ngInfiniteScroll": "~1.2.1"
+    "ngInfiniteScroll": "~1.2.1",
+    "metisMenu": "~2.2.0"
   },
   "dependencies": {
     "underscore": "~1.8.3",

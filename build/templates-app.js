@@ -87,37 +87,463 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
 
 angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/dashboard.tpl.html",
-    "<section class = \"section\" ui-view = \"category_performance_analysis\" ng-controller = \"CategoryPerformanceAnalysisCtrl\">\n" +
-    "</section>\n" +
+    "<div id=\"wrapper\">\n" +
     "\n" +
+    "    <nav class=\"navbar-default navbar-static-side\" role=\"navigation\">\n" +
+    "        <div class=\"sidebar-collapse\">\n" +
+    "            <div id=\"side-menu\" class=\"nav metismenu\">\n" +
+    "                <div class=\"logo-holder\">\n" +
+    "                    <div class=\"logo\">\n" +
+    "                        <a href=\"#\"> <img alt=\"image\" class=\"img-responsive\" src=\"assets/images/logo.jpg\"></a>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </nav>\n" +
+    "    <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
+    "        <div class=\"header-visual\">\n" +
+    "            <nav class=\"navbar dashboard\" role=\"navigation\" style=\"margin-bottom: 0\">\n" +
+    "                <div class=\"navbar-header\">\n" +
+    "                    <a class=\"navbar-minimalize minimalize-styl-2 btn btn-primary \" href=\"#\"><i class=\"fa fa-bars\"></i> </a>\n" +
+    "                    <form role=\"search\" class=\"navbar-form-custom\" action=\"search_results.html\">\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <input type=\"text\" placeholder=\"Search for something...\" class=\"form-control\" name=\"top-search\" id=\"top-search\">\n" +
+    "                        </div>\n" +
+    "                    </form>\n" +
+    "                </div>\n" +
+    "                <ul class=\"nav navbar-top-links navbar-right\">\n" +
+    "                    <li>\n" +
+    "                        <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">Name</span></span>\n" +
+    "                    </li>\n" +
+    "                    <li>\n" +
+    "                        <a href=\"login.html\">\n" +
+    "                            <i class=\"fa fa-sign-out\"></i> Log out\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                </ul>\n" +
     "\n" +
-    "<section class = \"section\">\n" +
-    "  <div class = \"block\" ui-view = \"overall_feedback\" ng-controller = \"OverallFeedbackCtrl\"></div>\n" +
-    "  \n" +
-    "  <div class = \"block\" ui-view = \"top_concern\" ng-controller = \"TopConcernCtrl\"></div>\n" +
-    "</section>\n" +
+    "            </nav>\n" +
     "\n" +
-    "<section class = \"section\" ui-view=\"regional_analysis\" ng-controller = \"RegionalAnalysisCtrl\"></section>\n" +
+    "            <div class=\"img-holder\">\n" +
+    "                <div class=\"inner-holder\"><img alt=\"image\" class=\"img-responsive\" src=\"/assets/images/img1.jpg\" /></div>\n" +
+    "            </div>\n" +
+    "            <div class=\"header-caption animated fadeInRight\">\n" +
+    "                <h1>Customer Centric Approch</h1>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"comment-block\">\n" +
+    "            <a href=\"#\" class=\"nav-opener\">\n" +
+    "                <i class=\"fa fa-comments-o\"></i>\n" +
+    "                <span class=\"count\">2</span>\n" +
+    "            </a>\n" +
+    "            <div class=\"comments-drop\">\n" +
+    "                <a href=\"#\" class=\"nav-opener\">\n" +
+    "                    <i class=\"fa fa-times\"></i>\n" +
+    "                </a>\n" +
+    "                <div class=\"inner-holder\">\n" +
+    "                    <div class=\"heading-holder\">\n" +
+    "                        <div class=\"holder\">\n" +
+    "                            <div class=\"icon-holder\">\n" +
+    "                                <i class=\"fa fa-comments-o\"></i>\n" +
+    "                            </div>\n" +
+    "                            <h2>Positive/Negative Feedback</h2>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"comments-holder\">\n" +
+    "                        <ul class=\"comments-list list-unstyled\">\n" +
+    "                            <li class=\"negative deferred\">\n" +
+    "                                <p>Chicken was all red inside</p>\n" +
+    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                            </li>\n" +
+    "                            <li class=\"positive processed\">\n" +
+    "                                <p>We want pratha n omlete</p>\n" +
+    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                            </li>\n" +
+    "                            <li class=\"positive\">\n" +
+    "                                <p>People are too choosy here!!</p>\n" +
+    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                            </li>\n" +
+    "                            <li class=\"negative\">\n" +
+    "                                <p>Value meal price should be less then 285 for students</p>\n" +
+    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                            </li>\n" +
+    "                            <li class=\"positive\">\n" +
+    "                                <p>Overall good, your fries quantity is less</p>\n" +
+    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                            </li>\n" +
+    "                            <li class=\"positive\">\n" +
+    "                                <p>People are too choosy here!!</p>\n" +
+    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                            </li>\n" +
+    "                            <li class=\"negative\">\n" +
+    "                                <p>Chicken was all red inside</p>\n" +
+    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                            </li>\n" +
+    "                            <li class=\"positive\">\n" +
+    "                                <p>We want pratha n omlete</p>\n" +
+    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                            </li>\n" +
+    "                            <li class=\"positive\">\n" +
+    "                                <p>People are too choosy here!!</p>\n" +
+    "                                <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "                            </li>\n" +
+    "                        </ul>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"btn-holder\">\n" +
+    "                        <a href=\"#\" class=\"btn btn-info pull-right\">View All</a>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
+    "        <div class=\"row same-height-parent\">\n" +
+    "            <div class=\"col-lg-6 col-lg-push-6 business-segment\">\n" +
+    "                <div class=\"same-height-block add\">\n" +
+    "                    <div class=\"ibox float-e-margins\">\n" +
+    "                        <div class=\"title-outer\">\n" +
+    "                            <div class=\"ibox-title\">\n" +
+    "                                <h5>Business Segment Breakdown</h5>\n" +
+    "                                <div class=\"ibox-tools\">\n" +
+    "                                    <ul class=\"tab-links\">\n" +
+    "                                        <li><a href=\"#\">All</a></li>\n" +
+    "                                        <li class=\"item2\"><a href=\"#\">Quality</a></li>\n" +
+    "                                        <li class=\"item3\"><a href=\"#\">Service</a></li>\n" +
+    "                                        <li class=\"item4\"><a href=\"#\">Cleanliness</a></li>\n" +
+    "                                        <li class=\"item5\">\n" +
+    "                                            <div class=\"calender-outer\">\n" +
+    "                                                <span class=\"calendar-holder\">\n" +
+    "                                                    <i class=\"fa fa-calendar\"></i>\n" +
+    "                                                </span>\n" +
+    "                                            </div>\n" +
+    "                                        </li>\n" +
+    "                                    </ul>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"content-holder\">\n" +
+    "                            <div class=\"ibox-content add\">\n" +
+    "                                <div class=\"chart-outer\">\n" +
+    "                                    <div id=\"morris-area-chart\"></div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"list-holder\">\n" +
+    "                                    <div class=\"row\">\n" +
+    "                                        <div class=\"morris-block-holder\">\n" +
+    "                                            <div class=\"morris-content-holder\">\n" +
+    "                                                <div class=\"morris-graph-holder\">\n" +
+    "                                                   <div class=\"morris-holder\">\n" +
+    "                                                        <div>\n" +
+    "                                                            <canvas id=\"doughnutChart1\" height=\"140\"></canvas>\n" +
+    "                                                        </div>\n" +
+    "                                                   </div>\n" +
+    "                                                </div>\n" +
+    "                                                <strong class=\"title\"><a href=\"#\">BREAKFAST</a></strong>   \n" +
+    "                                            </div>\n" +
+    "                                            <div class=\"morris-content-holder\">\n" +
+    "                                                <div class=\"morris-graph-holder\">\n" +
+    "                                                   <div class=\"morris-holder\">\n" +
+    "                                                        <div>\n" +
+    "                                                            <canvas id=\"doughnutChart2\" height=\"140\"></canvas>\n" +
+    "                                                        </div>\n" +
+    "                                                   </div>\n" +
+    "                                                </div>\n" +
+    "                                                <strong class=\"title\"><a href=\"#\">LUNCH</a></strong>   \n" +
+    "                                            </div>\n" +
+    "                                            <div class=\"morris-content-holder\">\n" +
+    "                                                <div class=\"morris-graph-holder\">\n" +
+    "                                                   <div class=\"morris-holder\">\n" +
+    "                                                        <div>\n" +
+    "                                                            <canvas id=\"doughnutChart3\" height=\"140\"></canvas>\n" +
+    "                                                        </div>\n" +
+    "                                                   </div>\n" +
+    "                                                </div>\n" +
+    "                                                <strong class=\"title\"><a href=\"#\">SNACK</a></strong>   \n" +
+    "                                            </div>\n" +
+    "                                            <div class=\"morris-content-holder\">\n" +
+    "                                                <div class=\"morris-graph-holder\">\n" +
+    "                                                   <div class=\"morris-holder\">\n" +
+    "                                                        <div>\n" +
+    "                                                            <canvas id=\"doughnutChart4\" height=\"140\"></canvas>\n" +
+    "                                                        </div>\n" +
+    "                                                   </div>\n" +
+    "                                                </div>\n" +
+    "                                                <strong class=\"title\"><a href=\"#\">DINNER</a></strong>   \n" +
+    "                                            </div>\n" +
+    "                                            <div class=\"morris-content-holder\">\n" +
+    "                                                <div class=\"morris-graph-holder\">\n" +
+    "                                                   <div class=\"morris-holder\">\n" +
+    "                                                        <div>\n" +
+    "                                                            <canvas id=\"doughnutChart5\" height=\"140\"></canvas>\n" +
+    "                                                        </div>\n" +
+    "                                                   </div>\n" +
+    "                                                </div>\n" +
+    "                                                <strong class=\"title\"><a href=\"#\">LATE NIGHT</a></strong>   \n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-lg-6 col-lg-pull-6\">\n" +
+    "                <div class=\"same-height-block\">\n" +
+    "                    <div class=\"row\">\n" +
+    "                        <div class=\"col-lg-8 same-height-col\">\n" +
+    "                            <div class=\"row inner-row rating\">\n" +
+    "                                <div class=\"col-xs-12\">\n" +
+    "                                    <div class=\"ibox float-e-margins\">\n" +
+    "                                        <div class=\"title-outer\">\n" +
+    "                                            <div class=\"ibox-title\">\n" +
+    "                                                <h5>Overall Rating</h5>\n" +
+    "                                                <ul class=\"tab-links\">\n" +
+    "                                                    <li>\n" +
+    "                                                        <div class=\"calender-outer\">\n" +
+    "                                                            <span class=\"calendar-holder\">\n" +
+    "                                                                <i class=\"fa fa-calendar\"></i>\n" +
+    "                                                            </span>\n" +
+    "                                                        </div>\n" +
+    "                                                    </li>\n" +
+    "                                                </ul>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"content-holder\">\n" +
+    "                                            <div class=\"ibox-content float-chart-block\">\n" +
+    "                                                <div class=\"flot-chart\">\n" +
+    "                                                    <div class=\"flot-chart-content\" id=\"flot-bar-chart\"></div>\n" +
+    "                                                </div>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row inner-row add\">\n" +
+    "                                <div class=\"col-xs-12\">\n" +
+    "                                    <div class=\"ibox float-e-margins float-e-margin-none\">\n" +
+    "                                        <div class=\"title-outer\">\n" +
+    "                                            <div class=\"ibox-title\">\n" +
+    "                                                <h5>Top Concerns</h5>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"content-holder\">\n" +
+    "                                            <div class=\"ibox-content\">\n" +
+    "                                                <div class=\"graph-block\">\n" +
+    "                                                    <canvas id=\"doughnutChart\" height=\"140\"></canvas>\n" +
+    "                                                </div>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-lg-4 same-height-col\">\n" +
+    "                            <div class=\"row inner-row\">\n" +
+    "                                <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                                    <div class=\"ibox float-e-margins detail-block\">\n" +
+    "                                        <div class=\"title-outer\">\n" +
+    "                                            <div class=\"ibox-title\">\n" +
+    "                                                <span class=\"label label-primary pull-right\">Monthly</span>\n" +
+    "                                                <h5>Income</h5>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"content-holder\">\n" +
+    "                                            <div class=\"ibox-content\">\n" +
+    "                                                <h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "                                                <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "                                                <small>New orders</small>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                                    <div class=\"ibox float-e-margins detail-block\">\n" +
+    "                                        <div class=\"title-outer\">\n" +
+    "                                            <div class=\"ibox-title\">\n" +
+    "                                                <span class=\"label label-primary pull-right\">Monthly</span>\n" +
+    "                                                <h5>Income</h5>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"content-holder\">\n" +
+    "                                            <div class=\"ibox-content\">\n" +
+    "                                                <h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "                                                <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "                                                <small>New orders</small>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"row inner-row add\">\n" +
+    "                                <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                                    <div class=\"ibox float-e-margins detail-block\">\n" +
+    "                                        <div class=\"title-outer\">\n" +
+    "                                            <div class=\"ibox-title\">\n" +
+    "                                                <span class=\"label label-primary pull-right\">Monthly</span>\n" +
+    "                                                <h5>Income</h5>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"content-holder\">\n" +
+    "                                            <div class=\"ibox-content\">\n" +
+    "                                                <h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "                                                <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "                                                <small>New orders</small>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                                    <div class=\"ibox float-e-margins detail-block\">\n" +
+    "                                        <div class=\"title-outer\">\n" +
+    "                                            <div class=\"ibox-title\">\n" +
+    "                                                <span class=\"label label-primary pull-right\">Monthly</span>\n" +
+    "                                                <h5>Income</h5>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"content-holder\">\n" +
+    "                                            <div class=\"ibox-content\">\n" +
+    "                                                <h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "                                                <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "                                                <small>New orders</small>\n" +
+    "                                            </div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-xs-12 patch-section\">\n" +
+    "                <div class=\"ibox float-e-margins\">\n" +
+    "                    <div class=\"ibox-title\">\n" +
+    "                        <h5>Patch QSC Analysis</h5>\n" +
+    "                        <div class=\"ibox-tools\">\n" +
+    "                            <ul class=\"tab-links\">\n" +
+    "                                <li class=\"active\"><a href=\"#\">Complaints</a></li>\n" +
+    "                                <li><a href=\"#\">Rating</a></li>\n" +
+    "                                <li><a href=\"#\">QSC</a></li>\n" +
+    "                                <li>\n" +
+    "                                    <div class=\"calender-outer\">\n" +
+    "                                        <span class=\"calendar-holder\"><i class=\"fa fa-calendar\"></i></span>\n" +
+    "                                    </div>\n" +
+    "                                </li>\n" +
+    "                              </ul>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"ibox-content morris-content-outer\">\n" +
+    "                        <div class=\"morris-content-holder\">\n" +
+    "                            <div class=\"morris-graph-holder\">\n" +
+    "                               <div class=\"morris-holder\">\n" +
+    "                                   <div id=\"morris-donut-chart1\"></div>\n" +
+    "                               </div>\n" +
+    "                            </div>\n" +
+    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
+    "                        </div>\n" +
+    "                        <div class=\"morris-content-holder\">\n" +
+    "                            <div class=\"morris-graph-holder\">\n" +
+    "                               <div class=\"morris-holder\">\n" +
+    "                                   <div id=\"morris-donut-chart2\"></div>\n" +
+    "                               </div>\n" +
+    "                            </div>\n" +
+    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
+    "                        </div>\n" +
+    "                        <div class=\"morris-content-holder\">\n" +
+    "                            <div class=\"morris-graph-holder\">\n" +
+    "                               <div class=\"morris-holder\">\n" +
+    "                                   <div id=\"morris-donut-chart3\"></div>\n" +
+    "                               </div>\n" +
+    "                            </div>\n" +
+    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
+    "                        </div>\n" +
+    "                        <div class=\"morris-content-holder\">\n" +
+    "                            <div class=\"morris-graph-holder\">\n" +
+    "                               <div class=\"morris-holder\">\n" +
+    "                                   <div id=\"morris-donut-chart4\"></div>\n" +
+    "                               </div>\n" +
+    "                            </div>\n" +
+    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
+    "                        </div>\n" +
+    "                        <div class=\"morris-content-holder\">\n" +
+    "                            <div class=\"morris-graph-holder\">\n" +
+    "                               <div class=\"morris-holder\">\n" +
+    "                                   <div id=\"morris-donut-chart5\"></div>\n" +
+    "                               </div>\n" +
+    "                            </div>\n" +
+    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
+    "                        </div>\n" +
+    "                        <div class=\"morris-content-holder\">\n" +
+    "                            <div class=\"morris-graph-holder\">\n" +
+    "                               <div class=\"morris-holder\">\n" +
+    "                                   <div id=\"morris-donut-chart6\"></div>\n" +
+    "                               </div>\n" +
+    "                            </div>\n" +
+    "                            <strong class=\"title\"><a href=\"#\">Name</a></strong>   \n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"row same-height-parent\">\n" +
+    "            <div class=\"col-lg-6 map-section\">\n" +
+    "                <div class=\"ibox float-e-margins\">\n" +
+    "                    <div class=\"ibox-title\">\n" +
+    "                        <h5>Benchmark Map</h5>\n" +
+    "                        <div class=\"ibox-tools\">\n" +
+    "                            <ul class=\"tab-links\">\n" +
+    "                                <li>\n" +
+    "                                    <div class=\"calender-outer\">\n" +
+    "                                        <span class=\"calendar-holder\">\n" +
+    "                                            <i class=\"fa fa-calendar\"></i>\n" +
+    "                                        </span>\n" +
+    "                                    </div>\n" +
+    "                                </li>\n" +
+    "                            </ul>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"ibox-content same-height\">\n" +
+    "                        <div class=\"block-holder\">\n" +
+    "                            <div id=\"world-map\"></div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-lg-6 timeline-section\">\n" +
+    "                <div class=\"ibox float-e-margins\">\n" +
+    "                    <div class=\"ibox-title\">\n" +
+    "                        <h5>Timeline</h5>\n" +
+    "                        <div class=\"ibox-tools\">\n" +
+    "                            <ul class=\"tab-links\">\n" +
+    "                                <li>\n" +
+    "                                    <div class=\"calender-outer\">\n" +
+    "                                        <span class=\"calendar-holder\">\n" +
+    "                                            <i class=\"fa fa-calendar\"></i>\n" +
+    "                                        </span>\n" +
+    "                                    </div>\n" +
+    "                                </li>\n" +
+    "                            </ul>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"ibox-content same-height\">\n" +
+    "                        <div class=\"block-holder\">\n" +
+    "                            <canvas id=\"lineChart\" height=\"140\"></canvas>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div></div>\n" +
+    "        <div class=\"footer\">\n" +
+    "            <div class=\"pull-right\">\n" +
+    "                10GB of <strong>250GB</strong> Free.\n" +
+    "            </div>\n" +
+    "            <div>\n" +
+    "                <strong>Copyright</strong> Example Company &copy; 2014-2015\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "\n" +
-    "\n" +
-    "\n" +
-    "<section class = \"section\">\n" +
-    "  <div class = \"block\" ui-view = \"feedback_map\" ng-controller = \"FeedbackMapCtrl\"></div>\n" +
-    "  <div class = \"block\" ui-view = \"overall_rating\" ng-controller = \"OverallRatingCtrl\"></div>\n" +
-    "</section>\n" +
-    "\n" +
-    "\n" +
-    "<!--<div class = \"row\">\n" +
-    "  <div class = \"col-xs-12 col-sm-12 col-md-12 col-lg-12\">\n" +
-    "    <div ui-view=\"statistics\"></div>\n" +
-    "  </div>\n" +
-    "</div> -->\n" +
-    "\n" +
-    "<section class = \"section\">\n" +
-    "  <div class=\"section-holder\" ng-controller = \"PositiveNegativeFeedbackCtrl\">\n" +
-    "      <div ui-view = \"positive_negative_feedback\"></div>\n" +
-    "  </div>\n" +
-    "</section>\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "\n" +
     "  ");
 }]);
@@ -541,5 +967,35 @@ angular.module("login/login.tpl.html", []).run(["$templateCache", function($temp
     "		</div>\n" +
     "	</div>\n" +
     "</div>\n" +
+    "\n" +
+    "\n" +
+    "    <div class=\"middle-box text-center loginscreen animated fadeInDown\">\n" +
+    "        <div>\n" +
+    "            <div>\n" +
+    "\n" +
+    "                <h1 class=\"logo-name\">IN+</h1>\n" +
+    "\n" +
+    "            </div>\n" +
+    "            <h3>Welcome to IN+</h3>\n" +
+    "            <p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.\n" +
+    "                <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->\n" +
+    "            </p>\n" +
+    "            <p>Login in. To see it in action.</p>\n" +
+    "            <form class=\"m-t\" role=\"form\" action=\"index.html\">\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <input type=\"email\" class=\"form-control\" placeholder=\"Username\" required=\"\">\n" +
+    "                </div>\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <input type=\"password\" class=\"form-control\" placeholder=\"Password\" required=\"\">\n" +
+    "                </div>\n" +
+    "                <button type=\"submit\" class=\"btn btn-primary block full-width m-b\">Login</button>\n" +
+    "\n" +
+    "                <a href=\"#\"><small>Forgot password?</small></a>\n" +
+    "                <p class=\"text-muted text-center\"><small>Do not have an account?</small></p>\n" +
+    "                <a class=\"btn btn-sm btn-white btn-block\" href=\"register.html\">Create an account</a>\n" +
+    "            </form>\n" +
+    "            <p class=\"m-t\"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "  ");
 }]);

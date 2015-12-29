@@ -6,7 +6,7 @@ angular.module( 'livefeed.dashboard.feedback_map', [
   'daterangepicker'
 ])
 
-.controller( 'FeedbackMapCtrl', ["$scope", "_", "Graphs", "mapService", function FeedbackMapController( $scope, _, Graphs, mapService ) {
+.controller( 'FeedbackMapCtrl', function FeedbackMapController( $scope, _, Graphs, mapService ) {
 
   $scope.today = new Date();
 
@@ -69,7 +69,7 @@ angular.module( 'livefeed.dashboard.feedback_map', [
       $scope.markers.push(mapService.createMarker(branch, $scope.map, icon));
     });
   });
-}])
+})
 
 .directive('mapRangeClick', function() {
   return {

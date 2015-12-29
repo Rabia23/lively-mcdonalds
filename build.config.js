@@ -76,6 +76,8 @@ module.exports = {
       'vendor/Flot/jquery.flot.js',
       'vendor/Flot/jquery.flot.resize.js',
       'vendor/flot.tooltip/js/jquery.flot.tooltip.js',
+      'vendor/Flot/jquery.flot.pie.js',
+      'vendor/Flot/jquery.flot.time.js',
       'vendor/angular-flot/angular-flot.js',
       'vendor/color/one-color-all.js',
       'vendor/enscroll/js/mylibs/enscroll.js',
@@ -85,29 +87,29 @@ module.exports = {
       'vendor/angular-daterangepicker/js/angular-daterangepicker.js',
       'vendor/Chart.js/Chart.js',
       'vendor/angular-chart.js/dist/angular-chart.js',
-      'vendor/PykCharts/pykih-charts/assets/lib/d3.min.js',
-      'vendor/PykCharts/pykih-charts/assets/lib/topojson.min.js',
-      'vendor/PykCharts/pykih-charts/assets/lib/custom-hive.min.js',
-      'vendor/PykCharts/pykih-charts/assets/lib/colors.min.js',
-      'vendor/PykCharts/pykih-charts/assets/lib/paper-full.min.js',
-      'vendor/PykCharts/pykcharts.1.1.0.min.js',
       'vendor/Heyoffline/Heyoffline.js',
       'vendor/angular-flash-alert/dist/angular-flash.js',
-      'vendor/angular-animate/angular-animate.min.js'
+      'vendor/angular-animate/angular-animate.min.js',
+      'vendor/metisMenu/dist/metisMenu.min.js'
 
 
 
 
     ],
     css: [
+      'vendor/bootstrap/dist/css/bootstrap.min.css',
       'vendor/morris.js/morris.css',
       'vendor/bootstrap-daterangepicker/daterangepicker.css',
       'vendor/angular-chart.js/dist/angular-chart.css',
-      'vendor/PykCharts/pykcharts.1.1.0.min.css',
-      'vendor/angular-flash-alert/dist/angular-flash.css'
+      'vendor/angular-flash-alert/dist/angular-flash.css',
+      'vendor/font-awesome/css/font-awesome.css',
+
+
 
     ],
     assets: [
+      'vendor/font-awesome/fonts/**',
+
     ]
   }
 };

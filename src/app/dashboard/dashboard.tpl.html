@@ -1,33 +1,459 @@
-<section class = "section" ui-view = "category_performance_analysis" ng-controller = "CategoryPerformanceAnalysisCtrl">
-</section>
+<div id="wrapper">
 
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <div id="side-menu" class="nav metismenu">
+                <div class="logo-holder">
+                    <div class="logo">
+                        <a href="#"> <img alt="image" class="img-responsive" src="assets/images/logo.jpg"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div class="header-visual">
+            <nav class="navbar dashboard" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    <form role="search" class="navbar-form-custom" action="search_results.html">
+                        <div class="form-group">
+                            <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                        </div>
+                    </form>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <span class="m-r-sm text-muted welcome-message">Welcome <span class="name">Name</span></span>
+                    </li>
+                    <li>
+                        <a href="login.html">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>
+                    </li>
+                </ul>
 
-<section class = "section">
-  <div class = "block" ui-view = "overall_feedback" ng-controller = "OverallFeedbackCtrl"></div>
-  
-  <div class = "block" ui-view = "top_concern" ng-controller = "TopConcernCtrl"></div>
-</section>
+            </nav>
 
-<section class = "section" ui-view="regional_analysis" ng-controller = "RegionalAnalysisCtrl"></section>
+            <div class="img-holder">
+                <div class="inner-holder"><img alt="image" class="img-responsive" src="/assets/images/img1.jpg" /></div>
+            </div>
+            <div class="header-caption animated fadeInRight">
+                <h1>Customer Centric Approch</h1>
+            </div>
+        </div>
+        <div class="comment-block">
+            <a href="#" class="nav-opener">
+                <i class="fa fa-comments-o"></i>
+                <span class="count">2</span>
+            </a>
+            <div class="comments-drop">
+                <a href="#" class="nav-opener">
+                    <i class="fa fa-times"></i>
+                </a>
+                <div class="inner-holder">
+                    <div class="heading-holder">
+                        <div class="holder">
+                            <div class="icon-holder">
+                                <i class="fa fa-comments-o"></i>
+                            </div>
+                            <h2>Positive/Negative Feedback</h2>
+                        </div>
+                    </div>
+                    <div class="comments-holder">
+                        <ul class="comments-list list-unstyled">
+                            <li class="negative deferred">
+                                <p>Chicken was all red inside</p>
+                                <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
+                            </li>
+                            <li class="positive processed">
+                                <p>We want pratha n omlete</p>
+                                <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
+                            </li>
+                            <li class="positive">
+                                <p>People are too choosy here!!</p>
+                                <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
+                            </li>
+                            <li class="negative">
+                                <p>Value meal price should be less then 285 for students</p>
+                                <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
+                            </li>
+                            <li class="positive">
+                                <p>Overall good, your fries quantity is less</p>
+                                <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
+                            </li>
+                            <li class="positive">
+                                <p>People are too choosy here!!</p>
+                                <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
+                            </li>
+                            <li class="negative">
+                                <p>Chicken was all red inside</p>
+                                <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
+                            </li>
+                            <li class="positive">
+                                <p>We want pratha n omlete</p>
+                                <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
+                            </li>
+                            <li class="positive">
+                                <p>People are too choosy here!!</p>
+                                <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="btn-holder">
+                        <a href="#" class="btn btn-info pull-right">View All</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row same-height-parent">
+            <div class="col-lg-6 col-lg-push-6 business-segment">
+                <div class="same-height-block add">
+                    <div class="ibox float-e-margins">
+                        <div class="title-outer">
+                            <div class="ibox-title">
+                                <h5>Business Segment Breakdown</h5>
+                                <div class="ibox-tools">
+                                    <ul class="tab-links">
+                                        <li><a href="#">All</a></li>
+                                        <li class="item2"><a href="#">Quality</a></li>
+                                        <li class="item3"><a href="#">Service</a></li>
+                                        <li class="item4"><a href="#">Cleanliness</a></li>
+                                        <li class="item5">
+                                            <div class="calender-outer">
+                                                <span class="calendar-holder">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-holder">
+                            <div class="ibox-content add">
+                                <div class="chart-outer">
+                                    <div id="morris-area-chart"></div>
+                                </div>
+                                <div class="list-holder">
+                                    <div class="row">
+                                        <div class="morris-block-holder">
+                                            <div class="morris-content-holder">
+                                                <div class="morris-graph-holder">
+                                                   <div class="morris-holder">
+                                                        <div>
+                                                            <canvas id="doughnutChart1" height="140"></canvas>
+                                                        </div>
+                                                   </div>
+                                                </div>
+                                                <strong class="title"><a href="#">BREAKFAST</a></strong>   
+                                            </div>
+                                            <div class="morris-content-holder">
+                                                <div class="morris-graph-holder">
+                                                   <div class="morris-holder">
+                                                        <div>
+                                                            <canvas id="doughnutChart2" height="140"></canvas>
+                                                        </div>
+                                                   </div>
+                                                </div>
+                                                <strong class="title"><a href="#">LUNCH</a></strong>   
+                                            </div>
+                                            <div class="morris-content-holder">
+                                                <div class="morris-graph-holder">
+                                                   <div class="morris-holder">
+                                                        <div>
+                                                            <canvas id="doughnutChart3" height="140"></canvas>
+                                                        </div>
+                                                   </div>
+                                                </div>
+                                                <strong class="title"><a href="#">SNACK</a></strong>   
+                                            </div>
+                                            <div class="morris-content-holder">
+                                                <div class="morris-graph-holder">
+                                                   <div class="morris-holder">
+                                                        <div>
+                                                            <canvas id="doughnutChart4" height="140"></canvas>
+                                                        </div>
+                                                   </div>
+                                                </div>
+                                                <strong class="title"><a href="#">DINNER</a></strong>   
+                                            </div>
+                                            <div class="morris-content-holder">
+                                                <div class="morris-graph-holder">
+                                                   <div class="morris-holder">
+                                                        <div>
+                                                            <canvas id="doughnutChart5" height="140"></canvas>
+                                                        </div>
+                                                   </div>
+                                                </div>
+                                                <strong class="title"><a href="#">LATE NIGHT</a></strong>   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-lg-pull-6">
+                <div class="same-height-block">
+                    <div class="row">
+                        <div class="col-lg-8 same-height-col">
+                            <div class="row inner-row rating">
+                                <div class="col-xs-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="title-outer">
+                                            <div class="ibox-title">
+                                                <h5>Overall Rating</h5>
+                                                <ul class="tab-links">
+                                                    <li>
+                                                        <div class="calender-outer">
+                                                            <span class="calendar-holder">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="content-holder">
+                                            <div class="ibox-content float-chart-block">
+                                                <div class="flot-chart">
+                                                    <div class="flot-chart-content" id="flot-bar-chart"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row inner-row add">
+                                <div class="col-xs-12">
+                                    <div class="ibox float-e-margins float-e-margin-none">
+                                        <div class="title-outer">
+                                            <div class="ibox-title">
+                                                <h5>Top Concerns</h5>
+                                            </div>
+                                        </div>
+                                        <div class="content-holder">
+                                            <div class="ibox-content">
+                                                <div class="graph-block">
+                                                    <canvas id="doughnutChart" height="140"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 same-height-col">
+                            <div class="row inner-row">
+                                <div class="col-sm-6 col-lg-12">
+                                    <div class="ibox float-e-margins detail-block">
+                                        <div class="title-outer">
+                                            <div class="ibox-title">
+                                                <span class="label label-primary pull-right">Monthly</span>
+                                                <h5>Income</h5>
+                                            </div>
+                                        </div>
+                                        <div class="content-holder">
+                                            <div class="ibox-content">
+                                                <h1 class="no-margins">22 285,400</h1>
+                                                <div class="stat-percent font-bold text-navy">98% <i class="fa fa-bolt"></i></div>
+                                                <small>New orders</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-12">
+                                    <div class="ibox float-e-margins detail-block">
+                                        <div class="title-outer">
+                                            <div class="ibox-title">
+                                                <span class="label label-primary pull-right">Monthly</span>
+                                                <h5>Income</h5>
+                                            </div>
+                                        </div>
+                                        <div class="content-holder">
+                                            <div class="ibox-content">
+                                                <h1 class="no-margins">22 285,400</h1>
+                                                <div class="stat-percent font-bold text-navy">98% <i class="fa fa-bolt"></i></div>
+                                                <small>New orders</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row inner-row add">
+                                <div class="col-sm-6 col-lg-12">
+                                    <div class="ibox float-e-margins detail-block">
+                                        <div class="title-outer">
+                                            <div class="ibox-title">
+                                                <span class="label label-primary pull-right">Monthly</span>
+                                                <h5>Income</h5>
+                                            </div>
+                                        </div>
+                                        <div class="content-holder">
+                                            <div class="ibox-content">
+                                                <h1 class="no-margins">22 285,400</h1>
+                                                <div class="stat-percent font-bold text-navy">98% <i class="fa fa-bolt"></i></div>
+                                                <small>New orders</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-12">
+                                    <div class="ibox float-e-margins detail-block">
+                                        <div class="title-outer">
+                                            <div class="ibox-title">
+                                                <span class="label label-primary pull-right">Monthly</span>
+                                                <h5>Income</h5>
+                                            </div>
+                                        </div>
+                                        <div class="content-holder">
+                                            <div class="ibox-content">
+                                                <h1 class="no-margins">22 285,400</h1>
+                                                <div class="stat-percent font-bold text-navy">98% <i class="fa fa-bolt"></i></div>
+                                                <small>New orders</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 patch-section">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Patch QSC Analysis</h5>
+                        <div class="ibox-tools">
+                            <ul class="tab-links">
+                                <li class="active"><a href="#">Complaints</a></li>
+                                <li><a href="#">Rating</a></li>
+                                <li><a href="#">QSC</a></li>
+                                <li>
+                                    <div class="calender-outer">
+                                        <span class="calendar-holder"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </li>
+                              </ul>
+                        </div>
+                    </div>
+                    <div class="ibox-content morris-content-outer">
+                        <div class="morris-content-holder">
+                            <div class="morris-graph-holder">
+                               <div class="morris-holder">
+                                   <div id="morris-donut-chart1"></div>
+                               </div>
+                            </div>
+                            <strong class="title"><a href="#">Name</a></strong>   
+                        </div>
+                        <div class="morris-content-holder">
+                            <div class="morris-graph-holder">
+                               <div class="morris-holder">
+                                   <div id="morris-donut-chart2"></div>
+                               </div>
+                            </div>
+                            <strong class="title"><a href="#">Name</a></strong>   
+                        </div>
+                        <div class="morris-content-holder">
+                            <div class="morris-graph-holder">
+                               <div class="morris-holder">
+                                   <div id="morris-donut-chart3"></div>
+                               </div>
+                            </div>
+                            <strong class="title"><a href="#">Name</a></strong>   
+                        </div>
+                        <div class="morris-content-holder">
+                            <div class="morris-graph-holder">
+                               <div class="morris-holder">
+                                   <div id="morris-donut-chart4"></div>
+                               </div>
+                            </div>
+                            <strong class="title"><a href="#">Name</a></strong>   
+                        </div>
+                        <div class="morris-content-holder">
+                            <div class="morris-graph-holder">
+                               <div class="morris-holder">
+                                   <div id="morris-donut-chart5"></div>
+                               </div>
+                            </div>
+                            <strong class="title"><a href="#">Name</a></strong>   
+                        </div>
+                        <div class="morris-content-holder">
+                            <div class="morris-graph-holder">
+                               <div class="morris-holder">
+                                   <div id="morris-donut-chart6"></div>
+                               </div>
+                            </div>
+                            <strong class="title"><a href="#">Name</a></strong>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row same-height-parent">
+            <div class="col-lg-6 map-section">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Benchmark Map</h5>
+                        <div class="ibox-tools">
+                            <ul class="tab-links">
+                                <li>
+                                    <div class="calender-outer">
+                                        <span class="calendar-holder">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="ibox-content same-height">
+                        <div class="block-holder">
+                            <div id="world-map"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 timeline-section">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Timeline</h5>
+                        <div class="ibox-tools">
+                            <ul class="tab-links">
+                                <li>
+                                    <div class="calender-outer">
+                                        <span class="calendar-holder">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="ibox-content same-height">
+                        <div class="block-holder">
+                            <canvas id="lineChart" height="140"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></div>
+        <div class="footer">
+            <div class="pull-right">
+                10GB of <strong>250GB</strong> Free.
+            </div>
+            <div>
+                <strong>Copyright</strong> Example Company &copy; 2014-2015
+            </div>
+        </div>
 
-
-
-<section class = "section">
-  <div class = "block" ui-view = "feedback_map" ng-controller = "FeedbackMapCtrl"></div>
-  <div class = "block" ui-view = "overall_rating" ng-controller = "OverallRatingCtrl"></div>
-</section>
-
-
-<!--<div class = "row">
-  <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div ui-view="statistics"></div>
-  </div>
-</div> -->
-
-<section class = "section">
-  <div class="section-holder" ng-controller = "PositiveNegativeFeedbackCtrl">
-      <div ui-view = "positive_negative_feedback"></div>
-  </div>
-</section>
+    </div>
+</div>
 
   
