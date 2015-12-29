@@ -251,7 +251,7 @@ angular.module('livefeed.chart', [
 
         options: {
           barShowStroke : false,
-          barValueSpacing : 35,
+          barValueSpacing : 60,
           scaleShowVerticalLines: false,
           tooltipTemplate: "<%= value %>",
           scaleOverride: true,
