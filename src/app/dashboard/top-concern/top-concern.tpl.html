@@ -1,24 +1,3 @@
-<!-- <div class="rating-section" ng-class = "{loading: show_loading}">
-  <header class="heading-block">
-    <h2>
-    Customers Top 5 Concerns
-    <span class="icon-help" uib-popover="Representation of the latest top 5 concerns that the customers are facing in the respective branches. The size of bubbles represents the amount of complaints." popover-trigger="mouseenter" popover-placement="top"></span>
-    </h2>
-  </header>
-  <div class="rating-holder">
-  	<ul>
-  		<li ng-repeat = "concern in data">
-  			<span class="bullet" style = "background-color: {{concern.color}};"></span>
-  			{{concern.label}}
-  		</li>
-  	</ul>
-    <div class="graph-outer bubble-chart-parent" same-height data-mydata = "data">
-      <div id="bubble-chart" pyk-chart data-data = "data" data-colors = "colors"></div>
-    </div>
-  </div>
-</div> -->
-
-
 <div class="row inner-row add">
   <div class="col-xs-12">
     <div class="ibox float-e-margins float-e-margin-none">
@@ -30,9 +9,6 @@
       <div class="content-holder">
         <div class="ibox-content">
           <div class="graph-block">
-            <!-- <canvas id="doughnutChart" height="140"></canvas> -->
-           <!--  <div class = "ct-chart"></div> -->
-            <!-- <chartist class = "ct-chart" data-data = "data" ></chartist> -->
             <canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels"></canvas> 
           </div>
         </div>

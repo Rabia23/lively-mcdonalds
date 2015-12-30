@@ -178,7 +178,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
   $templateCache.put("dashboard/dashboard.tpl.html",
     "<div id=\"wrapper\">\n" +
     "\n" +
-    "    <nav class=\"navbar-default navbar-static-side\" role=\"navigation\">\n" +
+    "    <nav class=\"navbar-default navbar-static-side\" role=\"navigation\" >\n" +
     "        <div class=\"sidebar-collapse\">\n" +
     "            <div id=\"side-menu\" class=\"nav metismenu\">\n" +
     "                <div class=\"logo-holder\">\n" +
@@ -191,9 +191,11 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "    </nav>\n" +
     "    <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
     "        <div class=\"header-visual\">\n" +
-    "          <nav class=\"navbar dashboard\" role=\"navigation\" style=\"margin-bottom: 0\">\n" +
+    "          <nav class=\"navbar dashboard\" role=\"navigation\" style=\"margin-bottom: 0;z-index: 999;\">\n" +
     "            <div class=\"navbar-header\">\n" +
-    "              <a class=\"navbar-minimalize minimalize-styl-2 btn btn-primary \" href=\"#\"><i class=\"fa fa-bars\"></i> </a>\n" +
+    "              <a class=\"navbar-minimalize minimalize-styl-2 btn btn-primary\" toggle-menu>\n" +
+    "                <i class=\"fa fa-bars\"></i>\n" +
+    "              </a>\n" +
     "              <form role=\"search\" class=\"navbar-form-custom\" action=\"search_results.html\">\n" +
     "                <div class=\"form-group\">\n" +
     "                  <input type=\"text\" placeholder=\"Search for something...\" class=\"form-control\" name=\"top-search\" id=\"top-search\">\n" +
@@ -219,70 +221,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "            <h1>Customer Centric Approch</h1>\n" +
     "          </div>\n" +
     "        </div>\n" +
-    "        <div class=\"comment-block\">\n" +
-    "          <a href=\"#\" class=\"nav-opener\">\n" +
-    "            <i class=\"fa fa-comments-o\"></i>\n" +
-    "            <span class=\"count\">2</span>\n" +
-    "          </a>\n" +
-    "          <div class=\"comments-drop\">\n" +
-    "              <a href=\"#\" class=\"nav-opener\">\n" +
-    "                  <i class=\"fa fa-times\"></i>\n" +
-    "              </a>\n" +
-    "              <div class=\"inner-holder\">\n" +
-    "                  <div class=\"heading-holder\">\n" +
-    "                      <div class=\"holder\">\n" +
-    "                          <div class=\"icon-holder\">\n" +
-    "                              <i class=\"fa fa-comments-o\"></i>\n" +
-    "                          </div>\n" +
-    "                          <h2>Positive/Negative Feedback</h2>\n" +
-    "                      </div>\n" +
-    "                  </div>\n" +
-    "                  <div class=\"comments-holder\">\n" +
-    "                      <ul class=\"comments-list list-unstyled\">\n" +
-    "                          <li class=\"negative deferred\">\n" +
-    "                              <p>Chicken was all red inside</p>\n" +
-    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                          </li>\n" +
-    "                          <li class=\"positive processed\">\n" +
-    "                              <p>We want pratha n omlete</p>\n" +
-    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                          </li>\n" +
-    "                          <li class=\"positive\">\n" +
-    "                              <p>People are too choosy here!!</p>\n" +
-    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                          </li>\n" +
-    "                          <li class=\"negative\">\n" +
-    "                              <p>Value meal price should be less then 285 for students</p>\n" +
-    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                          </li>\n" +
-    "                          <li class=\"positive\">\n" +
-    "                              <p>Overall good, your fries quantity is less</p>\n" +
-    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                          </li>\n" +
-    "                          <li class=\"positive\">\n" +
-    "                              <p>People are too choosy here!!</p>\n" +
-    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                          </li>\n" +
-    "                          <li class=\"negative\">\n" +
-    "                              <p>Chicken was all red inside</p>\n" +
-    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                          </li>\n" +
-    "                          <li class=\"positive\">\n" +
-    "                              <p>We want pratha n omlete</p>\n" +
-    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                          </li>\n" +
-    "                          <li class=\"positive\">\n" +
-    "                              <p>People are too choosy here!!</p>\n" +
-    "                              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
-    "                          </li>\n" +
-    "                      </ul>\n" +
-    "                  </div>\n" +
-    "                  <div class=\"btn-holder\">\n" +
-    "                      <a href=\"#\" class=\"btn btn-info pull-right\">View All</a>\n" +
-    "                  </div>\n" +
-    "              </div>\n" +
-    "          </div>\n" +
-    "        </div>\n" +
+    "        <ui-view name = \"positive_negative_feedback\"></ui-view>\n" +
     "        <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "          <div class=\"row same-height-parent\">\n" +
     "            <div class=\"col-lg-6 col-lg-push-6 business-segment\">\n" +
@@ -660,7 +599,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
 
 angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html",
-    "<div class=\"review-block\">\n" +
+    "<!-- <div class=\"review-block\">\n" +
     "  <div class=\"heading-block\">\n" +
     "  	<div class = \"pull-right\">\n" +
     "		<a class = \"btn btn-default\" ng-click = \"open()\" uib-tooltip=\"Click to View All Feedback Details\">View All Feedback</a>\n" +
@@ -693,6 +632,40 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "        <time>{{neg_feedback.created_at | date:\"dd-MM-yyyy',' h:mm a\"}}</time>\n" +
     "      </li>\n" +
     "    </ul>\n" +
+    "  </div>\n" +
+    "</div> -->\n" +
+    "\n" +
+    "\n" +
+    "<div class=\"comment-block\">\n" +
+    "  <a style = \"cursor:pointer;\" class=\"nav-opener\" mobile-nav>\n" +
+    "    <i class=\"fa fa-comments-o\"></i>\n" +
+    "    <span class=\"count\">2</span>\n" +
+    "  </a>\n" +
+    "  <div class=\"comments-drop\">\n" +
+    "    <a href=\"#\" class=\"nav-opener\">\n" +
+    "      <i class=\"fa fa-times\"></i>\n" +
+    "    </a>\n" +
+    "    <div class=\"inner-holder\">\n" +
+    "      <div class=\"heading-holder\">\n" +
+    "        <div class=\"holder\">\n" +
+    "          <div class=\"icon-holder\">\n" +
+    "            <i class=\"fa fa-comments-o\"></i>\n" +
+    "          </div>\n" +
+    "          <h2>Positive/Negative Feedback</h2>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"comments-holder\">\n" +
+    "        <ul class=\"comments-list list-unstyled\">\n" +
+    "          <li ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.data.is_negative, positive: !comment.data.is_negative, processed: comment.action_string == 'Processed', deferred: comment.action_string == 'Deferred'}\">\n" +
+    "              <p>{{comment.data.comment}}</p>\n" +
+    "              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "          </li>\n" +
+    "        </ul>\n" +
+    "      </div>\n" +
+    "      <div class=\"btn-holder\">\n" +
+    "        <a class=\"btn btn-info pull-right\" ng-click = \"open()\">View All</a>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
     "");
@@ -821,27 +794,6 @@ angular.module("dashboard/statistics/statistics.tpl.html", []).run(["$templateCa
 
 angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/top-concern/top-concern.tpl.html",
-    "<!-- <div class=\"rating-section\" ng-class = \"{loading: show_loading}\">\n" +
-    "  <header class=\"heading-block\">\n" +
-    "    <h2>\n" +
-    "    Customers Top 5 Concerns\n" +
-    "    <span class=\"icon-help\" uib-popover=\"Representation of the latest top 5 concerns that the customers are facing in the respective branches. The size of bubbles represents the amount of complaints.\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
-    "    </h2>\n" +
-    "  </header>\n" +
-    "  <div class=\"rating-holder\">\n" +
-    "  	<ul>\n" +
-    "  		<li ng-repeat = \"concern in data\">\n" +
-    "  			<span class=\"bullet\" style = \"background-color: {{concern.color}};\"></span>\n" +
-    "  			{{concern.label}}\n" +
-    "  		</li>\n" +
-    "  	</ul>\n" +
-    "    <div class=\"graph-outer bubble-chart-parent\" same-height data-mydata = \"data\">\n" +
-    "      <div id=\"bubble-chart\" pyk-chart data-data = \"data\" data-colors = \"colors\"></div>\n" +
-    "    </div>\n" +
-    "  </div>\n" +
-    "</div> -->\n" +
-    "\n" +
-    "\n" +
     "<div class=\"row inner-row add\">\n" +
     "  <div class=\"col-xs-12\">\n" +
     "    <div class=\"ibox float-e-margins float-e-margin-none\">\n" +
@@ -853,9 +805,6 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "      <div class=\"content-holder\">\n" +
     "        <div class=\"ibox-content\">\n" +
     "          <div class=\"graph-block\">\n" +
-    "            <!-- <canvas id=\"doughnutChart\" height=\"140\"></canvas> -->\n" +
-    "           <!--  <div class = \"ct-chart\"></div> -->\n" +
-    "            <!-- <chartist class = \"ct-chart\" data-data = \"data\" ></chartist> -->\n" +
     "            <canvas id=\"doughnut\" class=\"chart chart-doughnut\" chart-data=\"data\" chart-labels=\"labels\"></canvas> \n" +
     "          </div>\n" +
     "        </div>\n" +

@@ -5,11 +5,14 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
    'ui.bootstrap'
 ])
 
-.controller( 'PositiveNegativeFeedbackCtrl', function DashboardController( $scope, _, Global, Graphs,$uibModal, $log ) {
+.controller( 'PositiveNegativeFeedbackCtrl', function DashboardController( $scope, _, Global, Graphs,$uibModal, $log, commentService ) {
 
-  Graphs.positive_negative_feedback().$promise.then(function(data){
-    $scope.pos_feedbacks = data.positive_feedbacks;
-    $scope.neg_feedbacks = data.negative_feedbacks;
+
+  Graphs.comments(1).$promise.then(function(data){
+    $scope.comments = _.map(data.feedbacks,  function(data){
+      return commentService.getComment(data);
+    });
+    console.log($scope.comments);
   });
 
   $scope.open = function (size) {
@@ -73,6 +76,16 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
 
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
+  };
+})
+
+
+.directive('mobileNav', function(){
+  return {
+    restrict: 'A',
+    link: function(scope, ele, attrs){
+      window.initMobileNav();    
+    }
   };
 })
 

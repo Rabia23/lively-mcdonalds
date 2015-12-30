@@ -1,6 +1,6 @@
 <div id="wrapper">
 
-    <nav class="navbar-default navbar-static-side" role="navigation">
+    <nav class="navbar-default navbar-static-side" role="navigation" >
         <div class="sidebar-collapse">
             <div id="side-menu" class="nav metismenu">
                 <div class="logo-holder">
@@ -13,9 +13,11 @@
     </nav>
     <div id="page-wrapper" class="gray-bg">
         <div class="header-visual">
-          <nav class="navbar dashboard" role="navigation" style="margin-bottom: 0">
+          <nav class="navbar dashboard" role="navigation" style="margin-bottom: 0;z-index: 999;">
             <div class="navbar-header">
-              <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+              <a class="navbar-minimalize minimalize-styl-2 btn btn-primary" toggle-menu>
+                <i class="fa fa-bars"></i>
+              </a>
               <form role="search" class="navbar-form-custom" action="search_results.html">
                 <div class="form-group">
                   <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
@@ -41,70 +43,7 @@
             <h1>Customer Centric Approch</h1>
           </div>
         </div>
-        <div class="comment-block">
-          <a href="#" class="nav-opener">
-            <i class="fa fa-comments-o"></i>
-            <span class="count">2</span>
-          </a>
-          <div class="comments-drop">
-              <a href="#" class="nav-opener">
-                  <i class="fa fa-times"></i>
-              </a>
-              <div class="inner-holder">
-                  <div class="heading-holder">
-                      <div class="holder">
-                          <div class="icon-holder">
-                              <i class="fa fa-comments-o"></i>
-                          </div>
-                          <h2>Positive/Negative Feedback</h2>
-                      </div>
-                  </div>
-                  <div class="comments-holder">
-                      <ul class="comments-list list-unstyled">
-                          <li class="negative deferred">
-                              <p>Chicken was all red inside</p>
-                              <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
-                          </li>
-                          <li class="positive processed">
-                              <p>We want pratha n omlete</p>
-                              <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
-                          </li>
-                          <li class="positive">
-                              <p>People are too choosy here!!</p>
-                              <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
-                          </li>
-                          <li class="negative">
-                              <p>Value meal price should be less then 285 for students</p>
-                              <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
-                          </li>
-                          <li class="positive">
-                              <p>Overall good, your fries quantity is less</p>
-                              <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
-                          </li>
-                          <li class="positive">
-                              <p>People are too choosy here!!</p>
-                              <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
-                          </li>
-                          <li class="negative">
-                              <p>Chicken was all red inside</p>
-                              <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
-                          </li>
-                          <li class="positive">
-                              <p>We want pratha n omlete</p>
-                              <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
-                          </li>
-                          <li class="positive">
-                              <p>People are too choosy here!!</p>
-                              <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
-                          </li>
-                      </ul>
-                  </div>
-                  <div class="btn-holder">
-                      <a href="#" class="btn btn-info pull-right">View All</a>
-                  </div>
-              </div>
-          </div>
-        </div>
+        <ui-view name = "positive_negative_feedback"></ui-view>
         <div class="wrapper wrapper-content animated fadeInRight">
           <div class="row same-height-parent">
             <div class="col-lg-6 col-lg-push-6 business-segment">

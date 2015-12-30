@@ -1,4 +1,4 @@
-<div class="review-block">
+<!-- <div class="review-block">
   <div class="heading-block">
   	<div class = "pull-right">
 		<a class = "btn btn-default" ng-click = "open()" uib-tooltip="Click to View All Feedback Details">View All Feedback</a>
@@ -31,5 +31,39 @@
         <time>{{neg_feedback.created_at | date:"dd-MM-yyyy',' h:mm a"}}</time>
       </li>
     </ul>
+  </div>
+</div> -->
+
+
+<div class="comment-block">
+  <a style = "cursor:pointer;" class="nav-opener" mobile-nav>
+    <i class="fa fa-comments-o"></i>
+    <span class="count">2</span>
+  </a>
+  <div class="comments-drop">
+    <a href="#" class="nav-opener">
+      <i class="fa fa-times"></i>
+    </a>
+    <div class="inner-holder">
+      <div class="heading-holder">
+        <div class="holder">
+          <div class="icon-holder">
+            <i class="fa fa-comments-o"></i>
+          </div>
+          <h2>Positive/Negative Feedback</h2>
+        </div>
+      </div>
+      <div class="comments-holder">
+        <ul class="comments-list list-unstyled">
+          <li ng-repeat = "comment in comments" ng-class = "{negative: comment.data.is_negative, positive: !comment.data.is_negative, processed: comment.action_string == 'Processed', deferred: comment.action_string == 'Deferred'}">
+              <p>{{comment.data.comment}}</p>
+              <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
+          </li>
+        </ul>
+      </div>
+      <div class="btn-holder">
+        <a class="btn btn-info pull-right" ng-click = "open()">View All</a>
+      </div>
+    </div>
   </div>
 </div>
