@@ -4,7 +4,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   'ui.bootstrap'
 ])
 
-.controller( 'RegionalAnalysisCtrl', function DashboardController( $scope, _, Graphs, chartService, $uibModal ) {
+.controller( 'RegionalAnalysisCtrl', function DashboardController( $scope, _, Graphs, chartService, $uibModal, Global ) {
    $scope.today = new Date();
 
   function resetDates(){
@@ -53,18 +53,45 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
     $scope.donut_graph_data = [];
     $scope.show_loading = true;
+    var donut_data = [], donut_colors = [];
+
     if($scope.radioModel === 'Complaints'){
        Graphs.action_analysis("", "", "", $scope.start_date, $scope.end_date, "").$promise.then(function(complains_data){
          showString(complains_data.count);
          $scope.donut_graph_data = chartService.getComplaintsDonutChartData(complains_data);
+         $scope.donut_graph_data.objects.push({id:"", name:"Pakistan", show_chart: complains_data.count === 0?false:true});
+         _.each($scope.donut_graph_data.donutData[0], function(data) {
+           _.find($scope.donut_graph_data.donutData[1], function(dat) {
+             if (data['label'] === dat['label']){
+              donut_data.push({id:"",label:dat['label'],value:data['value']+dat['value']});
+              var color = dat['action_taken'] === 1? '#e73a3a' : dat['action_taken'] === 2 ? '#01ad0f': '#FFCC00';
+              donut_colors.push(color);
+             }
+           });
+         });
+         $scope.donut_graph_data.donutData.push(donut_data);
+         $scope.donut_graph_data.donutOptions.push({colors: donut_colors});
          $scope.show_loading = false;
+         //console.log("complains data");
+         //console.log($scope.donut_graph_data);
        });
     }
     else {
      Graphs.area_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function (area_data){
-       console.log(area_data);
        showString(area_data.count);
        $scope.donut_graph_data = chartService.getDonutChartData(area_data, $scope.question_type);
+       $scope.donut_graph_data.objects.push({id:"", name:"Pakistan", show_chart: area_data.count === 0?false:true});
+       _.each($scope.donut_graph_data.donutData[0], function(data) {
+         _.find($scope.donut_graph_data.donutData[1], function(dat) {
+            if (data['label'] === dat['label']){
+              donut_data.push({id:"",label:dat['label'],value:data['value']+dat['value']});
+              var color = $scope.question_type == 1? Global.mainRatingColorScheme[dat['label']] : Global.optionsColorScheme[dat['label']];
+              donut_colors.push(color);
+            }
+         });
+       });
+       $scope.donut_graph_data.donutData.push(donut_data);
+       $scope.donut_graph_data.donutOptions.push({colors: donut_colors});
        $scope.show_loading = false;
      });
    }
@@ -79,6 +106,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     $scope.donut_regions_data = [];
     if($scope.radioModel === 'Complaints'){
       Graphs.action_analysis(1, "", "", $scope.start_date, $scope.end_date, area.id).$promise.then(function(complains_data){
+         console.log(complains_data);
          showString(complains_data.count);
          $scope.donut_regions_data = chartService.getComplaintsDonutChartData(complains_data);
          $scope.show_loading = false;
@@ -171,7 +199,6 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   };
 
   $scope.showChart = function(object_id, string){
-      console.log(string);
       $scope.showTitle($scope.radioModel);
       $scope.object_id = object_id;
       $scope.string = string;
@@ -227,7 +254,6 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
 })
 
 .controller('SQCModalCtrl', function ($scope, Graphs, chartService, $uibModalInstance, area, region, city, branch, option){
-
   $scope.leftClickDisabled = false;
   $scope.rightClickDisabled = false;
 

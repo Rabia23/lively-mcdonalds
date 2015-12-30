@@ -19,12 +19,12 @@ angular.module( 'livefeed', [
 
 .run( function run ($rootScope, Auth, $state) {
 
-   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
     if (toState.authenticate && !Auth.is_logged_in()) {
-      event.preventDefault(); 
+      event.preventDefault();
       $state.go('login');
     }
-  
+
   });
 
   $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){

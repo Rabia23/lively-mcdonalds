@@ -6,9 +6,9 @@
 		<h5 ng-show = "area_view == false && regional_view == false && city_view == false">{{selected_city.name}}'s Branch Analysis</h5>
         <div class="ibox-tools">
             <ul class="tab-links">
-                <li class="active"><a  ng-model="radioModel" uib-btn-radio="'Complaints'" ng-click = "showChart(null, 'areas')" uib-tooltip="Click to View Complaint Resolution Analysis">Complaints</a></li>
-                <li><a  ng-model="radioModel" uib-btn-radio="'Rating'" ng-click = "showChart(null, 'areas')" uib-tooltip="Click to View Overall Feedback Analysis">Rating</a></li>
-                <li><a  ng-model="radioModel" uib-btn-radio="'QSC'" ng-click = "showChart(null, 'areas')" uib-tooltip="Click to View Overall QSC Analysis">QSC</a></li>
+                <li ng-class="{active: radioModel == 'Complaints'}"><a ng-model="radioModel" uib-btn-radio="'Complaints'" ng-click = "showChart(null, 'areas')" uib-tooltip="Click to View Complaint Resolution Analysis">Complaints</a></li>
+                <li ng-class="{active: radioModel == 'Rating'}"><a ng-model="radioModel" uib-btn-radio="'Rating'" ng-click = "showChart(null, 'areas')" uib-tooltip="Click to View Overall Feedback Analysis">Rating</a></li>
+                <li ng-class="{active: radioModel == 'QSC'}"><a ng-model="radioModel" uib-btn-radio="'QSC'" ng-click = "showChart(null, 'areas')" uib-tooltip="Click to View Overall QSC Analysis">QSC</a></li>
                 <li>
                     <div class="calender-outer">
 					<span class = "calendar-holder" uib-tooltip="Click to Select Custom Date Range">
