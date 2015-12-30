@@ -1,9 +1,10 @@
 angular.module( 'livefeed.dashboard.category_performance_analysis', [
     'factories',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'chart.js'
 ])
 
-.controller('CategoryPerformanceAnalysisCtrl', function DashboardController($scope, _, Graphs, Global) {
+.controller('CategoryPerformanceAnalysisCtrl', function DashboardController($scope, _, Graphs, Global, $timeout) {
 
   $scope.show_loading = false;
   $scope.class = '';
@@ -39,7 +40,38 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
 
     }
   };
-  
+  $scope.showSegmentData = function(region_id,city_id,branch_id,option_id,string) {
+    Graphs.segmentation_rating(region_id, city_id, branch_id, option_id, $scope.start_date, $scope.end_date).$promise.then(function (segment_data) {
+      $timeout(function () {
+        $scope.segments = _.map(segment_data.segments, function (data) {
+          return {
+            name: data.segment,
+            show_string: data.option_count === 0 ? true : false,
+            data: _.map(data.option_data, function (dat) {
+              return dat.count;
+            }),
+            labels: _.map(data.option_data, function (dat) {
+              return dat.option__text;
+            }),
+            colors: _.map(data.option_data, function (dat) {
+              return option_id == null? Global.categoryPerformanceClass[dat.option__text] : Global.qscSubCategoriesData[string][dat.option__text].color;
+            }),
+            priority: Global.segmentationPriority[data.segment]
+          };
+        });
+        $scope.segments = _.sortBy($scope.segments, function (value) {
+          return value.priority;
+        });
+      }, 500);
+    });
+  };
+  $scope.labels = ["Quality", "Service", "Cleanliness"];
+  $scope.data = [
+    [65,40,28],
+    [28,30],
+    [44,20]
+  ];
+
   $scope.showCategoryData = function(region_id,city_id,branch_id,option_id,string){
     $scope.show_loading = true;
 
@@ -64,33 +96,6 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
     });
   };
 
-  $scope.showSegmentData = function(region_id,city_id,branch_id,option_id,string) {
-    Graphs.segmentation_rating(region_id, city_id, branch_id, option_id, $scope.start_date, $scope.end_date).$promise.then(function (segment_data) {
-      $scope.segments = _.map(segment_data.segments, function (data) {
-        data.option_data = _.filter(data.option_data, function(dat){ return dat.count !== 0; });
-        return {
-          name: data.segment,
-          segment_data: _.map(data.option_data, function (dat) {
-              return {
-                percentage: Math.round((dat.count / data.option_count) * 100),
-                complaints: dat.count,
-                class: Global.segmentationClass[dat.option__text],
-                priority: option_id == null? Global.qscPriority[dat.option__text] : Global.qscSubCategoriesData[string][dat.option__text].priority,
-                colour: option_id == null? Global.categoryPerformanceClass[dat.option__text] : Global.qscSubCategoriesData[string][dat.option__text].color
-              };
-          }),
-          priority: Global.segmentationPriority[data.segment]
-        };
-
-      });
-      $scope.segments = _.sortBy($scope.segments, function (value) {
-        value.segment_data = _.sortBy(value.segment_data, function (data) {return data.priority;});
-        return value.priority;
-      });
-
-      $scope.show_loading = false;
-    });
-  };
 
   $scope.onOptionSelect = function(string,option_id){
     if(string === 'All'){ 
@@ -113,46 +118,4 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
   $scope.showCategoryData();
   $scope.showSegmentData();
 
-})
-
-.directive('progressBarBackground', function() {
-  return {
-    restrict: 'A',
-    
-    scope: {
-      data: '=',
-      color: "="
-    },
-    link: function(scope, ele, attrs) {
-      scope.$watch('data', function(watchedData) {
-        if(watchedData !== undefined){
-          $(ele).find(".progress-bar").css("background-color", ('' + scope.color));
-          $(ele).find(".progress-bar").css("color", ('' + scope.color));
-        }
-      });
-    }
-  };
-})
-
-.directive('segmentProgressBarBackground', function($timeout) {
-  return {
-    restrict: 'A',
-
-    scope: {
-      data: '='
-    },
-    link: function(scope, ele, attrs) {
-      scope.$watch('data', function(watchedData) {
-        if(watchedData !== undefined){
-          $timeout(function(){
-            var bars = $(ele).find(".progress-bar");
-            _.each(bars, function(value, index){
-              var color = $(value).data("color");
-              $(value).css("background-color", color);
-            });
-          }, 700);
-        }
-      });
-    }
-  };
 });

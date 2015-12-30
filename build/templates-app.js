@@ -85,21 +85,22 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "\n" +
     "\n" +
     "<div class=\"same-height-block add\">\n" +
-    "  <div class=\"ibox float-e-margins\">\n" +
+    "    <div class=\"ibox float-e-margins\">\n" +
     "      <div class=\"title-outer\">\n" +
     "          <div class=\"ibox-title\">\n" +
     "              <h5>Business Segment Breakdown</h5>\n" +
     "              <div class=\"ibox-tools\">\n" +
     "                  <ul class=\"tab-links\">\n" +
-    "                      <li><a href=\"#\">All</a></li>\n" +
-    "                      <li class=\"item2\"><a href=\"#\">Quality</a></li>\n" +
-    "                      <li class=\"item3\"><a href=\"#\">Service</a></li>\n" +
-    "                      <li class=\"item4\"><a href=\"#\">Cleanliness</a></li>\n" +
+    "                      <li ng-class=\"{active: class == ''}\"><a ng-click = \"onClick(null, 'All')\" uib-tooltip=\"Click to view QSC Segmentation Breakdown\">All</a></li>\n" +
+    "                      <li class=\"item2\" ng-class=\"{active: class == 'Quality'}\"><a ng-click = \"onClick(QualityID, 'Quality')\" uib-tooltip=\"Click to View Quality SubCategories Breakdown\">Quality</a></li>\n" +
+    "                      <li class=\"item3\" ng-class=\"{active: class == 'Service'}\"><a ng-click = \"onClick(ServiceID, 'Service')\" uib-tooltip=\"Click to view Service SubCategories Breakdown\">Service</a></li>\n" +
+    "                      <li class=\"item4\" ng-class=\"{active: class == 'Cleanliness'}\"><a ng-click = \"onClick(CleanlinessID, 'Cleanliness')\" uib-tooltip=\"Click to view Cleanliness SubCategories Breakdown\">Cleanliness</a></li>\n" +
     "                      <li class=\"item5\">\n" +
     "                          <div class=\"calender-outer\">\n" +
-    "                              <span class=\"calendar-holder\">\n" +
-    "                                  <i class=\"fa fa-calendar\"></i>\n" +
-    "                              </span>\n" +
+    "                            <span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
+    "                              <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
+    "                              <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
+    "                            </span>\n" +
     "                          </div>\n" +
     "                      </li>\n" +
     "                  </ul>\n" +
@@ -109,60 +110,21 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "      <div class=\"content-holder\">\n" +
     "          <div class=\"ibox-content add\">\n" +
     "              <div class=\"chart-outer\">\n" +
-    "                  <div id=\"morris-area-chart\"></div>\n" +
+    "                  <canvas id=\"line\" class=\"chart chart-line\" chart-data=\"data\" chart-labels=\"labels\"></canvas>\n" +
     "              </div>\n" +
     "              <div class=\"list-holder\">\n" +
     "                  <div class=\"row\">\n" +
     "                      <div class=\"morris-block-holder\">\n" +
-    "                          <div class=\"morris-content-holder\">\n" +
+    "                          <div class=\"morris-content-holder\" ng-repeat=\"segment in segments track by $index\">\n" +
     "                              <div class=\"morris-graph-holder\">\n" +
     "                                 <div class=\"morris-holder\">\n" +
     "                                      <div>\n" +
-    "                                          <canvas id=\"doughnutChart1\" height=\"140\"></canvas>\n" +
+    "                                          <canvas id=\"doughnut\" class=\"chart chart-doughnut\" chart-data=\"segment.data\" chart-labels=\"segment.labels\" chart-colours=\"segment.colors\"></canvas>\n" +
     "                                      </div>\n" +
+    "                                      <div ng-show=\"segment.show_string\">No data available</div>\n" +
     "                                 </div>\n" +
     "                              </div>\n" +
-    "                              <strong class=\"title\"><a href=\"#\">BREAKFAST</a></strong>   \n" +
-    "                          </div>\n" +
-    "                          <div class=\"morris-content-holder\">\n" +
-    "                              <div class=\"morris-graph-holder\">\n" +
-    "                                 <div class=\"morris-holder\">\n" +
-    "                                      <div>\n" +
-    "                                          <canvas id=\"doughnutChart2\" height=\"140\"></canvas>\n" +
-    "                                      </div>\n" +
-    "                                 </div>\n" +
-    "                              </div>\n" +
-    "                              <strong class=\"title\"><a href=\"#\">LUNCH</a></strong>   \n" +
-    "                          </div>\n" +
-    "                          <div class=\"morris-content-holder\">\n" +
-    "                              <div class=\"morris-graph-holder\">\n" +
-    "                                 <div class=\"morris-holder\">\n" +
-    "                                      <div>\n" +
-    "                                          <canvas id=\"doughnutChart3\" height=\"140\"></canvas>\n" +
-    "                                      </div>\n" +
-    "                                 </div>\n" +
-    "                              </div>\n" +
-    "                              <strong class=\"title\"><a href=\"#\">SNACK</a></strong>   \n" +
-    "                          </div>\n" +
-    "                          <div class=\"morris-content-holder\">\n" +
-    "                              <div class=\"morris-graph-holder\">\n" +
-    "                                 <div class=\"morris-holder\">\n" +
-    "                                      <div>\n" +
-    "                                          <canvas id=\"doughnutChart4\" height=\"140\"></canvas>\n" +
-    "                                      </div>\n" +
-    "                                 </div>\n" +
-    "                              </div>\n" +
-    "                              <strong class=\"title\"><a href=\"#\">DINNER</a></strong>   \n" +
-    "                          </div>\n" +
-    "                          <div class=\"morris-content-holder\">\n" +
-    "                              <div class=\"morris-graph-holder\">\n" +
-    "                                 <div class=\"morris-holder\">\n" +
-    "                                      <div>\n" +
-    "                                          <canvas id=\"doughnutChart5\" height=\"140\"></canvas>\n" +
-    "                                      </div>\n" +
-    "                                 </div>\n" +
-    "                              </div>\n" +
-    "                              <strong class=\"title\"><a href=\"#\">LATE NIGHT</a></strong>   \n" +
+    "                              <strong class=\"title\"><a href=\"#\">{{segment.name}}</a></strong>\n" +
     "                          </div>\n" +
     "                      </div>\n" +
     "                  </div>\n" +
@@ -681,9 +643,9 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "		<h5 ng-show = \"area_view == false && regional_view == false && city_view == false\">{{selected_city.name}}'s Branch Analysis</h5>\n" +
     "        <div class=\"ibox-tools\">\n" +
     "            <ul class=\"tab-links\">\n" +
-    "                <li class=\"active\"><a  ng-model=\"radioModel\" uib-btn-radio=\"'Complaints'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Complaint Resolution Analysis\">Complaints</a></li>\n" +
-    "                <li><a  ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Overall Feedback Analysis\">Rating</a></li>\n" +
-    "                <li><a  ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Overall QSC Analysis\">QSC</a></li>\n" +
+    "                <li ng-class=\"{active: radioModel == 'Complaints'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'Complaints'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Complaint Resolution Analysis\">Complaints</a></li>\n" +
+    "                <li ng-class=\"{active: radioModel == 'Rating'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Overall Feedback Analysis\">Rating</a></li>\n" +
+    "                <li ng-class=\"{active: radioModel == 'QSC'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Overall QSC Analysis\">QSC</a></li>\n" +
     "                <li>\n" +
     "                    <div class=\"calender-outer\">\n" +
     "					<span class = \"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
