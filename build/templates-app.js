@@ -569,26 +569,27 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "\n" +
     "\n" +
     "<div class=\"ibox float-e-margins\">\n" +
-    "                    <div class=\"ibox-title\">\n" +
-    "                        <h5>Timeline</h5>\n" +
-    "                        <div class=\"ibox-tools\">\n" +
-    "                            <ul class=\"tab-links\">\n" +
-    "                                <li>\n" +
-    "                                    <div class=\"calender-outer\">\n" +
-    "                                        <span class=\"calendar-holder\">\n" +
-    "                                            <i class=\"fa fa-calendar\"></i>\n" +
-    "                                        </span>\n" +
-    "                                    </div>\n" +
-    "                                </li>\n" +
-    "                            </ul>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"ibox-content same-height\">\n" +
-    "                        <div class=\"block-holder\">\n" +
-    "                            <canvas id=\"lineChart\" height=\"140\"></canvas>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
+    "  <div class=\"ibox-title\">\n" +
+    "      <h5>Timeline</h5>\n" +
+    "      <div class=\"ibox-tools\">\n" +
+    "          <ul class=\"tab-links\">\n" +
+    "              <li>\n" +
+    "                  <div class=\"calender-outer\">\n" +
+    "                      <span class=\"calendar-holder\">\n" +
+    "                          <i class=\"fa fa-calendar\"></i>\n" +
+    "                      </span>\n" +
+    "                  </div>\n" +
+    "              </li>\n" +
+    "          </ul>\n" +
+    "      </div>\n" +
+    "  </div>\n" +
+    "  <div class=\"ibox-content same-height\">\n" +
+    "      <div class=\"block-holder\">\n" +
+    "          <!-- <canvas id=\"lineChart\" height=\"140\"></canvas> -->\n" +
+    "          <!-- <canvas id=\"line\" class=\"chart chart-line\" chart-data=\"data\" chart-labels=\"labels\" chart-legend=\"true\" chart-series=\"series\" chart-click=\"onClick\" ></canvas>  -->\n" +
+    "      </div>\n" +
+    "  </div>\n" +
+    "</div>\n" +
     "");
 }]);
 
@@ -852,7 +853,10 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "      <div class=\"content-holder\">\n" +
     "        <div class=\"ibox-content\">\n" +
     "          <div class=\"graph-block\">\n" +
-    "            <canvas id=\"doughnutChart\" height=\"140\"></canvas>\n" +
+    "            <!-- <canvas id=\"doughnutChart\" height=\"140\"></canvas> -->\n" +
+    "           <!--  <div class = \"ct-chart\"></div> -->\n" +
+    "            <!-- <chartist class = \"ct-chart\" data-data = \"data\" ></chartist> -->\n" +
+    "            <canvas id=\"doughnut\" class=\"chart chart-doughnut\" chart-data=\"data\" chart-labels=\"labels\"></canvas> \n" +
     "          </div>\n" +
     "        </div>\n" +
     "      </div>\n" +

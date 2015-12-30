@@ -94,7 +94,6 @@ module.exports = {
 
 
 
-
     ],
     css: [
       'vendor/bootstrap/dist/css/bootstrap.min.css',
