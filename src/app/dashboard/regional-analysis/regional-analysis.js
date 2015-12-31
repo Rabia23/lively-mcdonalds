@@ -84,7 +84,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
        _.each($scope.donut_graph_data.donutData[0], function(data) {
          _.find($scope.donut_graph_data.donutData[1], function(dat) {
             if (data['label'] === dat['label']){
-              donut_data.push({id:"",label:dat['label'],value:data['value']+dat['value']});
+              donut_data.push({id:dat['id'],label:dat['label'],value:data['value']+dat['value']});
               var color = $scope.question_type == 1? Global.mainRatingColorScheme[dat['label']] : Global.optionsColorScheme[dat['label']];
               donut_colors.push(color);
             }
@@ -287,6 +287,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     onOptionSelect(area, null, null, null, area);
     Graphs.area_analysis($scope.question_type).$promise.then(function(data) {
       $scope.sqc_data = getSQCdata(data);
+      $scope.sqc_data.push({id:"", name: "Pakistan"});
       showGraph(area,"","","", option);
     });
   }
@@ -387,7 +388,6 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   }
 
   function findSqcData(area,region,city,branch,sqc_data,string){
-
      if(region == null && city == null && branch == null){
       if(string == "next"){
         getNextSQC(area,sqc_data,"",null,null,null);
