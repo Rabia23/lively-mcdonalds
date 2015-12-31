@@ -1,363 +1,463 @@
 // page init
 jQuery(function(){
-	initPositionFixed();
-	initMobileNav();
-	initSameHeight();
+	initSlideShow();
 });
 
-// Block Position Fixed init
-function initPositionFixed() {
-	var fixedClass = 'fixed-position',
-		win = jQuery(window),
-		headerHeight = jQuery('.header-visual').height();
-	jQuery('.comment-block').each(function() {
-		var box = jQuery(this),
-			positionFlag = true;
-
-		function resizeHandler() {
-			scrollHandler();
-		}
-
-		resizeHandler();
-
-		function scrollHandler() {
-			if (win.scrollTop() > headerHeight){
-				if (positionFlag){
-					positionFlag = false;
-					activeSticker();
-				}
-			} else {
-				if (!positionFlag){
-					positionFlag = true;
-					deactiveSticker();
-				}
-			}
-		}
-
-		function activeSticker() {
-			box.addClass(fixedClass);
-		}
-
-		function deactiveSticker() {
-			box.removeClass(fixedClass);
-		}
-
-		win.on('load resize orientationchange', resizeHandler).on('scroll', scrollHandler);
+// fade gallery init
+function initSlideShow() {
+	jQuery('#wrapper').fadeGallery({
+		slides: '.heading-slide',
+		btnPrev: '.btn-prev',
+		btnNext: '.btn-next',
+		pagerLinks: '.slideshow .pagination li',
+		event: 'click',
+		useSwipe: true,
+		autoRotation: true,
+		pauseOnHover: false,
+		autoHeight: true,
+		switchTime: 5000,
+		animSpeed: 500
 	});
-}
-
-// mobile menu init
-function initMobileNav() {
-	jQuery('body').mobileNav({
-		hideOnClickOutside: true,
-		menuActiveClass: 'nav-active',
-		menuOpener: '.nav-opener',
-		menuDrop: '.comments-drop'
-	});
-}
-
-// align blocks height
-function initSameHeight() {
-	jQuery('.same-height-parent').sameHeight({
-		elements: '.same-height',
-		flexible: true,
-		multiLine: true,
-		biggestHeight: true
-	});
-	jQuery('.morris-content-outer').sameHeight({
-		elements: '.morris-holder',
-		flexible: true,
-		multiLine: true,
-		biggestHeight: true
-	});
-	jQuery('.same-height-parent').sameHeight({
-		elements: '.same-height-block',
-		flexible: true,
-		multiLine: true,
-		biggestHeight: true
-	});
-	jQuery('.same-height-parent').sameHeight({
-		elements: '.same-height-col , .same-height-block',
-		flexible: true,
-		multiLine: true,
-		biggestHeight: true
-	});
-	jQuery('.same-height-block').sameHeight({
-		elements: '.inner-row',
-		flexible: true,
-		multiLine: true,
-		biggestHeight: true
+	jQuery('.slideshow').fadeGallery({
+		slides: '.slide',
+		btnPrev: '.btn-prev',
+		btnNext: '.btn-next',
+		pagerLinks: '.pagination li',
+		event: 'click',
+		useSwipe: true,
+		autoRotation: true,
+		pauseOnHover: false,
+		autoHeight: true,
+		switchTime: 5000,
+		animSpeed: 500
 	});
 }
 
 /*
- * Simple Mobile Navigation
+ * jQuery SlideShow plugin
  */
-;(function($) {
-	function MobileNav(options) {
+;(function($){
+	function FadeGallery(options) {
 		this.options = $.extend({
-			container: null,
-			hideOnClickOutside: false,
-			menuActiveClass: 'nav-active',
-			menuOpener: '.nav-opener',
-			menuDrop: '.nav-drop',
-			toggleEvent: 'click',
-			outsideClickEvent: 'click touchstart pointerdown MSPointerDown'
+			slides: 'ul.slideset > li',
+			activeClass:'active',
+			disabledClass:'disabled',
+			btnPrev: 'a.btn-prev',
+			btnNext: 'a.btn-next',
+			generatePagination: false,
+			pagerList: '<ul>',
+			pagerListItem: '<li><a href="#"></a></li>',
+			pagerListItemText: 'a',
+			pagerLinks: '.pagination li',
+			currentNumber: 'span.current-num',
+			totalNumber: 'span.total-num',
+			btnPlay: '.btn-play',
+			btnPause: '.btn-pause',
+			btnPlayPause: '.btn-play-pause',
+			galleryReadyClass: 'gallery-js-ready',
+			autorotationActiveClass: 'autorotation-active',
+			autorotationDisabledClass: 'autorotation-disabled',
+			autorotationStopAfterClick: false,
+			circularRotation: true,
+			switchSimultaneously: true,
+			disableWhileAnimating: false,
+			disableFadeIE: false,
+			autoRotation: false,
+			pauseOnHover: true,
+			autoHeight: false,
+			useSwipe: false,
+			swipeThreshold: 15,
+			switchTime: 4000,
+			animSpeed: 600,
+			event:'click'
 		}, options);
-		this.initStructure();
-		this.attachEvents();
+		this.init();
 	}
-	MobileNav.prototype = {
-		initStructure: function() {
-			this.page = $('html');
-			this.container = $(this.options.container);
-			this.opener = this.container.find(this.options.menuOpener);
-			this.drop = this.container.find(this.options.menuDrop);
+	FadeGallery.prototype = {
+		init: function() {
+			if(this.options.holder) {
+				this.findElements();
+				this.attachEvents();
+				this.refreshState(true);
+				this.autoRotate();
+				this.makeCallback('onInit', this);
+			}
+		},
+		findElements: function() {
+			// control elements
+			this.gallery = $(this.options.holder).addClass(this.options.galleryReadyClass);
+			this.slides = this.gallery.find(this.options.slides);
+			this.slidesHolder = this.slides.eq(0).parent();
+			this.stepsCount = this.slides.length;
+			this.btnPrev = this.gallery.find(this.options.btnPrev);
+			this.btnNext = this.gallery.find(this.options.btnNext);
+			this.currentIndex = 0;
+
+			// disable fade effect in old IE
+			if(this.options.disableFadeIE && !$.support.opacity) {
+				this.options.animSpeed = 0;
+			}
+
+			// create gallery pagination
+			if(typeof this.options.generatePagination === 'string') {
+				this.pagerHolder = this.gallery.find(this.options.generatePagination).empty();
+				this.pagerList = $(this.options.pagerList).appendTo(this.pagerHolder);
+				for(var i = 0; i < this.stepsCount; i++) {
+					$(this.options.pagerListItem).appendTo(this.pagerList).find(this.options.pagerListItemText).text(i+1);
+				}
+				this.pagerLinks = this.pagerList.children();
+			} else {
+				this.pagerLinks = this.gallery.find(this.options.pagerLinks);
+			}
+
+			// get start index
+			var activeSlide = this.slides.filter('.'+this.options.activeClass);
+			if(activeSlide.length) {
+				this.currentIndex = this.slides.index(activeSlide);
+			}
+			this.prevIndex = this.currentIndex;
+
+			// autorotation control buttons
+			this.btnPlay = this.gallery.find(this.options.btnPlay);
+			this.btnPause = this.gallery.find(this.options.btnPause);
+			this.btnPlayPause = this.gallery.find(this.options.btnPlayPause);
+
+			// misc elements
+			this.curNum = this.gallery.find(this.options.currentNumber);
+			this.allNum = this.gallery.find(this.options.totalNumber);
+
+			// handle flexible layout
+			this.slides.css({display:'block',opacity:0}).eq(this.currentIndex).css({
+				opacity:''
+			});
 		},
 		attachEvents: function() {
 			var self = this;
 
-			if(activateResizeHandler) {
-				activateResizeHandler();
-				activateResizeHandler = null;
-			}
+			// flexible layout handler
+			this.resizeHandler = function() {
+				self.onWindowResize();
+			};
+			$(window).bind('load resize orientationchange', this.resizeHandler);
 
-			this.outsideClickHandler = function(e) {
-				if(self.isOpened()) {
-					var target = $(e.target);
-					if(!target.closest(self.opener).length && !target.closest(self.drop).length) {
-						self.hide();
+			if(this.btnPrev.length) {
+				this.btnPrevHandler = function(e){
+					e.preventDefault();
+					self.prevSlide();
+					if(self.options.autorotationStopAfterClick) {
+						self.stopRotation();
 					}
+				};
+				this.btnPrev.bind(this.options.event, this.btnPrevHandler);
+			}
+			if(this.btnNext.length) {
+				this.btnNextHandler = function(e) {
+					e.preventDefault();
+					self.nextSlide();
+					if(self.options.autorotationStopAfterClick) {
+						self.stopRotation();
+					}
+				};
+				this.btnNext.bind(this.options.event, this.btnNextHandler);
+			}
+			if(this.pagerLinks.length) {
+				this.pagerLinksHandler = function(e) {
+					e.preventDefault();
+					self.numSlide(self.pagerLinks.index(e.currentTarget));
+					if(self.options.autorotationStopAfterClick) {
+						self.stopRotation();
+					}
+				};
+				this.pagerLinks.bind(self.options.event, this.pagerLinksHandler);
+			}
+
+			// autorotation buttons handler
+			if(this.btnPlay.length) {
+				this.btnPlayHandler = function(e) {
+					e.preventDefault();
+					self.startRotation();
+				};
+				this.btnPlay.bind(this.options.event, this.btnPlayHandler);
+			}
+			if(this.btnPause.length) {
+				this.btnPauseHandler = function(e) {
+					e.preventDefault();
+					self.stopRotation();
+				};
+				this.btnPause.bind(this.options.event, this.btnPauseHandler);
+			}
+			if(this.btnPlayPause.length) {
+				this.btnPlayPauseHandler = function(e){
+					e.preventDefault();
+					if(!self.gallery.hasClass(self.options.autorotationActiveClass)) {
+						self.startRotation();
+					} else {
+						self.stopRotation();
+					}
+				};
+				this.btnPlayPause.bind(this.options.event, this.btnPlayPauseHandler);
+			}
+
+			// swipe gestures handler
+			if(this.options.useSwipe && window.Hammer && isTouchDevice) {
+				this.swipeHandler = new Hammer.Manager(this.gallery[0]);
+				this.swipeHandler.add(new Hammer.Swipe({
+					direction: Hammer.DIRECTION_HORIZONTAL,
+					threshold: self.options.swipeThreshold
+				}));
+				this.swipeHandler.on('swipeleft', function() {
+					self.nextSlide();
+				}).on('swiperight', function() {
+					self.prevSlide();
+				});
+			}
+
+			// pause on hover handling
+			if(this.options.pauseOnHover) {
+				this.hoverHandler = function() {
+					if(self.options.autoRotation) {
+						self.galleryHover = true;
+						self.pauseRotation();
+					}
+				};
+				this.leaveHandler = function() {
+					if(self.options.autoRotation) {
+						self.galleryHover = false;
+						self.resumeRotation();
+					}
+				};
+				this.gallery.bind({mouseenter: this.hoverHandler, mouseleave: this.leaveHandler});
+			}
+		},
+		onWindowResize: function(){
+			if(this.options.autoHeight) {
+				this.slidesHolder.css({height: this.slides.eq(this.currentIndex).outerHeight(true) });
+			}
+		},
+		prevSlide: function() {
+			if(!(this.options.disableWhileAnimating && this.galleryAnimating)) {
+				this.prevIndex = this.currentIndex;
+				if(this.currentIndex > 0) {
+					this.currentIndex--;
+					this.switchSlide();
+				} else if(this.options.circularRotation) {
+					this.currentIndex = this.stepsCount - 1;
+					this.switchSlide();
 				}
-			};
-
-			this.openerClickHandler = function(e) {
-				e.preventDefault();
-				self.toggle();
-			};
-
-			this.opener.on(this.options.toggleEvent, this.openerClickHandler);
-		},
-		isOpened: function() {
-			return this.container.hasClass(this.options.menuActiveClass);
-		},
-		show: function() {
-			this.container.addClass(this.options.menuActiveClass);
-			if(this.options.hideOnClickOutside) {
-				this.page.on(this.options.outsideClickEvent, this.outsideClickHandler);
 			}
 		},
-		hide: function() {
-			this.container.removeClass(this.options.menuActiveClass);
-			if(this.options.hideOnClickOutside) {
-				this.page.off(this.options.outsideClickEvent, this.outsideClickHandler);
+		nextSlide: function(fromAutoRotation) {
+			if(!(this.options.disableWhileAnimating && this.galleryAnimating)) {
+				this.prevIndex = this.currentIndex;
+				if(this.currentIndex < this.stepsCount - 1) {
+					this.currentIndex++;
+					this.switchSlide();
+				} else if(this.options.circularRotation || fromAutoRotation === true) {
+					this.currentIndex = 0;
+					this.switchSlide();
+				}
 			}
 		},
-		toggle: function() {
-			if(this.isOpened()) {
-				this.hide();
+		numSlide: function(c) {
+			if(this.currentIndex != c) {
+				this.prevIndex = this.currentIndex;
+				this.currentIndex = c;
+				this.switchSlide();
+			}
+		},
+		switchSlide: function() {
+			var self = this;
+			if(this.slides.length > 1) {
+				this.galleryAnimating = true;
+				if(!this.options.animSpeed) {
+					this.slides.eq(this.prevIndex).css({opacity:0});
+				} else {
+					this.slides.eq(this.prevIndex).stop().animate({opacity:0},{duration: this.options.animSpeed});
+				}
+
+				this.switchNext = function() {
+					if(!self.options.animSpeed) {
+						self.slides.eq(self.currentIndex).css({opacity:''});
+					} else {
+						self.slides.eq(self.currentIndex).stop().animate({opacity:1},{duration: self.options.animSpeed});
+					}
+					clearTimeout(this.nextTimer);
+					this.nextTimer = setTimeout(function() {
+						self.slides.eq(self.currentIndex).css({opacity:''});
+						self.galleryAnimating = false;
+						self.autoRotate();
+
+						// onchange callback
+						self.makeCallback('onChange', self);
+					}, self.options.animSpeed);
+				};
+
+				if(this.options.switchSimultaneously) {
+					self.switchNext();
+				} else {
+					clearTimeout(this.switchTimer);
+					this.switchTimer = setTimeout(function(){
+						self.switchNext();
+					}, this.options.animSpeed);
+				}
+				this.refreshState();
+
+				// onchange callback
+				this.makeCallback('onBeforeChange', this);
+			}
+		},
+		refreshState: function(initial) {
+			this.slides.removeClass(this.options.activeClass).eq(this.currentIndex).addClass(this.options.activeClass);
+			this.pagerLinks.removeClass(this.options.activeClass).eq(this.currentIndex).addClass(this.options.activeClass);
+			this.curNum.html(this.currentIndex+1);
+			this.allNum.html(this.stepsCount);
+
+			// initial refresh
+			if(this.options.autoHeight) {
+				if(initial) {
+					this.slidesHolder.css({height: this.slides.eq(this.currentIndex).outerHeight(true) });
+				} else {
+					this.slidesHolder.stop().animate({height: this.slides.eq(this.currentIndex).outerHeight(true)}, {duration: this.options.animSpeed});
+				}
+			}
+
+			// disabled state
+			if(!this.options.circularRotation) {
+				this.btnPrev.add(this.btnNext).removeClass(this.options.disabledClass);
+				if(this.currentIndex === 0) {this.btnPrev.addClass(this.options.disabledClass);}
+				if(this.currentIndex === this.stepsCount - 1) {this.btnNext.addClass(this.options.disabledClass);}
+			}
+
+			// add class if not enough slides
+			this.gallery.toggleClass('not-enough-slides', this.stepsCount === 1);
+		},
+		startRotation: function() {
+			this.options.autoRotation = true;
+			this.galleryHover = false;
+			this.autoRotationStopped = false;
+			this.resumeRotation();
+		},
+		stopRotation: function() {
+			this.galleryHover = true;
+			this.autoRotationStopped = true;
+			this.pauseRotation();
+		},
+		pauseRotation: function() {
+			this.gallery.addClass(this.options.autorotationDisabledClass);
+			this.gallery.removeClass(this.options.autorotationActiveClass);
+			clearTimeout(this.timer);
+		},
+		resumeRotation: function() {
+			if(!this.autoRotationStopped) {
+				this.gallery.addClass(this.options.autorotationActiveClass);
+				this.gallery.removeClass(this.options.autorotationDisabledClass);
+				this.autoRotate();
+			}
+		},
+		autoRotate: function() {
+			var self = this;
+			clearTimeout(this.timer);
+			if(this.options.autoRotation && !this.galleryHover && !this.autoRotationStopped) {
+				this.gallery.addClass(this.options.autorotationActiveClass);
+				this.timer = setTimeout(function(){
+					self.nextSlide(true);
+				}, this.options.switchTime);
 			} else {
-				this.show();
+				this.pauseRotation();
+			}
+		},
+		makeCallback: function(name) {
+			if(typeof this.options[name] === 'function') {
+				var args = Array.prototype.slice.call(arguments);
+				args.shift();
+				this.options[name].apply(this, args);
 			}
 		},
 		destroy: function() {
-			this.container.removeClass(this.options.menuActiveClass);
-			this.opener.off(this.options.toggleEvent, this.clickHandler);
-			this.page.off(this.options.outsideClickEvent, this.outsideClickHandler);
+			// navigation buttons handler
+			this.btnPrev.unbind(this.options.event, this.btnPrevHandler);
+			this.btnNext.unbind(this.options.event, this.btnNextHandler);
+			this.pagerLinks.unbind(this.options.event, this.pagerLinksHandler);
+			$(window).unbind('load resize orientationchange', this.resizeHandler);
+
+			// remove autorotation handlers
+			this.stopRotation();
+			this.btnPlay.unbind(this.options.event, this.btnPlayHandler);
+			this.btnPause.unbind(this.options.event, this.btnPauseHandler);
+			this.btnPlayPause.unbind(this.options.event, this.btnPlayPauseHandler);
+			this.gallery.unbind('mouseenter', this.hoverHandler);
+			this.gallery.unbind('mouseleave', this.leaveHandler);
+
+			// remove swipe handler if used
+			if(this.swipeHandler) {
+				this.swipeHandler.destroy();
+			}
+			if(typeof this.options.generatePagination === 'string') {
+				this.pagerHolder.empty();
+			}
+
+			// remove unneeded classes and styles
+			var unneededClasses = [this.options.galleryReadyClass, this.options.autorotationActiveClass, this.options.autorotationDisabledClass];
+			this.gallery.removeClass(unneededClasses.join(' '));
+			this.slidesHolder.add(this.slides).removeAttr('style');
 		}
 	};
 
-	var activateResizeHandler = function() {
-		var win = $(window),
-			doc = $('html'),
-			resizeClass = 'resize-active',
-			flag, timer;
-		var removeClassHandler = function() {
-			flag = false;
-			doc.removeClass(resizeClass);
-		};
-		var resizeHandler = function() {
-			if(!flag) {
-				flag = true;
-				doc.addClass(resizeClass);
-			}
-			clearTimeout(timer);
-			timer = setTimeout(removeClassHandler, 500);
-		};
-		win.on('resize orientationchange', resizeHandler);
-	};
+	// detect device type
+	var isTouchDevice = /Windows Phone/.test(navigator.userAgent) || ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
 
-	$.fn.mobileNav = function(options) {
-		return this.each(function() {
-			var params = $.extend({}, options, {container: this}),
-				instance = new MobileNav(params);
-			$.data(this, 'MobileNav', instance);
-		});
-	};
-}(jQuery));
-
-/*
- * jQuery SameHeight plugin
- */
-;(function($){
-	$.fn.sameHeight = function(opt) {
-		var options = $.extend({
-			skipClass: 'same-height-ignore',
-			leftEdgeClass: 'same-height-left',
-			rightEdgeClass: 'same-height-right',
-			elements: '>*',
-			flexible: false,
-			multiLine: false,
-			useMinHeight: false,
-			biggestHeight: false
-		},opt);
+	// jquery plugin
+	$.fn.fadeGallery = function(opt){
 		return this.each(function(){
-			var holder = $(this), postResizeTimer, ignoreResize;
-			var elements = holder.find(options.elements).not('.' + options.skipClass);
-			if(!elements.length){ return;}
-
-			// resize handler
-			function doResize() {
-				elements.css(options.useMinHeight && supportMinHeight ? 'minHeight' : 'height', '');
-				if(options.multiLine) {
-					// resize elements row by row
-					resizeElementsByRows(elements, options);
-				} else {
-					// resize elements by holder
-					resizeElements(elements, holder, options);
-				}
-			}
-			doResize();
-
-			// handle flexible layout / font resize
-			var delayedResizeHandler = function() {
-				if(!ignoreResize) {
-					ignoreResize = true;
-					doResize();
-					clearTimeout(postResizeTimer);
-					postResizeTimer = setTimeout(function() {
-						doResize();
-						setTimeout(function(){
-							ignoreResize = false;
-						}, 10);
-					}, 100);
-				}
-			};
-
-			// handle flexible/responsive layout
-			if(options.flexible) {
-				$(window).bind('resize orientationchange fontresize', delayedResizeHandler);
-			}
-
-			// handle complete page load including images and fonts
-			$(window).bind('load', delayedResizeHandler);
+			$(this).data('FadeGallery', new FadeGallery($.extend(opt,{holder:this})));
 		});
 	};
-
-	// detect css min-height support
-	var supportMinHeight = typeof document.documentElement.style.maxHeight !== 'undefined';
-
-	// get elements by rows
-	function resizeElementsByRows(boxes, options) {
-		var currentRow = $(), maxHeight, maxCalcHeight = 0, firstOffset = boxes.eq(0).offset().top;
-		boxes.each(function(ind){
-			var curItem = $(this);
-			if(curItem.offset().top === firstOffset) {
-				currentRow = currentRow.add(this);
-			} else {
-				maxHeight = getMaxHeight(currentRow);
-				maxCalcHeight = Math.max(maxCalcHeight, resizeElements(currentRow, maxHeight, options));
-				currentRow = curItem;
-				firstOffset = curItem.offset().top;
-			}
-		});
-		if(currentRow.length) {
-			maxHeight = getMaxHeight(currentRow);
-			maxCalcHeight = Math.max(maxCalcHeight, resizeElements(currentRow, maxHeight, options));
-		}
-		if(options.biggestHeight) {
-			boxes.css(options.useMinHeight && supportMinHeight ? 'minHeight' : 'height', maxCalcHeight);
-		}
-	}
-
-	// calculate max element height
-	function getMaxHeight(boxes) {
-		var maxHeight = 0;
-		boxes.each(function(){
-			maxHeight = Math.max(maxHeight, $(this).outerHeight());
-		});
-		return maxHeight;
-	}
-
-	// resize helper function
-	function resizeElements(boxes, parent, options) {
-		var calcHeight;
-		var parentHeight = typeof parent === 'number' ? parent : parent.height();
-		boxes.removeClass(options.leftEdgeClass).removeClass(options.rightEdgeClass).each(function(i){
-			var element = $(this);
-			var depthDiffHeight = 0;
-			var isBorderBox = element.css('boxSizing') === 'border-box' || element.css('-moz-box-sizing') === 'border-box' || element.css('-webkit-box-sizing') === 'border-box';
-
-			if(typeof parent !== 'number') {
-				element.parents().each(function(){
-					var tmpParent = $(this);
-					if(parent.is(this)) {
-						return false;
-					} else {
-						depthDiffHeight += tmpParent.outerHeight() - tmpParent.height();
-					}
-				});
-			}
-			calcHeight = parentHeight - depthDiffHeight;
-			calcHeight -= isBorderBox ? 0 : element.outerHeight() - element.height();
-
-			if(calcHeight > 0) {
-				element.css(options.useMinHeight && supportMinHeight ? 'minHeight' : 'height', calcHeight);
-			}
-		});
-		boxes.filter(':first').addClass(options.leftEdgeClass);
-		boxes.filter(':last').addClass(options.rightEdgeClass);
-		return calcHeight;
-	}
 }(jQuery));
 
 /*
- * jQuery FontResize Event
+ * Window Height CSS rules
  */
-jQuery.onFontResize = (function($) {
-	$(function() {
-		var randomID = 'font-resize-frame-' + Math.floor(Math.random() * 1000);
-		var resizeFrame = $('<iframe>').attr('id', randomID).addClass('font-resize-helper');
+;(function() {
+	var styleSheet;
 
-		// required styles
-		resizeFrame.css({
-			width: '100em',
-			height: '10px',
-			position: 'absolute',
-			borderWidth: 0,
-			top: '-9999px',
-			left: '-9999px'
-		}).appendTo('body');
-
-		// use native IE resize event if possible
-		if (window.attachEvent && !window.addEventListener) {
-			resizeFrame.bind('resize', function () {
-				$.onFontResize.trigger(resizeFrame[0].offsetWidth / 100);
-			});
-		}
-		// use script inside the iframe to detect resize for other browsers
-		else {
-			var doc = resizeFrame[0].contentWindow.document;
-			doc.open();
-			doc.write('<scri' + 'pt>window.onload = function(){var em = parent.jQuery("#' + randomID + '")[0];window.onresize = function(){if(parent.jQuery.onFontResize){parent.jQuery.onFontResize.trigger(em.offsetWidth / 100);}}};</scri' + 'pt>');
-			doc.close();
-		}
-		jQuery.onFontResize.initialSize = resizeFrame[0].offsetWidth / 100;
-	});
-	return {
-		// public method, so it can be called from within the iframe
-		trigger: function (em) {
-			$(window).trigger("fontresize", [em]);
-		}
+	var getWindowHeight = function() {
+		return window.innerHeight || document.documentElement.clientHeight;
 	};
-}(jQuery));
+
+	var createStyleTag = function() {
+		// create style tag
+		var styleTag = jQuery('<style>').appendTo('head');
+		styleSheet = styleTag.prop('sheet') || styleTag.prop('styleSheet');
+
+		// crossbrowser style handling
+		var addCSSRule = function(selector, rules, index) {
+			if(styleSheet.insertRule) {
+				styleSheet.insertRule(selector + '{' + rules + '}', index);
+			} else {
+				styleSheet.addRule(selector, rules, index);
+			}
+		};
+
+		// create style rules
+		addCSSRule('.win-min-height', 'min-height:0');
+		addCSSRule('.win-height', 'height:auto');
+		addCSSRule('.win-max-height', 'max-height:100%');
+		resizeHandler();
+	};
+
+	var resizeHandler = function() {
+		// handle changes in style rules
+		var currentWindowHeight = getWindowHeight(),
+			styleRules = styleSheet.cssRules || styleSheet.rules;
+		
+		jQuery.each(styleRules, function(index, currentRule) {
+			var currentProperty = currentRule.selectorText.toLowerCase().replace('.win-', '').replace('-h','H');
+			currentRule.style[currentProperty] = currentWindowHeight + 'px';
+		});
+	};
+
+	createStyleTag();
+	jQuery(window).on('resize orientationchange', resizeHandler);
+}());
+
+

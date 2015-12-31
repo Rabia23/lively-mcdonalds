@@ -71,40 +71,15 @@ module.exports = {
       'vendor/underscore/underscore-min.js',
       'vendor/angular-resource/angular-resource.js',
       'vendor/jquery/dist/jquery.js',
-      'vendor/morris.js/morris.js',
-      'vendor/raphael/raphael.js',
-      'vendor/Flot/jquery.flot.js',
-      'vendor/Flot/jquery.flot.resize.js',
-      'vendor/flot.tooltip/js/jquery.flot.tooltip.js',
-      'vendor/Flot/jquery.flot.pie.js',
-      'vendor/Flot/jquery.flot.time.js',
-      'vendor/angular-flot/angular-flot.js',
-      'vendor/color/one-color-all.js',
-      'vendor/enscroll/js/mylibs/enscroll.js',
-      'vendor/ngmap/build/scripts/ng-map.min.js',
-      'vendor/moment/moment.js',
-      'vendor/bootstrap-daterangepicker/daterangepicker.js',
-      'vendor/angular-daterangepicker/js/angular-daterangepicker.js',
-      'vendor/Chart.js/Chart.js',
-      'vendor/angular-chart.js/dist/angular-chart.js',
       'vendor/Heyoffline/Heyoffline.js',
       'vendor/angular-flash-alert/dist/angular-flash.js',
-      'vendor/angular-animate/angular-animate.min.js',
-      'vendor/metisMenu/dist/metisMenu.min.js'
+      'vendor/hammerjs/hammer.min.js'
 
 
 
     ],
     css: [
-      'vendor/bootstrap/dist/css/bootstrap.min.css',
-      'vendor/morris.js/morris.css',
-      'vendor/bootstrap-daterangepicker/daterangepicker.css',
-      'vendor/angular-chart.js/dist/angular-chart.css',
-      'vendor/angular-flash-alert/dist/angular-flash.css',
       'vendor/font-awesome/css/font-awesome.css',
-
-
-
     ],
     assets: [
 

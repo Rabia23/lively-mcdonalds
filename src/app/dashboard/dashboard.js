@@ -17,15 +17,15 @@ angular.module( 'livefeed.dashboard', [
   'livefeed.chart',
   'factories',
   'livefeed.helper',
-  'livefeed.dashboard.regional_analysis',
-  'livefeed.dashboard.feedback_map',
-  'livefeed.dashboard.category_performance_analysis',
-  'livefeed.dashboard.overall_rating',
-  'livefeed.dashboard.overall_feedback',
-  'livefeed.dashboard.statistics',
-  'livefeed.dashboard.positive_negative_feedback',
-  'livefeed.dashboard.top_concern',
-  'flash',
+  // 'livefeed.dashboard.regional_analysis',
+  // 'livefeed.dashboard.feedback_map',
+  // 'livefeed.dashboard.category_performance_analysis',
+  // 'livefeed.dashboard.overall_rating',
+  // 'livefeed.dashboard.overall_feedback',
+  // 'livefeed.dashboard.statistics',
+  // 'livefeed.dashboard.positive_negative_feedback',
+  // 'livefeed.dashboard.top_concern',
+  // 'flash',
   'livefeed.authService'
 
 ])
@@ -43,40 +43,41 @@ angular.module( 'livefeed.dashboard', [
       "": {
         controller: 'DashboardCtrl',
         templateUrl: 'dashboard/dashboard.tpl.html'
-      },
-      "feedback_map@dashboard":{
-        controller: "FeedbackMapCtrl",
-        templateUrl: 'dashboard/feedback-map/feedback-map.tpl.html'
-      },
-      "category_performance_analysis@dashboard":{
-        controller: "CategoryPerformanceAnalysisCtrl",
-        templateUrl: 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html'
-      },
-      "regional_analysis@dashboard":{
-        controller: "RegionalAnalysisCtrl",
-        templateUrl: 'dashboard/regional-analysis/regional-analysis.tpl.html'
-      },
-      "overall_rating@dashboard":{
-        controller: "OverallRatingCtrl",
-        templateUrl: 'dashboard/overall-rating/overall-rating.tpl.html'
-      },
-      "overall_feedback@dashboard":{
-        controller: "OverallFeedbackCtrl",
-        templateUrl: 'dashboard/overall-feedback/overall-feedback.tpl.html'
-      },
-      "statistics@dashboard":{
-        controller: "StatisticsCtrl",
-        templateUrl: 'dashboard/statistics/statistics.tpl.html'
-      },
-      "positive_negative_feedback@dashboard":{
-        controller: "PositiveNegativeFeedbackCtrl",
-        templateUrl: 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html'
-      },
-
-      "top_concern@dashboard":{
-        controller: "TopConcernCtrl",
-        templateUrl: 'dashboard/top-concern/top-concern.tpl.html'
       }
+      // },
+      // "feedback_map@dashboard":{
+      //   controller: "FeedbackMapCtrl",
+      //   templateUrl: 'dashboard/feedback-map/feedback-map.tpl.html'
+      // },
+      // "category_performance_analysis@dashboard":{
+      //   controller: "CategoryPerformanceAnalysisCtrl",
+      //   templateUrl: 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html'
+      // },
+      // "regional_analysis@dashboard":{
+      //   controller: "RegionalAnalysisCtrl",
+      //   templateUrl: 'dashboard/regional-analysis/regional-analysis.tpl.html'
+      // },
+      // "overall_rating@dashboard":{
+      //   controller: "OverallRatingCtrl",
+      //   templateUrl: 'dashboard/overall-rating/overall-rating.tpl.html'
+      // },
+      // "overall_feedback@dashboard":{
+      //   controller: "OverallFeedbackCtrl",
+      //   templateUrl: 'dashboard/overall-feedback/overall-feedback.tpl.html'
+      // },
+      // "statistics@dashboard":{
+      //   controller: "StatisticsCtrl",
+      //   templateUrl: 'dashboard/statistics/statistics.tpl.html'
+      // },
+      // "positive_negative_feedback@dashboard":{
+      //   controller: "PositiveNegativeFeedbackCtrl",
+      //   templateUrl: 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html'
+      // },
+
+      // "top_concern@dashboard":{
+      //   controller: "TopConcernCtrl",
+      //   templateUrl: 'dashboard/top-concern/top-concern.tpl.html'
+      // }
 
     },
     authenticate: true
