@@ -1,4 +1,4 @@
-angular.module('templates-app', ['coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'login/login.tpl.html']);
+angular.module('templates-app', ['coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/live.tpl.html', 'login/login.tpl.html']);
 
 angular.module("coupon/coupon.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("coupon/coupon.tpl.html",
@@ -139,165 +139,168 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
 angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/dashboard.tpl.html",
     "<div id=\"wrapper\">\n" +
-    "\n" +
-    "    <nav class=\"navbar-default navbar-static-side\" role=\"navigation\" >\n" +
-    "        <div class=\"sidebar-collapse\">\n" +
-    "            <div id=\"side-menu\" class=\"nav metismenu\">\n" +
-    "                <div class=\"logo-holder\">\n" +
-    "                    <div class=\"logo\">\n" +
-    "                        <a href=\"#\"> <img alt=\"image\" class=\"img-responsive\" src=\"assets/images/logo.jpg\"></a>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </nav>\n" +
-    "    <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
-    "        <div class=\"header-visual\">\n" +
-    "          <nav class=\"navbar dashboard\" role=\"navigation\" style=\"margin-bottom: 0;z-index: 999;\">\n" +
-    "            <div class=\"navbar-header\">\n" +
-    "              <a class=\"navbar-minimalize minimalize-styl-2 btn btn-primary\" toggle-menu>\n" +
-    "                <i class=\"fa fa-bars\"></i>\n" +
+    "  <nav class=\"navbar-default navbar-static-side\" role=\"navigation\" >\n" +
+    "      <div class=\"sidebar-collapse\">\n" +
+    "          <div id=\"side-menu\" class=\"nav metismenu\">\n" +
+    "              <div class=\"logo-holder\">\n" +
+    "                  <div class=\"logo\">\n" +
+    "                      <a href=\"#\"> <img alt=\"image\" class=\"img-responsive\" src=\"assets/images/logo.jpg\"></a>\n" +
+    "                  </div>\n" +
+    "              </div>\n" +
+    "          </div>\n" +
+    "      </div>\n" +
+    "  </nav>\n" +
+    "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
+    "      <div class=\"header-visual\">\n" +
+    "        <nav class=\"navbar dashboard\" role=\"navigation\" style=\"margin-bottom: 0;z-index: 999;\">\n" +
+    "          <div class=\"navbar-header\">\n" +
+    "            <a class=\"navbar-minimalize minimalize-styl-2 btn btn-primary\" toggle-menu>\n" +
+    "              <i class=\"fa fa-bars\"></i>\n" +
+    "            </a>\n" +
+    "            <form role=\"search\" class=\"navbar-form-custom\" action=\"search_results.html\">\n" +
+    "              <div class=\"form-group\">\n" +
+    "                <input type=\"text\" placeholder=\"Search for something...\" class=\"form-control\" name=\"top-search\" id=\"top-search\">\n" +
+    "              </div>\n" +
+    "            </form>\n" +
+    "          </div>\n" +
+    "          <ul class=\"nav navbar-top-links navbar-right\">\n" +
+    "            <li>\n" +
+    "              <a style = \"cursor:pointer;\" ui-sref = \"live\">\n" +
+    "                 Live Dashboard\n" +
     "              </a>\n" +
-    "              <form role=\"search\" class=\"navbar-form-custom\" action=\"search_results.html\">\n" +
-    "                <div class=\"form-group\">\n" +
-    "                  <input type=\"text\" placeholder=\"Search for something...\" class=\"form-control\" name=\"top-search\" id=\"top-search\">\n" +
-    "                </div>\n" +
-    "              </form>\n" +
-    "            </div>\n" +
-    "            <ul class=\"nav navbar-top-links navbar-right\">\n" +
-    "              <li>\n" +
-    "                <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">{{username}}</span></span>\n" +
-    "              </li>\n" +
-    "              <li>\n" +
-    "                <a style = \"cursor:pointer;\" ng-click = \"logout()\">\n" +
-    "                  <i class=\"fa fa-sign-out\"></i> Log out\n" +
-    "                </a>\n" +
-    "              </li>\n" +
-    "            </ul>\n" +
-    "          </nav>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "              <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">{{username}}</span></span>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "              <a style = \"cursor:pointer;\" ng-click = \"logout()\">\n" +
+    "                <i class=\"fa fa-sign-out\"></i> Log out\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "          </ul>\n" +
+    "        </nav>\n" +
     "\n" +
-    "          <div class=\"img-holder\">\n" +
-    "            <div class=\"inner-holder\"><img alt=\"image\" class=\"img-responsive\" src=\"/assets/images/img1.jpg\" /></div>\n" +
-    "          </div>\n" +
-    "          <div class=\"header-caption animated fadeInRight\">\n" +
-    "            <h1>Customer Centric Approch</h1>\n" +
-    "          </div>\n" +
+    "        <div class=\"img-holder\">\n" +
+    "          <div class=\"inner-holder\"><img alt=\"image\" class=\"img-responsive\" src=\"/assets/images/img1.jpg\" /></div>\n" +
     "        </div>\n" +
-    "        <ui-view name = \"positive_negative_feedback\"></ui-view>\n" +
-    "        <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
-    "          <div class=\"row same-height-parent\">\n" +
-    "            <div class=\"col-lg-6 col-lg-push-6 business-segment\">\n" +
-    "              <ui-view name = \"category_performance_analysis\"></ui-view>\n" +
-    "            </div>\n" +
-    "            <div class=\"col-lg-6 col-lg-pull-6\">\n" +
-    "              <div class=\"same-height-block\">\n" +
-    "                <div class=\"row\">\n" +
-    "                  <div class=\"col-lg-8 same-height-col\">\n" +
-    "                    <ui-view name = \"overall_feedback\"></ui-view>\n" +
-    "                    <ui-view name = \"top_concern\"></ui-view>\n" +
-    "                  </div>\n" +
-    "                  <div class=\"col-lg-4 same-height-col\">\n" +
-    "                      <div class=\"row inner-row\">\n" +
-    "                          <div class=\"col-sm-6 col-lg-12\">\n" +
-    "                              <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                                  <div class=\"title-outer\">\n" +
-    "                                      <div class=\"ibox-title\">\n" +
-    "                                          <span class=\"label label-primary pull-right\">Monthly</span>\n" +
-    "                                          <h5>Income</h5>\n" +
-    "                                      </div>\n" +
-    "                                  </div>\n" +
-    "                                  <div class=\"content-holder\">\n" +
-    "                                      <div class=\"ibox-content\">\n" +
-    "                                          <h1 class=\"no-margins\">22 285,400</h1>\n" +
-    "                                          <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "                                          <small>New orders</small>\n" +
-    "                                      </div>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                          </div>\n" +
-    "                          <div class=\"col-sm-6 col-lg-12\">\n" +
-    "                              <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                                  <div class=\"title-outer\">\n" +
-    "                                      <div class=\"ibox-title\">\n" +
-    "                                          <span class=\"label label-primary pull-right\">Monthly</span>\n" +
-    "                                          <h5>Income</h5>\n" +
-    "                                      </div>\n" +
-    "                                  </div>\n" +
-    "                                  <div class=\"content-holder\">\n" +
-    "                                      <div class=\"ibox-content\">\n" +
-    "                                          <h1 class=\"no-margins\">22 285,400</h1>\n" +
-    "                                          <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "                                          <small>New orders</small>\n" +
-    "                                      </div>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                          </div>\n" +
-    "                      </div>\n" +
-    "                      <div class=\"row inner-row add\">\n" +
-    "                          <div class=\"col-sm-6 col-lg-12\">\n" +
-    "                              <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                                  <div class=\"title-outer\">\n" +
-    "                                      <div class=\"ibox-title\">\n" +
-    "                                          <span class=\"label label-primary pull-right\">Monthly</span>\n" +
-    "                                          <h5>Income</h5>\n" +
-    "                                      </div>\n" +
-    "                                  </div>\n" +
-    "                                  <div class=\"content-holder\">\n" +
-    "                                      <div class=\"ibox-content\">\n" +
-    "                                          <h1 class=\"no-margins\">22 285,400</h1>\n" +
-    "                                          <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "                                          <small>New orders</small>\n" +
-    "                                      </div>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                          </div>\n" +
-    "                          <div class=\"col-sm-6 col-lg-12\">\n" +
-    "                              <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                                  <div class=\"title-outer\">\n" +
-    "                                      <div class=\"ibox-title\">\n" +
-    "                                          <span class=\"label label-primary pull-right\">Monthly</span>\n" +
-    "                                          <h5>Income</h5>\n" +
-    "                                      </div>\n" +
-    "                                  </div>\n" +
-    "                                  <div class=\"content-holder\">\n" +
-    "                                      <div class=\"ibox-content\">\n" +
-    "                                          <h1 class=\"no-margins\">22 285,400</h1>\n" +
-    "                                          <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "                                          <small>New orders</small>\n" +
-    "                                      </div>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                          </div>\n" +
-    "                      </div>\n" +
-    "                  </div>\n" +
+    "        <div class=\"header-caption animated fadeInRight\">\n" +
+    "          <h1>Customer Centric Approch</h1>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "      <ui-view name = \"positive_negative_feedback\"></ui-view>\n" +
+    "      <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
+    "        <div class=\"row same-height-parent\">\n" +
+    "          <div class=\"col-lg-6 col-lg-push-6 business-segment\">\n" +
+    "            <ui-view name = \"category_performance_analysis\"></ui-view>\n" +
+    "          </div>\n" +
+    "          <div class=\"col-lg-6 col-lg-pull-6\">\n" +
+    "            <div class=\"same-height-block\">\n" +
+    "              <div class=\"row\">\n" +
+    "                <div class=\"col-lg-8 same-height-col\">\n" +
+    "                  <ui-view name = \"overall_feedback\"></ui-view>\n" +
+    "                  <ui-view name = \"top_concern\"></ui-view>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-lg-4 same-height-col\">\n" +
+    "                    <div class=\"row inner-row\">\n" +
+    "                        <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                            <div class=\"ibox float-e-margins detail-block\">\n" +
+    "                                <div class=\"title-outer\">\n" +
+    "                                    <div class=\"ibox-title\">\n" +
+    "                                        <span class=\"label label-primary pull-right\">Monthly</span>\n" +
+    "                                        <h5>Income</h5>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"content-holder\">\n" +
+    "                                    <div class=\"ibox-content\">\n" +
+    "                                        <h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "                                        <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "                                        <small>New orders</small>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                            <div class=\"ibox float-e-margins detail-block\">\n" +
+    "                                <div class=\"title-outer\">\n" +
+    "                                    <div class=\"ibox-title\">\n" +
+    "                                        <span class=\"label label-primary pull-right\">Monthly</span>\n" +
+    "                                        <h5>Income</h5>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"content-holder\">\n" +
+    "                                    <div class=\"ibox-content\">\n" +
+    "                                        <h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "                                        <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "                                        <small>New orders</small>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"row inner-row add\">\n" +
+    "                        <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                            <div class=\"ibox float-e-margins detail-block\">\n" +
+    "                                <div class=\"title-outer\">\n" +
+    "                                    <div class=\"ibox-title\">\n" +
+    "                                        <span class=\"label label-primary pull-right\">Monthly</span>\n" +
+    "                                        <h5>Income</h5>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"content-holder\">\n" +
+    "                                    <div class=\"ibox-content\">\n" +
+    "                                        <h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "                                        <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "                                        <small>New orders</small>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                            <div class=\"ibox float-e-margins detail-block\">\n" +
+    "                                <div class=\"title-outer\">\n" +
+    "                                    <div class=\"ibox-title\">\n" +
+    "                                        <span class=\"label label-primary pull-right\">Monthly</span>\n" +
+    "                                        <h5>Income</h5>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"content-holder\">\n" +
+    "                                    <div class=\"ibox-content\">\n" +
+    "                                        <h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "                                        <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "                                        <small>New orders</small>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "              </div>\n" +
     "            </div>\n" +
     "          </div>\n" +
-    "          <div class=\"row\">\n" +
-    "            <div class=\"col-xs-12 patch-section\">\n" +
-    "              <ui-view name = \"regional_analysis\"></ui-view>\n" +
-    "            </div>\n" +
-    "          </div>\n" +
-    "          <div class=\"row same-height-parent\">\n" +
-    "            <div class=\"col-lg-6 map-section\">\n" +
-    "              <ui-view name = \"feedback_map\"></ui-view>\n" +
-    "            </div>\n" +
-    "            <div class=\"col-lg-6 timeline-section\">\n" +
-    "              <ui-view name = \"overall_rating\"></ui-view>\n" +
-    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"row\">\n" +
+    "          <div class=\"col-xs-12 patch-section\">\n" +
+    "            <ui-view name = \"regional_analysis\"></ui-view>\n" +
     "          </div>\n" +
     "        </div>\n" +
-    "        <div class=\"footer\">\n" +
-    "            <div class=\"pull-right\">\n" +
-    "                10GB of <strong>250GB</strong> Free.\n" +
-    "            </div>\n" +
-    "            <div>\n" +
-    "                <strong>Copyright</strong> Example Company &copy; 2014-2015\n" +
-    "            </div>\n" +
+    "        <div class=\"row same-height-parent\">\n" +
+    "          <div class=\"col-lg-6 map-section\">\n" +
+    "            <ui-view name = \"feedback_map\"></ui-view>\n" +
+    "          </div>\n" +
+    "          <div class=\"col-lg-6 timeline-section\">\n" +
+    "            <ui-view name = \"overall_rating\"></ui-view>\n" +
+    "          </div>\n" +
     "        </div>\n" +
-    "\n" +
-    "    </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"footer\">\n" +
+    "          <div class=\"pull-right\">\n" +
+    "              10GB of <strong>250GB</strong> Free.\n" +
+    "          </div>\n" +
+    "          <div>\n" +
+    "              <strong>Copyright</strong> Example Company &copy; 2014-2015\n" +
+    "          </div>\n" +
+    "      </div>\n" +
+    "  </div>\n" +
     "</div>\n" +
     "\n" +
     "  ");
@@ -775,6 +778,117 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "  </div>\n" +
     "</div>\n" +
     "");
+}]);
+
+angular.module("live/live.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("live/live.tpl.html",
+    "<div id=\"wrapper\">\n" +
+    "	<header id=\"header\">\n" +
+    "		<div class=\"header-block\">\n" +
+    "			<div class=\"logo\"><a href=\"#\"><img src=\"assets/images/logo.png\" alt=\"MacDonald's\"></a></div>\n" +
+    "			<div class=\"slider\">\n" +
+    "				<div class=\"slideset\">\n" +
+    "					<div class=\"heading-slide\"><h2>qsc complaints</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>business segment</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>overall rating</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>top concerns</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>Patch  qcs analysis</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>benchmark map</h2></div>\n" +
+    "				</div>\n" +
+    "				<h1>Country Wide</h1>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "		<div class=\"header-content\">\n" +
+    "			<time datetime=\"2015-12-23 13:49\"><strong>1:49 Pm</strong>   Fri - dec 23 - 15</time>\n" +
+    "			<ul class=\"info-list\">\n" +
+    "				<li>\n" +
+    "					<strong class=\"title\">Overall Experience</strong>\n" +
+    "					<ul>\n" +
+    "						<li>I'm lovin' it</li>\n" +
+    "					</ul>\n" +
+    "				</li>\n" +
+    "				<li>\n" +
+    "					<strong class=\"title\">top Concern</strong>\n" +
+    "					<ul>\n" +
+    "						<li>Ketchup</li>\n" +
+    "					</ul>\n" +
+    "				</li>\n" +
+    "				<li>\n" +
+    "					<strong class=\"title\">Positive / Negative Feedback</strong>\n" +
+    "					<ul>\n" +
+    "						<li class=\"positive\">23,000</li>\n" +
+    "						<li>1,000</li>\n" +
+    "					</ul>\n" +
+    "				</li>\n" +
+    "				<li>\n" +
+    "					<strong class=\"title\">QSC complaints</strong>\n" +
+    "					<ul>\n" +
+    "						<li>50</li>\n" +
+    "						<li class=\"item2\">100</li>\n" +
+    "						<li class=\"item3\">10</li>\n" +
+    "					</ul>\n" +
+    "				</li>\n" +
+    "			</ul>\n" +
+    "		</div>\n" +
+    "	</header>\n" +
+    "	<div class=\"slideshow win-height win-min-height\">\n" +
+    "		<div class=\"slideset win-height\">\n" +
+    "			<div class=\"slide win-height\">\n" +
+    "				<div class=\"slide-holder add\">\n" +
+    "					<div class=\"holder\">\n" +
+    "						<div id=\"area-chart\"></div>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "			<div class=\"slide win-height\">\n" +
+    "				<div class=\"slide-holder\">\n" +
+    "					<div class=\"holder\">\n" +
+    "						<div id=\"stackChart\"></div>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "			<div class=\"slide win-height\">\n" +
+    "				<div class=\"slide-holder\">\n" +
+    "					<div class=\"holder\">\n" +
+    "						<div id=\"barChart\"></div>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "			<div class=\"slide win-height\">\n" +
+    "				<div class=\"slide-holder\">\n" +
+    "					<div class=\"holder\">\n" +
+    "						<div id=\"container\"></div>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "			<div class=\"slide win-height\">\n" +
+    "				<div class=\"slide-holder\">\n" +
+    "					<div class=\"holder\">\n" +
+    "						<div id=\"container\"></div>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "			<div class=\"slide win-height\">\n" +
+    "				<div class=\"slide-holder\">\n" +
+    "					<div class=\"holder\">\n" +
+    "						<div id=\"container\"></div>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "		<div class=\"pagination-holder\" init-slide>\n" +
+    "			<ul class=\"pagination\">\n" +
+    "				<li><a href=\"#\">QSc</a></li>\n" +
+    "				<li><a href=\"#\">Business Segment</a></li>\n" +
+    "				<li><a href=\"#\">Overall rating</a></li>\n" +
+    "				<li><a href=\"#\">Top Concerns</a></li>\n" +
+    "				<li><a href=\"#\">Patch  qcs analysis</a></li>\n" +
+    "				<li><a href=\"#\">benchmark map</a></li>\n" +
+    "			</ul>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>\n" +
+    "  ");
 }]);
 
 angular.module("login/login.tpl.html", []).run(["$templateCache", function($templateCache) {

@@ -90,7 +90,9 @@ module.exports = {
       'vendor/Heyoffline/Heyoffline.js',
       'vendor/angular-flash-alert/dist/angular-flash.js',
       'vendor/angular-animate/angular-animate.min.js',
-      'vendor/metisMenu/dist/metisMenu.min.js'
+      'vendor/metisMenu/dist/metisMenu.min.js',
+      'vendor/hammerjs/hammer.min.js',
+
 
 
 

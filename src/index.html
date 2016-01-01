@@ -20,12 +20,16 @@
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
 
-    <script type="text/javascript" src="assets/javascript/jquery.main.js"></script>
+    <!-- <script type="text/javascript" src="assets/javascript/jquery.main.js"></script> -->
 
+    <script type="text/javascript" src="assets/javascript/jquery.main1.js"></script>
 
     
 
      <script src="assets/javascript/inspinia.js"></script>
+
+     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 
     <!-- <script src="assets/javascript/jquery.slimscroll.min.js"></script> -->
 
@@ -34,9 +38,9 @@
 
   </head>
 
-  <body>
+  <body ng-class = "{'live-body': (currentState == 'live')}">
 
-  <ui-view></ui-view>
+    <ui-view></ui-view>
 
   </body>
 
