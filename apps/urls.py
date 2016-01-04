@@ -19,6 +19,7 @@ urlpatterns = patterns('',
                        url(r'^segmentation_rating/$', views.SegmentationRatingView.as_view()),
                        url(r'^action_taken/$', views.ActionTakenView.as_view()),
                        url(r'^action_analysis/$', views.ActionAnalysisView.as_view()),
+                       url(r'^top_charts/$', views.TopChartsView.as_view()),
 )
 
 

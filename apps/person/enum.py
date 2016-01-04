@@ -1,0 +1,22 @@
+__author__ = 'aamish'
+from django_enumfield import enum
+
+
+class UserRolesEnum(enum.Enum):
+    CUSTOMER = 1
+    GRO = 2
+    BRANCH_MANAGER = 3
+    OPERATIONAL_CONSULTANT = 4
+    OPERATIONAL_MANAGER = 5
+    ASSISTANT_DIRECTOR = 6
+    DIRECTOR = 7
+
+    labels = {
+        CUSTOMER: 'CUSTOMER',
+        GRO: 'GRO',
+        BRANCH_MANAGER: 'BRANCH_MANAGER',
+        OPERATIONAL_CONSULTANT: 'OPERATIONAL_CONSULTANT',
+        OPERATIONAL_MANAGER: 'OPERATIONAL_MANAGER',
+        ASSISTANT_DIRECTOR: 'ASSISTANT_DIRECTOR',
+        DIRECTOR: 'DIRECTOR'
+    }

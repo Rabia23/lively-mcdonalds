@@ -10,12 +10,13 @@ from lively import settings
 def ping(websocket, path):
     q = RedisQueue('test')
     while True:
-        if not websocket.open:
+        if websocket.open:
+            if not q.empty():
+                greeting = q.get()
+                print("DATA RECIEVED: " + str(greeting))
+                yield from websocket.send("Hello")
+        else:
             return
-        if not q.empty():
-            greeting = q.get()
-            print("DATA RECIEVED: " + str(greeting))
-            yield from websocket.send("Hello")
 
 start_server = websockets.serve(ping, settings.WEBSOCKET_ADDRESS, settings.WEBSOCKET_PORT)
 

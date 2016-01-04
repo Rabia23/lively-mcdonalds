@@ -10,11 +10,12 @@ from lively import settings
 @asyncio.coroutine
 def ping(websocket, path):
     while True:
-        now = datetime.datetime.utcnow().isoformat() + 'Z'
-        if not websocket.open:
+        if websocket.open:
+            now = datetime.datetime.utcnow().isoformat() + 'Z'
+            yield from websocket.send(now)
+            yield from asyncio.sleep(random.random() * 3)
+        else:
             return
-        yield from websocket.send(now)
-        yield from asyncio.sleep(random.random() * 3)
 
 start_server = websockets.serve(ping, settings.WEBSOCKET_ADDRESS, settings.WEBSOCKET_PORT)
 

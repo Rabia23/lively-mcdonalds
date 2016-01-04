@@ -1,16 +1,20 @@
 from django.contrib.auth import authenticate
 from django.db.models import Count
+from django.db.models.aggregates import Max
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from apps.area.models import Area
 from apps.branch.models import Branch
+from apps.branch.serializers import BranchSerializer
 from apps.city.models import City
+from apps.city.serializers import CitySerializer
 from apps.option.models import Option
 from apps.option.utils import generate_missing_options, generate_missing_sub_options, generate_option_groups, \
     generate_segmentation_with_options
 from apps.question.models import Question
 from apps.region.models import Region
+from apps.region.serializers import RegionSerializer
 from apps.review.models import FeedbackOption, Feedback
 from apps.review.serializers import FeedbackSerializer
 from apps.review.utils import generate_missing_actions, valid_action_id
@@ -486,6 +490,26 @@ class ActionAnalysisView(APIView):
             feedback_data = {'count': objects.count(), 'analysis': data_list}
             return Response(feedback_data)
 
+        except Exception as e:
+            return Response(None)
+
+
+class TopChartsView(APIView):
+
+    @method_decorator(my_login_required)
+    def get(self, request, format=None):
+        try:
+            branch_id = Feedback.objects.values('branch_id').annotate(Max("branch_id")).values('branch_id').latest("branch_id")["branch_id"]
+            city_id = Feedback.objects.values('branch__city_id').annotate(Max("branch__city_id")).values('branch__city_id').latest("branch__city_id")["branch__city_id"]
+            region_id = Feedback.objects.values('branch__city__region_id').annotate(Max("branch__city__region_id")).values('branch__city__region_id').latest("branch__city__region_id")["branch__city__region_id"]
+    
+            branch = Branch.objects.get(pk=branch_id)
+            city = City.objects.get(pk=city_id)
+            region = Region.objects.get(pk=region_id)
+            
+            data = {'branch': BranchSerializer(branch).data, 'city': CitySerializer(city).data, 'region': RegionSerializer(region).data,}
+            return Response(data)
+            
         except Exception as e:
             return Response(None)
 
