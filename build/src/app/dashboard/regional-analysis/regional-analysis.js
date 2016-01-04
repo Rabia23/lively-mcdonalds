@@ -59,7 +59,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
        Graphs.action_analysis("", "", "", $scope.start_date, $scope.end_date, "").$promise.then(function(complains_data){
          showString(complains_data.count);
          $scope.donut_graph_data = chartService.getComplaintsDonutChartData(complains_data);
-         $scope.donut_graph_data.objects.push({id:"", name:"Pakistan", show_chart: complains_data.count === 0?false:true});
+         $scope.donut_graph_data.objects.push({id:"", name:"Pakistan", show_chart: $scope.donut_graph_data.objects[0].show_chart === false && $scope.donut_graph_data.objects[1].show_chart === false ?false:true});
          _.each($scope.donut_graph_data.donutData[0], function(data) {
            _.find($scope.donut_graph_data.donutData[1], function(dat) {
              if (data['label'] === dat['label']){
@@ -72,15 +72,15 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
          $scope.donut_graph_data.donutData.push(donut_data);
          $scope.donut_graph_data.donutOptions.push({colors: donut_colors});
          $scope.show_loading = false;
-         //console.log("complains data");
-         //console.log($scope.donut_graph_data);
        });
     }
     else {
      Graphs.area_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function (area_data){
+       console.log("area data");
        showString(area_data.count);
        $scope.donut_graph_data = chartService.getDonutChartData(area_data, $scope.question_type);
-       $scope.donut_graph_data.objects.push({id:"", name:"Pakistan", show_chart: area_data.count === 0?false:true});
+       console.log($scope.donut_graph_data.objects);
+       $scope.donut_graph_data.objects.push({id:"", name:"Pakistan", show_chart: $scope.donut_graph_data.objects[0].show_chart === false && $scope.donut_graph_data.objects[1].show_chart === false ?false:true});
        _.each($scope.donut_graph_data.donutData[0], function(data) {
          _.find($scope.donut_graph_data.donutData[1], function(dat) {
             if (data['label'] === dat['label']){
