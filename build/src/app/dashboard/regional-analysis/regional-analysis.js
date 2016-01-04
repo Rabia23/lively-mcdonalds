@@ -76,10 +76,8 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     }
     else {
      Graphs.area_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function (area_data){
-       console.log("area data");
        showString(area_data.count);
        $scope.donut_graph_data = chartService.getDonutChartData(area_data, $scope.question_type);
-       console.log($scope.donut_graph_data.objects);
        $scope.donut_graph_data.objects.push({id:"", name:"Pakistan", show_chart: $scope.donut_graph_data.objects[0].show_chart === false && $scope.donut_graph_data.objects[1].show_chart === false ?false:true});
        _.each($scope.donut_graph_data.donutData[0], function(data) {
          _.find($scope.donut_graph_data.donutData[1], function(dat) {
