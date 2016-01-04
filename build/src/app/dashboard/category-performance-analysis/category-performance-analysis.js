@@ -4,7 +4,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
     'chart.js'
 ])
 
-.controller('CategoryPerformanceAnalysisCtrl', function DashboardController($scope, _, Graphs, Global, $timeout) {
+.controller('CategoryPerformanceAnalysisCtrl', function DashboardController($scope, Graphs, Global, $timeout) {
 
   $scope.show_loading = false;
   $scope.class = '';

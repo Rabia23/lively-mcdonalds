@@ -1,11 +1,11 @@
 angular.module( 'livefeed.dashboard.overall_rating', [
   'factories',
-  'livefeed.chart',
+  'livefeed.overall_rating.chart',
   "helper_factories",
   'angular-flot'
 ])
 
-.controller( 'OverallRatingCtrl', function DashboardController( $scope, _, chartService, Graphs, Global ) {
+.controller( 'OverallRatingCtrl', function DashboardController( $scope, overallRatingChartService, Graphs, Global ) {
 
   $scope.today = new Date();
 
@@ -42,7 +42,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
         return {parent_id: value.option__parent_id, id: value.option_id, value: value.option__text,
                 color: Global.optionsColorScheme[value.option__text], priority: Global.qscPriority[value.option__text]};
       });
-      $scope.line1 = chartService.getLineChart(data, $scope.type);
+      $scope.line1 = overallRatingChartService.getLineChart(data, $scope.type);
       $scope.dates = _.map(data, function(value){
         return value.date;
       });
@@ -97,7 +97,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
       Graphs.feedback_segmentation(date, option.id, $scope.type).$promise.then(function(data){
         $scope.show_loading = false;
         $scope.mainView = false;
-        $scope.line1 = chartService.getSegmentLineChart(data, parent_color, parent_value);
+        $scope.line1 = overallRatingChartService.getSegmentLineChart(data, parent_color, parent_value);
         $scope.labels =  _.map(data.options,function(value, index){
           return {value: value.option__text, parent_id: option.id, color: colors(index, option.parent_id, parent_color, value.option__text, parent_value)};
         });
@@ -114,7 +114,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
         $scope.mainView = false;
         var parent_color = option.color;
         var parent_value = option.value;
-        $scope.line1 = chartService.getLineChart(data, $scope.type, parent_color, parent_value);
+        $scope.line1 = overallRatingChartService.getLineChart(data, $scope.type, parent_color, parent_value);
         $scope.labels = _.map(data[0].data.feedbacks ,function(value, index){
           return {parent_id: value.option__parent_id,id: value.option_id, value: value.option__text, color: colors(index, option.parent_id, parent_color, value.option__text, parent_value)};
         });

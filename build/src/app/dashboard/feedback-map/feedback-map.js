@@ -6,7 +6,7 @@ angular.module( 'livefeed.dashboard.feedback_map', [
   'daterangepicker'
 ])
 
-.controller( 'FeedbackMapCtrl', function FeedbackMapController( $scope, _, Graphs, mapService ) {
+.controller( 'FeedbackMapCtrl', function FeedbackMapController( $scope, Graphs, mapService ) {
 
   $scope.today = new Date();
 

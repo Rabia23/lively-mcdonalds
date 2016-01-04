@@ -14,7 +14,6 @@
  */
 angular.module( 'livefeed.dashboard', [
   'ui.router',
-  'livefeed.chart',
   'factories',
   'livefeed.helper',
   'livefeed.dashboard.regional_analysis',
@@ -87,7 +86,7 @@ angular.module( 'livefeed.dashboard', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'DashboardCtrl', function DashboardController( $scope, $state, chartService, _ , $location, $anchorScroll, Filters, $rootScope, TokenHandler, Auth) {
+.controller( 'DashboardCtrl', function DashboardController( $scope, $state, $location, $anchorScroll, Filters, $rootScope, TokenHandler, Auth) {
   
   if (Auth.is_logged_in()) {
     $rootScope.show_username = true;

@@ -1,11 +1,11 @@
 angular.module( 'livefeed.dashboard.overall_feedback', [
   'factories',
-  'livefeed.chart',
+  'livefeed.overall_feedback.chart',
   'helper_factories',
   'chart.js'
 ])
 
-.controller( 'OverallFeedbackCtrl', function DashboardController( $scope, _ , Graphs,chartService, Global ) {
+.controller( 'OverallFeedbackCtrl', function DashboardController( $scope, Graphs, overallFeedbackChartService ) {
   
   $scope.show_loading = false;
 
@@ -40,7 +40,7 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
         $scope.show_canvas = graph_data.feedback_count === 0 ? false : true;
         $scope.maximum = _.max(graph_data.feedbacks, function(data){ return data.count; });
         $scope.bar = {};
-        $scope.bar = chartService.getBarChartData(graph_data,$scope.maximum.count);
+        $scope.bar = overallFeedbackChartService.getBarChartData(graph_data,$scope.maximum.count);
      });
   }
   show_graph("","");
