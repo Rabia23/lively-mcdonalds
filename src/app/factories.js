@@ -60,7 +60,8 @@ angular.module( 'factories', [
                     segmentation_rating:{method: "GET",isArray: false, params: {endpoint: "segmentation_rating/"}},
                     action_taken:{method: "POST",isArray: false, params: {endpoint: "action_taken/"}},
                     action_analysis: {method: "GET",isArray: false, params: {endpoint: "action_analysis/"}},
-                    area_analysis: {method: "GET",isArray: true, params: {endpoint: "area/"}}
+                    area_analysis: {method: "GET",isArray: true, params: {endpoint: "area/"}},
+                    top_charts: {method: "GET",isArray: false, params: {endpoint: "top_charts/"}}
                  });
   }
 
@@ -163,6 +164,9 @@ angular.module( 'factories', [
     city_id = city_id || "";
     area_id = area_id || "";
     return this.service.action_analysis({token:  token,type: type_id, date_from: date_from, date_to: date_to, area: area_id, region: region_id, city:city_id});
+  };
+  Graphs.prototype.top_charts = function(){
+    return this.service.top_charts({token:  token});
   };
 
   return new Graphs();
