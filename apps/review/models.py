@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.aggregates import Count
 from apps.branch.models import Branch
+from apps.city.models import City
 from apps.option.models import Option
 from apps.person.models import UserInfo
 from apps.question.models import Question
@@ -8,6 +10,7 @@ from apps import constants
 from datetime import datetime
 from dateutil import tz
 from django.utils import timezone
+from apps.region.models import Region
 
 
 class FeedbackQuerySet(models.QuerySet):
@@ -90,6 +93,38 @@ class Feedback(models.Model):
         feedback = Feedback.objects.filter(objectId=objectId).first()
         if feedback:
             return feedback
+
+    @staticmethod
+    def get_feedback_type_count():
+        negative_feedback_count = Feedback.objects.filter(feedback_option__option__score__in=constants.NEGATIVE_SCORE_LIST).count()
+        positive_feedback_count = Feedback.objects.filter(feedback_option__option__score__in=constants.POSITIVE_SCORE_LIST).count()
+
+        return {"positive_feedback_count": positive_feedback_count, "negative_feedback_count": negative_feedback_count}
+
+
+    @staticmethod
+    def get_top_branch():
+        dict = Feedback.objects.values('branch_id').annotate(count=Count("branch_id")).latest("count")
+
+        branch = Branch.objects.get(pk=dict["branch_id"])
+        return {"count": dict["count"], "branch_name": branch.name, "branch_id": branch.id}
+
+
+    @staticmethod
+    def get_top_city():
+        dict = Feedback.objects.values('branch__city_id').annotate(count=Count("branch__city_id")).latest("count")
+
+        city = City.objects.get(pk=dict["branch__city_id"])
+        return {"count": dict["count"], "city_name": city.name, "city_id": city.id}
+
+
+    @staticmethod
+    def get_top_region():
+        dict = Feedback.objects.values('branch__city__region_id').annotate(count=Count("branch__city__region_id")).latest("count")
+
+        region = Region.objects.get(pk=dict["branch__city__region_id"])
+        return {"count": dict["count"], "region_name": region.name, "region_id": region.id}
+
 
     def is_negative(self):
         options = self.feedback_option.filter(option__score__in=constants.NEGATIVE_SCORE_LIST)
@@ -337,6 +372,28 @@ class FeedbackOption(models.Model):
         feedback_option = FeedbackOption.objects.filter(feedback_id=feedback_id, option_id=option_id).first()
         if feedback_option:
             return feedback_option
+
+    @staticmethod
+    def get_top_option():
+        dict = FeedbackOption.manager.question(constants.TYPE_1).values('option_id').annotate(count=Count("option_id")).latest("count")
+
+        option = Option.objects.get(pk=dict["option_id"])
+        return {"count": dict["count"], "option_text": option.text, "option_id": option.id}
+
+
+    @staticmethod
+    def get_qsc_count():
+        dict_list = FeedbackOption.manager.question(constants.TYPE_2).values('option_id').annotate(count=Count("option_id"))
+
+        qsc_list = []
+        for dict in dict_list:
+            option = Option.objects.get(pk=dict["option_id"])
+            qsc_list.append({"count": dict["count"], "option_text": option.text, "option_id": option.id})
+
+        return qsc_list
+
+
+
 
 
 

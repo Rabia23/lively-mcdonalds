@@ -1,20 +1,16 @@
 from django.contrib.auth import authenticate
 from django.db.models import Count
-from django.db.models.aggregates import Max
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from apps.area.models import Area
 from apps.branch.models import Branch
-from apps.branch.serializers import BranchSerializer
 from apps.city.models import City
-from apps.city.serializers import CitySerializer
 from apps.option.models import Option
 from apps.option.utils import generate_missing_options, generate_missing_sub_options, generate_option_groups, \
     generate_segmentation_with_options
 from apps.question.models import Question
 from apps.region.models import Region
-from apps.region.serializers import RegionSerializer
 from apps.review.models import FeedbackOption, Feedback
 from apps.review.serializers import FeedbackSerializer
 from apps.review.utils import generate_missing_actions, valid_action_id
@@ -499,17 +495,33 @@ class TopChartsView(APIView):
     @method_decorator(my_login_required)
     def get(self, request, format=None):
         try:
-            branch_id = Feedback.objects.values('branch_id').annotate(Max("branch_id")).values('branch_id').latest("branch_id")["branch_id"]
-            city_id = Feedback.objects.values('branch__city_id').annotate(Max("branch__city_id")).values('branch__city_id').latest("branch__city_id")["branch__city_id"]
-            region_id = Feedback.objects.values('branch__city__region_id').annotate(Max("branch__city__region_id")).values('branch__city__region_id').latest("branch__city__region_id")["branch__city__region_id"]
-    
-            branch = Branch.objects.get(pk=branch_id)
-            city = City.objects.get(pk=city_id)
-            region = Region.objects.get(pk=region_id)
+            branch = Feedback.get_top_branch()
+            city = Feedback.get_top_city()
+            region = Feedback.get_top_region()
             
-            data = {'branch': BranchSerializer(branch).data, 'city': CitySerializer(city).data, 'region': RegionSerializer(region).data,}
+            data = {'branch': branch, 'city': city, 'region': region}
             return Response(data)
             
+        except Exception as e:
+            return Response(None)
+
+
+class TopRankingsView(APIView):
+
+    @method_decorator(my_login_required)
+    def get(self, request, format=None):
+        try:
+            overall_experience = FeedbackOption.get_top_option()
+            positive_negative_feedback = Feedback.get_feedback_type_count()
+            qsc_count = FeedbackOption.get_qsc_count()
+
+            data = {'overall_experience': overall_experience,
+                    'top_concern': "Ketchup",
+                    'positive_negative_feedback': positive_negative_feedback,
+                    'qsc_count': qsc_count}
+
+            return Response(data)
+
         except Exception as e:
             return Response(None)
 
