@@ -35,7 +35,7 @@ angular.module( 'livefeed.live.overall-ratings', [
             "categoryField": "category",
             "angle": 15,
             "depth3D": 30,
-            "startDuration": 1,
+            //"startDuration": 1,
             "fontFamily": "'Oswald', sans-serif",
             "categoryAxis": {
               "gridPosition": "start",

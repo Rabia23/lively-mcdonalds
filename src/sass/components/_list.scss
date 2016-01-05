@@ -49,5 +49,8 @@
 		&.item3{
 			.bullet{background: $bright-turquoise;}
 		}
+		&.processed{
+			.bullet{background: $dark-pastel-green;}
+		}
 	}
 }

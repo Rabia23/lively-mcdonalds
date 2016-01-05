@@ -10,14 +10,19 @@
 
   .controller( 'TopConcernCtrl', function TopConcernController( $scope, _, Graphs, Global ) {
     
-    Graphs.top_concerns().$promise.then(function(data){
-      var concern_list = data.concern_list;
-      $scope.top_concern_data = [];
-      _.each(concern_list, function(value, index){
-        
-        $scope.top_concern_data.push({"category": value.name.toUpperCase(), "column-1": value.weight});
+    function top_concern(){
+      Graphs.top_concerns().$promise.then(function(data){
+        var concern_list = data.concern_list;
+        $scope.top_concern_data = [];
+        _.each(concern_list, function(value, index){
+          
+          $scope.top_concern_data.push({"category": value.name.toUpperCase(), "column-1": value.weight});
+        });
       });
-    });
+    }
+
+    top_concern();
+    
   })
 
   .directive('topConcern', function() {

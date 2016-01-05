@@ -61,7 +61,8 @@ angular.module( 'factories', [
                     action_taken:{method: "POST",isArray: false, params: {endpoint: "action_taken/"}},
                     action_analysis: {method: "GET",isArray: false, params: {endpoint: "action_analysis/"}},
                     area_analysis: {method: "GET",isArray: true, params: {endpoint: "area/"}},
-                    top_charts: {method: "GET",isArray: false, params: {endpoint: "top_charts/"}}
+                    top_charts: {method: "GET",isArray: false, params: {endpoint: "top_charts/"}},
+                    top_rankings: {method: "GET", isArray: false, params:{endpoint: "top_rankings"}}
                  });
   }
 
@@ -76,6 +77,10 @@ angular.module( 'factories', [
 
   Graphs.prototype.top_concerns = function(top_concerns){
     return this.service.top_concerns({token:  token});
+  };
+
+  Graphs.prototype.top_rankings = function(){
+    return this.service.top_rankings({token:  token});
   };
 
   Graphs.prototype.feedback_segmentation = function(date, option_id, type){

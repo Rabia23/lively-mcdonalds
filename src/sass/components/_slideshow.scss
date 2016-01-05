@@ -22,6 +22,7 @@
 		left: 0;
 		right: 0;
 		top: 0;
+		bottom: 0;
 		padding: 172px 0 103px;
 		
 		&:before{
@@ -46,13 +47,28 @@
 		table-layout: fixed;
 		width: 100%;
 		height: 100%;
+		position: relative;
+		z-index: 9;
 		
 		.block,
-		.holder,
+		.holder{
+			display: table-cell;
+			vertical-align: middle;
+			width: 100%;
+			height: 100%;
+		}
+		
+		.box-holder,
 		.block-holder{
 			display: table-cell;
 			vertical-align: middle;
 			width: 100%;
+		}
+		
+		.box-holder{
+			width: 35%;
+			
+			&:first-child{width: 65%;}
 		}
 		
 		&.add{
@@ -235,4 +251,49 @@
 	
 }
 
+
+.container-holder{
+	display: table;
+	table-layout: fixed;
+	height: 100%;
+	width: 80%;
+	
+	.container-inner{
+		display: table-cell;
+		vertical-align: top;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.container{
+	overflow: hidden;
+	height: 50%;
+	padding: 7px 0;
+	
+	.box{
+		float: left;
+		width: 100%;
+		border: 1px solid $yellow-ncs;
+		background: url(../images/bg-table.png) rgba($dandelion,0.15);
+		padding: 5px;
+		height: 100%;
+		
+		> div{
+			width: 100% !important;
+			height: 100% !important;
+		}
+	}
+	
+	&.add{
+		.box{
+			width: 48%;
+			+ .box{float: right;}
+		}
+	}
+}
+
 .chart-outer > div > div > div > a{display: none !important;}
+.box-holder > div > div > div > a{display: none !important;}
+
+.box > div > div > div > a{display: none !important;}

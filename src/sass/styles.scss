@@ -7,7 +7,7 @@ $breakpoints: (
   'phone': 480px,
   'tablet': 768px,
   'desktop': 1024px,
-  'widescreen': 1280px
+  'widescreen': 1300px
 );
 
 // keywords
@@ -42,6 +42,7 @@ $media-expressions: (
 /*Components*/
 @import "components/slideshow";
 @import "components/list";
+@import "components/benchmark-map";
 
 /*Modal styles*/
 

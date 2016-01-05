@@ -20,28 +20,26 @@
 				<li>
 					<strong class="title">Overall Experience</strong>
 					<ul>
-						<li>I'm lovin' it</li>
+						<li>{{top_ranking.overall_experience.option_text}}</li>
 					</ul>
 				</li>
 				<li>
 					<strong class="title">top Concern</strong>
 					<ul>
-						<li>Ketchup</li>
+						<li>{{top_ranking.top_concern}}</li>
 					</ul>
 				</li>
 				<li>
 					<strong class="title">Positive / Negative Feedback</strong>
 					<ul>
-						<li class="positive">23,000</li>
-						<li>1,000</li>
+						<li class="positive">{{top_ranking.positive_negative_feedback.positive_feedback_count}}</li>
+						<li>{{top_ranking.positive_negative_feedback.negative_feedback_count}}</li>
 					</ul>
 				</li>
 				<li>
 					<strong class="title">QSC complaints</strong>
 					<ul>
-						<li>50</li>
-						<li class="item2">100</li>
-						<li class="item3">10</li>
+						<li ng-repeat = "q_count in top_ranking.qsc_count" ng-class = "{'item2': q_count.option_text == 'Service', 'item3': q_count.option_text == 'Cleanliness'}">{{q_count.count}}</li>
 					</ul>
 				</li>
 			</ul>
@@ -50,30 +48,7 @@
 
 	<div class="slideshow win-height win-min-height">
 		<div class="slideset win-height">
-			<div class="slide win-height">
-				<div class="slide-holder add">
-					<div class="holder">
-						<div class="inner-holder">
-							<div class="list-holder">
-								<ul class="list">
-									<li><span class="bullet"></span> quality</li>
-									<li class="item2"><span class="bullet"></span> service</li>
-									<li class="item3"><span class="bullet"></span> CLEANLINESS</li>
-								</ul>
-							</div>
-							<div class="block-holder">
-								<div class="c-holder">
-									<div class="block">
-										<div class="chart-outer">
-											<div id="area-chart"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<ui-view name = "qsc"></ui-view>
 			<ui-view name = "business_segment"></ui-view>
 			<ui-view name = "overall_rating"></ui-view>
 			<ui-view name = "top_concern"></ui-view>

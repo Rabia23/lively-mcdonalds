@@ -62,7 +62,7 @@ angular.module( 'livefeed.live', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'LiveCtrl', function LiveController( $scope,  _ , $rootScope, $state, Authentication) {
+.controller( 'LiveCtrl', function LiveController( $scope,  _ , $rootScope, $state, Authentication, Graphs) {
 
 
   $scope.authenticate = {};
@@ -74,6 +74,17 @@ angular.module( 'livefeed.live', [
   $rootScope.$on('app-offline', function(event, args) {
     console.log("offline in login");
   });
+
+  function top_rankings(){
+    Graphs.top_rankings().$promise.then(function(data){
+      console.log("top_rankings");
+      console.log(data);
+      $scope.top_ranking = data;
+    });
+  }
+  top_rankings();
+
+  
 
 })
 

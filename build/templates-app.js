@@ -832,28 +832,26 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "				<li>\n" +
     "					<strong class=\"title\">Overall Experience</strong>\n" +
     "					<ul>\n" +
-    "						<li>I'm lovin' it</li>\n" +
+    "						<li>{{top_ranking.overall_experience.option_text}}</li>\n" +
     "					</ul>\n" +
     "				</li>\n" +
     "				<li>\n" +
     "					<strong class=\"title\">top Concern</strong>\n" +
     "					<ul>\n" +
-    "						<li>Ketchup</li>\n" +
+    "						<li>{{top_ranking.top_concern}}</li>\n" +
     "					</ul>\n" +
     "				</li>\n" +
     "				<li>\n" +
     "					<strong class=\"title\">Positive / Negative Feedback</strong>\n" +
     "					<ul>\n" +
-    "						<li class=\"positive\">23,000</li>\n" +
-    "						<li>1,000</li>\n" +
+    "						<li class=\"positive\">{{top_ranking.positive_negative_feedback.positive_feedback_count}}</li>\n" +
+    "						<li>{{top_ranking.positive_negative_feedback.negative_feedback_count}}</li>\n" +
     "					</ul>\n" +
     "				</li>\n" +
     "				<li>\n" +
     "					<strong class=\"title\">QSC complaints</strong>\n" +
     "					<ul>\n" +
-    "						<li>50</li>\n" +
-    "						<li class=\"item2\">100</li>\n" +
-    "						<li class=\"item3\">10</li>\n" +
+    "						<li ng-repeat = \"q_count in top_ranking.qsc_count\" ng-class = \"{'item2': q_count.option_text == 'Service', 'item3': q_count.option_text == 'Cleanliness'}\">{{q_count.count}}</li>\n" +
     "					</ul>\n" +
     "				</li>\n" +
     "			</ul>\n" +
@@ -862,30 +860,7 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "	<div class=\"slideshow win-height win-min-height\">\n" +
     "		<div class=\"slideset win-height\">\n" +
-    "			<div class=\"slide win-height\">\n" +
-    "				<div class=\"slide-holder add\">\n" +
-    "					<div class=\"holder\">\n" +
-    "						<div class=\"inner-holder\">\n" +
-    "							<div class=\"list-holder\">\n" +
-    "								<ul class=\"list\">\n" +
-    "									<li><span class=\"bullet\"></span> quality</li>\n" +
-    "									<li class=\"item2\"><span class=\"bullet\"></span> service</li>\n" +
-    "									<li class=\"item3\"><span class=\"bullet\"></span> CLEANLINESS</li>\n" +
-    "								</ul>\n" +
-    "							</div>\n" +
-    "							<div class=\"block-holder\">\n" +
-    "								<div class=\"c-holder\">\n" +
-    "									<div class=\"block\">\n" +
-    "										<div class=\"chart-outer\">\n" +
-    "											<div id=\"area-chart\"></div>\n" +
-    "										</div>\n" +
-    "									</div>\n" +
-    "								</div>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
+    "			<ui-view name = \"qsc\"></ui-view>\n" +
     "			<ui-view name = \"business_segment\"></ui-view>\n" +
     "			<ui-view name = \"overall_rating\"></ui-view>\n" +
     "			<ui-view name = \"top_concern\"></ui-view>\n" +
@@ -947,10 +922,27 @@ angular.module("live/overall-ratings/overall-ratings.tpl.html", []).run(["$templ
 
 angular.module("live/qsc/qsc.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("live/qsc/qsc.tpl.html",
-    "<div class=\"slide win-height\" top-concern data-data = \"top_concern_data\">\n" +
-    "	<div class=\"slide-holder\">\n" +
+    "<div class=\"slide win-height\" qsc data-data = \"overall_rating_data\">\n" +
+    "	<div class=\"slide-holder add\">\n" +
     "		<div class=\"holder\">\n" +
-    "			<div id=\"container\"></div>\n" +
+    "			<div class=\"inner-holder\">\n" +
+    "				<div class=\"list-holder\">\n" +
+    "					<ul class=\"list\">\n" +
+    "						<li><span class=\"bullet\"></span> quality</li>\n" +
+    "						<li class=\"item2\"><span class=\"bullet\"></span> service</li>\n" +
+    "						<li class=\"item3\"><span class=\"bullet\"></span> CLEANLINESS</li>\n" +
+    "					</ul>\n" +
+    "				</div>\n" +
+    "				<div class=\"block-holder\">\n" +
+    "					<div class=\"c-holder\">\n" +
+    "						<div class=\"block\">\n" +
+    "							<div class=\"chart-outer\">\n" +
+    "								<div id=\"area-chart\"></div>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
     "		</div>\n" +
     "	</div>\n" +
     "</div>");
@@ -961,7 +953,9 @@ angular.module("live/top-concerns/top-concern.tpl.html", []).run(["$templateCach
     "<div class=\"slide win-height\" top-concern data-data = \"top_concern_data\">\n" +
     "	<div class=\"slide-holder\">\n" +
     "		<div class=\"holder\">\n" +
-    "			<div id=\"container\"></div>\n" +
+    "			<div class=\"chart-outer\">\n" +
+    "				<div id=\"container\"></div>\n" +
+    "			</div>\n" +
     "		</div>\n" +
     "	</div>\n" +
     "</div>");
