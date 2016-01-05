@@ -5,6 +5,8 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
   'chart.js'
 ])
 
+// TODO make one function for api call
+
 .controller( 'OverallFeedbackCtrl', function DashboardController( $scope, _ , Graphs,chartService, Global ) {
   
   $scope.show_loading = false;

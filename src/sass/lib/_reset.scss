@@ -8,11 +8,10 @@ html {
 
 * {max-height: 1000000px;}
 
-body.live-body {
+body {
   height: 100%;
   color: $base-text-color;
-  background: url(/assets/images/bg-body.jpg) 50% 0 $base-background-color;
-  background-size: cover;
+  background: $base-background-color;
   font: #{$base-font-size}/#{$base-line-height} $base-font-family;
   min-width: $base-min-width;
   -webkit-font-smoothing: antialiased;

@@ -1,4 +1,4 @@
-angular.module('templates-app', ['coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/live.tpl.html', 'login/login.tpl.html']);
+angular.module('templates-app', ['coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/overall-ratings/overall-ratings.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html']);
 
 angular.module("coupon/coupon.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("coupon/coupon.tpl.html",
@@ -780,6 +780,34 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "");
 }]);
 
+angular.module("live/business-segments/business-segment.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("live/business-segments/business-segment.tpl.html",
+    "<div class=\"slide win-height\" business-segment data-data = \"segmentation_rating\">\n" +
+    "	<div class=\"slide-holder add\">\n" +
+    "		<div class=\"holder\">\n" +
+    "			<div class=\"inner-holder\">\n" +
+    "				<div class=\"list-holder\">\n" +
+    "					<ul class=\"list\">\n" +
+    "						<li><span class=\"bullet\"></span> quality</li>\n" +
+    "						<li class=\"item2\"><span class=\"bullet\"></span> service</li>\n" +
+    "						<li class=\"item3\"><span class=\"bullet\"></span> CLEANLINESS</li>\n" +
+    "					</ul>\n" +
+    "				</div>\n" +
+    "				<div class=\"block-holder\">\n" +
+    "					<div class=\"c-holder\">\n" +
+    "						<div class=\"block\">\n" +
+    "							<div class=\"chart-outer\">\n" +
+    "								<div id=\"stackchart\"></div>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>");
+}]);
+
 angular.module("live/live.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("live/live.tpl.html",
     "<div id=\"wrapper\">\n" +
@@ -836,59 +864,95 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "			<div class=\"slide win-height\">\n" +
     "				<div class=\"slide-holder add\">\n" +
     "					<div class=\"holder\">\n" +
-    "						<div id=\"area-chart\"></div>\n" +
+    "						<div class=\"inner-holder\">\n" +
+    "							<div class=\"list-holder\">\n" +
+    "								<ul class=\"list\">\n" +
+    "									<li><span class=\"bullet\"></span> quality</li>\n" +
+    "									<li class=\"item2\"><span class=\"bullet\"></span> service</li>\n" +
+    "									<li class=\"item3\"><span class=\"bullet\"></span> CLEANLINESS</li>\n" +
+    "								</ul>\n" +
+    "							</div>\n" +
+    "							<div class=\"block-holder\">\n" +
+    "								<div class=\"c-holder\">\n" +
+    "									<div class=\"block\">\n" +
+    "										<div class=\"chart-outer\">\n" +
+    "											<div id=\"area-chart\"></div>\n" +
+    "										</div>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "			<ui-view name = \"business_segment\"></ui-view>\n" +
+    "			<ui-view name = \"overall_rating\"></ui-view>\n" +
+    "			<ui-view name = \"top_concern\"></ui-view>\n" +
+    "			<div class=\"slide win-height\">\n" +
+    "				<div class=\"slide-holder\">\n" +
+    "					<div class=\"holder\">\n" +
+    "						<div id=\"patch-chart\"></div>\n" +
     "					</div>\n" +
     "				</div>\n" +
     "			</div>\n" +
     "			<div class=\"slide win-height\">\n" +
     "				<div class=\"slide-holder\">\n" +
     "					<div class=\"holder\">\n" +
-    "						<div id=\"stackChart\"></div>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
-    "			<div class=\"slide win-height\">\n" +
-    "				<div class=\"slide-holder\">\n" +
-    "					<div class=\"holder\">\n" +
-    "						<div id=\"barChart\"></div>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
-    "			<div class=\"slide win-height\">\n" +
-    "				<div class=\"slide-holder\">\n" +
-    "					<div class=\"holder\">\n" +
-    "						<div id=\"container\"></div>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
-    "			<div class=\"slide win-height\">\n" +
-    "				<div class=\"slide-holder\">\n" +
-    "					<div class=\"holder\">\n" +
-    "						<div id=\"container\"></div>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
-    "			<div class=\"slide win-height\">\n" +
-    "				<div class=\"slide-holder\">\n" +
-    "					<div class=\"holder\">\n" +
-    "						<div id=\"container\"></div>\n" +
+    "						<div id=\"abc\"></div>\n" +
     "					</div>\n" +
     "				</div>\n" +
     "			</div>\n" +
     "		</div>\n" +
     "		<div class=\"pagination-holder\" init-slide>\n" +
     "			<ul class=\"pagination\">\n" +
-    "				<li><a href=\"#\">QSc</a></li>\n" +
-    "				<li><a href=\"#\">Business Segment</a></li>\n" +
-    "				<li><a href=\"#\">Overall rating</a></li>\n" +
-    "				<li><a href=\"#\">Top Concerns</a></li>\n" +
-    "				<li><a href=\"#\">Patch  qcs analysis</a></li>\n" +
-    "				<li><a href=\"#\">benchmark map</a></li>\n" +
+    "				<li><a href=\"#\"><span>QSc</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Business Segment</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Overall rating</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Top Concerns</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Patch  qcs analysis</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>benchmark map</span></a></li>\n" +
     "			</ul>\n" +
     "		</div>\n" +
     "	</div>\n" +
     "</div>\n" +
     "  ");
+}]);
+
+angular.module("live/overall-ratings/overall-rating.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("live/overall-ratings/overall-rating.tpl.html",
+    "<div class=\"slide win-height\" overall-rating data-data = \"overall_rating_data\">\n" +
+    "	<div class=\"slide-holder\">\n" +
+    "		<div class=\"holder\">\n" +
+    "			<div class=\"chart-outer\">\n" +
+    "				<div id=\"barchart\"></div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>");
+}]);
+
+angular.module("live/overall-ratings/overall-ratings.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("live/overall-ratings/overall-ratings.tpl.html",
+    "<div class=\"slide win-height\" overall-rating data-data = \"overall_rating_data\">\n" +
+    "	<div class=\"slide-holder\">\n" +
+    "		<div class=\"holder\">\n" +
+    "			<div class=\"chart-outer\">\n" +
+    "				<div id=\"barchart\"></div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>");
+}]);
+
+angular.module("live/top-concerns/top-concern.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("live/top-concerns/top-concern.tpl.html",
+    "<div class=\"slide win-height\" top-concern data-data = \"top_concern_data\">\n" +
+    "	<div class=\"slide-holder\">\n" +
+    "		<div class=\"holder\">\n" +
+    "			<div id=\"container\"></div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>");
 }]);
 
 angular.module("login/login.tpl.html", []).run(["$templateCache", function($templateCache) {

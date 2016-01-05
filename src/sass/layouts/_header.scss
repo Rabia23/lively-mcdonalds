@@ -37,19 +37,20 @@
 .header-content{
 	overflow: hidden;
 	text-align: right;
+	padding: 7px 6px 0 0;
 	
 	time{
 		display: block;
 		font-size: 14px;
 		line-height: 18px;
 		text-transform: uppercase;
-		margin: 0 0 20px;
+		margin: 0 2px 20px 0;
 		
 		strong{
 			@include inline-block(top);
 		}
 		
-		@include media("≥widescreen"){margin: 0 0 27px;}
+		@include media("≥widescreen"){margin: 0 2px 25px 0;}
 	}
 }
 
@@ -67,12 +68,12 @@
 		text-align: left;
 		margin: 0 0 0 2.5%;
 		
-		@include media("≥widescreen"){margin: 0 0 0 3%;}
+		@include media("≥widescreen"){margin: 0 0 0 5.1%;}
 	}
 	.title{
 		display: block;
 		font-weight: 400;
-		margin: 0 0 8px;
+		margin: 0 0 2px;
 		font-size: 16px;
 		
 		@include media("≥widescreen"){font-size: 18px;}
