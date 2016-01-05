@@ -86,7 +86,7 @@ angular.module( 'livefeed.dashboard', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'DashboardCtrl', function DashboardController( $scope, $state, $location, $anchorScroll, Filters, $rootScope, TokenHandler, Auth) {
+.controller( 'DashboardCtrl', function DashboardController( $scope, $state, $location, $anchorScroll, Filters, $rootScope, TokenHandler, Auth, Graphs) {
   
   if (Auth.is_logged_in()) {
     $rootScope.show_username = true;
@@ -104,6 +104,13 @@ angular.module( 'livefeed.dashboard', [
 
   $rootScope.$on('app-offline', function(event, args) {
     console.log("offline in dashboard");
+  });
+
+  Graphs.top_charts().$promise.then(function(data){
+
+    console.log("top charts");
+    console.log(data);
+    $scope.chart_data = data;
   });
 
 });

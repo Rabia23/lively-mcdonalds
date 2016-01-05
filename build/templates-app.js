@@ -207,12 +207,12 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                <div class=\"title-outer\">\n" +
     "                                    <div class=\"ibox-title\">\n" +
     "                                        <span class=\"label label-primary pull-right\">Monthly</span>\n" +
-    "                                        <h5>Income</h5>\n" +
+    "                                        <h5>{{chart_data.branch.name}}</h5>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"content-holder\">\n" +
     "                                    <div class=\"ibox-content\">\n" +
-    "                                        <h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "                                        <h1 class=\"no-margins\">{{chart_data.branch.benchmark_count}}</h1>\n" +
     "                                        <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
     "                                        <small>New orders</small>\n" +
     "                                    </div>\n" +
