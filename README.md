@@ -22,3 +22,9 @@ NOTE: Data from Parse.com to be copied as following order:
 5: Questions (Options will be automatically populated with Questions)
 6: Promotion
 7: Feedback (User and Options will be automatically added)
+
+
+- WebSocket
+To start a web socket for live dashboard use "python manage.py shell < apps/websocket.py &"
+A ping will be sent on new addition of feedback
+To stop the background process "ps aux | grep shell" and kill the process by ID
