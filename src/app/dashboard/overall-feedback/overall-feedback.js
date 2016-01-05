@@ -5,6 +5,7 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
   'chart.js'
 ])
 
+
 .controller( 'OverallFeedbackCtrl', function DashboardController( $scope, Graphs, overallFeedbackChartService ) {
   
   $scope.show_loading = false;

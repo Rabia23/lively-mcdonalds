@@ -16,8 +16,11 @@ angular.module( 'livefeed.live', [
   'ui.router',
   'livefeed.authService',
   'factories',
-  'flash'
-
+  'flash',
+  'livefeed.chart',
+  'livefeed.live.top_concerns',
+  'livefeed.live.overall-ratings',
+  'livefeed.live.business_segment'
 ])
 
 /**
@@ -33,6 +36,18 @@ angular.module( 'livefeed.live', [
       "": {
         controller: 'LiveCtrl',
         templateUrl: 'live/live.tpl.html'
+      },
+      "top_concern@live":{
+        controller: "TopConcernCtrl",
+        templateUrl: 'live/top-concerns/top-concern.tpl.html'
+      },
+      "overall_rating@live":{
+        controller: "OverallRatingCtrl",
+        templateUrl: 'live/overall-ratings/overall-rating.tpl.html'
+      },
+      "business_segment@live":{
+        controller: "BusinessSegmentCtrl",
+        templateUrl: 'live/business-segments/business-segment.tpl.html'
       }
     },
     authenticate: false
@@ -43,7 +58,7 @@ angular.module( 'livefeed.live', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'LiveCtrl', function LoginController( $scope,  _ , $rootScope, $state, Authentication, TokenHandler, Flash) {
+.controller( 'LiveCtrl', function LiveController( $scope,  _ , $rootScope, $state, Authentication) {
 
 
   $scope.authenticate = {};
@@ -67,3 +82,4 @@ angular.module( 'livefeed.live', [
     }
   };
 });
+
