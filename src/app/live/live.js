@@ -17,10 +17,10 @@ angular.module( 'livefeed.live', [
   'livefeed.authService',
   'factories',
   'flash',
-  'livefeed.chart',
   'livefeed.live.top_concerns',
   'livefeed.live.overall-ratings',
-  'livefeed.live.business_segment'
+  'livefeed.live.business_segment',
+  'livefeed.live.qsc'
 ])
 
 /**
@@ -48,6 +48,10 @@ angular.module( 'livefeed.live', [
       "business_segment@live":{
         controller: "BusinessSegmentCtrl",
         templateUrl: 'live/business-segments/business-segment.tpl.html'
+      },
+      "qsc@live":{
+        controller: "QscCtrl",
+        templateUrl: 'live/qsc/qsc.tpl.html'
       }
     },
     authenticate: false

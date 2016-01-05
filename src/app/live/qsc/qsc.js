@@ -1,5 +1,5 @@
 (function() {
-  angular.module( 'livefeed.live.top_concerns', [
+  angular.module( 'livefeed.live.qsc', [
     'ui.router',
     'factories',
     'flash'
@@ -8,7 +8,7 @@
 
 
 
-  .controller( 'TopConcernCtrl', function TopConcernController( $scope, _, Graphs, Global ) {
+  .controller( 'QscCtrl', function TopConcernController( $scope, _, Graphs, Global ) {
     
     Graphs.top_concerns().$promise.then(function(data){
       var concern_list = data.concern_list;
@@ -20,7 +20,7 @@
     });
   })
 
-  .directive('topConcern', function() {
+  .directive('qsc', function() {
     return {
       restrict: 'A',
       scope: {

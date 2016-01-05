@@ -1,14 +1,13 @@
 angular.module( 'livefeed.live.overall-ratings', [
   'ui.router',
   'factories',
-  'flash',
-  'livefeed.chart'
+  'flash'
 
 ])
 
 
 
-.controller( 'OverallRatingCtrl', function OverallRatingCtrl( $scope, _, chartService, Graphs, Global ) {
+.controller( 'OverallRatingCtrl', function OverallRatingCtrl( $scope, _, Graphs, Global ) {
   
 
   Graphs.overall_feedback().$promise.then(function(graph_data){
