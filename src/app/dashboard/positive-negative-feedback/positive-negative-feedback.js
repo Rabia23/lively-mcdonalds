@@ -1,6 +1,5 @@
 angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   'factories',
-  'livefeed.chart',
   'helper_factories',
    'ui.bootstrap'
 ])

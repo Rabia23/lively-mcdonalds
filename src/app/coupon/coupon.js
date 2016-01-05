@@ -14,7 +14,6 @@
  */
 angular.module( 'livefeed.coupon', [
   'ui.router',
-  'livefeed.chart',
   'factories'
 
 ])

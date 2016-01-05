@@ -1,10 +1,10 @@
 angular.module( 'livefeed.dashboard.regional_analysis', [
   'factories',
-  'livefeed.chart', 
+  'livefeed.regional_analysis.chart',
   'ui.bootstrap'
 ])
 
-.controller( 'RegionalAnalysisCtrl', function DashboardController( $scope, _, Graphs, chartService, $uibModal, Global ) {
+.controller( 'RegionalAnalysisCtrl', function DashboardController( $scope, Graphs, regionalAnalysisChartService, $uibModal, Global ) {
    $scope.today = new Date();
 
   function resetDates(){
@@ -58,7 +58,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     if($scope.radioModel === 'Complaints'){
        Graphs.action_analysis("", "", "", $scope.start_date, $scope.end_date, "").$promise.then(function(complains_data){
          showString(complains_data.count);
-         $scope.donut_graph_data = chartService.getComplaintsDonutChartData(complains_data);
+         $scope.donut_graph_data = regionalAnalysisChartService.getComplaintsDonutChartData(complains_data);
          $scope.donut_graph_data.objects.push({id:"", name:"Pakistan", show_chart: $scope.donut_graph_data.objects[0].show_chart === false && $scope.donut_graph_data.objects[1].show_chart === false ?false:true});
          _.each($scope.donut_graph_data.donutData[0], function(data) {
            _.find($scope.donut_graph_data.donutData[1], function(dat) {
@@ -76,10 +76,8 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     }
     else {
      Graphs.area_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function (area_data){
-       console.log("area data");
        showString(area_data.count);
-       $scope.donut_graph_data = chartService.getDonutChartData(area_data, $scope.question_type);
-       console.log($scope.donut_graph_data.objects);
+       $scope.donut_graph_data = regionalAnalysisChartService.getDonutChartData(area_data, $scope.question_type);
        $scope.donut_graph_data.objects.push({id:"", name:"Pakistan", show_chart: $scope.donut_graph_data.objects[0].show_chart === false && $scope.donut_graph_data.objects[1].show_chart === false ?false:true});
        _.each($scope.donut_graph_data.donutData[0], function(data) {
          _.find($scope.donut_graph_data.donutData[1], function(dat) {
@@ -108,14 +106,14 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       Graphs.action_analysis(1, "", "", $scope.start_date, $scope.end_date, area.id).$promise.then(function(complains_data){
          console.log(complains_data);
          showString(complains_data.count);
-         $scope.donut_regions_data = chartService.getComplaintsDonutChartData(complains_data);
+         $scope.donut_regions_data = regionalAnalysisChartService.getComplaintsDonutChartData(complains_data);
          $scope.show_loading = false;
       });
     }
     else {
       Graphs.regional_analysis($scope.question_type, $scope.start_date, $scope.end_date, area.id).$promise.then(function(data){
         showString(data.count);
-        $scope.donut_regions_data = chartService.getDonutChartData(data, $scope.question_type);
+        $scope.donut_regions_data = regionalAnalysisChartService.getDonutChartData(data, $scope.question_type);
         $scope.show_loading = false;
       });
     }
@@ -131,14 +129,14 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     if($scope.radioModel === 'Complaints'){
       Graphs.action_analysis(2, region.id, "", $scope.start_date, $scope.end_date,"").$promise.then(function(complains_data){
          showString(complains_data.count);
-         $scope.donut_cities_data = chartService.getComplaintsDonutChartData(complains_data);
+         $scope.donut_cities_data = regionalAnalysisChartService.getComplaintsDonutChartData(complains_data);
          $scope.show_loading = false;
       });
     }
     else {
       Graphs.city_analysis(region.id, $scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function(data){
         showString(data.count);
-        $scope.donut_cities_data = chartService.getDonutChartData(data, $scope.question_type);
+        $scope.donut_cities_data = regionalAnalysisChartService.getDonutChartData(data, $scope.question_type);
         $scope.show_loading = false;
       });
     }
@@ -153,14 +151,14 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
     if($scope.radioModel === 'Complaints'){
       Graphs.action_analysis(3, "", city.id, $scope.start_date, $scope.end_date,"").$promise.then(function(complains_data){
          showString(complains_data.count);
-         $scope.donut_branches_data  = chartService.getComplaintsDonutChartData(complains_data);
+         $scope.donut_branches_data  = regionalAnalysisChartService.getComplaintsDonutChartData(complains_data);
          $scope.show_loading = false;
       });
     }
     else {
       Graphs.branch_analysis(city.id, $scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function (data) {
         showString(data.count);
-        $scope.donut_branches_data = chartService.getDonutChartData(data, $scope.question_type);
+        $scope.donut_branches_data = regionalAnalysisChartService.getDonutChartData(data, $scope.question_type);
         $scope.show_loading = false;
       });
     }
@@ -253,7 +251,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   
 })
 
-.controller('SQCModalCtrl', function ($scope, Graphs, chartService, $uibModalInstance, area, region, city, branch, option){
+.controller('SQCModalCtrl', function ($scope, Graphs, regionalAnalysisChartService, $uibModalInstance, area, region, city, branch, option){
   $scope.leftClickDisabled = false;
   $scope.rightClickDisabled = false;
 
@@ -264,7 +262,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   function showGraph(area, region, city, branch, option) {
     Graphs.feedback_analysis_breakdown(area.id,region.id,city.id,branch.id,option.id).$promise.then(function(data) {
       $scope.show_div = data.feedback_count === 0? true: false;
-      $scope.donut_subgraph_data = chartService.getSubDonutChartData(data,option.label);
+      $scope.donut_subgraph_data = regionalAnalysisChartService.getSubDonutChartData(data,option.label);
     });
   }
 

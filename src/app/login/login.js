@@ -14,7 +14,6 @@
  */
 angular.module( 'livefeed.login', [
   'ui.router',
-  'livefeed.chart',
   'livefeed.authService',
   'factories',
   'flash'

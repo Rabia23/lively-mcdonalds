@@ -1,10 +1,9 @@
 angular.module( 'livefeed.dashboard.top_concern', [
   'factories',
-  'livefeed.chart',
   "helper_factories"
 ])
 
-.controller( 'TopConcernCtrl', function TopConcernController( $scope, _, chartService, Graphs, Global ) {
+.controller( 'TopConcernCtrl', function TopConcernController( $scope, Graphs, Global ) {
   
   $scope.colors = [];
   $scope.labels = [];
