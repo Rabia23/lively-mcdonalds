@@ -3,6 +3,12 @@ angular.module( 'helper_factories', ['ngResource'])
 .factory('Global', [ '_', function(_) {
 
   return {
+    complaintAnalysisActionStrings :{
+      1: "Unprocessed",
+      2: "Processed",
+      3: "Deferred"
+    },
+
     mainRatingColorScheme: {
       "Few concerns": '#e73a3a',
       "Not happy enough": '#ac1a1a',
