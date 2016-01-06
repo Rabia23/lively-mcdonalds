@@ -15,7 +15,6 @@
 angular.module( 'livefeed.dashboard', [
   'ui.router',
   'factories',
-  'livefeed.helper',
   'livefeed.dashboard.regional_analysis',
   'livefeed.dashboard.feedback_map',
   'livefeed.dashboard.category_performance_analysis',
@@ -107,9 +106,6 @@ angular.module( 'livefeed.dashboard', [
   });
 
   Graphs.top_charts().$promise.then(function(data){
-
-    console.log("top charts");
-    console.log(data);
     $scope.chart_data = data;
   });
 

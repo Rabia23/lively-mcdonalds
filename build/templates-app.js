@@ -1,4 +1,4 @@
-angular.module('templates-app', ['coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/overall-ratings/overall-ratings.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html']);
+angular.module('templates-app', ['coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/overall-ratings/overall-ratings.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html']);
 
 angular.module("coupon/coupon.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("coupon/coupon.tpl.html",
@@ -206,13 +206,13 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                            <div class=\"ibox float-e-margins detail-block\">\n" +
     "                                <div class=\"title-outer\">\n" +
     "                                    <div class=\"ibox-title\">\n" +
-    "                                        <span class=\"label label-primary pull-right\">Monthly</span>\n" +
-    "                                        <h5>{{chart_data.branch.name}}</h5>\n" +
+    "                                        <span class=\"label label-primary pull-right\">Top Branch</span>\n" +
+    "                                        <h5>{{chart_data.branch.branch_name}}</h5>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"content-holder\">\n" +
     "                                    <div class=\"ibox-content\">\n" +
-    "                                        <h1 class=\"no-margins\">{{chart_data.branch.benchmark_count}}</h1>\n" +
+    "                                        <h1 class=\"no-margins\">{{chart_data.branch.count}}</h1>\n" +
     "                                        <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
     "                                        <small>New orders</small>\n" +
     "                                    </div>\n" +
@@ -223,13 +223,13 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                            <div class=\"ibox float-e-margins detail-block\">\n" +
     "                                <div class=\"title-outer\">\n" +
     "                                    <div class=\"ibox-title\">\n" +
-    "                                        <span class=\"label label-primary pull-right\">Monthly</span>\n" +
-    "                                        <h5>Income</h5>\n" +
+    "                                        <span class=\"label label-primary pull-right\">Top City</span>\n" +
+    "                                        <h5>{{chart_data.city.city_name}}</h5>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"content-holder\">\n" +
     "                                    <div class=\"ibox-content\">\n" +
-    "                                        <h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "                                        <h1 class=\"no-margins\">{{chart_data.city.count}}</h1>\n" +
     "                                        <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
     "                                        <small>New orders</small>\n" +
     "                                    </div>\n" +
@@ -242,13 +242,13 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                            <div class=\"ibox float-e-margins detail-block\">\n" +
     "                                <div class=\"title-outer\">\n" +
     "                                    <div class=\"ibox-title\">\n" +
-    "                                        <span class=\"label label-primary pull-right\">Monthly</span>\n" +
-    "                                        <h5>Income</h5>\n" +
+    "                                        <span class=\"label label-primary pull-right\">Top Region</span>\n" +
+    "                                        <h5>{{chart_data.region.region_name}}</h5>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"content-holder\">\n" +
     "                                    <div class=\"ibox-content\">\n" +
-    "                                        <h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "                                        <h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
     "                                        <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
     "                                        <small>New orders</small>\n" +
     "                                    </div>\n" +
@@ -864,13 +864,14 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "			<ui-view name = \"business_segment\"></ui-view>\n" +
     "			<ui-view name = \"overall_rating\"></ui-view>\n" +
     "			<ui-view name = \"top_concern\"></ui-view>\n" +
-    "			<div class=\"slide win-height\">\n" +
-    "				<div class=\"slide-holder\">\n" +
-    "					<div class=\"holder\">\n" +
-    "						<div id=\"patch-chart\"></div>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
+    "			<ui-view name = \"patch_qsc_analysis\"></ui-view>\n" +
+    "			<!--<div class=\"slide win-height\">-->\n" +
+    "				<!--<div class=\"slide-holder\">-->\n" +
+    "					<!--<div class=\"holder\">-->\n" +
+    "						<!--<div id=\"patch-chart\"></div>-->\n" +
+    "					<!--</div>-->\n" +
+    "				<!--</div>-->\n" +
+    "			<!--</div>-->\n" +
     "			<div class=\"slide win-height\">\n" +
     "				<div class=\"slide-holder\">\n" +
     "					<div class=\"holder\">\n" +
@@ -918,6 +919,52 @@ angular.module("live/overall-ratings/overall-ratings.tpl.html", []).run(["$templ
     "		</div>\n" +
     "	</div>\n" +
     "</div>");
+}]);
+
+angular.module("live/patch-qsc-analysis/patch-qsc-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("live/patch-qsc-analysis/patch-qsc-analysis.tpl.html",
+    "<div class=\"slide win-height\">\n" +
+    "    <div class=\"slide-holder add\">\n" +
+    "        <div class=\"holder\">\n" +
+    "            <div class=\"inner-holder\">\n" +
+    "                <div class=\"list-holder\">\n" +
+    "                    <ul class=\"list\">\n" +
+    "                        <li><span class=\"bullet\"></span> Unprocessed</li>\n" +
+    "                        <li class=\"item2\"><span class=\"bullet\"></span> Deferred</li>\n" +
+    "                        <li class=\"processed\"><span class=\"bullet\"></span> Processed</li>\n" +
+    "                    </ul>\n" +
+    "                </div>\n" +
+    "                <div class=\"block-holder\" patch-qsc-analysis>\n" +
+    "                    <div class=\"c-holder\">\n" +
+    "                        <div class=\"box-holder\">\n" +
+    "                            <div id=\"piechart\"></div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"box-holder\">\n" +
+    "                            <div class=\"container-holder\">\n" +
+    "                                <div class=\"container-inner\">\n" +
+    "                                    <div class=\"container\">\n" +
+    "                                        <div class=\"box\">\n" +
+    "                                            <div id=\"chartdiv\"></div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"container add\">\n" +
+    "                                        <div class=\"box\">\n" +
+    "                                            <div id=\"patch-bar\"></div>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"box\">\n" +
+    "                                            <div id=\"patch-bar2\"></div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("live/qsc/qsc.tpl.html", []).run(["$templateCache", function($templateCache) {
