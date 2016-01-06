@@ -20,7 +20,8 @@ angular.module( 'livefeed.live', [
   'livefeed.live.top_concerns',
   'livefeed.live.overall-ratings',
   'livefeed.live.business_segment',
-  'livefeed.live.qsc'
+  'livefeed.live.qsc',
+  'livefeed.live.patch_qsc_analysis'
 ])
 
 /**
@@ -52,6 +53,10 @@ angular.module( 'livefeed.live', [
       "qsc@live":{
         controller: "QscCtrl",
         templateUrl: 'live/qsc/qsc.tpl.html'
+      },
+      "patch_qsc_analysis@live":{
+        controller: "PatchQscAnalysisCtrl",
+        templateUrl: 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html'
       }
     },
     authenticate: false
