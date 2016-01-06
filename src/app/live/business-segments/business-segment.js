@@ -6,14 +6,22 @@ angular.module( 'livefeed.live.business_segment', [
 
 
 
-.controller( 'BusinessSegmentCtrl', function BusinessSegmentCtrl( $scope, _, Graphs, Global ) {
+.controller( 'BusinessSegmentCtrl', function BusinessSegmentCtrl( $scope, _, Graphs, Global, $rootScope ) {
   
-  Graphs.segmentation_rating().$promise.then(function(data){
-    $scope.segmentation_rating = [];
-    console.log(data);
-    _.each(data.segments, function(value, index){
-      $scope.segmentation_rating.push({"category":value.segment, "column-1": value.option_data[0].count, "column-2":value.option_data[1].count,"column-3":value.option_data[2].count});
+  function business_segment(){
+    Graphs.segmentation_rating().$promise.then(function(data){
+      $scope.segmentation_rating = [];
+      console.log(data);
+      _.each(data.segments, function(value, index){
+        $scope.segmentation_rating.push({"category":value.segment, "column-1": value.option_data[0].count, "column-2":value.option_data[1].count,"column-3":value.option_data[2].count});
+      });
     });
+  }
+
+  business_segment();
+
+   $rootScope.$on('web-socket-message', function (event, data) {
+    business_segment();
   });
 
 })
@@ -37,7 +45,7 @@ angular.module( 'livefeed.live.business_segment', [
             "categoryField": "category",
             "angle": 15,
             "depth3D": 30,
-            "startDuration": 1,
+            //"startDuration": 1,
             "fontFamily": "'Oswald', sans-serif",
             "fontSize": 16,
             "theme": "default",

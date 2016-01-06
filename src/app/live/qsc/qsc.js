@@ -8,7 +8,7 @@
 
 
 
-  .controller( 'QscCtrl', function TopConcernController( $scope, _, Graphs, Global ) {
+  .controller( 'QscCtrl', function TopConcernController( $scope, _, Graphs, Global, $rootScope ) {
     
 
     function qscfunc(){
@@ -41,6 +41,10 @@
     }
 
     qscfunc();
+
+    $rootScope.$on('web-socket-message', function (event, data) {
+      qscfunc();
+    });
 
 
   })

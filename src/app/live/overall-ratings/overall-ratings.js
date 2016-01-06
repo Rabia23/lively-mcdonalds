@@ -7,15 +7,21 @@ angular.module( 'livefeed.live.overall-ratings', [
 
 
 
-.controller( 'OverallRatingCtrl', function OverallRatingCtrl( $scope, _, Graphs, Global ) {
+.controller( 'OverallRatingCtrl', function OverallRatingCtrl( $scope, _, Graphs, Global, $rootScope ) {
   
-
-  Graphs.overall_feedback().$promise.then(function(graph_data){
-    $scope.overall_rating_data = [];
-    //var maximum = _.max(graph_data.feedbacks, function(data){ return data.count; });
-    _.each(graph_data.feedbacks, function(data){
-      $scope.overall_rating_data.push({"category": data.option__text,"column-1": data.count, "color": "red"});
+  function rating(){
+    Graphs.overall_feedback().$promise.then(function(graph_data){
+      $scope.overall_rating_data = [];
+      //var maximum = _.max(graph_data.feedbacks, function(data){ return data.count; });
+      _.each(graph_data.feedbacks, function(data){
+        $scope.overall_rating_data.push({"category": data.option__text,"column-1": data.count, "color": "red"});
+      });
     });
+  }
+  rating();
+
+  $rootScope.$on('web-socket-message', function (event, data) {
+    rating();
   });
 })
 

@@ -62,27 +62,44 @@ angular.module( 'livefeed.live', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'LiveCtrl', function LiveController( $scope,  _ , $rootScope, $state, Authentication, Graphs) {
+.controller( 'LiveCtrl', function LiveController( $scope,  _ , $rootScope, $state, Authentication, Graphs, WebSocket) {
 
 
   $scope.authenticate = {};
 
   $rootScope.$on('app-online', function(event, args) {
     console.log("online in login");
+    WebSocket.init();
   });
 
   $rootScope.$on('app-offline', function(event, args) {
     console.log("offline in login");
+    WebSocket.close_socket();
   });
+
+  WebSocket.init();
 
   function top_rankings(){
     Graphs.top_rankings().$promise.then(function(data){
-      console.log("top_rankings");
-      console.log(data);
       $scope.top_ranking = data;
     });
   }
   top_rankings();
+
+  $rootScope.$on('web-socket-message', function (event, data) {
+    top_rankings();
+  });
+
+  $rootScope.$on('web-socket-close', function (event, data) {
+    WebSocket.close_socket();
+    WebSocket.init();
+  });
+
+  $rootScope.$on('web-socket-error', function (event, data) {
+    WebSocket.close_socket();
+    WebSocket.init();
+  });
+
 
   
 
@@ -96,5 +113,53 @@ angular.module( 'livefeed.live', [
       window.initSlideShow();
     }
   };
-});
+})
+
+.service('WebSocket', ['$rootScope', function($rootScope){
+
+  var ws = null;
+
+  return {
+
+    init: function(){
+      console.log("in the init function");
+      ws = null;
+      ws = new WebSocket("ws://staginglivefeed.arbisoft.com:5678/");
+      //ws = new WebSocket("ws://172.16.11.113:5678/");
+      ws.onopen = function (event) {
+        console.log("sockets opened");
+        $rootScope.$broadcast('web-socket-open');
+      };
+      ws.onmessage = function (event) {
+        console.log("message received");
+        $rootScope.$broadcast('web-socket-message');
+      };
+      ws.onerror = function(event){
+        console.log("error in connection");
+        $rootScope.$broadcast('web-socket-error');
+      };
+      ws.onclose = function(event){
+        console.log("connection closing");
+        $rootScope.$broadcast('web-socket-close');
+
+      };
+
+                
+    },
+
+    get_socket: function(){
+      return ws;
+    },
+
+    close_socket: function(){
+      return ws.close();
+    }
+
+
+
+  };
+
+}]);
+
+
 

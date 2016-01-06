@@ -8,7 +8,7 @@
 
 
 
-  .controller( 'TopConcernCtrl', function TopConcernController( $scope, _, Graphs, Global ) {
+  .controller( 'TopConcernCtrl', function TopConcernController( $scope, _, Graphs, Global, $rootScope ) {
     
     function top_concern(){
       Graphs.top_concerns().$promise.then(function(data){
@@ -22,6 +22,10 @@
     }
 
     top_concern();
+
+    $rootScope.$on('web-socket-message', function (event, data) {
+      top_concern();
+    });
     
   })
 
