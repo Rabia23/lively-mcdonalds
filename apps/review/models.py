@@ -77,6 +77,7 @@ class Feedback(models.Model):
     objectId = models.CharField(max_length=20, null=True, blank=True, db_index=True)
     action_taken = models.IntegerField(default=constants.UNPROCESSED, db_index=True)
     gro_name = models.CharField(max_length=25, null=True, blank=True, db_index=True)
+    gro = models.ForeignKey(User, related_name='gro', null=True, blank=True)
     user = models.ForeignKey(User, related_name='feedback', null=True, blank=True)
     branch = models.ForeignKey(Branch, related_name='feedback')
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)

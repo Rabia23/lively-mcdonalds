@@ -40,7 +40,7 @@ class ParseHelper():
                 "last_name": obj.user.last_name,
                 "username": obj.user.username,
                 "password": password,
-                "gro_id": obj.id,
+                "gro_id": obj.user.id,
             })
         )
         return response

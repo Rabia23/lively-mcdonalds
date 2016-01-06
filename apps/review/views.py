@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import transaction
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -36,7 +37,13 @@ class FeedbackView(APIView):
             else:
                 user = None
 
+            if "gro_id" in data:
+                gro = User.objects.get(pk=data["gro_id"])
+            else:
+                gro = None
+
             feedback_params = data
+            feedback_params['gro'] = gro.id if gro else None
             feedback_params['user'] = user.id if user else None
             feedback_params['branch'] = branch.id
 
