@@ -158,8 +158,8 @@ class Feedback(models.Model):
         return constants.NOT_ATTEMPTED_TEXT
 
     def customer_phone(self):
-        user_info = UserInfo.objects.filter(user=self.user).first()
-        if user_info:
+        user_info = self.user.info.first()
+        if self.user.info:
             if user_info.phone_no:
                 return user_info.phone_no
         return constants.NOT_ATTEMPTED_TEXT

@@ -42,6 +42,9 @@ class FeedbackView(APIView):
             else:
                 gro = None
 
+            if not "comment" in data: #without comment action will be DEFERRED
+                data['action_taken'] = constants.DEFERRED
+
             feedback_params = data
             feedback_params['gro'] = gro.id if gro else None
             feedback_params['user'] = user.id if user else None
@@ -60,10 +63,8 @@ class FeedbackView(APIView):
                     if not feedback_option:
                         FeedbackOption(feedback=feedback, option=option).save()
 
-
             q = RedisQueue('feedback_queue')
             q.put("ping")
-
 
             if feedback.is_negative():
                 context = Context({'feedback': feedback})

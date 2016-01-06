@@ -51,5 +51,19 @@ def generate_missing_actions(data):
     return list_feedback
 
 
+# def generate_actions_with_action_texts(data):
+#     response_list = []
+#     action = "Invalid"
+#     for item in data:
+#         if item["action_taken"] == constants.PROCESSED:
+#             action = "Processed"
+#         elif item["action_taken"] == constants.UNPROCESSED:
+#             action = "Unprocessed"
+#         elif item["action_taken"] == constants.DEFERRED:
+#             action = "Deferred"
+#         response_list.append({'count': item["count"], 'action_taken': action})
+#     return response_list
+
+
 def valid_action_id(action_id):
     return True if action_id == 1 or action_id == 2 or action_id ==3 else False

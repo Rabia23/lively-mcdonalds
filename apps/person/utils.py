@@ -20,7 +20,7 @@ def get_related_user(data):
     user_serializer = UserSerializer(user, data=data)
     user = save(user_serializer)
 
-    data['user_id'] = user.id
+    data['user'] = user.id
 
     user_info_serializer = UserInfoSerializer(user_info, data=data)
     save(user_info_serializer)
