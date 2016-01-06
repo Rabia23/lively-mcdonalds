@@ -68,7 +68,7 @@ angular.module( 'livefeed.live', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'LiveCtrl', function LiveController( $scope,  _ , $rootScope, $state, Authentication, Graphs, WebSocket, Global) {
+.controller( 'LiveCtrl', function LiveController( $scope,  _ , $rootScope, $state, Authentication, Graphs, WebSocket, Global, Clock, $interval) {
 
 
   $scope.authenticate = {};
@@ -80,10 +80,11 @@ angular.module( 'livefeed.live', [
 
   $rootScope.$on('app-offline', function(event, args) {
     console.log("offline in login");
-    WebSocket.close_socket();
+    //WebSocket.close_socket();
   });
 
   WebSocket.init();
+
 
   function top_rankings(){
     Graphs.top_rankings().$promise.then(function(data){
@@ -99,6 +100,22 @@ angular.module( 'livefeed.live', [
   $rootScope.$on('web-socket-message', function (event, data) {
     top_rankings();
   });
+
+
+
+  var display = function(){    
+    var date = new Date();
+    $scope.time = Clock.formatAMPM(date);
+
+    var date_string = date.toString().split(" ");
+    console.log(date_string);
+    $scope.date_output = date_string[0] + "-" + date_string[1] + " " + date_string[2] + "-" + date_string[3];
+  };
+
+  display();
+
+  $interval(display, 1000 * 60);
+
 
 
   // $rootScope.$on('web-socket-close', function (event, data) {
@@ -126,6 +143,25 @@ angular.module( 'livefeed.live', [
     }
   };
 })
+
+.service('Clock', ['$rootScope', function($rootScope){
+
+  return {
+    formatAMPM: function(date){
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var ampm = hours >= 12 ? 'pm' : 'am';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? '0'+minutes : minutes;
+      var strTime = hours + ':' + minutes + ' '  + ampm;
+      return strTime;
+    }
+  };
+
+}])
+
+
 
 .service('WebSocket', ['$rootScope', function($rootScope){
 
@@ -161,11 +197,11 @@ angular.module( 'livefeed.live', [
 
     get_socket: function(){
       return ws;
-    },
-
-    close_socket: function(){
-      return ws.close();
     }
+
+    // close_socket: function(){
+    //   return ws.close();
+    // }
 
 
 
