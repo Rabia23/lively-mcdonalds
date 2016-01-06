@@ -851,7 +851,7 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "				<li>\n" +
     "					<strong class=\"title\">QSC complaints</strong>\n" +
     "					<ul>\n" +
-    "						<li ng-repeat = \"q_count in top_ranking.qsc_count\" ng-class = \"{'item2': q_count.option_text == 'Service', 'item3': q_count.option_text == 'Cleanliness'}\">{{q_count.count}}</li>\n" +
+    "						<li ng-repeat = \"q_count in qsc_ranking\" ng-class = \"{'item2': q_count.option_name == 'Service', 'item3': q_count.option_name == 'Cleanliness'}\">{{q_count.option_count}}</li>\n" +
     "					</ul>\n" +
     "				</li>\n" +
     "			</ul>\n" +
@@ -865,13 +865,7 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "			<ui-view name = \"overall_rating\"></ui-view>\n" +
     "			<ui-view name = \"top_concern\"></ui-view>\n" +
     "			<ui-view name = \"patch_qsc_analysis\"></ui-view>\n" +
-    "			<!--<div class=\"slide win-height\">-->\n" +
-    "				<!--<div class=\"slide-holder\">-->\n" +
-    "					<!--<div class=\"holder\">-->\n" +
-    "						<!--<div id=\"patch-chart\"></div>-->\n" +
-    "					<!--</div>-->\n" +
-    "				<!--</div>-->\n" +
-    "			<!--</div>-->\n" +
+    "\n" +
     "			<div class=\"slide win-height\">\n" +
     "				<div class=\"slide-holder\">\n" +
     "					<div class=\"holder\">\n" +

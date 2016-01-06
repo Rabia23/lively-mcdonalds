@@ -16,6 +16,7 @@ angular.module( 'livefeed.live', [
   'ui.router',
   'livefeed.authService',
   'factories',
+   'helper_factories',
   'flash',
   'livefeed.live.top_concerns',
   'livefeed.live.overall-ratings',
@@ -67,7 +68,7 @@ angular.module( 'livefeed.live', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'LiveCtrl', function LiveController( $scope,  _ , $rootScope, $state, Authentication, Graphs, WebSocket) {
+.controller( 'LiveCtrl', function LiveController( $scope,  _ , $rootScope, $state, Authentication, Graphs, WebSocket, Global) {
 
 
   $scope.authenticate = {};
@@ -87,6 +88,10 @@ angular.module( 'livefeed.live', [
   function top_rankings(){
     Graphs.top_rankings().$promise.then(function(data){
       $scope.top_ranking = data;
+      $scope.qsc_ranking = _.map(data.qsc_count, function(value){
+        return { option_name: value.option_text, option_count: value.count, priority: Global.qscPriority[value.option_text] };
+      });
+      $scope.qsc_ranking = _.sortBy($scope.qsc_ranking, function (value) { return value.priority; });
     });
   }
   top_rankings();
@@ -96,13 +101,13 @@ angular.module( 'livefeed.live', [
   });
 
   $rootScope.$on('web-socket-close', function (event, data) {
-    WebSocket.close_socket();
-    WebSocket.init();
+    //WebSocket.close_socket();
+    //WebSocket.init();
   });
 
   $rootScope.$on('web-socket-error', function (event, data) {
-    WebSocket.close_socket();
-    WebSocket.init();
+    //WebSocket.close_socket();
+    //WebSocket.init();
   });
 
 
