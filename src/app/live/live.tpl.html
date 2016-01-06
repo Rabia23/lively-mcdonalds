@@ -39,7 +39,7 @@
 				<li>
 					<strong class="title">QSC complaints</strong>
 					<ul>
-						<li ng-repeat = "q_count in top_ranking.qsc_count" ng-class = "{'item2': q_count.option_text == 'Service', 'item3': q_count.option_text == 'Cleanliness'}">{{q_count.count}}</li>
+						<li ng-repeat = "q_count in qsc_ranking" ng-class = "{'item2': q_count.option_name == 'Service', 'item3': q_count.option_name == 'Cleanliness'}">{{q_count.option_count}}</li>
 					</ul>
 				</li>
 			</ul>
@@ -53,13 +53,7 @@
 			<ui-view name = "overall_rating"></ui-view>
 			<ui-view name = "top_concern"></ui-view>
 			<ui-view name = "patch_qsc_analysis"></ui-view>
-			<!--<div class="slide win-height">-->
-				<!--<div class="slide-holder">-->
-					<!--<div class="holder">-->
-						<!--<div id="patch-chart"></div>-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</div>-->
+
 			<div class="slide win-height">
 				<div class="slide-holder">
 					<div class="holder">
