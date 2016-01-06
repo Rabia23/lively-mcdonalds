@@ -126,7 +126,6 @@ class Feedback(models.Model):
         region = Region.objects.get(pk=dict["branch__city__region_id"])
         return {"count": dict["count"], "region_name": region.name, "region_id": region.id}
 
-
     def is_negative(self):
         options = self.feedback_option.filter(option__score__in=constants.NEGATIVE_SCORE_LIST)
         if options:
@@ -159,7 +158,7 @@ class Feedback(models.Model):
 
     def customer_phone(self):
         user_info = self.user.info.first()
-        if self.user.info:
+        if user_info:
             if user_info.phone_no:
                 return user_info.phone_no
         return constants.NOT_ATTEMPTED_TEXT
