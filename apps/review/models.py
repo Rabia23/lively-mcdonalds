@@ -157,10 +157,11 @@ class Feedback(models.Model):
         return constants.NOT_ATTEMPTED_TEXT
 
     def customer_phone(self):
-        user_info = self.user.info.first()
-        if user_info:
-            if user_info.phone_no:
-                return user_info.phone_no
+        if self.user:
+            user_info = self.user.info.first()
+            if user_info:
+                if user_info.phone_no:
+                    return user_info.phone_no
         return constants.NOT_ATTEMPTED_TEXT
 
     def selected_main_option(self):
