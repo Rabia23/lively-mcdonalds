@@ -36,9 +36,7 @@ angular.module( 'livefeed.live.business_segment', [
 
       scope.$watch('data', function(watchedData) {
         if(watchedData !== undefined){
-          console.log("in the if");
           var data = scope.data;
-          console.log(data);
 
           AmCharts.makeChart("stackchart",{
             "type": "serial",

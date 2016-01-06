@@ -928,9 +928,9 @@ angular.module("live/patch-qsc-analysis/patch-qsc-analysis.tpl.html", []).run(["
     "                        <li class=\"processed\"><span class=\"bullet\"></span> Processed</li>\n" +
     "                    </ul>\n" +
     "                </div>\n" +
-    "                <div class=\"block-holder\" patch-qsc-analysis>\n" +
+    "                <div class=\"block-holder\">\n" +
     "                    <div class=\"c-holder\">\n" +
-    "                        <div class=\"box-holder\">\n" +
+    "                        <div class=\"box-holder\" patch-pie-chart data-data = \"pakistan_analysis\">\n" +
     "                            <div id=\"piechart\"></div>\n" +
     "                        </div>\n" +
     "                        <div class=\"box-holder\">\n" +
@@ -938,15 +938,15 @@ angular.module("live/patch-qsc-analysis/patch-qsc-analysis.tpl.html", []).run(["
     "                                <div class=\"container-inner\">\n" +
     "                                    <div class=\"container\">\n" +
     "                                        <div class=\"box\">\n" +
-    "                                            <div id=\"chartdiv\"></div>\n" +
+    "                                            <div id=\"chartdiv\" patch-chart-div data-data = \"north_south_percentage\"></div>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                    <div class=\"container add\">\n" +
     "                                        <div class=\"box\">\n" +
-    "                                            <div id=\"patch-bar\"></div>\n" +
+    "                                            <div id=\"patch-bar\" patch-bar-one data-data = \"north_analysis\"></div>\n" +
     "                                        </div>\n" +
     "                                        <div class=\"box\">\n" +
-    "                                            <div id=\"patch-bar2\"></div>\n" +
+    "                                            <div id=\"patch-bar2\" patch-bar-two data-data = \"south_analysis\"></div>\n" +
     "                                        </div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
