@@ -80,7 +80,7 @@ angular.module( 'livefeed.live', [
 
   $rootScope.$on('app-offline', function(event, args) {
     console.log("offline in login");
-    //WebSocket.close_socket();
+    WebSocket.close_socket();
   });
 
   WebSocket.init();

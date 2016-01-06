@@ -74,6 +74,7 @@
                     AmCharts.makeChart("piechart",
                     {
                         "type": "pie",
+                        "startDuration": 0,
                         "angle": 30,
                         "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
                         "depth3D": 65,
