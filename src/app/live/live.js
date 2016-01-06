@@ -95,15 +95,15 @@ angular.module( 'livefeed.live', [
     top_rankings();
   });
 
-  $rootScope.$on('web-socket-close', function (event, data) {
-    WebSocket.close_socket();
-    WebSocket.init();
-  });
+  // $rootScope.$on('web-socket-close', function (event, data) {
+  //   WebSocket.close_socket();
+  //   WebSocket.init();
+  // });
 
-  $rootScope.$on('web-socket-error', function (event, data) {
-    WebSocket.close_socket();
-    WebSocket.init();
-  });
+  // $rootScope.$on('web-socket-error', function (event, data) {
+  //   WebSocket.close_socket();
+  //   WebSocket.init();
+  // });
 
 
   

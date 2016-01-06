@@ -91,8 +91,8 @@
               "handDrawThickness": 0,
               "theme": "default",
               "categoryAxis": {
-                "equalSpacing": true,
-                "firstDayOfWeek": 0,
+                //"equalSpacing": true,
+                //"firstDayOfWeek": 0,
                 "startOnAxis": true,
                 "twoLineMode": true,
                 "axisAlpha": 0.43,
