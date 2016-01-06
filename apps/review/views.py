@@ -54,8 +54,8 @@ class FeedbackView(APIView):
                         FeedbackOption(feedback=feedback, option=option).save()
 
 
-            q = RedisQueue('test')
-            q.put("hello")
+            q = RedisQueue('feedback_queue')
+            q.put("ping")
 
 
             if feedback.is_negative():

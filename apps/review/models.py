@@ -391,9 +391,3 @@ class FeedbackOption(models.Model):
             qsc_list.append({"count": dict["count"], "option_text": option.text, "option_id": option.id})
 
         return qsc_list
-
-
-
-
-
-

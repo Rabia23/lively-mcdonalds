@@ -21,6 +21,7 @@ urlpatterns = patterns('',
                        url(r'^action_analysis/$', views.ActionAnalysisView.as_view()),
                        url(r'^top_charts/$', views.TopChartsView.as_view()),
                        url(r'^top_rankings/$', views.TopRankingsView.as_view()),
+                       url(r'^complaint_analysis/$', views.ComplaintAnalysisView.as_view()),
 )
 
 

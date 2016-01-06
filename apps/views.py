@@ -506,6 +506,7 @@ class TopChartsView(APIView):
             return Response(None)
 
 
+#for live dashboard
 class TopRankingsView(APIView):
 
     @method_decorator(my_login_required)
@@ -521,6 +522,36 @@ class TopRankingsView(APIView):
                     'qsc_count': qsc_count}
 
             return Response(data)
+
+        except Exception as e:
+            return Response(None)
+
+
+#for live dashboard
+class ComplaintAnalysisView(APIView):
+
+    @method_decorator(my_login_required)
+    def get(self, request, format=None):
+        try:
+            data_list = []
+            objects = Area.objects.all()
+
+            feedback = Feedback.manager.normal_feedback()
+            filtered_feedback = feedback.values('action_taken').annotate(count=Count('action_taken'))
+            filtered_feedback = generate_missing_actions(filtered_feedback)
+
+            data = {'feedback_count': feedback.count(), 'action_analysis': filtered_feedback}
+            data_list.append({'object': {"id": "", "name": "Pakistan", "objectId": ""}, 'data': data})
+
+            for object in objects:
+                feedback = Feedback.manager.related_filters(0, object).normal_feedback()
+                filtered_feedback = feedback.values('action_taken').annotate(count=Count('action_taken'))
+                filtered_feedback = generate_missing_actions(filtered_feedback)
+
+                data = {'feedback_count': feedback.count(), 'action_analysis': filtered_feedback}
+                data_list.append({'object': ObjectSerializer(object).data, 'data': data})
+
+            return Response(data_list)
 
         except Exception as e:
             return Response(None)
