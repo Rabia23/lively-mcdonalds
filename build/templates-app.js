@@ -1,4 +1,4 @@
-angular.module('templates-app', ['coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/overall-ratings/overall-ratings.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html']);
+angular.module('templates-app', ['coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/overall-ratings/overall-ratings.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html']);
 
 angular.module("coupon/coupon.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("coupon/coupon.tpl.html",
@@ -780,6 +780,60 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "");
 }]);
 
+angular.module("live/benchmark-map/benchmark-map.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("live/benchmark-map/benchmark-map.tpl.html",
+    "<div class=\"slide win-height\">\n" +
+    "        <div class=\"slide-holder\">\n" +
+    "            <div class=\"holder\">\n" +
+    "                <div class=\"detail-holder\">\n" +
+    "                    <div class=\"table-inner\">\n" +
+    "                        <div class=\"info-block\">\n" +
+    "                            <div class=\"inner-box\">\n" +
+    "                                <h3>Gro Of The Day</h3>\n" +
+    "                                <div class=\"hold\">\n" +
+    "                                    <span class=\"name\">Adnan Zahid</span>\n" +
+    "                                    <div class=\"info\">\n" +
+    "                                        <strong>50</strong> feedback received, <span class=\"branch\">Gulberg Branch</span>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"inner-box\">\n" +
+    "                                <h3>City Of The Day</h3>\n" +
+    "                                <div class=\"hold\">\n" +
+    "                                    <span class=\"name\">Lahore</span>\n" +
+    "                                    <div class=\"info\">\n" +
+    "                                        <strong>50</strong> feedback received, Gulberg Branch\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"table-inner\">\n" +
+    "                        <div class=\"info-block\">\n" +
+    "                            <h3>Top 3 leading Branches</h3>\n" +
+    "                            <ul>\n" +
+    "                                <li>\n" +
+    "                                    <span class=\"count\">200</span>\n" +
+    "                                    <div class=\"name\">Lhr-Gulberg</div>\n" +
+    "                                </li>\n" +
+    "                                <li>\n" +
+    "                                    <span class=\"count\">250</span>\n" +
+    "                                    <div class=\"name\">Lhr-garden town</div>\n" +
+    "                                </li>\n" +
+    "                                <li>\n" +
+    "                                    <span class=\"count\">160</span>\n" +
+    "                                    <div class=\"name\">Lhr-Gulberg</div>\n" +
+    "                                </li>\n" +
+    "                            </ul>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
+}]);
+
 angular.module("live/business-segments/business-segment.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("live/business-segments/business-segment.tpl.html",
     "<div class=\"slide win-height\" business-segment data-data = \"segmentation_rating\">\n" +
@@ -820,7 +874,7 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "					<div class=\"heading-slide\"><h2>business segment</h2></div>\n" +
     "					<div class=\"heading-slide\"><h2>overall rating</h2></div>\n" +
     "					<div class=\"heading-slide\"><h2>top concerns</h2></div>\n" +
-    "					<div class=\"heading-slide\"><h2>Patch  qcs analysis</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>Patch  qsc analysis</h2></div>\n" +
     "					<div class=\"heading-slide\"><h2>benchmark map</h2></div>\n" +
     "				</div>\n" +
     "				<h1>Country Wide</h1>\n" +
@@ -865,14 +919,8 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "			<ui-view name = \"overall_rating\"></ui-view>\n" +
     "			<ui-view name = \"top_concern\"></ui-view>\n" +
     "			<ui-view name = \"patch_qsc_analysis\"></ui-view>\n" +
+    "			<ui-view name = \"benchmark_map\"></ui-view>\n" +
     "\n" +
-    "			<div class=\"slide win-height\">\n" +
-    "				<div class=\"slide-holder\">\n" +
-    "					<div class=\"holder\">\n" +
-    "						<div id=\"abc\"></div>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
     "		</div>\n" +
     "		<div class=\"pagination-holder\" init-slide>\n" +
     "			<ul class=\"pagination\">\n" +
@@ -880,13 +928,13 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "				<li><a href=\"#\"><span>Business Segment</span></a></li>\n" +
     "				<li><a href=\"#\"><span>Overall rating</span></a></li>\n" +
     "				<li><a href=\"#\"><span>Top Concerns</span></a></li>\n" +
-    "				<li><a href=\"#\"><span>Patch  qcs analysis</span></a></li>\n" +
-    "				<li><a href=\"#\"><span>benchmark map</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Patch  qsc analysis</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Benchmark map</span></a></li>\n" +
     "			</ul>\n" +
     "		</div>\n" +
     "	</div>\n" +
     "</div>\n" +
-    "  ");
+    "");
 }]);
 
 angular.module("live/overall-ratings/overall-rating.tpl.html", []).run(["$templateCache", function($templateCache) {
