@@ -1,0 +1,213 @@
+.form-holder{
+	max-width: 457px;
+	margin: 0 auto 10px;
+	border: 1px solid #d9d9d9;
+	background: white;
+	position: relative;
+}
+
+.login-block{
+	@extend .col-xs-12;
+}
+
+.form-holder .inner-holder{
+	padding: 15px;
+	border-bottom: 1px solid #d9d9d9;
+}
+
+.form-holder:after,
+.form-holder .inner-holder:after{
+	display: block;
+	content: "";
+	clear: both;
+}
+
+.form-holder .coupon-form{
+	padding: 0 0 5px;
+	margin: 0 0 15px;
+	border-bottom: 1px solid #d9d9d9;
+}
+
+.form-holder .form-control{
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	float: left;
+	width: 100%;
+	margin: 0 0 15px;
+	border-color: #d9d9d9;
+	height: 38px;
+	font-size: 14px;
+	line-height: 20px;
+	padding: 9px 12px;
+	color: #878787;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+.form-holder h3{
+	text-align: center;
+	font-weight: normal;
+	margin: 0 0 15px;
+}
+
+.form-holder .btn.btn-info{
+	border-radius: 0;
+		-webkit-border-radius: 0;
+		width: 100%;
+		float: left;
+		@extend .text-uppercase;
+		font-size: 15px;
+		font-weight: bold;
+		line-height: 1.5em;
+		color: #927510;
+		text-shadow: 0 1px rgba(white,.75);
+		margin: 0 0 15px;
+		border-color: #e1d84c;
+		background: #ffeb7e;
+		background: -moz-linear-gradient(top, #ffeb7e 0%, #fde976 23%, #f5e056 80%, #f3de4f 100%);
+		background: -webkit-linear-gradient(top, #ffeb7e 0%,#fde976 23%,#f5e056 80%,#f3de4f 100%);
+		background: linear-gradient(to bottom, #ffeb7e 0%,#fde976 23%,#f5e056 80%,#f3de4f 100%);
+}
+
+.form-holder .btn.btn-info:hover,
+.form-holder .btn.btn-info:active,
+.form-holder .btn.btn-info:focus{
+	color: white;
+	background: #f3de4f;
+	background: -moz-linear-gradient(top, #f3de4f 0%, #f5e056 20%, #fde976 77%, #ffeb7e 100%);
+	background: -webkit-linear-gradient(top, #f3de4f 0%,#f5e056 20%,#fde976 77%,#ffeb7e 100%);
+	background: linear-gradient(to bottom, #f3de4f 0%,#f5e056 20%,#fde976 77%,#ffeb7e 100%);
+}
+
+.form-holder label{
+	float: left;
+	font-size: 14px;
+	line-height: 17px;
+	font-weight: normal;
+	position: relative;
+	margin: 0 0 0 22px;
+}
+
+.form-holder [type="checkbox"]{
+	position:fixed;
+	left:0;
+	top:0;
+	opacity:0;
+	z-index: -1;
+}
+
+.form-holder .fake-input{
+	position: absolute;
+	left: -22px;
+	top: 1px;
+	width:14px;
+	height:14px;
+	border:1px solid #a5a5a5;
+	background: #dedede;
+}
+
+.form-holder [type="checkbox"] + .fake-input:before{
+	content:"";
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 8px;
+	height: 8px;
+	margin: -4px 0 0 -4px;
+	opacity: 0;
+	background: url(../assets/images/tick.png) no-repeat;
+}
+
+.form-holder [type="checkbox"]:checked + .fake-input:before{opacity:1;}
+
+.form-holder [type="checkbox"]:checked + .fake-input{
+	background: #f8e035;
+	border-color: #f8e035;
+}
+
+.form-holder input:disabled + .fake-input,
+.form-holder input:disabled ~ .fake-label{opacity: .5;}
+
+.form-holder .btn-holder{
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+}
+
+.form-holder .btn-holder a{
+	display: table-cell;
+	vertical-align: middle;
+	width: 50%;
+	text-align: center;
+	padding: 15px 5px;
+	background: #efefef;
+	color: #454545;
+	border-left: 1px solid #d9d9d9;
+}
+
+.form-holder .btn-holder a:first-child{border-left: 0;}
+
+.form-holder .btn-holder a:hover,
+.form-holder .btn-holder a:active,
+.form-holder .btn-holder a:focus{background: #eae7e7;}
+
+.form-holder .form-text{
+	text-align: center;
+	overflow: hidden;
+	margin: 0 0 10px;
+	color: #878787;
+	font-size: 14px;
+}
+
+.form-holder .form-text h4{
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #ac1a1a;
+	margin: 0 0 10px;
+}
+
+@media (min-width: 768px) {
+	.form-holder .inner-holder{padding: 35px 35px 15px;}
+	.form-holder .coupon-form{margin: 0 0 25px;}
+	.form-holder .form-control{margin: 0 0 20px;}
+	.form-holder h3{margin: 0 0 25px;}
+	.form-holder .btn.btn-info{
+		font-size: 18px;
+		margin: 0 0 20px;
+	}
+	.form-holder .btn-holder a{padding: 19px 5px;}
+}
+
+.alertIn, .alertOut {
+    -webkit-transition: -webkit-transform 0.22s cubic-bezier(0.25, 0, 0.25, 1), opacity 0.22s cubic-bezier(0.25, 0, 0.25, 1);
+    -moz-transition: -moz-transform 0.22s cubic-bezier(0.25, 0, 0.25, 1), opacity 0.22s cubic-bezier(0.25, 0, 0.25, 1);
+    -o-transition: -o-transform 0.22s cubic-bezier(0.25, 0, 0.25, 1), opacity 0.22s cubic-bezier(0.25, 0, 0.25, 1);
+    transition: transform 0.22s cubic-bezier(0.25, 0, 0.25, 1), opacity 0.22s cubic-bezier(0.25, 0, 0.25, 1);
+}
+.alertIn.ng-hide-remove, .alertOut.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+    -webkit-transform: translate3d(100px, 0px, 0px);
+    transform: translate3d(100px, 0px, 0px);
+    display: block !important;
+}
+.alertOut.ng-hide-add, .alertIn.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+    display: block !important;
+    -webkit-transform: translate3d(0px, 0px, 0px);
+    transform: translate3d(0px, 0px, 0px);
+}
+.show-alert{
+	position: absolute;
+	z-index: 99;
+	right: 0;
+	width: 100%;
+	top: -60px;
+}
+
+.form-error-message{
+	margin: 0 0 10px;
+	display: block;
+	color: red;
+
+	@include media("≥tablet"){margin: -10px 0 10px;}
+}
