@@ -3,7 +3,9 @@
 	display: table;
 	table-layout: fixed;
 	width: 100%;
+	margin: 0 auto;
 	padding: 0 50px;
+	max-width: 1440px;
 	color: $mine-shaft;
 	
 	@include media("≥widescreen"){padding: 0 120px;}
@@ -11,10 +13,60 @@
 	> .table-inner{
 		display: table-cell;
 		vertical-align: middle;
-		width: 30%;
-		padding: 0 5px;
+		width: 40%;
+		padding: 0 15px;
 		
-		&:first-child{width: 70%;}
+		&:first-child{
+			padding: 20px 15px;
+			width: 60%;
+			border: 1px solid $lemon;
+			background: url(../../assets/images/bg-table.png);
+		}
+	}
+	
+	.inner-box{
+		overflow: hidden;
+		padding: 20px 0 30px;
+		color: $mine-shaft;
+		
+		
+		@include media("≥widescreen"){padding: 30px 0;}
+		
+		.hold{overflow: hidden;}
+		
+		h3{
+			color: $rosso-corsa;
+			margin: 0 0 10px;
+			font-weight: 400;
+			letter-spacing: 1px;
+
+			@include media("≥widescreen"){font-size: 24px;}
+		}
+		
+		.name{
+			display: block;
+			margin: 0 0 10px;
+			font-size: 50px;
+			line-height: 56px;
+			font-weight: 300;
+
+			@include media("≥widescreen"){
+				font-size: 78px;
+				line-height: 80px;
+			}
+		}
+		
+		.info{
+			font-size: 20px;
+			line-height: 26px;
+			text-transform: uppercase;
+			font-weight: 300;
+			strong{font-weight: 700;}
+			@include media("≥widescreen"){
+				font-size: 24px;
+				line-height: 28px;
+			}
+		}
 	}
 }
 
@@ -32,60 +84,19 @@
 	}
 }
 
-.table{
-	width: 100%;
-	border-collapse: collapse;
-	
-	td{
-		padding: 8px;
-		border-style: solid;
-		border-width: 1px 0 0 1px;
-		border-color: $lemon;
-		width: 33.33%;
-		
-		&:first-child{border-left: 0;}
-		
-		@include media("≥widescreen"){
-			padding: 8px;
-			font-size: 16px;
-			line-height: 20px;
-		}
-	}
-	
-	tr{
-		&:first-child{
-			td{border-top: 0;}
-		}
-	}
-	.text-block{
-		overflow: hidden;
-		width: 100%;
-		letter-spacing: -6px;
-	}
-	.text{
-		@include inline-block(middle);
-		letter-spacing: 0;
-		width: 80%;
-	}
-	.count{
-		@include inline-block(middle);
-		letter-spacing: 0;
-		width: 20%;
-		text-align: right;
-	}
-}
-
 .info-block{
 	overflow: hidden;
 	text-transform: uppercase;
+	
 	h3{
 		color: $rosso-corsa;
 		margin: 0 8px 15px;
 		font-weight: 400;
-		
+		letter-spacing: 1px;
+
 		@include media("≥widescreen"){
 			margin: 0 10px 20px;
-			font-size: 20px;
+			font-size: 24px;
 		}
 	}
 	
@@ -93,67 +104,38 @@
 		@extend %listreset;
 		overflow: hidden;
 		
-		li{
-			overflow: hidden;
-			letter-spacing: -6px;
-			border-top: 1px solid $lemon;
-			padding: 20px 8px;
-			
-			@include media("≥widescreen"){padding: 20px 8px;}
-		}
-		
 		.name{
-			@include inline-block(middle);
-			letter-spacing: 0;
-			width: 80%;
+			overflow: hidden;
 			font-size: 20px;
 			line-height: 26px;
 			font-weight: 300;
-			
+
 			@include media("≥widescreen"){
-				font-size: 20px;
-				line-height: 26px;
+				font-size: 30px;
+				line-height: 36px;
 			}
 		}
-		
+
 		.count{
-			@include inline-block(middle);
-			letter-spacing: 0;
-			width: 20%;
+			float: right;
+			margin: 0 0 0 5px;
 			font-size: 20px;
 			line-height: 26px;
 			text-align: right;
-			
+
 			@include media("≥widescreen"){
-				font-size: 20px;
-				line-height: 26px;
+				font-size: 30px;
+				line-height: 36px;
 			}
+		}
+		
+		
+		li{
+			overflow: hidden;
+			border-top: 1px solid $lemon;
+			padding: 20px 8px;
+			
+			@include media("≥widescreen"){padding: 30px 10px;}
 		}
 	}
-}
-
-@media screen and (max-width: 1300px) ,
-	screen and (min-height: 900px) {
-		.table{
-			td{
-				padding: 12px;
-				font-size: 20px;
-				line-height: 26px;
-			}
-		}
-		.info-block{
-			h3{font-size: 24px;}
-			ul{
-				li{padding: 30px 10px;}
-				.name{
-					font-size: 30px;
-					line-height: 36px;
-				}
-				.count{
-					font-size: 30px;
-					line-height: 36px;
-				}
-			}
-			
-		}
 }

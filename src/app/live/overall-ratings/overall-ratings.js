@@ -44,6 +44,7 @@ angular.module( 'livefeed.live.overall-ratings', [
             "depth3D": 30,
             //"startDuration": 1,
             "fontFamily": "'Oswald', sans-serif",
+            "fontSize": 16,
             "categoryAxis": {
               "gridPosition": "start",
               "axisAlpha": 0.37,
