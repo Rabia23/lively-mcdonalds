@@ -12,10 +12,10 @@ function initSlideShow() {
     pagerLinks: '.slideshow .pagination li',
     event: 'click',
     useSwipe: true,
-    autoRotation: false,
+    autoRotation: true,
     pauseOnHover: false,
     autoHeight: true,
-    switchTime: 10000,
+    switchTime: 5000,
     animSpeed: 500
   });
   jQuery('.slideshow').fadeGallery({
@@ -25,10 +25,10 @@ function initSlideShow() {
     pagerLinks: '.pagination li',
     event: 'click',
     useSwipe: true,
-    autoRotation: false,
+    autoRotation: true,
     pauseOnHover: false,
     autoHeight: true,
-    switchTime: 10000,
+    switchTime: 5000,
     animSpeed: 500
   });
 }
