@@ -530,7 +530,7 @@ class TopRankingsView(APIView):
 #for live dashboard
 class ComplaintAnalysisView(APIView):
 
-    # @method_decorator(my_login_required)
+    @method_decorator(my_login_required)
     def get(self, request, format=None):
         try:
             data_list = []
@@ -552,6 +552,23 @@ class ComplaintAnalysisView(APIView):
                 data_list.append({'object': ObjectSerializer(object).data, 'data': data})
 
             return Response(data_list)
+
+        except Exception as e:
+            return Response(None)
+
+
+#for live dashboard
+class LeaderBoardView(APIView):
+
+    @method_decorator(my_login_required)
+    def get(self, request, format=None):
+        try:
+            city = Feedback.get_top_city()
+            branches = Feedback.get_top_branches()
+            gro = Feedback.get_top_gro()
+
+            data = {'city': city, "branches": branches, "gro": gro}
+            return Response(data)
 
         except Exception as e:
             return Response(None)

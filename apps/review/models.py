@@ -112,11 +112,41 @@ class Feedback(models.Model):
 
 
     @staticmethod
+    def get_top_branches():
+        dict = Feedback.objects.values('branch_id').annotate(count=Count("branch_id"))[:3]
+
+        branch_list = []
+        for branch_dict in dict:
+            branch = Branch.objects.get(pk=branch_dict["branch_id"])
+            branch_list.append({
+                "count": branch_dict["count"],
+                "branch": {"branch_name": branch.name, "branch_id": branch.id},
+                "city": {"city_name": branch.city.name, "city_id": branch.city.id}
+            })
+        return branch_list
+
+
+    @staticmethod
     def get_top_city():
         dict = Feedback.objects.values('branch__city_id').annotate(count=Count("branch__city_id")).latest("count")
 
         city = City.objects.get(pk=dict["branch__city_id"])
         return {"count": dict["count"], "city_name": city.name, "city_id": city.id}
+
+
+    @staticmethod
+    def get_top_gro():
+        dict = Feedback.objects.values('gro_id').annotate(count=Count("gro_id")).latest("count")
+
+        gro = User.objects.get(pk=dict["gro_id"])
+
+        #this will be changed once relations between branch, gro and other role is implemented.
+        branch_id = Feedback.objects.filter(gro_id=gro.id).first().branch_id
+        branch = Branch.objects.get(pk=branch_id)
+
+        return {"count": dict["count"],
+                "gro": {"gro_name": gro.first_name + gro.last_name, "gro_id": gro.id},
+                "branch": {"branch_name": branch.name, "branch_id": branch.id}}
 
 
     @staticmethod
@@ -380,7 +410,6 @@ class FeedbackOption(models.Model):
 
         option = Option.objects.get(pk=dict["option_id"])
         return {"count": dict["count"], "option_text": option.text, "option_id": option.id}
-
 
     @staticmethod
     def get_qsc_count():
