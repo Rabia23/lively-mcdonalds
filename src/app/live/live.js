@@ -75,7 +75,7 @@ angular.module( 'livefeed.live', [
 
   $rootScope.$on('app-online', function(event, args) {
     console.log("online in login");
-    WebSocket.init();
+    //WebSocket.init();
   });
 
   $rootScope.$on('app-offline', function(event, args) {
@@ -83,7 +83,7 @@ angular.module( 'livefeed.live', [
     WebSocket.close_socket();
   });
 
-  WebSocket.init();
+   //WebSocket.init();
 
 
   function top_rankings(){

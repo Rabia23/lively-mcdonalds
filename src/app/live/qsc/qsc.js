@@ -14,8 +14,11 @@
     function qscfunc(){
       var qsc = {quality: [], service: [], cleanliness: []};
       Graphs.overall_rating(1).$promise.then(function(graph_data){
+
         $scope.overall_rating_data = [];
         _.each(graph_data, function(value,index){
+          var new_date_array = value.date.split("-");
+          var date = new_date_array[2]+"-"+new_date_array[1]+"-"+new_date_array[0].substr(2, 2);
           _.each(value.data.feedbacks, function(item, index2){
             if (item.option__text === 'Quality'){
               qsc.quality.push(item.count);
@@ -29,7 +32,7 @@
           });
           
           $scope.overall_rating_data.push({
-            "category": value.date,
+            "category": date,
             "column-1": qsc.quality[index],
             "column-2": qsc.service[index],
             "column-3": qsc.cleanliness[index]
@@ -91,7 +94,7 @@
               "handDrawThickness": 0,
               "theme": "default",
               "categoryAxis": {
-                //"equalSpacing": true,
+                "equalSpacing": false,
                 //"firstDayOfWeek": 0,
                 "startOnAxis": true,
                 "twoLineMode": true,
@@ -105,8 +108,8 @@
                 "minHorizontalGap": 0,
                 "minorGridAlpha": 0,
                 "minVerticalGap": 0,
-                "showFirstLabel": false,
-                "showLastLabel": false,
+                "showFirstLabel": true,
+                "showLastLabel": true,
                 "tickLength": 22
               },
               "trendLines": [],
@@ -118,10 +121,10 @@
                   "bulletColor": "#FFFFFF",
                   "color": "#FFFFFF",
                   "fillAlphas": 0.75,
-                  "fillColors": "#3498DB",
+                  "fillColors": "#E90000",
                   "id": "AmGraph-1",
-                  "legendColor": "#3498DB",
-                  "lineColor": "#12E9F0",
+                  "legendColor": "#E90000",
+                  "lineColor": "#E90000",
                   "lineThickness": 3,
                   "negativeFillAlphas": 0,
                   "title": "Quality",
@@ -136,10 +139,10 @@
                   "bulletBorderColor": "#FFFFFF",
                   "bulletColor": "#FFFFFF",
                   "fillAlphas": 0.82,
-                  "fillColors": "#E90000",
+                  "fillColors": "#FFEA00",
                   "id": "AmGraph-2",
-                  "legendColor": "#E90000",
-                  "lineColor": "#FF8800",
+                  "legendColor": "#FFEA00",
+                  "lineColor": "#FFEA00",
                   "lineThickness": 3,
                   "title": "Service",
                   "type": "smoothedLine",
@@ -153,15 +156,15 @@
                   "bulletColor": "#FFFFFF",
                   "columnWidth": 0,
                   "fillAlphas": 0.84,
-                  "fillColors": "#FFEA00",
+                  "fillColors": "#3498DB",
                   "id": "AmGraph-3",
-                  "legendColor": "#FFEA00",
-                  "lineColor": "#FBE041",
+                  "legendColor": "#3498DB",
+                  "lineColor": "#3498DB",
                   "lineThickness": 3,
                   "markerType": "square",
                   "negativeFillAlphas": 1,
                   "negativeFillColors": "#FFFFFF",
-                  "title": "CLEANLINESS",
+                  "title": "Cleanliness",
                   "type": "smoothedLine",
                   "valueField": "column-3",
                   "visibleInLegend": false

@@ -12,6 +12,7 @@
       function patch_qsc_analysis() {
 
           Graphs.complaint_analysis().$promise.then(function (data) {
+              console.log(data);
               $scope.pakistan_analysis = [];
               $scope.north_analysis = [];
               $scope.south_analysis = [];
@@ -78,10 +79,12 @@
                         "angle": 30,
                         "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
                         "depth3D": 65,
+                        //"labelRadius": -75,
                         "labelText": "",
+                        "fontSize": 20,
                         "colors": [
-                            "#01c211",
                             "#bf1616",
+                            "#01c211",
                             "#ffee00"
                         ],
                         "titleField": "category",
@@ -114,7 +117,7 @@
                         "categoryField": "category",
                         "startDuration": 1,
                         "fontFamily": "'Oswald', sans-serif",
-                        "fontSize": 16,
+                        "fontSize": 10,
                         "categoryAxis": {
                             "gridPosition": "start",
                             "axisThickness": 0,
@@ -127,7 +130,7 @@
                             {
                                 "color": "#FFFFFF",
                                 "fillAlphas": 1,
-                                "fillColors": "#01C211",
+                                "fillColors": "#BD1515",
                                 "id": "AmGraph-1",
                                 "labelText": "[[value]]",
                                 "lineThickness": 0,
@@ -136,8 +139,9 @@
                                 "valueField": "column-1"
                             },
                             {
+                                "color": "#FFFFFF",
                                 "fillAlphas": 1,
-                                "fillColors": "#FFEE00",
+                                "fillColors": "#01C211",
                                 "id": "AmGraph-6",
                                 "labelText": "[[value]]",
                                 "lineThickness": 0,
@@ -147,9 +151,8 @@
                                 "valueField": "column-2"
                             },
                             {
-                                "color": "#FFFFFF",
                                 "fillAlphas": 1,
-                                "fillColors": "#BD1515",
+                                "fillColors": "#FFEE00",
                                 "id": "AmGraph-7",
                                 "labelText": "[[value]]",
                                 "lineThickness": 0,
@@ -207,7 +210,7 @@
                         "categoryField": "category",
                         "startDuration": 1,
                         "fontFamily": "'Oswald', sans-serif",
-                        "fontSize": 16,
+                        "fontSize": 10,
                         "categoryAxis": {
                             "gridPosition": "start",
                             "axisThickness": 0,
@@ -220,7 +223,7 @@
                             {
                                 "color": "#FFFFFF",
                                 "fillAlphas": 1,
-                                "fillColors": "#01C211",
+                                "fillColors": "#BD1515",
                                 "id": "AmGraph-1",
                                 "labelText": "[[value]]",
                                 "lineThickness": 0,
@@ -229,8 +232,9 @@
                                 "valueField": "column-1"
                             },
                             {
+                                "color": "#FFFFFF",
                                 "fillAlphas": 1,
-                                "fillColors": "#FFEE00",
+                                "fillColors": "#01C211",
                                 "id": "AmGraph-6",
                                 "labelText": "[[value]]",
                                 "lineThickness": 0,
@@ -240,9 +244,8 @@
                                 "valueField": "column-2"
                             },
                             {
-                                "color": "#FFFFFF",
                                 "fillAlphas": 1,
-                                "fillColors": "#BD1515",
+                                "fillColors": "#FFEE00",
                                 "id": "AmGraph-7",
                                 "labelText": "[[value]]",
                                 "lineThickness": 0,
