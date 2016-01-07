@@ -68,7 +68,10 @@ angular.module( 'livefeed.live.overall-ratings', [
                 "negativeFillColors": "#9400D3",
                 "title": "graph 1",
                 "type": "column",
-                "valueField": "column-1"
+                "valueField": "column-1",
+                "labelText": "[[value]]",
+                "labelPosition": "middle",
+                "fontSize": 15
               }
             ],
             "guides": [],

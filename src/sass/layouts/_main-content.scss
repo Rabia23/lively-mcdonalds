@@ -26,3 +26,9 @@
 	width: 100% !important;
 	height: 100% !important;
 }
+
+#area-chart{
+	overflow: visible !important;
+	
+	.amcharts-chart-div{overflow: visible !important;}
+}

@@ -1,27 +1,33 @@
-<div class="middle-box text-center loginscreen animated fadeInDown">
-	<div>
-		<div>
-
-			<h1 class="logo-name">IN+</h1>
-
+<div id="header">
+	<div class="logo"><a href="http:\\mcdonalds.com.pk" target="_blank"><img src="assets/images/logo.png" width="116" height="112" alt="McDonald &reg;"></a></div>
+	<h2>Customer Centric Approach</h2>
+</div>
+<div class="section">
+	<div class="login-block">
+		<div class="form-holder">
+			<div flash-message="5000" ></div> 
+			<div class="inner-holder">
+				<h3>Log In</h3>
+				<form class="login-form" name = "LoginForm" ng-submit="login(LoginForm.$valid)" novalidate>
+					<fieldset>
+						<input type="text" class="form-control" placeholder="User Name" required name = "username" ng-model = "authenticate.username">
+						<div ng-show="LoginForm.username.$error.required && (!LoginForm.username.$pristine || submitted == true)" class="form-error-message pull-left">Username is required.</div>
+						<input type="password" class="form-control" placeholder="Password" required name = "password" ng-model = "authenticate.password">
+						<div ng-show="LoginForm.password.$error.required && (!LoginForm.password.$pristine || submitted == true)" class="form-error-message pull-left">Password is required.</div>
+						<input type="submit" value="Log in" class="btn btn-info">
+						<label for="check-1">
+							<input id="check-1" type="checkbox">
+							<span class="fake-input"></span>
+							<span class="fake-label">Remember me on this computer.</span>
+						</label>
+					</fieldset>
+				</form>
+			</div>
+			<div class="btn-holder">
+				<a href="#">Forgot Password?</a>
+				<a href="#">Contact Support</a>
+			</div>
 		</div>
-		<h3>Welcome to IN+</h3>
-		<p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.</p>
-		<p>Login in. To see it in action.</p>
-		<form class="m-t" role="form" ng-submit="login(LoginForm.$valid)" name = "LoginForm" novalidate>
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="User Name" required name = "username" ng-model = "authenticate.username">
-				<div ng-show="LoginForm.username.$error.required && (!LoginForm.username.$pristine || submitted == true)" class="form-error-message pull-left">Username is required.</div>
-			</div>
-			<div class="form-group">
-				<input type="password" class="form-control" placeholder="Password" required name = "password" ng-model = "authenticate.password">
-				<div ng-show="LoginForm.password.$error.required && (!LoginForm.password.$pristine || submitted == true)" class="form-error-message pull-left">Password is required.</div>
-			</div>
-			<button type="submit" class="btn btn-primary block full-width m-b">Login</button>
-
-			<a href="#"><small>Forgot password?</small></a>
-		</form>
-		<p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
 	</div>
 </div>
   
