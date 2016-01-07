@@ -28,3 +28,4 @@ NOTE: Data from Parse.com to be copied as following order:
 To start a web socket for live dashboard use "python manage.py shell < apps/websocket.py &"
 A ping will be sent on new addition of feedback
 To stop the background process "ps aux | grep shell" and kill the process by ID
+To setup your websockets with nginx refer to the link: https://www.nginx.com/blog/websocket-nginx/
