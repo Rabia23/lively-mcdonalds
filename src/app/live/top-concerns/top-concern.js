@@ -42,16 +42,18 @@
             var data = scope.data;
             AmCharts.makeChart("container",{
               "type": "pie",
-              "angle": 12,
+              "angle": 30,
+              "startDuration": 0,
               "balloonText": "[[title]]<br><span style='font-size:14px'>[[value]]</span>",
-              "depth3D": 15,
+              "depth3D": 65,
               "innerRadius": "40%",
-              "labelText": "",
+              //"labelRadius": -35,
+              //"labelText": "[[value]]",
               "labelsEnabled": false,
               "titleField": "category",
               "valueField": "column-1",
               "fontFamily": "'Oswald', sans-serif",
-              "fontSize": 40,
+              "fontSize": 20,
               "allLabels": [],
               "balloon": {},
               "legend": {

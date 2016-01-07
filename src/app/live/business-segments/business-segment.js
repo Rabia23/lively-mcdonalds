@@ -10,10 +10,10 @@ angular.module( 'livefeed.live.business_segment', [
   
   function business_segment(){
     Graphs.segmentation_rating().$promise.then(function(data){
+
       $scope.segmentation_rating = [];
-      console.log(data);
       _.each(data.segments, function(value, index){
-        $scope.segmentation_rating.push({"category":value.segment, "column-1": value.option_data[0].count, "column-2":value.option_data[1].count,"column-3":value.option_data[2].count});
+        $scope.segmentation_rating.push({"category":value.segment, "column-1": value.option_data[1].count, "column-2":value.option_data[0].count,"column-3":value.option_data[2].count});
       });
     });
   }
