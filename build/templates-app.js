@@ -144,7 +144,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "          <div id=\"side-menu\" class=\"nav metismenu\">\n" +
     "              <div class=\"logo-holder\">\n" +
     "                  <div class=\"logo\">\n" +
-    "                      <a href=\"#\"> <img alt=\"image\" class=\"img-responsive\" src=\"assets/images/logo.jpg\"></a>\n" +
+    "                      <a href=\"http://www.mcdonalds.com.pk/\" target=\"_blank\"> <img alt=\"image\" class=\"img-responsive\" src=\"assets/images/logo.jpg\"></a>\n" +
     "                  </div>\n" +
     "              </div>\n" +
     "          </div>\n" +
@@ -867,7 +867,7 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "<div id=\"wrapper\">\n" +
     "	<header id=\"header\">\n" +
     "		<div class=\"header-block\">\n" +
-    "			<div class=\"logo\"><a href=\"#\"><img src=\"assets/images/logo.png\" alt=\"MacDonald's\"></a></div>\n" +
+    "			<div class=\"logo\"><a href=\"http://www.mcdonalds.com.pk/\" target=\"_blank\"><img src=\"assets/images/logo.png\" alt=\"MacDonald's\"></a></div>\n" +
     "			<div class=\"slider\">\n" +
     "				<div class=\"slideset\">\n" +
     "					<div class=\"heading-slide\"><h2>qsc complaints</h2></div>\n" +
@@ -1052,37 +1052,39 @@ angular.module("live/top-concerns/top-concern.tpl.html", []).run(["$templateCach
 
 angular.module("login/login.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("login/login.tpl.html",
-    "<div id=\"header\">\n" +
-    "	<div class=\"logo\"><a href=\"http:\\\\mcdonalds.com.pk\" target=\"_blank\"><img src=\"assets/images/logo.png\" width=\"116\" height=\"112\" alt=\"McDonald &reg;\"></a></div>\n" +
-    "	<h2>Customer Centric Approach</h2>\n" +
-    "</div>\n" +
-    "<div class=\"section\">\n" +
-    "	<div class=\"login-block\">\n" +
-    "		<div class=\"form-holder\">\n" +
-    "			<div flash-message=\"5000\" ></div> \n" +
-    "			<div class=\"inner-holder\">\n" +
-    "				<h3>Log In</h3>\n" +
-    "				<form class=\"login-form\" name = \"LoginForm\" ng-submit=\"login(LoginForm.$valid)\" novalidate>\n" +
-    "					<fieldset>\n" +
-    "						<input type=\"text\" class=\"form-control\" placeholder=\"User Name\" required name = \"username\" ng-model = \"authenticate.username\">\n" +
-    "						<div ng-show=\"LoginForm.username.$error.required && (!LoginForm.username.$pristine || submitted == true)\" class=\"form-error-message pull-left\">Username is required.</div>\n" +
-    "						<input type=\"password\" class=\"form-control\" placeholder=\"Password\" required name = \"password\" ng-model = \"authenticate.password\">\n" +
-    "						<div ng-show=\"LoginForm.password.$error.required && (!LoginForm.password.$pristine || submitted == true)\" class=\"form-error-message pull-left\">Password is required.</div>\n" +
-    "						<input type=\"submit\" value=\"Log in\" class=\"btn btn-info\">\n" +
-    "						<label for=\"check-1\">\n" +
-    "							<input id=\"check-1\" type=\"checkbox\">\n" +
-    "							<span class=\"fake-input\"></span>\n" +
-    "							<span class=\"fake-label\">Remember me on this computer.</span>\n" +
-    "						</label>\n" +
-    "					</fieldset>\n" +
-    "				</form>\n" +
-    "			</div>\n" +
-    "			<div class=\"btn-holder\">\n" +
-    "				<a href=\"#\">Forgot Password?</a>\n" +
-    "				<a href=\"#\">Contact Support</a>\n" +
+    "<div class=\"wrapper wrapper-content animated fadeInLeft\">\n" +
+    "	<div id=\"header\">\n" +
+    "		<div class=\"logo\"><a href=\"http:\\\\mcdonalds.com.pk\" target=\"_blank\"><img src=\"assets/images/logo.png\" width=\"116\" height=\"112\" alt=\"McDonald &reg;\"></a>	</div>\n" +
+    "		<h2>Customer Centric Approach</h2>\n" +
+    "	</div>\n" +
+    "	<div class=\"section\">\n" +
+    "		<div class=\"login-block\">\n" +
+    "			<div class=\"form-holder\">\n" +
+    "				<div flash-message=\"5000\" ></div> \n" +
+    "				<div class=\"inner-holder\">\n" +
+    "					<h3>Log In</h3>\n" +
+    "					<form class=\"login-form\" name = \"LoginForm\" ng-submit=\"login(LoginForm.$valid)\" novalidate>\n" +
+    "						<fieldset>\n" +
+    "							<input type=\"text\" class=\"form-control\" placeholder=\"User Name\" required name = \"username\" ng-model = \"authenticate.username\">\n" +
+    "							<div ng-show=\"LoginForm.username.$error.required && (!LoginForm.username.$pristine || submitted == true)\" class=\"form-error-message pull-left\">Username is required.</div>\n" +
+    "							<input type=\"password\" class=\"form-control\" placeholder=\"Password\" required name = \"password\" ng-model = \"authenticate.password\">\n" +
+    "							<div ng-show=\"LoginForm.password.$error.required && (!LoginForm.password.$pristine || submitted == true)\" class=\"form-error-message pull-left\">Password is required.</div>\n" +
+    "							<input type=\"submit\" value=\"Log in\" class=\"btn btn-info\">\n" +
+    "							<label for=\"check-1\">\n" +
+    "								<input id=\"check-1\" type=\"checkbox\">\n" +
+    "								<span class=\"fake-input\"></span>\n" +
+    "								<span class=\"fake-label\">Remember me on this computer.</span>\n" +
+    "							</label>\n" +
+    "						</fieldset>\n" +
+    "					</form>\n" +
+    "				</div>\n" +
+    "				<div class=\"btn-holder\">\n" +
+    "					<a href=\"#\">Forgot Password?</a>\n" +
+    "					<a href=\"#\">Contact Support</a>\n" +
+    "				</div>\n" +
     "			</div>\n" +
     "		</div>\n" +
     "	</div>\n" +
-    "</div>\n" +
+    " </div>\n" +
     "  ");
 }]);
