@@ -791,18 +791,18 @@ angular.module("live/benchmark-map/benchmark-map.tpl.html", []).run(["$templateC
     "                            <div class=\"inner-box\">\n" +
     "                                <h3>Gro Of The Day</h3>\n" +
     "                                <div class=\"hold\">\n" +
-    "                                    <span class=\"name\">Adnan Zahid</span>\n" +
+    "                                    <span class=\"name\">{{leader_board_data.gro.gro.gro_name}}</span>\n" +
     "                                    <div class=\"info\">\n" +
-    "                                        <strong>50</strong> feedback received, <span class=\"branch\">Gulberg Branch</span>\n" +
+    "                                        <strong>{{leader_board_data.gro.count}}</strong> feedback received, <span class=\"branch\">{{leader_board_data.gro.branch.branch_name}} Branch</span>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                            <div class=\"inner-box\">\n" +
     "                                <h3>City Of The Day</h3>\n" +
     "                                <div class=\"hold\">\n" +
-    "                                    <span class=\"name\">Lahore</span>\n" +
+    "                                    <span class=\"name\">{{leader_board_data.city.city_name}}</span>\n" +
     "                                    <div class=\"info\">\n" +
-    "                                        <strong>50</strong> feedback received, Gulberg Branch\n" +
+    "                                        <strong>{{leader_board_data.city.count}}</strong> feedback received\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
@@ -812,18 +812,18 @@ angular.module("live/benchmark-map/benchmark-map.tpl.html", []).run(["$templateC
     "                        <div class=\"info-block\">\n" +
     "                            <h3>Top 3 leading Branches</h3>\n" +
     "                            <ul>\n" +
-    "                                <li>\n" +
-    "                                    <span class=\"count\">200</span>\n" +
-    "                                    <div class=\"name\">Lhr-Gulberg</div>\n" +
+    "                                <li ng-repeat=\"branch_data in branches\">\n" +
+    "                                    <span class=\"count\">{{branch_data.count}}</span>\n" +
+    "                                    <div class=\"name\">{{branch_data.city.city_name}}-{{branch_data.branch.branch_name}}</div>\n" +
     "                                </li>\n" +
-    "                                <li>\n" +
-    "                                    <span class=\"count\">250</span>\n" +
-    "                                    <div class=\"name\">Lhr-garden town</div>\n" +
-    "                                </li>\n" +
-    "                                <li>\n" +
-    "                                    <span class=\"count\">160</span>\n" +
-    "                                    <div class=\"name\">Lhr-Gulberg</div>\n" +
-    "                                </li>\n" +
+    "                                <!--<li>-->\n" +
+    "                                    <!--<span class=\"count\">250</span>-->\n" +
+    "                                    <!--<div class=\"name\">Lhr-garden town</div>-->\n" +
+    "                                <!--</li>-->\n" +
+    "                                <!--<li>-->\n" +
+    "                                    <!--<span class=\"count\">160</span>-->\n" +
+    "                                    <!--<div class=\"name\">Lhr-Gulberg</div>-->\n" +
+    "                                <!--</li>-->\n" +
     "                            </ul>\n" +
     "                        </div>\n" +
     "                    </div>\n" +

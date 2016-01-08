@@ -52,8 +52,8 @@ angular.module( 'livefeed.live.business_segment', [
           AmCharts.makeChart("stackchart",{
             "type": "serial",
             "categoryField": "category",
-            "angle": 15,
-            "depth3D": 30,
+            "angle": 20,
+            "depth3D": 50,
             //"startDuration": 1,
             "fontFamily": "'Oswald', sans-serif",
             "fontSize": 16,

@@ -40,8 +40,8 @@ angular.module( 'livefeed.live.overall-ratings', [
           AmCharts.makeChart("barchart",{
             "type": "serial",
             "categoryField": "category",
-            "angle": 15,
-            "depth3D": 30,
+            "angle": 20,
+            "depth3D": 50,
             //"startDuration": 1,
             "fontFamily": "'Oswald', sans-serif",
             "fontSize": 16,
@@ -64,6 +64,7 @@ angular.module( 'livefeed.live.overall-ratings', [
                 "legendAlpha": 0,
                 "legendColor": "#FFFFFF",
                 "lineAlpha": 0,
+				"lineThickness": 0,
                 "lineColor": "#FBE041",
                 "lineColorField": "color",
                 "negativeFillColors": "#9400D3",
