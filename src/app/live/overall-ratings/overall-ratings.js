@@ -43,6 +43,7 @@ angular.module( 'livefeed.live.overall-ratings', [
             "angle": 20,
             "depth3D": 50,
             //"startDuration": 1,
+            "autoGridCount": false,
             "fontFamily": "'Oswald', sans-serif",
             "fontSize": 16,
             "categoryAxis": {
@@ -85,7 +86,10 @@ angular.module( 'livefeed.live.overall-ratings', [
                 "color": "#FFFFFF",
                 "gridAlpha": 0.38,
                 "gridColor": "#FFFE6E",
-                "title": ""
+                "title": "",
+                "autoGridCount": false,
+                "gridCount": 6,
+                "tickLength": 0
               }
             ],
             "allLabels": [],

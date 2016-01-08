@@ -75,7 +75,7 @@ angular.module( 'livefeed.live', [
   });
 
 
-   WebSocket.init();
+   //WebSocket.init();
 
 
   function top_rankings(){
