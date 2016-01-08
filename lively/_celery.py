@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.core.mail.message import EmailMultiAlternatives
 from django.template.loader import get_template
 from apps.review.models import Feedback
-from lively import settings
+from lively import settings as lively_settings
 from apps import constants
 from celery import shared_task
 from django.template import Context
@@ -43,7 +43,7 @@ def send_negative_feedback_email(feedback_id):
 
 def send_mail(subject, context, recipients, text_template, html_template):
     email_addresses = [recipient.email for recipient in recipients]
-    subject, from_email, to = subject, settings.DEFAULT_FROM_EMAIL, email_addresses
+    subject, from_email, to = subject, lively_settings.DEFAULT_FROM_EMAIL, email_addresses
     text_content = text_template.render(context)
     html_content = html_template.render(context)
     message = EmailMultiAlternatives(subject, text_content, from_email, to)
