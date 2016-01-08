@@ -3,10 +3,6 @@ from apps.utils import make_request
 
 __author__ = 'aamish'
 
-from celery.utils.log import get_task_logger
-logger = get_task_logger("celery_tasks")
-
-
 def feedback_get(object_id):
     response = make_request('GET', "application/json", '/1/classes/Feedback/%s' % object_id, '')
     return response
