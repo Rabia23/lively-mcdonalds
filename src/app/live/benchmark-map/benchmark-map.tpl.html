@@ -7,18 +7,18 @@
                             <div class="inner-box">
                                 <h3>Gro Of The Day</h3>
                                 <div class="hold">
-                                    <span class="name">Adnan Zahid</span>
+                                    <span class="name">{{leader_board_data.gro.gro.gro_name}}</span>
                                     <div class="info">
-                                        <strong>50</strong> feedback received, <span class="branch">Gulberg Branch</span>
+                                        <strong>{{leader_board_data.gro.count}}</strong> feedback received, <span class="branch">{{leader_board_data.gro.branch.branch_name}} Branch</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="inner-box">
                                 <h3>City Of The Day</h3>
                                 <div class="hold">
-                                    <span class="name">Lahore</span>
+                                    <span class="name">{{leader_board_data.city.city_name}}</span>
                                     <div class="info">
-                                        <strong>50</strong> feedback received, Gulberg Branch
+                                        <strong>{{leader_board_data.city.count}}</strong> feedback received
                                     </div>
                                 </div>
                             </div>
@@ -28,18 +28,18 @@
                         <div class="info-block">
                             <h3>Top 3 leading Branches</h3>
                             <ul>
-                                <li>
-                                    <span class="count">200</span>
-                                    <div class="name">Lhr-Gulberg</div>
+                                <li ng-repeat="branch_data in branches">
+                                    <span class="count">{{branch_data.count}}</span>
+                                    <div class="name">{{branch_data.city.city_name}}-{{branch_data.branch.branch_name}}</div>
                                 </li>
-                                <li>
-                                    <span class="count">250</span>
-                                    <div class="name">Lhr-garden town</div>
-                                </li>
-                                <li>
-                                    <span class="count">160</span>
-                                    <div class="name">Lhr-Gulberg</div>
-                                </li>
+                                <!--<li>-->
+                                    <!--<span class="count">250</span>-->
+                                    <!--<div class="name">Lhr-garden town</div>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<span class="count">160</span>-->
+                                    <!--<div class="name">Lhr-Gulberg</div>-->
+                                <!--</li>-->
                             </ul>
                         </div>
                     </div>

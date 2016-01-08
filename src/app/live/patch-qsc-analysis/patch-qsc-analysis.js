@@ -12,7 +12,7 @@
       function patch_qsc_analysis() {
 
           Graphs.complaint_analysis().$promise.then(function (data) {
-              console.log(data);
+              //console.log(data);
               $scope.pakistan_analysis = [];
               $scope.north_analysis = [];
               $scope.south_analysis = [];

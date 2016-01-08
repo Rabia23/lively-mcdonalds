@@ -63,7 +63,8 @@ angular.module( 'factories', [
                     area_analysis: {method: "GET",isArray: true, params: {endpoint: "area/"}},
                     top_charts: {method: "GET",isArray: false, params: {endpoint: "top_charts/"}},
                     top_rankings: {method: "GET", isArray: false, params:{endpoint: "top_rankings"}},
-                    complaint_analysis: {method: "GET", isArray: true, params:{endpoint: "complaint_analysis"}}
+                    complaint_analysis: {method: "GET", isArray: true, params:{endpoint: "complaint_analysis"}},
+                    leader_board: {method: "GET", isArray: false, params:{endpoint: "leader_board"}}
                  });
   }
 
@@ -176,6 +177,9 @@ angular.module( 'factories', [
   };
   Graphs.prototype.complaint_analysis = function(){
     return this.service.complaint_analysis({token:  token});
+  };
+  Graphs.prototype.leader_board = function(){
+    return this.service.leader_board({token:  token});
   };
 
   return new Graphs();
