@@ -15,7 +15,7 @@ angular.module( 'livefeed.live.overall-ratings', [
       $scope.overall_rating_data = [];
       //var maximum = _.max(graph_data.feedbacks, function(data){ return data.count; });
       _.each(graph_data.feedbacks, function(data){
-        $scope.overall_rating_data.push({"category": data.option__text,"column-1": data.count, "color": Global.mainRatingColorScheme[data.option__text]});
+        $scope.overall_rating_data.push({"category": data.option__text.toUpperCase(),"column-1": data.count, "color": Global.mainRatingColorScheme[data.option__text]});
       });
     });
   }
