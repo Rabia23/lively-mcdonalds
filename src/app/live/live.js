@@ -8,7 +8,8 @@ angular.module( 'livefeed.live', [
   'livefeed.live.overall-ratings',
   'livefeed.live.business_segment',
   'livefeed.live.qsc',
-  'livefeed.live.patch_qsc_analysis'
+  'livefeed.live.patch_qsc_analysis',
+  'livefeed.live.benchmark_map'
 ])
 
 /**
@@ -44,6 +45,10 @@ angular.module( 'livefeed.live', [
       "patch_qsc_analysis@live":{
         controller: "PatchQscAnalysisCtrl",
         templateUrl: 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html'
+      },
+      "benchmark_map@live":{
+        controller: "BenchmarkMapCtrl",
+        templateUrl: 'live/benchmark-map/benchmark-map.tpl.html'
       }
     },
     authenticate: false
