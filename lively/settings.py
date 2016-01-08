@@ -21,6 +21,7 @@ PREREQ_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'rest_framework_swagger',
+    'djcelery',
 ]
 
 PROJECT_APPS = [
@@ -107,6 +108,11 @@ DEFAULT_FROM_EMAIL = 'LiveFeed Support <no-reply@livefeed.com>'
 
 WEBSOCKET_ADDRESS = '172.16.11.113'
 WEBSOCKET_PORT = '5678'
+
+#CELERY Settings
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
 
 #------------------------- Parse Constants --------------------------
 #MFS - Staging Keys

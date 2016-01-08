@@ -1,8 +1,13 @@
+amqp==1.4.8
+anyjson==0.3.3
 asyncio==3.4.3
+billiard==3.3.0.22
+celery==3.1.19
 click==6.2
 dj-database-url==0.3.0
 dj-static==0.0.6
 Django==1.8.5
+django-celery==3.1.17
 django-cors-headers==1.1.0
 django-enumfield==1.2.1
 django-rest-swagger==0.3.4
@@ -10,6 +15,7 @@ django-toolbelt==0.0.1
 djangorestframework==3.2.4
 djangorestframework-jsonp==1.0.2
 gunicorn==19.3.0
+kombu==3.0.32
 parse-rest==0.2.20141004
 ParsePy==0.3.20150629
 psycopg2==2.6.1

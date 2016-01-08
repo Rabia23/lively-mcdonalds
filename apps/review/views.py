@@ -8,7 +8,7 @@ from apps.option.utils import option_get, get_related_option
 from apps.person.utils import user_get, get_related_user
 from apps.review.models import Feedback, FeedbackOption
 from apps.review.serializers import FeedbackSerializer
-from apps.review.utils import send_negative_feedback_email
+from lively._celery import send_negative_feedback_email
 from apps import constants
 from apps.utils import save, response
 from django.template import Context
@@ -67,8 +67,9 @@ class FeedbackView(APIView):
             q.put("ping")
 
             if feedback.is_negative():
-                context = Context({'feedback': feedback})
-                send_negative_feedback_email(context)
+                # context = Context({'feedback_id': feedback.id})
+                # send_negative_feedback_email(context)
+                send_negative_feedback_email.delay(feedback.id)
 
             return response(data)
 
