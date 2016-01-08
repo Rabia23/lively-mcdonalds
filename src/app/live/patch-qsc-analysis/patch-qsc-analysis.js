@@ -18,6 +18,7 @@
               $scope.south_analysis = [];
               $scope.north_south_percentage = [];
 
+              // change code logic....
               _.each(data[0].data.action_analysis, function (value) {
                   $scope.pakistan_analysis.push({
                       "category": Global.complaintAnalysisActionStrings[value.action_taken],
