@@ -20,6 +20,27 @@
 #container{
 	width: 100% !important;
 	height: 100% !important;
+	
+	.amcharts-chart-div{
+		z-index: 1;
+		position: relative;
+		overflow: visible !important;
+		
+		&:after{
+			position: absolute;
+			left: 50%;
+			top: 100%;
+			margin: -450px 0 0 -568px;
+			content: '';
+			width: 1137px;
+			height: 556px;
+			pointer-events: none;
+			z-index: -1;
+			background: url(../../assets/images/donut-shadow.png);
+			background-size: cover;
+			
+		}
+	}
 }
 
 #piechart{
