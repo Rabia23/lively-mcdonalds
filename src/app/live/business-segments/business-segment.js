@@ -24,7 +24,7 @@ angular.module( 'livefeed.live.business_segment', [
               qsc.cleanliness.push(item.count);
             }
          });
-        $scope.segmentation_rating.push({"category":value.segment, "column-1": qsc.cleanliness[index], "column-2":qsc.service[index],"column-3":qsc.quality[index]});
+        $scope.segmentation_rating.push({"category":value.segment.toUpperCase(), "column-1": qsc.cleanliness[index], "column-2":qsc.service[index],"column-3":qsc.quality[index]});
       });
     });
   }

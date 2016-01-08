@@ -53,7 +53,7 @@
               "titleField": "category",
               "valueField": "column-1",
               "fontFamily": "'Oswald', sans-serif",
-              "fontSize": 20,
+              "fontSize": 35,
               "allLabels": [],
               "balloon": {},
               "legend": {
