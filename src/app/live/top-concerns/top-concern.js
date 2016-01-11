@@ -48,6 +48,7 @@
               "depth3D": 55,
               "innerRadius": "35%",
               "marginRight": "-15%",
+               "marginLeft": "-15%",
               "marginTop": -105,
               "autoMargins":false,
               //"labelRadius": -45,
