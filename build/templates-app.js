@@ -211,10 +211,14 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"content-holder\">\n" +
-    "                                    <div class=\"ibox-content\">\n" +
-    "                                        <h1 class=\"no-margins\">{{chart_data.branch.count}}</h1>\n" +
-    "                                        <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "                                        <small>New orders</small>\n" +
+    "                                    <div class=\"w1\">\n" +
+    "                                    	<div class=\"w2\">\n" +
+    "                                    		<div class=\"ibox-content\">\n" +
+    "												<h1 class=\"no-margins\">{{chart_data.branch.count}}</h1>\n" +
+    "												<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "												<small>New orders</small>\n" +
+    "											</div>\n" +
+    "                                    	</div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
@@ -228,11 +232,15 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"content-holder\">\n" +
-    "                                    <div class=\"ibox-content\">\n" +
-    "                                        <h1 class=\"no-margins\">{{chart_data.city.count}}</h1>\n" +
-    "                                        <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "                                        <small>New orders</small>\n" +
-    "                                    </div>\n" +
+    "                                   	<div class=\"w1\">\n" +
+    "                                   		<div class=\"w2\">\n" +
+    "                                   			<div class=\"ibox-content\">\n" +
+    "												<h1 class=\"no-margins\">{{chart_data.city.count}}</h1>\n" +
+    "												<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "												<small>New orders</small>\n" +
+    "											</div>\n" +
+    "                                   		</div>\n" +
+    "                                   	</div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
@@ -247,10 +255,14 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"content-holder\">\n" +
-    "                                    <div class=\"ibox-content\">\n" +
-    "                                        <h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
-    "                                        <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "                                        <small>New orders</small>\n" +
+    "                                    <div class=\"w1\">\n" +
+    "                                    	<div class=\"w2\">\n" +
+    "                                    		<div class=\"ibox-content\">\n" +
+    "												<h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
+    "												<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "												<small>New orders</small>\n" +
+    "											</div>\n" +
+    "                                    	</div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
@@ -264,10 +276,14 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"content-holder\">\n" +
-    "                                    <div class=\"ibox-content\">\n" +
-    "                                        <h1 class=\"no-margins\">22 285,400</h1>\n" +
-    "                                        <div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "                                        <small>New orders</small>\n" +
+    "                                    <div class=\"w1\">\n" +
+    "                                    	<div class=\"w2\">\n" +
+    "                                    		<div class=\"ibox-content\">\n" +
+    "												<h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "												<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "												<small>New orders</small>\n" +
+    "											</div>\n" +
+    "                                    	</div>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
@@ -292,14 +308,18 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "          </div>\n" +
     "        </div>\n" +
     "      </div>\n" +
-    "      <div class=\"footer\">\n" +
-    "          <div class=\"pull-right\">\n" +
-    "              10GB of <strong>250GB</strong> Free.\n" +
-    "          </div>\n" +
-    "          <div>\n" +
-    "              <strong>Copyright</strong> Example Company &copy; 2014-2015\n" +
-    "          </div>\n" +
-    "      </div>\n" +
+    "      <footer id=\"footer\">\n" +
+    "        <div class=\"footer-inner\">\n" +
+    "        	<div class=\"footer-holder\">\n" +
+    "            <div class=\"footer-text\">\n" +
+    "              <p>Admin Panel Feedback Survey</p>\n" +
+    "            </div>\n" +
+    "            <div class=\"footer-container\">\n" +
+    "              <a href=\"http:\\\\mcdonalds.com.pk\" target=\"_blank\" class=\"footer-link\">www.mcdonalds.com.pk</a>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        </div>\n" +
+    "      </footer>\n" +
     "  </div>\n" +
     "</div>\n" +
     "\n" +
@@ -662,9 +682,11 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "              </ul>\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "     <div class = \"breadcrum\">\n" +
+    "\n" +
+    "    <div class=\"ibox-content morris-content-outer\">\n" +
+    "     	<div class = \"breadcrum\">\n" +
     "        <span ng-hide = \"area_view\">\n" +
-    "         <a ng-click = \"backToAreas()\" style = \"cursor:pointer\">Area/</a>\n" +
+    "         <a ng-click = \"backToAreas()\" style = \"cursor:pointer\">Area</a>\n" +
     "       </span>\n" +
     "       <span ng-show = \"area_view == false && regional_view == false\">\n" +
     "         <a ng-click = \"backToRegions(selected_area)\" style = \"cursor:pointer\">{{selected_area.name}}/</a>\n" +
@@ -673,8 +695,6 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "         <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}}/</a>\n" +
     "       </span>\n" +
     "     </div>\n" +
-    "\n" +
-    "    <div class=\"ibox-content morris-content-outer\">\n" +
     "      <div class=\"morris-content-holder\" ng-repeat = \"area in donut_graph_data.objects track by $index\" ng-show = \"area_view == true\">\n" +
     "        <div class=\"morris-graph-holder\" same-region-height data-data=\"donut_graph_data.donutData[$index]\">\n" +
     "           <div class=\"morris-holder\">\n" +

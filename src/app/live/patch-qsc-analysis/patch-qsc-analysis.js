@@ -80,9 +80,9 @@
                     {
                         "type": "pie",
                         "startDuration": 0,
-                        "angle": 30,
+                        "angle": 25,
                         "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
-                        "depth3D": 65,
+                        "depth3D": 55,
                         //"labelRadius": -75,
                         "labelText": "",
                         "fontSize": 20,

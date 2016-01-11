@@ -68,11 +68,36 @@ body{
 .ibox.detail-block .stat-percent.font-bold.text-navy{color: #3498db;}
 .ibox.detail-block .label.label-primary{background: #3498db;}
 
-.ibox.detail-block .ibox-content{padding: 14px 20px 15px;}
+
+.same-height-block .inner-row .col-sm-6 .ibox.detail-block .content-holder{vertical-align: top;}
+
+.w1{
+	display: table;
+	table-layout: fixed;
+	height: 100%;
+	width: 100%;
+}
+.flot-chart{
+	height: auto !important;
+	text-align: center;
+}
+
+.w2{
+	display: table-cell;
+	vertical-align: middle;
+	width: 100%;
+	border-top: 1px solid #e7eaec;
+}
+
+.ibox.detail-block .ibox-content{
+	padding: 14px 20px 15px;
+	border-top: 0 !important;
+}
 
 .ibox.detail-block h5{
 	overflow: hidden;
 	float: none;
+	display: block;
 }
 
 .ibox-content .graph-block{
@@ -547,6 +572,61 @@ body.login{background: #eee;}
 	box-shadow: 0 5px 10px rgba(0,0,0, 0.2);
 }
 
+.breadcrum{
+	background: white;
+	overflow: hidden;
+	padding: 5px 15px;
+	letter-spacing: -6px;
+}
+
+.breadcrum > span{
+	display: inline-block;
+	vertical-align: top;
+	letter-spacing: 0;
+}
+
+.breadcrum > span:after{
+	display: inline-block;
+	vertical-align: top;
+	content: "/";
+	margin: 0 3px;
+}
+
+#footer{
+	margin: 0 -15px;
+	overflow: hidden;
+}
+
+#footer .footer-inner{
+	background: white;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	color: #888;
+}
+
+#footer a{color: #888;}
+
+#footer a:hover,
+#footer a:active,
+#footer a:focus{color: #000;}
+
+#footer p{margin: 0;}
+
+.footer-holder{
+	overflow: hidden;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.footer-holder .footer-text,
+.footer-holder .footer-container{
+	float: left;
+	width: 50%;
+	padding: 0 15px;
+}
+
+.footer-holder .footer-container{text-align: right;}
+
 @media screen and (min-width: 1200px) {
 	.same-height-block .inner-row > .col-sm-6{height: 50%;}
 	
@@ -634,6 +714,7 @@ body.login{background: #eee;}
 @media screen and (max-width: 1900px) {
 	.ibox.detail-block .ibox-content{padding: 15px 10px 20px;}
 	.ibox.detail-block .ibox-title{padding: 14px 8px 7px;}
+	.breadcrum{padding: 5px 8px;}
 	.ibox-content h1{font-size: 26px;}
 	.detail-block h1{font-size: 25px;}
 	.ibox-content .graph-block{padding: 0;}
@@ -779,6 +860,14 @@ body.login{background: #eee;}
 		display: none;
 		visibility: hidden;
 	}
+	.footer-holder .footer-text,
+	.footer-holder .footer-container{
+		float: none;
+		width: 100%;
+		text-align: center;
+		margin: 0 0 5px;
+	}
+	.wrapper-content{padding: 20px 0 40px !important;}
 }
 
 

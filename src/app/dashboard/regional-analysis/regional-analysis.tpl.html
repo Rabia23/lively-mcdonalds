@@ -20,9 +20,11 @@
               </ul>
         </div>
     </div>
-     <div class = "breadcrum">
+
+    <div class="ibox-content morris-content-outer">
+     	<div class = "breadcrum">
         <span ng-hide = "area_view">
-         <a ng-click = "backToAreas()" style = "cursor:pointer">Area/</a>
+         <a ng-click = "backToAreas()" style = "cursor:pointer">Area</a>
        </span>
        <span ng-show = "area_view == false && regional_view == false">
          <a ng-click = "backToRegions(selected_area)" style = "cursor:pointer">{{selected_area.name}}/</a>
@@ -31,8 +33,6 @@
          <a ng-click = "backToCities(selected_region)" style = "cursor:pointer;">{{selected_region.name}}/</a>
        </span>
      </div>
-
-    <div class="ibox-content morris-content-outer">
       <div class="morris-content-holder" ng-repeat = "area in donut_graph_data.objects track by $index" ng-show = "area_view == true">
         <div class="morris-graph-holder" same-region-height data-data="donut_graph_data.donutData[$index]">
            <div class="morris-holder">
