@@ -34,9 +34,9 @@
 			content: "";
 			opacity: 0.6;
 			background: rgba($black,0.1);
-			background: -moz-linear-gradient(top, rgba(255,217,22,0.6) 30%, rgba(237,87,15,0.6) 70%);
-			background: -webkit-linear-gradient(top, rgba(255,217,22,0.6) 30%,rgba(237,87,15,0.6) 70%);
-			background: linear-gradient(to bottom, rgba(255,217,22,0.6) 30%,rgba(237,87,15,0.6) 70%);
+			background: -moz-linear-gradient(top, rgba(251,174,19,0.3) 30%, rgba(237,87,15,0.6) 70%);
+			background: -webkit-linear-gradient(top, rgba(251,174,19,0.3) 30%,rgba(237,87,15,0.6) 70%);
+			background: linear-gradient(to bottom, rgba(251,174,19,0.3) 30%,rgba(237,87,15,0.6) 70%);
 		}
 		
 		&.active{z-index: 3;}
