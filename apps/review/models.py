@@ -113,7 +113,7 @@ class Feedback(models.Model):
         return result
 
     @staticmethod
-    def get_top_branches(date_from, date_to):
+    def get_top_branches(date_from=None, date_to=None):
         dict = Feedback.manager.date(date_from, date_to).values('branch_id').annotate(count=Count("branch_id"))[:3]
 
         branch_list = []
@@ -127,7 +127,7 @@ class Feedback(models.Model):
         return branch_list
 
     @staticmethod
-    def get_top_city(date_from, date_to):
+    def get_top_city(date_from=None, date_to=None):
         result = None
         dict = Feedback.manager.date(date_from, date_to).values('branch__city_id').annotate(count=Count("branch__city_id"))
         if dict:
@@ -137,7 +137,7 @@ class Feedback(models.Model):
         return result
 
     @staticmethod
-    def get_top_gro(date_from, date_to):
+    def get_top_gro(date_from=None, date_to=None):
         result = None
         dict = Feedback.manager.date(date_from, date_to).values('gro_id').annotate(count=Count("gro_id"))
 
