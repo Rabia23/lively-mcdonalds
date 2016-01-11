@@ -1,14 +1,13 @@
 (function() {
   angular.module( 'livefeed.live.patch_qsc_analysis', [
   'ui.router',
-  'factories',
   'helper_factories',
   'flash'
  ])
 
 
 
-  .controller( 'PatchQscAnalysisCtrl', function PatchQscAnalysisController( $scope, Graphs, Global, $rootScope ) {
+  .controller( 'PatchQscAnalysisCtrl', function PatchQscAnalysisController( $scope, Global, $rootScope ) {
 
     function region_data(action_analysis_data){
       var complaints = {unprocessed: [], processed: [], deferred: []};
@@ -29,37 +28,34 @@
     function patch_qsc_analysis() {
       var complaints = null;
       var pakistan_feedback_count = 0;
-      Graphs.complaint_analysis().$promise.then(function (data) {
-        $scope.pakistan_analysis = [];
-        $scope.north_analysis = [];
-        $scope.south_analysis = [];
-        $scope.north_south_percentage = [];
+      $scope.pakistan_analysis = [];
+      $scope.north_analysis = [];
+      $scope.south_analysis = [];
+      $scope.north_south_percentage = [];
 
-        _.each(data, function (value) {
-           var region_name = value.object.name;
-           if(region_name === "Pakistan") {
-              pakistan_feedback_count = value.data.feedback_count;
-              _.each(value.data.action_analysis,function(dat){
-                 $scope.pakistan_analysis.push({ "category": Global.complaintAnalysisActionStrings[dat.action_taken], "column-1": dat.count });
-              });
-           }
-           else if(region_name === "South") {
-             complaints = region_data(value.data.action_analysis);
-             $scope.south_analysis.push({ "category": region_name.toUpperCase(), "column-1": complaints.unprocessed[0], "column-2": complaints.processed[0], "column-3": complaints.deferred[0] });
-             $scope.north_south_percentage.push({ "category": region_name.toUpperCase(), "column-1": Math.round((value.data.feedback_count / pakistan_feedback_count) * 100) });
-           }
-           else if(region_name === "North") {
-             complaints = region_data(value.data.action_analysis);
-             $scope.north_analysis.push({ "category": region_name.toUpperCase(), "column-1": complaints.unprocessed[0], "column-2": complaints.processed[0], "column-3": complaints.deferred[0] });
-             $scope.north_south_percentage.push({ "category": region_name.toUpperCase(), "column-1": Math.round((value.data.feedback_count / pakistan_feedback_count) * 100) });
-           }
-        });
-        $scope.north_south_percentage = _.sortBy($scope.north_south_percentage, function (value) { return value.category; });
+      _.each($scope.complaint_view, function (value) {
+         var region_name = value.object.name;
+         if(region_name === "Pakistan") {
+            pakistan_feedback_count = value.data.feedback_count;
+            _.each(value.data.action_analysis,function(dat){
+               $scope.pakistan_analysis.push({ "category": Global.complaintAnalysisActionStrings[dat.action_taken], "column-1": dat.count });
+            });
+         }
+         else if(region_name === "South") {
+           complaints = region_data(value.data.action_analysis);
+           $scope.south_analysis.push({ "category": region_name.toUpperCase(), "column-1": complaints.unprocessed[0], "column-2": complaints.processed[0], "column-3": complaints.deferred[0] });
+           $scope.north_south_percentage.push({ "category": region_name.toUpperCase(), "column-1": Math.round((value.data.feedback_count / pakistan_feedback_count) * 100) });
+         }
+         else if(region_name === "North") {
+           complaints = region_data(value.data.action_analysis);
+           $scope.north_analysis.push({ "category": region_name.toUpperCase(), "column-1": complaints.unprocessed[0], "column-2": complaints.processed[0], "column-3": complaints.deferred[0] });
+           $scope.north_south_percentage.push({ "category": region_name.toUpperCase(), "column-1": Math.round((value.data.feedback_count / pakistan_feedback_count) * 100) });
+         }
       });
+      $scope.north_south_percentage = _.sortBy($scope.north_south_percentage, function (value) { return value.category; });
     }
-    patch_qsc_analysis();
 
-    $rootScope.$on('web-socket-message', function (event, data) {
+    $rootScope.$on('live-data-received', function (event, data) {
        patch_qsc_analysis();
     });
 

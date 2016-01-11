@@ -25,23 +25,15 @@
                         </div>
                     </div>
                     <div class="table-inner">
-                        <div class="info-block">
-                            <h3>Top 3 leading Branches</h3>
-                            <ul>
-                                <li ng-repeat="branch_data in branches">
-                                    <span class="count">{{branch_data.count}}</span>
-                                    <div class="name">{{branch_data.city.city_name}}-{{branch_data.branch.branch_name}}</div>
-                                </li>
-                                <!--<li>-->
-                                    <!--<span class="count">250</span>-->
-                                    <!--<div class="name">Lhr-garden town</div>-->
-                                <!--</li>-->
-                                <!--<li>-->
-                                    <!--<span class="count">160</span>-->
-                                    <!--<div class="name">Lhr-Gulberg</div>-->
-                                <!--</li>-->
-                            </ul>
-                        </div>
+                      <div class="info-block">
+                        <h3>Top 3 leading Branches</h3>
+                        <ul>
+                          <li ng-repeat="branch_data in branches">
+                            <span class="count">{{branch_data.count}}</span>
+                            <div class="name">{{branch_data.city.city_name}}-{{branch_data.branch.branch_name}}</div>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                 </div>
             </div>

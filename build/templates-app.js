@@ -811,23 +811,15 @@ angular.module("live/benchmark-map/benchmark-map.tpl.html", []).run(["$templateC
     "                        </div>\n" +
     "                    </div>\n" +
     "                    <div class=\"table-inner\">\n" +
-    "                        <div class=\"info-block\">\n" +
-    "                            <h3>Top 3 leading Branches</h3>\n" +
-    "                            <ul>\n" +
-    "                                <li ng-repeat=\"branch_data in branches\">\n" +
-    "                                    <span class=\"count\">{{branch_data.count}}</span>\n" +
-    "                                    <div class=\"name\">{{branch_data.city.city_name}}-{{branch_data.branch.branch_name}}</div>\n" +
-    "                                </li>\n" +
-    "                                <!--<li>-->\n" +
-    "                                    <!--<span class=\"count\">250</span>-->\n" +
-    "                                    <!--<div class=\"name\">Lhr-garden town</div>-->\n" +
-    "                                <!--</li>-->\n" +
-    "                                <!--<li>-->\n" +
-    "                                    <!--<span class=\"count\">160</span>-->\n" +
-    "                                    <!--<div class=\"name\">Lhr-Gulberg</div>-->\n" +
-    "                                <!--</li>-->\n" +
-    "                            </ul>\n" +
-    "                        </div>\n" +
+    "                      <div class=\"info-block\">\n" +
+    "                        <h3>Top 3 leading Branches</h3>\n" +
+    "                        <ul>\n" +
+    "                          <li ng-repeat=\"branch_data in branches\">\n" +
+    "                            <span class=\"count\">{{branch_data.count}}</span>\n" +
+    "                            <div class=\"name\">{{branch_data.city.city_name}}-{{branch_data.branch.branch_name}}</div>\n" +
+    "                          </li>\n" +
+    "                        </ul>\n" +
+    "                      </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +

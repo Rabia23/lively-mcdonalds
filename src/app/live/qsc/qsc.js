@@ -1,51 +1,45 @@
 (function() {
   angular.module( 'livefeed.live.qsc', [
     'ui.router',
-    'factories',
     'flash'
 
   ])
 
 
 
-  .controller( 'QscCtrl', function TopConcernController( $scope, _, Graphs, Global, $rootScope ) {
+  .controller( 'QscCtrl', function TopConcernController( $scope, _, Global, $rootScope ) {
     
 
     function qscfunc(){
       var qsc = {quality: [], service: [], cleanliness: []};
-      Graphs.overall_rating(1).$promise.then(function(graph_data){
 
-        $scope.overall_rating_data = [];
-        _.each(graph_data, function(value,index){
-          var new_date_array = value.date.split("-");
-          var date = new_date_array[2]+"-"+new_date_array[1]+"-"+new_date_array[0].substr(2, 2);
-          _.each(value.data.feedbacks, function(item, index2){
-            if (item.option__text === 'Quality'){
-              qsc.quality.push(item.count);
-            }
-            if (item.option__text === 'Service'){
-              qsc.service.push(item.count);
-            }
-            if (item.option__text === 'Cleanliness'){
-              qsc.cleanliness.push(item.count);
-            }
-          });
-          
-          $scope.overall_rating_data.push({
-            "category": date,
-            "column-1": qsc.quality[index],
-            "column-2": qsc.service[index],
-            "column-3": qsc.cleanliness[index]
-          });
-          
+      $scope.overall_rating_data = [];
+      _.each($scope.overall_ratings, function(value,index){
+        var new_date_array = value.date.split("-");
+        var date = new_date_array[2]+"-"+new_date_array[1]+"-"+new_date_array[0].substr(2, 2);
+        _.each(value.data.feedbacks, function(item, index2){
+          if (item.option__text === 'Quality'){
+            qsc.quality.push(item.count);
+          }
+          if (item.option__text === 'Service'){
+            qsc.service.push(item.count);
+          }
+          if (item.option__text === 'Cleanliness'){
+            qsc.cleanliness.push(item.count);
+          }
         });
-
+        
+        $scope.overall_rating_data.push({
+          "category": date,
+          "column-1": qsc.quality[index],
+          "column-2": qsc.service[index],
+          "column-3": qsc.cleanliness[index]
+        });
+        
       });
     }
 
-    qscfunc();
-
-    $rootScope.$on('web-socket-message', function (event, data) {
+    $rootScope.$on('live-data-received', function (event, data) {
       qscfunc();
     });
 

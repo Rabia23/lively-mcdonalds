@@ -64,13 +64,19 @@ angular.module( 'factories', [
                     top_charts: {method: "GET",isArray: false, params: {endpoint: "top_charts/"}},
                     top_rankings: {method: "GET", isArray: false, params:{endpoint: "top_rankings"}},
                     complaint_analysis: {method: "GET", isArray: true, params:{endpoint: "complaint_analysis"}},
-                    leader_board: {method: "GET", isArray: false, params:{endpoint: "leader_board"}}
+                    leader_board: {method: "GET", isArray: false, params:{endpoint: "leader_board"}},
+                    live_dashboard: {method: "GET", isArray: false, params:{endpoint: "livedashboard/"}}
+
                  });
   }
 
   Graphs.prototype.overall_rating = function(type,option_id, date_from, date_to){
     option_id = option_id || "";
     return this.service.overall_rating({token: token, type: type, option: option_id, date_from: date_from, date_to: date_to});
+  };
+
+  Graphs.prototype.live_dashboard = function(){
+    return this.service.live_dashboard();
   };
 
   Graphs.prototype.action_taken = function(feedback_id,action_id){

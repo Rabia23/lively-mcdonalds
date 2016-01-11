@@ -1,37 +1,32 @@
 angular.module( 'livefeed.live.business_segment', [
   'ui.router',
-  'factories',
   'flash'
 ])
 
 
 
-.controller( 'BusinessSegmentCtrl', function BusinessSegmentCtrl( $scope, _, Graphs, Global, $rootScope ) {
+.controller( 'BusinessSegmentCtrl', function BusinessSegmentCtrl( $scope, _, Global, $rootScope ) {
   
   function business_segment(){
     var qsc = {quality: [], service: [], cleanliness: []};
-    Graphs.segmentation_rating().$promise.then(function(data){
-      $scope.segmentation_rating = [];
-      _.each(data.segments, function(value, index){
-         _.each(value.option_data, function(item){
-             if (item.option__text === 'Quality'){
-              qsc.quality.push(item.count);
-            }
-            if (item.option__text === 'Service'){
-              qsc.service.push(item.count);
-            }
-            if (item.option__text === 'Cleanliness'){
-              qsc.cleanliness.push(item.count);
-            }
-         });
-        $scope.segmentation_rating.push({"category":value.segment.toUpperCase(), "column-1": qsc.cleanliness[index], "column-2":qsc.service[index],"column-3":qsc.quality[index]});
-      });
+    $scope.segmentation_rating = [];
+    _.each($scope.segmentation_ratings.segments, function(value, index){
+       _.each(value.option_data, function(item){
+           if (item.option__text === 'Quality'){
+            qsc.quality.push(item.count);
+          }
+          if (item.option__text === 'Service'){
+            qsc.service.push(item.count);
+          }
+          if (item.option__text === 'Cleanliness'){
+            qsc.cleanliness.push(item.count);
+          }
+       });
+      $scope.segmentation_rating.push({"category":value.segment.toUpperCase(), "column-1": qsc.cleanliness[index], "column-2":qsc.service[index],"column-3":qsc.quality[index]});
     });
   }
 
-  business_segment();
-
-   $rootScope.$on('web-socket-message', function (event, data) {
+   $rootScope.$on('live-data-received', function (event, data) {
     business_segment();
   });
 

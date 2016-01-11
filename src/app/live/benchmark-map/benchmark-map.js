@@ -1,16 +1,20 @@
 (function() {
     angular.module('livefeed.live.benchmark_map', [
-        'ui.router',
-        'factories'
+        'ui.router'
     ])
 
 
-    .controller('BenchmarkMapCtrl', function BenchmarkMapController($scope, Graphs) {
-        Graphs.leader_board().$promise.then(function(data){
-            $scope.leader_board_data = data;
-            $scope.branches = _.sortBy($scope.leader_board_data.branches, function (value) { return value.count; });
-            $scope.branches.reverse();
-        });
+    .controller('BenchmarkMapCtrl', function BenchmarkMapController($scope, $rootScope) {
+
+      function leader_board(){
+        $scope.branches = _.sortBy($scope.leader_board_data.branches, function (value) { return value.count; });
+        $scope.branches.reverse();  
+      }
+
+      $rootScope.$on('live-data-received', function (event, data) {
+       leader_board();
+      });
+    
     });
 
 })();

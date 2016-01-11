@@ -1,7 +1,7 @@
 angular.module( 'livefeed.live', [
   'ui.router',
   'livefeed.authService',
-  'factories',
+  'livefeed.live.api',
    'helper_factories',
   'flash',
   'livefeed.live.top_concerns',
@@ -59,7 +59,7 @@ angular.module( 'livefeed.live', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'LiveCtrl', function LiveController( $scope,  _ , $rootScope, $state, Authentication, Graphs, WebSocket, Global, Clock, $interval) {
+.controller( 'LiveCtrl', function LiveController( $scope,  _ , $rootScope, $state, Authentication, Api, WebSocket, Global, Clock, $interval) {
 
 
   $scope.authenticate = {};
@@ -75,22 +75,42 @@ angular.module( 'livefeed.live', [
   });
 
 
+  function live_dashboard(){
+    Api.live_dashboard().$promise.then(function(data){
+      console.log("live dashboard");
+      console.log(data);
+      $scope.top_ranking = data.top_rankings;
+      $scope.overall_ratings = data.overall_rating;
+      $scope.complaint_view = data.complaint_view;
+      $scope.overall_feedback = data.overall_feedback;
+      $scope.leader_board_data = data.leaderboard_view;
+      $scope.segmentation_ratings = data.segmentation_rating;
+      $scope.concerns = data.concerns;
+      $rootScope.$broadcast('live-data-received');
+
+
+    });
+  }
+
+
+  live_dashboard();
+
    //WebSocket.init();
+
+  $rootScope.$on('live-data-received', function (event, data) {
+    top_rankings();
+  });
 
 
   function top_rankings(){
-    Graphs.top_rankings().$promise.then(function(data){
-      $scope.top_ranking = data;
-      $scope.qsc_ranking = _.map(data.qsc_count, function(value){
+      $scope.qsc_ranking = _.map($scope.top_ranking.qsc_count, function(value){
         return { option_name: value.option_text, option_count: value.count, priority: Global.qscPriority[value.option_text] };
       });
       $scope.qsc_ranking = _.sortBy($scope.qsc_ranking, function (value) { return value.priority; });
-    });
   }
-  top_rankings();
 
   $rootScope.$on('web-socket-message', function (event, data) {
-    top_rankings();
+    live_dashboard();
   });
 
 

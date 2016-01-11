@@ -1,29 +1,24 @@
 (function() {
   angular.module( 'livefeed.live.top_concerns', [
     'ui.router',
-    'factories',
     'flash'
 
   ])
 
 
 
-  .controller( 'TopConcernCtrl', function TopConcernController( $scope, _, Graphs, Global, $rootScope ) {
+  .controller( 'TopConcernCtrl', function TopConcernController( $scope, _, Global, $rootScope ) {
     
     function top_concern(){
-      Graphs.top_concerns().$promise.then(function(data){
-        var concern_list = data.concern_list;
-        $scope.top_concern_data = [];
-        _.each(concern_list, function(value, index){
-          
-          $scope.top_concern_data.push({"category": value.name.toUpperCase(), "column-1": value.weight});
-        });
+      var concern_list = $scope.concerns.concern_list;
+      $scope.top_concern_data = [];
+      _.each(concern_list, function(value, index){
+        
+        $scope.top_concern_data.push({"category": value.name.toUpperCase(), "column-1": value.weight});
       });
     }
 
-    top_concern();
-
-    $rootScope.$on('web-socket-message', function (event, data) {
+    $rootScope.$on('live-data-received', function (event, data) {
       top_concern();
     });
     
