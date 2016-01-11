@@ -23,6 +23,7 @@ urlpatterns = patterns('',
                        url(r'^top_rankings/$', views.TopRankingsView.as_view()),
                        url(r'^complaint_analysis/$', views.ComplaintAnalysisView.as_view()),
                        url(r'^leader_board/$', views.LeaderBoardView.as_view()),
+                       url(r'^livedashboard/$', views.LiveDashboardView.as_view()),
 )
 
 

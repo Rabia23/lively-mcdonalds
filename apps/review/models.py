@@ -96,24 +96,25 @@ class Feedback(models.Model):
             return feedback
 
     @staticmethod
-    def get_feedback_type_count():
-        negative_feedback_count = Feedback.objects.filter(feedback_option__option__score__in=constants.NEGATIVE_SCORE_LIST).count()
-        positive_feedback_count = Feedback.objects.filter(feedback_option__option__score__in=constants.POSITIVE_SCORE_LIST).count()
+    def get_feedback_type_count(date_from=None, date_to=None):
+        negative_feedback_count = Feedback.manager.date(date_from, date_to).filter(feedback_option__option__score__in=constants.NEGATIVE_SCORE_LIST).count()
+        positive_feedback_count = Feedback.manager.date(date_from, date_to).filter(feedback_option__option__score__in=constants.POSITIVE_SCORE_LIST).count()
 
         return {"positive_feedback_count": positive_feedback_count, "negative_feedback_count": negative_feedback_count}
 
-
     @staticmethod
     def get_top_branch():
-        dict = Feedback.objects.values('branch_id').annotate(count=Count("branch_id")).latest("count")
-
-        branch = Branch.objects.get(pk=dict["branch_id"])
-        return {"count": dict["count"], "branch_name": branch.name, "branch_id": branch.id}
-
+        result = None
+        dict = Feedback.objects.values('branch_id').annotate(count=Count("branch_id"))
+        if dict:
+            dict = dict.latest("count")
+            branch = Branch.objects.get(pk=dict["branch_id"])
+            result = {"count": dict["count"], "branch_name": branch.name, "branch_id": branch.id}
+        return result
 
     @staticmethod
-    def get_top_branches():
-        dict = Feedback.objects.values('branch_id').annotate(count=Count("branch_id"))[:3]
+    def get_top_branches(date_from, date_to):
+        dict = Feedback.manager.date(date_from, date_to).values('branch_id').annotate(count=Count("branch_id"))[:3]
 
         branch_list = []
         for branch_dict in dict:
@@ -125,36 +126,44 @@ class Feedback(models.Model):
             })
         return branch_list
 
+    @staticmethod
+    def get_top_city(date_from, date_to):
+        result = None
+        dict = Feedback.manager.date(date_from, date_to).values('branch__city_id').annotate(count=Count("branch__city_id"))
+        if dict:
+            dict = dict.latest("count")
+            city = City.objects.get(pk=dict["branch__city_id"])
+            result = {"count": dict["count"], "city_name": city.name, "city_id": city.id}
+        return result
 
     @staticmethod
-    def get_top_city():
-        dict = Feedback.objects.values('branch__city_id').annotate(count=Count("branch__city_id")).latest("count")
+    def get_top_gro(date_from, date_to):
+        result = None
+        dict = Feedback.manager.date(date_from, date_to).values('gro_id').annotate(count=Count("gro_id"))
 
-        city = City.objects.get(pk=dict["branch__city_id"])
-        return {"count": dict["count"], "city_name": city.name, "city_id": city.id}
+        if dict:
+            dict = dict.latest("count")
+            gro = User.objects.get(pk=dict["gro_id"])
 
+            #this will be changed once relations between branch, gro and other role is implemented.
+            branch_id = Feedback.objects.filter(gro_id=gro.id).first().branch_id
+            branch = Branch.objects.get(pk=branch_id)
 
-    @staticmethod
-    def get_top_gro():
-        dict = Feedback.objects.values('gro_id').annotate(count=Count("gro_id")).latest("count")
-
-        gro = User.objects.get(pk=dict["gro_id"])
-
-        #this will be changed once relations between branch, gro and other role is implemented.
-        branch_id = Feedback.objects.filter(gro_id=gro.id).first().branch_id
-        branch = Branch.objects.get(pk=branch_id)
-
-        return {"count": dict["count"],
-                "gro": {"gro_name": gro.first_name + gro.last_name, "gro_id": gro.id},
-                "branch": {"branch_name": branch.name, "branch_id": branch.id}}
-
+            result = {"count": dict["count"],
+                    "gro": {"gro_name": gro.first_name + " " + gro.last_name, "gro_id": gro.id},
+                    "branch": {"branch_name": branch.name, "branch_id": branch.id}}
+        return result
 
     @staticmethod
     def get_top_region():
-        dict = Feedback.objects.values('branch__city__region_id').annotate(count=Count("branch__city__region_id")).latest("count")
+        result = None
+        dict = Feedback.objects.values('branch__city__region_id').annotate(count=Count("branch__city__region_id"))
 
-        region = Region.objects.get(pk=dict["branch__city__region_id"])
-        return {"count": dict["count"], "region_name": region.name, "region_id": region.id}
+        if dict:
+            dict = dict.latest("count")
+            region = Region.objects.get(pk=dict["branch__city__region_id"])
+            result = {"count": dict["count"], "region_name": region.name, "region_id": region.id}
+        return result
 
     def is_negative(self):
         options = self.feedback_option.filter(option__score__in=constants.NEGATIVE_SCORE_LIST)
@@ -405,15 +414,18 @@ class FeedbackOption(models.Model):
             return feedback_option
 
     @staticmethod
-    def get_top_option():
-        dict = FeedbackOption.manager.question(constants.TYPE_1).values('option_id').annotate(count=Count("option_id")).latest("count")
-
-        option = Option.objects.get(pk=dict["option_id"])
-        return {"count": dict["count"], "option_text": option.text, "option_id": option.id}
+    def get_top_option(date_from=None, date_to=None):
+        result = None
+        dict = FeedbackOption.manager.question(constants.TYPE_1).date(date_from, date_to).values('option_id').annotate(count=Count("option_id"))
+        if dict:
+            dict = dict.latest("count")
+            option = Option.objects.get(pk=dict["option_id"])
+            result = {"count": dict["count"], "option_text": option.text, "option_id": option.id}
+        return result
 
     @staticmethod
-    def get_qsc_count():
-        dict_list = FeedbackOption.manager.question(constants.TYPE_2).values('option_id').annotate(count=Count("option_id"))
+    def get_qsc_count(date_from=None, date_to=None):
+        dict_list = FeedbackOption.manager.question(constants.TYPE_2).date(date_from, date_to).values('option_id').annotate(count=Count("option_id"))
 
         qsc_list = []
         for dict in dict_list:

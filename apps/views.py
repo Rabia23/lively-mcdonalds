@@ -574,3 +574,126 @@ class LeaderBoardView(APIView):
             return Response(None)
 
 
+class LiveDashboardView(APIView):
+
+    def _get_complaint_view(self, date_from, date_to):
+        complaint_view_list = []
+
+        feedback = Feedback.manager.date(date_from, date_to).normal_feedback()
+        filtered_feedback = feedback.values('action_taken').annotate(count=Count('action_taken'))
+        filtered_feedback = generate_missing_actions(filtered_feedback)
+
+        data = {'feedback_count': feedback.count(), 'action_analysis': filtered_feedback}
+        complaint_view_list.append({'object': {"id": "", "name": "Pakistan", "objectId": ""}, 'data': data})
+
+        for object in Area.objects.all():
+            feedback = Feedback.manager.date(date_from, date_to).related_filters(0, object).normal_feedback()
+            filtered_feedback = feedback.values('action_taken').annotate(count=Count('action_taken'))
+            filtered_feedback = generate_missing_actions(filtered_feedback)
+
+            data = {'feedback_count': feedback.count(), 'action_analysis': filtered_feedback}
+            complaint_view_list.append({'object': ObjectSerializer(object).data, 'data': data})
+
+        return complaint_view_list
+
+    def _get_top_concers(self):
+        concerns = [
+                {"name": "Ketchup", "weight": "57"},
+                {"name": "Bun", "weight": "20"},
+                {"name": "Wings", "weight": "41"},
+                {"name": "Fries", "weight": "18"},
+                {"name": "Chicken", "weight": "50"}
+            ]
+
+        return {'concern_count': len(concerns), 'concern_list': concerns}
+
+    def _get_overall_feedback(self, date_from, date_to):
+        feedback_options = FeedbackOption.manager.question(constants.TYPE_1).date(date_from, date_to)
+        feedback_options_dict = feedback_options.values('option_id', 'option__text', 'option__parent_id', 'option__score').\
+            annotate(count=Count('option_id'))
+        list_feedback = generate_missing_options(Question.objects.get(type=constants.TYPE_1), feedback_options_dict)
+
+        return {'feedback_count': feedback_options.count(), 'feedbacks': sorted(list_feedback, reverse=True, key=itemgetter('option__score'))}
+
+    def _get_segmentation_rating(self, date_from, date_to):
+        question = Question.objects.get(type=constants.TYPE_2)
+
+        options = question.options.all()
+        feedback_options = FeedbackOption.manager.options(question.options.all()).date(date_from, date_to)
+        feedback_segmented_list = generate_segmentation_with_options(feedback_options, options)
+
+        return {'segment_count': len(feedback_segmented_list), 'segments': feedback_segmented_list}
+
+    def _get_top_rankings(self, date_from=None, date_to=None):
+        overall_experience = FeedbackOption.get_top_option(date_from, date_to)
+        positive_negative_feedback = Feedback.get_feedback_type_count(date_from, date_to)
+        qsc_count = FeedbackOption.get_qsc_count(date_from, date_to)
+
+        return {'overall_experience': overall_experience,
+                'top_concern': "Ketchup",
+                'positive_negative_feedback': positive_negative_feedback,
+                'qsc_count': qsc_count}
+
+    def _get_leaderboard_view(self, date_from, date_to):
+        city = Feedback.get_top_city(date_from, date_to)
+        branches = Feedback.get_top_branches(date_from, date_to)
+        gro = Feedback.get_top_gro(date_from, date_to)
+
+        return {'city': city, "branches": branches, "gro": gro}
+
+    def _get_overall_rating(self, date_from, date_to):
+        feedback_records_list = []
+
+        current_tz = timezone.get_current_timezone()
+        date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
+        date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
+
+        rule = rrule.DAILY
+        question = Question.objects.get(type=constants.TYPE_2)
+        section_start_date = str(date_from.date())
+        for single_date in rrule.rrule(rule, dtstart=date_from, until=date_to):
+            if type != constants.DAILY_ANALYSIS:
+                section_end_date = str(single_date.date())
+                feedback_options = FeedbackOption.manager.date(section_start_date, section_end_date)
+                section_start_date = section_end_date
+            else:
+                feedback_options = FeedbackOption.manager.date(str(single_date.date()), str(single_date.date()))
+
+            feedback_options = feedback_options.question_parent_options(question)
+            filtered_feedback = feedback_options.values('option_id', 'option__text', 'option__parent_id').\
+                                    annotate(count=Count('option_id'))
+            list_feedback = generate_missing_options(question, filtered_feedback)
+
+            date_data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
+            feedback_records_list.append({'date': single_date.date(), 'data': date_data})
+
+
+        if len(feedback_records_list) > constants.NO_OF_DAYS:
+            feedback_records_list = feedback_records_list[-constants.NO_OF_DAYS:]
+
+        return feedback_records_list
+
+    # @method_decorator(my_login_required)
+    def get(self, request, format=None):
+        try:
+            now = datetime.now()
+
+            date_to_str = str(now.date())
+            date_from_str = str((now - timedelta(days=1)).date())
+
+            data = {
+                "segmentation_rating": self._get_segmentation_rating(date_from_str, date_to_str),
+                "overall_feedback": self._get_overall_feedback(date_from_str, date_to_str),
+                "overall_rating": self._get_overall_rating(str((now - timedelta(days=constants.NO_OF_DAYS)).date()), date_to_str),
+                "complaint_view": self._get_complaint_view(date_from_str, date_to_str),
+                "top_rankings": self._get_top_rankings(),
+                "leaderboard_view": self._get_leaderboard_view(date_from_str, date_to_str),
+                "concerns": self._get_top_concers(),
+            }
+
+            return Response(data)
+
+        except Exception as e:
+            return Response(None)
+
+
