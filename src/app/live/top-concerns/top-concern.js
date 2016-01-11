@@ -44,7 +44,7 @@
               "type": "pie",
               "angle": 25,
               "startDuration": 0,
-              "balloonText": "[[title]]<br><span style='font-size:14px'>[[value]]</span>",
+              "balloonText": "<span style='font-size:20px'>[[title]]</span><br><span style='font-size:16px'>[[value]]</span>",
               "depth3D": 55,
               "innerRadius": "35%",
               "marginRight": "-15%",
