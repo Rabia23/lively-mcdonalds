@@ -48,6 +48,7 @@
 		
 		strong{
 			@include inline-block(top);
+			margin: 0 10px 0 0;
 		}
 		
 		@include media("≥widescreen"){margin: 0 2px 25px 0;}

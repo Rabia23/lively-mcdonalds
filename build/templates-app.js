@@ -881,7 +881,7 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "			</div>\n" +
     "		</div>\n" +
     "		<div class=\"header-content\">\n" +
-    "			<time datetime=\"2015-12-23 13:49\"><strong>{{time}}</strong>   {{date_output}}</time>\n" +
+    "			<time datetime=\"2015-12-23 13:49\"><strong>{{time}}</strong>  {{date_output}}</time>\n" +
     "			<ul class=\"info-list\">\n" +
     "				<li>\n" +
     "					<strong class=\"title\">Overall Experience</strong>\n" +
