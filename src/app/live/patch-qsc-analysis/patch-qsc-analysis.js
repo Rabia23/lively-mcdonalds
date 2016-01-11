@@ -86,6 +86,11 @@
                         //"labelRadius": -75,
                         "labelText": "",
                         "fontSize": 20,
+						"marginTop":0,
+						"marginRight":0,
+						"marginLeft":0,
+						"marginBottom":0,
+						"autoMargins":false,
                         "colors": [
                             "#bf1616",
                             "#01c211",
