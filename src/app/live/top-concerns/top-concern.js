@@ -53,6 +53,13 @@
               //"labelRadius": -45,
               //"labelText": "[[value]]",
               "labelsEnabled": false,
+              "colors": [
+                  "#cb1e24",
+                  "#178aea",
+                  "#434347",
+                  "#f1d400",
+                  "#90ec7c"
+              ],
               "titleField": "category",
               "valueField": "column-1",
               "fontFamily": "'Oswald', sans-serif",
