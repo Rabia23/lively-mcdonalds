@@ -321,7 +321,7 @@
                         ],
                         "startDuration": 1,
                         "fontFamily": "'Oswald', sans-serif",
-                        "fontSize": 16,
+                        "fontSize": 18,
                         "handDrawScatter": 0,
                         "theme": "default",
                         "categoryAxis": {
@@ -345,7 +345,8 @@
                                 "title": "graph 1",
                                 "type": "column",
                                 "valueField": "column-1",
-                                "colorField": "color"
+                                "colorField": "color",
+                                "balloonText": "[[value]]%"
                             }
                         ],
                         "guides": [],
