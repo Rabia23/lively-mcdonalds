@@ -110,10 +110,10 @@ angular.module( 'livefeed.live', [
 
 
 
-  // $rootScope.$on('web-socket-close', function (event, data) {
-  //   WebSocket.close_socket();
-  //   WebSocket.init();
-  // });
+  $rootScope.$on('web-socket-close', function (event, data) {
+    WebSocket.close_socket();
+    WebSocket.init();
+  });
 
   // $rootScope.$on('web-socket-error', function (event, data) {
   //   WebSocket.close_socket();
@@ -164,7 +164,7 @@ angular.module( 'livefeed.live', [
     init: function(){
       console.log("in the init function");
       ws = null;
-      ws = new WebSocket("ws://staginglivefeed.arbisoft.com:5678/");
+      ws = new WebSocket("ws://staginglivefeed.arbisoft.com:5679/");
       //ws = new WebSocket("ws://172.16.11.113:5678/");
       ws.onopen = function (event) {
         console.log("sockets opened");
@@ -189,11 +189,11 @@ angular.module( 'livefeed.live', [
 
     get_socket: function(){
       return ws;
-    }
+    },
 
-    // close_socket: function(){
-    //   return ws.close();
-    // }
+    close_socket: function(){
+      return ws.close();
+    }
 
 
 
