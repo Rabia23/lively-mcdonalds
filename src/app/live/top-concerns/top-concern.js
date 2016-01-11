@@ -47,13 +47,16 @@
               "balloonText": "[[title]]<br><span style='font-size:14px'>[[value]]</span>",
               "depth3D": 55,
               "innerRadius": "35%",
-              //"labelRadius": -35,
+              "marginRight": -180,
+              "marginTop": -105,
+              "autoMargins":false,
+              //"labelRadius": -45,
               //"labelText": "[[value]]",
               "labelsEnabled": false,
               "titleField": "category",
               "valueField": "column-1",
               "fontFamily": "'Oswald', sans-serif",
-              "fontSize": 35,
+              "fontSize": 45,
               "allLabels": [],
               "balloon": {},
               "legend": {
@@ -66,8 +69,8 @@
                 "valueText": "",
                 "valueWidth": 0,
                 "position": "right",
-                "autoMargins": false,
-                "marginRight": 400
+               "marginRight":300,
+               "autoMargins":false
               },
               "titles": [],
               "dataProvider": data
