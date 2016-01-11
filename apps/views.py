@@ -673,7 +673,7 @@ class LiveDashboardView(APIView):
 
         return feedback_records_list
 
-    # @method_decorator(my_login_required)
+    @method_decorator(my_login_required)
     def get(self, request, format=None):
         try:
             now = datetime.now()

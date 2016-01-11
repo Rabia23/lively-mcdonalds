@@ -66,6 +66,8 @@ class FeedbackView(APIView):
             q = RedisQueue('feedback_queue')
             q.put("ping")
 
+            feedback.mark_deferred_if_positive()
+
             if feedback.is_negative():
                 # context = Context({'feedback_id': feedback.id})
                 # send_negative_feedback_email(context)

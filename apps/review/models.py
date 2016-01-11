@@ -171,6 +171,11 @@ class Feedback(models.Model):
             return True
         return False
 
+    def mark_deferred_if_positive(self):
+        if not self.is_negative():
+            self.action_taken = constants.DEFERRED
+            self.save()
+
     def is_bad(self):
         options = self.feedback_option.filter(option__score=constants.BAD_SCORE)
         if options:
