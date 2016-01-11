@@ -64,7 +64,10 @@
                 "markerSize": 23,
                 "markerType": "circle",
                 "valueText": "",
-                "valueWidth": 0
+                "valueWidth": 0,
+                "position": "right",
+                "autoMargins": false,
+                "marginRight": 400
               },
               "titles": [],
               "dataProvider": data
