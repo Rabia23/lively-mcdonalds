@@ -124,7 +124,7 @@
                   "fillColors": "#E90000",
                   "id": "AmGraph-1",
                   "legendColor": "#E90000",
-                  "lineColor": "#ff8800",
+                  "lineColor": "#ff8000",
                   "lineThickness": 3,
                   "negativeFillAlphas": 0,
                   "title": "Quality",
