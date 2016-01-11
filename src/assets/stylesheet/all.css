@@ -70,6 +70,11 @@ body{
 
 .ibox.detail-block .ibox-content{padding: 14px 20px 15px;}
 
+.ibox.detail-block h5{
+	overflow: hidden;
+	float: none;
+}
+
 .ibox-content .graph-block{
 	padding: 0 32px;
 }
@@ -434,6 +439,7 @@ body{
 	letter-spacing: 0;
 	text-align: center;
 	border-left:1px solid #e7eaec;
+	position: relative;
 }
 
 .tab-links li a{
@@ -460,6 +466,19 @@ body{
 	width: 1px;
 	min-height: 100%;
 	content: "";
+}
+
+.calender-outer .date-picker{
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	height: 100%;
+	width: 100%;
+	text-indent: -9999px;
+	border: 0;
+	background: none;
+	color: #fff;
 }
 
 .calender-outer .calendar-holder{
@@ -506,6 +525,28 @@ body.login{background: #eee;}
     margin: 0 0 30px;
 }
 
+.tooltip{
+	letter-spacing: 0;
+	opacity: 1;
+}
+
+.tooltip.top{opacity: 1;}
+.tooltip.top .tooltip-arrow{
+	border-top-color: white !important;
+	opacity: 1;
+}
+
+.tooltip .tooltip-inner{
+	opacity: 1;
+	background: white;
+	color: black;
+	min-width: 100px !important;
+	max-width: 180px;
+	padding: 10px 5px;
+	-webkit-box-shadow: 0 5px 10px rgba(0,0,0 , 0.2);
+	box-shadow: 0 5px 10px rgba(0,0,0, 0.2);
+}
+
 @media screen and (min-width: 1200px) {
 	.same-height-block .inner-row > .col-sm-6{height: 50%;}
 	
@@ -527,7 +568,7 @@ body.login{background: #eee;}
 		height: 100%;
 		width: 100%;
 		background: #fff;
-		overflow: hidden;
+		/*overflow: hidden;*/
 	}
 
 	.same-height-block .inner-row .col-xs-12 .ibox .content-holder,
@@ -734,6 +775,10 @@ body.login{background: #eee;}
 	}
 	.comment-block{top: 133px;}
 	.tab-links{font-size: 12px;}
+	.tooltip.top .tooltip-arrow{
+		display: none;
+		visibility: hidden;
+	}
 }
 
 

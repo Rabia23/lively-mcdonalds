@@ -70,11 +70,11 @@
                       <li class="item4" ng-class="{active: class == 'Cleanliness'}"><a ng-click = "onClick(CleanlinessID, 'Cleanliness')" uib-tooltip="Click to view Cleanliness SubCategories Breakdown">Cleanliness</a></li>
                       <li class="item5">
                           <div class="calender-outer">
-                            <span class = "calendar-holder pull-right" uib-tooltip="Click to Select Custom Date Range">
-                              <input date-range-picker id="daterange-map" readonly="readonly" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption" readonly="true"/>
-                              <i class="glyphicon glyphicon-calendar" map-range-click></i>
-                            </span>
-                          </div>
+							  <span class="calendar-holder" uib-tooltip="Click to Select Custom Date Range">
+							  	   <input date-range-picker id="daterange-map" readonly="readonly" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption" readonly="true"/>
+								  <i class="fa fa-calendar" map-range-click></i>
+							  </span>
+						  </div>
                       </li>
                   </ul>
               </div>

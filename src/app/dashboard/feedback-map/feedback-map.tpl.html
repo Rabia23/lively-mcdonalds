@@ -32,23 +32,24 @@
 
 
  <div class="ibox float-e-margins">
-                  <div class="ibox-title">
-                      <h5>Benchmark Map</h5>
-                      <div class="ibox-tools">
-                          <ul class="tab-links">
-                              <li>
-                                  <div class="calender-outer">
-                                      <span class="calendar-holder">
-                                          <i class="fa fa-calendar"></i>
-                                      </span>
-                                  </div>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="ibox-content same-height">
-                      <div class="block-holder">
-                          <div id="world-map"></div>
-                      </div>
-                  </div>
-              </div>
+  <div class="ibox-title">
+	  <h5>Benchmark Map</h5>
+	  <div class="ibox-tools">
+		  <ul class="tab-links">
+			  <li>
+				  <div class="calender-outer">
+					  <span class="calendar-holder" uib-tooltip="Click to Select Custom Date Range">
+						   <input date-range-picker id="daterange-map" readonly="readonly" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption" readonly="true"/>
+						  <i class="fa fa-calendar" map-range-click></i>
+					  </span>
+				  </div>
+			  </li>
+		  </ul>
+	  </div>
+  </div>
+  <div class="ibox-content same-height">
+	  <div class="block-holder">
+		  <div id="world-map"></div>
+	  </div>
+  </div>
+</div>
