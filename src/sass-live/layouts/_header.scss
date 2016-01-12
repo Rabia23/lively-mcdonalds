@@ -102,7 +102,7 @@
 				}
 			}
 			&.positive{color: $india-green;}
-			&.item2{color: $yellow-orange;}
+			&.item2{color: darken($yellow-orange,20%);}
 			&.item3{color: $rich-electric-blue;}
 		}
 	}
