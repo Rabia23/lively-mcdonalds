@@ -49,7 +49,11 @@
   </div>
   <div class="ibox-content same-height">
 	  <div class="block-holder">
-		  <div id="world-map"></div>
+		  <div id="world-map">
+		  	<div map-lazy-load="http://maps.google.com/maps/api/js">
+			  	<map center="30,70" zoom="{{zoom}}" disable-default-u-i="true" default-style="false"></map>
+				</div>
+		  </div>
 	  </div>
   </div>
 </div>

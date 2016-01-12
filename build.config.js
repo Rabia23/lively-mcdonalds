@@ -91,7 +91,9 @@ module.exports = {
       'vendor/angular-flash-alert/dist/angular-flash.js',
       'vendor/angular-animate/angular-animate.min.js',
       'vendor/metisMenu/dist/metisMenu.min.js',
-      'vendor/hammerjs/hammer.min.js'
+      'vendor/hammerjs/hammer.min.js',
+      'vendor/ngmap/build/scripts/ng-map.min.js'
+
 
 
 
