@@ -32,7 +32,7 @@
       $scope.north_analysis = [];
       $scope.south_analysis = [];
       $scope.north_south_percentage = [];
-      _.each($scope.complaint_view function (value) {
+      _.each($scope.complaint_view, function (value) {
          var region_name = value.object.name;
          if(region_name === "Pakistan") {
             pakistan_feedback_count = value.data.feedback_count;
@@ -81,7 +81,7 @@
                         //"labelRadius": -75,
                         "labelText": "",
                         "fontSize": 20,
-						"marginTop":0,
+						"marginTop":-75,
 						"marginRight":0,
 						"marginLeft":0,
 						"marginBottom":0,
