@@ -335,7 +335,7 @@
                         ],
                         "startDuration": 1,
                         "fontFamily": "'Oswald', sans-serif",
-                        "fontSize": 16,
+                        "fontSize": 22,
                         "handDrawScatter": 0,
                         "theme": "default",
                         "categoryAxis": {
@@ -345,7 +345,8 @@
                             "gridColor": "#FFFFFF",
                             "gridThickness": 0,
                             "tickLength": 0,
-                            "titleBold": false
+                            "titleBold": false,
+                            "fontSize": 16
                         },
                         "trendLines": [],
                         "graphs": [
