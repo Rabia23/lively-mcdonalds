@@ -815,7 +815,7 @@ angular.module("live/benchmark-map/benchmark-map.tpl.html", []).run(["$templateC
     "                                <div class=\"hold\">\n" +
     "                                    <span class=\"name\">{{leader_board_data.gro.gro.gro_name}}</span>\n" +
     "                                    <div class=\"info\">\n" +
-    "                                        <strong>{{leader_board_data.gro.count}}</strong> feedback received, <span class=\"branch\">{{leader_board_data.gro.branch.branch_name}} Branch</span>\n" +
+    "                                        <strong>{{leader_board_data.gro.count}}</strong> feedback received, <span class=\"branch\"><strong>{{leader_board_data.gro.branch.branch_name}}</strong> Branch</span>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
@@ -832,7 +832,7 @@ angular.module("live/benchmark-map/benchmark-map.tpl.html", []).run(["$templateC
     "                    </div>\n" +
     "                    <div class=\"table-inner\">\n" +
     "                      <div class=\"info-block\">\n" +
-    "                        <h3>Top 3 leading Branches</h3>\n" +
+    "                        <h3>Top leading Branches</h3>\n" +
     "                        <ul>\n" +
     "                          <li ng-repeat=\"branch_data in branches\">\n" +
     "                            <span class=\"count\">{{branch_data.count}}</span>\n" +
@@ -856,9 +856,7 @@ angular.module("live/business-segments/business-segment.tpl.html", []).run(["$te
     "			<div class=\"inner-holder\">\n" +
     "				<div class=\"list-holder\">\n" +
     "					<ul class=\"list\">\n" +
-    "						<li><span class=\"bullet\"></span> quality</li>\n" +
-    "						<li class=\"item2\"><span class=\"bullet\"></span> service</li>\n" +
-    "						<li class=\"item3\"><span class=\"bullet\"></span> CLEANLINESS</li>\n" +
+    "						<li class = {{label.option_class}} ng-repeat=\"label in business_segments_labels\"><span class=\"bullet\"></span> {{label.option_name}}</li>\n" +
     "					</ul>\n" +
     "				</div>\n" +
     "				<div class=\"block-holder\">\n" +
@@ -985,9 +983,7 @@ angular.module("live/patch-qsc-analysis/patch-qsc-analysis.tpl.html", []).run(["
     "            <div class=\"inner-holder\">\n" +
     "                <div class=\"list-holder\">\n" +
     "                    <ul class=\"list\">\n" +
-    "                        <li><span class=\"bullet\"></span> Unprocessed</li>\n" +
-    "                        <li class=\"item2\"><span class=\"bullet\"></span> Deferred</li>\n" +
-    "                        <li class=\"processed\"><span class=\"bullet\"></span> Processed</li>\n" +
+    "                        <li class = {{label.action_class}} ng-repeat=\"label in patch_qsc_labels\"><span class=\"bullet\"></span> {{label.action_name}}</li>\n" +
     "                    </ul>\n" +
     "                </div>\n" +
     "                <div class=\"block-holder\">\n" +
@@ -1031,9 +1027,7 @@ angular.module("live/qsc/qsc.tpl.html", []).run(["$templateCache", function($tem
     "			<div class=\"inner-holder\">\n" +
     "				<div class=\"list-holder\">\n" +
     "					<ul class=\"list\">\n" +
-    "						<li><span class=\"bullet\"></span> quality</li>\n" +
-    "						<li class=\"item2\"><span class=\"bullet\"></span> service</li>\n" +
-    "						<li class=\"item3\"><span class=\"bullet\"></span> CLEANLINESS</li>\n" +
+    "						<li class = {{label.option_class}} ng-repeat=\"label in qsc_labels\"><span class=\"bullet\"></span> {{label.option_name}} </li>\n" +
     "					</ul>\n" +
     "				</div>\n" +
     "				<div class=\"block-holder\">\n" +
