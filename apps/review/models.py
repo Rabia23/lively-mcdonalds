@@ -142,15 +142,16 @@ class Feedback(models.Model):
 
         if dict:
             dict = dict.latest("count")
-            gro = User.objects.get(pk=dict["gro_id"])
+            if dict["gro_id"]:
+                gro = User.objects.get(pk=dict["gro_id"])
 
-            #this will be changed once relations between branch, gro and other role is implemented.
-            branch_id = Feedback.objects.filter(gro_id=gro.id).first().branch_id
-            branch = Branch.objects.get(pk=branch_id)
+                #this will be changed once relations between branch, gro and other role is implemented.
+                branch_id = Feedback.objects.filter(gro_id=gro.id).first().branch_id
+                branch = Branch.objects.get(pk=branch_id)
 
-            result = {"count": dict["count"],
-                    "gro": {"gro_name": gro.first_name + " " + gro.last_name, "gro_id": gro.id},
-                    "branch": {"branch_name": branch.name, "branch_id": branch.id}}
+                result = {"count": dict["count"],
+                        "gro": {"gro_name": gro.first_name + " " + gro.last_name, "gro_id": gro.id},
+                        "branch": {"branch_name": branch.name, "branch_id": branch.id}}
         return result
 
     @staticmethod
@@ -171,16 +172,14 @@ class Feedback(models.Model):
         return False
 
     def keyword_analysis(self):
-        if self.comment_exists and self.is_negative():
+        if self.comment_exists() and self.is_negative():
             for concern in Concern.get_all_concerns():
                 if self.comment.find(concern.keyword) != -1:
                     concern.count += 1
                     concern.save()
 
     def comment_exists(self):
-        if not self.comment or self.comment == "":
-            return False
-        return True
+        return True if self.comment else False
 
     def mark_deferred_if_positive(self):
         if not self.is_negative():
