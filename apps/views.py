@@ -380,7 +380,8 @@ class TopConcernsView(APIView):
     def get(self, request, format=None):
         try:
             concerns = [concern.to_dict() for concern in Concern.objects.filter(is_active=True).order_by("-count")[:5]]
-            return {'concern_count': len(concerns), 'concern_list': concerns}
+            data = {'concern_count': len(concerns), 'concern_list': concerns}
+            return Response(data)
         except Exception as e:
             return Response(None)
 
