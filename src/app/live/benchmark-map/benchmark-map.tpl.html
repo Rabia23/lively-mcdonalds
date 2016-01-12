@@ -1,0 +1,42 @@
+<div class="slide win-height">
+        <div class="slide-holder">
+            <div class="holder">
+                <div class="detail-holder">
+                    <div class="table-inner">
+                        <div class="info-block">
+                            <div class="inner-box">
+                                <h3>Gro Of The Day</h3>
+                                <div class="hold">
+                                    <span class="name">{{leader_board_data.gro.gro.gro_name}}</span>
+                                    <div class="info">
+                                        <strong>{{leader_board_data.gro.count}}</strong> feedback received, <span class="branch"><strong>{{leader_board_data.gro.branch.branch_name}}</strong> Branch</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inner-box">
+                                <h3>City Of The Day</h3>
+                                <div class="hold">
+                                    <span class="name">{{leader_board_data.city.city_name}}</span>
+                                    <div class="info">
+                                        <strong>{{leader_board_data.city.count}}</strong> feedback received
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-inner">
+                      <div class="info-block">
+                        <h3>Top leading Branches</h3>
+                        <ul>
+                          <li ng-repeat="branch_data in branches">
+                            <span class="count">{{branch_data.count}}</span>
+                            <div class="name">{{branch_data.city.city_name}}-{{branch_data.branch.branch_name}}</div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

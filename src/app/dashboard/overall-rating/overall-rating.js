@@ -5,7 +5,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
   'angular-flot'
 ])
 
-.controller( 'OverallRatingCtrl', function DashboardController( $scope, _, chartService, Graphs, Global ) {
+.controller( 'DashboardOverallRatingCtrl', function DashboardController( $scope, _, chartService, Graphs, Global ) {
 
   $scope.today = new Date();
 

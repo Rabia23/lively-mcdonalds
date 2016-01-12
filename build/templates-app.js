@@ -1,4 +1,4 @@
-angular.module('templates-app', ['coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'login/login.tpl.html']);
+angular.module('templates-app', ['coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/overall-ratings/overall-ratings.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html']);
 
 angular.module("coupon/coupon.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("coupon/coupon.tpl.html",
@@ -92,9 +92,9 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "\n" +
     "\n" +
     "<section class = \"section\">\n" +
-    "  <div class = \"block\" ui-view = \"overall_feedback\" ng-controller = \"OverallFeedbackCtrl\"></div>\n" +
+    "  <div class = \"block\" ui-view = \"overall_feedback\"></div>\n" +
     "  \n" +
-    "  <div class = \"block\" ui-view = \"top_concern\" ng-controller = \"TopConcernCtrl\"></div>\n" +
+    "  <div class = \"block\" ui-view = \"top_concern\"></div>\n" +
     "</section>\n" +
     "\n" +
     "<section class = \"section\" ui-view=\"regional_analysis\" ng-controller = \"RegionalAnalysisCtrl\"></section>\n" +
@@ -102,8 +102,8 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "\n" +
     "\n" +
     "<section class = \"section\">\n" +
-    "  <div class = \"block\" ui-view = \"feedback_map\" ng-controller = \"FeedbackMapCtrl\"></div>\n" +
-    "  <div class = \"block\" ui-view = \"overall_rating\" ng-controller = \"OverallRatingCtrl\"></div>\n" +
+    "  <div class = \"block\" ui-view = \"feedback_map\"></div>\n" +
+    "  <div class = \"block\" ui-view = \"overall_rating\"></div>\n" +
     "</section>\n" +
     "\n" +
     "\n" +
@@ -114,7 +114,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "</div> -->\n" +
     "\n" +
     "<section class = \"section\">\n" +
-    "  <div class=\"section-holder\" ng-controller = \"PositiveNegativeFeedbackCtrl\">\n" +
+    "  <div class=\"section-holder\">\n" +
     "      <div ui-view = \"positive_negative_feedback\"></div>\n" +
     "  </div>\n" +
     "</section>\n" +
@@ -509,6 +509,262 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "  </div>\n" +
     "</div>\n" +
     "");
+}]);
+
+angular.module("live/benchmark-map/benchmark-map.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("live/benchmark-map/benchmark-map.tpl.html",
+    "<div class=\"slide win-height\">\n" +
+    "        <div class=\"slide-holder\">\n" +
+    "            <div class=\"holder\">\n" +
+    "                <div class=\"detail-holder\">\n" +
+    "                    <div class=\"table-inner\">\n" +
+    "                        <div class=\"info-block\">\n" +
+    "                            <div class=\"inner-box\">\n" +
+    "                                <h3>Gro Of The Day</h3>\n" +
+    "                                <div class=\"hold\">\n" +
+    "                                    <span class=\"name\">{{leader_board_data.gro.gro.gro_name}}</span>\n" +
+    "                                    <div class=\"info\">\n" +
+    "                                        <strong>{{leader_board_data.gro.count}}</strong> feedback received, <span class=\"branch\"><strong>{{leader_board_data.gro.branch.branch_name}}</strong> Branch</span>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"inner-box\">\n" +
+    "                                <h3>City Of The Day</h3>\n" +
+    "                                <div class=\"hold\">\n" +
+    "                                    <span class=\"name\">{{leader_board_data.city.city_name}}</span>\n" +
+    "                                    <div class=\"info\">\n" +
+    "                                        <strong>{{leader_board_data.city.count}}</strong> feedback received\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"table-inner\">\n" +
+    "                      <div class=\"info-block\">\n" +
+    "                        <h3>Top leading Branches</h3>\n" +
+    "                        <ul>\n" +
+    "                          <li ng-repeat=\"branch_data in branches\">\n" +
+    "                            <span class=\"count\">{{branch_data.count}}</span>\n" +
+    "                            <div class=\"name\">{{branch_data.city.city_name}}-{{branch_data.branch.branch_name}}</div>\n" +
+    "                          </li>\n" +
+    "                        </ul>\n" +
+    "                      </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
+}]);
+
+angular.module("live/business-segments/business-segment.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("live/business-segments/business-segment.tpl.html",
+    "<div class=\"slide win-height\" business-segment data-data = \"segmentation_rating\">\n" +
+    "	<div class=\"slide-holder add\">\n" +
+    "		<div class=\"holder\">\n" +
+    "			<div class=\"inner-holder\">\n" +
+    "				<div class=\"list-holder\">\n" +
+    "					<ul class=\"list\">\n" +
+    "						<li class = {{label.option_class}} ng-repeat=\"label in business_segments_labels\"><span class=\"bullet\"></span> {{label.option_name}}</li>\n" +
+    "					</ul>\n" +
+    "				</div>\n" +
+    "				<div class=\"block-holder\">\n" +
+    "					<div class=\"c-holder\">\n" +
+    "						<div class=\"block\">\n" +
+    "							<div class=\"chart-outer\">\n" +
+    "								<div id=\"stackchart\"></div>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>");
+}]);
+
+angular.module("live/live.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("live/live.tpl.html",
+    "<div id=\"wrapper\">\n" +
+    "	<header id=\"header\">\n" +
+    "		<div class=\"header-block\">\n" +
+    "			<div class=\"logo\"><a href=\"http://www.mcdonalds.com.pk/\" target=\"_blank\"><img src=\"assets/images/logo.png\" alt=\"MacDonald's\"></a></div>\n" +
+    "			<div class=\"slider\">\n" +
+    "				<div class=\"slideset\">\n" +
+    "					<div class=\"heading-slide\"><h2>qsc complaints</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>business segment</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>overall rating</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>top concerns</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>Patch  qsc analysis</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>benchmark map</h2></div>\n" +
+    "				</div>\n" +
+    "				<h1>Country Wide</h1>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "		<div class=\"header-content\">\n" +
+    "			<time datetime=\"2015-12-23 13:49\"><strong>{{time}}</strong>  {{date_output}}</time>\n" +
+    "			<ul class=\"info-list\">\n" +
+    "				<li>\n" +
+    "					<strong class=\"title\">Overall Experience</strong>\n" +
+    "					<ul>\n" +
+    "						<li>{{top_ranking.overall_experience.option_text}}</li>\n" +
+    "					</ul>\n" +
+    "				</li>\n" +
+    "				<li>\n" +
+    "					<strong class=\"title\">top Concern</strong>\n" +
+    "					<ul>\n" +
+    "						<li>{{top_ranking.top_concern}}</li>\n" +
+    "					</ul>\n" +
+    "				</li>\n" +
+    "				<li>\n" +
+    "					<strong class=\"title\">Positive / Negative Feedback</strong>\n" +
+    "					<ul>\n" +
+    "						<li class=\"positive\">{{top_ranking.positive_negative_feedback.positive_feedback_count}}</li>\n" +
+    "						<li>{{top_ranking.positive_negative_feedback.negative_feedback_count}}</li>\n" +
+    "					</ul>\n" +
+    "				</li>\n" +
+    "				<li>\n" +
+    "					<strong class=\"title\">QSC complaints</strong>\n" +
+    "					<ul>\n" +
+    "						<li ng-repeat = \"q_count in qsc_ranking\" ng-class = \"{'item2': q_count.option_name == 'Service', 'item3': q_count.option_name == 'Cleanliness'}\">{{q_count.option_count}}</li>\n" +
+    "					</ul>\n" +
+    "				</li>\n" +
+    "			</ul>\n" +
+    "		</div>\n" +
+    "	</header>\n" +
+    "\n" +
+    "	<div class=\"slideshow win-height win-min-height\">\n" +
+    "		<div class=\"slideset win-height\">\n" +
+    "			<ui-view name = \"qsc\"></ui-view>\n" +
+    "			<ui-view name = \"business_segment\"></ui-view>\n" +
+    "			<ui-view name = \"overall_rating\"></ui-view>\n" +
+    "			<ui-view name = \"top_concern\"></ui-view>\n" +
+    "			<ui-view name = \"patch_qsc_analysis\"></ui-view>\n" +
+    "			<ui-view name = \"benchmark_map\"></ui-view>\n" +
+    "\n" +
+    "		</div>\n" +
+    "		<div class=\"pagination-holder\" init-slide>\n" +
+    "			<ul class=\"pagination\">\n" +
+    "				<li><a href=\"#\"><span>QSc</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Business Segment</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Overall rating</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Top Concerns</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Patch  qsc analysis</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Benchmark map</span></a></li>\n" +
+    "			</ul>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("live/overall-ratings/overall-rating.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("live/overall-ratings/overall-rating.tpl.html",
+    "<div class=\"slide win-height\" overall-rating data-data = \"overall_rating_data\">\n" +
+    "	<div class=\"slide-holder\">\n" +
+    "		<div class=\"holder\">\n" +
+    "			<div class=\"chart-outer\">\n" +
+    "				<div id=\"barchart\"></div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>");
+}]);
+
+angular.module("live/overall-ratings/overall-ratings.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("live/overall-ratings/overall-ratings.tpl.html",
+    "<div class=\"slide win-height\" overall-rating data-data = \"overall_rating_data\">\n" +
+    "	<div class=\"slide-holder\">\n" +
+    "		<div class=\"holder\">\n" +
+    "			<div class=\"chart-outer\">\n" +
+    "				<div id=\"barchart\"></div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>");
+}]);
+
+angular.module("live/patch-qsc-analysis/patch-qsc-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("live/patch-qsc-analysis/patch-qsc-analysis.tpl.html",
+    "<div class=\"slide win-height\">\n" +
+    "    <div class=\"slide-holder add\">\n" +
+    "        <div class=\"holder\">\n" +
+    "            <div class=\"inner-holder\">\n" +
+    "                <div class=\"list-holder\">\n" +
+    "                    <ul class=\"list\">\n" +
+    "                        <li class = {{label.action_class}} ng-repeat=\"label in patch_qsc_labels\"><span class=\"bullet\"></span> {{label.action_name}}</li>\n" +
+    "                    </ul>\n" +
+    "                </div>\n" +
+    "                <div class=\"block-holder\">\n" +
+    "                    <div class=\"c-holder\">\n" +
+    "                        <div class=\"box-holder\" patch-pie-chart data-data = \"pakistan_analysis\">\n" +
+    "                            <div id=\"piechart\"></div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"box-holder\">\n" +
+    "                            <div class=\"container-holder\">\n" +
+    "                                <div class=\"container-inner\">\n" +
+    "                                    <div class=\"container\">\n" +
+    "                                        <div class=\"box\">\n" +
+    "                                            <div id=\"chartdiv\" patch-chart-div data-data = \"north_south_percentage\"></div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"container add\">\n" +
+    "                                        <div class=\"box\">\n" +
+    "                                            <div id=\"patch-bar\" patch-bar-one data-data = \"north_analysis\"></div>\n" +
+    "                                        </div>\n" +
+    "                                        <div class=\"box\">\n" +
+    "                                            <div id=\"patch-bar2\" patch-bar-two data-data = \"south_analysis\"></div>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("live/qsc/qsc.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("live/qsc/qsc.tpl.html",
+    "<div class=\"slide win-height\" qsc data-data = \"overall_rating_data\">\n" +
+    "	<div class=\"slide-holder add\">\n" +
+    "		<div class=\"holder\">\n" +
+    "			<div class=\"inner-holder\">\n" +
+    "				<div class=\"list-holder\">\n" +
+    "					<ul class=\"list\">\n" +
+    "						<li class = {{label.option_class}} ng-repeat=\"label in qsc_labels\"><span class=\"bullet\"></span> {{label.option_name}} </li>\n" +
+    "					</ul>\n" +
+    "				</div>\n" +
+    "				<div class=\"block-holder\">\n" +
+    "					<div class=\"c-holder\">\n" +
+    "						<div class=\"block\">\n" +
+    "							<div class=\"chart-outer\">\n" +
+    "								<div id=\"area-chart\"></div>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>");
+}]);
+
+angular.module("live/top-concerns/top-concern.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("live/top-concerns/top-concern.tpl.html",
+    "<div class=\"slide win-height\" top-concern data-data = \"top_concern_data\">\n" +
+    "	<div class=\"slide-holder\">\n" +
+    "		<div class=\"holder\">\n" +
+    "			<div class=\"chart-outer\">\n" +
+    "				<div id=\"container\"></div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>");
 }]);
 
 angular.module("login/login.tpl.html", []).run(["$templateCache", function($templateCache) {

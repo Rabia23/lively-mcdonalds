@@ -31,7 +31,8 @@ module.exports = {
 
     html: [ 'src/index.html' ],
     less: 'src/less/main.less',
-    sass: 'src/sass/styles.scss'
+    sass: 'src/sass/styles.scss',
+    sass_live: 'src/sass-live/styles.scss'
   },
 
   /**

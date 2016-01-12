@@ -5,7 +5,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
   'angular-flot'
 ])
 
-.controller( 'TopConcernCtrl', function TopConcernController( $scope, _, chartService, Graphs, Global ) {
+.controller( 'DashboardTopConcernCtrl', function TopConcernController( $scope, _, chartService, Graphs, Global ) {
 
   $scope.datePicker = {};
   $scope.datePicker.date = {startDate: null, endDate: null};
@@ -13,7 +13,10 @@ angular.module( 'livefeed.dashboard.top_concern', [
   $scope.today = new Date();
   $scope.colors = [];
 
+  console.log("in the top concerns");
+
   Graphs.top_concerns().$promise.then(function(data){
+    console.log(data);
     $scope.data = data.concern_list;
     _.each($scope.data, function(value, index){
       value.label = value.name;

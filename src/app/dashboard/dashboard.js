@@ -57,7 +57,7 @@ angular.module( 'livefeed.dashboard', [
         templateUrl: 'dashboard/regional-analysis/regional-analysis.tpl.html'
       },
       "overall_rating@dashboard":{
-        controller: "OverallRatingCtrl",
+        controller: "DashboardOverallRatingCtrl",
         templateUrl: 'dashboard/overall-rating/overall-rating.tpl.html'
       },
       "overall_feedback@dashboard":{
@@ -74,7 +74,7 @@ angular.module( 'livefeed.dashboard', [
       },
 
       "top_concern@dashboard":{
-        controller: "TopConcernCtrl",
+        controller: "DashboardTopConcernCtrl",
         templateUrl: 'dashboard/top-concern/top-concern.tpl.html'
       }
 

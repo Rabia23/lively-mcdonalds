@@ -1,0 +1,51 @@
+/**************************************
+Load Sass
+**************************************/
+
+$breakpoints: (
+  'xs-phone': 320px,
+  'phone': 480px,
+  'tablet': 768px,
+  'desktop': 1024px,
+  'widescreen': 1441px
+);
+
+// keywords
+$media-expressions: (
+  'screen': 'screen',
+  'print': 'print',
+  'handheld': 'handheld',
+  'landscape': '(orientation: landscape)',
+  'portrait': '(orientation: portrait)',
+  'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
+  'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)'
+);
+
+// ligatured operators ≥ ≤
+
+/*vendor*/
+@import 'vendor/include-media';
+@import 'vendor/normalize';
+
+/*libraries*/
+@import 'lib/variables';
+@import 'lib/functions';
+@import 'lib/helpers';
+@import 'lib/mixins';
+@import 'lib/reset';
+@import 'lib/typography';
+
+/*layouts*/
+@import "layouts/header";
+@import "layouts/main-content";
+
+/*Components*/
+@import "components/slideshow";
+@import "components/list";
+@import "components/benchmark-map";
+
+/*Modal styles*/
+
+/**************************************
+Styles
+**************************************/

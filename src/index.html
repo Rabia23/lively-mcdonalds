@@ -13,18 +13,33 @@
 
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
-    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" ng-if = "currentState != 'live'"/><% }); %>
+
+    <link rel="stylesheet" type="text/css" href= "assets/live.css" ng-if = "currentState == 'live'"%>
+    
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300,900' rel='stylesheet' type='text/css'>
+
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300,900' rel='stylesheet' type='text/css' >
+
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
 
     <script type="text/javascript" src="assets/javascript/main.js"></script>
 
+    <script type="text/javascript" src="assets/javascript/jquery.main1.js"></script>
+
+    <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
+    <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/light.js"></script>
+    <script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
+
+
   </head>
   <body ng-class = "{dashboard: (currentState != 'coupon' && currentState != 'login')}">
     <div id= "wrapper">
-      <header id="header">
+      <header id="header" ng-show = "currentState != 'live'">
        	<ul class="header-list" ng-show = "show_username">
        		<li class="name">
        			Welcome <span class="name">{{username}}</span>
@@ -34,7 +49,7 @@
         <div class="logo"><a href="http:\\mcdonalds.com.pk" target="_blank"><img src="assets/images/logo.jpg" alt="McDonald &reg;"></a></div>
       </header>
       <main id="main" role="main">
-       <div class="banner-holder">
+       <div class="banner-holder" ng-show = "currentState != 'live'">
        	<header class="header">
           <div class="header-holder">
             <h1>
@@ -47,7 +62,7 @@
        <!--  <div ui-view></div> -->
         <ui-view></ui-view>
       </main>
-      <footer id="footer">
+      <footer id="footer" ng-if = "currentState != 'live'">
         <div class="footer-inner">
         	<div class="footer-holder">
           <div class="frame">

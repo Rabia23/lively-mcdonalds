@@ -1,0 +1,70 @@
+<div id="wrapper">
+	<header id="header">
+		<div class="header-block">
+			<div class="logo"><a href="http://www.mcdonalds.com.pk/" target="_blank"><img src="assets/images/logo.png" alt="MacDonald's"></a></div>
+			<div class="slider">
+				<div class="slideset">
+					<div class="heading-slide"><h2>qsc complaints</h2></div>
+					<div class="heading-slide"><h2>business segment</h2></div>
+					<div class="heading-slide"><h2>overall rating</h2></div>
+					<div class="heading-slide"><h2>top concerns</h2></div>
+					<div class="heading-slide"><h2>Patch  qsc analysis</h2></div>
+					<div class="heading-slide"><h2>benchmark map</h2></div>
+				</div>
+				<h1>Country Wide</h1>
+			</div>
+		</div>
+		<div class="header-content">
+			<time datetime="2015-12-23 13:49"><strong>{{time}}</strong>  {{date_output}}</time>
+			<ul class="info-list">
+				<li>
+					<strong class="title">Overall Experience</strong>
+					<ul>
+						<li>{{top_ranking.overall_experience.option_text}}</li>
+					</ul>
+				</li>
+				<li>
+					<strong class="title">top Concern</strong>
+					<ul>
+						<li>{{top_ranking.top_concern}}</li>
+					</ul>
+				</li>
+				<li>
+					<strong class="title">Positive / Negative Feedback</strong>
+					<ul>
+						<li class="positive">{{top_ranking.positive_negative_feedback.positive_feedback_count}}</li>
+						<li>{{top_ranking.positive_negative_feedback.negative_feedback_count}}</li>
+					</ul>
+				</li>
+				<li>
+					<strong class="title">QSC complaints</strong>
+					<ul>
+						<li ng-repeat = "q_count in qsc_ranking" ng-class = "{'item2': q_count.option_name == 'Service', 'item3': q_count.option_name == 'Cleanliness'}">{{q_count.option_count}}</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</header>
+
+	<div class="slideshow win-height win-min-height">
+		<div class="slideset win-height">
+			<ui-view name = "qsc"></ui-view>
+			<ui-view name = "business_segment"></ui-view>
+			<ui-view name = "overall_rating"></ui-view>
+			<ui-view name = "top_concern"></ui-view>
+			<ui-view name = "patch_qsc_analysis"></ui-view>
+			<ui-view name = "benchmark_map"></ui-view>
+
+		</div>
+		<div class="pagination-holder" init-slide>
+			<ul class="pagination">
+				<li><a href="#"><span>QSc</span></a></li>
+				<li><a href="#"><span>Business Segment</span></a></li>
+				<li><a href="#"><span>Overall rating</span></a></li>
+				<li><a href="#"><span>Top Concerns</span></a></li>
+				<li><a href="#"><span>Patch  qsc analysis</span></a></li>
+				<li><a href="#"><span>Benchmark map</span></a></li>
+			</ul>
+		</div>
+	</div>
+</div>

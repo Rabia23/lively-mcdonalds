@@ -6,7 +6,7 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
 ])
 
 .controller( 'OverallFeedbackCtrl', function DashboardController( $scope, _ , Graphs,chartService, Global ) {
-  
+  console.log("feedback");
   $scope.show_loading = false;
 
   $scope.today = new Date();

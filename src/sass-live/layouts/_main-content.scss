@@ -1,0 +1,52 @@
+#wrapper{
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	min-height: 100%;
+}
+
+.chart-outer{
+	width: 100%;
+	height: 100%;
+	@extend %clearfix;
+	padding: 0 5%;
+	
+	> div{
+		width: 100% !important;
+		height: 100% !important;
+	}
+}
+
+#piechart,
+#container{
+	width: 100% !important;
+	height: 100% !important;
+	
+	.amcharts-chart-div{
+		z-index: 1;
+		position: relative;
+		
+		&:after{
+			position: absolute;
+			left: 10%;
+			right: 4%;
+			top: 20%;
+			bottom: -60px;
+			content: '';
+			pointer-events: none;
+			z-index: -1;
+			background: url(../../assets/images/donut-shadow.png) 50% 0;
+			background-size: 100% 100%;
+		}
+	}
+}
+ 
+#area-chart{
+	overflow: visible !important;
+	
+	.amcharts-chart-div{overflow: visible !important;}
+}
+
+/*svg{
+	text{text-shadow: 0 0 2px #000;}
+}*/

@@ -1,0 +1,39 @@
+<div class="slide win-height">
+    <div class="slide-holder add">
+        <div class="holder">
+            <div class="inner-holder">
+                <div class="list-holder">
+                    <ul class="list">
+                        <li class = {{label.action_class}} ng-repeat="label in patch_qsc_labels"><span class="bullet"></span> {{label.action_name}}</li>
+                    </ul>
+                </div>
+                <div class="block-holder">
+                    <div class="c-holder">
+                        <div class="box-holder" patch-pie-chart data-data = "pakistan_analysis">
+                            <div id="piechart"></div>
+                        </div>
+                        <div class="box-holder">
+                            <div class="container-holder">
+                                <div class="container-inner">
+                                    <div class="container">
+                                        <div class="box">
+                                            <div id="chartdiv" patch-chart-div data-data = "north_south_percentage"></div>
+                                        </div>
+                                    </div>
+                                    <div class="container add">
+                                        <div class="box">
+                                            <div id="patch-bar" patch-bar-one data-data = "north_analysis"></div>
+                                        </div>
+                                        <div class="box">
+                                            <div id="patch-bar2" patch-bar-two data-data = "south_analysis"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

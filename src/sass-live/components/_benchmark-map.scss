@@ -1,0 +1,141 @@
+.detail-holder{
+	overflow: hidden;
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 50px;
+	max-width: 1440px;
+	color: $mine-shaft;
+	
+	@include media("≥widescreen"){padding: 0 120px;}
+	
+	> .table-inner{
+		display: table-cell;
+		vertical-align: middle;
+		width: 40%;
+		padding: 0 15px;
+		
+		&:first-child{
+			padding: 20px 15px;
+			width: 60%;
+			border: 1px solid $lemon;
+			background: url(../../assets/images/bg-table.png);
+		}
+	}
+	
+	.inner-box{
+		overflow: hidden;
+		padding: 20px 0 30px;
+		color: $mine-shaft;
+		
+		
+		@include media("≥widescreen"){padding: 30px 0;}
+		
+		.hold{overflow: hidden;}
+		
+		h3{
+			color: $rosso-corsa;
+			margin: 0 0 10px;
+			font-weight: 400;
+			letter-spacing: 1px;
+
+			@include media("≥widescreen"){font-size: 24px;}
+		}
+		
+		.name{
+			display: block;
+			margin: 0 0 10px;
+			font-size: 50px;
+			line-height: 56px;
+			font-weight: 300;
+
+			@include media("≥widescreen"){
+				font-size: 78px;
+				line-height: 80px;
+			}
+		}
+		
+		.info{
+			font-size: 20px;
+			line-height: 26px;
+			text-transform: uppercase;
+			font-weight: 300;
+			strong{font-weight: 700;}
+			@include media("≥widescreen"){
+				font-size: 24px;
+				line-height: 28px;
+			}
+		}
+	}
+}
+
+.table-holder{
+	background: url(../images/bg-table.png) rgba($dandelion,0.15);
+	font-size: 16px;
+	line-height: 22px;
+	width: 100%;
+	padding: 9px;
+	border: 1px solid $lemon;
+	
+	@include media("≥widescreen"){
+		font-size: 20px;
+		line-height: 26px;
+	}
+}
+
+.info-block{
+	overflow: hidden;
+	text-transform: uppercase;
+	
+	h3{
+		color: $rosso-corsa;
+		margin: 0 8px 15px;
+		font-weight: 400;
+		letter-spacing: 1px;
+
+		@include media("≥widescreen"){
+			margin: 0 10px 20px;
+			font-size: 24px;
+		}
+	}
+	
+	ul{
+		@extend %listreset;
+		overflow: hidden;
+		
+		.name{
+			overflow: hidden;
+			font-size: 20px;
+			line-height: 26px;
+			font-weight: 300;
+
+			@include media("≥widescreen"){
+				font-size: 30px;
+				line-height: 36px;
+			}
+		}
+
+		.count{
+			float: right;
+			margin: 0 0 0 5px;
+			font-size: 20px;
+			line-height: 26px;
+			text-align: right;
+
+			@include media("≥widescreen"){
+				font-size: 30px;
+				line-height: 36px;
+			}
+		}
+		
+		
+		li{
+			overflow: hidden;
+			border-top: 1px solid $lemon;
+			padding: 20px 8px;
+			
+			@include media("≥widescreen"){padding: 30px 10px;}
+		}
+	}
+}
