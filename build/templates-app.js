@@ -522,7 +522,7 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
 angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/positive-negative-feedback/comments-modal.tpl.html",
     "<div class=\"modal-header\">\n" +
-    "  <a ng-click = \"cancel()\" class=\"pull-right close-btn-font\"><i class=\"glyphicon glyphicon-remove\"></i></a>\n" +
+    "  <a ng-click = \"cancel()\" class=\"pull-right close-btn-font\"><i class=\"fa fa-times\"></i></a>\n" +
     "  <h2>Positive Negative Feedback</h2>\n" +
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
@@ -689,61 +689,65 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "         <a ng-click = \"backToAreas()\" style = \"cursor:pointer\">Area</a>\n" +
     "       </span>\n" +
     "       <span ng-show = \"area_view == false && regional_view == false\">\n" +
-    "         <a ng-click = \"backToRegions(selected_area)\" style = \"cursor:pointer\">{{selected_area.name}}/</a>\n" +
+    "         <a ng-click = \"backToRegions(selected_area)\" style = \"cursor:pointer\">{{selected_area.name}}</a>\n" +
     "       </span>\n" +
     "       <span ng-show = \"area_view == false && regional_view == false && city_view == false\">\n" +
-    "         <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}}/</a>\n" +
+    "         <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}}</a>\n" +
     "       </span>\n" +
     "     </div>\n" +
-    "      <div class=\"morris-content-holder\" ng-repeat = \"area in donut_graph_data.objects track by $index\" ng-show = \"area_view == true\">\n" +
-    "        <div class=\"morris-graph-holder\" same-region-height data-data=\"donut_graph_data.donutData[$index]\">\n" +
-    "           <div class=\"morris-holder\">\n" +
-    "              <div ng-show=\"area.show_chart\" morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open(option,area,region,city,branch)\"></div>\n" +
-    "              <div ng-hide=\"area.show_chart\">No data available</div>\n" +
-    "           </div>\n" +
-    "            \n" +
-    "        </div>\n" +
-    "        <strong class=\"title\"><a ng-click = \"showChart(area, 'regions')\" style = \"cursor:pointer;\">{{area.name}}</a></strong>\n" +
-    "      </div>\n" +
-    "       <div ng-show=\"show_string && area_view == true\">No area available</div>\n" +
+    "     \n" +
+    "     <div class=\"regional-holder\">\n" +
+    "     	<div class=\"regional-frame\">\n" +
+    "			  <div class=\"morris-content-holder\" ng-repeat = \"area in donut_graph_data.objects track by $index\" ng-show = \"area_view == true\">\n" +
+    "				<div class=\"morris-graph-holder\" same-region-height data-data=\"donut_graph_data.donutData[$index]\">\n" +
+    "				   <div class=\"morris-holder\">\n" +
+    "					  <div ng-show=\"area.show_chart\" morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open(option,area,region,city,branch)\"></div>\n" +
+    "					  <div ng-hide=\"area.show_chart\">No data available</div>\n" +
+    "				   </div>\n" +
+    "\n" +
+    "				</div>\n" +
+    "				<strong class=\"title\"><a ng-click = \"showChart(area, 'regions')\" style = \"cursor:pointer;\">{{area.name}}</a></strong>\n" +
+    "			  </div>\n" +
+    "			   <div ng-show=\"show_string && area_view == true\">No area available</div>\n" +
     "\n" +
     "\n" +
-    "      <div class=\"morris-content-holder\" ng-repeat = \"region in donut_regions_data.objects track by $index\" ng-show = \"area_view == false && regional_view == true\">\n" +
-    "        <div class=\"morris-graph-holder\" same-region-height data-data=\"donut_regions_data.donutData[$index]\">\n" +
-    "           <div class=\"morris-holder\">\n" +
-    "              <div ng-show=\"region.show_chart\" morris-chart data-data=\"donut_regions_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_regions_data.donutOptions[$index]\" data-action=\"open(option,selected_area,region,city,branch)\"></div>\n" +
-    "              <div ng-hide=\"region.show_chart\">No data available</div>\n" +
-    "           </div>\n" +
-    "            \n" +
-    "          </div>\n" +
-    "          <strong class=\"title\"><a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{region.name}}</a></strong>\n" +
-    "        </div>\n" +
-    "        <div ng-show=\"show_string && area_view == false && regional_view == true\">No region available</div>\n" +
+    "			  <div class=\"morris-content-holder\" ng-repeat = \"region in donut_regions_data.objects track by $index\" ng-show = \"area_view == false && regional_view == true\">\n" +
+    "				<div class=\"morris-graph-holder\" same-region-height data-data=\"donut_regions_data.donutData[$index]\">\n" +
+    "				   <div class=\"morris-holder\">\n" +
+    "					  <div ng-show=\"region.show_chart\" morris-chart data-data=\"donut_regions_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_regions_data.donutOptions[$index]\" data-action=\"open(option,selected_area,region,city,branch)\"></div>\n" +
+    "					  <div ng-hide=\"region.show_chart\">No data available</div>\n" +
+    "				   </div>\n" +
+    "\n" +
+    "				  </div>\n" +
+    "				  <strong class=\"title\"><a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{region.name}}</a></strong>\n" +
+    "				</div>\n" +
+    "				<div ng-show=\"show_string && area_view == false && regional_view == true\">No region available</div>\n" +
     "\n" +
     "\n" +
-    "      <div class=\"morris-content-holder\" ng-repeat = \"city in donut_cities_data.objects track by $index\" ng-show = \"area_view == false && regional_view == false && city_view == true\">\n" +
-    "        <div class=\"morris-graph-holder\" same-city-height data-data = \"donut_cities_data.donutData[$index]\">\n" +
-    "           <div class=\"morris-holder\">\n" +
-    "              <div ng-show=\"city.show_chart\" morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\" data-action=\"open(option,selected_area,selected_region,city,branch)\"></div>\n" +
-    "              <div ng-hide=\"city.show_chart\">No data available</div>\n" +
-    "           </div>\n" +
-    "          </div>\n" +
-    "          <strong class=\"title\"><a ng-click = \"showChart(city, 'branches')\" style = \"cursor:pointer;\">{{city.name}}</a></strong>\n" +
-    "        </div>\n" +
-    "        <div ng-show=\"show_string && area_view == false && regional_view == false && city_view == true\">No city available</div>\n" +
+    "			  <div class=\"morris-content-holder\" ng-repeat = \"city in donut_cities_data.objects track by $index\" ng-show = \"area_view == false && regional_view == false && city_view == true\">\n" +
+    "				<div class=\"morris-graph-holder\" same-city-height data-data = \"donut_cities_data.donutData[$index]\">\n" +
+    "				   <div class=\"morris-holder\">\n" +
+    "					  <div ng-show=\"city.show_chart\" morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\" data-action=\"open(option,selected_area,selected_region,city,branch)\"></div>\n" +
+    "					  <div ng-hide=\"city.show_chart\">No data available</div>\n" +
+    "				   </div>\n" +
+    "				  </div>\n" +
+    "				  <strong class=\"title\"><a ng-click = \"showChart(city, 'branches')\" style = \"cursor:pointer;\">{{city.name}}</a></strong>\n" +
+    "				</div>\n" +
+    "				<div ng-show=\"show_string && area_view == false && regional_view == false && city_view == true\">No city available</div>\n" +
     "\n" +
     "\n" +
-    "      <div class=\"morris-content-holder\" ng-repeat = \"branch in donut_branches_data.objects track by $index\" ng-show = \"area_view == false && regional_view == false && city_view == false\">\n" +
-    "        <div class=\"morris-graph-holder\" same-branch-height  data-data = \"donut_branches_data.donutData[$index]\">\n" +
-    "           <div class=\"morris-holder\">\n" +
-    "              <div ng-show=\"branch.show_chart\" morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\" data-action=\"open(option,selected_area,selected_region,selected_city,branch)\"></div>\n" +
-    "              <div ng-hide=\"branch.show_chart\">No data available</div>\n" +
-    "           </div>\n" +
-    "          </div>\n" +
-    "          <strong class=\"title\">{{branch.name}}</strong>\n" +
-    "        </div>\n" +
-    "        <div ng-show=\"show_string && area_view == false && regional_view == false && city_view == false\">No branch available</div>\n" +
-    "\n" +
+    "			  <div class=\"morris-content-holder\" ng-repeat = \"branch in donut_branches_data.objects track by $index\" ng-show = \"area_view == false && regional_view == false && city_view == false\">\n" +
+    "				<div class=\"morris-graph-holder\" same-branch-height  data-data = \"donut_branches_data.donutData[$index]\">\n" +
+    "				   <div class=\"morris-holder\">\n" +
+    "					  <div ng-show=\"branch.show_chart\" morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\" data-action=\"open(option,selected_area,selected_region,selected_city,branch)\"></div>\n" +
+    "					  <div ng-hide=\"branch.show_chart\">No data available</div>\n" +
+    "				   </div>\n" +
+    "				  </div>\n" +
+    "				  <strong class=\"title\">{{branch.name}}</strong>\n" +
+    "				</div>\n" +
+    "				<div ng-show=\"show_string && area_view == false && regional_view == false && city_view == false\">No branch available</div>\n" +
+    "			</div>\n" +
+    "     	</div>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -752,7 +756,7 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
 angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/regional-analysis/sqc-modal.tpl.html",
     "<div class=\"modal-body info-area\">\n" +
-    "  <a ng-click = \"ok()\" class=\"pull-right close-btn-font\"><i class=\"glyphicon glyphicon-remove\"></i></a>\n" +
+    "  <a ng-click = \"ok()\" class=\"pull-right close-btn-font\"><i class=\"fa fa-times\"></i></a>\n" +
     "  <h2>Regional Analysis</h2>\n" +
     "	<a style = \"cursor:pointer;\" class=\"btn-slider glyphicon glyphicon-menu-left\" ng-click=\"leftClickDisabled || previous(area,region,city,branch,sqc_data)\"></a>\n" +
     "	<a style = \"cursor:pointer;\" class=\"btn-slider glyphicon glyphicon-menu-right\" ng-click=\"rightClickDisabled || next(area,region,city,branch,sqc_data)\"></a>\n" +
