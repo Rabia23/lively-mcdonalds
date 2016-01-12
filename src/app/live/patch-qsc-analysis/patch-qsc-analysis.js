@@ -81,7 +81,7 @@
                         //"labelRadius": -75,
                         "labelText": "",
                         "fontSize": 20,
-						"marginTop":0,
+						"marginTop":-75,
 						"marginRight":0,
 						"marginLeft":0,
 						"marginBottom":0,

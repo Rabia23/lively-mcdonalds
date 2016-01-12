@@ -95,7 +95,7 @@ angular.module( 'livefeed.live', [
 
   live_dashboard();
 
-   //WebSocket.init();
+  //WebSocket.init();
 
   $rootScope.$on('live-data-received', function (event, data) {
     top_rankings();
@@ -134,11 +134,6 @@ angular.module( 'livefeed.live', [
     WebSocket.close_socket();
     WebSocket.init();
   });
-
-  // $rootScope.$on('web-socket-error', function (event, data) {
-  //   WebSocket.close_socket();
-  //   WebSocket.init();
-  // });
 
 
 
