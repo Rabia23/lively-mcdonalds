@@ -652,13 +652,7 @@ class LiveDashboardView(APIView):
         question = Question.objects.get(type=constants.TYPE_2)
         section_start_date = str(date_from.date())
         for single_date in rrule.rrule(rule, dtstart=date_from, until=date_to):
-            if type != constants.DAILY_ANALYSIS:
-                section_end_date = str(single_date.date())
-                feedback_options = FeedbackOption.manager.date(section_start_date, section_end_date)
-                section_start_date = section_end_date
-            else:
-                feedback_options = FeedbackOption.manager.date(str(single_date.date()), str(single_date.date()))
-
+            feedback_options = FeedbackOption.manager.date(str(single_date.date()), str(single_date.date()))
             feedback_options = feedback_options.question_parent_options(question)
             filtered_feedback = feedback_options.values('option_id', 'option__text', 'option__parent_id').\
                                     annotate(count=Count('option_id'))
@@ -667,13 +661,12 @@ class LiveDashboardView(APIView):
             date_data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
             feedback_records_list.append({'date': single_date.date(), 'data': date_data})
 
-
         if len(feedback_records_list) > constants.NO_OF_DAYS:
             feedback_records_list = feedback_records_list[-constants.NO_OF_DAYS:]
 
         return feedback_records_list
 
-    @method_decorator(my_login_required)
+    # @method_decorator(my_login_required)
     def get(self, request, format=None):
         try:
             now = datetime.now()
