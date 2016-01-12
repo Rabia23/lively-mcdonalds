@@ -379,7 +379,11 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "  </div>\n" +
     "  <div class=\"ibox-content same-height\">\n" +
     "	  <div class=\"block-holder\">\n" +
-    "		  <div id=\"world-map\"></div>\n" +
+    "		  <div id=\"world-map\">\n" +
+    "		  	<div map-lazy-load=\"http://maps.google.com/maps/api/js\">\n" +
+    "			  	<map center=\"30,70\" zoom=\"{{zoom}}\" disable-default-u-i=\"true\" default-style=\"false\"></map>\n" +
+    "				</div>\n" +
+    "		  </div>\n" +
     "	  </div>\n" +
     "  </div>\n" +
     "</div>\n" +
