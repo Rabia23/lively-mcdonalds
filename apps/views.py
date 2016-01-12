@@ -9,9 +9,10 @@ from apps.city.models import City
 from apps.option.models import Option
 from apps.option.utils import generate_missing_options, generate_missing_sub_options, generate_option_groups, \
     generate_segmentation_with_options
+from apps.person.enum import UserRolesEnum
 from apps.question.models import Question
 from apps.region.models import Region
-from apps.review.models import FeedbackOption, Feedback
+from apps.review.models import FeedbackOption, Feedback, Concern
 from apps.review.serializers import FeedbackSerializer
 from apps.review.utils import generate_missing_actions, valid_action_id
 from apps.serializers import ObjectSerializer, FeedbackCommentSerializer
@@ -34,8 +35,11 @@ class LoginView(APIView):
         password = get_data_param(request, 'password', None)
         user = authenticate(username=username, password=password)
         if user:
-            token = Token.objects.get_or_create(user=user)
-            data = {'status': True, 'message': 'User authenticated', 'token': token[0].key, 'username': user.username}
+            if user.info.first().role == UserRolesEnum.GRO:
+                data = {'status': False, 'message': 'User has no permission to login', 'token': None, 'username': user.username}
+            else:
+                token = Token.objects.get_or_create(user=user)
+                data = {'status': True, 'message': 'User authenticated', 'token': token[0].key, 'username': user.username}
         else:
             data = {'status': False, 'message': 'User not authenticated', 'token': None, 'username': None}
 
@@ -375,16 +379,8 @@ class TopConcernsView(APIView):
     @method_decorator(my_login_required)
     def get(self, request, format=None):
         try:
-            concerns = [
-                    {"name": "Ketchup", "weight": "57"},
-                    {"name": "Bun", "weight": "20"},
-                    {"name": "Wings", "weight": "41"},
-                    {"name": "Fries", "weight": "18"},
-                    {"name": "Chicken", "weight": "50"}
-                ]
-
-            data = {'concern_count': len(concerns), 'concern_list': concerns}
-            return Response(data)
+            concerns = [concern.to_dict() for concern in Concern.objects.filter(is_active=True).order_by("-count")[:5]]
+            return {'concern_count': len(concerns), 'concern_list': concerns}
         except Exception as e:
             return Response(None)
 
@@ -597,14 +593,7 @@ class LiveDashboardView(APIView):
         return complaint_view_list
 
     def _get_top_concers(self):
-        concerns = [
-                {"name": "Ketchup", "weight": "57"},
-                {"name": "Bun", "weight": "20"},
-                {"name": "Wings", "weight": "41"},
-                {"name": "Fries", "weight": "18"},
-                {"name": "Chicken", "weight": "50"}
-            ]
-
+        concerns = [concern.to_dict() for concern in Concern.objects.filter(is_active=True).order_by("-count")[:5]]
         return {'concern_count': len(concerns), 'concern_list': concerns}
 
     def _get_overall_feedback(self, date_from, date_to):
@@ -666,7 +655,7 @@ class LiveDashboardView(APIView):
 
         return feedback_records_list
 
-    # @method_decorator(my_login_required)
+    @method_decorator(my_login_required)
     def get(self, request, format=None):
         try:
             now = datetime.now()

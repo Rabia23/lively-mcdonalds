@@ -4,7 +4,6 @@ from django.db.models.aggregates import Count
 from apps.branch.models import Branch
 from apps.city.models import City
 from apps.option.models import Option
-from apps.person.models import UserInfo
 from apps.question.models import Question
 from apps import constants
 from datetime import datetime
@@ -170,6 +169,18 @@ class Feedback(models.Model):
         if options:
             return True
         return False
+
+    def keyword_analysis(self):
+        if self.comment_exists and self.is_negative():
+            for concern in Concern.get_all_concerns():
+                if self.comment.find(concern.keyword) != -1:
+                    concern.count += 1
+                    concern.save()
+
+    def comment_exists(self):
+        if not self.comment or self.comment == "":
+            return False
+        return True
 
     def mark_deferred_if_positive(self):
         if not self.is_negative():
@@ -438,3 +449,31 @@ class FeedbackOption(models.Model):
             qsc_list.append({"count": dict["count"], "option_text": option.text, "option_id": option.id})
 
         return qsc_list
+
+
+class Concern(models.Model):
+    keyword = models.CharField(max_length=255, db_index=True, unique=True)
+    count = models.IntegerField(db_index=True, default=0)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    def to_dict(self):
+        try:
+            concern = {
+                "id": self.id,
+                "name": self.keyword,
+                "weight": self.count,
+            }
+            return concern
+        except Exception as e:
+            return {}
+
+    @staticmethod
+    def get_if_exists(keyword):
+        concern = Concern.objects.filter(keyword=keyword).first()
+        if concern:
+            return concern
+
+    @staticmethod
+    def get_all_concerns():
+        return Concern.objects.filter(is_active=True)

@@ -67,10 +67,9 @@ class FeedbackView(APIView):
             q.put("ping")
 
             feedback.mark_deferred_if_positive()
+            feedback.keyword_analysis()
 
             if feedback.is_negative():
-                # context = Context({'feedback_id': feedback.id})
-                # send_negative_feedback_email(context)
                 send_negative_feedback_email.delay(feedback.id)
 
             return response(data)
