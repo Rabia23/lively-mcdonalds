@@ -3,10 +3,28 @@ angular.module( 'helper_factories', ['ngResource'])
 .factory('Global', [ '_', function(_) {
 
   return {
-    complaintAnalysisActionStrings :{
-      1: "Unprocessed",
-      2: "Processed",
-      3: "Deferred"
+    complaintAnalysisAction: {
+      1: ["Unprocessed", "#bf1616"],
+      2: ["Processed", "#01c211"],
+      3: ["Deferred", "#ffee00"]
+    },
+
+    complaintAnalysisActionPriority: {
+      "Unprocessed": 1,
+      "Processed": 2,
+      "Deferred": 3
+    },
+
+    qscClass: {
+      "Cleanliness": "item3",
+      "Quality": "",
+      "Service": "item2"
+    },
+
+    complaintAnalysisActionClass: {
+      1: "",
+      2: "processed",
+      3: "item2"
     },
 
     mainRatingColorScheme: {

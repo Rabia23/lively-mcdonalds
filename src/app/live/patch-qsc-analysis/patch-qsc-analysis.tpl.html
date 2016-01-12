@@ -4,9 +4,7 @@
             <div class="inner-holder">
                 <div class="list-holder">
                     <ul class="list">
-                        <li><span class="bullet"></span> Unprocessed</li>
-                        <li class="item2"><span class="bullet"></span> Deferred</li>
-                        <li class="processed"><span class="bullet"></span> Processed</li>
+                        <li class = {{label.action_class}} ng-repeat="label in patch_qsc_labels"><span class="bullet"></span> {{label.action_name}}</li>
                     </ul>
                 </div>
                 <div class="block-holder">

@@ -32,12 +32,19 @@
       $scope.north_analysis = [];
       $scope.south_analysis = [];
       $scope.north_south_percentage = [];
+      $scope.patch_qsc_labels = [];
+
+      _.each($scope.complaint_view[0].data.action_analysis, function (value) {
+         $scope.patch_qsc_labels.push({action_name: Global.complaintAnalysisAction[value.action_taken][0], action_class: Global.complaintAnalysisActionClass[value.action_taken]});
+      });
+      $scope.patch_qsc_labels = _.sortBy($scope.patch_qsc_labels, function (value) { return Global.complaintAnalysisActionPriority[value.action_name];});
+
       _.each($scope.complaint_view, function (value) {
          var region_name = value.object.name;
          if(region_name === "Pakistan") {
             pakistan_feedback_count = value.data.feedback_count;
             _.each(value.data.action_analysis,function(dat){
-               $scope.pakistan_analysis.push({ "category": Global.complaintAnalysisActionStrings[dat.action_taken], "column-1": dat.count });
+               $scope.pakistan_analysis.push({ "category": Global.complaintAnalysisAction[dat.action_taken][0], "column-1": dat.count, "color": Global.complaintAnalysisAction[dat.action_taken][1] });
             });
          }
          else if(region_name === "South") {
@@ -86,13 +93,9 @@
 						"marginLeft":0,
 						"marginBottom":0,
 						"autoMargins":false,
-                        "colors": [
-                            "#bf1616",
-                            "#01c211",
-                            "#ffee00"
-                        ],
                         "titleField": "category",
                         "valueField": "column-1",
+                        "colorField": "color",
                         "allLabels": [],
                         "balloon": {},
                         "titles": [],
@@ -121,7 +124,7 @@
                         "categoryField": "category",
                         "startDuration": 1,
                         "fontFamily": "'Oswald', sans-serif",
-                        "fontSize": 12,
+                        "fontSize": 16,
                         "columnSpacing": 12,
                         "columnWidth": 0.9,
                         "categoryAxis": {
@@ -216,7 +219,7 @@
                         "categoryField": "category",
                         "startDuration": 1,
                         "fontFamily": "'Oswald', sans-serif",
-                        "fontSize": 12,
+                        "fontSize": 16,
                         "columnSpacing": 12,
                         "columnWidth": 0.9,
                         "categoryAxis": {
@@ -316,7 +319,7 @@
                         ],
                         "startDuration": 1,
                         "fontFamily": "'Oswald', sans-serif",
-                        "fontSize": 18,
+                        "fontSize": 16,
                         "handDrawScatter": 0,
                         "theme": "default",
                         "categoryAxis": {
