@@ -7,15 +7,13 @@
 		left: 0;
 		right: 0;
 		top: 0;
-		bottom: 82px;
+		bottom: 72px;
 		background: url(../assets/images/bg-body.jpg) 50% 0 $base-background-color;
   		background-size: cover;
 		content: "";
 	}
 	
-	.slideset{
-		position: relative;
-	}
+	.slideset{position: relative;}
 	
 	.slide{
 		position: absolute;
@@ -23,14 +21,14 @@
 		right: 0;
 		top: 0;
 		bottom: 0;
-		padding: 172px 0 103px;
+		padding: 165px 0 83px;
 		
 		&:before{
 			position: absolute;
 			left: 0;
 			right: 0;
-			top: 172px;
-			bottom: 103px;
+			top: 165px;
+			bottom: 83px;
 			content: "";
 			opacity: 0.65;
 			background: rgba($black,0.1);
@@ -49,6 +47,7 @@
 		height: 100%;
 		position: relative;
 		z-index: 9;
+		overflow: hidden;
 		
 		.block,
 		.holder{
@@ -176,7 +175,7 @@
 				span{
 					display: block;
 					position: relative;
-					padding: 28px 5px;
+					padding: 23px 5px;
 					overflow: hidden;
 
 					&:after{
@@ -317,6 +316,7 @@
 	}
 	
 	&.add{
+		margin: 0 -6px;
 		.box{
 			width: 49%;
 			width: -webkit-calc(50% - 12px);

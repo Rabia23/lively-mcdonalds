@@ -124,7 +124,7 @@
                         "categoryField": "category",
                         "startDuration": 1,
                         "fontFamily": "'Oswald', sans-serif",
-                        "fontSize": 12,
+                        "fontSize": 16,
                         "columnSpacing": 12,
                         "columnWidth": 0.9,
                         "categoryAxis": {
@@ -219,7 +219,7 @@
                         "categoryField": "category",
                         "startDuration": 1,
                         "fontFamily": "'Oswald', sans-serif",
-                        "fontSize": 12,
+                        "fontSize": 16,
                         "columnSpacing": 12,
                         "columnWidth": 0.9,
                         "categoryAxis": {
@@ -319,7 +319,7 @@
                         ],
                         "startDuration": 1,
                         "fontFamily": "'Oswald', sans-serif",
-                        "fontSize": 18,
+                        "fontSize": 16,
                         "handDrawScatter": 0,
                         "theme": "default",
                         "categoryAxis": {
