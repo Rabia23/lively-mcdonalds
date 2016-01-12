@@ -37,7 +37,7 @@
          if(region_name === "Pakistan") {
             pakistan_feedback_count = value.data.feedback_count;
             _.each(value.data.action_analysis,function(dat){
-               $scope.pakistan_analysis.push({ "category": Global.complaintAnalysisActionStrings[dat.action_taken], "column-1": dat.count });
+               $scope.pakistan_analysis.push({ "category": Global.complaintAnalysisAction[dat.action_taken][0], "column-1": dat.count, "color": Global.complaintAnalysisAction[dat.action_taken][1] });
             });
          }
          else if(region_name === "South") {
@@ -86,13 +86,9 @@
 						"marginLeft":0,
 						"marginBottom":0,
 						"autoMargins":false,
-                        "colors": [
-                            "#bf1616",
-                            "#01c211",
-                            "#ffee00"
-                        ],
                         "titleField": "category",
                         "valueField": "column-1",
+                        "colorField": "color",
                         "allLabels": [],
                         "balloon": {},
                         "titles": [],
