@@ -4,9 +4,7 @@
 			<div class="inner-holder">
 				<div class="list-holder">
 					<ul class="list">
-						<li><span class="bullet"></span> quality</li>
-						<li class="item2"><span class="bullet"></span> service</li>
-						<li class="item3"><span class="bullet"></span> CLEANLINESS</li>
+						<li class = {{label.option_class}} ng-repeat="label in business_segments_labels"><span class="bullet"></span> {{label.option_name}}</li>
 					</ul>
 				</div>
 				<div class="block-holder">
