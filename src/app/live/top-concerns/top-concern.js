@@ -46,9 +46,10 @@
                "marginLeft": "-15%",
               "marginTop": -105,
               "autoMargins":false,
-              //"labelRadius": -45,
-              //"labelText": "[[value]]",
-              "labelsEnabled": false,
+              "labelRadius": -75,
+              "labelText": "[[value]]",
+              "color": "#FFFFFF",
+              "labelsEnabled": true,
               "colors": [
                   "#cb1e24",
                   "#178aea",
@@ -59,7 +60,7 @@
               "titleField": "category",
               "valueField": "column-1",
               "fontFamily": "'Oswald', sans-serif",
-              "fontSize": 45,
+              "fontSize": 23,
               "allLabels": [],
               "balloon": {},
               "legend": {
@@ -73,7 +74,8 @@
                 "valueWidth": 0,
                 "position": "right",
                "marginRight":300,
-               "autoMargins":false
+               "autoMargins":false,
+                "fontSize": 45
               },
               "titles": [],
               "dataProvider": data
