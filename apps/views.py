@@ -35,7 +35,7 @@ class LoginView(APIView):
         password = get_data_param(request, 'password', None)
         user = authenticate(username=username, password=password)
         if user:
-            if user.info.first().role == UserRolesEnum.GRO:
+            if user.info.first() and user.info.first().role == UserRolesEnum.GRO:
                 data = {'status': False, 'message': 'User has no permission to login', 'token': None, 'username': user.username}
             else:
                 token = Token.objects.get_or_create(user=user)
