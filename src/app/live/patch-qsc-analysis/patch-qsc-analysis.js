@@ -32,7 +32,7 @@
       $scope.north_analysis = [];
       $scope.south_analysis = [];
       $scope.north_south_percentage = [];
-      _.each($scope.complaint_view function (value) {
+      _.each($scope.complaint_view, function (value) {
          var region_name = value.object.name;
          if(region_name === "Pakistan") {
             pakistan_feedback_count = value.data.feedback_count;
@@ -121,7 +121,7 @@
                         "categoryField": "category",
                         "startDuration": 1,
                         "fontFamily": "'Oswald', sans-serif",
-                        "fontSize": 12,
+                        "fontSize": 16,
                         "columnSpacing": 12,
                         "columnWidth": 0.9,
                         "categoryAxis": {
@@ -216,7 +216,7 @@
                         "categoryField": "category",
                         "startDuration": 1,
                         "fontFamily": "'Oswald', sans-serif",
-                        "fontSize": 12,
+                        "fontSize": 16,
                         "columnSpacing": 12,
                         "columnWidth": 0.9,
                         "categoryAxis": {
@@ -316,7 +316,7 @@
                         ],
                         "startDuration": 1,
                         "fontFamily": "'Oswald', sans-serif",
-                        "fontSize": 18,
+                        "fontSize": 16,
                         "handDrawScatter": 0,
                         "theme": "default",
                         "categoryAxis": {
