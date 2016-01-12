@@ -32,8 +32,7 @@
       $scope.north_analysis = [];
       $scope.south_analysis = [];
       $scope.north_south_percentage = [];
-
-      _.each($scope.complaint_view, function (value) {
+      _.each($scope.complaint_view function (value) {
          var region_name = value.object.name;
          if(region_name === "Pakistan") {
             pakistan_feedback_count = value.data.feedback_count;
@@ -44,12 +43,12 @@
          else if(region_name === "South") {
            complaints = region_data(value.data.action_analysis);
            $scope.south_analysis.push({ "category": region_name.toUpperCase(), "column-1": complaints.unprocessed[0], "column-2": complaints.processed[0], "column-3": complaints.deferred[0] });
-           $scope.north_south_percentage.push({ "category": region_name.toUpperCase(), "column-1": Math.round((value.data.feedback_count / pakistan_feedback_count) * 100) });
+           $scope.north_south_percentage.push({ "category": region_name.toUpperCase(), "column-1": Math.round((value.data.feedback_count / pakistan_feedback_count) * 100), "color": "#ff0f00" });
          }
          else if(region_name === "North") {
            complaints = region_data(value.data.action_analysis);
            $scope.north_analysis.push({ "category": region_name.toUpperCase(), "column-1": complaints.unprocessed[0], "column-2": complaints.processed[0], "column-3": complaints.deferred[0] });
-           $scope.north_south_percentage.push({ "category": region_name.toUpperCase(), "column-1": Math.round((value.data.feedback_count / pakistan_feedback_count) * 100) });
+           $scope.north_south_percentage.push({ "category": region_name.toUpperCase(), "column-1": Math.round((value.data.feedback_count / pakistan_feedback_count) * 100), "color":"#ff6600" });
          }
       });
       $scope.north_south_percentage = _.sortBy($scope.north_south_percentage, function (value) { return value.category; });
@@ -76,12 +75,17 @@
                     {
                         "type": "pie",
                         "startDuration": 0,
-                        "angle": 30,
+                        "angle": 25,
                         "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
-                        "depth3D": 65,
+                        "depth3D": 55,
                         //"labelRadius": -75,
                         "labelText": "",
                         "fontSize": 20,
+						"marginTop":0,
+						"marginRight":0,
+						"marginLeft":0,
+						"marginBottom":0,
+						"autoMargins":false,
                         "colors": [
                             "#bf1616",
                             "#01c211",
@@ -117,7 +121,9 @@
                         "categoryField": "category",
                         "startDuration": 1,
                         "fontFamily": "'Oswald', sans-serif",
-                        "fontSize": 10,
+                        "fontSize": 12,
+                        "columnSpacing": 12,
+                        "columnWidth": 0.9,
                         "categoryAxis": {
                             "gridPosition": "start",
                             "axisThickness": 0,
@@ -210,7 +216,9 @@
                         "categoryField": "category",
                         "startDuration": 1,
                         "fontFamily": "'Oswald', sans-serif",
-                        "fontSize": 10,
+                        "fontSize": 12,
+                        "columnSpacing": 12,
+                        "columnWidth": 0.9,
                         "categoryAxis": {
                             "gridPosition": "start",
                             "axisThickness": 0,
@@ -301,13 +309,14 @@
                     {
                         "type": "serial",
                         "categoryField": "category",
+                        "columnWidth": 0.95,
                         "colors": [
                             "#ff6600",
                             "#ff0f00"
                         ],
                         "startDuration": 1,
                         "fontFamily": "'Oswald', sans-serif",
-                        "fontSize": 16,
+                        "fontSize": 18,
                         "handDrawScatter": 0,
                         "theme": "default",
                         "categoryAxis": {
@@ -324,14 +333,15 @@
                             {
                                 "color": "#FFFFFF",
                                 "fillAlphas": 1,
-                                "fillColors": "#FF6600",
                                 "id": "AmGraph-1",
                                 "labelAnchor": "middle",
                                 "labelPosition": "middle",
                                 "labelText": "[[value]]%",
                                 "title": "graph 1",
                                 "type": "column",
-                                "valueField": "column-1"
+                                "valueField": "column-1",
+                                "colorField": "color",
+                                "balloonText": "[[value]]%"
                             }
                         ],
                         "guides": [],

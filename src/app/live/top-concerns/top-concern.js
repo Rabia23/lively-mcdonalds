@@ -39,16 +39,27 @@
               "type": "pie",
               "angle": 25,
               "startDuration": 0,
-              "balloonText": "[[title]]<br><span style='font-size:14px'>[[value]]</span>",
+              "balloonText": "<span style='font-size:20px'>[[title]]</span><br><span style='font-size:16px'>[[value]]</span>",
               "depth3D": 55,
               "innerRadius": "35%",
-              //"labelRadius": -35,
+              "marginRight": "-15%",
+               "marginLeft": "-15%",
+              "marginTop": -105,
+              "autoMargins":false,
+              //"labelRadius": -45,
               //"labelText": "[[value]]",
               "labelsEnabled": false,
+              "colors": [
+                  "#cb1e24",
+                  "#178aea",
+                  "#434347",
+                  "#f1d400",
+                  "#90ec7c"
+              ],
               "titleField": "category",
               "valueField": "column-1",
               "fontFamily": "'Oswald', sans-serif",
-              "fontSize": 35,
+              "fontSize": 45,
               "allLabels": [],
               "balloon": {},
               "legend": {
@@ -61,8 +72,8 @@
                 "valueText": "",
                 "valueWidth": 0,
                 "position": "right",
-                "autoMargins": false,
-                "marginRight": 400
+               "marginRight":300,
+               "autoMargins":false
               },
               "titles": [],
               "dataProvider": data
