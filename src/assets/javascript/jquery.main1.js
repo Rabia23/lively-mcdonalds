@@ -519,7 +519,7 @@ function initMobileNav() {
   jQuery('body').mobileNav({
     hideOnClickOutside: true,
     menuActiveClass: 'nav-active',
-    menuOpener: '.nav-opener',
+    menuOpener: '.nav-opener , .btn-close',
     menuDrop: '.comments-drop'
   });
 }

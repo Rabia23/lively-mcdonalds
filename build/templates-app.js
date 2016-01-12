@@ -654,7 +654,7 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "        </ul>\n" +
     "      </div>\n" +
     "      <div class=\"btn-holder\">\n" +
-    "        <a class=\"btn btn-info pull-right\" ng-click = \"open()\">View All</a>\n" +
+    "        <a class=\"btn btn-info pull-right btn-close\" ng-click = \"open()\">View All</a>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
@@ -762,8 +762,8 @@ angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$temp
     "<div class=\"modal-body info-area\">\n" +
     "  <a ng-click = \"ok()\" class=\"pull-right close-btn-font\"><i class=\"fa fa-times\"></i></a>\n" +
     "  <h2>Regional Analysis</h2>\n" +
-    "	<a style = \"cursor:pointer;\" class=\"btn-slider glyphicon glyphicon-menu-left\" ng-click=\"leftClickDisabled || previous(area,region,city,branch,sqc_data)\"></a>\n" +
-    "	<a style = \"cursor:pointer;\" class=\"btn-slider glyphicon glyphicon-menu-right\" ng-click=\"rightClickDisabled || next(area,region,city,branch,sqc_data)\"></a>\n" +
+    "	<a style = \"cursor:pointer;\" class=\"btn-slider fa fa-angle-left\" ng-click=\"leftClickDisabled || previous(area,region,city,branch,sqc_data)\"></a>\n" +
+    "	<a style = \"cursor:pointer;\" class=\"btn-slider fa fa-angle-right\" ng-click=\"rightClickDisabled || next(area,region,city,branch,sqc_data)\"></a>\n" +
     "\n" +
     "  <div class=\"graph-container\">\n" +
     "  	<div class=\"holder\">\n" +
