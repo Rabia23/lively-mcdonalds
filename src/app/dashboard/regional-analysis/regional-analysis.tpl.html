@@ -36,9 +36,10 @@
       <div class="morris-content-holder" ng-repeat = "area in donut_graph_data.objects track by $index" ng-show = "area_view == true">
         <div class="morris-graph-holder" same-region-height data-data="donut_graph_data.donutData[$index]">
            <div class="morris-holder">
-               <div ng-show="area.show_chart" morris-chart data-data="donut_graph_data.donutData[$index]" data-type="donut" data-options="donut_graph_data.donutOptions[$index]" data-action="open(option,area,region,city,branch)"></div>
+              <div ng-show="area.show_chart" morris-chart data-data="donut_graph_data.donutData[$index]" data-type="donut" data-options="donut_graph_data.donutOptions[$index]" data-action="open(option,area,region,city,branch)"></div>
+              <div ng-hide="area.show_chart">No data available</div>
            </div>
-            <div ng-hide="area.show_chart">No data available</div>
+            
         </div>
         <strong class="title"><a ng-click = "showChart(area, 'regions')" style = "cursor:pointer;">{{area.name}}</a></strong>
       </div>
@@ -48,9 +49,10 @@
       <div class="morris-content-holder" ng-repeat = "region in donut_regions_data.objects track by $index" ng-show = "area_view == false && regional_view == true">
         <div class="morris-graph-holder" same-region-height data-data="donut_regions_data.donutData[$index]">
            <div class="morris-holder">
-               <div ng-show="region.show_chart" morris-chart data-data="donut_regions_data.donutData[$index]" data-type="donut" data-options="donut_regions_data.donutOptions[$index]" data-action="open(option,selected_area,region,city,branch)"></div>
+              <div ng-show="region.show_chart" morris-chart data-data="donut_regions_data.donutData[$index]" data-type="donut" data-options="donut_regions_data.donutOptions[$index]" data-action="open(option,selected_area,region,city,branch)"></div>
+              <div ng-hide="region.show_chart">No data available</div>
            </div>
-            <div ng-hide="region.show_chart">No data available</div>
+            
           </div>
           <strong class="title"><a ng-click = "showChart(region, 'cities')" style = "cursor:pointer;">{{region.name}}</a></strong>
         </div>
@@ -60,9 +62,9 @@
       <div class="morris-content-holder" ng-repeat = "city in donut_cities_data.objects track by $index" ng-show = "area_view == false && regional_view == false && city_view == true">
         <div class="morris-graph-holder" same-city-height data-data = "donut_cities_data.donutData[$index]">
            <div class="morris-holder">
-               <div ng-show="city.show_chart" morris-chart data-data="donut_cities_data.donutData[$index]" data-type="donut" data-options="donut_cities_data.donutOptions[$index]" data-action="open(option,selected_area,selected_region,city,branch)"></div>
+              <div ng-show="city.show_chart" morris-chart data-data="donut_cities_data.donutData[$index]" data-type="donut" data-options="donut_cities_data.donutOptions[$index]" data-action="open(option,selected_area,selected_region,city,branch)"></div>
+              <div ng-hide="city.show_chart">No data available</div>
            </div>
-            <div ng-hide="city.show_chart">No data available</div>
           </div>
           <strong class="title"><a ng-click = "showChart(city, 'branches')" style = "cursor:pointer;">{{city.name}}</a></strong>
         </div>
@@ -72,9 +74,9 @@
       <div class="morris-content-holder" ng-repeat = "branch in donut_branches_data.objects track by $index" ng-show = "area_view == false && regional_view == false && city_view == false">
         <div class="morris-graph-holder" same-branch-height  data-data = "donut_branches_data.donutData[$index]">
            <div class="morris-holder">
-               <div ng-show="branch.show_chart" morris-chart data-data="donut_branches_data.donutData[$index]" data-type="donut" data-options="donut_branches_data.donutOptions[$index]" data-action="open(option,selected_area,selected_region,selected_city,branch)"></div>
+              <div ng-show="branch.show_chart" morris-chart data-data="donut_branches_data.donutData[$index]" data-type="donut" data-options="donut_branches_data.donutOptions[$index]" data-action="open(option,selected_area,selected_region,selected_city,branch)"></div>
+              <div ng-hide="branch.show_chart">No data available</div>
            </div>
-            <div ng-hide="branch.show_chart">No data available</div>
           </div>
           <strong class="title">{{branch.name}}</strong>
         </div>

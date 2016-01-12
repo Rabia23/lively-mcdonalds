@@ -91,7 +91,7 @@
                           <div class="morris-content-holder" ng-repeat="segment in segments track by $index">
                               <div class="morris-graph-holder">
                                  <div class="morris-holder">
-                                      <div>
+                                      <div ng-hide = "segment.show_string">
                                           <canvas id="doughnut" class="chart chart-doughnut" chart-data="segment.data" chart-labels="segment.labels" chart-colours="segment.colors"></canvas>
                                       </div>
                                       <div ng-show="segment.show_string">No data available</div>

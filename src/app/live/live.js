@@ -151,6 +151,27 @@ angular.module( 'livefeed.live', [
   };
 })
 
+.directive('initFullScreen', function() {
+  return {
+    restrict: 'A',
+    link: function(scope, ele, attrs) {
+      console.log("in the initFullScreen");
+      var element = document.documentElement; 
+      //var element = document.getElementById("live-dashboard");
+      console.log(element);
+      if(element.requestFullScreen) {
+        element.requestFullScreen();
+      } 
+      else if(element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      } 
+      else if(element.webkitRequestFullScreen) {
+        element.webkitRequestFullScreen();
+      }
+    }
+  };
+})
+
 .service('Clock', ['$rootScope', function($rootScope){
 
   return {
@@ -163,6 +184,16 @@ angular.module( 'livefeed.live', [
       minutes = minutes < 10 ? '0'+minutes : minutes;
       var strTime = hours + ':' + minutes + ' '  + ampm;
       return strTime;
+    }
+  };
+
+}])
+
+
+.service('FullScreen', ['$rootScope', function($rootScope){
+  return {
+    launch: function(element){
+      
     }
   };
 
@@ -197,9 +228,7 @@ angular.module( 'livefeed.live', [
         console.log("connection closing");
         $rootScope.$broadcast('web-socket-close');
 
-      };
-
-                
+      };               
     },
 
     get_socket: function(){
@@ -209,9 +238,6 @@ angular.module( 'livefeed.live', [
     close_socket: function(){
       return ws.close();
     }
-
-
-
   };
 
 }]);
