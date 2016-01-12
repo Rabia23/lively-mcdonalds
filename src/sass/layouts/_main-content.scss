@@ -21,21 +21,17 @@
 #container{
 	width: 100% !important;
 	height: 100% !important;
-	overflow: visible !important;
-	
-	.amcharts-main-div{overflow: visible !important;}
 	
 	.amcharts-chart-div{
 		z-index: 1;
 		position: relative;
-		overflow: visible !important;
 		
 		&:after{
 			position: absolute;
 			left: 10%;
-			right: 10%;
-			top: 30%;
-			bottom: -100px;
+			right: 4%;
+			top: 20%;
+			bottom: -60px;
 			content: '';
 			pointer-events: none;
 			z-index: -1;
