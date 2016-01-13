@@ -18,10 +18,11 @@ angular.module( 'livefeed.dashboard.top_concern', [
   Graphs.top_concerns().$promise.then(function(data){
     console.log(data);
     $scope.data = data.concern_list;
-    _.each($scope.data, function(value, index){
+    _.each(data.concern_list, function(value, index){
       value.label = value.name;
-      value.name = value.weight.toString();
+      value.name = value.weight.toString() + new Array(index + 1).join(' ');
       value.color = Global.bubbleColor(index);
+      value.weight = value.weight * 100;
       $scope.colors.push(value.color);
     });
   });

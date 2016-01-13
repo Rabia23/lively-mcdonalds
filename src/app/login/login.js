@@ -49,14 +49,6 @@ angular.module( 'livefeed.login', [
 
   $scope.authenticate = {};
 
-  $rootScope.$on('app-online', function(event, args) {
-    console.log("online in login");
-  });
-
-  $rootScope.$on('app-offline', function(event, args) {
-    console.log("offline in login");
-  });
-
   $scope.login = function(valid){
     $scope.submitted = true;
     if(valid){   

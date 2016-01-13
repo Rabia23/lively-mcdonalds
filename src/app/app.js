@@ -41,7 +41,7 @@ angular.module( 'livefeed', [
     brand: "LiveFeed"
   };
 
-  //console.log("Offline service: "+offlineService.init());
+  console.log("Offline service: "+offlineService.init());
 
 })
 

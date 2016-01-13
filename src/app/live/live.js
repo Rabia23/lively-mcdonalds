@@ -59,18 +59,23 @@ angular.module( 'livefeed.live', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'LiveCtrl', function LiveController( $scope,  _ , $rootScope, $state, Authentication, Api, WebSocket, Global, Clock, $interval) {
+.controller( 'LiveCtrl', function LiveController( $scope,  _ , $rootScope, $state, Authentication, Api, WebSocket, Global, Clock, $interval, $timeout) {
 
 
   $scope.authenticate = {};
 
+
   $rootScope.$on('app-online', function(event, args) {
-    console.log("online in login");
+    console.log("online");
     WebSocket.init();
+    //live_dashboard();
+    $timeout(function() {
+        live_dashboard();
+    }, 5000);
   });
 
   $rootScope.$on('app-offline', function(event, args) {
-    console.log("offline in login");
+    console.log("offline");
     WebSocket.close_socket();
   });
 
@@ -132,7 +137,11 @@ angular.module( 'livefeed.live', [
 
   $rootScope.$on('web-socket-close', function (event, data) {
     WebSocket.close_socket();
-    WebSocket.init();
+    if($rootScope.currentState == 'live'){
+      console.log("sdfsdfsdf");
+      WebSocket.init();
+    }
+    
   });
 
 
@@ -197,7 +206,7 @@ angular.module( 'livefeed.live', [
     init: function(){
       console.log("in the init function");
       ws = null;
-      ws = new WebSocket("ws://staginglivefeed.arbisoft.com:5679/");
+      ws = new WebSocket("ws://livefeed.arbisoft.com:5679/");
       //ws = new WebSocket("ws://172.16.11.113:5678/");
       ws.onopen = function (event) {
         console.log("sockets opened");
