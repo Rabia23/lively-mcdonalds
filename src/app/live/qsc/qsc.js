@@ -203,7 +203,7 @@
             "dataProvider": []
           });
           var width = $("#area-chart").find("svg").width();
-          width = width + 20;
+          width = width + 30;
           $("#area-chart").find("svg").css("width", width);
         scope.$watch('data', function(watchedData) {
 
