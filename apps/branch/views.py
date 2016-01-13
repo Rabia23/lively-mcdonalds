@@ -20,7 +20,7 @@ class BranchView(APIView):
                 branches = city.branches.all()
         else:
             branches = Branch.objects.all()
-        serializer = CitySerializer(branches, many=True)
+        serializer = BranchSerializer(branches, many=True)
         return Response(serializer.data)
 
     @transaction.atomic
