@@ -619,8 +619,10 @@ class LiveDashboardView(APIView):
         positive_negative_feedback = Feedback.get_feedback_type_count(date_from, date_to)
         qsc_count = FeedbackOption.get_qsc_count(date_from, date_to)
 
+        concerns = Concern.objects.filter(is_active=True).order_by("-count")[:1]
+
         return {'overall_experience': overall_experience,
-                'top_concern': "Ketchup",
+                'top_concern': concerns.first().keyword,
                 'positive_negative_feedback': positive_negative_feedback,
                 'qsc_count': qsc_count}
 
