@@ -30,10 +30,8 @@ def debug_task(self):
 
 
 @shared_task
-def send_negative_feedback_email(feedback_id):
-    feedback = Feedback.objects.get(pk=feedback_id)
-
-    context = Context({'feedback': feedback})
+def send_negative_feedback_email(feedback_json):
+    context = Context({'feedback': feedback_json})
     text_template = get_template('emails/negative_feedback.txt')
     html_template = get_template('emails/negative_feedback.html')
 

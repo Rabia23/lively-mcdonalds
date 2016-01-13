@@ -642,7 +642,6 @@ class LiveDashboardView(APIView):
 
         rule = rrule.DAILY
         question = Question.objects.get(type=constants.TYPE_2)
-        section_start_date = str(date_from.date())
         for single_date in rrule.rrule(rule, dtstart=date_from, until=date_to):
             feedback_options = FeedbackOption.manager.date(str(single_date.date()), str(single_date.date()))
             feedback_options = feedback_options.question_parent_options(question)

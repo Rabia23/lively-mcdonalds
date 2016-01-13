@@ -67,7 +67,19 @@ class FeedbackView(APIView):
             feedback.keyword_analysis()
 
             if feedback.is_negative():
-                send_negative_feedback_email.delay(feedback.id)
+                feedback_json = {
+                    "is_bad": feedback.is_bad(),
+                    "branch_name": feedback.branch.name,
+                    "city_name": feedback.branch.city.name,
+                    "customer_name": feedback.customer_name(),
+                    "customer_phone": feedback.customer_phone(),
+                    "customer_email": feedback.customer_email(),
+                    "problems": feedback.problems(),
+                    "comment": feedback.comment,
+                }
+
+                # send_negative_feedback_email(feedback_json)
+                send_negative_feedback_email.delay(feedback_json)
 
             return response(data)
 
