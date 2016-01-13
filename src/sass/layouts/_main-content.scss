@@ -32,15 +32,20 @@
 			content: '';
 			pointer-events: none;
 			z-index: -1;
-			background: -moz-radial-gradient(center, ellipse cover, rgba(22,22,22,0.65) 0%, rgba(22,22,22,0.64) 1%, rgba(22,22,22,0) 70%, rgba(22,22,22,0) 100%);
+			left: 15%;
+			right: 15%;
+			top: 30%;
+			background: url(../images/donut-shadow.png) no-repeat 50% 0;
+			background-size: 100% 100%;
+			/*background: -moz-radial-gradient(center, ellipse cover, rgba(22,22,22,0.65) 0%, rgba(22,22,22,0.64) 1%, rgba(22,22,22,0) 70%, rgba(22,22,22,0) 100%);
 background: -webkit-radial-gradient(center, ellipse cover, rgba(22,22,22,0.65) 0%,rgba(22,22,22,0.64) 1%,rgba(22,22,22,0) 70%,rgba(22,22,22,0) 100%);
 background: radial-gradient(ellipse at center, rgba(22,22,22,0.65) 0%,rgba(22,22,22,0.64) 1%,rgba(22,22,22,0) 70%,rgba(22,22,22,0) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6161616', endColorstr='#00161616',GradientType=1 );
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6161616', endColorstr='#00161616',GradientType=1 );*/
 		}
 	}
 }
 
-
+/*
 #piechart{
 	.amcharts-chart-div{
 		&:after{
@@ -64,7 +69,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6161616', e
 			}
 		}
 	}
-}
+}*/
 
 #area-chart{
 	overflow: visible !important;
