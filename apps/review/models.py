@@ -181,8 +181,8 @@ class Feedback(models.Model):
     def comment_exists(self):
         return True if self.comment else False
 
-    def mark_deferred_if_positive(self):
-        if not self.is_negative():
+    def mark_deferred_if_positive_and_no_comment(self):
+        if not self.is_negative() and not self.comment_exists():
             self.action_taken = constants.DEFERRED
             self.save()
 
