@@ -95,7 +95,7 @@ angular.module( 'livefeed.live', [
 
   live_dashboard();
 
-  //WebSocket.init();
+  WebSocket.init();
 
   $rootScope.$on('live-data-received', function (event, data) {
     top_rankings();
@@ -135,9 +135,6 @@ angular.module( 'livefeed.live', [
     WebSocket.init();
   });
 
-
-
-  
 
 })
 
@@ -184,16 +181,6 @@ angular.module( 'livefeed.live', [
       minutes = minutes < 10 ? '0'+minutes : minutes;
       var strTime = hours + ':' + minutes + ' '  + ampm;
       return strTime;
-    }
-  };
-
-}])
-
-
-.service('FullScreen', ['$rootScope', function($rootScope){
-  return {
-    launch: function(element){
-      
     }
   };
 
