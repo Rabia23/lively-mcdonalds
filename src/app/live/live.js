@@ -51,7 +51,7 @@ angular.module( 'livefeed.live', [
         templateUrl: 'live/benchmark-map/benchmark-map.tpl.html'
       }
     },
-    authenticate: false
+    authenticate: true
   });
 
 })
@@ -66,7 +66,7 @@ angular.module( 'livefeed.live', [
 
   $rootScope.$on('app-online', function(event, args) {
     console.log("online in login");
-    //WebSocket.init();
+    WebSocket.init();
   });
 
   $rootScope.$on('app-offline', function(event, args) {
