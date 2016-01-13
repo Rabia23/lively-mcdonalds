@@ -206,7 +206,7 @@ angular.module( 'livefeed.live', [
     init: function(){
       console.log("in the init function");
       ws = null;
-      ws = new WebSocket("ws://livefeed.arbisoft.com:5679/");
+      ws = new WebSocket("ws://staginglivefeed.arbisoft.com:5679/");
       //ws = new WebSocket("ws://172.16.11.113:5678/");
       ws.onopen = function (event) {
         console.log("sockets opened");

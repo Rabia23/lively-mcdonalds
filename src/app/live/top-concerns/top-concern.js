@@ -32,10 +32,7 @@
       },
       link: function(scope, ele, attrs) {
 
-        scope.$watch('data', function(watchedData) {
-          if(watchedData !== undefined){
-            var data = scope.data;
-            AmCharts.makeChart("container",{
+        var live_top_concerns = AmCharts.makeChart("container",{
               "type": "pie",
               "angle": 25,
               "startDuration": 0,
@@ -81,8 +78,14 @@
                 "verticalGap": 0
               },
               "titles": [],
-              "dataProvider": data
-            });
+              "dataProvider": []
+        });
+        scope.$watch('data', function(watchedData) {
+
+          if(watchedData !== undefined){
+            var data = scope.data;
+            live_top_concerns.dataProvider = data;
+            live_top_concerns.validateData();
           }
         });
       }

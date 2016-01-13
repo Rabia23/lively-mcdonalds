@@ -46,12 +46,7 @@ angular.module( 'livefeed.live.business_segment', [
       data: '='
     },
     link: function(scope, ele, attrs) {
-
-      scope.$watch('data', function(watchedData) {
-        if(watchedData !== undefined){
-          var data = scope.data;
-
-          AmCharts.makeChart("stackchart",{
+      var live_segment_chart =   AmCharts.makeChart("stackchart",{
             "type": "serial",
             "categoryField": "category",
             "angle": 20,
@@ -132,8 +127,14 @@ angular.module( 'livefeed.live.business_segment', [
                 "text": ""
               }
             ],
-            "dataProvider": data
-          });
+            "dataProvider": []
+        });
+      scope.$watch('data', function(watchedData) {
+        if(watchedData !== undefined){
+          var data = scope.data;
+
+          live_segment_chart.dataProvider = data;
+          live_segment_chart.validateData(); 
         }
       });
     }
