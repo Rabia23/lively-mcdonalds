@@ -9,7 +9,9 @@
 	width: 100%;
 	height: 100%;
 	@extend %clearfix;
-	padding: 0 5%;
+	padding: 0 2%;
+	
+	@include media("≥widescreen"){padding: 0 5%;}
 	
 	> div{
 		width: 100% !important;
