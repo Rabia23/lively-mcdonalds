@@ -34,6 +34,13 @@ function initSameHeight() {
 		multiLine: true,
 		biggestHeight: true
 	});
+
+	jQuery('.slide-holder .container').sameHeight({
+		elements: '.box',
+		flexible: true,
+		multiLine: true,
+		biggestHeight: true
+	});
 }
 
 /*

@@ -36,9 +36,11 @@
         var live_top_concerns;
 
         var width = screen.width;
-        var marginRight = "-35%";  
+        var marginRight = "-35%";
+        var marginLeft = "-15%";  
         if(width <= 1440){
-          marginRight = "-20%";
+          marginRight = "-18%";
+          marginLeft = "10%";
         }
 
         scope.$watch('data', function(watchedData) {
@@ -56,7 +58,7 @@
                 "depth3D": 55,
                 "innerRadius": "35%",
                 "marginRight": marginRight,
-                "marginLeft": "-15%",
+                "marginLeft": marginLeft,
                 "marginTop": -95,
                 "marginBottom": "-8%",
                 "autoMargins":false,

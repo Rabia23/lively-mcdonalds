@@ -73,6 +73,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6161616', e
 	.amcharts-chart-div{overflow: visible !important;}
 }
 
-/*svg{
+svg{
 	text{text-shadow: 0 0 2px #000;}
-}*/
+}
+
+.amChartsLegend.amcharts-legend-div{
+	text{text-shadow: none !important;}
+}

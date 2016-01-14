@@ -91,6 +91,7 @@
                       "labelRadius": -105,
                       "labelText":  "[[value]]",
                        "color": "#FFFFFF",
+                       "fontFamily": "'Oswald', sans-serif",
                       "fontSize": 25,
                       "marginTop":-75,
                       "marginRight":0,
@@ -169,7 +170,7 @@
                               "color": "#FFFFFF",
                               "fillAlphas": 1,
                               "fillColors": "#01C211",
-                              "id": "AmGraph-6",
+                              "id": "AmGraph-2",
                               "labelText": "[[value]]",
                               "lineThickness": 0,
                               "newStack": true,
@@ -178,9 +179,10 @@
                               "valueField": "column-2"
                           },
                           {
+                              "color": "#FFFFFF",
                               "fillAlphas": 1,
                               "fillColors": "#FFEE00",
-                              "id": "AmGraph-7",
+                              "id": "AmGraph-3",
                               "labelText": "[[value]]",
                               "lineThickness": 0,
                               "newStack": true,
@@ -220,6 +222,13 @@
                    live_patch_bar.dataProvider = data;
                     live_patch_bar.validateData(); 
                  }
+                 var text_elements = $("#patch-bar").find("svg").find("text");
+                 $.each(text_elements, function(index, value){
+                  if($(value).find("tspan").html() == "NORTH"){
+                    $(value).find("tspan").css("text-shadow", "none");
+                  }
+
+                 });
                  
                }
             });
@@ -267,7 +276,7 @@
                                 "color": "#FFFFFF",
                                 "fillAlphas": 1,
                                 "fillColors": "#BD1515",
-                                "id": "AmGraph-1",
+                                "id": "AmGraph-4",
                                 "labelText": "[[value]]",
                                 "lineThickness": 0,
                                 "title": "graph 1",
@@ -278,7 +287,7 @@
                                 "color": "#FFFFFF",
                                 "fillAlphas": 1,
                                 "fillColors": "#01C211",
-                                "id": "AmGraph-6",
+                                "id": "AmGraph-5",
                                 "labelText": "[[value]]",
                                 "lineThickness": 0,
                                 "newStack": true,
@@ -287,9 +296,10 @@
                                 "valueField": "column-2"
                             },
                             {
+                                "color": "#FFFFFF",
                                 "fillAlphas": 1,
                                 "fillColors": "#FFEE00",
-                                "id": "AmGraph-7",
+                                "id": "AmGraph-6",
                                 "labelText": "[[value]]",
                                 "lineThickness": 0,
                                 "newStack": true,
@@ -331,6 +341,13 @@
                   }
                   
                }
+               var text_elements = $("#patch-bar2").find("svg").find("text");
+               $.each(text_elements, function(index, value){
+                if($(value).find("tspan").html() == "SOUTH"){
+                  $(value).find("tspan").css("text-shadow", "none");
+                }
+
+               });
             });
         }
       };
@@ -429,10 +446,34 @@
                 live_patch_chart.dataProvider = data;
                 live_patch_chart.validateData();
               }
+              var text_elements = $("#chartdiv").find("svg").find("text");
+              $.each(text_elements, function(index, value){
+                if($(value).find("tspan").html() == "NORTH" || $(value).find("tspan").html() == "SOUTH" ){
+                  $(value).find("tspan").css("text-shadow", "none");
+                }
+
+              });
               
             }
           });
         }
       };
+  })
+
+  .directive('sameBoxHeight', function() {
+    return {
+      restrict: 'A',
+      scope: {
+        data: '='
+      },
+      link: function(scope, ele, attrs) {
+        
+        scope.$watch('data', function(watchedData) {
+          if(watchedData !== undefined){
+            window.initSameHeight();
+          }
+        });
+      }
+    };
   });
 })();
