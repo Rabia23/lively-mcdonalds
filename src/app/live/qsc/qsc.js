@@ -15,8 +15,7 @@
 
       $scope.overall_rating_data = [];
       $scope.qsc_labels = [];
-      console.log("overall_ratings");
-      console.log($scope.overall_ratings);
+
        _.each($scope.overall_ratings[0].data.feedbacks, function(value){
            $scope.qsc_labels.push({option_name: value.option__text, option_class: Global.qscClass[value.option__text]});
        });
@@ -67,7 +66,7 @@
           if(watchedData !== undefined){
             var data = scope.data;
             if(!graph_drawn){
-              live_sqc_chart = new AmCharts.makeChart("area-chart",
+              live_sqc_chart = AmCharts.makeChart("area-chart",
               {
                 "type": "serial",
                 "balloonDateFormat": "",
@@ -88,8 +87,8 @@
                   "#333333",
                   "#990000"
                 ],
-                // "startDuration": 0.5,
-                // "startEffect": "easeOutSine",
+                //"startDuration": 0.5,
+                //"startEffect": "easeOutSine",
                 "borderColor": "#FFFE6E",
                 "color": "#FFF",
                 "fontFamily": "'Oswald', sans-serif",
@@ -98,15 +97,15 @@
                 "handDrawThickness": 0,
                 "theme": "default",
                 "categoryAxis": {
-                  "equalSpacing": false,
-                  //"firstDayOfWeek": 0,
+                  "equalSpacing": true,
+                  "firstDayOfWeek": 0,
                   "startOnAxis": true,
                   "twoLineMode": true,
-                  "axisAlpha": 0.4,
+                  "axisAlpha": 0.43,
                   "axisColor": "#FFFE6E",
                   "color": "#FFF",
                   "fillColor": "#FFF",
-                  "gridAlpha": 0.4,
+                  "gridAlpha": 0.39,
                   "gridColor": "#FFFE6E",
                   "gridCount": 20,
                   "minHorizontalGap": 0,
@@ -125,16 +124,16 @@
                     "bulletColor": "#FFFFFF",
                     "color": "#FFFFFF",
                     "fillAlphas": 0.7,
-                    "fillColors": "#E90000",
+                    "fillColors": "#3498DB",
                     "id": "AmGraph-1",
-                    "legendColor": "#E90000",
-                    "lineColor": "#ff8000",
+                    "legendColor": "#3498DB",
+                    "lineColor": "#12E9F0",
                     "lineThickness": 3,
                     "negativeFillAlphas": 0,
-                    "title": "Quality",
+                    "title": "Cleanliness",
                     "type": "smoothedLine",
                     "valueAxis": "ValueAxis-1",
-                    "valueField": "column-1",
+                    "valueField": "column-3",
                     "visibleInLegend": false
                   },
                   {
@@ -142,12 +141,16 @@
                     "bulletBorderAlpha": 1,
                     "bulletBorderColor": "#FFFFFF",
                     "bulletColor": "#FFFFFF",
+                    "columnWidth": 0,
                     "fillAlphas": 0.7,
                     "fillColors": "#FFEA00",
-                    "id": "AmGraph-2",
+                    "id": "AmGraph-3",
                     "legendColor": "#FFEA00",
                     "lineColor": "#FBE041",
                     "lineThickness": 3,
+                    "markerType": "square",
+                    "negativeFillAlphas": 1,
+                    "negativeFillColors": "#FFFFFF",
                     "title": "Service",
                     "type": "smoothedLine",
                     "valueField": "column-2",
@@ -158,19 +161,15 @@
                     "bulletBorderAlpha": 1,
                     "bulletBorderColor": "#FFFFFF",
                     "bulletColor": "#FFFFFF",
-                    "columnWidth": 0,
                     "fillAlphas": 0.7,
-                    "fillColors": "#3498DB",
-                    "id": "AmGraph-3",
-                    "legendColor": "#3498DB",
-                    "lineColor": "#12E9F0",
+                    "fillColors": "#E90000",
+                    "id": "AmGraph-2",
+                    "legendColor": "#E90000",
+                    "lineColor": "#FF8800",
                     "lineThickness": 3,
-                    "markerType": "square",
-                    "negativeFillAlphas": 1,
-                    "negativeFillColors": "#FFFFFF",
-                    "title": "Cleanliness",
+                    "title": "Quality",
                     "type": "smoothedLine",
-                    "valueField": "column-3",
+                    "valueField": "column-1",
                     "visibleInLegend": false
                   }
                 ],
@@ -179,11 +178,11 @@
                   {
                     "id": "ValueAxis-1",
                     "synchronizationMultiplier": 0,
-                    "axisAlpha": 0.4,
+                    "axisAlpha": 0.41,
                     "axisColor": "#FFFE6E",
                     "color": "#FFF",
                     "fillColor": "#FFF",
-                    "gridAlpha": 0.4,
+                    "gridAlpha": 0.42,
                     "gridColor": "#FFFE6E",
                     "gridCount": 20,
                     "tickLength": 0,
@@ -209,9 +208,8 @@
                 ],
                 "dataProvider": data
               });
-              graph_drawn = true;
               var width = $("#area-chart").find("svg").width();
-              width = width + 50;
+              width = width + 20;
               $("#area-chart").find("svg").css("width", width);
             }
             else{
@@ -219,6 +217,9 @@
               live_sqc_chart.validateData();
             }
            
+            
+            
+
           }
         });
       }
