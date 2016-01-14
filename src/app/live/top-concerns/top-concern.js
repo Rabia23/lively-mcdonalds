@@ -35,11 +35,19 @@
         var graph_show = false;
         var live_top_concerns;
 
+        var width = screen.width;
+        var marginRight = "-35%";  
+        if(width <= 1440){
+          marginRight = "-20%";
+        }
+
         scope.$watch('data', function(watchedData) {
 
           if(watchedData !== undefined){
             var data = scope.data;
             if(!graph_show){
+              console.log("margin");
+              console.log(marginRight);
               live_top_concerns = AmCharts.makeChart("container",{
                 "type": "pie",
                 "angle": 25,
@@ -47,8 +55,8 @@
                 "balloonText": "<span style='font-size:20px'>[[title]]</span><br><span style='font-size:16px'>[[value]]</span>",
                 "depth3D": 55,
                 "innerRadius": "35%",
-                "marginRight": "-35%",
-                 "marginLeft": "-15%",
+                "marginRight": marginRight,
+                "marginLeft": "-15%",
                 "marginTop": -95,
                 "marginBottom": "-8%",
                 "autoMargins":false,
