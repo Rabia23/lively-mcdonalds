@@ -34,10 +34,10 @@
 			content: '';
 			pointer-events: none;
 			z-index: -1;
-			background: -moz-radial-gradient(center, ellipse cover, rgba(22,22,22,0.65) 0%, rgba(22,22,22,0.64) 1%, rgba(22,22,22,0) 70%, rgba(22,22,22,0) 100%);
-background: -webkit-radial-gradient(center, ellipse cover, rgba(22,22,22,0.65) 0%,rgba(22,22,22,0.64) 1%,rgba(22,22,22,0) 70%,rgba(22,22,22,0) 100%);
-background: radial-gradient(ellipse at center, rgba(22,22,22,0.65) 0%,rgba(22,22,22,0.64) 1%,rgba(22,22,22,0) 70%,rgba(22,22,22,0) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6161616', endColorstr='#00161616',GradientType=1 );
+			background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 70%);
+background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 70%);
+background: radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 70%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#00000000',GradientType=1 );
 		}
 	}
 }
@@ -45,9 +45,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6161616', e
 #piechart{
 	.amcharts-chart-div{
 		&:after{
-			left: 20%;
-			right: 20%;
+			left: 19%;
+			right: 19%;
 			top: 30%;
+			bottom: 5%;
+			
+			@include media("≥widescreen"){
+				left: 21%;
+				right: 21%;
+				bottom: 0;
+			}
 		}
 	}
 }
@@ -55,13 +62,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6161616', e
 #container{
 	.amcharts-chart-div{
 		&:after{
-			left: 23%;
-			right: 3%;
+			left: 30%;
+			right: 0;
 			top: 40%;
+			bottom: 10%;
 			
 			@include media("≥widescreen"){
 				left: 30%;
 				right: 10%;
+				bottom: -50px;
 			}
 		}
 	}
@@ -74,7 +83,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6161616', e
 }
 
 svg{
-	text{text-shadow: 0 0 2px #000;}
+	text{text-shadow: 0 0 1px #000;}
 }
 
 .amChartsLegend.amcharts-legend-div{
