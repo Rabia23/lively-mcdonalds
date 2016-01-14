@@ -265,7 +265,9 @@
 	display: table;
 	table-layout: fixed;
 	height: 100%;
-	width: 80%;
+	width: 95%;
+	
+	@include media("≥widescreen"){width: 80%;}
 	
 	.container-inner{
 		display: table-cell;
