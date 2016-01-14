@@ -21,13 +21,15 @@
 		right: 0;
 		top: 0;
 		bottom: 0;
-		padding: 165px 0 83px;
+		padding: 130px 0 83px;
+		
+		@include media("≥widescreen"){padding: 165px 0 83px;}
 		
 		&:before{
 			position: absolute;
 			left: 0;
 			right: 0;
-			top: 165px;
+			top: 130px;
 			bottom: 83px;
 			content: "";
 			opacity: 0.65;
@@ -35,6 +37,8 @@
 			background: -moz-linear-gradient(top, rgba(251,174,19,0.3) 30%, rgba(237,87,15,0.6) 70%);
 			background: -webkit-linear-gradient(top, rgba(251,174,19,0.3) 30%,rgba(237,87,15,0.6) 70%);
 			background: linear-gradient(to bottom, rgba(251,174,19,0.3) 30%,rgba(237,87,15,0.6) 70%);
+			
+			@include media("≥widescreen"){top: 165px;}
 		}
 		
 		&.active{z-index: 3;}
@@ -65,9 +69,15 @@
 		}
 		
 		.box-holder{
-			width: 40%;
+			width: 35%;
+			height: 100%;
 			
-			&:first-child{width: 60%;}
+			@include media("≥widescreen"){width: 40%;}
+			
+			&:first-child{
+				width: 65%;
+				@include media("≥widescreen"){width: 60%;}
+			}
 		}
 		
 		&.add{
@@ -268,7 +278,9 @@
 .container{
 	overflow: hidden;
 	height: 50%;
-	padding: 8px 0 9px;
+	padding: 5px 0;
+	
+	@include media("≥widescreen"){padding: 8px 0 9px;}
 	
 	.box{
 		float: left;
