@@ -32,60 +32,70 @@
       },
       link: function(scope, ele, attrs) {
 
-        var live_top_concerns = AmCharts.makeChart("container",{
-              "type": "pie",
-              "angle": 25,
-              "startDuration": 0,
-              "balloonText": "<span style='font-size:20px'>[[title]]</span><br><span style='font-size:16px'>[[value]]</span>",
-              "depth3D": 55,
-              "innerRadius": "35%",
-              "marginRight": "-35%",
-               "marginLeft": "-15%",
-              "marginTop": -95,
-              "marginBottom": "-8%",
-              "autoMargins":false,
-              "labelRadius": -75,
-              "labelText": "[[value]]",
-              "color": "#FFFFFF",
-              "labelsEnabled": true,
-              "colors": [
-                  "#cb1e24",
-                  "#178aea",
-                  "#434347",
-                  "#f1d400",
-                  "#90ec7c"
-              ],
-              "titleField": "category",
-              "valueField": "column-1",
-              "fontFamily": "'Oswald', sans-serif",
-              "fontSize": 23,
-              "allLabels": [],
-              "balloon": {},
-              "legend": {
-                "enabled": true,
-                "align": "center",
-                "equalWidths": false,
-                "markerLabelGap": 25,
-                "markerSize": 20,
-                "markerType": "circle",
-                "valueText": "",
-                "valueWidth": 0,
-                "position": "right",
-               "marginRight":200,
-                "marginTop": 50,
-               "autoMargins":false,
-                "fontSize": 45,
-                "verticalGap": 0
-              },
-              "titles": [],
-              "dataProvider": []
-        });
+        var graph_show = false;
+        var live_top_concerns;
+
         scope.$watch('data', function(watchedData) {
 
           if(watchedData !== undefined){
             var data = scope.data;
-            live_top_concerns.dataProvider = data;
-            live_top_concerns.validateData();
+            if(!graph_show){
+              live_top_concerns = AmCharts.makeChart("container",{
+                "type": "pie",
+                "angle": 25,
+                "startDuration": 0,
+                "balloonText": "<span style='font-size:20px'>[[title]]</span><br><span style='font-size:16px'>[[value]]</span>",
+                "depth3D": 55,
+                "innerRadius": "35%",
+                "marginRight": "-35%",
+                 "marginLeft": "-15%",
+                "marginTop": -95,
+                "marginBottom": "-8%",
+                "autoMargins":false,
+                "labelRadius": -75,
+                "labelText": "[[value]]",
+                "color": "#FFFFFF",
+                "labelsEnabled": true,
+                "colors": [
+                    "#cb1e24",
+                    "#178aea",
+                    "#434347",
+                    "#f1d400",
+                    "#90ec7c"
+                ],
+                "titleField": "category",
+                "valueField": "column-1",
+                "fontFamily": "'Oswald', sans-serif",
+                "fontSize": 23,
+                "allLabels": [],
+                "balloon": {},
+                "legend": {
+                  "enabled": true,
+                  "align": "center",
+                  "equalWidths": false,
+                  "markerLabelGap": 25,
+                  "markerSize": 20,
+                  "markerType": "circle",
+                  "valueText": "",
+                  "valueWidth": 0,
+                  "position": "right",
+                 "marginRight":200,
+                  "marginTop": 50,
+                 "autoMargins":false,
+                  "fontSize": 45,
+                  "verticalGap": 0
+                },
+                "titles": [],
+                "dataProvider": data
+              });
+              graph_show = true;
+            }
+            else{
+              live_top_concerns.dataProvider = data;
+              live_top_concerns.validateData();
+            }
+
+            
           }
         });
       }

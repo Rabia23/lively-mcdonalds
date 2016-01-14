@@ -133,38 +133,7 @@
 			text-align: center;
 			border-left: 1px solid $lust;
 			
-			&:first-child{
-				border: 0;
-				
-				&.first{
-					a{
-						&:before{
-							position: absolute;
-							right: 0;
-							top: 0;
-							width: 0;
-							height: 5px;
-							content: "";
-							z-index: 9991;
-							background: $supernova;
-							@include transition($val:all, $duration:4s, $function:linear);
-						}
-					}
-				}
-				
-				&.active{
-					&.first{
-						a{
-							&:before{
-								left: 0;
-								width: 100%;
-								right: auto;
-								@include transition($val:all, $duration:4s, $function:linear);
-							}
-						}
-					}
-				}
-			}
+			&:first-child{border: 0;}
 			
 			a{
 				display: block;
@@ -212,7 +181,7 @@
 					content: "";
 					z-index: 9991;
 					background: $supernova;
-					@include transition($val:all, $duration:6s, $function:linear);
+					@include transition($val:all, $duration:12s, $function:linear);
 				}
 
 				&:hover{
@@ -251,7 +220,7 @@
 						left: 0;
 						width: 100%;
 						right: auto;
-						@include transition($val:all, $duration:6s, $function:linear);
+						@include transition($val:all, $duration:12s, $function:linear);
 					}
 				}
 			}

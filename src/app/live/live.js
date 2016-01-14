@@ -100,7 +100,7 @@ angular.module( 'livefeed.live', [
 
   live_dashboard();
 
-  //WebSocket.init();
+  WebSocket.init();
 
   $rootScope.$on('live-data-received', function (event, data) {
     top_rankings();
