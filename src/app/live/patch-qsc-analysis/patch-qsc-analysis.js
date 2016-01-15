@@ -441,6 +441,7 @@
                     "dataProvider": data
                 });
                 graph_drawn = true;
+				window.initSameHeight();
               }
               else{
                 live_patch_chart.dataProvider = data;

@@ -35,6 +35,12 @@ function initSameHeight() {
 		biggestHeight: true
 	});
 
+	jQuery('.slide-holder').sameHeight({
+		elements: '.box-holder',
+		flexible: true,
+		multiLine: true
+	});
+	
 	jQuery('.slide-holder .container').sameHeight({
 		elements: '.box',
 		flexible: true,

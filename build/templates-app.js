@@ -701,23 +701,19 @@ angular.module("live/patch-qsc-analysis/patch-qsc-analysis.tpl.html", []).run(["
     "                            <div id=\"piechart\"></div>\n" +
     "                        </div>\n" +
     "                        <div class=\"box-holder\">\n" +
-    "                            <div class=\"container-holder\">\n" +
-    "                                <div class=\"container-inner\">\n" +
-    "                                    <div class=\"container\">\n" +
-    "                                        <div class=\"box\" same-box-height data-data = \"south_analysis\">\n" +
-    "                                            <div id=\"chartdiv\" patch-chart-div data-data = \"north_south_percentage\"></div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                    <div class=\"container add\">\n" +
-    "                                        <div class=\"box\" same-box-height data-data = \"south_analysis\">\n" +
-    "                                            <div id=\"patch-bar\" patch-bar-one data-data = \"north_analysis\"></div>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"box\" same-box-height data-data = \"south_analysis\">\n" +
-    "                                            <div id=\"patch-bar2\" patch-bar-two data-data = \"south_analysis\"></div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
+    "							<div class=\"container\">\n" +
+    "								<div class=\"box\" same-box-height data-data = \"south_analysis\">\n" +
+    "									<div id=\"chartdiv\" patch-chart-div data-data = \"north_south_percentage\"></div>\n" +
+    "								</div>\n" +
+    "							</div>\n" +
+    "							<div class=\"container add\">\n" +
+    "								<div class=\"box\" same-box-height data-data = \"south_analysis\">\n" +
+    "									<div id=\"patch-bar\" patch-bar-one data-data = \"north_analysis\"></div>\n" +
+    "								</div>\n" +
+    "								<div class=\"box\" same-box-height data-data = \"south_analysis\">\n" +
+    "									<div id=\"patch-bar2\" patch-bar-two data-data = \"south_analysis\"></div>\n" +
+    "								</div>\n" +
+    "							</div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
