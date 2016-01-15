@@ -285,13 +285,8 @@
 	}
 	
 	&.add{
-		margin: 0 -6px;
 		.box{
 			width: 49%;
-			width: -webkit-calc(50% - 12px);
-			width: -moz-calc(50% - 12px);
-			width: calc(50% - 12px);
-			margin: 0 6px;
 			+ .box{float: right;}
 		}
 	}
@@ -310,6 +305,6 @@
   height: 100%;
   width: 95%;
 
-  @include media("≥widescreen"){width: 80%;}
+  @include media("≥widescreen"){width: 84%;}
 
 }
