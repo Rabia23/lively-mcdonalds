@@ -38,7 +38,7 @@
         var width = screen.width;
         var marginRight = "-35%";
         var marginLeft = "-15%";  
-        if(width <= 1440){
+        if(width < 1440){
           marginRight = "-18%";
           marginLeft = "10%";
         }
