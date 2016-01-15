@@ -38,7 +38,8 @@ function initSameHeight() {
 	jQuery('.slide-holder .container').sameHeight({
 		elements: '.box',
 		flexible: true,
-		multiLine: true
+		multiLine: true,
+		biggestHeight: true
 	});
 }
 
