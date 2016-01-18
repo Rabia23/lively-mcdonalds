@@ -28,9 +28,6 @@ class FeedbackView(APIView):
         trigger = request.data["triggerName"]
 
         if trigger == constants.TRIGGER_AFTER_SAVE:
-            related_branch = branch_get(data["branch"]["objectId"])
-            branch = Branch.get_if_exists(related_branch["objectId"])
-
             if "user" in data:
                 related_user = user_get(data["user"]["objectId"])
                 user = get_related_user(related_user)
@@ -45,7 +42,7 @@ class FeedbackView(APIView):
             feedback_params = data
             feedback_params['gro'] = gro.id if gro else None
             feedback_params['user'] = user.id if user else None
-            feedback_params['branch'] = branch.id
+            feedback_params['branch'] = data["branch_id"]
 
             feedback = Feedback.get_if_exists(data["objectId"])
             serializer = FeedbackSerializer(feedback, data=feedback_params)

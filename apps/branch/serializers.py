@@ -7,4 +7,4 @@ __author__ = 'aamish'
 class BranchSerializer(serializers.ModelSerializer):
     class Meta:
         model = Branch
-        fields = ('id', 'name', 'objectId', 'latitude', 'longitude', 'benchmark_count', 'city')
+        fields = ('id', 'name', 'latitude', 'longitude', 'benchmark_count', 'city')

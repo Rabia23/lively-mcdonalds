@@ -4,7 +4,6 @@ from apps.region.models import Region
 
 class City(models.Model):
     name = models.CharField(max_length=20)
-    objectId = models.CharField(max_length=20, db_index=True)
     region = models.ForeignKey(Region, related_name='cities')
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
@@ -16,8 +15,8 @@ class City(models.Model):
         return self.name
 
     @staticmethod
-    def get_if_exists(object_id):
-        city = City.objects.filter(objectId=object_id).first()
+    def get_if_exists(name):
+        city = City.objects.filter(name=name).first()
         if city:
             return city
 

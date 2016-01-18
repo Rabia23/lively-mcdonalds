@@ -7,7 +7,6 @@ from datetime import datetime
 
 class Branch(models.Model):
     name = models.CharField(max_length=20)
-    objectId = models.CharField(max_length=20, db_index=True)
     latitude = models.DecimalField(max_digits=20, decimal_places=16)
     longitude = models.DecimalField(max_digits=20, decimal_places=16)
     city = models.ForeignKey(City, related_name='branches')
@@ -22,8 +21,8 @@ class Branch(models.Model):
         return self.name
 
     @staticmethod
-    def get_if_exists(object_id):
-        branch = Branch.objects.filter(objectId=object_id).first()
+    def get_if_exists(name):
+        branch = Branch.objects.filter(name=name).first()
         if branch:
             return branch
 

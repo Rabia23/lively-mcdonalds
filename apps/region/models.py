@@ -4,7 +4,6 @@ from apps.area.models import Area
 
 class Region(models.Model):
     name = models.CharField(max_length=20)
-    objectId = models.CharField(max_length=20, db_index=True)
     area = models.ForeignKey(Area, related_name='regions')
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
@@ -12,8 +11,8 @@ class Region(models.Model):
         return self.name
 
     @staticmethod
-    def get_if_exists(object_id):
-        region = Region.objects.filter(objectId=object_id).first()
+    def get_if_exists(name):
+        region = Region.objects.filter(name=name).first()
         if region:
             return region
 

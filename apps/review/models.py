@@ -113,7 +113,7 @@ class Feedback(models.Model):
 
     @staticmethod
     def get_top_branches(date_from=None, date_to=None):
-        dict = Feedback.manager.date(date_from, date_to).values('branch_id').annotate(count=Count("branch_id"))[:3]
+        dict = Feedback.manager.date(date_from, date_to).values('branch_id').annotate(count=Count("branch_id")).order_by('-count')[:3]
 
         branch_list = []
         for branch_dict in dict:

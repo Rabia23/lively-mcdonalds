@@ -7,4 +7,4 @@ __author__ = 'aamish'
 class RegionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
-        fields = ('id', 'name', 'objectId', 'area')
+        fields = ('id', 'name', 'area')
