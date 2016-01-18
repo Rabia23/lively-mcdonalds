@@ -20,13 +20,24 @@
           marginLeft = "10%";
         }
 
+        var vertical_gap = 0;
+        var ms_ie = false;
+         var ua = window.navigator.userAgent;
+         var old_ie = ua.indexOf('MSIE ');
+         var new_ie = ua.indexOf('Trident/');
+
+         if ((old_ie > -1) || (new_ie > -1)) {
+           ms_ie = true;
+         }
+
+        if ( ms_ie ) {
+            vertical_gap = -20;
+        }
         scope.$watch('data', function(watchedData) {
 
           if(watchedData !== undefined){
             var data = scope.data;
             if(!graph_show){
-              console.log("margin");
-              console.log(marginRight);
               live_top_concerns = AmCharts.makeChart("container",{
                 "type": "pie",
                 "angle": 25,
@@ -70,7 +81,7 @@
                   "marginTop": 50,
                  "autoMargins":false,
                   "fontSize": 45,
-                  "verticalGap": 0
+                  "verticalGap": vertical_gap
                 },
                 "titles": [],
                 "dataProvider": data
