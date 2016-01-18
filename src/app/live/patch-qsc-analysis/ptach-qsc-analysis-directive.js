@@ -155,17 +155,20 @@
                        window.initSameHeight();
                    }, 500);
                  }
-                 else{
-                   live_patch_bar.dataProvider = data;
-                    live_patch_bar.validateData();
+                 else {
+                     live_patch_bar.dataProvider = data;
+                     live_patch_bar.validateData();
                  }
-                 var text_elements = $("#patch-bar").find("svg").find("text");
-                 $.each(text_elements, function(index, value){
-                  if($(value).find("tspan").html() == "NORTH"){
-                    $(value).find("tspan").css("text-shadow", "none");
-                  }
+                 $timeout(function() {
+                   var text_elements = $("#patch-bar").find("svg").find("text");
+                   console.log(text_elements);
+                   $.each(text_elements, function(index, value){
+                     if($(value).find("tspan").html() == "NORTH"){
+                       $(value).find("tspan").css("text-shadow", "none");
+                     }
 
-                 });
+                   });
+                 }, 1000);
 
                }
             });
@@ -279,15 +282,18 @@
                     live_patch_bar2.dataProvider = data;
                     live_patch_bar2.validateData();
                   }
+                  $timeout(function() {
+                   var text_elements = $("#patch-bar2").find("svg").find("text");
+                   $.each(text_elements, function(index, value){
+                     if($(value).find("tspan").html() == "SOUTH"){
+                        $(value).find("tspan").css("text-shadow", "none");
+                     }
+
+                   });
+                  }, 1000);
 
                }
-               var text_elements = $("#patch-bar2").find("svg").find("text");
-               $.each(text_elements, function(index, value){
-                if($(value).find("tspan").html() == "SOUTH"){
-                  $(value).find("tspan").css("text-shadow", "none");
-                }
 
-               });
             });
         }
       };
@@ -381,21 +387,23 @@
                     "dataProvider": data
                 });
                 graph_drawn = true;
-                $timeout(function() {
+                 $timeout(function() {
                    window.initSameHeight();
-                }, 500);
-          }
+                 }, 500);
+              }
               else{
                 live_patch_chart.dataProvider = data;
                 live_patch_chart.validateData();
               }
-              var text_elements = $("#chartdiv").find("svg").find("text");
-              $.each(text_elements, function(index, value){
-                if($(value).find("tspan").html() == "NORTH" || $(value).find("tspan").html() == "SOUTH" ){
-                  $(value).find("tspan").css("text-shadow", "none");
-                }
+              $timeout(function() {
+                var text_elements = $("#chartdiv").find("svg").find("text");
+                $.each(text_elements, function(index, value){
+                  if($(value).find("tspan").html() == "NORTH" || $(value).find("tspan").html() == "SOUTH" ){
+                    $(value).find("tspan").css("text-shadow", "none");
+                  }
 
-              });
+                });
+              }, 1000);
 
             }
           });

@@ -87,7 +87,8 @@
                     "gridAlpha": 0.39,
                     "gridColor": "#FFFE6E",
                     "tickLength": 0,
-                    "title": ""
+                    "title": "",
+                    "minimum": 0
                   }
                 ],
                 "allLabels": [],

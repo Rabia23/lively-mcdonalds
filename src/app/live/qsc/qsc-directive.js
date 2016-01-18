@@ -135,7 +135,8 @@
                     "gridColor": "#FFFE6E",
                     "gridCount": 20,
                     "tickLength": 0,
-                    "title": ""
+                    "title": "",
+                    "minimum": 0
                   }
                 ],
                 "allLabels": [],

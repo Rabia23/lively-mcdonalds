@@ -71,7 +71,8 @@
                     "title": "",
                     "autoGridCount": false,
                     "gridCount": 6,
-                    "tickLength": 0
+                    "tickLength": 0,
+                    "minimum": 0
                   }
                 ],
                 "allLabels": [],
