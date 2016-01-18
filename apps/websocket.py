@@ -18,7 +18,7 @@ def ping(websocket, path):
                 length = q.qsize()
                 print("Ping Received")
                 yield from websocket.send("Ping Received")
-                yield from asyncio.sleep(random.random() * 60)
+                yield from asyncio.sleep(random.random() * 3)
         else:
             return
 
