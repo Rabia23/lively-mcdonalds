@@ -2,8 +2,6 @@ from django.contrib.auth.models import User
 from django.db import transaction
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from apps.branch.models import Branch
-from apps.branch.utils import branch_get
 from apps.option.utils import option_get, get_related_option
 from apps.person.utils import user_get, get_related_user
 from apps.review.models import Feedback, FeedbackOption
@@ -11,7 +9,6 @@ from apps.review.serializers import FeedbackSerializer
 from lively._celery import send_negative_feedback_email
 from apps import constants
 from apps.utils import save, response
-from django.template import Context
 from apps.redis_queue import RedisQueue
 
 
