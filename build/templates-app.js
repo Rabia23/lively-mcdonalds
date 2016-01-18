@@ -595,8 +595,8 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "					<div class=\"heading-slide\"><h2>business segment</h2></div>\n" +
     "					<div class=\"heading-slide\"><h2>overall rating</h2></div>\n" +
     "					<div class=\"heading-slide\"><h2>top concerns</h2></div>\n" +
-    "					<div class=\"heading-slide\"><h2>Patch  qsc analysis</h2></div>\n" +
-    "					<div class=\"heading-slide\"><h2>benchmark map</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>Complaint analysis</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>Laederboard</h2></div>\n" +
     "				</div>\n" +
     "				<h1>Country Wide</h1>\n" +
     "			</div>\n" +
@@ -649,8 +649,8 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "				<li><a href=\"#\"><span>Business Segment</span></a></li>\n" +
     "				<li><a href=\"#\"><span>Overall rating</span></a></li>\n" +
     "				<li><a href=\"#\"><span>Top Concerns</span></a></li>\n" +
-    "				<li><a href=\"#\"><span>Patch  qsc analysis</span></a></li>\n" +
-    "				<li><a href=\"#\"><span>Benchmark map</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Complaint analysis</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Leaderboard</span></a></li>\n" +
     "			</ul>\n" +
     "		</div>\n" +
     "	</div>\n" +
