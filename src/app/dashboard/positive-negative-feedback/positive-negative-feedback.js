@@ -11,7 +11,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     $scope.comments = _.map(data.feedbacks,  function(data){
       return commentService.getComment(data);
     });
-    console.log($scope.comments);
+    //console.log($scope.comments);
   });
 
   $scope.open = function (size) {

@@ -57,8 +57,8 @@ angular.module( 'livefeed.dashboard.feedback_map', [
   $scope.markers = [];
 
   Graphs.map_view().$promise.then(function(data){
-    console.log("feedback map");
-    console.log(data);
+    //console.log("feedback map");
+    //console.log(data);
     $scope.show_loading = false;
     _.each(data.branches, function(branch){
       var icon;
@@ -88,8 +88,7 @@ angular.module( 'livefeed.dashboard.feedback_map', [
   return {
     restrict: 'A',
     link: function(scope, ele, attrs) {
-      indow.initSameHeight();
+      window.initSameHeight();
     }
   };
 });
-

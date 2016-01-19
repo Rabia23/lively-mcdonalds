@@ -110,7 +110,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "      <div class=\"content-holder\">\n" +
     "          <div class=\"ibox-content add\">\n" +
     "              <div class=\"chart-outer\">\n" +
-    "                  <canvas id=\"line\" class=\"chart chart-line\" chart-data=\"data\" chart-labels=\"labels\"></canvas>\n" +
+    "                  <!--<canvas id=\"line\" class=\"chart chart-line\" chart-data=\"data\" chart-labels=\"labels\"></canvas>-->\n" +
     "              </div>\n" +
     "              <div class=\"list-holder\">\n" +
     "                  <div class=\"row\">\n" +
@@ -381,7 +381,7 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "	  <div class=\"block-holder\">\n" +
     "		  <div id=\"world-map\">\n" +
     "		  	<div map-lazy-load=\"http://maps.google.com/maps/api/js\">\n" +
-    "			  	<map center=\"30,70\" zoom=\"{{zoom}}\" disable-default-u-i=\"true\" default-style=\"false\"></map>\n" +
+    "			  	<map center=\"30,70\" zoom=\"{{zoom}}\"></map>\n" +
     "				</div>\n" +
     "		  </div>\n" +
     "	  </div>\n" +
@@ -514,9 +514,9 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "      </div>\n" +
     "  </div>\n" +
     "  <div class=\"ibox-content same-height\">\n" +
-    "      <div class=\"block-holder\">\n" +
-    "          <!-- <canvas id=\"lineChart\" height=\"140\"></canvas> -->\n" +
-    "          <!-- <canvas id=\"line\" class=\"chart chart-line\" chart-data=\"data\" chart-labels=\"labels\" chart-legend=\"true\" chart-series=\"series\" chart-click=\"onClick\" ></canvas>  -->\n" +
+    "      <div class=\"block-holder\" time-line data-data = \"timeline_data\">\n" +
+    "          <div id=\"chartdiv\" style=\"width: 100%; height: 400px;\"></div>\n" +
+    "           <!--<canvas id=\"line\" class=\"chart chart-line\" chart-data=\"data\" chart-labels=\"labels\" chart-legend=\"true\" chart-series=\"series\" chart-click=\"onClick\" ></canvas>-->\n" +
     "      </div>\n" +
     "  </div>\n" +
     "</div>\n" +

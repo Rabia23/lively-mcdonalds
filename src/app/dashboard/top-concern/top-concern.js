@@ -3,7 +3,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
   "helper_factories"
 ])
 
-.controller( 'TopConcernCtrl', function TopConcernController( $scope, Graphs, Global ) {
+.controller( 'TopConcernsCtrl', function TopConcernController( $scope, Graphs, Global ) {
   
   $scope.colors = [];
   $scope.labels = [];

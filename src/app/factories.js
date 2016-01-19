@@ -83,7 +83,7 @@ angular.module( 'factories', [
     return this.service.action_taken({token:  token, feedback_id: feedback_id, action_id: action_id});
   };
 
-  Graphs.prototype.top_concerns = function(top_concerns){
+  Graphs.prototype.top_concerns = function(){
     return this.service.top_concerns({token:  token});
   };
 
