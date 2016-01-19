@@ -110,7 +110,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "      <div class=\"content-holder\">\n" +
     "          <div class=\"ibox-content add\">\n" +
     "              <div class=\"chart-outer\">\n" +
-    "                  <!--<canvas id=\"line\" class=\"chart chart-line\" chart-data=\"data\" chart-labels=\"labels\"></canvas>-->\n" +
+    "                  <canvas id=\"line\" class=\"chart chart-line\" chart-data=\"data\" chart-labels=\"labels\"></canvas>\n" +
     "              </div>\n" +
     "              <div class=\"list-holder\">\n" +
     "                  <div class=\"row\">\n" +

@@ -252,7 +252,29 @@ body{
 	width: 100%;
 }
 
-#world-map{height: 350px;}
+#world-map{
+	height: 100% !important;
+	width: 100% !important;
+	min-height: 300px;
+}
+
+#chartdiv{
+	width: 100% !important;
+	height: auto !important;
+}
+
+.same-height .block-holder{height: 100% !important;}
+
+#world-map > div{
+	width: 100% !important;
+	height: 100% !important;
+}
+#world-map > div > map{
+	width: 100% !important;
+	min-height: 100% !important;
+}
+
+.amChartsLegend.amcharts-legend-div{display: none !important;}
 
 .comment-block{
 	position: absolute;
@@ -934,6 +956,149 @@ body.login{background: #eee;}
 #wrapper .navbar-top-links li a{padding: 20px 5px;}
 .wrapper-content{padding-bottom: 20px !important;}
 
+/* custom select styles */
+.jcf-select {
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	background: #fff;
+	width: auto;
+	font-size: 16px;
+	line-height: 20px;
+	color: #676767;
+	overflow: hidden;
+	padding: 11px 36px 10px 22px;
+}
+.jcf-select select {
+	z-index: 1;
+	left: 0;
+	top: 0;
+}
+.jcf-select .jcf-select-text {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	cursor: default;
+	display: block;
+	margin: 0 10px 0 0;
+}
+.jcf-select.jcf-drop-active .jcf-select-opener:after {content: '\e801';}
+.jcf-select .jcf-select-opener {
+	position: absolute;
+	text-align: center;
+	background: #fff;
+	bottom: 0;
+	right: 0;
+	top: 0;
+	width: 30px;
+}
+.jcf-select .jcf-select-opener:after {
+	font: 20px "fontello";
+	position: absolute;
+	left: 0;
+	top: 50%;
+	content: '\e800';
+	margin-top: -10px;
+	height: 10px;
+	cursor: default;
+}
+body > .jcf-select-drop {
+	position: absolute;
+	z-index: 9999;
+	min-width: 100px;
+}
+body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
+.jcf-select .jcf-select-drop {
+	position: absolute;
+	margin-top: 0px;
+	z-index: 9999;
+	top: 100%;
+	left: -1px;
+	right: -1px;
+}
+.jcf-select-drop.jcf-drop-flipped {
+	bottom: 100%;
+	top: auto;
+}
+.jcf-select-drop .jcf-select-drop-content {
+	position: relative;
+	border: 1px solid #d9d9d9;
+}
+/* multiple select styles */
+.jcf-list-box {
+	overflow: hidden;
+	display: inline-block;
+	min-width: 200px;
+	margin: 0 15px;
+}
+/* select options styles */
+.jcf-list {
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	z-index: 99;
+	background: #fff;
+	line-height: 18px;
+	font-size: 14px;
+	width: 100%;
+}
+.jcf-list .jcf-list-content {
+	vertical-align: top;
+	display: inline-block;
+	overflow: auto;
+	width: 100%;
+}
+.jcf-list ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+.jcf-list ul li {
+	overflow: hidden;
+	display: block;
+}
+.jcf-list .jcf-overflow {overflow: auto;}
+.jcf-list .jcf-option {
+	overflow: hidden;
+	cursor: default;
+	display: block;
+	padding: 8px 10px;
+	color: #626262;
+	height: 1%;
+	line-height: 20px;
+	font-size: 16px;
+}
+.jcf-list .jcf-option.jcf-selected {display: none;}
+.jcf-list .jcf-disabled {
+	background: #fff !important;
+	color: #aaa !important;
+}
+.jcf-select-drop .jcf-hover,
+.jcf-list-box .jcf-selected {
+	background: #676767;
+	color: #fff;
+}
+.jcf-list .jcf-optgroup-caption {
+	white-space: nowrap;
+	font-weight: bold;
+	display: block;
+	padding: 5px 9px;
+	cursor: default;
+	color: #000;
+}
+.jcf-list .jcf-optgroup .jcf-option {padding-left: 30px;}
+/* common custom form elements styles */
+.jcf-disabled {background: #fff !important;}
+.jcf-focus, .jcf-focus * {border-color: #f00 !important;}
+
+
+
+
+
+
+
+
 @media screen and (min-width: 768px) {
 	.modal-1200 .table tbody td{
 		padding-top: 10px;
@@ -1195,7 +1360,6 @@ body.login{background: #eee;}
 	}
 	.header-caption h1{font-weight: 400;}
 	.morris-block-holder .morris-content-holder{width: 33.33%;}
-	#world-map{height: 250px;}
 	.nav-active .comments-drop{width: 260px;}
 	.comments-list li{
 		border-width: 0 0 1px 4px;
@@ -1226,6 +1390,7 @@ body.login{background: #eee;}
 	.wrapper-content{padding: 20px 0 !important;}
 	.ibox-title h5{margin-bottom: 12px !important;}
 	.detail-block .ibox-title h5{margin-bottom: 5px !important;}
+	#wrapper .ibox-content{padding: 10px;}
 }
 
 @media screen and (min-width: 769px) {
