@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import transaction
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from apps.livedashboard import get_live_record
 from apps.option.utils import option_get, get_related_option
 from apps.person.utils import user_get, get_related_user
 from apps.review.models import Feedback, FeedbackOption
@@ -54,8 +55,9 @@ class FeedbackView(APIView):
                     if not feedback_option:
                         FeedbackOption(feedback=feedback, option=option).save()
 
-            q = RedisQueue('feedback_queue')
-            q.put("ping")
+            q = RedisQueue('feedback_redis_queue')
+            q.put(str(get_live_record()))
+            # q.put("ping")
 
             feedback.mark_deferred_if_positive_and_no_comment()
             feedback.keyword_analysis()

@@ -34,6 +34,10 @@ class RedisQueue(object):
             item = item[1]
         return item
 
+    def seek(self, block=True, timeout=None):
+        item = self.__db.lrange(self.key, -1, -1)
+        return item
+
     def get_nowait(self):
         """Equivalent to get(False)."""
         return self.get(False)

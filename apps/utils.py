@@ -1,10 +1,10 @@
 from django.contrib.auth.models import User
 from rest_framework import status
-from rest_framework.response import Response
-import string, random
+import string,random
 import http.client
 import json
 from lively import settings
+from rest_framework.response import Response
 
 __author__ = 'aamish'
 

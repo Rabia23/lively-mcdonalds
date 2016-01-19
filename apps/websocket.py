@@ -1,3 +1,5 @@
+from apps.livedashboard import get_live_record
+
 __author__ = 'aamish'
 
 import asyncio
@@ -9,15 +11,17 @@ from lively import settings
 
 @asyncio.coroutine
 def ping(websocket, path):
-    q = RedisQueue('feedback_queue')
+    q = RedisQueue('feedback_redis_queue')
     print("Connection Opened")
     length = 0
     while True:
         if websocket.open:
             if length < q.qsize():
                 length = q.qsize()
+                abc = q.seek()
+                data = abc[0].decode("utf-8")
                 print("Ping Received")
-                yield from websocket.send("Ping Received")
+                yield from websocket.send(str(data))
                 yield from asyncio.sleep(random.random() * 3)
         else:
             return

@@ -527,7 +527,7 @@ class TopRankingsView(APIView):
 #for live dashboard
 class ComplaintAnalysisView(APIView):
 
-    @method_decorator(my_login_required)
+    # @method_decorator(my_login_required)
     def get(self, request, format=None):
         try:
             data_list = []
