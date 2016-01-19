@@ -428,16 +428,18 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "            <div class=\"title-outer\">\n" +
     "                <div class=\"ibox-title\">\n" +
     "                    <h5>Overall Rating</h5>\n" +
-    "                    <ul class=\"tab-links\">\n" +
-    "                        <li>\n" +
-    "                            <div class=\"calender-outer\">\n" +
-    "							  <span class=\"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "							  	   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
-    "								  <i class=\"fa fa-calendar\" map-range-click></i>\n" +
-    "							  </span>\n" +
-    "						  </div>\n" +
-    "                        </li>\n" +
-    "                    </ul>\n" +
+    "                    <div class=\"ibox-tools\">\n" +
+    "                       <ul class=\"tab-links\">\n" +
+    "							<li>\n" +
+    "								<div class=\"calender-outer\">\n" +
+    "								  <span class=\"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
+    "									   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
+    "									  <i class=\"fa fa-calendar\" map-range-click></i>\n" +
+    "								  </span>\n" +
+    "							  </div>\n" +
+    "							</li>\n" +
+    "						</ul>\n" +
+    "					</div>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "            <div class=\"content-holder\" ng-class=\"{loading: show_loading}\">\n" +
