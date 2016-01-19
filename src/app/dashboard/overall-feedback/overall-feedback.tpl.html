@@ -49,6 +49,11 @@
                 </div>
             </div>
             <div class="content-holder" ng-class="{loading: show_loading}">
+                <div class="legends-holder">
+                	<ul class="legends-list">
+					  <li ng-repeat="label in bar.labels">{{label}}</li>
+					</ul>
+                </div>
                 <div class="ibox-content float-chart-block">
                     <div class="flot-chart">
                         <canvas ng-show = "show_canvas"  id="bar" class="chart chart-bar" chart-data="bar.data" chart-labels="bar.labels" chart-colours="bar.colours" chart-options="bar.options"></canvas>

@@ -6,13 +6,16 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 ])
 
 .controller( 'TimeLineCtrl', function DashboardController( $scope, overallRatingChartService, Graphs, Global ) {
-  $scope.start_date = null;
-  $scope.end_date = null;
+   $scope.start_date = null;
+   $scope.end_date = null;
 
-  $scope.type = "1";
+   $scope.type = "1";
+
    Graphs.overall_rating($scope.type, null, $scope.start_date, $scope.end_date).$promise.then(function(data) {
-       console.log("timeline data");
-       console.log(data);
+       $scope.labels = _.map(data[0].data.feedbacks ,function(value){
+          return {option_name: value.option__text, color: Global.optionsColorScheme[value.option__text], priority: Global.qscPriority[value.option__text]};
+       });
+       $scope.labels = _.sortBy($scope.labels, function(value){ return value.priority; });
        var qsc = {quality: [], service: [], cleanliness: []};
        $scope.timeline_data = [];
         _.each(data, function(value,index){

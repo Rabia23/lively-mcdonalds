@@ -16,8 +16,8 @@ angular.module('livefeed.overall_feedback.chart', [
               scaleShowVerticalLines: false,
               tooltipTemplate: "<%= value %>",
               scaleOverride: true,
-              scaleSteps: 8,
-              scaleStepWidth: Math.ceil(max/8)
+              scaleSteps: 5,
+              scaleStepWidth: Math.ceil(max/5)
             }
         };
       }

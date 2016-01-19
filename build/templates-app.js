@@ -443,6 +443,11 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "                </div>\n" +
     "            </div>\n" +
     "            <div class=\"content-holder\" ng-class=\"{loading: show_loading}\">\n" +
+    "                <div class=\"legends-holder\">\n" +
+    "                	<ul class=\"legends-list\">\n" +
+    "					  <li ng-repeat=\"label in bar.labels\">{{label}}</li>\n" +
+    "					</ul>\n" +
+    "                </div>\n" +
     "                <div class=\"ibox-content float-chart-block\">\n" +
     "                    <div class=\"flot-chart\">\n" +
     "                        <canvas ng-show = \"show_canvas\"  id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
@@ -513,9 +518,24 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "				  </div>\n" +
     "              </li>\n" +
     "          </ul>\n" +
+    "          <span class=\"select-holder\">\n" +
+    "   			<select ng-disabled = \"!mainView\" ng-model= \"type\" ng-change = \"axisChanged()\" id=\"timely\" custom-form>\n" +
+    "  				<option value = \"1\">Daily</option>\n" +
+    "  				<option value = \"2\">Weekly</option>\n" +
+    "  				<option value = \"3\">Monthly</option>\n" +
+    "  				<option value = \"4\">Yearly</option>\n" +
+    "			  </select>\n" +
+    "   		</span>\n" +
+    "    	<a ng-click = \"backToMain()\" ng-hide = \"mainView\" class=\"btn-back\">Back</a>\n" +
     "      </div>\n" +
     "  </div>\n" +
     "  <div class=\"ibox-content same-height\">\n" +
+    "      <ul class=\"legends-list\">\n" +
+    "      <li ng-repeat = \"label in labels track by $index\">\n" +
+    "        <span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>\n" +
+    "        <a>{{label.option_name}}</a>\n" +
+    "      </li>\n" +
+    "    </ul>\n" +
     "      <div class=\"block-holder\" time-line data-data = \"timeline_data\">\n" +
     "          <div id=\"chartdiv\" style=\"width: 100%; height: 400px;\"></div>\n" +
     "           <!--<canvas id=\"line\" class=\"chart chart-line\" chart-data=\"data\" chart-labels=\"labels\" chart-legend=\"true\" chart-series=\"series\" chart-click=\"onClick\" ></canvas>-->\n" +
@@ -802,6 +822,9 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "        </div>\n" +
     "      </div>\n" +
     "      <div class=\"content-holder\">\n" +
+    "        <ul>\n" +
+    "          <li ng-repeat=\"label in labels\">{{label}}</li>\n" +
+    "        </ul>\n" +
     "        <div class=\"ibox-content\">\n" +
     "          <div class=\"graph-block\">\n" +
     "            <canvas id=\"doughnut\" class=\"chart chart-doughnut\" chart-data=\"data\" chart-labels=\"labels\"></canvas> \n" +
