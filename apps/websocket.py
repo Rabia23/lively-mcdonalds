@@ -21,7 +21,6 @@ def ping(websocket, path):
                 abc = q.seek()
                 data = abc[0].decode("utf-8")
                 print("Ping Received")
-                print(data)
                 yield from websocket.send(str(data))
                 yield from asyncio.sleep(random.random() * 3)
         else:

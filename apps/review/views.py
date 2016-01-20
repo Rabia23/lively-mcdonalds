@@ -55,12 +55,12 @@ class FeedbackView(APIView):
                     if not feedback_option:
                         FeedbackOption(feedback=feedback, option=option).save()
 
+            feedback.mark_deferred_if_positive_and_no_comment()
+            feedback.keyword_analysis()
+
             q = RedisQueue('feedback_redis_queue')
             q.put(str(get_live_record()))
             # q.put("ping")
-
-            feedback.mark_deferred_if_positive_and_no_comment()
-            feedback.keyword_analysis()
 
             if feedback.is_negative():
                 feedback_json = {
