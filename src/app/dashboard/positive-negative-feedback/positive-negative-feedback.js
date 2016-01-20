@@ -1,13 +1,14 @@
 angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   'factories',
   'helper_factories',
-   'ui.bootstrap'
+  'ui.bootstrap'
 ])
 
 .controller( 'PositiveNegativeFeedbackCtrl', function DashboardController( $scope, _, Global, Graphs,$uibModal, $log, commentService ) {
 
 
   Graphs.comments(1).$promise.then(function(data){
+    $scope.feedback_count = data.feedback_count;
     $scope.comments = _.map(data.feedbacks,  function(data){
       return commentService.getComment(data);
     });
@@ -83,7 +84,18 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   return {
     restrict: 'A',
     link: function(scope, ele, attrs){
-      window.initMobileNav();    
+      window.initMobileNav();
+      window.initPositionFixed();
+      ele.bind("click", function(event){
+        console.log("clicked");
+        var window_height = document.body.offsetHeight;
+        var content_top = $(".wrapper-content").offset().top;
+        var header_height = $(".heading-holder").height();
+        var button_holder = $(".btn-holder").height();
+        var height = window_height - content_top - header_height - button_holder;
+        $(".comments-holder").css("overflow", "auto");
+        $(".comments-holder").css("height", height);
+      });    
     }
   };
 })

@@ -1,7 +1,7 @@
 // page init
  jQuery(function(){
- initPositionFixed();
-  initMobileNav();
+ //initPositionFixed();
+  //initMobileNav();
  // initSlideShow();
  });
 

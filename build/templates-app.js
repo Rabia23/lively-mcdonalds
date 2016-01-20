@@ -655,7 +655,7 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "<div class=\"comment-block\">\n" +
     "  <a style = \"cursor:pointer;\" class=\"nav-opener\" mobile-nav>\n" +
     "    <i class=\"fa fa-comments-o\"></i>\n" +
-    "    <span class=\"count\">2</span>\n" +
+    "   <!--  <span class=\"count\">{{feedback_count}}</span> -->\n" +
     "  </a>\n" +
     "  <div class=\"comments-drop\">\n" +
     "    <a href=\"#\" class=\"nav-opener\">\n" +

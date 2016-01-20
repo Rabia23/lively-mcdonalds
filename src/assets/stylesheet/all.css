@@ -281,6 +281,8 @@ body{
 	pointer-events:none;
 }
 
+.comment-block .btn-holder{overflow: hidden;}
+
 .comment-block.fixed-position{
 	position: fixed;
 	right: 0 !important;
