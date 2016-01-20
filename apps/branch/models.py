@@ -30,7 +30,6 @@ class Branch(models.Model):
         feedback_count = self.get_branch_feedback_count(date_from, date_to)
         branch = {
             "id": self.id,
-            "objectId": self.objectId,
             "name": self.name,
             "latitude": self.latitude,
             "longitude": self.longitude,

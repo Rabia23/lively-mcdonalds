@@ -6,7 +6,6 @@ from apps.person.models import UserInfo
 
 class ManagersAdmin(admin.ModelAdmin):
     list_display = ('user_name', 'user_role')
-    form = UserInfoForm
 
     def user_role(self, obj):
         return UserRolesEnum.labels[obj.role]

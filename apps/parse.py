@@ -41,6 +41,7 @@ class ParseHelper():
                 "username": obj.user.username,
                 "password": password,
                 "gro_id": obj.user.id,
+                "branch_id": obj.branch_id,
             })
         )
         return response
