@@ -445,7 +445,10 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "            <div class=\"content-holder\" ng-class=\"{loading: show_loading}\">\n" +
     "                <div class=\"legends-holder\">\n" +
     "                	<ul class=\"legends-list\">\n" +
-    "					  <li ng-repeat=\"label in bar.labels\">{{label}}</li>\n" +
+    "					  <li ng-repeat=\"label in bar.labels\">\n" +
+    "					  	<span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>\n" +
+    "					  	{{label}}\n" +
+    "					  </li>\n" +
     "					</ul>\n" +
     "                </div>\n" +
     "                <div class=\"ibox-content float-chart-block\">\n" +
@@ -822,9 +825,6 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "        </div>\n" +
     "      </div>\n" +
     "      <div class=\"content-holder\">\n" +
-    "        <ul>\n" +
-    "          <li ng-repeat=\"label in labels\">{{label}}</li>\n" +
-    "        </ul>\n" +
     "        <div class=\"ibox-content\">\n" +
     "          <div class=\"graph-block\">\n" +
     "            <canvas id=\"doughnut\" class=\"chart chart-doughnut\" chart-data=\"data\" chart-labels=\"labels\"></canvas> \n" +

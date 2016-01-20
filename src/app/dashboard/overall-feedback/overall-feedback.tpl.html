@@ -51,7 +51,10 @@
             <div class="content-holder" ng-class="{loading: show_loading}">
                 <div class="legends-holder">
                 	<ul class="legends-list">
-					  <li ng-repeat="label in bar.labels">{{label}}</li>
+					  <li ng-repeat="label in bar.labels">
+					  	<span class="bullet" style = "background-color: {{label.color}}"></span>
+					  	{{label}}
+					  </li>
 					</ul>
                 </div>
                 <div class="ibox-content float-chart-block">
