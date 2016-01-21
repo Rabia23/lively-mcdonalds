@@ -5,6 +5,7 @@ angular.module( 'livefeed', [
   'livefeed.login',
   'livefeed.coupon',
   'livefeed.live',
+  'livefeed.manage_users',
   'livefeed.authService',
   'ui.router',
   'livefeed.offline'
