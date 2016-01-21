@@ -147,6 +147,14 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                      <a href=\"http://www.mcdonalds.com.pk/\" target=\"_blank\"> <img alt=\"image\" class=\"img-responsive\" src=\"assets/images/logo.jpg\"></a>\n" +
     "                  </div>\n" +
     "              </div>\n" +
+    "				<ul class=\"nav metismenu\" id=\"side-menu\">\n" +
+    "					<li>\n" +
+    "						<a href=\"#\"><i class=\"fa fa-home\"></i> <span class=\"nav-label\">Home</span></a>\n" +
+    "					</li>\n" +
+    "					<li>\n" +
+    "						<a href=\"#\"><i class=\"fa fa-user\"></i> <span class=\"nav-label\">GRO</span></a>\n" +
+    "					</li>\n" +
+    "				</ul>\n" +
     "          </div>\n" +
     "      </div>\n" +
     "  </nav>\n" +
