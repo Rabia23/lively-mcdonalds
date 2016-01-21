@@ -1,4 +1,19 @@
-angular.module('templates-app', ['coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/overall-ratings/overall-ratings.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html']);
+angular.module('templates-app', ['common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/overall-ratings/overall-ratings.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/manage-users.tpl.html']);
+
+angular.module("common/sidebar.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("common/sidebar.tpl.html",
+    "<nav class=\"navbar-default navbar-static-side\" role=\"navigation\" >\n" +
+    "  <div class=\"sidebar-collapse\">\n" +
+    "    <div id=\"side-menu\" class=\"nav metismenu\">\n" +
+    "      <div class=\"logo-holder\">\n" +
+    "        <div class=\"logo\">\n" +
+    "          <a href=\"http://www.mcdonalds.com.pk/\" target=\"_blank\"> <img alt=\"image\" class=\"img-responsive\" src=\"assets/images/logo.jpg\"></a>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</nav>");
+}]);
 
 angular.module("coupon/coupon.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("coupon/coupon.tpl.html",
@@ -139,17 +154,8 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
 angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/dashboard.tpl.html",
     "<div id=\"wrapper\">\n" +
-    "  <nav class=\"navbar-default navbar-static-side\" role=\"navigation\" >\n" +
-    "      <div class=\"sidebar-collapse\">\n" +
-    "          <div id=\"side-menu\" class=\"nav metismenu\">\n" +
-    "              <div class=\"logo-holder\">\n" +
-    "                  <div class=\"logo\">\n" +
-    "                      <a href=\"http://www.mcdonalds.com.pk/\" target=\"_blank\"> <img alt=\"image\" class=\"img-responsive\" src=\"assets/images/logo.jpg\"></a>\n" +
-    "                  </div>\n" +
-    "              </div>\n" +
-    "          </div>\n" +
-    "      </div>\n" +
-    "  </nav>\n" +
+    "\n" +
+    "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
     "      <div class=\"header-visual\">\n" +
     "        <nav class=\"navbar dashboard\" role=\"navigation\" style=\"margin-bottom: 0;z-index: 999;\">\n" +
@@ -615,43 +621,6 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
 
 angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html",
-    "<!-- <div class=\"review-block\">\n" +
-    "  <div class=\"heading-block\">\n" +
-    "  	<div class = \"pull-right\">\n" +
-    "		<a class = \"btn btn-default\" ng-click = \"open()\" uib-tooltip=\"Click to View All Feedback Details\">View All Feedback</a>\n" +
-    "	  </div>\n" +
-    "	  <h2>\n" +
-    "	  	Positive Negative Feedback\n" +
-    "	  	<span class=\"icon-help\" uib-popover=\"Represents the positive suggestions, and negative feedbacks given by the customers. Click on View All Feedback, for more details.\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
-    "	  </h2>\n" +
-    "  </div>\n" +
-    "  <div class=\"holder\">\n" +
-    "    <ul>\n" +
-    "      <li ng-repeat = \"pos_feedback in pos_feedbacks\">\n" +
-    "        <div class=\"inner-holder\">\n" +
-    "            <div class=\"text\">\n" +
-    "            	<p>{{pos_feedback.comment}}</p>\n" +
-    "            </div>\n" +
-    "            <span class=\"arrow\"></span>\n" +
-    "        </div>\n" +
-    "        <time>{{pos_feedback.created_at | date:\"dd-MM-yyyy',' h:mm a\"}}</time>\n" +
-    "      </li>\n" +
-    "    </ul>\n" +
-    "    <ul class=\"add\">\n" +
-    "      <li ng-repeat = \"neg_feedback in neg_feedbacks\">\n" +
-    "        <div class=\"inner-holder\">\n" +
-    "            <div class=\"text\">\n" +
-    "            	<p>{{neg_feedback.comment}}</p>\n" +
-    "            </div>\n" +
-    "            <span class=\"arrow\"></span>\n" +
-    "        </div>\n" +
-    "        <time>{{neg_feedback.created_at | date:\"dd-MM-yyyy',' h:mm a\"}}</time>\n" +
-    "      </li>\n" +
-    "    </ul>\n" +
-    "  </div>\n" +
-    "</div> -->\n" +
-    "\n" +
-    "\n" +
     "<div class=\"comment-block\">\n" +
     "  <a style = \"cursor:pointer;\" class=\"nav-opener\" mobile-nav>\n" +
     "    <i class=\"fa fa-comments-o\"></i>\n" +
@@ -1129,5 +1098,67 @@ angular.module("login/login.tpl.html", []).run(["$templateCache", function($temp
     "		</div>\n" +
     "	</div>\n" +
     " </div>\n" +
+    "  ");
+}]);
+
+angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("manage-users/manage-users.tpl.html",
+    "<div id=\"wrapper\">\n" +
+    "\n" +
+    "  <ui-view name = \"sidebar\"></ui-view>\n" +
+    "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
+    "      <div class=\"header-visual\">\n" +
+    "        <nav class=\"navbar dashboard\" role=\"navigation\" style=\"margin-bottom: 0;z-index: 999;\">\n" +
+    "          <div class=\"navbar-header\">\n" +
+    "            <a class=\"navbar-minimalize minimalize-styl-2 btn btn-primary\" toggle-menu>\n" +
+    "              <i class=\"fa fa-bars\"></i>\n" +
+    "            </a>\n" +
+    "            <form role=\"search\" class=\"navbar-form-custom\" action=\"search_results.html\">\n" +
+    "              <div class=\"form-group\">\n" +
+    "                <input type=\"text\" placeholder=\"Search for something...\" class=\"form-control\" name=\"top-search\" id=\"top-search\">\n" +
+    "              </div>\n" +
+    "            </form>\n" +
+    "          </div>\n" +
+    "          <ul class=\"nav navbar-top-links navbar-right\">\n" +
+    "            <li>\n" +
+    "              <a style = \"cursor:pointer;\" ui-sref = \"live\">\n" +
+    "                 Live Dashboard\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "              <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">{{username}}</span></span>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "              <a style = \"cursor:pointer;\" ng-click = \"logout()\">\n" +
+    "                <i class=\"fa fa-sign-out\"></i> Log out\n" +
+    "              </a>\n" +
+    "            </li>\n" +
+    "          </ul>\n" +
+    "        </nav>\n" +
+    "\n" +
+    "        <div class=\"img-holder\">\n" +
+    "          <div class=\"inner-holder\"><img alt=\"image\" class=\"img-responsive\" src=\"/assets/images/img1.jpg\" /></div>\n" +
+    "        </div>\n" +
+    "        <div class=\"header-caption animated fadeInRight\">\n" +
+    "          <h1>Customer Centric Approch</h1>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "\n" +
+    "      Manage user goes here\n" +
+    "      <footer id=\"footer\">\n" +
+    "        <div class=\"footer-inner\">\n" +
+    "        	<div class=\"footer-holder\">\n" +
+    "            <div class=\"footer-text\">\n" +
+    "              <p>Admin Panel Feedback Survey</p>\n" +
+    "            </div>\n" +
+    "            <div class=\"footer-container\">\n" +
+    "              <a href=\"http:\\\\mcdonalds.com.pk\" target=\"_blank\" class=\"footer-link\">www.mcdonalds.com.pk</a>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        </div>\n" +
+    "      </footer>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "\n" +
     "  ");
 }]);

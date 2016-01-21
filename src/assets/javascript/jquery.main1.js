@@ -475,10 +475,9 @@ jQuery(function(){
 
 // Block Position Fixed init
 function initPositionFixed() {
-  var fixedClass = 'fixed-position',
-    win = jQuery(window),
-    headerHeight = jQuery('.header-visual').height();
-  jQuery('.comment-block').each(function() {
+  var fixedClass = 'fixed-position';
+  var win = $(window);
+  $('.comment-block').each(function() {
     var box = jQuery(this),
       positionFlag = true;
 
@@ -489,12 +488,14 @@ function initPositionFixed() {
     resizeHandler();
 
     function scrollHandler() {
+      var headerHeight = $('.header-visual').height();
       if (win.scrollTop() > headerHeight){
         if (positionFlag){
           positionFlag = false;
           activeSticker();
         }
-      } else {
+      } 
+      else {
         if (!positionFlag){
           positionFlag = true;
           deactiveSticker();

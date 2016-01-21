@@ -1,0 +1,58 @@
+<div id="wrapper">
+
+  <ui-view name = "sidebar"></ui-view>
+  <div id="page-wrapper" class="gray-bg">
+      <div class="header-visual">
+        <nav class="navbar dashboard" role="navigation" style="margin-bottom: 0;z-index: 999;">
+          <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary" toggle-menu>
+              <i class="fa fa-bars"></i>
+            </a>
+            <form role="search" class="navbar-form-custom" action="search_results.html">
+              <div class="form-group">
+                <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+              </div>
+            </form>
+          </div>
+          <ul class="nav navbar-top-links navbar-right">
+            <li>
+              <a style = "cursor:pointer;" ui-sref = "live">
+                 Live Dashboard
+              </a>
+            </li>
+            <li>
+              <span class="m-r-sm text-muted welcome-message">Welcome <span class="name">{{username}}</span></span>
+            </li>
+            <li>
+              <a style = "cursor:pointer;" ng-click = "logout()">
+                <i class="fa fa-sign-out"></i> Log out
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="img-holder">
+          <div class="inner-holder"><img alt="image" class="img-responsive" src="/assets/images/img1.jpg" /></div>
+        </div>
+        <div class="header-caption animated fadeInRight">
+          <h1>Customer Centric Approch</h1>
+        </div>
+      </div>
+
+      Manage user goes here
+      <footer id="footer">
+        <div class="footer-inner">
+        	<div class="footer-holder">
+            <div class="footer-text">
+              <p>Admin Panel Feedback Survey</p>
+            </div>
+            <div class="footer-container">
+              <a href="http:\\mcdonalds.com.pk" target="_blank" class="footer-link">www.mcdonalds.com.pk</a>
+            </div>
+        </div>
+        </div>
+      </footer>
+  </div>
+</div>
+
+  

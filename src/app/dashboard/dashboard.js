@@ -46,6 +46,9 @@ angular.module( 'livefeed.dashboard', [
         controller: "FeedbackMapCtrl",
         templateUrl: 'dashboard/feedback-map/feedback-map.tpl.html'
       },
+      "sidebar@dashboard":{
+        templateUrl: 'common/sidebar.tpl.html'
+      },
       "category_performance_analysis@dashboard":{
         controller: "CategoryPerformanceAnalysisCtrl",
         templateUrl: 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html'
