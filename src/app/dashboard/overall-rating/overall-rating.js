@@ -6,41 +6,103 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 ])
 
 .controller( 'TimeLineCtrl', function DashboardController( $scope, overallRatingChartService, Graphs, Global ) {
+   $scope.today = new Date();
+
+  function resetDates(){
+    $scope.date = {
+        startDate: moment().subtract(6, "days"),
+        endDate: moment()
+    };
+  }
+
+  resetDates();
+
    $scope.start_date = null;
    $scope.end_date = null;
 
    $scope.type = "1";
+   $scope.mainView = true;
 
-   Graphs.overall_rating($scope.type, null, $scope.start_date, $scope.end_date).$promise.then(function(data) {
-       $scope.labels = _.map(data[0].data.feedbacks ,function(value){
-          return {option_name: value.option__text, color: Global.optionsColorScheme[value.option__text], priority: Global.qscPriority[value.option__text]};
+   function mainRating() {
+       $scope.mainView = true;
+       Graphs.overall_rating($scope.type, null, $scope.start_date, $scope.end_date).$promise.then(function (data) {
+           $scope.labels = _.map(data[0].data.feedbacks, function (value, index) {
+               return {
+                   option_id: value.option_id,
+                   option_name: value.option__text,
+                   parent_id: value.option__parent_id,
+                   color: Global.optionsColorScheme[value.option__text],
+                   priority: Global.qscPriority[value.option__text],
+                   lineColor: Global.optionsLineColorScheme[value.option__text],
+                   title: value.option__text,
+                   id: "column-" + Global.qscPriority[value.option__text] + "-id",
+                   valueField: "column-" + Global.qscPriority[value.option__text]
+               };
+           });
+           $scope.labels = _.sortBy($scope.labels, function (value) {
+               return value.priority;
+           });
+           var timeline_data = overallRatingChartService.getAreaChart(data);
+           $scope.overall_rating_data = [$scope.labels, timeline_data];
+
        });
-       $scope.labels = _.sortBy($scope.labels, function(value){ return value.priority; });
-       var qsc = {quality: [], service: [], cleanliness: []};
-       $scope.timeline_data = [];
-        _.each(data, function(value,index){
-            _.each(value.data.feedbacks, function(item){
-              if (item.option__text === 'Quality'){
-                qsc.quality.push(item.count);
-              }
-              if (item.option__text === 'Service'){
-                qsc.service.push(item.count);
-              }
-              if (item.option__text === 'Cleanliness'){
-                qsc.cleanliness.push(item.count);
-              }
-            });
+   }
 
-            $scope.timeline_data.push({
-              "category": value.date,
-              "column-1": qsc.quality[index],
-              "column-2": qsc.service[index],
-              "column-3": qsc.cleanliness[index]
-            });
+   $scope.optionClick = function (option_object){
+       var option_id = option_object.item.dataContext[option_object.graph.id];
+       var date = option_object.item.category;
+
+       Graphs.feedback_segmentation(date, option_id, $scope.type).$promise.then(function(data){
+           $scope.mainView = false;
+           if(data.options !== undefined){
+             $scope.labels =  _.map(data.options,function(value, index){
+                return {
+                   option_name: value.option__text,
+                   parent_id: "",
+                   color: Global.subOptionsColorScheme[value.option__text].color,
+                   lineColor: Global.subOptionsColorScheme[value.option__text].color,
+                   title: value.option__text,
+                   id: "column-"+(index+1)+"-id",
+                   valueField: "column-"+(index+1)
+                };
+             });
+             var qsc_suboptions_data = overallRatingChartService.getAreaSegmentChart(data);
+             $scope.overall_rating_data = [$scope.labels, qsc_suboptions_data];
+           }
+       });
+   };
+
+   $scope.labelClick = function(option){
+
+      if(option.parent_id == null){
+        Graphs.overall_rating($scope.type, option.option_id).$promise.then(function(data) {
+           $scope.mainView = false;
+           $scope.labels = _.map(data[0].data.feedbacks ,function(value, index){
+              return {
+                 option_id: value.option_id,
+                 option_name: value.option__text,
+                 parent_id: value.option__parent_id,
+                 color: Global.subOptionsColorScheme[value.option__text].color,
+                 lineColor: Global.subOptionsColorScheme[value.option__text].color,
+                 title: value.option__text,
+                 id: "column-"+(index+1)+"-id",
+                 valueField: "column-"+(index+1)
+              };
+           });
+           var label_data =  overallRatingChartService.getAreaLabelChart(data);
+           $scope.overall_rating_data = [$scope.labels, label_data];
         });
-        console.log("timeline array");
-        console.log($scope.timeline_data);
-   });
+      }
+   };
+
+   $scope.axisChanged = function(){
+     mainRating();
+   };
+
+   $scope.backToMain = function(){
+     mainRating();
+   };
+   mainRating();
   //$scope.today = new Date();
   //
   //function resetDates(){
@@ -184,16 +246,37 @@ angular.module( 'livefeed.dashboard.overall_rating', [
     return {
       restrict: 'A',
       scope: {
-        data: '='
+        data: '=',
+        action: '&'
       },
       link: function(scope, ele, attrs) {
           scope.$watch('data', function(watchedData) {
               var chart;
-              console.log("watched data..");
               if (watchedData !== undefined) {
+
                   var data = scope.data;
-                  console.log("link..");
-                  console.log(data);
+                  var graphs = [];
+                  _.each(data[0],function(graph_data){
+                      graphs.push({
+                          "bullet": "round",
+                          "bulletBorderAlpha": 0.3,
+                          "bulletSize": 7,
+                          "bulletBorderColor": "#FFFFFF",
+                          "bulletColor": "#FFFFFF",
+                          "color": "#FFFFFF",
+                          "fillAlphas": 0.84,
+                          "fillColors": graph_data.color,
+                          "id": graph_data.id,
+                          "legendColor": graph_data.color,
+                          "lineColor": graph_data.lineColor,
+                          "lineThickness": 3,
+                          "negativeFillAlphas": 0,
+                          "title": graph_data.title,
+                          "type": "smoothedLine",
+                          "valueField": graph_data.valueField,
+                          "visibleInLegend": false
+                      });
+                  });
                   chart = AmCharts.makeChart("chartdiv",
                   {
                       "type": "serial",
@@ -245,66 +328,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                           "fontSize": 15
                       },
                       "trendLines": [],
-                      "graphs": [
-                          {
-                              "bullet": "round",
-                              "bulletBorderAlpha": 0.3,
-                              "bulletSize": 7,
-                              "bulletBorderColor": "#FFFFFF",
-                              "bulletColor": "#FFFFFF",
-                              "color": "#FFFFFF",
-                              "fillAlphas": 0.75,
-                              "fillColors": "#3498DB",
-                              "id": "AmGraph-1",
-                              "legendColor": "#3498DB",
-                              "lineColor": "#12E9F0",
-                              "lineThickness": 3,
-                              "negativeFillAlphas": 0,
-                              "title": "Quality",
-                              "type": "smoothedLine",
-                              "valueAxis": "ValueAxis-1",
-                              "valueField": "column-1",
-                              "visibleInLegend": false
-                          },
-                          {
-                              "bullet": "round",
-                              "bulletBorderAlpha": 0.3,
-                              "bulletSize": 7,
-                              "bulletBorderColor": "#FFFFFF",
-                              "bulletColor": "#FFFFFF",
-                              "fillAlphas": 0.82,
-                              "fillColors": "#E90000",
-                              "id": "AmGraph-2",
-                              "legendColor": "#E90000",
-                              "lineColor": "#FF8800",
-                              "lineThickness": 3,
-                              "title": "Service",
-                              "type": "smoothedLine",
-                              "valueField": "column-2",
-                              "visibleInLegend": false
-                          },
-                          {
-                              "bullet": "round",
-                              "bulletBorderAlpha": 0.3,
-                              "bulletSize": 7,
-                              "bulletBorderColor": "#FFFFFF",
-                              "bulletColor": "#FFFFFF",
-                              "columnWidth": 0,
-                              "fillAlphas": 0.84,
-                              "fillColors": "#FFEA00",
-                              "id": "AmGraph-3",
-                              "legendColor": "#FFEA00",
-                              "lineColor": "#FBE041",
-                              "lineThickness": 3,
-                              "markerType": "square",
-                              "negativeFillAlphas": 1,
-                              "negativeFillColors": "#FFFFFF",
-                              "title": "CLEANLINESS",
-                              "type": "smoothedLine",
-                              "valueField": "column-3",
-                              "visibleInLegend": false
-                          }
-                      ],
+                      "graphs": graphs,
                       "guides": [],
                       "valueAxes": [
                           {
@@ -328,7 +352,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                           "showBullet": true
                       },
                       "legend": {
-                          "enabled": true,
+                          "enabled": false,
                           "color": "#000000",
                           "rollOverGraphAlpha": 0.79
                       },
@@ -340,13 +364,13 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                               "text": ""
                           }
                       ],
-                      "dataProvider": data
+                      "dataProvider": data[1]
                   });
               }
               chart.addListener("clickGraphItem", handleClick);
 
               function handleClick(event) {
-                  alert(event.item.category + ": " + event.item.values.value);
+                scope.$apply(scope.action({option_object: event}));
               }
           });
       }

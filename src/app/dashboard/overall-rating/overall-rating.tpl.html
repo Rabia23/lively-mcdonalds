@@ -54,12 +54,12 @@
               </li>
           </ul>
           <span class="select-holder">
-   			<select ng-disabled = "!mainView" ng-model= "type" ng-change = "axisChanged()" id="timely" custom-form>
+            <select id="timely" ng-disabled = "!mainView" ng-model= "type" ng-change = "axisChanged()" custom-form>
   				<option value = "1">Daily</option>
   				<option value = "2">Weekly</option>
   				<option value = "3">Monthly</option>
   				<option value = "4">Yearly</option>
-			  </select>
+			</select>
    		</span>
     	<a ng-click = "backToMain()" ng-hide = "mainView" class="btn-back">Back</a>
       </div>
@@ -68,12 +68,11 @@
       <ul class="legends-list">
       <li ng-repeat = "label in labels track by $index">
         <span class="bullet" style = "background-color: {{label.color}}"></span>
-        <a>{{label.option_name}}</a>
+        <a ng-click="labelClick(label)">{{label.option_name}}</a>
       </li>
     </ul>
-      <div class="block-holder" time-line data-data = "timeline_data">
-          <div id="chartdiv" style="width: 100%; height: 400px;"></div>
-           <!--<canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-click="onClick" ></canvas>-->
+      <div class="block-holder" time-line data-data = "overall_rating_data" data-action="optionClick(option_object)">
+          <div id="chartdiv" style="width: 100%; height: 320px;"></div>
       </div>
   </div>
 </div>
