@@ -210,8 +210,8 @@ body{
 	bottom: -9999px;
 	width: 10px;
 	content: "";
-	-webkit-box-shadow: -6px 0 4px 0 rgba(0, 0, 0, 0.1);
-	box-shadow: -6px 0 4px 0 rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: -6px 0 4px 0 rgba(0, 0, 0, 0.05);
+	box-shadow: -6px 0 4px 0 rgba(0, 0, 0, 0.05);
 }
 
 .logo-holder{
@@ -672,6 +672,9 @@ body.login{background: #eee !important;}
 
 .footer-holder .footer-container{text-align: right;}
 
+#wrapper .info-holder td,
+#wrapper .info-holder th{vertical-align: middle;}
+
 .modal-1200{
 	border-radius: 0;
 	z-index: 99999;
@@ -695,16 +698,13 @@ body.login{background: #eee !important;}
 }
 
 .modal-1200 .modal-header .close-btn-font:hover{color: #000;}
-
 .modal-1200 .modal-body{padding: 0 0 20px;}
-
 .modal-1200 .modal-body .table-block{
 	position: relative;
 	width: 100% !important;
 	min-height: 200px !important;
 	height: auto !important;
 }
-
 .modal-1200 .modal-body .jcf-scrollbar-dec,
 .modal-1200 .modal-body .jcf-scrollbar-inc{
 	width: 0 !important;
@@ -732,14 +732,12 @@ body.login{background: #eee !important;}
 	height: 200px;
 	min-width: 730px;
 }
-
 .modal-1200 .modal-body .table-holder{height: 1%;}
 .modal-1200 .modal-body .table-holder:after{
 	display: block;
 	content: "";
 	clear: both;
 }
-
 .modal-1200 .modal-body .table-block > .jcf-scrollable-wrapper > .jcf-scrollbar.jcf-scrollbar-vertical{
 	position: absolute;
 	right: 3px;
@@ -1188,6 +1186,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 		height: 300px;
 	}
 	#wrapper .navbar-top-links li a{padding: 20px 10px;}
+	.info-holder .table-container{max-height: 526px;}
 }
 
 @media screen and (min-width: 992px) {

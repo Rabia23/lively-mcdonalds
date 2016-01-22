@@ -1163,19 +1163,242 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "        </div>\n" +
     "      </div>\n" +
     "\n" +
-    "      Manage user goes here\n" +
-    "      <footer id=\"footer\">\n" +
-    "        <div class=\"footer-inner\">\n" +
-    "        	<div class=\"footer-holder\">\n" +
-    "            <div class=\"footer-text\">\n" +
-    "              <p>Admin Panel Feedback Survey</p>\n" +
+    "      \n" +
+    "      <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
+    "      		<div class=\"row\">\n" +
+    "            	<div class=\"col-lg-12\">\n" +
+    "            		<div class=\"ibox float-e-margins\">\n" +
+    "          				<div class=\"ibox-title\">\n" +
+    "                			<h5>Details</h5>\n" +
+    "            			</div>\n" +
+    "           				<div class=\"ibox-content\">\n" +
+    "							<div class=\"user-block\">\n" +
+    "                               <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-user-plus\"></i> Add User</button>\n" +
+    "                               <div class=\"modal inmodal\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n" +
+    "									<div class=\"modal-dialog\">\n" +
+    "									<div class=\"modal-content animated bounceInRight\">\n" +
+    "											<div class=\"modal-header\">\n" +
+    "												<button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
+    "											</div>\n" +
+    "											<form action=\"#\" class=\"form\">\n" +
+    "												<fieldset>\n" +
+    "													<div class=\"modal-body\">\n" +
+    "														<div class=\"form-group\">\n" +
+    "															<label class=\"col-sm-2 control-label\">First Name</label>\n" +
+    "															<div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" placeholder=\"First Name\"></div>\n" +
+    "														</div>\n" +
+    "														<div class=\"form-group\">\n" +
+    "															<label class=\"col-sm-2 control-label\">Last Name</label>\n" +
+    "															<div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" placeholder=\"Last Name\"></div>\n" +
+    "														</div>\n" +
+    "														<div class=\"form-group\">\n" +
+    "															<label class=\"col-sm-2 control-label\">User Name</label>\n" +
+    "															<div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" placeholder=\"User Name\"></div>\n" +
+    "														</div>\n" +
+    "														<div class=\"form-group\">\n" +
+    "															<label class=\"col-sm-2 control-label\">Password</label>\n" +
+    "															<div class=\"col-sm-10\"><input type=\"password\" class=\"form-control\" placeholder=\"Password\"></div>\n" +
+    "														</div>\n" +
+    "														<div class=\"form-group\">\n" +
+    "															<label class=\"col-sm-2 control-label\">Email</label>\n" +
+    "															<div class=\"col-sm-10\"><input type=\"email\" class=\"form-control\" placeholder=\"Email\"></div>\n" +
+    "														</div>\n" +
+    "														<div class=\"form-group\">\n" +
+    "															<label class=\"col-sm-2 control-label\">Phone No.</label>\n" +
+    "															<div class=\"col-sm-10\"><input type=\"tel\" class=\"form-control\" placeholder=\"Phone No.\"></div>\n" +
+    "														</div>\n" +
+    "														<div class=\"form-group\">\n" +
+    "															<label class=\"col-sm-2 control-label\">Branch</label>\n" +
+    "															<div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" placeholder=\"branch\"></div>\n" +
+    "														</div>\n" +
+    "													</div>\n" +
+    "													<div class=\"modal-footer\">\n" +
+    "														<button class=\"btn btn-white\" type=\"submit\">Cancel</button>\n" +
+    "														<button class=\"btn btn-primary\" type=\"submit\">Save changes</button>\n" +
+    "													</div>\n" +
+    "												</fieldset>\n" +
+    "											</form>\n" +
+    "										</div>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "							</div>\n" +
+    "          					<div class=\"info-holder\">\n" +
+    "								<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\">\n" +
+    "									<thead>\n" +
+    "										<tr>\n" +
+    "											<th data-toggle=\"true\">Name</th>\n" +
+    "											<th data-hide=\"all\">User Name</th>\n" +
+    "											<th data-hide=\"all\">Password</th>\n" +
+    "											<th data-hide=\"all\">Email</th>\n" +
+    "											<th>Phone No.</th>\n" +
+    "											<th>Branch</th>\n" +
+    "											<th>Action</th>\n" +
+    "										</tr>\n" +
+    "									</thead>\n" +
+    "									<tbody>\n" +
+    "										<tr>\n" +
+    "											<td>Mark</td>\n" +
+    "											<td>Mark</td>\n" +
+    "											<td>a1b2c3</td>\n" +
+    "											<td>mark@gmail.com</td>\n" +
+    "											<td>123456</td>\n" +
+    "											<td>Gulberg</td>\n" +
+    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "										</tr>\n" +
+    "										<tr>\n" +
+    "											<td>Jacob</td>\n" +
+    "											<td>Jacob</td>\n" +
+    "											<td>x1y2z3</td>\n" +
+    "											<td>jacob@gmail.com</td>\n" +
+    "											<td>654321</td>\n" +
+    "											<td>Defence</td>\n" +
+    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "										</tr>\n" +
+    "										<tr>\n" +
+    "											<td>Larry</td>\n" +
+    "											<td>Larry</td>\n" +
+    "											<td>a1b2c3</td>\n" +
+    "											<td>larry@gmail.com</td>\n" +
+    "											<td>153261</td>\n" +
+    "											<td>Thokar</td>\n" +
+    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "										</tr>\n" +
+    "										<tr>\n" +
+    "											<td>Mark</td>\n" +
+    "											<td>Mark</td>\n" +
+    "											<td>a1b2c3</td>\n" +
+    "											<td>mark@gmail.com</td>\n" +
+    "											<td>123456</td>\n" +
+    "											<td>Gulberg</td>\n" +
+    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "										</tr>\n" +
+    "										<tr>\n" +
+    "											<td>Jacob</td>\n" +
+    "											<td>Jacob</td>\n" +
+    "											<td>x1y2z3</td>\n" +
+    "											<td>jacob@gmail.com</td>\n" +
+    "											<td>654321</td>\n" +
+    "											<td>Defence</td>\n" +
+    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "										</tr>\n" +
+    "										<tr>\n" +
+    "											<td>Larry</td>\n" +
+    "											<td>Larry</td>\n" +
+    "											<td>a1b2c3</td>\n" +
+    "											<td>larry@gmail.com</td>\n" +
+    "											<td>153261</td>\n" +
+    "											<td>Thokar</td>\n" +
+    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "										</tr>\n" +
+    "										<tr>\n" +
+    "											<td>Mark</td>\n" +
+    "											<td>Mark</td>\n" +
+    "											<td>a1b2c3</td>\n" +
+    "											<td>mark@gmail.com</td>\n" +
+    "											<td>123456</td>\n" +
+    "											<td>Gulberg</td>\n" +
+    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "										</tr>\n" +
+    "										<tr>\n" +
+    "											<td>Jacob</td>\n" +
+    "											<td>Jacob</td>\n" +
+    "											<td>x1y2z3</td>\n" +
+    "											<td>jacob@gmail.com</td>\n" +
+    "											<td>654321</td>\n" +
+    "											<td>Defence</td>\n" +
+    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "										</tr>\n" +
+    "										<tr>\n" +
+    "											<td>Larry</td>\n" +
+    "											<td>Larry</td>\n" +
+    "											<td>a1b2c3</td>\n" +
+    "											<td>larry@gmail.com</td>\n" +
+    "											<td>153261</td>\n" +
+    "											<td>Thokar</td>\n" +
+    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "										</tr>\n" +
+    "										<tr>\n" +
+    "											<td>Mark</td>\n" +
+    "											<td>Mark</td>\n" +
+    "											<td>a1b2c3</td>\n" +
+    "											<td>mark@gmail.com</td>\n" +
+    "											<td>123456</td>\n" +
+    "											<td>Gulberg</td>\n" +
+    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "										</tr>\n" +
+    "										<tr>\n" +
+    "											<td>Jacob</td>\n" +
+    "											<td>Jacob</td>\n" +
+    "											<td>x1y2z3</td>\n" +
+    "											<td>jacob@gmail.com</td>\n" +
+    "											<td>654321</td>\n" +
+    "											<td>Defence</td>\n" +
+    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "										</tr>\n" +
+    "										<tr>\n" +
+    "											<td>Larry</td>\n" +
+    "											<td>Larry</td>\n" +
+    "											<td>a1b2c3</td>\n" +
+    "											<td>larry@gmail.com</td>\n" +
+    "											<td>153261</td>\n" +
+    "											<td>Thokar</td>\n" +
+    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "										</tr>\n" +
+    "										<tr>\n" +
+    "											<td>Mark</td>\n" +
+    "											<td>Mark</td>\n" +
+    "											<td>a1b2c3</td>\n" +
+    "											<td>mark@gmail.com</td>\n" +
+    "											<td>123456</td>\n" +
+    "											<td>Gulberg</td>\n" +
+    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "										</tr>\n" +
+    "										<tr>\n" +
+    "											<td>Jacob</td>\n" +
+    "											<td>Jacob</td>\n" +
+    "											<td>x1y2z3</td>\n" +
+    "											<td>jacob@gmail.com</td>\n" +
+    "											<td>654321</td>\n" +
+    "											<td>Defence</td>\n" +
+    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "										</tr>\n" +
+    "										<tr>\n" +
+    "											<td>Larry</td>\n" +
+    "											<td>Larry</td>\n" +
+    "											<td>a1b2c3</td>\n" +
+    "											<td>larry@gmail.com</td>\n" +
+    "											<td>153261</td>\n" +
+    "											<td>Thokar</td>\n" +
+    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "										</tr>\n" +
+    "									</tbody>\n" +
+    "									<tfoot>\n" +
+    "										<tr>\n" +
+    "											<td colspan=\"7\">\n" +
+    "												<ul class=\"pagination pull-right\"></ul>\n" +
+    "											</td>\n" +
+    "										</tr>\n" +
+    "									</tfoot>\n" +
+    "								</table>\n" +
+    "							</div>\n" +
+    "           				</div>\n" +
+    "            		</div>\n" +
+    "            	</div>\n" +
     "            </div>\n" +
-    "            <div class=\"footer-container\">\n" +
-    "              <a href=\"http:\\\\mcdonalds.com.pk\" target=\"_blank\" class=\"footer-link\">www.mcdonalds.com.pk</a>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        </div>\n" +
-    "      </footer>\n" +
+    "	  </div>\n" +
+    "	  \n" +
+    "	  <footer id=\"footer\">\n" +
+    "		<div class=\"footer-inner\">\n" +
+    "			<div class=\"footer-holder\">\n" +
+    "			<div class=\"footer-text\">\n" +
+    "			  <p>Admin Panel Feedback Survey</p>\n" +
+    "			</div>\n" +
+    "			<div class=\"footer-container\">\n" +
+    "			  <a href=\"http:\\\\mcdonalds.com.pk\" target=\"_blank\" class=\"footer-link\">www.mcdonalds.com.pk</a>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "		</div>\n" +
+    "	  </footer>\n" +
     "  </div>\n" +
     "</div>\n" +
     "\n" +
