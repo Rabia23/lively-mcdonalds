@@ -1,5 +1,4 @@
-from apps.livedashboard import get_live_record
-
+#help link "https://github.com/aaugustin/websockets"
 __author__ = 'aamish'
 
 import asyncio

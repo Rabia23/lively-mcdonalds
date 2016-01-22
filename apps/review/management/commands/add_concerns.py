@@ -8,7 +8,29 @@ from django.core.management.base import BaseCommand
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        list = ["bun", "patty", "fries", "menu", "music", "ambiance", "price", "late order", "slow", "bathroom", "ketchup", "melt", "fly", "flies", "promotion", "new items", "lettuce"]
+        list = ["bun",
+                "patty",
+                "fries",
+                "menu",
+                "music",
+                "ambiance",
+                "price",
+                "late order",
+                "slow",
+                "bathroom",
+                "ketchup",
+                "melt",
+                "fly",
+                "flies",
+                "promotion",
+                "new items",
+                "lettuce",
+                "nugget",
+                "drink",
+                "coffee",
+                "muffin",
+                "omelette",
+                "sauce"]
 
         for concern in list:
             Concern.objects.create(keyword=concern)
