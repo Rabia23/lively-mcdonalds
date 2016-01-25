@@ -87,7 +87,16 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
       window.initMobileNav();
       window.initPositionFixed();
       ele.bind("click", function(event){
-        console.log("clicked");
+        console.log("clicked");  
+        assignHeight(); 
+      });
+
+      $(document).on("scroll", function() {
+        console.log("scrolled");
+        assignHeight();
+      });
+
+      function assignHeight(){
         var height;
         var window_height = document.body.offsetHeight;
         var content_top = $(".wrapper-content").offset().top;
@@ -103,8 +112,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
           height = window_height - header_height - button_holder;
         }
         $(".comments-holder").css("height", height);
-        
-      });    
+      }    
     }
   };
 })
