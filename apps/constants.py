@@ -87,3 +87,6 @@ ONLY_DATE_FORMAT = "%Y-%m-%d"
 PROCESSED = 2
 UNPROCESSED = 1
 DEFERRED = 3
+
+#------------ General Constants -----------------
+TEXT_ALREADY_EXISTS = "Already Exists"

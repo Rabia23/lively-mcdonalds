@@ -1,6 +1,5 @@
 from django.contrib import admin
 from apps.person.enum import UserRolesEnum
-from apps.person.forms import UserInfoForm
 from apps.person.models import UserInfo
 
 
