@@ -214,13 +214,13 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "          <div class=\"col-lg-6 col-lg-pull-6\">\n" +
     "            <div class=\"same-height-block\">\n" +
     "              <div class=\"row\">\n" +
-    "                <div class=\"col-lg-8 same-height-col\">\n" +
+    "                <div class=\"col-lg-8 col-md-8 same-height-col\">\n" +
     "                  <ui-view name = \"overall_feedback\"></ui-view>\n" +
     "                  <ui-view name = \"top_concern\"></ui-view>\n" +
     "                </div>\n" +
-    "                <div class=\"col-lg-4 same-height-col\">\n" +
+    "                <div class=\"col-lg-4 col-md-4 same-height-col\">\n" +
     "                    <div class=\"row inner-row\">\n" +
-    "                        <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                        <div class=\"col-sm-6 col-md-12\">\n" +
     "                            <div class=\"ibox float-e-margins detail-block\">\n" +
     "                                <div class=\"title-outer\">\n" +
     "                                    <div class=\"ibox-title\">\n" +
@@ -239,7 +239,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                        <div class=\"col-sm-6 col-md-12\">\n" +
     "                            <div class=\"ibox float-e-margins detail-block\">\n" +
     "                                <div class=\"title-outer\">\n" +
     "                                    <div class=\"ibox-title\">\n" +
@@ -260,7 +260,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                        </div>\n" +
     "                    </div>\n" +
     "                    <div class=\"row inner-row add\">\n" +
-    "                        <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                        <div class=\"col-sm-6 col-md-12\">\n" +
     "                            <div class=\"ibox float-e-margins detail-block\">\n" +
     "                                <div class=\"title-outer\">\n" +
     "                                    <div class=\"ibox-title\">\n" +
@@ -279,7 +279,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                        <div class=\"col-sm-6 col-md-12\">\n" +
     "                            <div class=\"ibox float-e-margins detail-block\">\n" +
     "                                <div class=\"title-outer\">\n" +
     "                                    <div class=\"ibox-title\">\n" +
