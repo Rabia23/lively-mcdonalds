@@ -133,7 +133,11 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "      <div class=\"content-holder\">\n" +
     "          <div class=\"ibox-content add\">\n" +
     "              <div class=\"chart-outer\">\n" +
-    "                  <canvas id=\"line\" class=\"chart chart-line\" chart-data=\"data\" chart-labels=\"labels\"></canvas>\n" +
+    "				  <div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" progress-bar-background>\n" +
+    "					<small><em>{{dat.name}}</em></small>\n" +
+    "					<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}} complaints</b></uib-progressbar></div>\n" +
+    "			  </div>\n" +
+    "                  <!--<canvas id=\"line\" class=\"chart chart-line\" chart-data=\"data\" chart-labels=\"labels\"></canvas>-->\n" +
     "              </div>\n" +
     "              <div class=\"list-holder\">\n" +
     "                  <div class=\"row\">\n" +
@@ -220,17 +224,15 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                            <div class=\"ibox float-e-margins detail-block\">\n" +
     "                                <div class=\"title-outer\">\n" +
     "                                    <div class=\"ibox-title\">\n" +
-    "                                        <span class=\"label label-primary pull-right\">Top Branch</span>\n" +
-    "                                        <h5>{{chart_data.branch.branch_name}}</h5>\n" +
+    "                                        <span class=\"label label-primary pull-right\">Top Region</span>\n" +
+    "                                        <h5>{{chart_data.region.region_name}}</h5>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"content-holder\">\n" +
     "                                    <div class=\"w1\">\n" +
     "                                    	<div class=\"w2\">\n" +
     "                                    		<div class=\"ibox-content\">\n" +
-    "												<h1 class=\"no-margins\">{{chart_data.branch.count}}</h1>\n" +
-    "												<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "												<small>New orders</small>\n" +
+    "												<h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
     "											</div>\n" +
     "                                    	</div>\n" +
     "                                    </div>\n" +
@@ -250,8 +252,6 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                   		<div class=\"w2\">\n" +
     "                                   			<div class=\"ibox-content\">\n" +
     "												<h1 class=\"no-margins\">{{chart_data.city.count}}</h1>\n" +
-    "												<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "												<small>New orders</small>\n" +
     "											</div>\n" +
     "                                   		</div>\n" +
     "                                   	</div>\n" +
@@ -264,17 +264,15 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                            <div class=\"ibox float-e-margins detail-block\">\n" +
     "                                <div class=\"title-outer\">\n" +
     "                                    <div class=\"ibox-title\">\n" +
-    "                                        <span class=\"label label-primary pull-right\">Top Region</span>\n" +
-    "                                        <h5>{{chart_data.region.region_name}}</h5>\n" +
+    "                                        <span class=\"label label-primary pull-right\">Top Branch</span>\n" +
+    "                                        <h5>{{chart_data.branch.branch_name}}</h5>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"content-holder\">\n" +
     "                                    <div class=\"w1\">\n" +
     "                                    	<div class=\"w2\">\n" +
     "                                    		<div class=\"ibox-content\">\n" +
-    "												<h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
-    "												<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "												<small>New orders</small>\n" +
+    "												<h1 class=\"no-margins\">{{chart_data.branch.count}}</h1>\n" +
     "											</div>\n" +
     "                                    	</div>\n" +
     "                                    </div>\n" +
@@ -285,8 +283,8 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                            <div class=\"ibox float-e-margins detail-block\">\n" +
     "                                <div class=\"title-outer\">\n" +
     "                                    <div class=\"ibox-title\">\n" +
-    "                                        <span class=\"label label-primary pull-right\">Monthly</span>\n" +
-    "                                        <h5>Income</h5>\n" +
+    "                                        <span class=\"label label-primary pull-right\">Top GRO</span>\n" +
+    "                                        <h5>GRO</h5>\n" +
     "                                    </div>\n" +
     "                                </div>\n" +
     "                                <div class=\"content-holder\">\n" +
@@ -294,8 +292,6 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                    	<div class=\"w2\">\n" +
     "                                    		<div class=\"ibox-content\">\n" +
     "												<h1 class=\"no-margins\">22 285,400</h1>\n" +
-    "												<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "												<small>New orders</small>\n" +
     "											</div>\n" +
     "                                    	</div>\n" +
     "                                    </div>\n" +

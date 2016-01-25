@@ -91,11 +91,11 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
     segmentationPriority: {
-      "Late Night": 5,
-      "Breakfast": 1,
-      "Lunch": 2,
-      "Snack": 3,
-      "Dinner": 4
+      "Late Night": 1,
+      "Breakfast": 2,
+      "Lunch": 3,
+      "Snack": 4,
+      "Dinner": 5
     },
 
     qscPriority: {
