@@ -51,7 +51,7 @@ class UserInfo(models.Model):
 
 
     def __str__(self):
-        return self.user.first_name
+        return self.user.first_name + " " + self.user.last_name
 
     @staticmethod
     def get_if_exists(objectId):
