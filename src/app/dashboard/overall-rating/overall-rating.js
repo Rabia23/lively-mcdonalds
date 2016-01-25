@@ -15,7 +15,24 @@ angular.module( 'livefeed.dashboard.overall_rating', [
     };
   }
 
-  resetDates();
+  $scope.datePickerOption = {
+    eventHandlers: {
+      'apply.daterangepicker': function(ev, picker){
+        $scope.type = "1";
+        // Chaepi
+        $(".jcf-select-text").children("span").html("Daily");
+        if($scope.mainView){
+          $scope.start_date = ev.model.startDate._i;
+          $scope.end_date = ev.model.endDate._i;
+          mainRating();
+        }
+
+      },
+      'cancel.daterangepicker': function(ev, picker){
+        //resetDates();
+      }
+    }
+  };
 
    $scope.start_date = null;
    $scope.end_date = null;
@@ -101,8 +118,12 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
    $scope.backToMain = function(){
      mainRating();
+     resetDates();
    };
+
+   resetDates();
    mainRating();
+
   //$scope.today = new Date();
   //
   //function resetDates(){

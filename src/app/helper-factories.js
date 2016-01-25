@@ -36,9 +36,9 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
      optionsColorScheme: {
-      "Quality": '#8e44ad',
-      "Service": "#FFc300",
-      "Cleanliness": '#3498db'
+      "Quality": '#AC1A1A',
+      "Service": "#FFC300",
+      "Cleanliness": '#3498DB'
 
     },
 

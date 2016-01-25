@@ -50,7 +50,7 @@
             </div>
             <div class="content-holder" ng-class="{loading: show_loading}">
                 <div class="legends-holder">
-                	<ul class="legends-list">
+                	<ul class="legends-list" ng-show="show_labels">
                       <li ng-repeat = "label in labels track by $index">
                         <span class="bullet" style = "background-color: {{label.color}}"></span>{{label.option_name}}
                       </li>

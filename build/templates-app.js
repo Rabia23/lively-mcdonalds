@@ -469,7 +469,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "            </div>\n" +
     "            <div class=\"content-holder\" ng-class=\"{loading: show_loading}\">\n" +
     "                <div class=\"legends-holder\">\n" +
-    "                	<ul class=\"legends-list\">\n" +
+    "                	<ul class=\"legends-list\" ng-show=\"show_labels\">\n" +
     "                      <li ng-repeat = \"label in labels track by $index\">\n" +
     "                        <span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>{{label.option_name}}\n" +
     "                      </li>\n" +
@@ -539,7 +539,7 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "              <li>\n" +
     "                  <div class=\"calender-outer\">\n" +
     "					  <span class=\"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "						   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
+    "						   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" ng-disabled = \"!mainView\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
     "						  <i class=\"fa fa-calendar\" map-range-click></i>\n" +
     "					  </span>\n" +
     "				  </div>\n" +
