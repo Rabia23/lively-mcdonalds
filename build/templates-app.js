@@ -3,15 +3,23 @@ angular.module('templates-app', ['common/sidebar.tpl.html', 'coupon/coupon.tpl.h
 angular.module("common/sidebar.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("common/sidebar.tpl.html",
     "<nav class=\"navbar-default navbar-static-side\" role=\"navigation\" >\n" +
-    "  <div class=\"sidebar-collapse\">\n" +
+    "	<div class=\"sidebar-collapse\">\n" +
     "    <div id=\"side-menu\" class=\"nav metismenu\">\n" +
     "      <div class=\"logo-holder\">\n" +
     "        <div class=\"logo\">\n" +
-    "          <a href=\"http://www.mcdonalds.com.pk/\" target=\"_blank\"> <img alt=\"image\" class=\"img-responsive\" src=\"assets/images/logo.jpg\"></a>\n" +
+    "           <a href=\"http://www.mcdonalds.com.pk/\" target=\"_blank\"> <img alt=\"image\" class=\"img-responsive\" src=\"assets/images/logo.jpg\"></a>\n" +
     "        </div>\n" +
     "      </div>\n" +
+    "			<ul class=\"nav metismenu\" id=\"side-menu\">\n" +
+    "				<li>\n" +
+    "					<a ui-sref = \"dashboard\"><i class=\"fa fa-home\"></i> <span class=\"nav-label\">Dashboard</span></a>\n" +
+    "				</li>\n" +
+    "				<li>\n" +
+    "					<a ui-sref=\"users\"><i class=\"fa fa-user\"></i> <span class=\"nav-label\">Manage Users</span></a>\n" +
+    "				</li>\n" +
+    "			</ul>\n" +
     "    </div>\n" +
-    "  </div>\n" +
+    "	</div>\n" +
     "</nav>");
 }]);
 
@@ -154,25 +162,6 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
 angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/dashboard.tpl.html",
     "<div id=\"wrapper\">\n" +
-    "  <nav class=\"navbar-default navbar-static-side\" role=\"navigation\" >\n" +
-    "      <div class=\"sidebar-collapse\">\n" +
-    "          <div id=\"side-menu\" class=\"nav metismenu\">\n" +
-    "              <div class=\"logo-holder\">\n" +
-    "                  <div class=\"logo\">\n" +
-    "                      <a href=\"http://www.mcdonalds.com.pk/\" target=\"_blank\"> <img alt=\"image\" class=\"img-responsive\" src=\"assets/images/logo.jpg\"></a>\n" +
-    "                  </div>\n" +
-    "              </div>\n" +
-    "				<ul class=\"nav metismenu\" id=\"side-menu\">\n" +
-    "					<li>\n" +
-    "						<a href=\"#\"><i class=\"fa fa-home\"></i> <span class=\"nav-label\">Home</span></a>\n" +
-    "					</li>\n" +
-    "					<li>\n" +
-    "						<a href=\"#\"><i class=\"fa fa-user\"></i> <span class=\"nav-label\">GRO</span></a>\n" +
-    "					</li>\n" +
-    "				</ul>\n" +
-    "          </div>\n" +
-    "      </div>\n" +
-    "  </nav>\n" +
     "\n" +
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +

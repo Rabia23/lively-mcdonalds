@@ -19,7 +19,6 @@ angular.module( 'livefeed.dashboard.overall_rating', [
     eventHandlers: {
       'apply.daterangepicker': function(ev, picker){
         $scope.type = "1";
-        // Chaepi
         $(".jcf-select-text").children("span").html("Daily");
         if($scope.mainView){
           $scope.start_date = ev.model.startDate._i;
@@ -387,12 +386,12 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                       ],
                       "dataProvider": data[1]
                   });
-              }
-              chart.addListener("clickGraphItem", handleClick);
 
-              function handleClick(event) {
-                scope.$apply(scope.action({option_object: event}));
+                chart.addListener("clickGraphItem", function(event){
+                  scope.$apply(scope.action({option_object: event}));
+                });
               }
+
           });
       }
     };
