@@ -226,112 +226,6 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
     "    <ui-view name = \"header\"></ui-view>\n" +
-    "    <ui-view name = \"positive_negative_feedback\"></ui-view>\n" +
-    "    <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
-    "      <div class=\"row same-height-parent\">\n" +
-    "        <div class=\"col-lg-6 col-lg-push-6 business-segment\">\n" +
-    "          <ui-view name = \"category_performance_analysis\"></ui-view>\n" +
-    "        </div>\n" +
-    "<<<<<<< HEAD\n" +
-    "        <div class=\"col-lg-6 col-lg-pull-6\">\n" +
-    "          <div class=\"same-height-block\">\n" +
-    "            <div class=\"row\">\n" +
-    "              <div class=\"col-lg-8 same-height-col\">\n" +
-    "                <ui-view name = \"overall_feedback\"></ui-view>\n" +
-    "                <ui-view name = \"top_concern\"></ui-view>\n" +
-    "              </div>\n" +
-    "              <div class=\"col-lg-4 same-height-col\">\n" +
-    "                  <div class=\"row inner-row\">\n" +
-    "                      <div class=\"col-sm-6 col-lg-12\">\n" +
-    "                          <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                              <div class=\"title-outer\">\n" +
-    "                                  <div class=\"ibox-title\">\n" +
-    "                                      <span class=\"label label-primary pull-right\">Top Branch</span>\n" +
-    "                                      <h5>{{chart_data.branch.branch_name}}</h5>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                              <div class=\"content-holder\">\n" +
-    "                                  <div class=\"w1\">\n" +
-    "                                  	<div class=\"w2\">\n" +
-    "                                  		<div class=\"ibox-content\">\n" +
-    "											<h1 class=\"no-margins\">{{chart_data.branch.count}}</h1>\n" +
-    "											<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "											<small>New orders</small>\n" +
-    "										</div>\n" +
-    "                                  	</div>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                          </div>\n" +
-    "                      </div>\n" +
-    "                      <div class=\"col-sm-6 col-lg-12\">\n" +
-    "                          <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                              <div class=\"title-outer\">\n" +
-    "                                  <div class=\"ibox-title\">\n" +
-    "                                      <span class=\"label label-primary pull-right\">Top City</span>\n" +
-    "                                      <h5>{{chart_data.city.city_name}}</h5>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                              <div class=\"content-holder\">\n" +
-    "                                 	<div class=\"w1\">\n" +
-    "                                 		<div class=\"w2\">\n" +
-    "                                 			<div class=\"ibox-content\">\n" +
-    "											<h1 class=\"no-margins\">{{chart_data.city.count}}</h1>\n" +
-    "											<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "											<small>New orders</small>\n" +
-    "										</div>\n" +
-    "                                 		</div>\n" +
-    "                                 	</div>\n" +
-    "                              </div>\n" +
-    "                          </div>\n" +
-    "                      </div>\n" +
-    "                  </div>\n" +
-    "                  <div class=\"row inner-row add\">\n" +
-    "                      <div class=\"col-sm-6 col-lg-12\">\n" +
-    "                          <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                              <div class=\"title-outer\">\n" +
-    "                                  <div class=\"ibox-title\">\n" +
-    "                                      <span class=\"label label-primary pull-right\">Top Region</span>\n" +
-    "                                      <h5>{{chart_data.region.region_name}}</h5>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                              <div class=\"content-holder\">\n" +
-    "                                  <div class=\"w1\">\n" +
-    "                                  	<div class=\"w2\">\n" +
-    "                                  		<div class=\"ibox-content\">\n" +
-    "											<h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
-    "											<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "											<small>New orders</small>\n" +
-    "										</div>\n" +
-    "                                  	</div>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                          </div>\n" +
-    "                      </div>\n" +
-    "                      <div class=\"col-sm-6 col-lg-12\">\n" +
-    "                          <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                              <div class=\"title-outer\">\n" +
-    "                                  <div class=\"ibox-title\">\n" +
-    "                                      <span class=\"label label-primary pull-right\">Monthly</span>\n" +
-    "                                      <h5>Income</h5>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                              <div class=\"content-holder\">\n" +
-    "                                  <div class=\"w1\">\n" +
-    "                                  	<div class=\"w2\">\n" +
-    "                                  		<div class=\"ibox-content\">\n" +
-    "											<h1 class=\"no-margins\">22 285,400</h1>\n" +
-    "											<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "											<small>New orders</small>\n" +
-    "										</div>\n" +
-    "                                  	</div>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                          </div>\n" +
-    "                      </div>\n" +
-    "                  </div>\n" +
-    "=======\n" +
-    "      </div>\n" +
-    "      <ui-view name = \"positive_negative_feedback\"></ui-view>\n" +
     "      <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "        <div class=\"row same-height-parent\">\n" +
     "          <div class=\"col-lg-6 col-lg-push-6 business-segment\">\n" +
@@ -426,7 +320,6 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    ">>>>>>> 50b904610714a8ce2fd301c6b701c6077923f37b\n" +
     "              </div>\n" +
     "            </div>\n" +
     "          </div>\n" +
