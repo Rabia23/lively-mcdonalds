@@ -36,6 +36,14 @@ angular.module( 'livefeed.manage_users', [
       },
       "sidebar@users":{
         templateUrl: 'common/sidebar.tpl.html'
+      },
+
+      "header@users":{
+        templateUrl: 'common/header.tpl.html'
+      },
+
+      "footer@users":{
+        templateUrl: 'common/footer.tpl.html'
       }
 
     },
@@ -47,7 +55,7 @@ angular.module( 'livefeed.manage_users', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'ManageUsersCtrl', function DashboardController( $scope, $state, $rootScope, TokenHandler, Auth) {
+.controller( 'ManageUsersCtrl', function DashboardController( $scope, $state, $rootScope, TokenHandler, Auth, $uibModal) {
   
   if (Auth.is_logged_in()) {
     $rootScope.show_username = true;
@@ -67,4 +75,35 @@ angular.module( 'livefeed.manage_users', [
     console.log("offline in dashboard");
   });
 
+  $scope.open = function (size) {
+
+    var modalInstance = $uibModal.open({
+      templateUrl: 'manage-users/edit-user-modal.tpl.html',
+      controller: 'ModalInstanceCtrl',
+      size: 1200,
+      resolve: {
+        items: function () {
+          //return $scope.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      //$scope.selected = selectedItem;
+    });
+  };
+
+})
+
+.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
+
+
+
+  $scope.ok = function () {
+    $uibModalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
 });

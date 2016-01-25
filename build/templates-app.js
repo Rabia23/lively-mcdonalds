@@ -1,4 +1,60 @@
-angular.module('templates-app', ['common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/overall-ratings/overall-ratings.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/manage-users.tpl.html']);
+angular.module('templates-app', ['common/footer.tpl.html', 'common/header.tpl.html', 'common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/overall-ratings/overall-ratings.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/edit-user-modal.tpl.html', 'manage-users/manage-users.tpl.html']);
+
+angular.module("common/footer.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("common/footer.tpl.html",
+    "<footer id=\"footer\">\n" +
+    "  <div class=\"footer-inner\">\n" +
+    "  	<div class=\"footer-holder\">\n" +
+    "      <div class=\"footer-text\">\n" +
+    "        <p>Admin Panel Feedback Survey</p>\n" +
+    "      </div>\n" +
+    "      <div class=\"footer-container\">\n" +
+    "        <a href=\"http:\\\\mcdonalds.com.pk\" target=\"_blank\" class=\"footer-link\">www.mcdonalds.com.pk</a>\n" +
+    "      </div>\n" +
+    "  </div>\n" +
+    "  </div>\n" +
+    "</footer>");
+}]);
+
+angular.module("common/header.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("common/header.tpl.html",
+    "<div class=\"header-visual\">\n" +
+    "  <nav class=\"navbar dashboard\" role=\"navigation\" style=\"margin-bottom: 0;z-index: 999;\">\n" +
+    "    <div class=\"navbar-header\">\n" +
+    "      <a class=\"navbar-minimalize minimalize-styl-2 btn btn-primary\" toggle-menu>\n" +
+    "        <i class=\"fa fa-bars\"></i>\n" +
+    "      </a>\n" +
+    "      <form role=\"search\" class=\"navbar-form-custom\" action=\"search_results.html\">\n" +
+    "        <div class=\"form-group\">\n" +
+    "          <input type=\"text\" placeholder=\"Search for something...\" class=\"form-control\" name=\"top-search\" id=\"top-search\">\n" +
+    "        </div>\n" +
+    "      </form>\n" +
+    "    </div>\n" +
+    "    <ul class=\"nav navbar-top-links navbar-right\">\n" +
+    "      <li>\n" +
+    "        <a style = \"cursor:pointer;\" ui-sref = \"live\">\n" +
+    "           Live Dashboard\n" +
+    "        </a>\n" +
+    "      </li>\n" +
+    "      <li>\n" +
+    "        <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">{{username}}</span></span>\n" +
+    "      </li>\n" +
+    "      <li>\n" +
+    "        <a style = \"cursor:pointer;\" ng-click = \"logout()\">\n" +
+    "          <i class=\"fa fa-sign-out\"></i> Log out\n" +
+    "        </a>\n" +
+    "      </li>\n" +
+    "    </ul>\n" +
+    "  </nav>\n" +
+    "\n" +
+    "  <div class=\"img-holder\">\n" +
+    "    <div class=\"inner-holder\"><img alt=\"image\" class=\"img-responsive\" src=\"/assets/images/img1.jpg\" /></div>\n" +
+    "  </div>\n" +
+    "  <div class=\"header-caption animated fadeInRight\">\n" +
+    "    <h1>Customer Centric Approch</h1>\n" +
+    "  </div>\n" +
+    "</div>");
+}]);
 
 angular.module("common/sidebar.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("common/sidebar.tpl.html",
@@ -165,175 +221,130 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "\n" +
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
-    "      <div class=\"header-visual\">\n" +
-    "        <nav class=\"navbar dashboard\" role=\"navigation\" style=\"margin-bottom: 0;z-index: 999;\">\n" +
-    "          <div class=\"navbar-header\">\n" +
-    "            <a class=\"navbar-minimalize minimalize-styl-2 btn btn-primary\" toggle-menu>\n" +
-    "              <i class=\"fa fa-bars\"></i>\n" +
-    "            </a>\n" +
-    "            <form role=\"search\" class=\"navbar-form-custom\" action=\"search_results.html\">\n" +
-    "              <div class=\"form-group\">\n" +
-    "                <input type=\"text\" placeholder=\"Search for something...\" class=\"form-control\" name=\"top-search\" id=\"top-search\">\n" +
+    "    <ui-view name = \"header\"></ui-view>\n" +
+    "    <ui-view name = \"positive_negative_feedback\"></ui-view>\n" +
+    "    <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
+    "      <div class=\"row same-height-parent\">\n" +
+    "        <div class=\"col-lg-6 col-lg-push-6 business-segment\">\n" +
+    "          <ui-view name = \"category_performance_analysis\"></ui-view>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-lg-6 col-lg-pull-6\">\n" +
+    "          <div class=\"same-height-block\">\n" +
+    "            <div class=\"row\">\n" +
+    "              <div class=\"col-lg-8 same-height-col\">\n" +
+    "                <ui-view name = \"overall_feedback\"></ui-view>\n" +
+    "                <ui-view name = \"top_concern\"></ui-view>\n" +
     "              </div>\n" +
-    "            </form>\n" +
+    "              <div class=\"col-lg-4 same-height-col\">\n" +
+    "                  <div class=\"row inner-row\">\n" +
+    "                      <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                          <div class=\"ibox float-e-margins detail-block\">\n" +
+    "                              <div class=\"title-outer\">\n" +
+    "                                  <div class=\"ibox-title\">\n" +
+    "                                      <span class=\"label label-primary pull-right\">Top Branch</span>\n" +
+    "                                      <h5>{{chart_data.branch.branch_name}}</h5>\n" +
+    "                                  </div>\n" +
+    "                              </div>\n" +
+    "                              <div class=\"content-holder\">\n" +
+    "                                  <div class=\"w1\">\n" +
+    "                                  	<div class=\"w2\">\n" +
+    "                                  		<div class=\"ibox-content\">\n" +
+    "											<h1 class=\"no-margins\">{{chart_data.branch.count}}</h1>\n" +
+    "											<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "											<small>New orders</small>\n" +
+    "										</div>\n" +
+    "                                  	</div>\n" +
+    "                                  </div>\n" +
+    "                              </div>\n" +
+    "                          </div>\n" +
+    "                      </div>\n" +
+    "                      <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                          <div class=\"ibox float-e-margins detail-block\">\n" +
+    "                              <div class=\"title-outer\">\n" +
+    "                                  <div class=\"ibox-title\">\n" +
+    "                                      <span class=\"label label-primary pull-right\">Top City</span>\n" +
+    "                                      <h5>{{chart_data.city.city_name}}</h5>\n" +
+    "                                  </div>\n" +
+    "                              </div>\n" +
+    "                              <div class=\"content-holder\">\n" +
+    "                                 	<div class=\"w1\">\n" +
+    "                                 		<div class=\"w2\">\n" +
+    "                                 			<div class=\"ibox-content\">\n" +
+    "											<h1 class=\"no-margins\">{{chart_data.city.count}}</h1>\n" +
+    "											<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "											<small>New orders</small>\n" +
+    "										</div>\n" +
+    "                                 		</div>\n" +
+    "                                 	</div>\n" +
+    "                              </div>\n" +
+    "                          </div>\n" +
+    "                      </div>\n" +
+    "                  </div>\n" +
+    "                  <div class=\"row inner-row add\">\n" +
+    "                      <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                          <div class=\"ibox float-e-margins detail-block\">\n" +
+    "                              <div class=\"title-outer\">\n" +
+    "                                  <div class=\"ibox-title\">\n" +
+    "                                      <span class=\"label label-primary pull-right\">Top Region</span>\n" +
+    "                                      <h5>{{chart_data.region.region_name}}</h5>\n" +
+    "                                  </div>\n" +
+    "                              </div>\n" +
+    "                              <div class=\"content-holder\">\n" +
+    "                                  <div class=\"w1\">\n" +
+    "                                  	<div class=\"w2\">\n" +
+    "                                  		<div class=\"ibox-content\">\n" +
+    "											<h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
+    "											<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "											<small>New orders</small>\n" +
+    "										</div>\n" +
+    "                                  	</div>\n" +
+    "                                  </div>\n" +
+    "                              </div>\n" +
+    "                          </div>\n" +
+    "                      </div>\n" +
+    "                      <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                          <div class=\"ibox float-e-margins detail-block\">\n" +
+    "                              <div class=\"title-outer\">\n" +
+    "                                  <div class=\"ibox-title\">\n" +
+    "                                      <span class=\"label label-primary pull-right\">Monthly</span>\n" +
+    "                                      <h5>Income</h5>\n" +
+    "                                  </div>\n" +
+    "                              </div>\n" +
+    "                              <div class=\"content-holder\">\n" +
+    "                                  <div class=\"w1\">\n" +
+    "                                  	<div class=\"w2\">\n" +
+    "                                  		<div class=\"ibox-content\">\n" +
+    "											<h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "											<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
+    "											<small>New orders</small>\n" +
+    "										</div>\n" +
+    "                                  	</div>\n" +
+    "                                  </div>\n" +
+    "                              </div>\n" +
+    "                          </div>\n" +
+    "                      </div>\n" +
+    "                  </div>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
     "          </div>\n" +
-    "          <ul class=\"nav navbar-top-links navbar-right\">\n" +
-    "            <li>\n" +
-    "              <a style = \"cursor:pointer;\" ui-sref = \"live\">\n" +
-    "                 Live Dashboard\n" +
-    "              </a>\n" +
-    "            </li>\n" +
-    "            <li>\n" +
-    "              <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">{{username}}</span></span>\n" +
-    "            </li>\n" +
-    "            <li>\n" +
-    "              <a style = \"cursor:pointer;\" ng-click = \"logout()\">\n" +
-    "                <i class=\"fa fa-sign-out\"></i> Log out\n" +
-    "              </a>\n" +
-    "            </li>\n" +
-    "          </ul>\n" +
-    "        </nav>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"row\">\n" +
+    "        <div class=\"col-xs-12 patch-section\">\n" +
+    "          <ui-view name = \"regional_analysis\"></ui-view>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"row same-height-parent\">\n" +
+    "        <div class=\"col-lg-6 map-section\">\n" +
+    "          <ui-view name = \"feedback_map\"></ui-view>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-lg-6 timeline-section\">\n" +
+    "          <ui-view name = \"overall_rating\"></ui-view>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <ui-view name = \"footer\"></ui-view>\n" +
     "\n" +
-    "        <div class=\"img-holder\">\n" +
-    "          <div class=\"inner-holder\"><img alt=\"image\" class=\"img-responsive\" src=\"/assets/images/img1.jpg\" /></div>\n" +
-    "        </div>\n" +
-    "        <div class=\"header-caption animated fadeInRight\">\n" +
-    "          <h1>Customer Centric Approch</h1>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
-    "      <ui-view name = \"positive_negative_feedback\"></ui-view>\n" +
-    "      <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
-    "        <div class=\"row same-height-parent\">\n" +
-    "          <div class=\"col-lg-6 col-lg-push-6 business-segment\">\n" +
-    "            <ui-view name = \"category_performance_analysis\"></ui-view>\n" +
-    "          </div>\n" +
-    "          <div class=\"col-lg-6 col-lg-pull-6\">\n" +
-    "            <div class=\"same-height-block\">\n" +
-    "              <div class=\"row\">\n" +
-    "                <div class=\"col-lg-8 same-height-col\">\n" +
-    "                  <ui-view name = \"overall_feedback\"></ui-view>\n" +
-    "                  <ui-view name = \"top_concern\"></ui-view>\n" +
-    "                </div>\n" +
-    "                <div class=\"col-lg-4 same-height-col\">\n" +
-    "                    <div class=\"row inner-row\">\n" +
-    "                        <div class=\"col-sm-6 col-lg-12\">\n" +
-    "                            <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                                <div class=\"title-outer\">\n" +
-    "                                    <div class=\"ibox-title\">\n" +
-    "                                        <span class=\"label label-primary pull-right\">Top Branch</span>\n" +
-    "                                        <h5>{{chart_data.branch.branch_name}}</h5>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"content-holder\">\n" +
-    "                                    <div class=\"w1\">\n" +
-    "                                    	<div class=\"w2\">\n" +
-    "                                    		<div class=\"ibox-content\">\n" +
-    "												<h1 class=\"no-margins\">{{chart_data.branch.count}}</h1>\n" +
-    "												<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "												<small>New orders</small>\n" +
-    "											</div>\n" +
-    "                                    	</div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-sm-6 col-lg-12\">\n" +
-    "                            <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                                <div class=\"title-outer\">\n" +
-    "                                    <div class=\"ibox-title\">\n" +
-    "                                        <span class=\"label label-primary pull-right\">Top City</span>\n" +
-    "                                        <h5>{{chart_data.city.city_name}}</h5>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"content-holder\">\n" +
-    "                                   	<div class=\"w1\">\n" +
-    "                                   		<div class=\"w2\">\n" +
-    "                                   			<div class=\"ibox-content\">\n" +
-    "												<h1 class=\"no-margins\">{{chart_data.city.count}}</h1>\n" +
-    "												<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "												<small>New orders</small>\n" +
-    "											</div>\n" +
-    "                                   		</div>\n" +
-    "                                   	</div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"row inner-row add\">\n" +
-    "                        <div class=\"col-sm-6 col-lg-12\">\n" +
-    "                            <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                                <div class=\"title-outer\">\n" +
-    "                                    <div class=\"ibox-title\">\n" +
-    "                                        <span class=\"label label-primary pull-right\">Top Region</span>\n" +
-    "                                        <h5>{{chart_data.region.region_name}}</h5>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"content-holder\">\n" +
-    "                                    <div class=\"w1\">\n" +
-    "                                    	<div class=\"w2\">\n" +
-    "                                    		<div class=\"ibox-content\">\n" +
-    "												<h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
-    "												<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "												<small>New orders</small>\n" +
-    "											</div>\n" +
-    "                                    	</div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-sm-6 col-lg-12\">\n" +
-    "                            <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                                <div class=\"title-outer\">\n" +
-    "                                    <div class=\"ibox-title\">\n" +
-    "                                        <span class=\"label label-primary pull-right\">Monthly</span>\n" +
-    "                                        <h5>Income</h5>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"content-holder\">\n" +
-    "                                    <div class=\"w1\">\n" +
-    "                                    	<div class=\"w2\">\n" +
-    "                                    		<div class=\"ibox-content\">\n" +
-    "												<h1 class=\"no-margins\">22 285,400</h1>\n" +
-    "												<div class=\"stat-percent font-bold text-navy\">98% <i class=\"fa fa-bolt\"></i></div>\n" +
-    "												<small>New orders</small>\n" +
-    "											</div>\n" +
-    "                                    	</div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "              </div>\n" +
-    "            </div>\n" +
-    "          </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"row\">\n" +
-    "          <div class=\"col-xs-12 patch-section\">\n" +
-    "            <ui-view name = \"regional_analysis\"></ui-view>\n" +
-    "          </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"row same-height-parent\">\n" +
-    "          <div class=\"col-lg-6 map-section\">\n" +
-    "            <ui-view name = \"feedback_map\"></ui-view>\n" +
-    "          </div>\n" +
-    "          <div class=\"col-lg-6 timeline-section\">\n" +
-    "            <ui-view name = \"overall_rating\"></ui-view>\n" +
-    "          </div>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
-    "      <footer id=\"footer\">\n" +
-    "        <div class=\"footer-inner\">\n" +
-    "        	<div class=\"footer-holder\">\n" +
-    "            <div class=\"footer-text\">\n" +
-    "              <p>Admin Panel Feedback Survey</p>\n" +
-    "            </div>\n" +
-    "            <div class=\"footer-container\">\n" +
-    "              <a href=\"http:\\\\mcdonalds.com.pk\" target=\"_blank\" class=\"footer-link\">www.mcdonalds.com.pk</a>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        </div>\n" +
-    "      </footer>\n" +
     "  </div>\n" +
     "</div>\n" +
     "\n" +
@@ -1107,51 +1118,61 @@ angular.module("login/login.tpl.html", []).run(["$templateCache", function($temp
     "  ");
 }]);
 
+angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("manage-users/edit-user-modal.tpl.html",
+    "<div class=\"modal-header\">\n" +
+    "	<button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
+    "</div>\n" +
+    "<div class = \"modal-body\">\n" +
+    "	<form action=\"#\" class=\"form\">\n" +
+    "		<fieldset>\n" +
+    "			<div class=\"modal-body\">\n" +
+    "				<div class=\"form-group\">\n" +
+    "					<label class=\"col-sm-2 control-label\">First Name</label>\n" +
+    "					<div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" placeholder=\"First Name\"></div>\n" +
+    "				</div>\n" +
+    "				<div class=\"form-group\">\n" +
+    "					<label class=\"col-sm-2 control-label\">Last Name</label>\n" +
+    "					<div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" placeholder=\"Last Name\"></div>\n" +
+    "				</div>\n" +
+    "				<div class=\"form-group\">\n" +
+    "					<label class=\"col-sm-2 control-label\">User Name</label>\n" +
+    "					<div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" placeholder=\"User Name\"></div>\n" +
+    "				</div>\n" +
+    "				<div class=\"form-group\">\n" +
+    "					<label class=\"col-sm-2 control-label\">Password</label>\n" +
+    "					<div class=\"col-sm-10\"><input type=\"password\" class=\"form-control\" placeholder=\"Password\"></div>\n" +
+    "				</div>\n" +
+    "				<div class=\"form-group\">\n" +
+    "					<label class=\"col-sm-2 control-label\">Email</label>\n" +
+    "					<div class=\"col-sm-10\"><input type=\"email\" class=\"form-control\" placeholder=\"Email\"></div>\n" +
+    "				</div>\n" +
+    "				<div class=\"form-group\">\n" +
+    "					<label class=\"col-sm-2 control-label\">Phone No.</label>\n" +
+    "					<div class=\"col-sm-10\"><input type=\"tel\" class=\"form-control\" placeholder=\"Phone No.\"></div>\n" +
+    "				</div>\n" +
+    "				<div class=\"form-group\">\n" +
+    "					<label class=\"col-sm-2 control-label\">Branch</label>\n" +
+    "					<div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" placeholder=\"branch\"></div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "			<div class=\"modal-footer\">\n" +
+    "				<a class=\"btn btn-white\" ng-click = \"cancel()\">Cancel</a>\n" +
+    "				<a class=\"btn btn-primary\" ng-click = \"cancel()\">Save changes</a>\n" +
+    "			</div>\n" +
+    "		</fieldset>\n" +
+    "	</form>\n" +
+    "</div>");
+}]);
+
 angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("manage-users/manage-users.tpl.html",
     "<div id=\"wrapper\">\n" +
-    "\n" +
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
-    "      <div class=\"header-visual\">\n" +
-    "        <nav class=\"navbar dashboard\" role=\"navigation\" style=\"margin-bottom: 0;z-index: 999;\">\n" +
-    "          <div class=\"navbar-header\">\n" +
-    "            <a class=\"navbar-minimalize minimalize-styl-2 btn btn-primary\" toggle-menu>\n" +
-    "              <i class=\"fa fa-bars\"></i>\n" +
-    "            </a>\n" +
-    "            <form role=\"search\" class=\"navbar-form-custom\" action=\"search_results.html\">\n" +
-    "              <div class=\"form-group\">\n" +
-    "                <input type=\"text\" placeholder=\"Search for something...\" class=\"form-control\" name=\"top-search\" id=\"top-search\">\n" +
-    "              </div>\n" +
-    "            </form>\n" +
-    "          </div>\n" +
-    "          <ul class=\"nav navbar-top-links navbar-right\">\n" +
-    "            <li>\n" +
-    "              <a style = \"cursor:pointer;\" ui-sref = \"live\">\n" +
-    "                 Live Dashboard\n" +
-    "              </a>\n" +
-    "            </li>\n" +
-    "            <li>\n" +
-    "              <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">{{username}}</span></span>\n" +
-    "            </li>\n" +
-    "            <li>\n" +
-    "              <a style = \"cursor:pointer;\" ng-click = \"logout()\">\n" +
-    "                <i class=\"fa fa-sign-out\"></i> Log out\n" +
-    "              </a>\n" +
-    "            </li>\n" +
-    "          </ul>\n" +
-    "        </nav>\n" +
-    "\n" +
-    "        <div class=\"img-holder\">\n" +
-    "          <div class=\"inner-holder\"><img alt=\"image\" class=\"img-responsive\" src=\"/assets/images/img1.jpg\" /></div>\n" +
-    "        </div>\n" +
-    "        <div class=\"header-caption animated fadeInRight\">\n" +
-    "          <h1>Customer Centric Approch</h1>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
-    "\n" +
+    "    <ui-view name = \"header\"></ui-view>\n" +
     "      \n" +
-    "      <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
+    "    <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "      		<div class=\"row\">\n" +
     "            	<div class=\"col-lg-12\">\n" +
     "            		<div class=\"ibox float-e-margins\">\n" +
@@ -1160,54 +1181,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "            			</div>\n" +
     "           				<div class=\"ibox-content\">\n" +
     "							<div class=\"user-block\">\n" +
-    "                               <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-user-plus\"></i> Add User</button>\n" +
-    "                               <div class=\"modal inmodal\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n" +
-    "									<div class=\"modal-dialog\">\n" +
-    "									<div class=\"modal-content animated bounceInRight\">\n" +
-    "											<div class=\"modal-header\">\n" +
-    "												<button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
-    "											</div>\n" +
-    "											<form action=\"#\" class=\"form\">\n" +
-    "												<fieldset>\n" +
-    "													<div class=\"modal-body\">\n" +
-    "														<div class=\"form-group\">\n" +
-    "															<label class=\"col-sm-2 control-label\">First Name</label>\n" +
-    "															<div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" placeholder=\"First Name\"></div>\n" +
-    "														</div>\n" +
-    "														<div class=\"form-group\">\n" +
-    "															<label class=\"col-sm-2 control-label\">Last Name</label>\n" +
-    "															<div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" placeholder=\"Last Name\"></div>\n" +
-    "														</div>\n" +
-    "														<div class=\"form-group\">\n" +
-    "															<label class=\"col-sm-2 control-label\">User Name</label>\n" +
-    "															<div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" placeholder=\"User Name\"></div>\n" +
-    "														</div>\n" +
-    "														<div class=\"form-group\">\n" +
-    "															<label class=\"col-sm-2 control-label\">Password</label>\n" +
-    "															<div class=\"col-sm-10\"><input type=\"password\" class=\"form-control\" placeholder=\"Password\"></div>\n" +
-    "														</div>\n" +
-    "														<div class=\"form-group\">\n" +
-    "															<label class=\"col-sm-2 control-label\">Email</label>\n" +
-    "															<div class=\"col-sm-10\"><input type=\"email\" class=\"form-control\" placeholder=\"Email\"></div>\n" +
-    "														</div>\n" +
-    "														<div class=\"form-group\">\n" +
-    "															<label class=\"col-sm-2 control-label\">Phone No.</label>\n" +
-    "															<div class=\"col-sm-10\"><input type=\"tel\" class=\"form-control\" placeholder=\"Phone No.\"></div>\n" +
-    "														</div>\n" +
-    "														<div class=\"form-group\">\n" +
-    "															<label class=\"col-sm-2 control-label\">Branch</label>\n" +
-    "															<div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" placeholder=\"branch\"></div>\n" +
-    "														</div>\n" +
-    "													</div>\n" +
-    "													<div class=\"modal-footer\">\n" +
-    "														<button class=\"btn btn-white\" type=\"submit\">Cancel</button>\n" +
-    "														<button class=\"btn btn-primary\" type=\"submit\">Save changes</button>\n" +
-    "													</div>\n" +
-    "												</fieldset>\n" +
-    "											</form>\n" +
-    "										</div>\n" +
-    "									</div>\n" +
-    "								</div>\n" +
+    "                <button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add User</button>\n" +
     "							</div>\n" +
     "          					<div class=\"info-holder\">\n" +
     "								<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\">\n" +
@@ -1373,18 +1347,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "            	</div>\n" +
     "            </div>\n" +
     "	  </div>\n" +
-    "	  <footer id=\"footer\">\n" +
-    "		<div class=\"footer-inner\">\n" +
-    "			<div class=\"footer-holder\">\n" +
-    "			<div class=\"footer-text\">\n" +
-    "			  <p>Admin Panel Feedback Survey</p>\n" +
-    "			</div>\n" +
-    "			<div class=\"footer-container\">\n" +
-    "			  <a href=\"http:\\\\mcdonalds.com.pk\" target=\"_blank\" class=\"footer-link\">www.mcdonalds.com.pk</a>\n" +
-    "			</div>\n" +
-    "		</div>\n" +
-    "		</div>\n" +
-    "	  </footer>\n" +
+    "	  <ui-view name = \"footer\"></ui-view>\n" +
     "  </div>\n" +
     "</div>\n" +
     "\n" +
