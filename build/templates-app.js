@@ -1168,7 +1168,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
     "    <ui-view name = \"header\"></ui-view>\n" +
-    "      \n" +
+    "\n" +
     "    <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "      		<div class=\"row\">\n" +
     "            	<div class=\"col-lg-12\">\n" +
@@ -1184,7 +1184,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "								<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\">\n" +
     "									<thead>\n" +
     "										<tr>\n" +
-    "											<th data-toggle=\"true\">Name</th>\n" +
+    "											<th data-toggle=\"true\" data-sort-initial=\"true\">Name</th>\n" +
     "											<th data-hide=\"all\">User Name</th>\n" +
     "											<th data-hide=\"all\">Password</th>\n" +
     "											<th data-hide=\"all\">Email</th>\n" +
@@ -1347,6 +1347,5 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "	  <ui-view name = \"footer\"></ui-view>\n" +
     "  </div>\n" +
     "</div>\n" +
-    "\n" +
-    "  ");
+    "");
 }]);

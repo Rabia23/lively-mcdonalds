@@ -56,7 +56,7 @@ angular.module( 'livefeed.manage_users', [
  * And of course we define a controller for our route.
  */
 .controller( 'ManageUsersCtrl', function DashboardController( $scope, $state, $rootScope, TokenHandler, Auth, $uibModal) {
-  
+
   if (Auth.is_logged_in()) {
     $rootScope.show_username = true;
     $rootScope.username = TokenHandler.get_username();
@@ -105,5 +105,15 @@ angular.module( 'livefeed.manage_users', [
 
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
+  };
+})
+
+.directive('footable', function(){
+  return {
+    restrict: 'C',
+    link: function(scope, ele, attrs){
+      console.log("in the foo table directive");
+      $(ele).footable();
+    }
   };
 });

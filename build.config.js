@@ -92,12 +92,8 @@ module.exports = {
       'vendor/angular-animate/angular-animate.min.js',
       'vendor/metisMenu/dist/metisMenu.min.js',
       'vendor/hammerjs/hammer.min.js',
-      'vendor/ngmap/build/scripts/ng-map.min.js'
-
-
-
-
-
+      'vendor/ngmap/build/scripts/ng-map.min.js',
+      'vendor/footable/dist/footable.all.min.js'
     ],
     css: [
       'vendor/bootstrap/dist/css/bootstrap.min.css',

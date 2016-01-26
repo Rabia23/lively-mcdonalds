@@ -15,7 +15,8 @@
     "ngInfiniteScroll": "~1.2.1",
     "metisMenu": "~2.2.0",
     "chartist": "~0.9.5",
-    "hammerjs": "hammer.js#~2.0.6"
+    "hammerjs": "hammer.js#~2.0.6",
+    "footable": "~2.0.3"
   },
   "dependencies": {
     "underscore": "~1.8.3",
