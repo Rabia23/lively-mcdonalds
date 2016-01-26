@@ -10,6 +10,7 @@ from apps.option.models import Option
 from apps.option.utils import generate_missing_options, generate_missing_sub_options, generate_option_groups, \
     generate_segmentation_with_options
 from apps.person.enum import UserRolesEnum
+from apps.person.models import UserInfo
 from apps.question.models import Question
 from apps.region.models import Region
 from apps.review.models import FeedbackOption, Feedback, Concern
@@ -531,7 +532,7 @@ class TopRankingsView(APIView):
 #for live dashboard
 class ComplaintAnalysisView(APIView):
 
-    # @method_decorator(my_login_required)
+    @method_decorator(my_login_required)
     def get(self, request, format=None):
         try:
             data_list = []
@@ -683,6 +684,40 @@ class LiveDashboardView(APIView):
 
         except Exception as e:
             return Response(None)
+
+
+class ManageUserView(APIView):
+
+    @method_decorator(my_login_required)
+    def get(self, request, user, format=None):
+        people = []
+        child_role = None
+        parent_role = user.info.first().role
+
+        #can be refactored more
+        if parent_role == UserRolesEnum.BRANCH_MANAGER:
+            people = UserInfo.get_children_dict(UserRolesEnum.GRO, UserRolesEnum.BRANCH_MANAGER, user.id)
+            child_role = UserRolesEnum.GRO
+        elif parent_role == UserRolesEnum.OPERATIONAL_CONSULTANT:
+            people = UserInfo.get_children_dict(UserRolesEnum.BRANCH_MANAGER, UserRolesEnum.OPERATIONAL_CONSULTANT, user.id)
+            child_role = UserRolesEnum.BRANCH_MANAGER
+        elif parent_role == UserRolesEnum.OPERATIONAL_MANAGER:
+            people = UserInfo.get_children_dict(UserRolesEnum.OPERATIONAL_CONSULTANT, UserRolesEnum.OPERATIONAL_MANAGER, user.id)
+            child_role = UserRolesEnum.OPERATIONAL_CONSULTANT
+        elif parent_role == UserRolesEnum.ASSISTANT_DIRECTOR:
+            people = UserInfo.get_children_dict(UserRolesEnum.OPERATIONAL_MANAGER, UserRolesEnum.ASSISTANT_DIRECTOR, user.id)
+            child_role = UserRolesEnum.OPERATIONAL_MANAGER
+        elif parent_role == UserRolesEnum.DIRECTOR:
+            people = UserInfo.get_children_dict(UserRolesEnum.ASSISTANT_DIRECTOR, UserRolesEnum.DIRECTOR, user.id)
+            child_role = UserRolesEnum.ASSISTANT_DIRECTOR
+
+        data = {
+            "parent_role": parent_role,
+            "child_role": child_role,
+            "children": people,
+        }
+
+        return Response(data)
 
 
 

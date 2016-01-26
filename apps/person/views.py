@@ -17,11 +17,23 @@ class UserView(APIView):
         role = get_param(request, 'role', None)
         id = get_param(request, 'id', None)
         director_id = get_param(request, 'director_id', None)
+        assistant_director_id = get_param(request, 'assistant_director_id', None)
+        operational_manager_id = get_param(request, 'operational_manager_id', None)
+        operational_consultant_id = get_param(request, 'operational_consultant_id', None)
+        branch_manager_id = get_param(request, 'branch_manager_id', None)
 
         if id:
             data = UserInfo.get_person_dict(int(role), id)
         elif director_id:
             data = UserInfo.get_children_dict(UserRolesEnum.ASSISTANT_DIRECTOR, UserRolesEnum.DIRECTOR, director_id)
+        elif assistant_director_id:
+            data = UserInfo.get_children_dict(UserRolesEnum.OPERATIONAL_MANAGER, UserRolesEnum.ASSISTANT_DIRECTOR, assistant_director_id)
+        elif operational_manager_id:
+            data = UserInfo.get_children_dict(UserRolesEnum.OPERATIONAL_CONSULTANT, UserRolesEnum.OPERATIONAL_MANAGER, operational_manager_id)
+        elif operational_consultant_id:
+            data = UserInfo.get_children_dict(UserRolesEnum.BRANCH_MANAGER, UserRolesEnum.OPERATIONAL_CONSULTANT, operational_consultant_id)
+        elif branch_manager_id:
+            data = UserInfo.get_children_dict(UserRolesEnum.GRO, UserRolesEnum.BRANCH_MANAGER, branch_manager_id)
         else:
             data = UserInfo.get_people_dict(int(role))
 
