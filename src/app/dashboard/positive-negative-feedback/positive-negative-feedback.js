@@ -102,7 +102,6 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
         else if($(window).scrollTop() > content_top){
           height = window_height - header_height - button_holder;
         }
-        $(".comments-holder").css("overflow", "auto");
         $(".comments-holder").css("height", height);
         
       });    

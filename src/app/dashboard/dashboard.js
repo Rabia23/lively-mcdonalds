@@ -49,6 +49,12 @@ angular.module( 'livefeed.dashboard', [
       "sidebar@dashboard":{
         templateUrl: 'common/sidebar.tpl.html'
       },
+      "header@dashboard":{
+        templateUrl: 'common/header.tpl.html'
+      },
+      "footer@dashboard":{
+        templateUrl: 'common/footer.tpl.html'
+      },
       "category_performance_analysis@dashboard":{
         controller: "CategoryPerformanceAnalysisCtrl",
         templateUrl: 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html'
