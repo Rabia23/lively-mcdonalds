@@ -1,8 +1,9 @@
-angular.module( 'livefeed.dashboard.regional_analysis', [
-  'factories',
-  'livefeed.regional_analysis.chart',
-  'ui.bootstrap'
-])
+(function() {
+    angular.module( 'livefeed.dashboard.regional_analysis', [
+      'factories',
+      'livefeed.regional_analysis.chart',
+      'ui.bootstrap'
+    ])
 
 .controller( 'RegionalAnalysisCtrl', function DashboardController( $scope, Graphs, regionalAnalysisChartService, $uibModal, Global ) {
    $scope.today = new Date();
@@ -224,7 +225,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       else{
         $scope.getCityBranches(object_id);
       }
-    
+
   };
 
   $scope.showChart(null, 'areas');
@@ -243,15 +244,17 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
           region: function () {return region;},
           city: function () {return city;},
           branch: function () {return branch;},
-          option: function() {return option;}
+          option: function() {return option;},
+          start_date: function() {return $scope.start_date;},
+          end_date: function() {return $scope.end_date;}
         }
       });
     }
   };
-  
+
 })
 
-.controller('SQCModalCtrl', function ($scope, Graphs, regionalAnalysisChartService, $uibModalInstance, area, region, city, branch, option){
+.controller('SQCModalCtrl', function ($scope, Graphs, regionalAnalysisChartService, $uibModalInstance, area, region, city, branch, option, start_date, end_date){
   $scope.leftClickDisabled = false;
   $scope.rightClickDisabled = false;
 
@@ -260,7 +263,7 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
   $scope.show_div = false;
 
   function showGraph(area, region, city, branch, option) {
-    Graphs.feedback_analysis_breakdown(area.id,region.id,city.id,branch.id,option.id).$promise.then(function(data) {
+    Graphs.feedback_analysis_breakdown(area.id,region.id,city.id,branch.id,option.id,start_date,end_date).$promise.then(function(data) {
       $scope.show_div = data.feedback_count === 0? true: false;
       $scope.donut_subgraph_data = regionalAnalysisChartService.getSubDonutChartData(data,option.label);
     });
@@ -564,3 +567,4 @@ angular.module( 'livefeed.dashboard.regional_analysis', [
       }
   };
 });
+})();

@@ -370,7 +370,7 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
     "<div class=\"ibox float-e-margins float-e-margin-none\">\n" +
     "  <div class=\"title-outer\">\n" +
     "	<div class=\"ibox-title\">\n" +
-    "	  <h5>McDonald's Oppotunities</h5>\n" +
+    "	  <h5>McDonald's Opportunities</h5>\n" +
     "	</div>\n" +
     "  </div>\n" +
     "  <div class=\"content-holder\">\n" +

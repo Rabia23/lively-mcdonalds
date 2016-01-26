@@ -65,8 +65,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
    }
 
    $scope.optionClick = function (option_object){
-       console.log("option object");
-       console.log(option_object);
+
        var option_id = option_object.item.dataContext[option_object.graph.id];
        var date = option_object.item.category;
 
