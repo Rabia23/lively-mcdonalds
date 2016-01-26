@@ -12,11 +12,7 @@ angular.module( 'livefeed.live', [
   'livefeed.live.benchmark_map'
 ])
 
-/**
- * Each section or module of the site can also have its own routes. AngularJS
- * will handle ensuring they are all available at run-time, but splitting it
- * this way makes each module more "self-contained".
- */
+
 .config(function config( $stateProvider ) {
   $stateProvider
   .state( 'live', {
@@ -125,12 +121,12 @@ angular.module( 'livefeed.live', [
     $scope.concerns = dat.concerns;
     $rootScope.$broadcast('live-data-received');
     $scope.$digest();
-      
+
   });
 
 
 
-  var display = function(){    
+  var display = function(){
     var date = new Date();
     $scope.time = Clock.formatAMPM(date);
 
@@ -167,15 +163,15 @@ angular.module( 'livefeed.live', [
     restrict: 'A',
     link: function(scope, ele, attrs) {
       console.log("in the initFullScreen");
-      var element = document.documentElement; 
+      var element = document.documentElement;
       //var element = document.getElementById("live-dashboard");
       console.log(element);
       if(element.requestFullScreen) {
         element.requestFullScreen();
-      } 
+      }
       else if(element.mozRequestFullScreen) {
         element.mozRequestFullScreen();
-      } 
+      }
       else if(element.webkitRequestFullScreen) {
         element.webkitRequestFullScreen();
       }
@@ -211,7 +207,7 @@ angular.module( 'livefeed.live', [
     init: function(){
       console.log("in the init function");
       ws = null;
-      ws = new WebSocket("ws://staginglivefeed.arbisoft.com:5679/");
+      ws = new WebSocket("wss://staginglivefeed.arbisoft.com:5679/");
       //ws = new WebSocket("ws://172.16.11.113:5678/");
       ws.onopen = function (event) {
         console.log("sockets opened");
@@ -229,7 +225,7 @@ angular.module( 'livefeed.live', [
         console.log("connection closing");
         $rootScope.$broadcast('web-socket-close');
 
-      };               
+      };
     },
 
     get_socket: function(){
@@ -242,6 +238,3 @@ angular.module( 'livefeed.live', [
   };
 
 }]);
-
-
-
