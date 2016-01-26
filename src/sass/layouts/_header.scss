@@ -29,7 +29,10 @@
 	}
 }
 
-.header-block{float: left;}
+.header-block{
+	float: left;
+	letter-spacing: -4px;
+}
 
 .header-content{
 	overflow: hidden;
@@ -41,7 +44,7 @@
 		font-size: 14px;
 		line-height: 18px;
 		text-transform: uppercase;
-		margin: 0 2px 20px 0;
+		margin: 0 2px 24px 0;
 		
 		strong{
 			@include inline-block(top);
@@ -81,7 +84,7 @@
 		text-align: left;
 		color: $rosso-corsa;
 		font: {
-			size: 28px;
+			size: 24px;
 			weight: 300;
 		}
 		

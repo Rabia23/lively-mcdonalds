@@ -21,13 +21,15 @@
 		right: 0;
 		top: 0;
 		bottom: 0;
-		padding: 165px 0 83px;
+		padding: 130px 0 83px;
+		
+		@include media("≥widescreen"){padding: 165px 0 83px;}
 		
 		&:before{
 			position: absolute;
 			left: 0;
 			right: 0;
-			top: 165px;
+			top: 130px;
 			bottom: 83px;
 			content: "";
 			opacity: 0.65;
@@ -35,6 +37,8 @@
 			background: -moz-linear-gradient(top, rgba(251,174,19,0.3) 30%, rgba(237,87,15,0.6) 70%);
 			background: -webkit-linear-gradient(top, rgba(251,174,19,0.3) 30%,rgba(237,87,15,0.6) 70%);
 			background: linear-gradient(to bottom, rgba(251,174,19,0.3) 30%,rgba(237,87,15,0.6) 70%);
+			
+			@include media("≥widescreen"){top: 165px;}
 		}
 		
 		&.active{z-index: 3;}
@@ -50,6 +54,7 @@
 		overflow: hidden;
 		
 		.block,
+		.box-holder,
 		.holder{
 			display: table-cell;
 			vertical-align: middle;
@@ -57,7 +62,6 @@
 			height: 100%;
 		}
 		
-		.box-holder,
 		.block-holder{
 			display: table-cell;
 			vertical-align: middle;
@@ -65,9 +69,17 @@
 		}
 		
 		.box-holder{
-			width: 40%;
+			padding: 0 0 20px;
+			vertical-align: top;
+			width: 35%;
 			
-			&:first-child{width: 60%;}
+			@include media("≥widescreen"){width: 40%;}
+			
+			&:first-child{
+				width: 65%;
+				padding: 0;
+				@include media("≥widescreen"){width: 60%;}
+			}
 		}
 		
 		&.add{
@@ -89,6 +101,7 @@
 		display: table-header-group;
 		width: 100%;
 		height: 1%;
+		overflow:hidden;
 	}
 	
 	.pagination-holder{
@@ -133,38 +146,7 @@
 			text-align: center;
 			border-left: 1px solid $lust;
 			
-			&:first-child{
-				border: 0;
-				
-				&.first{
-					a{
-						&:before{
-							position: absolute;
-							right: 0;
-							top: 0;
-							width: 0;
-							height: 5px;
-							content: "";
-							z-index: 9991;
-							background: $supernova;
-							@include transition($val:all, $duration:4s, $function:linear);
-						}
-					}
-				}
-				
-				&.active{
-					&.first{
-						a{
-							&:before{
-								left: 0;
-								width: 100%;
-								right: auto;
-								@include transition($val:all, $duration:4s, $function:linear);
-							}
-						}
-					}
-				}
-			}
+			&:first-child{border: 0;}
 			
 			a{
 				display: block;
@@ -212,7 +194,7 @@
 					content: "";
 					z-index: 9991;
 					background: $supernova;
-					@include transition($val:all, $duration:6s, $function:linear);
+					@include transition($val:all, $duration:12s, $function:linear);
 				}
 
 				&:hover{
@@ -251,7 +233,7 @@
 						left: 0;
 						width: 100%;
 						right: auto;
-						@include transition($val:all, $duration:6s, $function:linear);
+						@include transition($val:all, $duration:12s, $function:linear);
 					}
 				}
 			}
@@ -281,25 +263,12 @@
 	
 }
 
-
-.container-holder{
-	display: table;
-	table-layout: fixed;
-	height: 100%;
-	width: 80%;
-	
-	.container-inner{
-		display: table-cell;
-		vertical-align: top;
-		width: 100%;
-		height: 100%;
-	}
-}
-
 .container{
 	overflow: hidden;
 	height: 50%;
-	padding: 8px 0 9px;
+	padding: 0 0 10px;
+	
+	@include media("≥widescreen"){padding: 0 0 17px;}
 	
 	.box{
 		float: left;
@@ -316,17 +285,13 @@
 	}
 	
 	&.add{
-		margin: 0 -6px;
 		.box{
 			width: 49%;
-			width: -webkit-calc(50% - 12px);
-			width: -moz-calc(50% - 12px);
-			width: calc(50% - 12px);
-			margin: 0 6px;
 			+ .box{float: right;}
 		}
 	}
 }
+
 
 .amChartsLegend.amcharts-legend-div{font-weight: 300;}
 
@@ -334,3 +299,12 @@
 .box-holder > div > div > div > a{display: none !important;}
 
 .box > div > div > div > a{display: none !important;}
+
+
+.container-holder{
+  height: 100%;
+  width: 95%;
+
+  @include media("≥widescreen"){width: 84%;}
+
+}

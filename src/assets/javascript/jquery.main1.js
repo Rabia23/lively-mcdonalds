@@ -14,10 +14,10 @@ function initSlideShow() {
     pagerLinks: '.slideshow .pagination li',
     event: 'click',
     useSwipe: true,
-    autoRotation: false,
+    autoRotation: true,
     pauseOnHover: false,
     autoHeight: true,
-    switchTime: 5000,
+    switchTime: 12000,
     animSpeed: 1000
   });
   jQuery('.slideshow').fadeGallery({
@@ -27,10 +27,10 @@ function initSlideShow() {
     pagerLinks: '.pagination li',
     event: 'click',
     useSwipe: true,
-    autoRotation: false,
+    autoRotation: true,
     pauseOnHover: false,
     autoHeight: true,
-    switchTime: 5000,
+    switchTime: 12000,
     animSpeed: 1000
   });
 }
@@ -451,7 +451,7 @@ function initSlideShow() {
     // handle changes in style rules
     var currentWindowHeight = getWindowHeight(),
       styleRules = styleSheet.cssRules || styleSheet.rules;
-    
+
     jQuery.each(styleRules, function(index, currentRule) {
       var currentProperty = currentRule.selectorText.toLowerCase().replace('.win-', '').replace('-h','H');
       currentRule.style[currentProperty] = currentWindowHeight + 'px';
@@ -494,7 +494,7 @@ function initPositionFixed() {
           positionFlag = false;
           activeSticker();
         }
-      } 
+      }
       else {
         if (!positionFlag){
           positionFlag = true;
@@ -852,7 +852,7 @@ jQuery.onFontResize = (function($) {
         setup: function() {
           var self = this;
           $.each(eventHandlers, function(index, fallbackEvent) {
-            if (self.addEventListener) 
+            if (self.addEventListener)
             {self.addEventListener(fallbackEvent, fixEvent, false);}
             else {self['on' + fallbackEvent] = fixEvent;}
           });

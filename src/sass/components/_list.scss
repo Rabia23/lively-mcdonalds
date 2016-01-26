@@ -4,14 +4,14 @@
 	letter-spacing: -6px;
 	color: $mine-shaft;
 	text-transform: uppercase;
-	font-size: 16px;
+	font-size: 18px;
 	line-height: 22px;
-	padding: 10px 15px 0;
+	padding: 10px 15px 10px;
 	
 	@include media("≥widescreen"){
-		font-size: 18px;
-		line-height: 24px;
-		padding: 15px 20px 0;
+		font-size: 24px;
+		line-height: 26px;
+		padding: 15px 20px 10px;
 	}
 	
 	li{
@@ -35,7 +35,7 @@
 			border: 2px solid $white;
 			
 			@include media("≥widescreen"){
-				top: 1px;
+				top: 2px;
 				width: 20px;
 				height: 20px;
 				border-width: 3px;
@@ -43,11 +43,11 @@
 		}
 		
 		&.item2{
-			.bullet{background: $golden-poppy;}
+			.bullet{background: $aureolin;}
 		}
 		
 		&.item3{
-			.bullet{background: $bright-turquoise;}
+			.bullet{background: $blue;}
 		}
 		&.processed{
 			.bullet{background: $dark-pastel-green;}

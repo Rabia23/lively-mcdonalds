@@ -19,7 +19,7 @@ angular.module( 'livefeed.live.api', [
   }
 
   Api.prototype.live_dashboard = function(){
-    return this.service.live_dashboard();
+    return this.service.live_dashboard({token: token});
   };
 
   return new Api();

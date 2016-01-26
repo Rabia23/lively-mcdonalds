@@ -1,4 +1,4 @@
-angular.module('templates-app', ['common/footer.tpl.html', 'common/header.tpl.html', 'common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/opportunities/opportunities.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/overall-ratings/overall-ratings.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/edit-user-modal.tpl.html', 'manage-users/manage-users.tpl.html']);
+angular.module('templates-app', ['common/footer.tpl.html', 'common/header.tpl.html', 'common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/opportunities/opportunities.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/edit-user-modal.tpl.html', 'manage-users/manage-users.tpl.html']);
 
 angular.module("common/footer.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("common/footer.tpl.html",
@@ -884,8 +884,8 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "					<div class=\"heading-slide\"><h2>business segment</h2></div>\n" +
     "					<div class=\"heading-slide\"><h2>overall rating</h2></div>\n" +
     "					<div class=\"heading-slide\"><h2>top concerns</h2></div>\n" +
-    "					<div class=\"heading-slide\"><h2>Patch  qsc analysis</h2></div>\n" +
-    "					<div class=\"heading-slide\"><h2>benchmark map</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>Complaint analysis</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>Laederboard</h2></div>\n" +
     "				</div>\n" +
     "				<h1>Country Wide</h1>\n" +
     "			</div>\n" +
@@ -938,8 +938,8 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "				<li><a href=\"#\"><span>Business Segment</span></a></li>\n" +
     "				<li><a href=\"#\"><span>Overall rating</span></a></li>\n" +
     "				<li><a href=\"#\"><span>Top Concerns</span></a></li>\n" +
-    "				<li><a href=\"#\"><span>Patch  qsc analysis</span></a></li>\n" +
-    "				<li><a href=\"#\"><span>Benchmark map</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Complaint analysis</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Leaderboard</span></a></li>\n" +
     "			</ul>\n" +
     "		</div>\n" +
     "	</div>\n" +
@@ -949,19 +949,6 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("live/overall-ratings/overall-rating.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("live/overall-ratings/overall-rating.tpl.html",
-    "<div class=\"slide win-height\" overall-rating data-data = \"overall_rating_data\">\n" +
-    "	<div class=\"slide-holder\">\n" +
-    "		<div class=\"holder\">\n" +
-    "			<div class=\"chart-outer\">\n" +
-    "				<div id=\"barchart\"></div>\n" +
-    "			</div>\n" +
-    "		</div>\n" +
-    "	</div>\n" +
-    "</div>");
-}]);
-
-angular.module("live/overall-ratings/overall-ratings.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("live/overall-ratings/overall-ratings.tpl.html",
     "<div class=\"slide win-height\" overall-rating data-data = \"overall_rating_data\">\n" +
     "	<div class=\"slide-holder\">\n" +
     "		<div class=\"holder\">\n" +
@@ -990,23 +977,21 @@ angular.module("live/patch-qsc-analysis/patch-qsc-analysis.tpl.html", []).run(["
     "                            <div id=\"piechart\"></div>\n" +
     "                        </div>\n" +
     "                        <div class=\"box-holder\">\n" +
-    "                            <div class=\"container-holder\">\n" +
-    "                                <div class=\"container-inner\">\n" +
-    "                                    <div class=\"container\">\n" +
-    "                                        <div class=\"box\">\n" +
-    "                                            <div id=\"chartdiv\" patch-chart-div data-data = \"north_south_percentage\"></div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                    <div class=\"container add\">\n" +
-    "                                        <div class=\"box\">\n" +
-    "                                            <div id=\"patch-bar\" patch-bar-one data-data = \"north_analysis\"></div>\n" +
-    "                                        </div>\n" +
-    "                                        <div class=\"box\">\n" +
-    "                                            <div id=\"patch-bar2\" patch-bar-two data-data = \"south_analysis\"></div>\n" +
-    "                                        </div>\n" +
-    "                                    </div>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
+    "							<div class=\"container-holder\">\n" +
+    "								<div class=\"container\">\n" +
+    "									<div class=\"box\" >\n" +
+    "										<div id=\"chartdiv\" patch-chart-div data-data = \"north_south_percentage\"></div>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "								<div class=\"container add\">\n" +
+    "									<div class=\"box\" >\n" +
+    "										<div id=\"patch-bar\" patch-bar-one data-data = \"north_analysis\"></div>\n" +
+    "									</div>\n" +
+    "									<div class=\"box\" >\n" +
+    "										<div id=\"patch-bar2\" patch-bar-two data-data = \"south_analysis\"></div>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "							</div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +

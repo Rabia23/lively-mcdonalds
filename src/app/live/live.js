@@ -51,7 +51,7 @@ angular.module( 'livefeed.live', [
         templateUrl: 'live/benchmark-map/benchmark-map.tpl.html'
       }
     },
-    authenticate: false
+    authenticate: true
   });
 
 })
@@ -59,26 +59,31 @@ angular.module( 'livefeed.live', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'LiveCtrl', function LiveController( $scope,  _ , $rootScope, $state, Authentication, Api, WebSocket, Global, Clock, $interval) {
+.controller( 'LiveCtrl', function LiveController( $scope,  _ , $rootScope, $state, Authentication, Api, WebSocket, Global, Clock, $interval, $timeout) {
 
 
   $scope.authenticate = {};
+  var ping_live = true;
+
+
 
   $rootScope.$on('app-online', function(event, args) {
-    console.log("online in login");
-    //WebSocket.init();
+    console.log("online");
+    WebSocket.init();
+    //live_dashboard();
+    $timeout(function() {
+        live_dashboard();
+    }, 5000);
   });
 
   $rootScope.$on('app-offline', function(event, args) {
-    console.log("offline in login");
+    console.log("offline");
     WebSocket.close_socket();
   });
 
 
   function live_dashboard(){
     Api.live_dashboard().$promise.then(function(data){
-      console.log("live dashboard");
-      console.log(data);
       $scope.top_ranking = data.top_rankings;
       $scope.overall_ratings = data.overall_rating;
       $scope.complaint_view = data.complaint_view;
@@ -95,7 +100,7 @@ angular.module( 'livefeed.live', [
 
   live_dashboard();
 
-  //WebSocket.init();
+  WebSocket.init();
 
   $rootScope.$on('live-data-received', function (event, data) {
     top_rankings();
@@ -110,7 +115,17 @@ angular.module( 'livefeed.live', [
   }
 
   $rootScope.$on('web-socket-message', function (event, data) {
-    live_dashboard();
+    var dat = JSON.parse(data);
+    $scope.top_ranking = dat.top_rankings;
+    $scope.overall_ratings = dat.overall_rating;
+    $scope.complaint_view = dat.complaint_view;
+    $scope.overall_feedback = dat.overall_feedback;
+    $scope.leader_board_data = dat.leaderboard_view;
+    $scope.segmentation_ratings = dat.segmentation_rating;
+    $scope.concerns = dat.concerns;
+    $rootScope.$broadcast('live-data-received');
+    $scope.$digest();
+      
   });
 
 
@@ -129,16 +144,12 @@ angular.module( 'livefeed.live', [
   $interval(display, 1000 * 60);
 
 
-
   $rootScope.$on('web-socket-close', function (event, data) {
     WebSocket.close_socket();
-    WebSocket.init();
+    if($rootScope.currentState == 'live'){
+      WebSocket.init();
+    }
   });
-
-
-
-  
-
 })
 
 
@@ -190,16 +201,6 @@ angular.module( 'livefeed.live', [
 }])
 
 
-.service('FullScreen', ['$rootScope', function($rootScope){
-  return {
-    launch: function(element){
-      
-    }
-  };
-
-}])
-
-
 
 .service('WebSocket', ['$rootScope', function($rootScope){
 
@@ -218,7 +219,7 @@ angular.module( 'livefeed.live', [
       };
       ws.onmessage = function (event) {
         console.log("message received");
-        $rootScope.$broadcast('web-socket-message');
+        $rootScope.$broadcast('web-socket-message', event.data);
       };
       ws.onerror = function(event){
         console.log("error in connection");
