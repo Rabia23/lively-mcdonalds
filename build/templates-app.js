@@ -261,14 +261,14 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                              <div class=\"title-outer\">\n" +
     "                                  <div class=\"ibox-title\">\n" +
     "                                      <span class=\"label label-primary pull-right\">Top GRO</span>\n" +
-    "                                      <h5>GRO</h5>\n" +
+    "                                      <h5>{{chart_data.gro.gro.gro_name}}</h5>\n" +
     "                                  </div>\n" +
     "                              </div>\n" +
     "                              <div class=\"content-holder\">\n" +
     "                                  <div class=\"w1\">\n" +
     "                                  	<div class=\"w2\">\n" +
     "                                  		<div class=\"ibox-content\">\n" +
-    "											<h1 class=\"no-margins\">22 285,400</h1>\n" +
+    "											<h1 class=\"no-margins\">{{chart_data.gro.count}}</h1>\n" +
     "										</div>\n" +
     "                                  	</div>\n" +
     "                                  </div>\n" +
@@ -785,10 +785,11 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "          <h5>Top Concerns</h5>\n" +
     "        </div>\n" +
     "      </div>\n" +
-    "      <div class=\"content-holder\">\n" +
+    "      <div class=\"content-holder\" top-concerns data-data = \"data\">\n" +
     "        <div class=\"ibox-content\">\n" +
     "          <div class=\"graph-block\">\n" +
-    "            <canvas id=\"doughnut\" class=\"chart chart-doughnut\" chart-data=\"data\" chart-labels=\"labels\"></canvas> \n" +
+    "            <div id=\"piechart\" style=\"width:100%; height:200px;\" ></div>\n" +
+    "            <!--<canvas id=\"doughnut\" class=\"chart chart-doughnut\" chart-data=\"data\" chart-labels=\"labels\"></canvas> -->\n" +
     "          </div>\n" +
     "        </div>\n" +
     "      </div>\n" +
