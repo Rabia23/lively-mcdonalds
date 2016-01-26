@@ -104,8 +104,7 @@ angular.module("coupon/coupon.tpl.html", []).run(["$templateCache", function($te
 
 angular.module("dashboard/category-performance-analysis/category-performance-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/category-performance-analysis/category-performance-analysis.tpl.html",
-    "<div>\n" +
-    "    <div class=\"ibox float-e-margins\">\n" +
+    "<div class=\"ibox float-e-margins\">\n" +
     "      <div class=\"title-outer\">\n" +
     "          <div class=\"ibox-title\">\n" +
     "              <h5>Business Segment Breakdown</h5>\n" +
@@ -130,7 +129,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "      <div class=\"content-holder\">\n" +
     "          <div class=\"ibox-content add\">\n" +
     "              <div class=\"chart-outer\">\n" +
-    "				  <div class=\"progres-container\">\n" +
+    "				  <div class=\"progress-container\">\n" +
     "				  	<div class=\"progress-area\">\n" +
     "				  		<div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" progress-bar-background>\n" +
     "					<small><em>{{dat.name}}</em></small>\n" +
@@ -159,9 +158,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "              </div>\n" +
     "          </div>\n" +
     "      </div>\n" +
-    "  </div>\n" +
-    "</div>\n" +
-    "");
+    "  </div>");
 }]);
 
 angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -175,14 +172,14 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "    <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "      <div class=\"row same-height-parent\">\n" +
     "        <div class=\"col-lg-6 col-lg-push-6\">\n" +
-    "          <div class=\"same-height-block\">\n" +
+    "          <div class=\"same-height-block blocks-holder\">\n" +
     "            <div class=\"row\">\n" +
     "              <div class=\"col-xs-12 business-segment\">\n" +
     "                <ui-view name = \"category_performance_analysis\"></ui-view>\n" +
     "              </div>\n" +
     "            </div>\n" +
     "            <div class=\"row\">\n" +
-    "              <div class=\"col-xs-12\">\n" +
+    "              <div class=\"col-xs-12 oppotunities\">\n" +
     "                <ui-view name = \"opportunities\"></ui-view>\n" +
     "              </div>\n" +
     "            </div>\n" +
@@ -191,13 +188,13 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "        <div class=\"col-lg-6 col-lg-pull-6\">\n" +
     "          <div class=\"same-height-block\">\n" +
     "            <div class=\"row\">\n" +
-    "              <div class=\"col-lg-8 same-height-col\">\n" +
+    "              <div class=\"col-md-8 same-height-col\">\n" +
     "                <ui-view name = \"overall_feedback\"></ui-view>\n" +
     "                <ui-view name = \"top_concern\"></ui-view>\n" +
     "              </div>\n" +
-    "              <div class=\"col-lg-4 same-height-col\">\n" +
+    "              <div class=\"col-md-4 same-height-col\">\n" +
     "                  <div class=\"row inner-row\">\n" +
-    "                      <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                      <div class=\"col-sm-6 col-md-12\">\n" +
     "                          <div class=\"ibox float-e-margins detail-block\">\n" +
     "                              <div class=\"title-outer\">\n" +
     "                                  <div class=\"ibox-title\">\n" +
@@ -216,7 +213,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                              </div>\n" +
     "                          </div>\n" +
     "                      </div>\n" +
-    "                      <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                      <div class=\"col-sm-6 col-md-12\">\n" +
     "                          <div class=\"ibox float-e-margins detail-block\">\n" +
     "                              <div class=\"title-outer\">\n" +
     "                                  <div class=\"ibox-title\">\n" +
@@ -237,7 +234,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                      </div>\n" +
     "                  </div>\n" +
     "                  <div class=\"row inner-row add\">\n" +
-    "                      <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                      <div class=\"col-sm-6 col-md-12\">\n" +
     "                          <div class=\"ibox float-e-margins detail-block\">\n" +
     "                              <div class=\"title-outer\">\n" +
     "                                  <div class=\"ibox-title\">\n" +
@@ -256,7 +253,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                              </div>\n" +
     "                          </div>\n" +
     "                      </div>\n" +
-    "                      <div class=\"col-sm-6 col-lg-12\">\n" +
+    "                      <div class=\"col-sm-6 col-md-12\">\n" +
     "                          <div class=\"ibox float-e-margins detail-block\">\n" +
     "                              <div class=\"title-outer\">\n" +
     "                                  <div class=\"ibox-title\">\n" +
@@ -370,22 +367,25 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
 
 angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/opportunities/opportunities.tpl.html",
-    "<div class=\"row inner-row add\">\n" +
-    "  <div class=\"col-xs-12\">\n" +
-    "    <div class=\"ibox float-e-margins float-e-margin-none\">\n" +
-    "      <div class=\"title-outer\">\n" +
-    "        <div class=\"ibox-title\">\n" +
-    "          <h5>McDonald's Oppotunities</h5>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
-    "      <div class=\"content-holder\">\n" +
-    "        <div class=\"ibox-content\">\n" +
-    "          <div class=\"graph-block\">\n" +
-    "            \n" +
-    "          </div>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
-    "    </div>\n" +
+    "<div class=\"ibox float-e-margins float-e-margin-none\">\n" +
+    "  <div class=\"title-outer\">\n" +
+    "	<div class=\"ibox-title\">\n" +
+    "	  <h5>McDonald's Oppotunities</h5>\n" +
+    "	</div>\n" +
+    "  </div>\n" +
+    "  <div class=\"content-holder\">\n" +
+    "	<div class=\"ibox-content\">\n" +
+    "	  <div class=\"chart-outer\">\n" +
+    "		  <div class=\"progres-container\">\n" +
+    "			<div class=\"progress-area\">\n" +
+    "				<div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" progress-bar-background>\n" +
+    "					<small><em>{{dat.name}}</em></small>\n" +
+    "					<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}} complaints</b></uib-progressbar></div>\n" +
+    "			  </div>\n" +
+    "			</div>\n" +
+    "		  </div>\n" +
+    "	  </div>\n" +
+    "	</div>\n" +
     "  </div>\n" +
     "</div>\n" +
     "");
