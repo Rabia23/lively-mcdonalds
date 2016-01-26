@@ -16,15 +16,15 @@ angular.module("header.tpl.html", []).run(["$templateCache", function($templateC
     "    <span class=\"icon-bar\"></span>\n" +
     "  </div>\n" +
     "\n" +
-    "    <div class=\"top-nav\">\n" +
-    "      <ul class=\"nav-left list-unstyled\">\n" +
-    "        <li>\n" +
-    "            <a href=\"#/\" data-toggle-nav-collapsed-min class=\"toggle-min\" id=\"step4\">\n" +
-    "              <i class=\"fa fa-bars\"></i>\n" +
-    "            </a>\n" +
-    "        </li>\n" +
-    "      </ul>\n" +
-    "    </div>\n" +
+    "  <div class=\"top-nav\">\n" +
+    "    <ul class=\"nav-left list-unstyled\">\n" +
+    "      <li>\n" +
+    "          <a href=\"#/\" data-toggle-nav-collapsed-min class=\"toggle-min\" id=\"step4\">\n" +
+    "            <i class=\"fa fa-bars\"></i>\n" +
+    "          </a>\n" +
+    "      </li>\n" +
+    "    </ul>\n" +
+    "  </div>\n" +
     "\n" +
     "</header>\n" +
     "");

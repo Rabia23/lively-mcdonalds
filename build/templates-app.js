@@ -1,4 +1,4 @@
-angular.module('templates-app', ['common/footer.tpl.html', 'common/header.tpl.html', 'common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/overall-ratings/overall-ratings.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/edit-user-modal.tpl.html', 'manage-users/manage-users.tpl.html']);
+angular.module('templates-app', ['common/footer.tpl.html', 'common/header.tpl.html', 'common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/opportunities/opportunities.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/overall-ratings/overall-ratings.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/edit-user-modal.tpl.html', 'manage-users/manage-users.tpl.html']);
 
 angular.module("common/footer.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("common/footer.tpl.html",
@@ -104,66 +104,7 @@ angular.module("coupon/coupon.tpl.html", []).run(["$templateCache", function($te
 
 angular.module("dashboard/category-performance-analysis/category-performance-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/category-performance-analysis/category-performance-analysis.tpl.html",
-    "<!-- <div class=\"section-holder ng-scope\">\n" +
-    "	<div class=\"info-holder\">\n" +
-    "\n" +
-    "  <div class=\"heading-holder\">\n" +
-    "  	<h2>Business Segment Breakdown\n" +
-    "  		<span class=\"icon-help\" uib-popover=\"Representation of the overall QSC breakdown for each business segment. Change the tabs for sub-categories of each main category.\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
-    "	</h2>\n" +
-    "  	<ul>\n" +
-    "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == ''}\" ng-click = \"onClick(null, 'All')\" uib-tooltip=\"Click to view QSC Segmentation Breakdown\" >All</a></li>\n" +
-    "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == 'Quality'}\" ng-click = \"onClick(QualityID, 'Quality')\" uib-tooltip=\"Click to View Quality SubCategories Breakdown\">Quality</a></li>\n" +
-    "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == 'Service'}\" ng-click = \"onClick(ServiceID, 'Service')\" uib-tooltip=\"Click to view Service SubCategories Breakdown\">Service</a></li>\n" +
-    "  		<li><a class=\"btn btn-default\"  ng-class=\"{active: class == 'Cleanliness'}\" ng-click = \"onClick(CleanlinessID, 'Cleanliness')\" uib-tooltip=\"Click to view Cleanliness SubCategories Breakdown\">Cleanliness</a></li>\n" +
-    "  		<li>\n" +
-    "			<div class=\"calender-outer\">\n" +
-    "				<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "				  <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
-    "				  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
-    "				</span>\n" +
-    "			</div>\n" +
-    "		</li>\n" +
-    "  	</ul>\n" +
-    "  </div>\n" +
-    "\n" +
-    "  <div class=\"progress-container\" ng-class=\"{loading: show_loading}\">\n" +
-    "  	<ul class=\"list add\">\n" +
-    "		  <li ng-repeat = \"dat in category_data\"><span class=\"bullet\" style = \"background-color: {{dat.colour}}\"></span>{{dat.name}}</li>\n" +
-    "	  </ul>\n" +
-    "  	<div class=\"main-holder\">\n" +
-    "  		<div class=\"holder\">\n" +
-    "  		<div class=\"progress-area\" data-data = \"segments\" segment-progress-bar-background>\n" +
-    "\n" +
-    "			<div class=\"progress-section\" ng-repeat = \"segment in segments\" >\n" +
-    "\n" +
-    "			<small><em>{{segment.name}}</em></small>\n" +
-    "\n" +
-    "			<div class=\"inner-holder\">\n" +
-    "				 <uib-progress>\n" +
-    "					 <uib-bar ng-repeat=\"bar in segment.segment_data\" value=\"bar.percentage\" data-color = \"{{bar.colour}}\">\n" +
-    "						 <span>{{bar.complaints}}</span></uib-bar>\n" +
-    "				 </uib-progress>\n" +
-    "			</div>\n" +
-    "\n" +
-    "		  </div>\n" +
-    "		</div>\n" +
-    "  	</div>\n" +
-    "  	<div class=\"holder\">\n" +
-    "  		<div class=\"progress-area\">\n" +
-    "			<div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" progress-bar-background>\n" +
-    "				<small><em>{{dat.name}}</em></small>\n" +
-    "				<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}} complaints</b></uib-progressbar></div>\n" +
-    "		  </div>\n" +
-    "  		</div>\n" +
-    "  	</div>\n" +
-    "  	</div>\n" +
-    "  </div>\n" +
-    "</div>\n" +
-    "</div> -->\n" +
-    "\n" +
-    "\n" +
-    "<div class=\"same-height-block add\">\n" +
+    "<div>\n" +
     "    <div class=\"ibox float-e-margins\">\n" +
     "      <div class=\"title-outer\">\n" +
     "          <div class=\"ibox-title\">\n" +
@@ -233,8 +174,19 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "    <ui-view name = \"positive_negative_feedback\"></ui-view>\n" +
     "    <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "      <div class=\"row same-height-parent\">\n" +
-    "        <div class=\"col-lg-6 col-lg-push-6 business-segment\">\n" +
-    "          <ui-view name = \"category_performance_analysis\"></ui-view>\n" +
+    "        <div class=\"col-lg-6 col-lg-push-6\">\n" +
+    "          <div class=\"same-height-block\">\n" +
+    "            <div class=\"row\">\n" +
+    "              <div class=\"col-xs-12 business-segment\">\n" +
+    "                <ui-view name = \"category_performance_analysis\"></ui-view>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"row\">\n" +
+    "              <div class=\"col-xs-12\">\n" +
+    "                <ui-view name = \"opportunities\"></ui-view>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
     "        </div>\n" +
     "        <div class=\"col-lg-6 col-lg-pull-6\">\n" +
     "          <div class=\"same-height-block\">\n" +
@@ -348,8 +300,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "\n" +
     "  </div>\n" +
     "</div>\n" +
-    "\n" +
-    "  ");
+    "");
 }]);
 
 angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -411,6 +362,29 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "				</div>\n" +
     "		  </div>\n" +
     "	  </div>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("dashboard/opportunities/opportunities.tpl.html",
+    "<div class=\"row inner-row add\">\n" +
+    "  <div class=\"col-xs-12\">\n" +
+    "    <div class=\"ibox float-e-margins float-e-margin-none\">\n" +
+    "      <div class=\"title-outer\">\n" +
+    "        <div class=\"ibox-title\">\n" +
+    "          <h5>McDonald's Oppotunities</h5>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"content-holder\">\n" +
+    "        <div class=\"ibox-content\">\n" +
+    "          <div class=\"graph-block\">\n" +
+    "            \n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
     "");

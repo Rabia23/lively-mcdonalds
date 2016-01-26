@@ -23,6 +23,7 @@ angular.module( 'livefeed.dashboard', [
   'livefeed.dashboard.statistics',
   'livefeed.dashboard.positive_negative_feedback',
   'livefeed.dashboard.top_concern',
+  'livefeed.dashboard.opportunities',
   'flash',
   'livefeed.authService'
 
@@ -83,7 +84,14 @@ angular.module( 'livefeed.dashboard', [
       "top_concern@dashboard":{
         controller: "TopConcernsCtrl",
         templateUrl: 'dashboard/top-concern/top-concern.tpl.html'
+      },
+
+      "opportunities@dashboard":{
+        controller: "OpportunitiesCtrl",
+        templateUrl: 'dashboard/opportunities/opportunities.tpl.html'
       }
+
+
 
     },
     authenticate: true
