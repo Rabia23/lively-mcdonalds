@@ -1166,7 +1166,10 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>mark@gmail.com</td>\n" +
     "											<td>123456</td>\n" +
     "											<td>Gulberg</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "											<td>\n" +
+    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
     "											<td>Jacob</td>\n" +
@@ -1175,7 +1178,10 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>jacob@gmail.com</td>\n" +
     "											<td>654321</td>\n" +
     "											<td>Defence</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "											<td>\n" +
+    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
     "											<td>Larry</td>\n" +
@@ -1184,7 +1190,10 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>larry@gmail.com</td>\n" +
     "											<td>153261</td>\n" +
     "											<td>Thokar</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "											<td>\n" +
+    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
     "											<td>Mark</td>\n" +
@@ -1193,7 +1202,10 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>mark@gmail.com</td>\n" +
     "											<td>123456</td>\n" +
     "											<td>Gulberg</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "											<td>\n" +
+    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
     "											<td>Jacob</td>\n" +
@@ -1202,7 +1214,10 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>jacob@gmail.com</td>\n" +
     "											<td>654321</td>\n" +
     "											<td>Defence</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "											<td>\n" +
+    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
     "											<td>Larry</td>\n" +
@@ -1211,7 +1226,10 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>larry@gmail.com</td>\n" +
     "											<td>153261</td>\n" +
     "											<td>Thokar</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "											<td>\n" +
+    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
     "											<td>Mark</td>\n" +
@@ -1220,7 +1238,10 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>mark@gmail.com</td>\n" +
     "											<td>123456</td>\n" +
     "											<td>Gulberg</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "											<td>\n" +
+    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
     "											<td>Jacob</td>\n" +
@@ -1229,7 +1250,10 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>jacob@gmail.com</td>\n" +
     "											<td>654321</td>\n" +
     "											<td>Defence</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "											<td>\n" +
+    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
     "											<td>Larry</td>\n" +
@@ -1238,7 +1262,10 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>larry@gmail.com</td>\n" +
     "											<td>153261</td>\n" +
     "											<td>Thokar</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "											<td>\n" +
+    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
     "											<td>Mark</td>\n" +
@@ -1247,7 +1274,10 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>mark@gmail.com</td>\n" +
     "											<td>123456</td>\n" +
     "											<td>Gulberg</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "											<td>\n" +
+    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
     "											<td>Jacob</td>\n" +
@@ -1256,7 +1286,10 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>jacob@gmail.com</td>\n" +
     "											<td>654321</td>\n" +
     "											<td>Defence</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "											<td>\n" +
+    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
     "											<td>Larry</td>\n" +
@@ -1265,7 +1298,10 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>larry@gmail.com</td>\n" +
     "											<td>153261</td>\n" +
     "											<td>Thokar</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "											<td>\n" +
+    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
     "											<td>Mark</td>\n" +
@@ -1274,7 +1310,10 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>mark@gmail.com</td>\n" +
     "											<td>123456</td>\n" +
     "											<td>Gulberg</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "											<td>\n" +
+    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
     "											<td>Jacob</td>\n" +
@@ -1283,7 +1322,10 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>jacob@gmail.com</td>\n" +
     "											<td>654321</td>\n" +
     "											<td>Defence</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "											<td>\n" +
+    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
     "											<td>Larry</td>\n" +
@@ -1292,7 +1334,10 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>larry@gmail.com</td>\n" +
     "											<td>153261</td>\n" +
     "											<td>Thokar</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "											<td>\n" +
+    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "											</td>\n" +
     "										</tr>\n" +
     "									</tbody>\n" +
     "									<tfoot>\n" +
