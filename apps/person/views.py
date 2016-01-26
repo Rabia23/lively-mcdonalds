@@ -7,17 +7,25 @@ from apps.branch.models import Branch
 from apps.parse import ParseHelper
 from apps.person.enum import UserRolesEnum
 from apps.person.models import UserInfo
-from apps.person.serializers import UserSerializer
 from apps.region.models import Region
-from apps.utils import get_data_param
+from apps.utils import get_data_param, get_param
 from django.db import IntegrityError
 
 
 class UserView(APIView):
     def get(self, request, format=None):
-        users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
-        return Response(serializer.data)
+        role = get_param(request, 'role', None)
+        id = get_param(request, 'id', None)
+        director_id = get_param(request, 'director_id', None)
+
+        if id:
+            data = UserInfo.get_person_dict(int(role), id)
+        elif director_id:
+            data = UserInfo.get_children_dict(UserRolesEnum.ASSISTANT_DIRECTOR, UserRolesEnum.DIRECTOR, director_id)
+        else:
+            data = UserInfo.get_people_dict(int(role))
+
+        return Response(data)
 
     @transaction.atomic()
     def post(self, request, format=None):

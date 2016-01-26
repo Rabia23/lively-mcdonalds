@@ -49,9 +49,29 @@ class UserInfo(models.Model):
             parent = {}
         return parent
 
-
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
+
+    @staticmethod
+    def get_person_dict(role, id):
+        data = {}
+        user_info = UserInfo.objects.filter(user_id=id, role=role).first()
+        if user_info:
+            data = user_info.to_dict()
+        return data
+
+    @staticmethod
+    def get_people_dict(role):
+        data = [user_info.to_dict() for user_info in UserInfo.objects.filter(role=role)]
+        return data
+
+    @staticmethod
+    def get_children_dict(role, parent_role, parent_id):
+        data = []
+        user_info = UserInfo.objects.filter(user_id=parent_id, role=parent_role).first()
+        if user_info:
+            data = [user_info.to_dict() for user_info in UserInfo.objects.filter(role=role, parent_id=user_info.id)]
+        return data
 
     @staticmethod
     def get_if_exists(objectId):

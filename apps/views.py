@@ -130,17 +130,22 @@ class FeedbackAnalysisBreakdownView(APIView):
 
     @method_decorator(my_login_required)
     def get(self, request, format=None):
+        now = datetime.now()
+
         try:
             region_id = get_param(request, 'region', None)
             city_id = get_param(request, 'city', None)
             branch_id = get_param(request, 'branch', None)
             area_id = get_param(request, 'area', None)
 
+            date_to = get_param(request, 'date_to', str(now.date()))
+            date_from = get_param(request, 'date_from', str((now - timedelta(days=1)).date()))
+
             option_id = get_param(request, 'option', None)
             option = Option.objects.get(id=option_id)
             if option.is_parent():
                 feedback_options = FeedbackOption.manager.children(option).feedback(option).\
-                                        filters(region_id, city_id, branch_id, area_id)
+                                        filters(region_id, city_id, branch_id, area_id).date(date_from, date_to)
                 list_feedback = feedback_options.values('option_id', 'option__text', 'option__parent_id').\
                     annotate(count=Count('option_id'))
 
@@ -218,8 +223,6 @@ class OverallRatingView(APIView):
 
                 date_data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
                 feedback_records_list.append({'date': single_date.date(), 'data': date_data})
-
-
 
             if len(feedback_records_list) > constants.NO_OF_DAYS:
                 feedback_records_list = feedback_records_list[-constants.NO_OF_DAYS:]
@@ -347,7 +350,7 @@ class FeedbackSegmentationView(APIView):
             option = Option.objects.get(id=option_id) if option_id else None
 
             date_to = get_param(request, 'date_to', None)
-            date_to = datetime.strptime(date_to, constants.ONLY_DATE_FORMAT).date()
+            date_to = datetime.strptime(date_to, constants.ONLY_DATE_FORMAT_02).date()
 
             if option:
                 options = option.children.all()
@@ -495,8 +498,9 @@ class TopChartsView(APIView):
             branch = Feedback.get_top_branch()
             city = Feedback.get_top_city()
             region = Feedback.get_top_region()
+            gro = Feedback.get_top_gro()
             
-            data = {'branch': branch, 'city': city, 'region': region}
+            data = {'branch': branch, 'city': city, 'region': region, 'gro': gro}
             return Response(data)
             
         except Exception as e:
