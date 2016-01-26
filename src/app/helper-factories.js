@@ -3,6 +3,10 @@ angular.module( 'helper_factories', ['ngResource'])
 .factory('Global', [ '_', function(_) {
 
   return {
+    topConcernsColors: function(index){
+      var colors = [ "#cb1e24","#178aea","#434347","#f1d400","#90ec7c"];
+      return colors[index];
+    },
     complaintAnalysisAction: {
       1: ["Unprocessed", "#bf1616"],
       2: ["Processed", "#01c211"],

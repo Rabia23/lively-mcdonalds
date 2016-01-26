@@ -4,19 +4,16 @@ angular.module( 'livefeed.dashboard.top_concern', [
 ])
 
 .controller( 'TopConcernsCtrl', function TopConcernController( $scope, Graphs, Global ) {
-
+  
   $scope.colors = [];
   $scope.labels = [];
 
-
   Graphs.top_concerns().$promise.then(function(data){
-    var concern_list = data.concern_list;
     $scope.data = [];
+    var concern_list = data.concern_list;
     _.each(concern_list, function(value, index){
-      //$scope.labels.push(value.name);
-      $scope.data.push({"category": value.name, "column-1": value.weight});
-     // $scope.colors.push(Global.bubbleColor(index));
-
+      $scope.data.push({"category": value.name, "column-1": value.weight, "color": Global.topConcernsColors(index)});
+      
     });
   });
 })
@@ -39,34 +36,30 @@ angular.module( 'livefeed.dashboard.top_concern', [
                 "type": "pie",
                 "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b></span>",
                 "innerRadius": "40%",
-                "color": "#cb1e24",
-                "labelText": "[[value]]",
-                  "autoMargins":false,
-                "labelTickColor" : "#FFFFFF",
-                "colors": [
-                  "#cb1e24",
-                  "#178aea",
-                  "#434347",
-                  "#f1d400",
-                  "#90ec7c"
-                ],
+                "color": "#FFF",
+                "marginTop": -80,
+                "marginBottom": -50,
+                "autoMargins": false,
+                "labelText": "[[title]]:  [[value]]",
+                "labelTickColor" : "#FFF",
+                "labelRadius" : 8,
+                "labelColorField": "color",
                 "titleField": "category",
                 "valueField": "column-1",
-                "labelColorField" : "#000000",
+                "colorField": "color",
                 "fontFamily": "'Oswald', sans-serif",
                 "fontSize": 15,
                 "allLabels": [],
-                "balloon": {},
-                "legend": {
-                    "enabled": false,
-                    "align": "center",
-                    "markerType": "circle"
-                },
+                "balloon": { "fixedPosition": true },
+                "legend": {},
                 "titles": [],
                "dataProvider": data
               });
-              console.log("chart");
-              console.log(chart);
+              //var width = $("#piechart").find("svg").width();
+              //width = width + 500;
+              //$("#piechart").find("svg").css("width", width);
+              //console.log("svg width");
+              //console.log(width);
           }
         });
       }
