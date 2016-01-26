@@ -295,8 +295,9 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "        <ui-view name = \"overall_rating\"></ui-view>\n" +
     "      </div>\n" +
     "    </div>\n" +
+    "    <ui-view name = \"footer\"></ui-view>\n" +
     "  </div>\n" +
-    "  <ui-view name = \"footer\"></ui-view>\n" +
+    "\n" +
     "\n" +
     "  </div>\n" +
     "</div>\n" +
