@@ -1179,6 +1179,11 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	background: #fff;
 }
 
+.legends-holder .legends-list li{
+	margin-left: 0;
+	margin-right: 10px;
+}
+
 .rating .legends-list{text-align: left;}
 
 .same-height-parent .ibox-content,
@@ -1198,9 +1203,9 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .progress-area small em {
   display: block;
   font-style: normal;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  line-height: 1.2em;
+  line-height: 1.1em;
 }
 .progress-area .progress {
   box-shadow: none;
@@ -1257,7 +1262,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	border-radius: 0;
 	-webkit-border-radius: 0;
 }
-.progress-area .progress-holder {padding: 0 0 20px;}
+.progress-area .progress-holder {padding: 0 0 22px;}
 .progress-area .progress-holder .progress {
 	position: relative;
 	box-shadow: none !important;
@@ -1406,6 +1411,11 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 
 .info-form .modal-header .close{margin-top: -10px;}
 
+.info-form .form-error-message{
+	clear: both;
+	margin: 2px 0 0;
+}
+
 .info-form:after,
 .info-form .form-group:after{
 	display: block;
@@ -1517,7 +1527,11 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 		width: 100%;
 		background: #fff;
 	}
-	.rating .content-holder{vertical-align: top !important;}
+	.oppotunities .content-holder,
+	.rating .content-holder{
+		vertical-align: top !important;
+		border-top: 1px solid #e7eaec;
+	}
 	.content-inner,
 	.content-holder .ibox-content.add{
 		display: table;
@@ -1525,6 +1539,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 		height: 100%;
 		table-layout: fixed;
 	}
+	.oppotunities .ibox-content,
+	.rating .ibox-content{border-top: 0 !important;}
 	.content-inner .legends-outer{
 		display: table-header-group;
 		height: 1%;
@@ -1548,8 +1564,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 }
 
 @media screen and (min-width: 1200px) {
-	.blocks-holder > .row{height: 34%;}
-	.blocks-holder > .row:first-child{height: 66%;}
+	.blocks-holder > .row{height: 40%;}
+	.blocks-holder > .row:first-child{height: 60%;}
 	
 	.blocks-holder > .row > div,
 	.blocks-holder > .row > div > *,
@@ -1635,34 +1651,94 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 @media only screen and (min-width:1200px) and (max-width: 1450px)  {
 	.oppotunities{padding-bottom: 25px;}
 	.blocks-holder{
-		display: table;
-		table-layout: fixed;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+
+		-webkit-flex-flow: row wrap;
+		justify-content: space-around;
 		width: 100%;
 	}
 	.blocks-holder > .row{
-		height: 100%;
-		display: table-cell;
-		vertical-align: top;
-		margin-left: 0;
-		margin-right: 0;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+
+		-webkit-flex-flow: row wrap;
+		justify-content: space-around;
+		height: inherit !important;
 		width: 33.3333% !important;
 	}
 	.blocks-holder > .row:first-child{
-		height: 100%;
 		width: 66.6667% !important;
+		height: inherit !important;
 	}
+	
 	.blocks-holder > .row > .col-xs-12{
 		display: table;
 		float: none;
-		min-height: 100%;
+		height: 100%;
 		padding-bottom: 25px;
 		table-layout: fixed;
+		margin: 0;
+		border: 0;
 	}
 	.blocks-holder > .row > .col-xs-12 > *{
 		height: 100%;
 		display: table-cell;
 		vertical-align: top;
 	}
+	
+	.blocks-holder > .row > .oppotunities,
+	.blocks-holder > .row > .oppotunities > *{
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+
+		-webkit-flex-flow: row wrap;
+		justify-content: space-around;
+		
+		height: inherit !important;
+		
+	}
+	
+	.blocks-holder .row .oppotunities .ibox{
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-items: stretch;
+		align-content: stretch;
+
+		height: inherit !important;
+	}
+	
+	.blocks-holder .row .oppotunities .title-outer{
+		display: block;
+		height: inherit;
+	}
+	
+	.oppotunities .content-holder{
+		flex: 1 1 auto;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		align-items: center;
+	}
+	
 	.blocks-holder > .row > .business-segment{padding-left: 0;}
 	.blocks-holder > .row > .oppotunities{padding-right: 0;}
 }
@@ -1766,7 +1842,6 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	.timeline-section .tab-links li .calender-outer,
 	.map-section .tab-links li .calender-outer,
 	.rating .tab-links li .calender-outer{height: 48px;}
-	.progress-area .progress-holder{padding: 10px 0;}
 }
 
 @media screen and (max-width: 767px) {
