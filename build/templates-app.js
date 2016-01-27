@@ -137,7 +137,6 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "			  </div>\n" +
     "				  	</div>\n" +
     "				  </div>\n" +
-    "                  <!--<canvas id=\"line\" class=\"chart chart-line\" chart-data=\"data\" chart-labels=\"labels\"></canvas>-->\n" +
     "              </div>\n" +
     "              <div class=\"list-holder\">\n" +
     "                  <div class=\"row\">\n" +
@@ -370,7 +369,7 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
     "<div class=\"ibox float-e-margins float-e-margin-none\">\n" +
     "  <div class=\"title-outer\">\n" +
     "	<div class=\"ibox-title\">\n" +
-    "	  <h5>McDonald's Oppotunities</h5>\n" +
+    "	  <h5>McDonald's Opportunities</h5>\n" +
     "	</div>\n" +
     "  </div>\n" +
     "  <div class=\"content-holder\">\n" +
@@ -378,7 +377,7 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
     "	  <div class=\"chart-outer\">\n" +
     "		  <div class=\"progres-container\">\n" +
     "			<div class=\"progress-area\">\n" +
-    "				<div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" progress-bar-background>\n" +
+    "				<div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" opportunity-bar-background>\n" +
     "					<small><em>{{dat.name}}</em></small>\n" +
     "					<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}} complaints</b></uib-progressbar></div>\n" +
     "			  </div>\n" +
@@ -1146,7 +1145,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "                <button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
     "							</div>\n" +
     "          					<div class=\"info-holder\">\n" +
-    "								<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\">\n" +
+    "								<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\" data-users = \"users\">\n" +
     "									<thead>\n" +
     "										<tr>\n" +
     "											<th data-toggle=\"true\" data-sort-initial=\"true\">Name</th>\n" +
@@ -1160,11 +1159,14 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "									<tbody>\n" +
     "										<tr ng-repeat = \"user in users\">\n" +
     "											<td>{{user.first_name}} {{user.last_name}}</td>\n" +
-    "											<td>{{user.user_name}}</td>\n" +
-    "											<td>{{user.email}}</td>\n" +
-    "											<td>{{user.phone}}</td>\n" +
-    "											<td>{{user.branch.name}}</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
+    "                      <td>{{user.username}}</td>\n" +
+    "                      <td>{{user.email}}</td>\n" +
+    "                      <td>{{user.phone_no}}</td>\n" +
+    "                      <td>{{user.branch.name}}</td>\n" +
+    "											<td>\n" +
+    "												<a  class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a  class=\"fa fa-trash-o\"></a>\n" +
+    "											</td>\n" +
     "										</tr>\n" +
     "									</tbody>\n" +
     "									<tfoot>\n" +

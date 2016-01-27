@@ -4,8 +4,17 @@
   .directive('footable', function(){
     return {
       restrict: 'C',
+      scope: {
+        users: "="
+      },
       link: function(scope, ele, attrs){
-        $(ele).footable();
+        scope.$watch('users', function(watchedData) {
+          if(watchedData !== undefined){
+            console.log("in the if");
+            $(ele).footable();
+          }
+        });
+
       }
     };
   });

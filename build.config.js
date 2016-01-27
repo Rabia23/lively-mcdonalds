@@ -102,12 +102,13 @@ module.exports = {
       'vendor/angular-chart.js/dist/angular-chart.css',
       'vendor/angular-flash-alert/dist/angular-flash.css',
       'vendor/font-awesome/css/font-awesome.css',
+      'vendor/footable/css/footable.core.css'
 
 
 
     ],
     assets: [
-
+      
     ]
   }
 };

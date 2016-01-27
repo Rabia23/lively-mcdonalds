@@ -15,7 +15,7 @@
                 <button type="button" class="btn btn-primary" ng-click = "open()"><i class="fa fa-user-plus"></i> Add {{user_list}}</button>
 							</div>
           					<div class="info-holder">
-								<table class="footable toggle-arrow-tiny table table-striped table-hover" data-page-size="8">
+								<table class="footable toggle-arrow-tiny table table-striped table-hover" data-page-size="8" data-users = "users">
 									<thead>
 										<tr>
 											<th data-toggle="true" data-sort-initial="true">Name</th>
@@ -29,11 +29,14 @@
 									<tbody>
 										<tr ng-repeat = "user in users">
 											<td>{{user.first_name}} {{user.last_name}}</td>
-											<td>{{user.user_name}}</td>
-											<td>{{user.email}}</td>
-											<td>{{user.phone}}</td>
-											<td>{{user.branch.name}}</td>
-											<td><a href="#" class="btn btn-primary">button</a></td>
+                      <td>{{user.username}}</td>
+                      <td>{{user.email}}</td>
+                      <td>{{user.phone_no}}</td>
+                      <td>{{user.branch.name}}</td>
+											<td>
+												<a  class="fa fa-pencil-square-o"></a>
+												<a  class="fa fa-trash-o"></a>
+											</td>
 										</tr>
 									</tbody>
 									<tfoot>
