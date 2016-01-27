@@ -64,7 +64,7 @@
     	<a ng-click = "backToMain()" ng-hide = "mainView" class="btn-back">Back</a>
       </div>
   </div>
-  <div class="ibox-content same-height">
+  <div class="ibox-content" same-rating-height data-data="overall_rating_data">
       <ul class="legends-list">
       <li ng-repeat = "label in labels track by $index">
         <span class="bullet" style = "background-color: {{label.color}}"></span>
