@@ -65,12 +65,6 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
       }, 500);
     });
   };
-  $scope.labels = ["Quality", "Service", "Cleanliness"];
-  $scope.data = [
-    [65,40,28],
-    [28,30],
-    [44,20]
-  ];
 
   $scope.showCategoryData = function(region_id,city_id,branch_id,option_id,string){
     $scope.show_loading = true;

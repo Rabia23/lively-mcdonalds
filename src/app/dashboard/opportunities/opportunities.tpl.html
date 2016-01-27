@@ -9,7 +9,7 @@
 	  <div class="chart-outer">
 		  <div class="progres-container">
 			<div class="progress-area">
-				<div class="progress-holder" ng-repeat = "dat in category_data" data-color = "dat.colour" data-data = "category_data" opportunity-bar-background>
+				<div class="progress-holder" ng-repeat = "dat in opportunity_data" data-color = "dat.colour" data-data = "opportunity_data" opportunity-bar-background>
 					<small><em>{{dat.name}}</em></small>
 					<div class="progress-block"><uib-progressbar animate="false" value="dat.percentage" type="success"><b>{{dat.complaints}} complaints</b></uib-progressbar></div>
 			  </div>

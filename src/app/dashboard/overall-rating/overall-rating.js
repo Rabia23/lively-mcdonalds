@@ -134,8 +134,6 @@ angular.module( 'livefeed.dashboard.overall_rating', [
       link: function(scope, ele, attrs) {
         scope.$watch('data', function(watchedData) {
           if(watchedData !== undefined){
-              console.log("same rating height");
-              console.log(scope.data);
             window.initSameHeight();
           }
         });

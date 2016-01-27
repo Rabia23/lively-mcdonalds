@@ -351,7 +351,7 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "		  </ul>\n" +
     "	  </div>\n" +
     "  </div>\n" +
-    "  <div class=\"ibox-content same-height\">\n" +
+    "  <div class=\"ibox-content\" same-map-height>\n" +
     "	  <div class=\"block-holder\">\n" +
     "		  <div id=\"world-map\">\n" +
     "		  	<div map-lazy-load=\"http://maps.google.com/maps/api/js\">\n" +
@@ -377,7 +377,7 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
     "	  <div class=\"chart-outer\">\n" +
     "		  <div class=\"progres-container\">\n" +
     "			<div class=\"progress-area\">\n" +
-    "				<div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" opportunity-bar-background>\n" +
+    "				<div class=\"progress-holder\" ng-repeat = \"dat in opportunity_data\" data-color = \"dat.colour\" data-data = \"opportunity_data\" opportunity-bar-background>\n" +
     "					<small><em>{{dat.name}}</em></small>\n" +
     "					<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}} complaints</b></uib-progressbar></div>\n" +
     "			  </div>\n" +
