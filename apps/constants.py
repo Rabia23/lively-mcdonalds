@@ -10,6 +10,7 @@ CUSTOMER_PASSWORD = "customerpassword"
 #------------ Question Types -------------
 TYPE_1 = 1
 TYPE_2 = 2
+TYPE_3 = 3
 
 #------------ Feedback Analysis -------------
 REGIONAL_ANALYSIS = '1'

@@ -25,6 +25,7 @@ urlpatterns = patterns('',
                        url(r'^leader_board/$', views.LeaderBoardView.as_view()),
                        url(r'^livedashboard/$', views.LiveDashboardView.as_view()),
                        url(r'^manage_user/$', views.ManageUserView.as_view()),
+                       url(r'^opportunity_analysis/$', views.OpportunityAnalysisView.as_view()),
 )
 
 
