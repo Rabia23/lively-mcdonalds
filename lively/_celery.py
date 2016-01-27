@@ -1,3 +1,6 @@
+from apps.person.enum import UserRolesEnum
+from apps.person.models import UserInfo
+
 __author__ = 'aamish'
 
 import os
@@ -35,15 +38,37 @@ def send_negative_feedback_email(feedback_json):
     text_template = get_template('emails/negative_feedback.txt')
     html_template = get_template('emails/negative_feedback.html')
 
-    recipients = User.objects.filter(is_staff=True)
+    recipients = get_recipients(feedback_json["branch_id"])
+    # recipients = User.objects.filter(is_staff=True)
     send_mail(constants.NEGATIVE_FEEDBACK_SUBJECT, context, recipients, text_template, html_template)
 
 
 def send_mail(subject, context, recipients, text_template, html_template):
-    email_addresses = [recipient.email for recipient in recipients]
-    subject, from_email, to = subject, lively_settings.DEFAULT_FROM_EMAIL, email_addresses
-    text_content = text_template.render(context)
-    html_content = html_template.render(context)
-    message = EmailMultiAlternatives(subject, text_content, from_email, to)
-    message.attach_alternative(html_content, "text/html")
-    message.send()
+    if recipients:
+        email_addresses = [recipient["email"] for recipient in recipients]
+        superuser = User.objects.get(is_superuser=True)
+        email_addresses.append(superuser.email)
+        subject, from_email, to = subject, lively_settings.DEFAULT_FROM_EMAIL, email_addresses
+        text_content = text_template.render(context)
+        html_content = html_template.render(context)
+        message = EmailMultiAlternatives(subject, text_content, from_email, to)
+        message.attach_alternative(html_content, "text/html")
+        message.send()
+
+
+def get_recipients(branch_id):
+    recipients = []
+    branch_manager = UserInfo.get_person_dict_by_branch(UserRolesEnum.BRANCH_MANAGER, branch_id)
+    operational_consultant = UserInfo.get_person_dict(UserRolesEnum.OPERATIONAL_CONSULTANT, branch_manager["parent"]["id"]) if branch_manager else None
+    operational_manager = UserInfo.get_person_dict(UserRolesEnum.OPERATIONAL_MANAGER, operational_consultant["parent"]["id"]) if operational_consultant else None
+    assistant_director = UserInfo.get_person_dict(UserRolesEnum.ASSISTANT_DIRECTOR, operational_manager["parent"]["id"]) if operational_manager else None
+    director = UserInfo.get_person_dict(UserRolesEnum.DIRECTOR, assistant_director["parent"]["id"]) if assistant_director else None
+
+    recipients.append(branch_manager)
+    recipients.append(operational_consultant)
+    recipients.append(operational_manager)
+    recipients.append(assistant_director)
+    recipients.append(director)
+
+    return recipients
+

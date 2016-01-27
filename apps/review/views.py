@@ -66,6 +66,7 @@ class FeedbackView(APIView):
                 feedback_json = {
                     "is_bad": feedback.is_bad(),
                     "branch_name": feedback.branch.name,
+                    "branch_id": feedback.branch.id,
                     "city_name": feedback.branch.city.name,
                     "customer_name": feedback.customer_name(),
                     "customer_phone": feedback.customer_phone(),
@@ -74,8 +75,8 @@ class FeedbackView(APIView):
                     "comment": feedback.comment,
                 }
 
-                # send_negative_feedback_email(feedback_json)
-                send_negative_feedback_email.delay(feedback_json)
+                send_negative_feedback_email(feedback_json)
+                # send_negative_feedback_email.delay(feedback_json)
 
             return response(data)
 

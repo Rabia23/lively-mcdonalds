@@ -718,6 +718,7 @@ class ManageUserView(APIView):
 
         data = {
             "parent_role": parent_role,
+            "parent_id": user.id,
             "child_role": child_role,
             "children": people,
         }

@@ -61,6 +61,22 @@ class UserInfo(models.Model):
         return data
 
     @staticmethod
+    def get_person_dict_by_branch(role, branch_id):
+        data = {}
+        user_info = UserInfo.objects.filter(branch_id=branch_id, role=role).first()
+        if user_info:
+            data = user_info.to_dict()
+        return data
+
+    @staticmethod
+    def get_person_dict_by_region(role, region_id):
+        data = {}
+        user_info = UserInfo.objects.filter(region_id=region_id, role=role).first()
+        if user_info:
+            data = user_info.to_dict()
+        return data
+
+    @staticmethod
     def get_people_dict(role):
         data = [user_info.to_dict() for user_info in UserInfo.objects.filter(role=role)]
         return data
