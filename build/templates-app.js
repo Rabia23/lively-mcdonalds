@@ -1234,12 +1234,12 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "                      <td>{{user.phone_no}}</td>\n" +
     "                      <td>{{user.branch.name}}</td>\n" +
     "											<td>\n" +
-    "												<a  class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a ng-click = \"edit(user)\" class=\"fa fa-pencil-square-o\"></a>\n" +
     "												<a  class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "									</tbody>\n" +
-    "									<tfoot>\n" +
+    "									<tfoot style = \"display: none\">\n" +
     "										<tr>\n" +
     "											<td colspan=\"7\">\n" +
     "												<ul class=\"pagination pull-right\"></ul>\n" +

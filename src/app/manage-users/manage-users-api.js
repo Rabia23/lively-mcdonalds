@@ -4,21 +4,21 @@ angular.module( 'livefeed.manage_users.api', [
   'livefeed.authService'
 ])
 
-.factory('Api', ['$resource','apiLinks','TokenHandler', function($resource, apiLinks, TokenHandler) {
+.factory('ManageApi', ['$resource','apiLinks','TokenHandler', function($resource, apiLinks, TokenHandler) {
 
   var token = TokenHandler.get_token();
 
-  function Api() {
+  function ManageApi() {
     this.service = $resource(apiLinks.staging, {},
                   {
                     manage_users: {method: "GET",isArray: false, params: {endpoint: "manage_user"}},
                     user: {method: "POST",isArray: false, params: {endpoint: "user/"}}
                  });
   }
-  Api.prototype.manage_users = function(){
+  ManageApi.prototype.manage_users = function(){
     return this.service.manage_users({token: token});
   };
-  Api.prototype.add_user = function(user){
+  ManageApi.prototype.add_user = function(user){
     var user_json = {first_name: user.first_name, last_name: user.last_name, username: user.username,
        password: user.password, email: user.email, phone_no: user.phone_no, role: user.role, parent_id: user.parent_id, token: token};
     if(user.role == 4){
@@ -29,5 +29,5 @@ angular.module( 'livefeed.manage_users.api', [
     }
     return this.service.user(user_json);
   };
-  return new Api();
+  return new ManageApi();
 }]);
