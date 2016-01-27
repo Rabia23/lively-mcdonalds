@@ -83,9 +83,9 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
     categoryPerformanceClass: {
-      "Cleanliness": '#3498db',
-      "Quality": '#9352ac',
-      "Service": '#ffc300'
+      "Quality": '#AC1A1A',
+      "Service": "#FFC300",
+      "Cleanliness": '#3498DB'
     },
 
     segmentationClass: {

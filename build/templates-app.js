@@ -137,7 +137,6 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "			  </div>\n" +
     "				  	</div>\n" +
     "				  </div>\n" +
-    "                  <!--<canvas id=\"line\" class=\"chart chart-line\" chart-data=\"data\" chart-labels=\"labels\"></canvas>-->\n" +
     "              </div>\n" +
     "              <div class=\"list-holder\">\n" +
     "                  <div class=\"row\">\n" +
@@ -378,7 +377,7 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
     "	  <div class=\"chart-outer\">\n" +
     "		  <div class=\"progres-container\">\n" +
     "			<div class=\"progress-area\">\n" +
-    "				<div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" progress-bar-background>\n" +
+    "				<div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" opportunity-bar-background>\n" +
     "					<small><em>{{dat.name}}</em></small>\n" +
     "					<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}} complaints</b></uib-progressbar></div>\n" +
     "			  </div>\n" +
