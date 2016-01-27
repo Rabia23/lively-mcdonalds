@@ -453,14 +453,14 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "						</ul>\n" +
     "					</div>\n" +
     "               	</div>\n" +
-    "               </div>\n" +
-    "               <div class=\"content-block\">\n" +
+    "               	<div class=\"content-block\">\n" +
     "               	<div class=\"ibox-content float-chart-block\">\n" +
     "                    <div class=\"flot-chart\">\n" +
     "                        <canvas ng-show = \"show_canvas\"  id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
     "                        <div ng-hide = \"show_canvas\"><h2>No data Available</h2></div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
+    "               </div>\n" +
     "               </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
@@ -1087,49 +1087,58 @@ angular.module("login/login.tpl.html", []).run(["$templateCache", function($temp
 
 angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("manage-users/edit-user-modal.tpl.html",
-    "<div class=\"modal-header\">\n" +
-    "	<button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
-    "</div>\n" +
-    "<div class = \"modal-body\">\n" +
-    "	<form action=\"#\" class=\"form\">\n" +
-    "		<fieldset>\n" +
-    "			<div class=\"modal-body\">\n" +
-    "				<div class=\"form-group\">\n" +
-    "					<label class=\"col-sm-2 control-label\">First Name</label>\n" +
-    "					<div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" placeholder=\"First Name\"></div>\n" +
-    "				</div>\n" +
-    "				<div class=\"form-group\">\n" +
-    "					<label class=\"col-sm-2 control-label\">Last Name</label>\n" +
-    "					<div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" placeholder=\"Last Name\"></div>\n" +
-    "				</div>\n" +
-    "				<div class=\"form-group\">\n" +
-    "					<label class=\"col-sm-2 control-label\">User Name</label>\n" +
-    "					<div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" placeholder=\"User Name\"></div>\n" +
-    "				</div>\n" +
-    "				<div class=\"form-group\">\n" +
-    "					<label class=\"col-sm-2 control-label\">Password</label>\n" +
-    "					<div class=\"col-sm-10\"><input type=\"password\" class=\"form-control\" placeholder=\"Password\"></div>\n" +
-    "				</div>\n" +
-    "				<div class=\"form-group\">\n" +
-    "					<label class=\"col-sm-2 control-label\">Email</label>\n" +
-    "					<div class=\"col-sm-10\"><input type=\"email\" class=\"form-control\" placeholder=\"Email\"></div>\n" +
-    "				</div>\n" +
-    "				<div class=\"form-group\">\n" +
-    "					<label class=\"col-sm-2 control-label\">Phone No.</label>\n" +
-    "					<div class=\"col-sm-10\"><input type=\"tel\" class=\"form-control\" placeholder=\"Phone No.\"></div>\n" +
-    "				</div>\n" +
-    "				<div class=\"form-group\">\n" +
-    "					<label class=\"col-sm-2 control-label\">Branch</label>\n" +
-    "					<div class=\"col-sm-10\"><input type=\"text\" class=\"form-control\" placeholder=\"branch\"></div>\n" +
+    "<form action=\"#\" class=\"info-form\">\n" +
+    "	<fieldset>\n" +
+    "		<div class=\"modal-header\">\n" +
+    "			<button type=\"button\" class=\"close\" data-dismiss=\"modal\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>\n" +
+    "		</div>\n" +
+    "		<div class=\"modal-body\">\n" +
+    "			<div class=\"form-group\">\n" +
+    "				<label class=\"col-sm-2 control-label\" for=\"firsName\">First Name</label>\n" +
+    "				<div class=\"col-sm-10\"><input type=\"text\" id=\"firsName\" class=\"form-control\" placeholder=\"First Name\"></div>\n" +
+    "			</div>\n" +
+    "			<div class=\"form-group\">\n" +
+    "				<label class=\"col-sm-2 control-label\" for=\"lastName\">Last Name</label>\n" +
+    "				<div class=\"col-sm-10\"><input type=\"text\" id=\"lastName\" class=\"form-control\" placeholder=\"Last Name\"></div>\n" +
+    "			</div>\n" +
+    "			<div class=\"form-group\">\n" +
+    "				<label class=\"col-sm-2 control-label\" for=\"userName\">User Name</label>\n" +
+    "				<div class=\"col-sm-10\"><input type=\"text\" id=\"userName\" class=\"form-control\" placeholder=\"User Name\"></div>\n" +
+    "			</div>\n" +
+    "			<div class=\"form-group\">\n" +
+    "				<label class=\"col-sm-2 control-label\" for=\"password\">Password</label>\n" +
+    "				<div class=\"col-sm-10\"><input type=\"password\" id=\"password\" class=\"form-control\" placeholder=\"Password\"></div>\n" +
+    "			</div>\n" +
+    "			<div class=\"form-group\">\n" +
+    "				<label class=\"col-sm-2 control-label\" for=\"email\">Email</label>\n" +
+    "				<div class=\"col-sm-10\"><input type=\"email\" id=\"email\" class=\"form-control\" placeholder=\"Email\"></div>\n" +
+    "			</div>\n" +
+    "			<div class=\"form-group\">\n" +
+    "				<label class=\"col-sm-2 control-label\" for=\"phoneno\">Phone No.</label>\n" +
+    "				<div class=\"col-sm-10\"><input type=\"tel\" id=\"phoneno\" class=\"form-control\" placeholder=\"Phone No.\"></div>\n" +
+    "			</div>\n" +
+    "			<div class=\"form-group\">\n" +
+    "				<label class=\"col-sm-2 control-label\" for=\"branch\">Branch</label>\n" +
+    "				<div class=\"col-sm-10\"><input type=\"text\" id=\"branch\" class=\"form-control\" placeholder=\"branch\"></div>\n" +
+    "			</div>\n" +
+    "			<div class=\"form-group\">\n" +
+    "				<label class=\"col-sm-2 control-label\" for=\"code\">Bar Code</label>\n" +
+    "				<div class=\"col-sm-10\">\n" +
+    "					<select id=\"code\" class=\"barcode\" custom-form>\n" +
+    "						<option class=\"hideme\">Please Select a Bar Code</option>\n" +
+    "						<option>option1</option>\n" +
+    "						<option>option2</option>\n" +
+    "						<option>option3</option>\n" +
+    "					</select>\n" +
     "				</div>\n" +
     "			</div>\n" +
-    "			<div class=\"modal-footer\">\n" +
-    "				<a class=\"btn btn-white\" ng-click = \"cancel()\">Cancel</a>\n" +
-    "				<a class=\"btn btn-primary\" ng-click = \"cancel()\">Save changes</a>\n" +
-    "			</div>\n" +
-    "		</fieldset>\n" +
-    "	</form>\n" +
-    "</div>");
+    "		</div>\n" +
+    "		<div class=\"modal-footer\">\n" +
+    "			<a class=\"btn btn-white\" ng-click = \"cancel()\">Cancel</a>\n" +
+    "			<a class=\"btn btn-primary\" ng-click = \"cancel()\">Save changes</a>\n" +
+    "		</div>\n" +
+    "	</fieldset>\n" +
+    "</form>");
 }]);
 
 angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -1144,19 +1153,18 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "            	<div class=\"col-lg-12\">\n" +
     "            		<div class=\"ibox float-e-margins\">\n" +
     "          				<div class=\"ibox-title\">\n" +
-    "                			<h5>Details</h5>\n" +
+    "                			<h5>{{user_list}} List</h5>\n" +
     "            			</div>\n" +
     "           				<div class=\"ibox-content\">\n" +
     "							<div class=\"user-block\">\n" +
-    "                <button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add User</button>\n" +
+    "                <button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
     "							</div>\n" +
     "          					<div class=\"info-holder\">\n" +
-    "								<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\">\n" +
+    "								<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\" data-users = \"users\">\n" +
     "									<thead>\n" +
     "										<tr>\n" +
     "											<th data-toggle=\"true\" data-sort-initial=\"true\">Name</th>\n" +
     "											<th data-hide=\"all\">User Name</th>\n" +
-    "											<th data-hide=\"all\">Password</th>\n" +
     "											<th data-hide=\"all\">Email</th>\n" +
     "											<th>Phone No.</th>\n" +
     "											<th>Branch</th>\n" +
@@ -1164,184 +1172,15 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "										</tr>\n" +
     "									</thead>\n" +
     "									<tbody>\n" +
-    "										<tr>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>mark@gmail.com</td>\n" +
-    "											<td>123456</td>\n" +
-    "											<td>Gulberg</td>\n" +
+    "										<tr ng-repeat = \"user in users\">\n" +
+    "											<td>{{user.first_name}} {{user.last_name}}</td>\n" +
+    "                      <td>{{user.username}}</td>\n" +
+    "                      <td>{{user.email}}</td>\n" +
+    "                      <td>{{user.phone_no}}</td>\n" +
+    "                      <td>{{user.branch.name}}</td>\n" +
     "											<td>\n" +
-    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>x1y2z3</td>\n" +
-    "											<td>jacob@gmail.com</td>\n" +
-    "											<td>654321</td>\n" +
-    "											<td>Defence</td>\n" +
-    "											<td>\n" +
-    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>larry@gmail.com</td>\n" +
-    "											<td>153261</td>\n" +
-    "											<td>Thokar</td>\n" +
-    "											<td>\n" +
-    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>mark@gmail.com</td>\n" +
-    "											<td>123456</td>\n" +
-    "											<td>Gulberg</td>\n" +
-    "											<td>\n" +
-    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>x1y2z3</td>\n" +
-    "											<td>jacob@gmail.com</td>\n" +
-    "											<td>654321</td>\n" +
-    "											<td>Defence</td>\n" +
-    "											<td>\n" +
-    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>larry@gmail.com</td>\n" +
-    "											<td>153261</td>\n" +
-    "											<td>Thokar</td>\n" +
-    "											<td>\n" +
-    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>mark@gmail.com</td>\n" +
-    "											<td>123456</td>\n" +
-    "											<td>Gulberg</td>\n" +
-    "											<td>\n" +
-    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>x1y2z3</td>\n" +
-    "											<td>jacob@gmail.com</td>\n" +
-    "											<td>654321</td>\n" +
-    "											<td>Defence</td>\n" +
-    "											<td>\n" +
-    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>larry@gmail.com</td>\n" +
-    "											<td>153261</td>\n" +
-    "											<td>Thokar</td>\n" +
-    "											<td>\n" +
-    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>mark@gmail.com</td>\n" +
-    "											<td>123456</td>\n" +
-    "											<td>Gulberg</td>\n" +
-    "											<td>\n" +
-    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>x1y2z3</td>\n" +
-    "											<td>jacob@gmail.com</td>\n" +
-    "											<td>654321</td>\n" +
-    "											<td>Defence</td>\n" +
-    "											<td>\n" +
-    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>larry@gmail.com</td>\n" +
-    "											<td>153261</td>\n" +
-    "											<td>Thokar</td>\n" +
-    "											<td>\n" +
-    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>mark@gmail.com</td>\n" +
-    "											<td>123456</td>\n" +
-    "											<td>Gulberg</td>\n" +
-    "											<td>\n" +
-    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>x1y2z3</td>\n" +
-    "											<td>jacob@gmail.com</td>\n" +
-    "											<td>654321</td>\n" +
-    "											<td>Defence</td>\n" +
-    "											<td>\n" +
-    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>larry@gmail.com</td>\n" +
-    "											<td>153261</td>\n" +
-    "											<td>Thokar</td>\n" +
-    "											<td>\n" +
-    "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
+    "												<a  class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a  class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "									</tbody>\n" +
