@@ -12,7 +12,7 @@ angular.module( 'livefeed.manage_users.api', [
     this.service = $resource(apiLinks.staging, {},
                   {
                     manage_users: {method: "GET",isArray: false, params: {endpoint: "manage_user"}},
-                    leader_board: {method: "POST",isArray: false, params: {endpoint: "leader_board/"}}
+                    user: {method: "POST",isArray: false, params: {endpoint: "user/"}}
                  });
   }
   Api.prototype.manage_users = function(){
@@ -27,7 +27,7 @@ angular.module( 'livefeed.manage_users.api', [
     if(user.role == 2 || user.role == 3){
       user_json.branch_id = user.branch_id;
     }
-    return this.service.leader_board(user_json);
+    return this.service.user(user_json);
   };
   return new Api();
 }]);

@@ -9,7 +9,7 @@
 
     return {
       get_user_label: function(index){
-        return users[index + 1];
+        return users[index - 1];
       }
     };
 

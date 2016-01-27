@@ -25,14 +25,6 @@
       child_role = data.child_role;
     });
 
-    $rootScope.$on('app-online', function(event, args) {
-      console.log("online in dashboard");
-    });
-
-    $rootScope.$on('app-offline', function(event, args) {
-      console.log("offline in dashboard");
-    });
-
     $scope.open = function (size) {
 
       var modalInstance = $uibModal.open({
@@ -49,8 +41,8 @@
         }
       });
 
-      modalInstance.result.then(function (selectedItem) {
-        //$scope.selected = selectedItem;
+      modalInstance.result.then(function (user) {
+        $scope.users.push(user);
       });
     };
 

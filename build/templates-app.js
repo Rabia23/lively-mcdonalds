@@ -205,8 +205,8 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                  <div class=\"w1\">\n" +
     "                                  	<div class=\"w2\">\n" +
     "                                  		<div class=\"ibox-content\">\n" +
-    "											<h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
-    "										</div>\n" +
+    "                                        <h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
+    "										                  </div>\n" +
     "                                  	</div>\n" +
     "                                  </div>\n" +
     "                              </div>\n" +
@@ -277,20 +277,20 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "          </div>\n" +
     "        </div>\n" +
     "      </div>\n" +
-    "    </div>\n" +
-    "    <div class=\"row\">\n" +
-    "      <div class=\"col-xs-12 patch-section\">\n" +
-    "        <ui-view name = \"regional_analysis\"></ui-view>\n" +
+    "      <div class=\"row\">\n" +
+    "        <div class=\"col-xs-12 patch-section\">\n" +
+    "          <ui-view name = \"regional_analysis\"></ui-view>\n" +
+    "        </div>\n" +
     "      </div>\n" +
-    "    </div>\n" +
-    "    <div class=\"row same-height-parent\">\n" +
-    "      <div class=\"col-lg-6 map-section\">\n" +
-    "        <ui-view name = \"feedback_map\"></ui-view>\n" +
+    "      <div class=\"row same-height-parent\">\n" +
+    "        <div class=\"col-lg-6 map-section\">\n" +
+    "          <ui-view name = \"feedback_map\"></ui-view>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-lg-6 timeline-section\">\n" +
+    "          <ui-view name = \"overall_rating\"></ui-view>\n" +
+    "        </div>\n" +
     "      </div>\n" +
-    "      <div class=\"col-lg-6 timeline-section\">\n" +
-    "        <ui-view name = \"overall_rating\"></ui-view>\n" +
-    "      </div>\n" +
-    "    </div>\n" +
+    "    </div>  \n" +
     "    <ui-view name = \"footer\"></ui-view>\n" +
     "  </div>\n" +
     "\n" +

@@ -12,12 +12,10 @@
 
     Filters.allRegions().$promise.then(function(data){
       $scope.regions = data;
-      console.log($scope.regions);
     });
 
     Filters.Branches().$promise.then(function(data){
       $scope.branches = data;
-      console.log($scope.branches);
     });
 
 
@@ -29,6 +27,7 @@
         Api.add_user($scope.user).$promise.then(function(data){
           console.log(data);
         });
+        $scope.ok();
       }
       else{
         $scope.submitted = true;
