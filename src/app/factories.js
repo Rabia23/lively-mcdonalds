@@ -152,13 +152,15 @@ angular.module( 'factories', [
     return this.service.comments({token:  token,page: page});
   };
 
-  Graphs.prototype.feedback_analysis_breakdown = function(area_id, region_id, city_id, branch_id, option_id){
+  Graphs.prototype.feedback_analysis_breakdown = function(area_id, region_id, city_id, branch_id, option_id, start_date, end_date){
     area_id = area_id || "";
     region_id = region_id || "";
     city_id = city_id || "";
     branch_id = branch_id || "";
     option_id = option_id || "";
-    return this.service.feedback_analysis_breakdown({token:  token, area: area_id, region: region_id, city: city_id, branch: branch_id, option: option_id});
+    start_date = start_date || "";
+    end_date = end_date || "";
+    return this.service.feedback_analysis_breakdown({token:  token, area: area_id, region: region_id, city: city_id, branch: branch_id, option: option_id, date_from: start_date, date_to: end_date});
   };
   Graphs.prototype.segmentation_rating = function(region_id, city_id, branch_id, option_id, start_date, end_date){
     region_id = region_id || "";

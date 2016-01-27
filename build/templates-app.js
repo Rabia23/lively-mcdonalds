@@ -370,7 +370,7 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
     "<div class=\"ibox float-e-margins float-e-margin-none\">\n" +
     "  <div class=\"title-outer\">\n" +
     "	<div class=\"ibox-title\">\n" +
-    "	  <h5>McDonald's Oppotunities</h5>\n" +
+    "	  <h5>McDonald's Opportunities</h5>\n" +
     "	</div>\n" +
     "  </div>\n" +
     "  <div class=\"content-holder\">\n" +
@@ -1168,7 +1168,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>Gulberg</td>\n" +
     "											<td>\n" +
     "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
@@ -1180,7 +1180,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>Defence</td>\n" +
     "											<td>\n" +
     "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
@@ -1192,7 +1192,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>Thokar</td>\n" +
     "											<td>\n" +
     "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
@@ -1204,7 +1204,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>Gulberg</td>\n" +
     "											<td>\n" +
     "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
@@ -1216,7 +1216,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>Defence</td>\n" +
     "											<td>\n" +
     "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
@@ -1228,7 +1228,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>Thokar</td>\n" +
     "											<td>\n" +
     "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
@@ -1240,7 +1240,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>Gulberg</td>\n" +
     "											<td>\n" +
     "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
@@ -1252,7 +1252,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>Defence</td>\n" +
     "											<td>\n" +
     "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
@@ -1264,7 +1264,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>Thokar</td>\n" +
     "											<td>\n" +
     "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
@@ -1276,7 +1276,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>Gulberg</td>\n" +
     "											<td>\n" +
     "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
@@ -1288,7 +1288,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>Defence</td>\n" +
     "											<td>\n" +
     "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
@@ -1300,7 +1300,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>Thokar</td>\n" +
     "											<td>\n" +
     "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
@@ -1312,7 +1312,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>Gulberg</td>\n" +
     "											<td>\n" +
     "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
@@ -1324,7 +1324,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>Defence</td>\n" +
     "											<td>\n" +
     "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "										<tr>\n" +
@@ -1336,7 +1336,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>Thokar</td>\n" +
     "											<td>\n" +
     "												<a href=\"#\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-times\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "									</tbody>\n" +

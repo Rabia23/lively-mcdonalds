@@ -1388,17 +1388,19 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 
 .footable tbody tr{cursor: pointer;}
 .footable .fa.fa-pencil-square-o,
-.footable .fa.fa-times{
+.footable .fa.fa-trash-o{
 	color: #f00;
-	font-size: 16px;
-	line-height: 16px;
+	font-size: 15px;
+	line-height: 15px;
+	margin: 0 2px;
 	display: inline-block;
 	vertical-align: middle;
 }
 
-.footable .fa.fa-pencil-square-o{
-	color: #000;
-}
+.footable .fa.fa-trash-o:hover{color: #B10000;}
+
+.footable .fa.fa-pencil-square-o{color: #1ab394;}
+.footable .fa.fa-pencil-square-o:hover{color: #30BA8F;}
 
 @media screen and (min-width: 768px) {
 	.legends-holder{padding: 15px 20px 0;}
