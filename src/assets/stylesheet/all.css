@@ -1473,6 +1473,51 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	border-color: #e7eaec;
 }
 
+.ibox > .content-holder,
+.ibox > .ibox-content{position: relative;}
+
+.ibox > .content-holder:after,
+.ibox > .ibox-content:after{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	background: url(../assets/images/loader.gif) no-repeat;
+	width: 75px;
+	height: 70px;
+	content: "";
+	margin: -37px 0 0 -35px;
+	visibility: hidden;
+	opacity: 0;
+	z-index: 992;
+	display: block !important;
+}
+.ibox > .content-holder:before,
+.ibox > .ibox-content:before {
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	content: "";
+	background: #fff;
+	visibility: hidden;
+	opacity: 0;
+	position: absolute;
+	z-index: 991;
+	display: block !important;
+}
+
+.ibox.loading > .content-holder:after,
+.ibox.loading > .ibox-content:after{
+	visibility: visible;
+	opacity: 1;
+}
+
+.ibox.loading > .content-holder:before,
+.ibox.loading > .ibox-content:before{
+	visibility: visible;
+	opacity: 0.6;
+}
+
 @media screen and (min-width: 768px) {
 	.legends-holder{padding: 15px 20px 0;}
 	.legends-list {
