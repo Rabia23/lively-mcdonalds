@@ -27,8 +27,8 @@ class CityView(APIView):
         region_id = get_data_param(request, 'region_id', None)
 
         request.data["region"] = region_id
-        city = City.get_if_exists(name)
-        serializer = CitySerializer(city, data=request.data)
+        # city = City.get_if_exists(name) As MC need multiple entries with same name
+        serializer = CitySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
