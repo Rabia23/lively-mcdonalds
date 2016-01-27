@@ -3,10 +3,7 @@ body{
 	min-width: 320px;
 }
 
-.morris-block-holder{
-	padding: 10px 0 5px;
-	letter-spacing: -6px;
-}
+.morris-block-holder{letter-spacing: -6px;}
 
 .morris-block-holder .morris-content-holder{
 	display: inline-block;
@@ -17,7 +14,10 @@ body{
 	text-align: center;
 }
 
-.morris-block-holder .morris-graph-holder .morris-holder{height: 100px;}
+.morris-block-holder .morris-graph-holder .morris-holder{
+	height: 100px;
+	padding: 0 3px;
+}
 
 .regional-holder,
 .morris-holder{white-space: nowrap;}
@@ -143,10 +143,17 @@ body{
 }
 
 #wrapper .sidebar-collapse .nav > li > a{
-	color: #fff;
-	border-bottom: 1px solid #ac1a1a;
-	text-shadow: 0 0 1px rgba(0,0,0,0.5);
+	color: #000;
+	font-size: 15px;
+	border-bottom: 1px solid #000;
 }
+
+#wrapper .sidebar-collapse .nav > li > a:hover,
+#wrapper .sidebar-collapse .nav > li > a:active,
+#wrapper .sidebar-collapse .nav > li > a:focus{color: #fff;}
+
+#wrapper .sidebar-collapse .nav > li.active{border-left-color: #ac1a1a;}
+#wrapper .sidebar-collapse .nav > li.active a{color: #fff;}
 
 .header-visual{
 	margin: 0 -15px;
@@ -248,7 +255,7 @@ body{
 	position: relative;
 }
 
-.minimalize-styl-2{margin: 14px 5px 5px 10px;}
+#wrapper .minimalize-styl-2{margin: 14px 5px 5px 10px;}
 
 .same-height{white-space: nowrap;}
 
@@ -1127,8 +1134,9 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	font-size: 14px;
 	line-height: 18px;
 	margin: 0 10px 0 5px;
+	color: #454545;
 }
-.timeline-section .ibox-tools .btn-back:hover {color: #29421a;}
+.timeline-section .ibox-tools .btn-back:hover {color: #5f5f5f;}
 .timeline-section .select-holder{
 	float: right;
 	position: relative;
@@ -1198,12 +1206,12 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
   color: #282828;
   font-size: 100%;
   margin: 0 0 2px;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .progress-area small em {
   display: block;
   font-style: normal;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   line-height: 1.1em;
 }
@@ -1262,7 +1270,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	border-radius: 0;
 	-webkit-border-radius: 0;
 }
-.progress-area .progress-holder {padding: 0 0 22px;}
+.progress-area .progress-holder {padding: 0 0 23px;}
 .progress-area .progress-holder .progress {
 	position: relative;
 	box-shadow: none !important;
@@ -1895,6 +1903,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	#wrapper .ibox-content{padding: 10px;}
 	.info-form .form-group{margin-bottom: 12px;}
 	.info-form .form-group label{margin: 0 0 3px;}
+	.header-visual{margin: 0 -25px;}
 }
 
 @media screen and (max-width: 479px) {
