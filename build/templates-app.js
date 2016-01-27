@@ -531,7 +531,7 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "    	<a ng-click = \"backToMain()\" ng-hide = \"mainView\" class=\"btn-back\">Back</a>\n" +
     "      </div>\n" +
     "  </div>\n" +
-    "  <div class=\"ibox-content same-height\">\n" +
+    "  <div class=\"ibox-content\" same-rating-height data-data=\"overall_rating_data\">\n" +
     "      <ul class=\"legends-list\">\n" +
     "      <li ng-repeat = \"label in labels track by $index\">\n" +
     "        <span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>\n" +
