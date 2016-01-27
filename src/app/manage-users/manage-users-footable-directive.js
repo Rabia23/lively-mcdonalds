@@ -10,7 +10,6 @@
       link: function(scope, ele, attrs){
         scope.$watch('users', function(watchedData) {
           if(watchedData !== undefined){
-            console.log("in the if");
             $(ele).footable();
           }
         });

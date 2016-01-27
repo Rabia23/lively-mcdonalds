@@ -14,10 +14,15 @@
       $state.go('login');
     };
 
+    var parent_id;
+    var child_role;
+
     Api.manage_users().$promise.then(function(data){
       console.log(data);
       $scope.user_list = Enum.get_user_label(data.child_role);
       $scope.users = data.children;
+      parent_id = data.parent_id;
+      child_role = data.child_role;
     });
 
     $rootScope.$on('app-online', function(event, args) {
@@ -35,8 +40,11 @@
         controller: 'ModalInstanceCtrl',
         size: 1200,
         resolve: {
-          items: function () {
-            //return $scope.items;
+          parent_id: function () {
+            return parent_id;
+          },
+          child_role: function(){
+            return child_role;
           }
         }
       });
