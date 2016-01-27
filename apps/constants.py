@@ -92,3 +92,4 @@ DEFERRED = 3
 
 #------------ General Constants -----------------
 TEXT_ALREADY_EXISTS = "Already Exists"
+TEXT_DOES_NOT_EXISTS = "Does Not Exists"

@@ -39,7 +39,6 @@ def send_negative_feedback_email(feedback_json):
     html_template = get_template('emails/negative_feedback.html')
 
     recipients = get_recipients(feedback_json["branch_id"])
-    # recipients = User.objects.filter(is_staff=True)
     send_mail(constants.NEGATIVE_FEEDBACK_SUBJECT, context, recipients, text_template, html_template)
 
 

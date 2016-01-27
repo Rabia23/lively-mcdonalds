@@ -15,6 +15,7 @@ class UserInfo(models.Model):
     branch = models.ForeignKey(Branch, related_name='user_info', null=True, blank=True)
     region = models.ForeignKey(Region, related_name='user_info', null=True, blank=True)
     parent = models.ForeignKey('self', null=True, blank=True, related_name='children')
+    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     def to_dict(self):
@@ -28,7 +29,8 @@ class UserInfo(models.Model):
             "role": UserRolesEnum.labels[self.role],
             "branch": BranchSerializer(self.branch).data if self.branch else None,
             "region": RegionSerializer(self.region).data if self.region else None,
-            "parent": self.get_parent_dict()
+            "parent": self.get_parent_dict(),
+            "is_active": self.is_active,
         }
         return user_info
 

@@ -96,3 +96,47 @@ class UserView(APIView):
             return Response(False)
         except IntegrityError as e:
             return Response(constants.TEXT_ALREADY_EXISTS)
+
+
+    @transaction.atomic()
+    def put(self, request, format=None):
+        try:
+            id = get_data_param(request, 'id', None)
+            new_password = get_data_param(request, 'new_password', None)
+            email = get_data_param(request, 'email', None)
+            phone_no = get_data_param(request, 'phone_no', None)
+
+            user = User.objects.get(pk=id)
+            if user:
+                user.email = email if email else user.email
+                if new_password:
+                    user.set_password(new_password)
+                user.save()
+
+            user_info = user.info.first()
+            if user_info:
+                user_info.phone_no = phone_no if phone_no else user_info.phone_no
+                user_info.save()
+
+            return Response(user_info.to_dict())
+
+        except User.DoesNotExist as e:
+            return Response(constants.TEXT_DOES_NOT_EXISTS)
+
+
+    @transaction.atomic()
+    def delete(self, request, format=None):
+        try:
+            id = get_data_param(request, 'id', None)
+
+            user = User.objects.get(pk=id)
+            if user:
+                user_info = user.info.first()
+                if user_info:
+                    user_info.is_active = False
+                    user_info.save()
+                    return Response(True)
+            return Response(False)
+
+        except User.DoesNotExist as e:
+            return Response(constants.TEXT_DOES_NOT_EXISTS)
