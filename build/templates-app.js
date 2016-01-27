@@ -373,17 +373,21 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
     "	</div>\n" +
     "  </div>\n" +
     "  <div class=\"content-holder\">\n" +
-    "	<div class=\"ibox-content\">\n" +
-    "	  <div class=\"chart-outer\">\n" +
-    "		  <div class=\"progres-container\">\n" +
-    "			<div class=\"progress-area\">\n" +
-    "				<div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" opportunity-bar-background>\n" +
-    "					<small><em>{{dat.name}}</em></small>\n" +
-    "					<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}} complaints</b></uib-progressbar></div>\n" +
+    "  	<div class=\"content-inner\">\n" +
+    "		<div class=\"content-block\">\n" +
+    "			<div class=\"ibox-content\">\n" +
+    "			  <div class=\"chart-outer\">\n" +
+    "				  <div class=\"progres-container\">\n" +
+    "					<div class=\"progress-area\">\n" +
+    "						<div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" opportunity-bar-background>\n" +
+    "							<small><em>{{dat.name}}</em></small>\n" +
+    "							<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}} complaints</b></uib-progressbar></div>\n" +
+    "					  </div>\n" +
+    "					</div>\n" +
+    "				  </div>\n" +
     "			  </div>\n" +
     "			</div>\n" +
-    "		  </div>\n" +
-    "	  </div>\n" +
+    "		</div>\n" +
     "	</div>\n" +
     "  </div>\n" +
     "</div>\n" +

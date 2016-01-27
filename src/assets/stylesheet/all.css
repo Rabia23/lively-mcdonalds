@@ -1517,7 +1517,11 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 		width: 100%;
 		background: #fff;
 	}
-	.rating .content-holder{vertical-align: top !important;}
+	.oppotunities .content-holder,
+	.rating .content-holder{
+		vertical-align: top !important;
+		border-top: 1px solid #e7eaec;
+	}
 	.content-inner,
 	.content-holder .ibox-content.add{
 		display: table;
@@ -1525,6 +1529,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 		height: 100%;
 		table-layout: fixed;
 	}
+	.oppotunities .ibox-content,
+	.rating .ibox-content{border-top: 0 !important;}
 	.content-inner .legends-outer{
 		display: table-header-group;
 		height: 1%;
