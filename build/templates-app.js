@@ -178,7 +178,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "              </div>\n" +
     "            </div>\n" +
     "            <div class=\"row\">\n" +
-    "              <div class=\"col-xs-12 oppotunities\">\n" +
+    "              <div class=\"col-xs-12 opportunities\">\n" +
     "                <ui-view name = \"opportunities\"></ui-view>\n" +
     "              </div>\n" +
     "            </div>\n" +
@@ -381,7 +381,7 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
     "					<div class=\"progress-area\">\n" +
     "						<div class=\"progress-holder\" ng-repeat = \"dat in opportunity_data\" data-color = \"dat.colour\" data-data = \"opportunity_data\" opportunity-bar-background>\n" +
     "							<small><em>{{dat.name}}</em></small>\n" +
-    "							<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}} complaints</b></uib-progressbar></div>\n" +
+    "							<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}}</b></uib-progressbar></div>\n" +
     "					  </div>\n" +
     "					</div>\n" +
     "				</div>\n" +
