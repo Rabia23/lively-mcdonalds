@@ -1646,22 +1646,33 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 @media only screen and (min-width:1200px) and (max-width: 1450px)  {
 	.oppotunities{padding-bottom: 25px;}
 	.blocks-holder{
-		display: table;
-		table-layout: fixed;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+
+		-webkit-flex-flow: row wrap;
+		justify-content: space-around;
 		width: 100%;
 	}
 	.blocks-holder > .row{
-		height: 100%;
-		display: table-cell;
-		vertical-align: top;
-		margin-left: 0;
-		margin-right: 0;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+
+		-webkit-flex-flow: row wrap;
+		justify-content: space-around;
+		height: inherit !important;
 		width: 33.3333% !important;
 	}
 	.blocks-holder > .row:first-child{
-		height: 100%;
 		width: 66.6667% !important;
+		height: inherit !important;
 	}
+	
 	.blocks-holder > .row > .col-xs-12{
 		display: table;
 		float: none;
@@ -1676,6 +1687,53 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 		display: table-cell;
 		vertical-align: top;
 	}
+	
+	.blocks-holder > .row > .oppotunities,
+	.blocks-holder > .row > .oppotunities > *{
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+
+		-webkit-flex-flow: row wrap;
+		justify-content: space-around;
+		
+		height: inherit !important;
+		
+	}
+	
+	.blocks-holder .row .oppotunities .ibox{
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-items: stretch;
+		align-content: stretch;
+
+		height: inherit !important;
+	}
+	
+	.blocks-holder .row .oppotunities .title-outer{
+		display: block;
+		height: inherit;
+	}
+	
+	.oppotunities .content-holder{
+		flex: 1 1 auto;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		align-items: center;
+	}
+	
 	.blocks-holder > .row > .business-segment{padding-left: 0;}
 	.blocks-holder > .row > .oppotunities{padding-right: 0;}
 }
