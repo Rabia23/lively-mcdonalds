@@ -1411,6 +1411,11 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 
 .info-form .modal-header .close{margin-top: -10px;}
 
+.info-form .form-error-message{
+	clear: both;
+	margin: 2px 0 0;
+}
+
 .info-form:after,
 .info-form .form-group:after{
 	display: block;

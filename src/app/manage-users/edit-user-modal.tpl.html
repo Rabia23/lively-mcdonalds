@@ -1,52 +1,102 @@
-<form action="#" class="info-form">
+<form  class="info-form" name="UserForm" ng-submit="add(UserForm.$valid)" novalidate>
 	<fieldset>
 		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<a class="close" ng-click = "cancel()">
+				<span aria-hidden="true">&times;</span>
+				<span class="sr-only">Close</span>
+			</a>
 		</div>
 		<div class="modal-body">
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="firsName">First Name</label>
-				<div class="col-sm-10"><input type="text" id="firsName" class="form-control" placeholder="First Name"></div>
+				<div class="col-sm-10">
+					<input type="text" id="first_name" class="form-control" placeholder="First Name" ng-model = "user.first_name" name = "first_name"
+					required = true>
+					<div ng-show="UserForm.first_name.$error.required && (!UserForm.first_name.$pristine || submitted == true)"
+					class="form-error-message pull-left">First Name is required.
+				  </div>
+				</div>
+
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="lastName">Last Name</label>
-				<div class="col-sm-10"><input type="text" id="lastName" class="form-control" placeholder="Last Name"></div>
+				<div class="col-sm-10">
+					<input type="text" id="last_name" class="form-control" placeholder="Last Name" ng-model = "user.last_name" name = "last_name"
+					required="true">
+					<div ng-show="UserForm.last_name.$error.required && (!UserForm.last_name.$pristine || submitted == true)"
+					class="form-error-message pull-left">Last Name is required.
+				  </div>
+				</div>
+
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="userName">User Name</label>
-				<div class="col-sm-10"><input type="text" id="userName" class="form-control" placeholder="User Name"></div>
+				<div class="col-sm-10">
+					<input type="text" id="username" class="form-control" placeholder="User Name" ng-model = "user.username" name = "username"
+					required = true autocomplete="off">
+					<div ng-show="UserForm.username.$error.required && (!UserForm.username.$pristine || submitted == true)"
+					class="form-error-message pull-left">User Name is required.
+				  </div>
+				</div>
+
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="password">Password</label>
-				<div class="col-sm-10"><input type="password" id="password" class="form-control" placeholder="Password"></div>
+				<div class="col-sm-10">
+					<input type="password" id="password" class="form-control" placeholder="Password" ng-model = "user.password" name="password"
+					required = true autocomplete="off">
+					<div ng-show="UserForm.password.$error.required && (!UserForm.password.$pristine || submitted == true)"
+					class="form-error-message pull-left">Password is required.
+					</div>
+				</div>
+
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="email">Email</label>
-				<div class="col-sm-10"><input type="email" id="email" class="form-control" placeholder="Email"></div>
+				<div class="col-sm-10">
+					<input type="email" id="email" class="form-control" placeholder="Email" ng-model = "user.email" name = "email"
+					required = true autocomplete="off" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
+					<div ng-show="UserForm.email.$error.required && (!UserForm.email.$pristine || submitted == true)"
+					class="form-error-message pull-left">Email is required.
+				  </div>
+					<div ng-show="UserForm.email.$error.email && (!UserForm.email.$pristine || submitted == true)"
+					class="form-error-message pull-left">Wrong email pattern.
+					</div>
+				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="phoneno">Phone No.</label>
-				<div class="col-sm-10"><input type="tel" id="phoneno" class="form-control" placeholder="Phone No."></div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label" for="branch">Branch</label>
-				<div class="col-sm-10"><input type="text" id="branch" class="form-control" placeholder="branch"></div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label" for="code">Bar Code</label>
 				<div class="col-sm-10">
-					<select id="code" class="barcode" custom-form>
-						<option class="hideme">Please Select a Bar Code</option>
-						<option>option1</option>
-						<option>option2</option>
-						<option>option3</option>
+					<input type="tel" id="phone_no" class="form-control" placeholder="Phone No." ng-model = "user.phone_no" name = "phone_no"
+					required = true>
+					<div ng-show="UserForm.phone_no.$error.required && (!UserForm.phone_no.$pristine || submitted == true)"
+					class="form-error-message pull-left">Phone no is required.
+					</div>
+				</div>
+
+			</div>
+			<div class="form-group" ng-if = "user.role == 2 || user.role == 3">
+				<label class="col-sm-2 control-label" for="branch">Branch</label>
+				<div class="col-sm-10">
+					<select id="branch" class="barcode" custom-form  ng-options = "branch.id as branch.name for branch in branches track by branch.id"
+					ng-model = "user.branch_id" name = "branch">
+						<option class="hideme" value = "">Please Select a Branch</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group" ng-if = "user.role == 4">
+				<label class="col-sm-2 control-label" for="code">Regions</label>
+				<div class="col-sm-10">
+					<select id="region" class="barcode" custom-form  ng-options = "region.id as region.name for region in regions track by region.id"
+					ng-model = "user.region_id" name = "region" required="true">
+						<option class="hideme" value = "">Please Select a Region</option>
 					</select>
 				</div>
 			</div>
 		</div>
 		<div class="modal-footer">
 			<a class="btn btn-white" ng-click = "cancel()">Cancel</a>
-			<a class="btn btn-primary" ng-click = "cancel()">Save changes</a>
+			<button class="btn btn-primary" type = "submit">Save changes</button>
 		</div>
 	</fieldset>
 </form>
