@@ -75,8 +75,8 @@ class FeedbackView(APIView):
                     "comment": feedback.comment,
                 }
 
-                send_negative_feedback_email(feedback_json)
-                # send_negative_feedback_email.delay(feedback_json)
+                # send_negative_feedback_email(feedback_json)
+                send_negative_feedback_email.delay(feedback_json)
 
             return response(data)
 
