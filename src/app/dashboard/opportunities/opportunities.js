@@ -6,18 +6,18 @@ angular.module( 'livefeed.dashboard.opportunities', [
 .controller( 'OpportunitiesCtrl', function OpportunitiesCtrl( $scope, Graphs, Global ) {
     $scope.start_date = null;
     $scope.end_date = null;
-    Graphs.category_performance("","","","", $scope.start_date, $scope.end_date).$promise.then(function(performance_data){
-       $scope.category_data = _.map(performance_data.feedbacks,  function(data){
+    Graphs.opportunity_analysis("","","",$scope.start_date, $scope.end_date).$promise.then(function(opportunity_data){
+      console.log("opportunity data");
+      console.log(opportunity_data);
+      $scope.opportunity_data = _.map(opportunity_data.feedbacks,  function(data,index){
           return {
               id: data.option_id,
               name: data.option__text,
               complaints: data.count,
-              percentage: data.count === 0 ? 0 : Math.round((data.count/performance_data.feedback_count)*100),
-              priority: Global.qscPriority[data.option__text],
-              colour: Global.categoryPerformanceClass[data.option__text]
+              percentage: data.count === 0 ? 0 : Math.round((data.count/opportunity_data.feedback_count)*100),
+              colour: Global.topConcernsColors(index)
           };
        });
-       $scope.category_data = _.sortBy( $scope.category_data, function(value){ return value.priority; });
 
     });
 })
@@ -38,20 +38,20 @@ angular.module( 'livefeed.dashboard.opportunities', [
         });
       }
   };
-})
-
-.directive('sameHeight', function() {
-  return {
-      restrict: 'A',
-      scope: {
-        mydata: '='
-      },
-      link: function(scope, ele, attrs) {
-        scope.$watch('mydata', function(watchedData) {
-          if(watchedData !== undefined){
-            window.initSameHeight();
-          }
-        });
-      }
-  };
 });
+
+//.directive('sameHeight', function() {
+//  return {
+//      restrict: 'A',
+//      scope: {
+//        mydata: '='
+//      },
+//      link: function(scope, ele, attrs) {
+//        scope.$watch('mydata', function(watchedData) {
+//          if(watchedData !== undefined){
+//            window.initSameHeight();
+//          }
+//        });
+//      }
+//  };
+//});

@@ -65,7 +65,8 @@ angular.module( 'factories', [
                     top_rankings: {method: "GET", isArray: false, params:{endpoint: "top_rankings"}},
                     complaint_analysis: {method: "GET", isArray: true, params:{endpoint: "complaint_analysis"}},
                     leader_board: {method: "GET", isArray: false, params:{endpoint: "leader_board"}},
-                    live_dashboard: {method: "GET", isArray: false, params:{endpoint: "livedashboard/"}}
+                    live_dashboard: {method: "GET", isArray: false, params:{endpoint: "livedashboard/"}},
+                    opportunity_analysis: {method: "GET", isArray: false, params:{endpoint: "opportunity_analysis/"}}
 
                  });
   }
@@ -188,6 +189,14 @@ angular.module( 'factories', [
   };
   Graphs.prototype.leader_board = function(){
     return this.service.leader_board({token:  token});
+  };
+  Graphs.prototype.opportunity_analysis = function(region_id, city_id, branch_id, start_date, end_date){
+    region_id = region_id || "";
+    city_id = city_id || "";
+    branch_id = branch_id || "";
+    start_date = start_date || "";
+    end_date = end_date || "";
+    return this.service.opportunity_analysis({token:  token,region: region_id, city: city_id, branch: branch_id, date_from: start_date, date_to: end_date});
   };
 
   return new Graphs();

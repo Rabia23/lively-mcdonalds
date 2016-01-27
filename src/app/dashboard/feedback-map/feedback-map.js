@@ -86,7 +86,7 @@ angular.module( 'livefeed.dashboard.feedback_map', [
   return {
     restrict: 'A',
     link: function(scope, ele, attrs) {
-      window.initSameHeight();
+       window.initSameHeight();
     }
   };
 });
