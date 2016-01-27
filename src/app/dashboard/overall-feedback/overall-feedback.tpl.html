@@ -49,19 +49,25 @@
                 </div>
             </div>
             <div class="content-holder" ng-class="{loading: show_loading}">
-                <div class="legends-holder">
-                	<ul class="legends-list" ng-show="show_labels">
-                      <li ng-repeat = "label in labels track by $index">
-                        <span class="bullet" style = "background-color: {{label.color}}"></span>{{label.option_name}}
-                      </li>
-                    </ul>
-                </div>
-                <div class="ibox-content float-chart-block">
+               <div class="content-inner">
+               	<div class="legends-outer">
+					 <div class="legends-holder">
+						<ul class="legends-list" ng-show="show_labels">
+						  <li ng-repeat = "label in labels track by $index">
+							<span class="bullet" style = "background-color: {{label.color}}"></span>{{label.option_name}}
+						  </li>
+						</ul>
+					</div>
+               	</div>
+               </div>
+               <div class="content-block">
+               	<div class="ibox-content float-chart-block">
                     <div class="flot-chart">
                         <canvas ng-show = "show_canvas"  id="bar" class="chart chart-bar" chart-data="bar.data" chart-labels="bar.labels" chart-colours="bar.colours" chart-options="bar.options"></canvas>
                         <div ng-hide = "show_canvas"><h2>No data Available</h2></div>
                     </div>
                 </div>
+               </div>
             </div>
         </div>
     </div>

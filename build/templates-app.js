@@ -443,19 +443,25 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "                </div>\n" +
     "            </div>\n" +
     "            <div class=\"content-holder\" ng-class=\"{loading: show_loading}\">\n" +
-    "                <div class=\"legends-holder\">\n" +
-    "                	<ul class=\"legends-list\" ng-show=\"show_labels\">\n" +
-    "                      <li ng-repeat = \"label in labels track by $index\">\n" +
-    "                        <span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>{{label.option_name}}\n" +
-    "                      </li>\n" +
-    "                    </ul>\n" +
-    "                </div>\n" +
-    "                <div class=\"ibox-content float-chart-block\">\n" +
+    "               <div class=\"content-inner\">\n" +
+    "               	<div class=\"legends-outer\">\n" +
+    "					 <div class=\"legends-holder\">\n" +
+    "						<ul class=\"legends-list\" ng-show=\"show_labels\">\n" +
+    "						  <li ng-repeat = \"label in labels track by $index\">\n" +
+    "							<span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>{{label.option_name}}\n" +
+    "						  </li>\n" +
+    "						</ul>\n" +
+    "					</div>\n" +
+    "               	</div>\n" +
+    "               </div>\n" +
+    "               <div class=\"content-block\">\n" +
+    "               	<div class=\"ibox-content float-chart-block\">\n" +
     "                    <div class=\"flot-chart\">\n" +
     "                        <canvas ng-show = \"show_canvas\"  id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
     "                        <div ng-hide = \"show_canvas\"><h2>No data Available</h2></div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
+    "               </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
