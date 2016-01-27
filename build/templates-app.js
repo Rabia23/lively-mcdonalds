@@ -1139,11 +1139,11 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "            	<div class=\"col-lg-12\">\n" +
     "            		<div class=\"ibox float-e-margins\">\n" +
     "          				<div class=\"ibox-title\">\n" +
-    "                			<h5>Details</h5>\n" +
+    "                			<h5>{{user_list}} List</h5>\n" +
     "            			</div>\n" +
     "           				<div class=\"ibox-content\">\n" +
     "							<div class=\"user-block\">\n" +
-    "                <button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add User</button>\n" +
+    "                <button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
     "							</div>\n" +
     "          					<div class=\"info-holder\">\n" +
     "								<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\">\n" +
@@ -1151,7 +1151,6 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "										<tr>\n" +
     "											<th data-toggle=\"true\" data-sort-initial=\"true\">Name</th>\n" +
     "											<th data-hide=\"all\">User Name</th>\n" +
-    "											<th data-hide=\"all\">Password</th>\n" +
     "											<th data-hide=\"all\">Email</th>\n" +
     "											<th>Phone No.</th>\n" +
     "											<th>Branch</th>\n" +
@@ -1159,139 +1158,12 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "										</tr>\n" +
     "									</thead>\n" +
     "									<tbody>\n" +
-    "										<tr>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>mark@gmail.com</td>\n" +
-    "											<td>123456</td>\n" +
-    "											<td>Gulberg</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>x1y2z3</td>\n" +
-    "											<td>jacob@gmail.com</td>\n" +
-    "											<td>654321</td>\n" +
-    "											<td>Defence</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>larry@gmail.com</td>\n" +
-    "											<td>153261</td>\n" +
-    "											<td>Thokar</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>mark@gmail.com</td>\n" +
-    "											<td>123456</td>\n" +
-    "											<td>Gulberg</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>x1y2z3</td>\n" +
-    "											<td>jacob@gmail.com</td>\n" +
-    "											<td>654321</td>\n" +
-    "											<td>Defence</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>larry@gmail.com</td>\n" +
-    "											<td>153261</td>\n" +
-    "											<td>Thokar</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>mark@gmail.com</td>\n" +
-    "											<td>123456</td>\n" +
-    "											<td>Gulberg</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>x1y2z3</td>\n" +
-    "											<td>jacob@gmail.com</td>\n" +
-    "											<td>654321</td>\n" +
-    "											<td>Defence</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>larry@gmail.com</td>\n" +
-    "											<td>153261</td>\n" +
-    "											<td>Thokar</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>mark@gmail.com</td>\n" +
-    "											<td>123456</td>\n" +
-    "											<td>Gulberg</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>x1y2z3</td>\n" +
-    "											<td>jacob@gmail.com</td>\n" +
-    "											<td>654321</td>\n" +
-    "											<td>Defence</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>larry@gmail.com</td>\n" +
-    "											<td>153261</td>\n" +
-    "											<td>Thokar</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>Mark</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>mark@gmail.com</td>\n" +
-    "											<td>123456</td>\n" +
-    "											<td>Gulberg</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>Jacob</td>\n" +
-    "											<td>x1y2z3</td>\n" +
-    "											<td>jacob@gmail.com</td>\n" +
-    "											<td>654321</td>\n" +
-    "											<td>Defence</td>\n" +
-    "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
-    "										</tr>\n" +
-    "										<tr>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>Larry</td>\n" +
-    "											<td>a1b2c3</td>\n" +
-    "											<td>larry@gmail.com</td>\n" +
-    "											<td>153261</td>\n" +
-    "											<td>Thokar</td>\n" +
+    "										<tr ng-repeat = \"user in users\">\n" +
+    "											<td>{{user.first_name}} {{user.last_name}}</td>\n" +
+    "											<td>{{user.user_name}}</td>\n" +
+    "											<td>{{user.email}}</td>\n" +
+    "											<td>{{user.phone}}</td>\n" +
+    "											<td>{{user.branch.name}}</td>\n" +
     "											<td><a href=\"#\" class=\"btn btn-primary\">button</a></td>\n" +
     "										</tr>\n" +
     "									</tbody>\n" +

@@ -2,7 +2,7 @@
   angular.module( 'livefeed.manage_users')
 
 
-  .controller( 'ManageUsersCtrl', function DashboardController( $scope, $state, $rootScope, TokenHandler, Auth, $uibModal) {
+  .controller( 'ManageUsersCtrl', function ManageUsersCtrl( $scope, $state, $rootScope, TokenHandler, Auth, $uibModal, Api, Enum) {
 
     if (Auth.is_logged_in()) {
       $rootScope.show_username = true;
@@ -13,6 +13,12 @@
       $rootScope.show_username = false;
       $state.go('login');
     };
+
+    Api.manage_users().$promise.then(function(data){
+      console.log(data);
+      $scope.user_list = Enum.get_user_label(data.child_role);
+      $scope.users = data.children;
+    });
 
     $rootScope.$on('app-online', function(event, args) {
       console.log("online in dashboard");

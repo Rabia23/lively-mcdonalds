@@ -4,15 +4,18 @@ angular.module( 'livefeed.manage_users.api', [
   'livefeed.authService'
 ])
 
-.factory('Api', ['$resource','apiLinks', function($resource, apiLinks) {
+.factory('Api', ['$resource','apiLinks','TokenHandler', function($resource, apiLinks, TokenHandler) {
+
+  var token = TokenHandler.get_token();
+
   function Api() {
     this.service = $resource(apiLinks.staging, {},
                   {
-                    allRegions: {method: "GET",isArray: true, params: {endpoint: "region"}}
+                    manage_users: {method: "GET",isArray: false, params: {endpoint: "manage_user"}}
                  });
   }
-  Api.prototype.allRegions = function(){
-    return this.service.allRegions();
+  Api.prototype.manage_users = function(){
+    return this.service.manage_users({token: token});
   };
   return new Api();
 }]);
