@@ -42,9 +42,11 @@
                                   <div class="w1">
                                   	<div class="w2">
                                   		<div class="ibox-content">
-                                        <h1 class="no-margins" ng-show = "chart_data.region">{{chart_data.region.count}}</h1>
-                                        <h1 class="no-margins" ng-hide = "chart_data.region">No Data Available</h1>
-										                  </div>
+											<h1 class="no-margins" ng-show = "chart_data.region">{{chart_data.region.count}}</h1>
+											<div class="message-holder" ng-hide = "chart_data.region">
+												<h2 class="no-margins">No Data Available</h2>
+											</div>
+										</div>
                                   	</div>
                                   </div>
                               </div>
@@ -62,10 +64,11 @@
                                  	<div class="w1">
                                  		<div class="w2">
                                  			<div class="ibox-content">
-											<h1 class="no-margins" ng-show = "chart_data.city">{{chart_data.city.count}}</h1>
-                      <h1 class="no-margins" ng-hide = "chart_data.city">No Data Available</h1>
-
-										</div>
+												<h1 class="no-margins" ng-show = "chart_data.city">{{chart_data.city.count}}</h1>
+												<div class="message-holder" ng-hide = "chart_data.city">
+                      								<h2 class="no-margins">No Data Available</h2>
+												</div>
+											</div>
                                  		</div>
                                  	</div>
                               </div>
@@ -86,8 +89,9 @@
                                   	<div class="w2">
                                   		<div class="ibox-content">
 											<h1 class="no-margins" ng-show = "chart_data.branch">{{chart_data.branch.count}}</h1>
-                      <h1 class="no-margins" ng-hide = "chart_data.branch">No Data Available</h1>
-
+                      						<div class="message-holder" ng-hide = "chart_data.branch">
+                      							<h2 class="no-margins">No Data Available</h2>
+											</div>
 										</div>
                                   	</div>
                                   </div>
@@ -107,8 +111,9 @@
                                   	<div class="w2">
                                   		<div class="ibox-content">
 											<h1 class="no-margins" ng-show = "chart_data.gro">{{chart_data.gro.count}}</h1>
-                      <h1 class="no-margins" ng-hide = "chart_data.gro">No Data Available</h1>
-
+                      						<div class="message-holder" ng-hide = "chart_data.gro">
+                      							<h2 class="no-margins">No Data Available</h2>
+											</div>
 										</div>
                                   	</div>
                                   </div>

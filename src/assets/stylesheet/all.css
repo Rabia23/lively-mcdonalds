@@ -1294,7 +1294,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	border-radius: 0;
 	-webkit-border-radius: 0;
 }
-.progress-area .progress-holder {padding: 0 0 27px;}
+.progress-area .progress-holder {padding: 0 0 25px;}
 .opportunities .progress-area .progress-holder {padding: 0 0 12px;}
 .progress-area .progress-holder .progress {
 	position: relative;
@@ -1536,6 +1536,13 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 
 .map-section .ibox-content,
 .timeline-section .ibox-content{min-height: 200px;}
+
+.message-holder{
+	@include inline-block(middle);
+	width: 100%;
+	padding: 40px 10px;
+	text-align: center;
+}
 
 @media screen and (min-width: 768px) {
 	.legends-holder{padding: 15px 20px 0;}

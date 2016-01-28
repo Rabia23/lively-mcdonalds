@@ -540,31 +540,36 @@ function initSameHeight() {
     elements: '.same-height',
     flexible: true,
     multiLine: true,
-    biggestHeight: true
+    biggestHeight: true,
+	useMinHeight: false
   });
   jQuery('.morris-content-outer').sameHeight({
     elements: '.morris-holder',
     flexible: true,
     multiLine: true,
-    biggestHeight: true
+    biggestHeight: true,
+	useMinHeight: true
   });
   jQuery('.same-height-parent').sameHeight({
     elements: '.same-height-block',
     flexible: true,
     multiLine: true,
-    biggestHeight: true
+    biggestHeight: true,
+	useMinHeight: false
   });
   jQuery('.same-height-parent').sameHeight({
     elements: '.same-height-col , .same-height-block',
     flexible: true,
     multiLine: true,
-    biggestHeight: true
+    biggestHeight: true,
+	useMinHeight: false
   });
   jQuery('.same-height-block').sameHeight({
     elements: '.inner-row',
     flexible: true,
     multiLine: true,
-    biggestHeight: true
+    biggestHeight: true,
+	useMinHeight: false
   });
 }
 

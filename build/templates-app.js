@@ -208,9 +208,11 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                  <div class=\"w1\">\n" +
     "                                  	<div class=\"w2\">\n" +
     "                                  		<div class=\"ibox-content\">\n" +
-    "                                        <h1 class=\"no-margins\" ng-show = \"chart_data.region\">{{chart_data.region.count}}</h1>\n" +
-    "                                        <h1 class=\"no-margins\" ng-hide = \"chart_data.region\">No Data Available</h1>\n" +
-    "										                  </div>\n" +
+    "											<h1 class=\"no-margins\" ng-show = \"chart_data.region\">{{chart_data.region.count}}</h1>\n" +
+    "											<div class=\"message-holder\" ng-hide = \"chart_data.region\">\n" +
+    "												<h2 class=\"no-margins\">No Data Available</h2>\n" +
+    "											</div>\n" +
+    "										</div>\n" +
     "                                  	</div>\n" +
     "                                  </div>\n" +
     "                              </div>\n" +
@@ -228,10 +230,11 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                 	<div class=\"w1\">\n" +
     "                                 		<div class=\"w2\">\n" +
     "                                 			<div class=\"ibox-content\">\n" +
-    "											<h1 class=\"no-margins\" ng-show = \"chart_data.city\">{{chart_data.city.count}}</h1>\n" +
-    "                      <h1 class=\"no-margins\" ng-hide = \"chart_data.city\">No Data Available</h1>\n" +
-    "\n" +
-    "										</div>\n" +
+    "												<h1 class=\"no-margins\" ng-show = \"chart_data.city\">{{chart_data.city.count}}</h1>\n" +
+    "												<div class=\"message-holder\" ng-hide = \"chart_data.city\">\n" +
+    "                      								<h2 class=\"no-margins\">No Data Available</h2>\n" +
+    "												</div>\n" +
+    "											</div>\n" +
     "                                 		</div>\n" +
     "                                 	</div>\n" +
     "                              </div>\n" +
@@ -252,8 +255,9 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                  	<div class=\"w2\">\n" +
     "                                  		<div class=\"ibox-content\">\n" +
     "											<h1 class=\"no-margins\" ng-show = \"chart_data.branch\">{{chart_data.branch.count}}</h1>\n" +
-    "                      <h1 class=\"no-margins\" ng-hide = \"chart_data.branch\">No Data Available</h1>\n" +
-    "\n" +
+    "                      						<div class=\"message-holder\" ng-hide = \"chart_data.branch\">\n" +
+    "                      							<h2 class=\"no-margins\">No Data Available</h2>\n" +
+    "											</div>\n" +
     "										</div>\n" +
     "                                  	</div>\n" +
     "                                  </div>\n" +
@@ -273,8 +277,9 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                  	<div class=\"w2\">\n" +
     "                                  		<div class=\"ibox-content\">\n" +
     "											<h1 class=\"no-margins\" ng-show = \"chart_data.gro\">{{chart_data.gro.count}}</h1>\n" +
-    "                      <h1 class=\"no-margins\" ng-hide = \"chart_data.gro\">No Data Available</h1>\n" +
-    "\n" +
+    "                      						<div class=\"message-holder\" ng-hide = \"chart_data.gro\">\n" +
+    "                      							<h2 class=\"no-margins\">No Data Available</h2>\n" +
+    "											</div>\n" +
     "										</div>\n" +
     "                                  	</div>\n" +
     "                                  </div>\n" +
@@ -408,7 +413,9 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "               		<div class=\"ibox-content float-chart-block\">\n" +
     "				  		<div class=\"flot-chart\">\n" +
     "							<canvas ng-show = \"show_canvas\"  id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
-    "							<div ng-hide = \"show_canvas\"><h2>No Data Available</h2></div>\n" +
+    "							<div ng-hide = \"show_canvas\" class=\"message-holder\">\n" +
+    "                   				<h2>No Data Available</h2>\n" +
+    "                   			</div>\n" +
     "                    	</div>\n" +
     "                  	</div>\n" +
     "                </div>\n" +
@@ -713,8 +720,8 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "      </div>\n" +
     "      <div class=\"content-holder\" top-concerns data-data = \"data\">\n" +
     "         <div id=\"piechart\" style=\"width:100%; height:300px;\" ng-hide = \"all_zero\"></div>\n" +
-    "          <div ng-show = \"all_zero\" style=\"width:100%; height:300px;\">\n" +
-    "            No Data Available\n" +
+    "          <div ng-show = \"all_zero\" class=\"message-holder\">\n" +
+    "            <h2>No Data Available</h2>\n" +
     "          </div>\n" +
     "        <!--<div class=\"ibox-content\">-->\n" +
     "          <!--<div class=\"graph-block\">-->\n" +
