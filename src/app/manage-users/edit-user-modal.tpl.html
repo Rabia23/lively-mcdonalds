@@ -68,10 +68,12 @@
 				<label class="col-sm-2 control-label" for="phoneno">Phone No.</label>
 				<div class="col-sm-10">
 					<input type="tel" id="phone_no" class="form-control" placeholder="Phone No." ng-model = "user.phone_no" name = "phone_no"
-					required = true>
+					required = true ng-pattern="/^[0-9]+$/" >
 					<div ng-show="UserForm.phone_no.$error.required && (!UserForm.phone_no.$pristine || submitted == true)"
 					class="form-error-message pull-left">Phone no is required.
 					</div>
+					<div ng-show="UserForm.phone_no.$error.pattern && (!UserForm.phone_no.$pristine || submitted == true)" 
+					class="form-error-message pull-left">Wrong number pattern.</div>
 				</div>
 
 			</div>
@@ -79,9 +81,12 @@
 				<label class="col-sm-2 control-label" for="branch">Branch</label>
 				<div class="col-sm-10">
 					<select id="branch" class="barcode" custom-form  ng-options = "branch.id as branch.name for branch in branches track by branch.id"
-					ng-model = "user.branch_id" name = "branch">
+					ng-model = "user.branch_id" name = "branch" required = true>
 						<option class="hideme" value = "">Please Select a Branch</option>
 					</select>
+					<div ng-show="UserForm.branch.$error.required && (!UserForm.branch.$pristine || submitted == true)"
+					class="form-error-message pull-left"> Branch is required.
+					</div>
 				</div>
 			</div>
 			<div class="form-group" ng-if = "user.role == 4" ng-hide = "edit_form">
@@ -91,6 +96,9 @@
 					ng-model = "user.region_id" name = "region" required="true">
 						<option class="hideme" value = "">Please Select a Region</option>
 					</select>
+					<div ng-show="UserForm.region.$error.required && (!UserForm.region.$pristine || submitted == true)"
+					class="form-error-message pull-left"> Region is required.
+					</div>
 				</div>
 			</div>
 		</div>
