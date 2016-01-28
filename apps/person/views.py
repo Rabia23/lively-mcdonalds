@@ -127,7 +127,7 @@ class UserView(APIView):
     @transaction.atomic()
     def delete(self, request, format=None):
         try:
-            id = get_data_param(request, 'id', None)
+            id = get_param(request, 'id', None)
 
             user = User.objects.get(pk=id)
             if user:
@@ -136,7 +136,7 @@ class UserView(APIView):
                     user_info.is_active = False
                     user_info.save()
                     return Response(True)
-            return Response(False)
 
+            return Response(False)
         except User.DoesNotExist as e:
             return Response(constants.TEXT_DOES_NOT_EXISTS)
