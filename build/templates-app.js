@@ -290,7 +290,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "          <ui-view name = \"overall_rating\"></ui-view>\n" +
     "        </div>\n" +
     "      </div>\n" +
-    "    </div>  \n" +
+    "    </div>\n" +
     "    <ui-view name = \"footer\"></ui-view>\n" +
     "  </div>\n" +
     "\n" +
@@ -302,40 +302,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
 
 angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/feedback-map/feedback-map.tpl.html",
-    "<!-- <div class=\"info-block\">\n" +
-    "  <div class=\"info-box\">\n" +
-    "    <div class=\"heading\">\n" +
-    "      <h2>\n" +
-    "      	Benchmark Map\n" +
-    "      	<span class=\"icon-help\" uib-popover=\"Representation of the branch-wise benchmark for daily feedback amount. A green marker is shown for branches who met their benchmark, and red is shown for branches who didn't.\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
-    "      </h2>\n" +
-    "      <div class=\"calender-outer\">\n" +
-    "        	<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
-    "			  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
-    "			</span>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "  </div>\n" +
-    "  <div class=\"map-detail\" ng-class=\"{loading: show_loading}\">\n" +
-    "  	<ul class=\"list\">\n" +
-    "      <li class=\"good\">Above Benchmark</li>\n" +
-    "      <li class=\"negative\">Below Benchmark</li>\n" +
-    "    </ul>\n" +
-    "  	<div class=\"map-holder\" same-map-height>\n" +
-    "		<div class=\"inner-holder\">\n" +
-    "			<div map-lazy-load=\"http://maps.google.com/maps/api/js\">\n" +
-    "			  <map center=\"30,70\" zoom=\"{{zoom}}\" disable-default-u-i=\"true\" default-style=\"false\">\n" +
-    "			  </map>\n" +
-    "			</div>\n" +
-    "		</div>\n" +
-    "	  </div>\n" +
-    "  </div>\n" +
-    "  \n" +
-    "</div> -->\n" +
-    "\n" +
-    "\n" +
-    " <div class=\"ibox float-e-margins\">\n" +
+    "<div class=\"ibox float-e-margins\">\n" +
     "  <div class=\"ibox-title\">\n" +
     "	  <h5>Benchmark Map</h5>\n" +
     "	  <div class=\"ibox-tools\">\n" +
@@ -396,36 +363,6 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
 
 angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/overall-feedback/overall-feedback.tpl.html",
-    "<!-- <div class=\"feedback-block\">\n" +
-    "  <div class=\"heading-holder\">\n" +
-    "  	<div class=\"calender-outer\">\n" +
-    "			<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
-    "			  <i class=\"glyphicon glyphicon-calendar\" map-range-click></i>\n" +
-    "			</span>\n" +
-    "		</div>\n" +
-    "		<h2>\n" +
-    "			Overall Experience\n" +
-    "			<span class=\"icon-help\" uib-popover=\"Representation of the overall Feedback ratings for all respective branches. For a regional/branch breakdown, please see Patch Analysis\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
-    "		</h2>\n" +
-    "  </div>\n" +
-    "  <div class=\"inner-block\" ng-class=\"{loading: show_loading}\">\n" +
-    "  	<ul class=\"list\">\n" +
-    "      <li class=\"v-good\">I'm lovin' it</li>\n" +
-    "      <li class=\"good\">Everything on track</li>\n" +
-    "      <li class=\"neutral\">Few Concern</li>\n" +
-    "      <li class=\"negative\">Not Happy Enough</li>\n" +
-    "    </ul>\n" +
-    "  	<div class=\"graph-holder\" data-mydata = \"bar.data\" same-bar-height >\n" +
-    "		<div class=\"holder\">\n" +
-    "			<canvas ng-show = \"show_canvas\" style=\" width: 608px; height: 260px;\" id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
-    "			<div ng-hide = \"show_canvas\"><h2>No data Available</h2></div>\n" +
-    "		</div>\n" +
-    "	  </div>\n" +
-    "  </div>\n" +
-    "</div> -->\n" +
-    "\n" +
-    "\n" +
     "<div class=\"row inner-row rating\">\n" +
     "    <div class=\"col-xs-12\">\n" +
     "        <div class=\"ibox float-e-margins\">\n" +
@@ -434,37 +371,37 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "                    <h5>Overall Rating</h5>\n" +
     "                    <div class=\"ibox-tools\">\n" +
     "                       <ul class=\"tab-links\">\n" +
-    "							<li>\n" +
-    "								<div class=\"calender-outer\">\n" +
-    "								  <span class=\"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "									   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
-    "									  <i class=\"fa fa-calendar\" map-range-click></i>\n" +
-    "								  </span>\n" +
-    "							  </div>\n" +
-    "							</li>\n" +
-    "						</ul>\n" +
-    "					</div>\n" +
+    "            							<li>\n" +
+    "            								<div class=\"calender-outer\">\n" +
+    "            								  <span class=\"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
+    "            									   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
+    "            									   <i class=\"fa fa-calendar\" map-range-click></i>\n" +
+    "            								  </span>\n" +
+    "            							  </div>\n" +
+    "            							</li>\n" +
+    "						           </ul>\n" +
+    "                     </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "            <div class=\"content-holder\" ng-class=\"{loading: show_loading}\">\n" +
     "               <div class=\"content-inner\">\n" +
-    "               	<div class=\"legends-outer\">\n" +
-    "					 <div class=\"legends-holder\">\n" +
-    "						<ul class=\"legends-list\" ng-show=\"show_labels\">\n" +
-    "						  <li ng-repeat = \"label in labels track by $index\">\n" +
-    "							<span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>{{label.option_name}}\n" +
-    "						  </li>\n" +
-    "						</ul>\n" +
-    "					</div>\n" +
-    "               	</div>\n" +
-    "               	<div class=\"content-block\">\n" +
-    "               	<div class=\"ibox-content float-chart-block\">\n" +
-    "                    <div class=\"flot-chart\">\n" +
-    "                        <canvas ng-show = \"show_canvas\"  id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
-    "                        <div ng-hide = \"show_canvas\"><h2>No data Available</h2></div>\n" +
+    "                 	<div class=\"legends-outer\">\n" +
+    "          					 <div class=\"legends-holder\">\n" +
+    "          						<ul class=\"legends-list\" ng-show=\"show_labels\">\n" +
+    "          						  <li ng-repeat = \"label in labels track by $index\">\n" +
+    "          							<span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>{{label.option_name}}\n" +
+    "          						  </li>\n" +
+    "          						</ul>\n" +
+    "          					</div>\n" +
+    "                 	</div>\n" +
+    "                 	<div class=\"content-block\">\n" +
+    "                   	<div class=\"ibox-content float-chart-block\">\n" +
+    "                        <div class=\"flot-chart\">\n" +
+    "                            <canvas ng-show = \"show_canvas\"  id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
+    "                            <div ng-hide = \"show_canvas\"><h2>No data Available</h2></div>\n" +
+    "                        </div>\n" +
     "                    </div>\n" +
-    "                </div>\n" +
-    "               </div>\n" +
+    "                 </div>\n" +
     "               </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
@@ -502,14 +439,14 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "  </div>\n" +
     "  <div class=\"ibox-content\" same-rating-height data-data=\"overall_rating_data\">\n" +
     "      <ul class=\"legends-list\">\n" +
-    "      <li ng-repeat = \"label in labels track by $index\">\n" +
-    "        <span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>\n" +
-    "        <a ng-click=\"labelClick(label)\">{{label.option_name}}</a>\n" +
-    "      </li>\n" +
-    "    </ul>\n" +
+    "        <li ng-repeat = \"label in labels track by $index\">\n" +
+    "          <span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>\n" +
+    "          <a ng-click=\"labelClick(label)\">{{label.option_name}}</a>\n" +
+    "        </li>\n" +
+    "      </ul>\n" +
     "      <div class=\"block-holder\" time-line data-data = \"overall_rating_data\" data-action=\"optionClick(option_object)\">\n" +
     "          <div id=\"chartdiv\" style=\"width: 100%; height: 320px;\"></div>\n" +
-    "      </div>\n" +
+    "      </div> \n" +
     "  </div>\n" +
     "</div>\n" +
     "");
@@ -602,14 +539,17 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "      </div>\n" +
     "      <div class=\"comments-holder\">\n" +
     "        <ul class=\"comments-list list-unstyled\">\n" +
-    "          <li ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.data.is_negative, positive: !comment.data.is_negative, processed: comment.action_string == 'Processed', deferred: comment.action_string == 'Deferred'}\">\n" +
+    "          <li ng-if = \"feedback_count != 0\" ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.data.is_negative, positive: !comment.data.is_negative, processed: comment.action_string == 'Processed', deferred: comment.action_string == 'Deferred'}\">\n" +
     "              <p>{{comment.data.comment}}</p>\n" +
     "              <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "          </li>\n" +
+    "          <li ng-if = \"feedback_count == 0\">\n" +
+    "            No Data Available\n" +
     "          </li>\n" +
     "        </ul>\n" +
     "      </div>\n" +
     "      <div class=\"btn-holder\">\n" +
-    "        <a class=\"btn btn-info pull-right btn-close\" ng-click = \"open()\">View All</a>\n" +
+    "        <a class=\"btn btn-info pull-right btn-close\" ng-click = \"open()\" ng-disabled = \"feedback_count == 0\">View All</a>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
@@ -759,7 +699,10 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "        </div>\n" +
     "      </div>\n" +
     "      <div class=\"content-holder\" top-concerns data-data = \"data\">\n" +
-    "         <div id=\"piechart\" style=\"width:100%; height:300px;\" ></div>\n" +
+    "         <div id=\"piechart\" style=\"width:100%; height:300px;\" ng-if = \"concern_list.length != 0\"></div>\n" +
+    "          <div ng-if = \"concern_list.length == 0\">\n" +
+    "            No Data Available\n" +
+    "          </div>\n" +
     "        <!--<div class=\"ibox-content\">-->\n" +
     "          <!--<div class=\"graph-block\">-->\n" +
     "            <!--&lt;!&ndash;<canvas id=\"doughnut\" class=\"chart chart-doughnut\" chart-data=\"data\" chart-labels=\"labels\"></canvas> &ndash;&gt;-->\n" +
@@ -1184,8 +1127,11 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<th data-toggle=\"true\" data-sort-initial=\"true\">Name</th>\n" +
     "											<th data-hide=\"all\">User Name</th>\n" +
     "											<th data-hide=\"all\">Email</th>\n" +
+    "                      <th data-hide=\"all\">Active</th>\n" +
+    "                      <th data-hide=\"all\">Role</th>\n" +
     "											<th>Phone No.</th>\n" +
-    "											<th>Branch</th>\n" +
+    "											<th ng-if = \"child_role == 2 || child_role == 3\">Branch</th>\n" +
+    "                      <th ng-if = \"child_role == 4\">Region</th>\n" +
     "											<th>Action</th>\n" +
     "										</tr>\n" +
     "									</thead>\n" +
@@ -1194,8 +1140,11 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td>{{user.first_name}} {{user.last_name}}</td>\n" +
     "                      <td>{{user.username}}</td>\n" +
     "                      <td>{{user.email}}</td>\n" +
-    "                      <td>{{user.phone_no}}</td>\n" +
-    "                      <td>{{user.branch.name}}</td>\n" +
+    "                      <td>{{user.is_active}}</td>\n" +
+    "                      <td>{{user.role}}</td>\n" +
+    "                      <td >{{user.phone_no}}</td>\n" +
+    "                      <td ng-if = \"child_role == 2 || child_role == 3\">{{user.branch.name}}</td>\n" +
+    "                      <td ng-if = \"child_role == 4\">{{user.region.name}}</td>\n" +
     "											<td>\n" +
     "												<a ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
     "												<a ng-click = \"deactivate(user, $index)\"class=\"fa fa-trash-o\"></a>\n" +

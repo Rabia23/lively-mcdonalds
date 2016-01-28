@@ -7,7 +7,10 @@
         </div>
       </div>
       <div class="content-holder" top-concerns data-data = "data">
-         <div id="piechart" style="width:100%; height:300px;" ></div>
+         <div id="piechart" style="width:100%; height:300px;" ng-if = "concern_list.length != 0"></div>
+          <div ng-if = "concern_list.length == 0">
+            No Data Available
+          </div>
         <!--<div class="ibox-content">-->
           <!--<div class="graph-block">-->
             <!--&lt;!&ndash;<canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels"></canvas> &ndash;&gt;-->

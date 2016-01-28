@@ -1,33 +1,3 @@
-<!-- <div class="feedback-block">
-  <div class="heading-holder">
-  	<div class="calender-outer">
-			<span class = "calendar-holder pull-right" uib-tooltip="Click to Select Custom Date Range">
-			  <input date-range-picker id="daterange-map" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption" readonly="true"/>
-			  <i class="glyphicon glyphicon-calendar" map-range-click></i>
-			</span>
-		</div>
-		<h2>
-			Overall Experience
-			<span class="icon-help" uib-popover="Representation of the overall Feedback ratings for all respective branches. For a regional/branch breakdown, please see Patch Analysis" popover-trigger="mouseenter" popover-placement="top"></span>
-		</h2>
-  </div>
-  <div class="inner-block" ng-class="{loading: show_loading}">
-  	<ul class="list">
-      <li class="v-good">I'm lovin' it</li>
-      <li class="good">Everything on track</li>
-      <li class="neutral">Few Concern</li>
-      <li class="negative">Not Happy Enough</li>
-    </ul>
-  	<div class="graph-holder" data-mydata = "bar.data" same-bar-height >
-		<div class="holder">
-			<canvas ng-show = "show_canvas" style=" width: 608px; height: 260px;" id="bar" class="chart chart-bar" chart-data="bar.data" chart-labels="bar.labels" chart-colours="bar.colours" chart-options="bar.options"></canvas>
-			<div ng-hide = "show_canvas"><h2>No data Available</h2></div>
-		</div>
-	  </div>
-  </div>
-</div> -->
-
-
 <div class="row inner-row rating">
     <div class="col-xs-12">
         <div class="ibox float-e-margins">
@@ -36,37 +6,37 @@
                     <h5>Overall Rating</h5>
                     <div class="ibox-tools">
                        <ul class="tab-links">
-							<li>
-								<div class="calender-outer">
-								  <span class="calendar-holder" uib-tooltip="Click to Select Custom Date Range">
-									   <input date-range-picker id="daterange-map" readonly="readonly" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption" readonly="true"/>
-									  <i class="fa fa-calendar" map-range-click></i>
-								  </span>
-							  </div>
-							</li>
-						</ul>
-					</div>
+            							<li>
+            								<div class="calender-outer">
+            								  <span class="calendar-holder" uib-tooltip="Click to Select Custom Date Range">
+            									   <input date-range-picker id="daterange-map" readonly="readonly" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption" readonly="true"/>
+            									   <i class="fa fa-calendar" map-range-click></i>
+            								  </span>
+            							  </div>
+            							</li>
+						           </ul>
+                     </div>
                 </div>
             </div>
             <div class="content-holder" ng-class="{loading: show_loading}">
                <div class="content-inner">
-               	<div class="legends-outer">
-					 <div class="legends-holder">
-						<ul class="legends-list" ng-show="show_labels">
-						  <li ng-repeat = "label in labels track by $index">
-							<span class="bullet" style = "background-color: {{label.color}}"></span>{{label.option_name}}
-						  </li>
-						</ul>
-					</div>
-               	</div>
-               	<div class="content-block">
-               	<div class="ibox-content float-chart-block">
-                    <div class="flot-chart">
-                        <canvas ng-show = "show_canvas"  id="bar" class="chart chart-bar" chart-data="bar.data" chart-labels="bar.labels" chart-colours="bar.colours" chart-options="bar.options"></canvas>
-                        <div ng-hide = "show_canvas"><h2>No data Available</h2></div>
+                 	<div class="legends-outer">
+          					 <div class="legends-holder">
+          						<ul class="legends-list" ng-show="show_labels">
+          						  <li ng-repeat = "label in labels track by $index">
+          							<span class="bullet" style = "background-color: {{label.color}}"></span>{{label.option_name}}
+          						  </li>
+          						</ul>
+          					</div>
+                 	</div>
+                 	<div class="content-block">
+                   	<div class="ibox-content float-chart-block">
+                        <div class="flot-chart">
+                            <canvas ng-show = "show_canvas"  id="bar" class="chart chart-bar" chart-data="bar.data" chart-labels="bar.labels" chart-colours="bar.colours" chart-options="bar.options"></canvas>
+                            <div ng-hide = "show_canvas"><h2>No data Available</h2></div>
+                        </div>
                     </div>
-                </div>
-               </div>
+                 </div>
                </div>
             </div>
         </div>

@@ -25,13 +25,13 @@
   </div>
   <div class="ibox-content" same-rating-height data-data="overall_rating_data">
       <ul class="legends-list">
-      <li ng-repeat = "label in labels track by $index">
-        <span class="bullet" style = "background-color: {{label.color}}"></span>
-        <a ng-click="labelClick(label)">{{label.option_name}}</a>
-      </li>
-    </ul>
+        <li ng-repeat = "label in labels track by $index">
+          <span class="bullet" style = "background-color: {{label.color}}"></span>
+          <a ng-click="labelClick(label)">{{label.option_name}}</a>
+        </li>
+      </ul>
       <div class="block-holder" time-line data-data = "overall_rating_data" data-action="optionClick(option_object)">
           <div id="chartdiv" style="width: 100%; height: 320px;"></div>
-      </div>
+      </div> 
   </div>
 </div>

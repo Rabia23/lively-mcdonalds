@@ -18,14 +18,17 @@
       </div>
       <div class="comments-holder">
         <ul class="comments-list list-unstyled">
-          <li ng-repeat = "comment in comments" ng-class = "{negative: comment.data.is_negative, positive: !comment.data.is_negative, processed: comment.action_string == 'Processed', deferred: comment.action_string == 'Deferred'}">
+          <li ng-if = "feedback_count != 0" ng-repeat = "comment in comments" ng-class = "{negative: comment.data.is_negative, positive: !comment.data.is_negative, processed: comment.action_string == 'Processed', deferred: comment.action_string == 'Deferred'}">
               <p>{{comment.data.comment}}</p>
               <time datetime="2014-06-12 18:00">Today 5:60 pm - 12.06.2014</time>
+          </li>
+          <li ng-if = "feedback_count == 0">
+            No Data Available
           </li>
         </ul>
       </div>
       <div class="btn-holder">
-        <a class="btn btn-info pull-right btn-close" ng-click = "open()">View All</a>
+        <a class="btn btn-info pull-right btn-close" ng-click = "open()" ng-disabled = "feedback_count == 0">View All</a>
       </div>
     </div>
   </div>

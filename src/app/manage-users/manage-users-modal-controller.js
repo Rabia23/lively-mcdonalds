@@ -42,8 +42,6 @@
 
   .controller('ModalEditInstanceCtrl', function ($scope, $uibModalInstance, parent_id, child_role, user,ManageApi, Enum, Filters) {
 
-
-    console.log("in the edit controller");
     $scope.user = user;
 
     $scope.edit_form = true;
@@ -66,14 +64,11 @@
           console.log(data);
           $scope.ok(true);
         });
-
       }
       else{
         $scope.submitted = true;
       }
     };
-
-
 
     $scope.ok = function (result) {
       $uibModalInstance.close(result);

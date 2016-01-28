@@ -4,16 +4,16 @@ angular.module( 'livefeed.dashboard.top_concern', [
 ])
 
 .controller( 'TopConcernsCtrl', function TopConcernController( $scope, Graphs, Global ) {
-  
+
   $scope.colors = [];
   $scope.labels = [];
 
   Graphs.top_concerns().$promise.then(function(data){
     $scope.data = [];
-    var concern_list = data.concern_list;
-    _.each(concern_list, function(value, index){
+    $scope.concern_list = data.concern_list;
+    _.each($scope.concern_list, function(value, index){
       $scope.data.push({"category": value.name, "column-1": value.weight, "color": Global.topConcernsColors(index)});
-      
+
     });
   });
 })

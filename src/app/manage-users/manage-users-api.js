@@ -4,9 +4,9 @@ angular.module( 'livefeed.manage_users.api', [
   'livefeed.authService'
 ])
 
-.factory('ManageApi', ['$resource','apiLinks','TokenHandler', function($resource, apiLinks, TokenHandler) {
+.factory('ManageApi', ['$resource','apiLinks','TokenHandler','$rootScope', function($resource, apiLinks, TokenHandler, $rootScope) {
 
-  var token = TokenHandler.get_token();
+
 
   function ManageApi() {
     this.service = $resource(apiLinks.staging, {},
@@ -18,16 +18,20 @@ angular.module( 'livefeed.manage_users.api', [
                  });
   }
   ManageApi.prototype.manage_users = function(){
+    var token = $rootScope.token || TokenHandler.get_token();
     return this.service.manage_users({token: token});
   };
   ManageApi.prototype.delete_user = function(user_id){
+    var token = $rootScope.token || TokenHandler.get_token();
     return this.service.delete_user({id: user_id, token: token});
   };
   ManageApi.prototype.edit_user = function(user){
+    var token = $rootScope.token || TokenHandler.get_token();
     var user_json = {new_password: user.password, email: user.email, phone_no: user.phone_no, id: user.id, token: token};
     return this.service.edit_user(user_json);
   };
   ManageApi.prototype.add_user = function(user){
+    var token = $rootScope.token || TokenHandler.get_token();
     var user_json = {first_name: user.first_name, last_name: user.last_name, username: user.username,
        password: user.password, email: user.email, phone_no: user.phone_no, role: user.role, parent_id: user.parent_id, token: token};
     if(user.role == 4){

@@ -86,13 +86,11 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     link: function(scope, ele, attrs){
       window.initMobileNav();
       window.initPositionFixed();
-      ele.bind("click", function(event){
-        console.log("clicked");  
-        assignHeight(); 
+      ele.bind("click", function(event){  
+        assignHeight();
       });
 
       $(document).on("scroll", function() {
-        console.log("scrolled");
         assignHeight();
       });
 
@@ -103,7 +101,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
         var header_height = $(".heading-holder").height();
         var button_holder = $(".btn-holder").height();
         if($(window).scrollTop() === 0){
-          height = window_height - content_top - header_height - button_holder;          
+          height = window_height - content_top - header_height - button_holder;
         }
         else if($(window).scrollTop() > 0 && $(window).scrollTop() <= content_top){
           height = window_height - content_top - header_height - button_holder + $(window).scrollTop();
@@ -112,7 +110,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
           height = window_height - header_height - button_holder;
         }
         $(".comments-holder").css("height", height);
-      }    
+      }
     }
   };
 })
@@ -130,7 +128,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
           window.initCustomForms();
         }
       });
-      
+
     }
   };
 })
@@ -143,7 +141,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
         if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
           if(scope.lock === false){
             scope.$apply(attr.whenScrolled);
-          }     
+          }
         }
       });
     }
@@ -166,4 +164,3 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   };
 
 });
-

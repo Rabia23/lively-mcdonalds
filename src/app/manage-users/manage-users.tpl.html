@@ -21,8 +21,11 @@
 											<th data-toggle="true" data-sort-initial="true">Name</th>
 											<th data-hide="all">User Name</th>
 											<th data-hide="all">Email</th>
+                      <th data-hide="all">Active</th>
+                      <th data-hide="all">Role</th>
 											<th>Phone No.</th>
-											<th>Branch</th>
+											<th ng-if = "child_role == 2 || child_role == 3">Branch</th>
+                      <th ng-if = "child_role == 4">Region</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -31,8 +34,11 @@
 											<td>{{user.first_name}} {{user.last_name}}</td>
                       <td>{{user.username}}</td>
                       <td>{{user.email}}</td>
-                      <td>{{user.phone_no}}</td>
-                      <td>{{user.branch.name}}</td>
+                      <td>{{user.is_active}}</td>
+                      <td>{{user.role}}</td>
+                      <td >{{user.phone_no}}</td>
+                      <td ng-if = "child_role == 2 || child_role == 3">{{user.branch.name}}</td>
+                      <td ng-if = "child_role == 4">{{user.region.name}}</td>
 											<td>
 												<a ng-click = "edit(user, $index)" class="fa fa-pencil-square-o"></a>
 												<a ng-click = "deactivate(user, $index)"class="fa fa-trash-o"></a>

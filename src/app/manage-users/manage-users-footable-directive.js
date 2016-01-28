@@ -11,11 +11,10 @@
         scope.$watchCollection('users', function(watchedData) {
           if(watchedData !== undefined){
             console.log("in the watch if");
-            console.log($(ele));
             if ($(ele).hasClass("footable-loaded")){
-              console.log($(ele).children());
+              $('.footable').trigger('footable_redraw');
             }
-            else{
+             else{
               $(ele).footable();
             }
 

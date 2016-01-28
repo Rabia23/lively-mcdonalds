@@ -40,10 +40,10 @@ angular.module( 'factories', [
 }])
 
 
-.factory('Graphs', ['$resource','apiLinks','_','TokenHandler','$http',  function($resource, apiLinks, _, TokenHandler, $http) {
-  
-  var token = TokenHandler.get_token();
-  
+.factory('Graphs', ['$resource','apiLinks','_','TokenHandler','$http','$rootScope',  function($resource, apiLinks, _, TokenHandler, $http, $rootScope) {
+
+
+
   function Graphs() {
     this.service = $resource(apiLinks.staging, {},
                   {
@@ -72,52 +72,63 @@ angular.module( 'factories', [
   }
 
   Graphs.prototype.overall_rating = function(type,option_id, date_from, date_to){
+    var token = $rootScope.token || TokenHandler.get_token();
     option_id = option_id || "";
     return this.service.overall_rating({token: token, type: type, option: option_id, date_from: date_from, date_to: date_to});
   };
 
   Graphs.prototype.live_dashboard = function(){
+    var token = $rootScope.token || TokenHandler.get_token();
     return this.service.live_dashboard();
   };
 
   Graphs.prototype.action_taken = function(feedback_id,action_id){
+    var token = $rootScope.token || TokenHandler.get_token();
     return this.service.action_taken({token:  token, feedback_id: feedback_id, action_id: action_id});
   };
 
   Graphs.prototype.top_concerns = function(){
+    var token = $rootScope.token || TokenHandler.get_token();
     return this.service.top_concerns({token:  token});
   };
 
   Graphs.prototype.top_rankings = function(){
+    var token = $rootScope.token || TokenHandler.get_token();
     return this.service.top_rankings({token:  token});
   };
 
   Graphs.prototype.feedback_segmentation = function(date, option_id, type){
+    var token = $rootScope.token || TokenHandler.get_token();
     date = date || "";
     return this.service.feedback_segmentation({token:  token,date_to: date, option: option_id, type: type});
   };
 
   Graphs.prototype.map_view = function(date_from, date_to){
+    var token = $rootScope.token || TokenHandler.get_token();
     return this.service.map_view({token:  token,date_from: date_from, date_to: date_to});
   };
 
   Graphs.prototype.positive_negative_feedback = function(){
-
+    var token = $rootScope.token || TokenHandler.get_token();
     return this.service.positive_negative_feedback({token:  token});
   };
   Graphs.prototype.overall_feedback = function(date_from, date_to){
+    var token = $rootScope.token || TokenHandler.get_token();
     return this.service.overall_feedback({token: token,date_from: date_from, date_to: date_to});
   };
   Graphs.prototype.area = function(){
+    var token = $rootScope.token || TokenHandler.get_token();
     return this.service.area_analysis({token: token});
   };
   Graphs.prototype.area_analysis = function(question_type, start_date, end_date){
     question_type = question_type || 1;
     start_date = start_date || "";
     end_date = end_date || "";
+    var token = $rootScope.token || TokenHandler.get_token();
     return this.service.feedback_analysis({token: token, question_type: question_type, date_from: start_date, date_to: end_date});
   };
   Graphs.prototype.regional_analysis = function(question_type, start_date, end_date, area_id){
+    var token = $rootScope.token || TokenHandler.get_token();
     question_type = question_type || 1;
     area_id = area_id || "";
     start_date = start_date || "";
@@ -125,6 +136,7 @@ angular.module( 'factories', [
     return this.service.feedback_analysis({token: token,type: 1, question_type: question_type, area: area_id, date_from: start_date, date_to: end_date});
   };
   Graphs.prototype.city_analysis = function(region_id, question_type, start_date, end_date){
+    var token = $rootScope.token || TokenHandler.get_token();
     question_type = question_type || 1;
     region_id = region_id || "";
     start_date = start_date || "";
@@ -132,6 +144,7 @@ angular.module( 'factories', [
     return this.service.feedback_analysis({token:  token,type: 2, date_from: start_date, date_to: end_date, region: region_id, question_type: question_type});
   };
   Graphs.prototype.branch_analysis = function(city_id, question_type, start_date, end_date){
+    var token = $rootScope.token || TokenHandler.get_token();
     question_type = question_type || 1;
     city_id = city_id || "";
     start_date = start_date || "";
@@ -139,6 +152,7 @@ angular.module( 'factories', [
     return this.service.feedback_analysis({token:  token,type: 3, date_from: start_date, date_to: end_date, city: city_id, question_type: question_type});
   };
   Graphs.prototype.category_performance = function(region_id, city_id, branch_id, option_id, start_date, end_date){
+    var token = $rootScope.token || TokenHandler.get_token();
     region_id = region_id || "";
     city_id = city_id || "";
     branch_id = branch_id || "";
@@ -149,11 +163,13 @@ angular.module( 'factories', [
   };
 
   Graphs.prototype.comments = function(page){
+    var token = $rootScope.token || TokenHandler.get_token();
     page = page || 1;
     return this.service.comments({token:  token,page: page});
   };
 
   Graphs.prototype.feedback_analysis_breakdown = function(area_id, region_id, city_id, branch_id, option_id, start_date, end_date){
+    var token = $rootScope.token || TokenHandler.get_token();
     area_id = area_id || "";
     region_id = region_id || "";
     city_id = city_id || "";
@@ -164,6 +180,7 @@ angular.module( 'factories', [
     return this.service.feedback_analysis_breakdown({token:  token, area: area_id, region: region_id, city: city_id, branch: branch_id, option: option_id, date_from: start_date, date_to: end_date});
   };
   Graphs.prototype.segmentation_rating = function(region_id, city_id, branch_id, option_id, start_date, end_date){
+    var token = $rootScope.token || TokenHandler.get_token();
     region_id = region_id || "";
     city_id = city_id || "";
     branch_id = branch_id || "";
@@ -173,6 +190,7 @@ angular.module( 'factories', [
     return this.service.segmentation_rating({token:  token,region: region_id, city: city_id, branch: branch_id, option: option_id, date_from: start_date, date_to: end_date});
   };
   Graphs.prototype.action_analysis = function(type_id, region_id, city_id, date_from, date_to, area_id){
+    var token = $rootScope.token || TokenHandler.get_token();
     type_id = type_id || "";
     date_from = date_from || "";
     date_to = date_to || "";
@@ -182,15 +200,19 @@ angular.module( 'factories', [
     return this.service.action_analysis({token:  token,type: type_id, date_from: date_from, date_to: date_to, area: area_id, region: region_id, city:city_id});
   };
   Graphs.prototype.top_charts = function(){
+    var token = $rootScope.token || TokenHandler.get_token();
     return this.service.top_charts({token:  token});
   };
   Graphs.prototype.complaint_analysis = function(){
+    var token = $rootScope.token || TokenHandler.get_token();
     return this.service.complaint_analysis({token:  token});
   };
   Graphs.prototype.leader_board = function(){
+    var token = $rootScope.token || TokenHandler.get_token();
     return this.service.leader_board({token:  token});
   };
   Graphs.prototype.opportunity_analysis = function(region_id, city_id, branch_id, start_date, end_date){
+    var token = $rootScope.token || TokenHandler.get_token();
     region_id = region_id || "";
     city_id = city_id || "";
     branch_id = branch_id || "";
