@@ -45,8 +45,7 @@ def send_negative_feedback_email(feedback_json):
 def send_mail(subject, context, recipients, text_template, html_template):
     if recipients:
         email_addresses = [recipient["email"] for recipient in recipients]
-        superuser = User.objects.get(is_superuser=True)
-        email_addresses.append(superuser.email)
+        email_addresses.append(get_super_recipients())
         subject, from_email, to = subject, lively_settings.DEFAULT_FROM_EMAIL, email_addresses
         text_content = text_template.render(context)
         html_content = html_template.render(context)
@@ -69,5 +68,13 @@ def get_recipients(branch_id):
     recipients.append(assistant_director)
     recipients.append(director)
 
+    return recipients
+
+
+def get_super_recipients():
+    recipients = []
+    superusers = User.objects.filter(is_superuser=True)
+    for superuser in superusers:
+        recipients.append(superuser.email)
     return recipients
 
