@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from apps.area.models import Area
 from apps.branch.models import Branch
+from apps.branch.serializers import BranchSerializer
 from apps.city.models import City
 from apps.option.models import Option
 from apps.option.utils import generate_missing_options, generate_missing_sub_options, generate_option_groups, \
@@ -717,6 +718,7 @@ class ManageUserView(APIView):
             child_role = UserRolesEnum.ASSISTANT_DIRECTOR
 
         data = {
+            "parent": user.info.first().to_dict(),
             "parent_role": parent_role,
             "parent_id": user.id,
             "child_role": child_role,
