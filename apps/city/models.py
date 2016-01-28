@@ -12,7 +12,7 @@ class City(models.Model):
         verbose_name_plural = 'Cities'
 
     def __str__(self):
-        return self.name
+        return self.name + " " + self.region.name
 
     @staticmethod
     def get_if_exists(name):
