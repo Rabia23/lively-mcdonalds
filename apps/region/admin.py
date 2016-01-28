@@ -1,3 +1,8 @@
 from django.contrib import admin
+from apps.region.models import Region
 
-# Register your models here.
+
+class RegionAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Region, RegionAdmin)

@@ -80,7 +80,7 @@ class UserInfo(models.Model):
 
     @staticmethod
     def get_people_dict(role):
-        data = [user_info.to_dict() for user_info in UserInfo.objects.filter(role=role)]
+        data = [user_info.to_dict() for user_info in UserInfo.objects.filter(role=role).order_by("-created_at")]
         return data
 
     @staticmethod
@@ -88,7 +88,7 @@ class UserInfo(models.Model):
         data = []
         user_info = UserInfo.objects.filter(user_id=parent_id, role=parent_role).first()
         if user_info:
-            data = [user_info.to_dict() for user_info in UserInfo.objects.filter(role=role, parent_id=user_info.id)]
+            data = [user_info.to_dict() for user_info in UserInfo.objects.filter(role=role, parent_id=user_info.id).order_by("-created_at")]
         return data
 
     @staticmethod

@@ -1,3 +1,8 @@
 from django.contrib import admin
+from apps.branch.models import Branch
 
-# Register your models here.
+
+class BranchAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Branch, BranchAdmin)
