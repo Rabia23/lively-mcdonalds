@@ -8,7 +8,6 @@ from celery import Celery
 from django.contrib.auth.models import User
 from django.core.mail.message import EmailMultiAlternatives
 from django.template.loader import get_template
-from apps.review.models import Feedback
 from lively import settings as lively_settings
 from apps import constants
 from celery import shared_task
@@ -45,7 +44,7 @@ def send_negative_feedback_email(feedback_json):
 def send_mail(subject, context, recipients, text_template, html_template):
     if recipients:
         email_addresses = [recipient["email"] for recipient in recipients]
-        email_addresses.append(get_super_recipients())
+        email_addresses + get_super_recipients()
         subject, from_email, to = subject, lively_settings.DEFAULT_FROM_EMAIL, email_addresses
         text_content = text_template.render(context)
         html_content = html_template.render(context)
