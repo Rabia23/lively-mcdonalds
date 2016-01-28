@@ -381,7 +381,7 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
     "					<div class=\"progress-area\">\n" +
     "						<div class=\"progress-holder\" ng-repeat = \"dat in opportunity_data\" data-color = \"dat.colour\" data-data = \"opportunity_data\" opportunity-bar-background>\n" +
     "							<small><em>{{dat.name}}</em></small>\n" +
-    "							<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}} complaints</b></uib-progressbar></div>\n" +
+    "							<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}}</b></uib-progressbar></div>\n" +
     "					  </div>\n" +
     "					</div>\n" +
     "				</div>\n" +
@@ -475,47 +475,6 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
 
 angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/overall-rating/overall-rating.tpl.html",
-    "<!-- <div class=\"rating-section\" ng-class = \"{loading: show_loading}\">\n" +
-    "  <header class=\"heading-block\">\n" +
-    "    <h2>\n" +
-    "    	Timeline\n" +
-    "    	<span class=\"icon-help\" uib-popover=\"Representation of amount of QSC complains based on their respective time. Gives a handy daily/weekly/monthly/annual complains comparison.\" popover-trigger=\"mouseenter\" popover-placement=\"top\"></span>\n" +
-    "    </h2>\n" +
-    "    <div class=\"pull-right\">\n" +
-    "		<div class=\"calender-outer\">\n" +
-    "			<span class = \"calendar-holder pull-right\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "			  <input date-range-picker id=\"daterange-map\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" ng-disabled = \"!mainView\" readonly=\"true\"/>\n" +
-    "			  <i class=\"glyphicon glyphicon-calendar\" map-range-click ></i>\n" +
-    "			</span>\n" +
-    "		</div>\n" +
-    "   		<span class=\"select-holder\">\n" +
-    "   			<select ng-disabled = \"!mainView\" ng-model= \"type\" ng-change = \"axisChanged()\" id=\"timely\" custom-form>\n" +
-    "  				<option value = \"1\">Daily</option>\n" +
-    "  				<option value = \"2\">Weekly</option>\n" +
-    "  				<option value = \"3\">Monthly</option>\n" +
-    "  				<option value = \"4\">Yearly</option>\n" +
-    "			  </select>\n" +
-    "   		</span>\n" +
-    "    	<a ng-click = \"backToMain()\" ng-hide = \"mainView\">Back</a>\n" +
-    "    </div>\n" +
-    "  </header>\n" +
-    "  <div class=\"rating-holder\">\n" +
-    "    <ul>\n" +
-    "      <li ng-repeat = \"label in qsc_labels track by $index\">\n" +
-    "        <span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>\n" +
-    "        <a style = \"cursor:pointer\" ng-click = \"labelClick(label)\">{{label.value}}</a>\n" +
-    "      </li>\n" +
-    "    </ul>\n" +
-    "    <div class=\"graph-holder\" same-rating-height data-data = \"line1.data\">\n" +
-    "    	<div class=\"inner-holder\">\n" +
-    "    		<flot dataset=\"line1.data\" options=\"line1.options\" data-width = \"100%\" data-height = \"300px\" on-plot-click = \"optionClick(event, pos, item)\"></flot>\n" +
-    "    	</div>\n" +
-    "    </div>\n" +
-    "  </div>\n" +
-    "</div> -->\n" +
-    "\n" +
-    "\n" +
-    "\n" +
     "<div class=\"ibox float-e-margins\">\n" +
     "  <div class=\"ibox-title\">\n" +
     "      <h5>Timeline</h5>\n" +
@@ -695,13 +654,14 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "         <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}}</a>\n" +
     "       </span>\n" +
     "     </div>\n" +
-    "     \n" +
+    "\n" +
     "     <div class=\"regional-holder\">\n" +
     "     	<div class=\"regional-frame\">\n" +
     "			  <div class=\"morris-content-holder\" ng-repeat = \"area in donut_graph_data.objects track by $index\" ng-show = \"area_view == true\">\n" +
     "				<div class=\"morris-graph-holder\" same-region-height data-data=\"donut_graph_data.donutData[$index]\">\n" +
     "				   <div class=\"morris-holder\">\n" +
-    "					  <div ng-show=\"area.show_chart\" morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\" data-action=\"open(option,area,region,city,branch)\"></div>\n" +
+    "					  <div ng-show=\"area.show_chart\" morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\"\n" +
+    "            data-action=\"open(option,area,region,city,branch)\" style = \"height: 200px;\"></div>\n" +
     "					  <div ng-hide=\"area.show_chart\">No data available</div>\n" +
     "				   </div>\n" +
     "\n" +
@@ -714,7 +674,8 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "			  <div class=\"morris-content-holder\" ng-repeat = \"region in donut_regions_data.objects track by $index\" ng-show = \"area_view == false && regional_view == true\">\n" +
     "				<div class=\"morris-graph-holder\" same-region-height data-data=\"donut_regions_data.donutData[$index]\">\n" +
     "				   <div class=\"morris-holder\">\n" +
-    "					  <div ng-show=\"region.show_chart\" morris-chart data-data=\"donut_regions_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_regions_data.donutOptions[$index]\" data-action=\"open(option,selected_area,region,city,branch)\"></div>\n" +
+    "					  <div ng-show=\"region.show_chart\" morris-chart data-data=\"donut_regions_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_regions_data.donutOptions[$index]\"\n" +
+    "             data-action=\"open(option,selected_area,region,city,branch)\" style = \"height: 200px;\"></div>\n" +
     "					  <div ng-hide=\"region.show_chart\">No data available</div>\n" +
     "				   </div>\n" +
     "\n" +
@@ -727,7 +688,8 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "			  <div class=\"morris-content-holder\" ng-repeat = \"city in donut_cities_data.objects track by $index\" ng-show = \"area_view == false && regional_view == false && city_view == true\">\n" +
     "				<div class=\"morris-graph-holder\" same-city-height data-data = \"donut_cities_data.donutData[$index]\">\n" +
     "				   <div class=\"morris-holder\">\n" +
-    "					  <div ng-show=\"city.show_chart\" morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\" data-action=\"open(option,selected_area,selected_region,city,branch)\"></div>\n" +
+    "					  <div ng-show=\"city.show_chart\" morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\"\n" +
+    "            data-action=\"open(option,selected_area,selected_region,city,branch)\" style = \"height: 200px;\"></div>\n" +
     "					  <div ng-hide=\"city.show_chart\">No data available</div>\n" +
     "				   </div>\n" +
     "				  </div>\n" +
@@ -739,7 +701,8 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "			  <div class=\"morris-content-holder\" ng-repeat = \"branch in donut_branches_data.objects track by $index\" ng-show = \"area_view == false && regional_view == false && city_view == false\">\n" +
     "				<div class=\"morris-graph-holder\" same-branch-height  data-data = \"donut_branches_data.donutData[$index]\">\n" +
     "				   <div class=\"morris-holder\">\n" +
-    "					  <div ng-show=\"branch.show_chart\" morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\" data-action=\"open(option,selected_area,selected_region,selected_city,branch)\"></div>\n" +
+    "					  <div ng-show=\"branch.show_chart\" morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\"\n" +
+    "            data-action=\"open(option,selected_area,selected_region,selected_city,branch)\" style = \"height: 200px;\"></div>\n" +
     "					  <div ng-hide=\"branch.show_chart\">No data available</div>\n" +
     "				   </div>\n" +
     "				  </div>\n" +
@@ -1100,7 +1063,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "			</a>\n" +
     "		</div>\n" +
     "		<div class=\"modal-body\">\n" +
-    "			<div class=\"form-group\">\n" +
+    "			<div class=\"form-group\" ng-hide = \"edit_form\">\n" +
     "				<label class=\"col-sm-2 control-label\" for=\"firsName\">First Name</label>\n" +
     "				<div class=\"col-sm-10\">\n" +
     "					<input type=\"text\" id=\"first_name\" class=\"form-control\" placeholder=\"First Name\" ng-model = \"user.first_name\" name = \"first_name\"\n" +
@@ -1111,7 +1074,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "				</div>\n" +
     "\n" +
     "			</div>\n" +
-    "			<div class=\"form-group\">\n" +
+    "			<div class=\"form-group\" ng-hide = \"edit_form\">\n" +
     "				<label class=\"col-sm-2 control-label\" for=\"lastName\">Last Name</label>\n" +
     "				<div class=\"col-sm-10\">\n" +
     "					<input type=\"text\" id=\"last_name\" class=\"form-control\" placeholder=\"Last Name\" ng-model = \"user.last_name\" name = \"last_name\"\n" +
@@ -1122,7 +1085,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "				</div>\n" +
     "\n" +
     "			</div>\n" +
-    "			<div class=\"form-group\">\n" +
+    "			<div class=\"form-group\" ng-hide = \"edit_form\">\n" +
     "				<label class=\"col-sm-2 control-label\" for=\"userName\">User Name</label>\n" +
     "				<div class=\"col-sm-10\">\n" +
     "					<input type=\"text\" id=\"username\" class=\"form-control\" placeholder=\"User Name\" ng-model = \"user.username\" name = \"username\"\n" +
@@ -1168,7 +1131,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "				</div>\n" +
     "\n" +
     "			</div>\n" +
-    "			<div class=\"form-group\" ng-if = \"user.role == 2 || user.role == 3\">\n" +
+    "			<div class=\"form-group\" ng-if = \"user.role == 2 || user.role == 3\" ng-hide = \"edit_form\">\n" +
     "				<label class=\"col-sm-2 control-label\" for=\"branch\">Branch</label>\n" +
     "				<div class=\"col-sm-10\">\n" +
     "					<select id=\"branch\" class=\"barcode\" custom-form  ng-options = \"branch.id as branch.name for branch in branches track by branch.id\"\n" +
@@ -1177,7 +1140,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "					</select>\n" +
     "				</div>\n" +
     "			</div>\n" +
-    "			<div class=\"form-group\" ng-if = \"user.role == 4\">\n" +
+    "			<div class=\"form-group\" ng-if = \"user.role == 4\" ng-hide = \"edit_form\">\n" +
     "				<label class=\"col-sm-2 control-label\" for=\"code\">Regions</label>\n" +
     "				<div class=\"col-sm-10\">\n" +
     "					<select id=\"region\" class=\"barcode\" custom-form  ng-options = \"region.id as region.name for region in regions track by region.id\"\n" +
@@ -1227,19 +1190,19 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "										</tr>\n" +
     "									</thead>\n" +
     "									<tbody>\n" +
-    "										<tr ng-repeat = \"user in users\">\n" +
+    "										<tr ng-repeat = \"user in users track by $index\">\n" +
     "											<td>{{user.first_name}} {{user.last_name}}</td>\n" +
     "                      <td>{{user.username}}</td>\n" +
     "                      <td>{{user.email}}</td>\n" +
     "                      <td>{{user.phone_no}}</td>\n" +
     "                      <td>{{user.branch.name}}</td>\n" +
     "											<td>\n" +
-    "												<a ng-click = \"edit(user)\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a  class=\"fa fa-trash-o\"></a>\n" +
+    "												<a ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a ng-click = \"deactivate(user, $index)\"class=\"fa fa-trash-o\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "									</tbody>\n" +
-    "									<tfoot style = \"display: none\">\n" +
+    "									<tfoot>\n" +
     "										<tr>\n" +
     "											<td colspan=\"7\">\n" +
     "												<ul class=\"pagination pull-right\"></ul>\n" +

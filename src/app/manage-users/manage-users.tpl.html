@@ -27,19 +27,19 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr ng-repeat = "user in users">
+										<tr ng-repeat = "user in users track by $index">
 											<td>{{user.first_name}} {{user.last_name}}</td>
                       <td>{{user.username}}</td>
                       <td>{{user.email}}</td>
                       <td>{{user.phone_no}}</td>
                       <td>{{user.branch.name}}</td>
 											<td>
-												<a ng-click = "edit(user)" class="fa fa-pencil-square-o"></a>
-												<a  class="fa fa-trash-o"></a>
+												<a ng-click = "edit(user, $index)" class="fa fa-pencil-square-o"></a>
+												<a ng-click = "deactivate(user, $index)"class="fa fa-trash-o"></a>
 											</td>
 										</tr>
 									</tbody>
-									<tfoot style = "display: none">
+									<tfoot>
 										<tr>
 											<td colspan="7">
 												<ul class="pagination pull-right"></ul>

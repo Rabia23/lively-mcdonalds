@@ -25,10 +25,17 @@
       child_role = data.child_role;
     });
 
+    $scope.deactivate = function(user){
+      ManageApi.delete_user(user.id).$promise.then(function(data){
+        console.log("deactivated");
+        console.log(data);
+      });
+    };
+
     $scope.open = function (size) {
       var modalInstance = $uibModal.open({
         templateUrl: 'manage-users/edit-user-modal.tpl.html',
-        controller: 'ModalInstanceCtrl',
+        controller: 'ModalAddInstanceCtrl',
         size: 1200,
         resolve: {
           parent_id: function () {
@@ -40,9 +47,13 @@
         }
       });
       modalInstance.result.then(function (user) {
-        ManageApi.manage_users().$promise.then(function(data){
-          $scope.users = data.children;
-        });
+        console.log("added");
+        console.log(user);
+        $scope.users.push(user);
+        //$scope.$apply();
+        // ManageApi.manage_users().$promise.then(function(data){
+        //   $scope.users = data.children;
+        // });
       });
     };
 
@@ -68,10 +79,7 @@
         }
       });
 
-      editInstance.result.then(function (user) {
-        ManageApi.manage_users().$promise.then(function(data){
-          $scope.users = data.children;
-        });
+      editInstance.result.then(function (result) {
       });
     };
 

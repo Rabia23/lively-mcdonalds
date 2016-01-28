@@ -7,7 +7,7 @@
 			</a>
 		</div>
 		<div class="modal-body">
-			<div class="form-group">
+			<div class="form-group" ng-hide = "edit_form">
 				<label class="col-sm-2 control-label" for="firsName">First Name</label>
 				<div class="col-sm-10">
 					<input type="text" id="first_name" class="form-control" placeholder="First Name" ng-model = "user.first_name" name = "first_name"
@@ -18,7 +18,7 @@
 				</div>
 
 			</div>
-			<div class="form-group">
+			<div class="form-group" ng-hide = "edit_form">
 				<label class="col-sm-2 control-label" for="lastName">Last Name</label>
 				<div class="col-sm-10">
 					<input type="text" id="last_name" class="form-control" placeholder="Last Name" ng-model = "user.last_name" name = "last_name"
@@ -29,7 +29,7 @@
 				</div>
 
 			</div>
-			<div class="form-group">
+			<div class="form-group" ng-hide = "edit_form">
 				<label class="col-sm-2 control-label" for="userName">User Name</label>
 				<div class="col-sm-10">
 					<input type="text" id="username" class="form-control" placeholder="User Name" ng-model = "user.username" name = "username"
@@ -75,7 +75,7 @@
 				</div>
 
 			</div>
-			<div class="form-group" ng-if = "user.role == 2 || user.role == 3">
+			<div class="form-group" ng-if = "user.role == 2 || user.role == 3" ng-hide = "edit_form">
 				<label class="col-sm-2 control-label" for="branch">Branch</label>
 				<div class="col-sm-10">
 					<select id="branch" class="barcode" custom-form  ng-options = "branch.id as branch.name for branch in branches track by branch.id"
@@ -84,7 +84,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group" ng-if = "user.role == 4">
+			<div class="form-group" ng-if = "user.role == 4" ng-hide = "edit_form">
 				<label class="col-sm-2 control-label" for="code">Regions</label>
 				<div class="col-sm-10">
 					<select id="region" class="barcode" custom-form  ng-options = "region.id as region.name for region in regions track by region.id"
