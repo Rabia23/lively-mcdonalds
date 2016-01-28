@@ -178,7 +178,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "              </div>\n" +
     "            </div>\n" +
     "            <div class=\"row\">\n" +
-    "              <div class=\"col-xs-12 oppotunities\">\n" +
+    "              <div class=\"col-xs-12 opportunities\">\n" +
     "                <ui-view name = \"opportunities\"></ui-view>\n" +
     "              </div>\n" +
     "            </div>\n" +
