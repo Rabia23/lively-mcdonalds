@@ -14,13 +14,13 @@ body{
 	text-align: center;
 }
 
-.morris-block-holder .morris-graph-holder .morris-holder{
-	height: 100px;
-	padding: 0 3px;
-}
+.morris-block-holder .morris-graph-holder .morris-holder{padding: 0 3px;}
 
 .regional-holder,
-.morris-holder{white-space: nowrap;}
+.morris-holder{
+	white-space: nowrap;
+	min-height: 100px;
+}
 .regional-holder{
 	min-height: 200px;
 	text-align: center;
@@ -31,12 +31,10 @@ body{
 	display: inline-block;
 	vertical-align: middle;
 	content: '';
-	min-height: 100%;
+	min-height: inherit;
 	width: 1px;
 	overflow: hidden;
 }
-
-.regional-holder:after{min-height: inherit;}
 
 .regional-holder > .regional-frame,
 .morris-holder > *{
@@ -536,6 +534,8 @@ body{
 	padding: 13px 20px;
 	display: block;
 	margin: 0;
+	position: relative;
+	z-index: 5;
 	border-bottom: 1px solid #e7eaec;
 }
 
@@ -1208,46 +1208,46 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .same-height-parent .ibox.detail-block .ibox-content{padding: 10px;}
 
 .progress-area {
-  clear: both;
-  overflow: hidden;
+	clear: both;
+	overflow: hidden;
 }
 .progress-area small {
-  display: block;
-  color: #282828;
-  font-size: 100%;
-  margin: 0 0 2px;
-  text-transform: capitalize;
+	display: block;
+	color: #282828;
+	font-size: 100%;
+	margin: 0 0 2px;
+	text-transform: capitalize;
 }
 .progress-area small em {
-  display: block;
-  font-style: normal;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.1em;
+	display: block;
+	font-style: normal;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1.1em;
 }
 .progress-area .progress {
-  box-shadow: none;
-  -webkit-box-shadow: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
 }
 
 .progress-area .progress-section .progress-bar {
-  position: relative;
-  box-shadow: none;
-  -webkit-box-shadow: none;
+	position: relative;
+	box-shadow: none;
+	-webkit-box-shadow: none;
 }
 .progress-area .progress-section .progress-bar span {
-  font-size: 10px;
-  line-height: 12px;
-  position: absolute;
-  left: 100%;
-  top: 100%;
-  width: 32px;
-  display: block;
-  border-right: 1px solid #fff;
-  margin: 1px 0 0 -32px;
-  padding: 0 3px 0 0;
-  color: #929292;
-  text-align: right;
+	font-size: 10px;
+	line-height: 12px;
+	position: absolute;
+	left: 100%;
+	top: 100%;
+	width: 32px;
+	display: block;
+	border-right: 1px solid #fff;
+	margin: 1px 0 0 -32px;
+	padding: 0 3px 0 0;
+	color: #929292;
+	text-align: right;
 }
 .progress-area .progress-section .progress-bar.progress-bar-yellow span {border-right-color: #ffc300;}
 .progress-area .progress-section .progress-bar.progress-bar-lilac span {border-right-color: #8e44ad;}
@@ -1255,7 +1255,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .progress-area .progress-bar {
 	border-radius: 0;
 	-webkit-border-radius: 0;
-	height: 6px;
+	height: 100%;
 	background: #622a79;
 }
 .progress-area .progress-bar.progress-bar-yellow {
@@ -1270,6 +1270,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	background: #3498db;
 	color: #3498db;
 }
+.opportunities .progress-area .progress{height: 8px;}
 .progress-area .progress {
 	overflow: visible;
 	margin: 0;
@@ -1281,7 +1282,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	-webkit-border-radius: 0;
 }
 .progress-area .progress-holder {padding: 0 0 27px;}
-.opportunities .progress-area .progress-holder {padding: 0 0 15px;}
+.opportunities .progress-area .progress-holder {padding: 0 0 12px;}
 .progress-area .progress-holder .progress {
 	position: relative;
 	box-shadow: none !important;
@@ -1306,9 +1307,10 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .opportunities .progress-area .progress-holder .progress-bar b{
 	left: 100%;
 	top: -5px;
-	padding: 0 0 0 2px;
-	text-align: right;
-	width: 37px;
+	padding: 0 2px;
+	text-align: center;
+	width: 50px;
+	color: #000;
 }
 .progress-area .progress-holder.yellow {color: #ffc300;}
 .progress-area .progress-holder.yellow .progress-bar {
@@ -1326,7 +1328,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	color: #3498db;
 }
 .progress-area .progress-holder .progress-block {position: relative;}
-.opportunities .progress-area .progress-holder .progress-block {padding: 0 37px 0 0;}
+.opportunities .progress-area .progress-holder .progress-block {padding: 0 50px 0 0;}
 
 .progress-container.Quality .progress-holder .progress-bar {background: #431051;}
 .progress-container.Quality .progress-holder .progress-bar b, .progress-container.Quality .progress-holder .progress-bar span {color: #431051;}
@@ -1438,12 +1440,12 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .ibox-title h5{margin: 3px 0 0;}
 
 .info-form .modal-header .close{margin-top: -10px;}
-
 .info-form .form-error-message{
 	clear: both;
 	margin: 2px 0 0;
 }
 
+.info-form .modal-header:after,
 .info-form:after,
 .info-form .form-group:after{
 	display: block;
@@ -1518,6 +1520,9 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	visibility: visible;
 	opacity: 0.6;
 }
+
+.map-section .ibox-content,
+.timeline-section .ibox-content{min-height: 200px;}
 
 @media screen and (min-width: 768px) {
 	.legends-holder{padding: 15px 20px 0;}
@@ -1724,7 +1729,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	}
 	.same-height-block{margin-bottom: 0;}
 	.same-height-block.add{margin-bottom: 25px;}
-	.morris-block-holder .morris-graph-holder .morris-holder{height: 120px;}
+	.morris-block-holder .morris-graph-holder .morris-holder{min-height: 120px;}
 	.blocks-holder{height: auto !important;}
 }
 
@@ -1934,10 +1939,13 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	.modal-1200{width: auto;}
 	.morris-content-outer .morris-content-holder{width: 50%;}
 	#wrapper h1{
-		font-size: 23px;
+		font-size: 22px;
 		font-weight: 400;
 	}
-	.header-caption h1{font-weight: 400;}
+	.header-caption h1{
+		font-weight: 400;
+		margin: 0 10px 0 0;
+	}
 	.morris-block-holder .morris-content-holder{
 		width: 33.33%;
 		padding: 0 5px 10px;
@@ -1947,6 +1955,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 		border-width: 0 0 1px 4px;
 		padding: 8px;
 	}
+	.comment-block > .nav-opener{padding: 8px;}
 	.comments-drop .heading-holder .holder{padding: 8px 13px;}
 	.comments-drop .icon-holder i{
 		font-size: 50px;
@@ -1956,7 +1965,6 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 		font-size: 20px;
 		margin: 0 0 5px;
 	}
-	.comment-block{top: 133px;}
 	.tab-links{font-size: 12px;}
 	.tooltip{
 		display: none !important;
