@@ -7,7 +7,7 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
 
 
 .controller( 'OverallFeedbackCtrl', function DashboardController( $scope, Graphs, Global, overallFeedbackChartService ) {
-  
+
   $scope.show_loading = false;
   $scope.show_labels = true;
 
@@ -34,7 +34,8 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
           //$scope.datePicker.date.endDate = null;
         }
 
-    }
+    },
+    opens: "left"
   };
 
   function show_graph(start_date, end_date){
@@ -67,7 +68,3 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
       }
   };
 });
-
- 
-
-

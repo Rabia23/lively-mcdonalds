@@ -38,7 +38,8 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
           //$scope.datePicker.date.endDate = null;
         }
 
-    }
+    },
+    opens: "left"
   };
   $scope.showSegmentData = function(region_id,city_id,branch_id,option_id,string) {
     Graphs.segmentation_rating(region_id, city_id, branch_id, option_id, $scope.start_date, $scope.end_date).$promise.then(function (segment_data) {
@@ -92,12 +93,12 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
 
 
   $scope.onOptionSelect = function(string,option_id){
-    if(string === 'All'){ 
+    if(string === 'All'){
       $scope.class = "";
       $scope.showCategoryData();
       $scope.showSegmentData();
     }
-    else{ 
+    else{
       $scope.class = string;
       $scope.showCategoryData("","","",option_id,string);
       $scope.showSegmentData("","","",option_id,string);

@@ -33,7 +33,8 @@
           //$scope.datePicker.date.endDate = null;
         }
 
-    }
+    },
+    opens: "left"
   };
 
   $scope.area_view = true;
@@ -492,7 +493,7 @@
         action: '&'
       },
       link: function(scope, ele, attrs) {
-        
+
         var morris_chart_modal = null;
 
         scope.$watch('data', function(watchedData) {

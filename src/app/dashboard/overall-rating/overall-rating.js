@@ -30,7 +30,8 @@ angular.module( 'livefeed.dashboard.overall_rating', [
       'cancel.daterangepicker': function(ev, picker){
         //resetDates();
       }
-    }
+    },
+    opens: "left"
   };
 
    $scope.start_date = null;
@@ -275,6 +276,3 @@ angular.module( 'livefeed.dashboard.overall_rating', [
       }
     };
   });
-
-
-

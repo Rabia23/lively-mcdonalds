@@ -43,14 +43,15 @@ angular.module( 'livefeed.dashboard.feedback_map', [
           });
           $scope.show_loading = false;
         });
-      
+
       },
       'cancel.daterangepicker': function(ev, picker){
         //$scope.datePicker.date.startDate = null;
         //$scope.datePicker.date.endDate = null;
       }
 
-    }
+    },
+    opens: "left"
   };
 
   $scope.zoom = 5;
@@ -77,7 +78,7 @@ angular.module( 'livefeed.dashboard.feedback_map', [
     link: function(scope, ele, attrs) {
       ele.bind("click", function(event){
         $(ele).prev().trigger("click");
-      });      
+      });
     }
   };
 })

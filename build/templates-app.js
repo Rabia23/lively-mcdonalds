@@ -164,6 +164,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
 
 angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/dashboard.tpl.html",
+    "\n" +
     "<div id=\"wrapper\">\n" +
     "\n" +
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
@@ -207,7 +208,8 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                  <div class=\"w1\">\n" +
     "                                  	<div class=\"w2\">\n" +
     "                                  		<div class=\"ibox-content\">\n" +
-    "                                        <h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
+    "                                        <h1 class=\"no-margins\" ng-show = \"chart_data.region\">{{chart_data.region.count}}</h1>\n" +
+    "                                        <h1 class=\"no-margins\" ng-hide = \"chart_data.region\">No Data Available</h1>\n" +
     "										                  </div>\n" +
     "                                  	</div>\n" +
     "                                  </div>\n" +
@@ -226,7 +228,9 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                 	<div class=\"w1\">\n" +
     "                                 		<div class=\"w2\">\n" +
     "                                 			<div class=\"ibox-content\">\n" +
-    "											<h1 class=\"no-margins\">{{chart_data.city.count}}</h1>\n" +
+    "											<h1 class=\"no-margins\" ng-show = \"chart_data.city\">{{chart_data.city.count}}</h1>\n" +
+    "                      <h1 class=\"no-margins\" ng-hide = \"chart_data.city\">No Data Available</h1>\n" +
+    "\n" +
     "										</div>\n" +
     "                                 		</div>\n" +
     "                                 	</div>\n" +
@@ -247,7 +251,9 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                  <div class=\"w1\">\n" +
     "                                  	<div class=\"w2\">\n" +
     "                                  		<div class=\"ibox-content\">\n" +
-    "											<h1 class=\"no-margins\">{{chart_data.branch.count}}</h1>\n" +
+    "											<h1 class=\"no-margins\" ng-show = \"chart_data.branch\">{{chart_data.branch.count}}</h1>\n" +
+    "                      <h1 class=\"no-margins\" ng-hide = \"chart_data.branch\">No Data Available</h1>\n" +
+    "\n" +
     "										</div>\n" +
     "                                  	</div>\n" +
     "                                  </div>\n" +
@@ -266,7 +272,9 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                                  <div class=\"w1\">\n" +
     "                                  	<div class=\"w2\">\n" +
     "                                  		<div class=\"ibox-content\">\n" +
-    "											<h1 class=\"no-margins\">{{chart_data.gro.count}}</h1>\n" +
+    "											<h1 class=\"no-margins\" ng-show = \"chart_data.gro\">{{chart_data.gro.count}}</h1>\n" +
+    "                      <h1 class=\"no-margins\" ng-hide = \"chart_data.gro\">No Data Available</h1>\n" +
+    "\n" +
     "										</div>\n" +
     "                                  	</div>\n" +
     "                                  </div>\n" +
@@ -553,7 +561,7 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "       	</div>\n" +
     "      </div>\n" +
     "      <div class=\"btn-holder\">\n" +
-    "        <a class=\"btn btn-info pull-right btn-close\" ng-click = \"open()\" ng-disabled = \"feedback_count == 0\">View All</a>\n" +
+    "        <button class=\"btn btn-info pull-right btn-close\" ng-click = \"open()\" ng-disabled = \"feedback_count == 0\">View All</button>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
@@ -577,7 +585,8 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "                <li>\n" +
     "                    <div class=\"calender-outer\">\n" +
     "					  <span class=\"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "						   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
+    "						   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\"\n" +
+    "               ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
     "						  <i class=\"fa fa-calendar\" map-range-click></i>\n" +
     "					  </span>\n" +
     "				  </div>\n" +
@@ -696,15 +705,15 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
   $templateCache.put("dashboard/top-concern/top-concern.tpl.html",
     "<div class=\"row inner-row add\">\n" +
     "  <div class=\"col-xs-12\">\n" +
-    "    <div class=\"ibox float-e-margins float-e-margin-none\">\n" +
+    "    <div class=\"ibox float-e-margins float-e-margin-none loading\">\n" +
     "      <div class=\"title-outer\">\n" +
     "        <div class=\"ibox-title\">\n" +
     "          <h5>Top Concerns</h5>\n" +
     "        </div>\n" +
     "      </div>\n" +
     "      <div class=\"content-holder\" top-concerns data-data = \"data\">\n" +
-    "         <div id=\"piechart\" style=\"width:100%; height:300px;\" ng-if = \"concern_list.length != 0\"></div>\n" +
-    "          <div ng-if = \"concern_list.length == 0\">\n" +
+    "         <div id=\"piechart\" style=\"width:100%; height:300px;\" ng-hide = \"all_zero\"></div>\n" +
+    "          <div ng-show = \"all_zero\" style=\"width:100%; height:300px;\">\n" +
     "            No Data Available\n" +
     "          </div>\n" +
     "        <!--<div class=\"ibox-content\">-->\n" +

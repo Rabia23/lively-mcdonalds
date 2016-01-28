@@ -1,3 +1,4 @@
+
 <div id="wrapper">
 
   <ui-view name = "sidebar"></ui-view>
@@ -41,7 +42,8 @@
                                   <div class="w1">
                                   	<div class="w2">
                                   		<div class="ibox-content">
-                                        <h1 class="no-margins">{{chart_data.region.count}}</h1>
+                                        <h1 class="no-margins" ng-show = "chart_data.region">{{chart_data.region.count}}</h1>
+                                        <h1 class="no-margins" ng-hide = "chart_data.region">No Data Available</h1>
 										                  </div>
                                   	</div>
                                   </div>
@@ -60,7 +62,9 @@
                                  	<div class="w1">
                                  		<div class="w2">
                                  			<div class="ibox-content">
-											<h1 class="no-margins">{{chart_data.city.count}}</h1>
+											<h1 class="no-margins" ng-show = "chart_data.city">{{chart_data.city.count}}</h1>
+                      <h1 class="no-margins" ng-hide = "chart_data.city">No Data Available</h1>
+
 										</div>
                                  		</div>
                                  	</div>
@@ -81,7 +85,9 @@
                                   <div class="w1">
                                   	<div class="w2">
                                   		<div class="ibox-content">
-											<h1 class="no-margins">{{chart_data.branch.count}}</h1>
+											<h1 class="no-margins" ng-show = "chart_data.branch">{{chart_data.branch.count}}</h1>
+                      <h1 class="no-margins" ng-hide = "chart_data.branch">No Data Available</h1>
+
 										</div>
                                   	</div>
                                   </div>
@@ -100,7 +106,9 @@
                                   <div class="w1">
                                   	<div class="w2">
                                   		<div class="ibox-content">
-											<h1 class="no-margins">{{chart_data.gro.count}}</h1>
+											<h1 class="no-margins" ng-show = "chart_data.gro">{{chart_data.gro.count}}</h1>
+                      <h1 class="no-margins" ng-hide = "chart_data.gro">No Data Available</h1>
+
 										</div>
                                   	</div>
                                   </div>
