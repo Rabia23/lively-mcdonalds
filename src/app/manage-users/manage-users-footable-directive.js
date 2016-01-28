@@ -8,10 +8,16 @@
         users: "="
       },
       link: function(scope, ele, attrs){
-        scope.$watch('users', function(watchedData) {
+        scope.$watchCollection('users', function(watchedData) {
           if(watchedData !== undefined){
             console.log("in the watch if");
-            $(ele).footable();
+            if ($(ele).hasClass("footable-loaded")){
+              $('.footable').trigger('footable_redraw');
+            }
+             else{
+              $(ele).footable();
+            }
+
           }
         });
 

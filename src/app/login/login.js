@@ -59,9 +59,10 @@ angular.module( 'livefeed.login', [
 
   $scope.login = function(valid){
     $scope.submitted = true;
-    if(valid){   
+    if(valid){
       Authentication.login($scope.authenticate).$promise.then(function(data){
         if(data.status){
+          $rootScope.token = data.token;
           TokenHandler.store_token(data.token, data.username);
           $state.go("dashboard");
         }
@@ -69,7 +70,7 @@ angular.module( 'livefeed.login', [
           var message = data.message;
           Flash.create('danger', message, 'show-alert');
         }
-      
+
       });
     }
   };

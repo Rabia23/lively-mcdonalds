@@ -6,10 +6,10 @@ angular.module( 'livefeed.live.api', [
 
 
 
-.factory('Api', ['$resource','apiLinks','_','TokenHandler','$http',  function($resource, apiLinks, _, TokenHandler, $http) {
-  
-  var token = TokenHandler.get_token();
-  
+.factory('Api', ['$resource','apiLinks','_','TokenHandler','$http','$rootScope',  function($resource, apiLinks, _, TokenHandler, $http, $rootScope) {
+
+
+
   function Api() {
     this.service = $resource(apiLinks.staging, {},
                   {
@@ -19,6 +19,7 @@ angular.module( 'livefeed.live.api', [
   }
 
   Api.prototype.live_dashboard = function(){
+    var token = $rootScope.token || TokenHandler.get_token();
     return this.service.live_dashboard({token: token});
   };
 

@@ -33,6 +33,12 @@ angular.module( 'livefeed', [
     $rootScope.currentState = toState.name;
   });
 
+  $rootScope.logout = function(){
+    Auth.is_logged_out();
+    $rootScope.show_username = false;
+    $state.go('login');
+  };
+
 })
 
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location, $rootScope, offlineService ) {

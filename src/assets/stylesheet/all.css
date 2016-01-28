@@ -390,8 +390,11 @@ body{
 	box-shadow: -3px 0 7px rgba(0,0,0,.24);
 }
 
-.comments-drop .comments-holder{
-	overflow: auto;
+.comments-drop .comments-holder .jcf-scrollable-wrapper,
+.comments-drop .comments-holder .jcf-scrollable{
+	height: 100% !important;
+	width: 100% !important;
+	position: relative;
 }
 
 .nav-active .comment-block > .nav-opener{
@@ -731,18 +734,25 @@ body.login{background: #eee !important;}
 	min-height: 200px !important;
 	height: auto !important;
 }
+.comments-holder .jcf-scrollbar-dec,
+.comments-holder .jcf-scrollbar-inc,
 .modal-1200 .modal-body .jcf-scrollbar-dec,
 .modal-1200 .modal-body .jcf-scrollbar-inc{
 	width: 0 !important;
 	height: 0 !important;
 }
+.comments-holder .jcf-scrollbar-inc,
 .modal-1200 .modal-body .table-container .jcf-scrollbar-inc{height: 8px !important;}
 .modal-1200 .modal-body .jcf-scrollbar-horizontal,
 .modal-1200 .modal-body .jcf-scrollbar-vertical{
 	background: none !important;
 	height: 7px;
 }
+.comments-holder .jcf-scrollbar-vertical,
 .modal-1200 .modal-body .jcf-scrollbar-vertical{width: 7px;}
+
+.comments-holder .jcf-scrollbar-vertical .jcf-scrollbar-handle,
+.comments-holder .jcf-scrollbar-horizontal .jcf-scrollbar-handle,
 .modal-1200 .modal-body .jcf-scrollbar-vertical .jcf-scrollbar-handle,
 .modal-1200 .modal-body .jcf-scrollbar-horizontal .jcf-scrollbar-handle{
 	background: rgba(146,146,146,0.2);
@@ -750,6 +760,7 @@ body.login{background: #eee !important;}
 	-webkit-border-radius: 5px;
 	height: 7px;
 }
+.comments-holder .jcf-scrollbar-vertical .jcf-scrollbar-handle,
 .modal-1200 .modal-body .jcf-scrollbar-vertical .jcf-scrollbar-handle{width: 7px;}
 .modal-1200 .modal-body .table-container{
 	position: relative;
@@ -764,6 +775,8 @@ body.login{background: #eee !important;}
 	content: "";
 	clear: both;
 }
+
+.comments-holder .jcf-scrollable-wrapper .jcf-scrollbar.jcf-scrollbar-vertical,
 .modal-1200 .modal-body .table-block > .jcf-scrollable-wrapper > .jcf-scrollbar.jcf-scrollbar-vertical{
 	position: absolute;
 	right: 3px;
