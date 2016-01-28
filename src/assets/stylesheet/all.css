@@ -1280,7 +1280,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	border-radius: 0;
 	-webkit-border-radius: 0;
 }
-.progress-area .progress-holder {padding: 0 0 23px;}
+.progress-area .progress-holder {padding: 0 0 27px;}
+.opportunities .progress-area .progress-holder {padding: 0 0 15px;}
 .progress-area .progress-holder .progress {
 	position: relative;
 	box-shadow: none !important;
@@ -1641,8 +1642,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 }
 
 @media screen and (min-width: 1200px) {
-	.blocks-holder > .row{height: 40%;}
-	.blocks-holder > .row:first-child{height: 60%;}
+	.blocks-holder > .row{height: 35%;}
+	.blocks-holder > .row:first-child{height: 65%;}
 	
 	.blocks-holder > .row > div,
 	.blocks-holder > .row > div > *,
@@ -1705,6 +1706,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 }
 
 @media screen and (max-width: 1450px) {
+	.opportunities .progress-area .progress-holder,
 	.progress-area .progress-holder{padding: 0 0 28px;}
 	.same-height-block.add{height: auto !important;}
 	.same-height-parent .col-lg-6{
