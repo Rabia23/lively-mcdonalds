@@ -26,7 +26,6 @@ urlpatterns = patterns('',
                        url(r'^livedashboard/$', views.LiveDashboardView.as_view()),
                        url(r'^manage_user/$', views.ManageUserView.as_view()),
                        url(r'^opportunity_analysis/$', views.OpportunityAnalysisView.as_view()),
-                       url(r'^branch_auth/$', views.BranchAuthView.as_view()),
 )
 
 
