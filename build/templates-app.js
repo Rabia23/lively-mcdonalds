@@ -24,11 +24,11 @@ angular.module("common/header.tpl.html", []).run(["$templateCache", function($te
     "      <a class=\"navbar-minimalize minimalize-styl-2 btn btn-primary\" toggle-menu>\n" +
     "        <i class=\"fa fa-bars\"></i>\n" +
     "      </a>\n" +
-    "      <form role=\"search\" class=\"navbar-form-custom\" action=\"search_results.html\">\n" +
+    "      <!-- <form role=\"search\" class=\"navbar-form-custom\" action=\"search_results.html\">\n" +
     "        <div class=\"form-group\">\n" +
     "          <input type=\"text\" placeholder=\"Search for something...\" class=\"form-control\" name=\"top-search\" id=\"top-search\">\n" +
     "        </div>\n" +
-    "      </form>\n" +
+    "      </form> -->\n" +
     "    </div>\n" +
     "    <ul class=\"nav navbar-top-links navbar-right\">\n" +
     "      <li>\n" +
@@ -53,7 +53,8 @@ angular.module("common/header.tpl.html", []).run(["$templateCache", function($te
     "  <div class=\"header-caption animated fadeInRight\">\n" +
     "    <h1>Customer Centric Approch</h1>\n" +
     "  </div>\n" +
-    "</div>");
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("common/sidebar.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -67,16 +68,17 @@ angular.module("common/sidebar.tpl.html", []).run(["$templateCache", function($t
     "        </div>\n" +
     "      </div>\n" +
     "			<ul class=\"nav metismenu\" id=\"side-menu\">\n" +
-    "				<li>\n" +
+    "				<li ng-class = \"{'active': currentState == 'dashboard'}\">\n" +
     "					<a ui-sref = \"dashboard\"><i class=\"fa fa-home\"></i> <span class=\"nav-label\">Dashboard</span></a>\n" +
     "				</li>\n" +
-    "				<li>\n" +
+    "				<li ng-class = \"{'active': currentState == 'users'}\">\n" +
     "					<a ui-sref=\"users\"><i class=\"fa fa-user\"></i> <span class=\"nav-label\">Manage Users</span></a>\n" +
     "				</li>\n" +
     "			</ul>\n" +
     "    </div>\n" +
     "	</div>\n" +
-    "</nav>");
+    "</nav>\n" +
+    "");
 }]);
 
 angular.module("coupon/coupon.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -661,8 +663,9 @@ angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$temp
     "<div class=\"modal-body info-area\">\n" +
     "  <a ng-click = \"ok()\" class=\"pull-right close-btn-font\"><i class=\"fa fa-times\"></i></a>\n" +
     "  <h2>Regional Analysis</h2>\n" +
-    "	<a style = \"cursor:pointer;\" class=\"btn-slider fa fa-angle-left\" ng-click=\"leftClickDisabled || previous(area,region,city,branch,sqc_data)\"></a>\n" +
-    "	<a style = \"cursor:pointer;\" class=\"btn-slider fa fa-angle-right\" ng-click=\"rightClickDisabled || next(area,region,city,branch,sqc_data)\"></a>\n" +
+    "  {{leftClickDisabled}}\n" +
+    "	<a style = \"cursor:pointer;\" class=\"btn-slider fa fa-angle-left\" ng-click=\"leftClickDisabled || previous(area,region,city,branch,sqc_data)\" ng-hide = \"leftClickDisabled\"></a>\n" +
+    "	<a style = \"cursor:pointer;\" class=\"btn-slider fa fa-angle-right\" ng-click=\"rightClickDisabled || next(area,region,city,branch,sqc_data)\" ng-hide = \"rightClickDisabled\"></a>\n" +
     "\n" +
     "  <div class=\"graph-container\">\n" +
     "  	<div class=\"holder\">\n" +
@@ -673,7 +676,8 @@ angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$temp
     "  	</div>\n" +
     "  </div>\n" +
     "  <h1 style = \"text-align: center;\">{{ sqc.name }}</h1>\n" +
-    "</div>");
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("dashboard/statistics/statistics.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -1067,10 +1071,12 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "				<label class=\"col-sm-2 control-label\" for=\"phoneno\">Phone No.</label>\n" +
     "				<div class=\"col-sm-10\">\n" +
     "					<input type=\"tel\" id=\"phone_no\" class=\"form-control\" placeholder=\"Phone No.\" ng-model = \"user.phone_no\" name = \"phone_no\"\n" +
-    "					required = true>\n" +
+    "					required = true ng-pattern=\"/^[0-9]+$/\" >\n" +
     "					<div ng-show=\"UserForm.phone_no.$error.required && (!UserForm.phone_no.$pristine || submitted == true)\"\n" +
     "					class=\"form-error-message pull-left\">Phone no is required.\n" +
     "					</div>\n" +
+    "					<div ng-show=\"UserForm.phone_no.$error.pattern && (!UserForm.phone_no.$pristine || submitted == true)\" \n" +
+    "					class=\"form-error-message pull-left\">Wrong number pattern.</div>\n" +
     "				</div>\n" +
     "\n" +
     "			</div>\n" +
@@ -1078,9 +1084,12 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "				<label class=\"col-sm-2 control-label\" for=\"branch\">Branch</label>\n" +
     "				<div class=\"col-sm-10\">\n" +
     "					<select id=\"branch\" class=\"barcode\" custom-form  ng-options = \"branch.id as branch.name for branch in branches track by branch.id\"\n" +
-    "					ng-model = \"user.branch_id\" name = \"branch\">\n" +
+    "					ng-model = \"user.branch_id\" name = \"branch\" required = true>\n" +
     "						<option class=\"hideme\" value = \"\">Please Select a Branch</option>\n" +
     "					</select>\n" +
+    "					<div ng-show=\"UserForm.branch.$error.required && (!UserForm.branch.$pristine || submitted == true)\"\n" +
+    "					class=\"form-error-message pull-left\"> Branch is required.\n" +
+    "					</div>\n" +
     "				</div>\n" +
     "			</div>\n" +
     "			<div class=\"form-group\" ng-if = \"user.role == 4\" ng-hide = \"edit_form\">\n" +
@@ -1090,6 +1099,9 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "					ng-model = \"user.region_id\" name = \"region\" required=\"true\">\n" +
     "						<option class=\"hideme\" value = \"\">Please Select a Region</option>\n" +
     "					</select>\n" +
+    "					<div ng-show=\"UserForm.region.$error.required && (!UserForm.region.$pristine || submitted == true)\"\n" +
+    "					class=\"form-error-message pull-left\"> Region is required.\n" +
+    "					</div>\n" +
     "				</div>\n" +
     "			</div>\n" +
     "		</div>\n" +
