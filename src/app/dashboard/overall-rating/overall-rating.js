@@ -135,6 +135,8 @@ angular.module( 'livefeed.dashboard.overall_rating', [
       link: function(scope, ele, attrs) {
         scope.$watch('data', function(watchedData) {
           if(watchedData !== undefined){
+            console.log("in the if watch data");
+            console.log(scope.data);
             window.initSameHeight();
           }
         });
@@ -266,7 +268,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                       ],
                       "dataProvider": data[1]
                   });
-
+                  window.initSameHeight();
                 chart.addListener("clickGraphItem", function(event){
                   scope.$apply(scope.action({option_object: event}));
                 });

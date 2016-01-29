@@ -12,7 +12,7 @@ angular.module('livefeed.overall_feedback.chart', [
 
             options: {
               barShowStroke : false,
-              barValueSpacing : 60,
+              barValueSpacing : 10,
               scaleShowVerticalLines: false,
               customTooltips: false,
               tooltipEvents: ["mousemove", "touchstart", "touchmove"],
@@ -22,6 +22,7 @@ angular.module('livefeed.overall_feedback.chart', [
               scaleOverride: true,
               scaleSteps: 5,
               scaleStepWidth: Math.ceil(max/5)
+
             }
         };
       }

@@ -131,14 +131,14 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "      <div class=\"content-holder\">\n" +
     "          <div class=\"ibox-content add\">\n" +
     "              <div class=\"chart-outer\">\n" +
-    "				  <div class=\"progress-container\">\n" +
-    "				  	<div class=\"progress-area\">\n" +
-    "				  		<div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" progress-bar-background>\n" +
-    "					<small><em>{{dat.name}}</em></small>\n" +
-    "					<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}} complaints</b></uib-progressbar></div>\n" +
-    "			  </div>\n" +
-    "				  	</div>\n" +
-    "				  </div>\n" +
+    "                <div class=\"progress-container\">\n" +
+    "                  <div class=\"progress-area\" progress-bar-spacing data-data = \"category_data\">\n" +
+    "                    <div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" progress-bar-background>\n" +
+    "                      <small><em>{{dat.name}}</em></small>\n" +
+    "                      <div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}} complaints</b></uib-progressbar></div>\n" +
+    "                    </div>\n" +
+    "                  </div>\n" +
+    "                </div>\n" +
     "              </div>\n" +
     "              <div class=\"list-holder\">\n" +
     "                  <div class=\"row\">\n" +
@@ -159,7 +159,8 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "              </div>\n" +
     "          </div>\n" +
     "      </div>\n" +
-    "  </div>");
+    "  </div>\n" +
+    "");
 }]);
 
 angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -334,12 +335,12 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "	  </div>\n" +
     "  </div>\n" +
     "  <div class=\"ibox-content\" same-map-height>\n" +
-    "	  <div class=\"block-holder\">\n" +
+    "\n" +
     "		  <div id=\"world-map\">\n" +
     "		  	<div map-lazy-load=\"http://maps.google.com/maps/api/js\">\n" +
     "			  	<map center=\"30,70\" zoom=\"{{zoom}}\"></map>\n" +
     "				</div>\n" +
-    "		  </div>\n" +
+    "		  \n" +
     "	  </div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -679,7 +680,6 @@ angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$temp
     "<div class=\"modal-body info-area\">\n" +
     "  <a ng-click = \"ok()\" class=\"pull-right close-btn-font\"><i class=\"fa fa-times\"></i></a>\n" +
     "  <h2>Regional Analysis</h2>\n" +
-    "  {{leftClickDisabled}}\n" +
     "	<a style = \"cursor:pointer;\" class=\"btn-slider fa fa-angle-left\" ng-click=\"leftClickDisabled || previous(area,region,city,branch,sqc_data)\" ng-hide = \"leftClickDisabled\"></a>\n" +
     "	<a style = \"cursor:pointer;\" class=\"btn-slider fa fa-angle-right\" ng-click=\"rightClickDisabled || next(area,region,city,branch,sqc_data)\" ng-hide = \"rightClickDisabled\"></a>\n" +
     "\n" +
@@ -712,7 +712,7 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
   $templateCache.put("dashboard/top-concern/top-concern.tpl.html",
     "<div class=\"row inner-row add\">\n" +
     "  <div class=\"col-xs-12\">\n" +
-    "    <div class=\"ibox float-e-margins float-e-margin-none loading\">\n" +
+    "    <div class=\"ibox float-e-margins float-e-margin-none\">\n" +
     "      <div class=\"title-outer\">\n" +
     "        <div class=\"ibox-title\">\n" +
     "          <h5>Top Concerns</h5>\n" +
