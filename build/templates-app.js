@@ -31,11 +31,11 @@ angular.module("common/header.tpl.html", []).run(["$templateCache", function($te
     "      </form> -->\n" +
     "    </div>\n" +
     "    <ul class=\"nav navbar-top-links navbar-right\">\n" +
-    "      <li class=\"dashboard\">\n" +
+    "      <!-- <li class=\"dashboard\">\n" +
     "        <a style = \"cursor:pointer;\" ui-sref = \"live\">\n" +
     "           Live Dashboard\n" +
     "        </a>\n" +
-    "      </li>\n" +
+    "      </li> -->\n" +
     "      <li>\n" +
     "        <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">{{username}}</span></span>\n" +
     "      </li>\n" +
@@ -1102,6 +1102,24 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "					class=\"form-error-message pull-left\">Wrong number pattern.</div>\n" +
     "				</div>\n" +
     "\n" +
+    "			</div>\n" +
+    "			<div class=\"form-group\" ng-if = \"user.role == 3\">\n" +
+    "				<label class=\"col-sm-2 control-label\" for=\"branch\">Branch</label>\n" +
+    "				<div class=\"col-sm-10\">\n" +
+    "						<select id=\"branch\" class=\"barcode\" custom-form  ng-options = \"branch.id as branch.name for branch in branches track by branch.id\"\n" +
+    "					ng-model = \"user.branch_id\" name = \"branch\">\n" +
+    "							<option class=\"hideme\" value = \"\">Please Select a Branch</option>\n" +
+    "					</select>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "			<div class=\"form-group\" ng-if = \"user.role == 4\">\n" +
+    "				<label class=\"col-sm-2 control-label\" for=\"code\">Regions</label>\n" +
+    "				<div class=\"col-sm-10\">\n" +
+    "					<select id=\"region\" class=\"barcode\" custom-form  ng-options = \"region.id as region.name for region in regions track by region.id\"\n" +
+    "					ng-model = \"user.region_id\" name = \"region\" required=\"true\">\n" +
+    "						<option class=\"hideme\" value = \"\">Please Select a Region</option>\n" +
+    "					</select>\n" +
+    "				</div>\n" +
     "			</div>\n" +
     "		</div>\n" +
     "		<div class=\"modal-footer\">\n" +

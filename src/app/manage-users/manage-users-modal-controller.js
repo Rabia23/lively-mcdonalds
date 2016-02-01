@@ -19,7 +19,7 @@
       $scope.regions = data;
     });
 
-    Filters.Branches().$promise.then(function(data){
+    Filters.Branches(null, region_id).$promise.then(function(data){
       $scope.branches = data;
     });
 
@@ -27,6 +27,7 @@
       if(valid){
         $scope.submitted = true;
         ManageApi.add_user($scope.user).$promise.then(function(data){
+          console.log("response");
           console.log(data);
           $scope.ok();
         });
@@ -53,14 +54,6 @@
     $scope.edit_form = true;
 
     $scope.submitted = false;
-
-    Filters.allRegions().$promise.then(function(data){
-      $scope.regions = data;
-    });
-
-    Filters.Branches().$promise.then(function(data){
-      $scope.branches = data;
-    });
 
 
     $scope.add = function(valid){
