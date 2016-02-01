@@ -13,17 +13,20 @@
 
 
     ManageApi.manage_users().$promise.then(function(data){
-      console.log(data);
       $scope.user_list = Enum.get_user_label(data.child_role);
       $scope.users = data.children;
       $scope.parent_id = data.parent_id;
       $scope.child_role = data.child_role;
+      if(data.parent.branch){
+        $scope.branch_id = data.parent.branch.id;
+      }
+      if(data.parent.region){
+        $scope.region_id = data.parent.region.id;
+      }
     });
 
     $scope.deactivate = function(user){
       ManageApi.delete_user(user.id).$promise.then(function(data){
-        console.log("deactivated");
-        console.log(data);
       });
     };
 
@@ -38,6 +41,12 @@
           },
           child_role: function(){
             return $scope.child_role;
+          },
+          branch_id: function(){
+            return $scope.branch_id;
+          },
+          region_id: function(){
+            return $scope.region_id;
           }
         }
       });

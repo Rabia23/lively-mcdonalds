@@ -1091,34 +1091,10 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "					<div ng-show=\"UserForm.phone_no.$error.required && (!UserForm.phone_no.$pristine || submitted == true)\"\n" +
     "					class=\"form-error-message pull-left\">Phone no is required.\n" +
     "					</div>\n" +
-    "					<div ng-show=\"UserForm.phone_no.$error.pattern && (!UserForm.phone_no.$pristine || submitted == true)\" \n" +
+    "					<div ng-show=\"UserForm.phone_no.$error.pattern && (!UserForm.phone_no.$pristine || submitted == true)\"\n" +
     "					class=\"form-error-message pull-left\">Wrong number pattern.</div>\n" +
     "				</div>\n" +
     "\n" +
-    "			</div>\n" +
-    "			<div class=\"form-group\" ng-if = \"user.role == 2 || user.role == 3\" ng-hide = \"edit_form\">\n" +
-    "				<label class=\"col-sm-2 control-label\" for=\"branch\">Branch</label>\n" +
-    "				<div class=\"col-sm-10\">\n" +
-    "					<select id=\"branch\" class=\"barcode\" custom-form  ng-options = \"branch.id as branch.name for branch in branches track by branch.id\"\n" +
-    "					ng-model = \"user.branch_id\" name = \"branch\" required = true>\n" +
-    "						<option class=\"hideme\" value = \"\">Please Select a Branch</option>\n" +
-    "					</select>\n" +
-    "					<div ng-show=\"UserForm.branch.$error.required && (!UserForm.branch.$pristine || submitted == true)\"\n" +
-    "					class=\"form-error-message pull-left\"> Branch is required.\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
-    "			<div class=\"form-group\" ng-if = \"user.role == 4\" ng-hide = \"edit_form\">\n" +
-    "				<label class=\"col-sm-2 control-label\" for=\"code\">Regions</label>\n" +
-    "				<div class=\"col-sm-10\">\n" +
-    "					<select id=\"region\" class=\"barcode\" custom-form  ng-options = \"region.id as region.name for region in regions track by region.id\"\n" +
-    "					ng-model = \"user.region_id\" name = \"region\" required=\"true\">\n" +
-    "						<option class=\"hideme\" value = \"\">Please Select a Region</option>\n" +
-    "					</select>\n" +
-    "					<div ng-show=\"UserForm.region.$error.required && (!UserForm.region.$pristine || submitted == true)\"\n" +
-    "					class=\"form-error-message pull-left\"> Region is required.\n" +
-    "					</div>\n" +
-    "				</div>\n" +
     "			</div>\n" +
     "		</div>\n" +
     "		<div class=\"modal-footer\">\n" +

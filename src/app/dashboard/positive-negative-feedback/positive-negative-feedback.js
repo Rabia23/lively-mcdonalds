@@ -12,7 +12,6 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     $scope.comments = _.map(data.feedbacks,  function(data){
       return commentService.getComment(data);
     });
-    //console.log($scope.comments);
   });
 
   $scope.open = function (size) {
@@ -86,7 +85,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     link: function(scope, ele, attrs){
       window.initMobileNav();
       window.initPositionFixed();
-      ele.bind("click", function(event){  
+      ele.bind("click", function(event){
         assignHeight();
       });
 

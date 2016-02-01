@@ -7,8 +7,6 @@ angular.module( 'livefeed.dashboard.opportunities', [
     $scope.start_date = null;
     $scope.end_date = null;
     Graphs.opportunity_analysis("","","",$scope.start_date, $scope.end_date).$promise.then(function(opportunity_data){
-      console.log("opportunity data");
-      console.log(opportunity_data);
       $scope.opportunity_data = _.map(opportunity_data.feedbacks,  function(data,index){
           return {
               id: data.option_id,

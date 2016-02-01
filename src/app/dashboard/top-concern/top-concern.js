@@ -36,8 +36,6 @@ angular.module( 'livefeed.dashboard.top_concern', [
         scope.$watch('data', function(watchedData) {
           if(watchedData !== undefined){
             var data = scope.data;
-            console.log("top concerns");
-            console.log(data);
             chart = AmCharts.makeChart("piechart",
               {
                 "type": "pie",

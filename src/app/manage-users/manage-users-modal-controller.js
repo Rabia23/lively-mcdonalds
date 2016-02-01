@@ -3,9 +3,15 @@
 
 
 
-  .controller('ModalAddInstanceCtrl', function ($scope, $uibModalInstance, parent_id, child_role, ManageApi, Enum, Filters) {
+  .controller('ModalAddInstanceCtrl', function ($scope, $uibModalInstance, parent_id, child_role,branch_id, region_id, ManageApi, Enum, Filters) {
 
     $scope.user = {role: child_role, parent_id: parent_id};
+    if(branch_id){
+      $scope.user.branch_id = branch_id;
+    }
+    if(region_id){
+      $scope.user.region_id = region_id;
+    }
 
     $scope.submitted = false;
 

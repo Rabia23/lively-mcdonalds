@@ -143,7 +143,6 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
             var length = $(".business-segment").find(".chart-outer").find(".progress-container").find(".progress-area").children().length;
             var child_height = height/length;
             _.each(children, function(value, index){
-              console.log(value);
               $(value).css("height", child_height);
             });
           }, time);
