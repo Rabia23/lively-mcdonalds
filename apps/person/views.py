@@ -133,7 +133,10 @@ class UserView(APIView):
             if user:
                 user_info = user.info.first()
                 if user_info:
-                    user_info.is_active = False
+                    if user_info.is_active:
+                        user_info.is_active = False
+                    else:
+                        user_info.is_active = True
                     user_info.save()
                     return Response(True)
 
