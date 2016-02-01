@@ -561,7 +561,7 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "       		<ul class=\"comments-list list-unstyled\">\n" +
     "			  <li ng-if = \"feedback_count != 0\" ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.data.is_negative, positive: !comment.data.is_negative, processed: comment.action_string == 'Processed', deferred: comment.action_string == 'Deferred'}\">\n" +
     "				  <p>{{comment.data.comment}}</p>\n" +
-    "				  <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "				  <time datetime=\"{{comment.date_time}}\">{{comment.date_time}}</time>\n" +
     "			  </li>\n" +
     "			  <li ng-if = \"feedback_count == 0\">\n" +
     "				No Data Available\n" +
@@ -1064,7 +1064,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "				<label class=\"col-sm-2 control-label\" for=\"password\">Password</label>\n" +
     "				<div class=\"col-sm-10\">\n" +
     "					<input type=\"password\" id=\"password\" class=\"form-control\" placeholder=\"Password\" ng-model = \"user.password\" name=\"password\"\n" +
-    "					required = true autocomplete=\"off\">\n" +
+    "					autocomplete=\"off\" ng-required = \"!edit_form\">\n" +
     "					<div ng-show=\"UserForm.password.$error.required && (!UserForm.password.$pristine || submitted == true)\"\n" +
     "					class=\"form-error-message pull-left\">Password is required.\n" +
     "					</div>\n" +
