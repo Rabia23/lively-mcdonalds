@@ -104,6 +104,7 @@ angular.module( 'livefeed.dashboard', [
  */
 .controller( 'DashboardCtrl', function DashboardController( $scope, $state, $location, $anchorScroll, Filters, $rootScope, TokenHandler, Auth, Graphs) {
 
+  $scope.show_loading = true;
   if (Auth.is_logged_in()) {
     $rootScope.show_username = true;
     $rootScope.username = TokenHandler.get_username();
@@ -119,6 +120,7 @@ angular.module( 'livefeed.dashboard', [
 
   Graphs.top_charts().$promise.then(function(data){
     $scope.chart_data = data;
+    $scope.show_loading = false;
   });
 
 });

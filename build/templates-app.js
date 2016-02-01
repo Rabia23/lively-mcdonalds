@@ -106,7 +106,7 @@ angular.module("coupon/coupon.tpl.html", []).run(["$templateCache", function($te
 
 angular.module("dashboard/category-performance-analysis/category-performance-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/category-performance-analysis/category-performance-analysis.tpl.html",
-    "<div class=\"ibox float-e-margins\">\n" +
+    "<div class=\"ibox float-e-margins\" ng-class=\"{loading: show_loading}\">\n" +
     "      <div class=\"title-outer\">\n" +
     "          <div class=\"ibox-title\">\n" +
     "              <h5>Business Segment Breakdown</h5>\n" +
@@ -171,150 +171,148 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "<div id=\"wrapper\">\n" +
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
-    "    <div class=\"page-holder\">\n" +
-    "    	<ui-view name = \"header\"></ui-view>\n" +
-    "		<ui-view name = \"positive_negative_feedback\"></ui-view>\n" +
-    "		<div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
-    "		  <div class=\"row same-height-parent\">\n" +
-    "			<div class=\"col-lg-6 col-lg-push-6\">\n" +
-    "			  <div class=\"same-height-block blocks-holder\">\n" +
-    "				<div class=\"row\">\n" +
-    "				  <div class=\"col-xs-12 business-segment\">\n" +
-    "					<ui-view name = \"category_performance_analysis\"></ui-view>\n" +
-    "				  </div>\n" +
-    "				</div>\n" +
-    "				<div class=\"row\">\n" +
-    "				  <div class=\"col-xs-12 opportunities\">\n" +
-    "					<ui-view name = \"opportunities\"></ui-view>\n" +
-    "				  </div>\n" +
-    "				</div>\n" +
-    "			  </div>\n" +
-    "			</div>\n" +
-    "			<div class=\"col-lg-6 col-lg-pull-6\">\n" +
-    "			  <div class=\"same-height-block\">\n" +
-    "				<div class=\"row\">\n" +
-    "				  <div class=\"col-md-8 same-height-col\">\n" +
-    "					<ui-view name = \"overall_feedback\"></ui-view>\n" +
-    "					<ui-view name = \"top_concern\"></ui-view>\n" +
-    "				  </div>\n" +
-    "				  <div class=\"col-md-4 same-height-col\">\n" +
-    "					  <div class=\"row inner-row\">\n" +
-    "						  <div class=\"col-sm-6 col-md-12\">\n" +
-    "							  <div class=\"ibox float-e-margins detail-block\">\n" +
-    "								  <div class=\"title-outer\">\n" +
-    "									  <div class=\"ibox-title\"><h5>Top Region</h5></div>\n" +
-    "								  </div>\n" +
-    "								  <div class=\"content-holder\">\n" +
-    "									  <div class=\"w1\">\n" +
-    "										<div class=\"w2\">\n" +
-    "											<div class=\"ibox-content\">\n" +
-    "												<div class=\"data-holder\" ng-show = \"chart_data.region\">\n" +
-    "													<h4 class=\"no-margins\">{{chart_data.region.region_name}} Got</h4>\n" +
-    "													<h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
+    "    <ui-view name = \"header\"></ui-view>\n" +
+    "    <ui-view name = \"positive_negative_feedback\"></ui-view>\n" +
+    "    <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
+    "      <div class=\"row same-height-parent\">\n" +
+    "        <div class=\"col-lg-6 col-lg-push-6\">\n" +
+    "          <div class=\"same-height-block blocks-holder\">\n" +
+    "            <div class=\"row\">\n" +
+    "              <div class=\"col-xs-12 business-segment\">\n" +
+    "                <ui-view name = \"category_performance_analysis\"></ui-view>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"row\">\n" +
+    "              <div class=\"col-xs-12 opportunities\">\n" +
+    "                <ui-view name = \"opportunities\"></ui-view>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-lg-6 col-lg-pull-6\">\n" +
+    "          <div class=\"same-height-block\">\n" +
+    "            <div class=\"row\">\n" +
+    "              <div class=\"col-md-8 same-height-col\">\n" +
+    "                <ui-view name = \"overall_feedback\"></ui-view>\n" +
+    "                <ui-view name = \"top_concern\"></ui-view>\n" +
+    "              </div>\n" +
+    "              <div class=\"col-md-4 same-height-col\">\n" +
+    "                  <div class=\"row inner-row\">\n" +
+    "                      <div class=\"col-sm-6 col-md-12\">\n" +
+    "                          <div class=\"ibox float-e-margins detail-block\" ng-class=\"{loading: show_loading}\">\n" +
+    "                              <div class=\"title-outer\">\n" +
+    "                                  <div class=\"ibox-title\"><h5>Top Region</h5></div>\n" +
+    "                              </div>\n" +
+    "                              <div class=\"content-holder\">\n" +
+    "                                  <div class=\"w1\">\n" +
+    "                                  	<div class=\"w2\">\n" +
+    "                                  		<div class=\"ibox-content\">\n" +
+    "											<div class=\"data-holder\" ng-show = \"chart_data.region\">\n" +
+    "												<h4 class=\"no-margins\">{{chart_data.region.region_name}} Got</h4>\n" +
+    "												<h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
+    "												<h5 class=\"no-margins\">Feedbacks</h5>\n" +
+    "											</div>\n" +
+    "											<div class=\"message-holder\" ng-hide = \"chart_data.region\">\n" +
+    "												<h2 class=\"no-margins\">No Data Available</h2>\n" +
+    "											</div>\n" +
+    "										</div>\n" +
+    "                                  	</div>\n" +
+    "                                  </div>\n" +
+    "                              </div>\n" +
+    "                          </div>\n" +
+    "                      </div>\n" +
+    "                      <div class=\"col-sm-6 col-md-12\">\n" +
+    "                          <div class=\"ibox float-e-margins detail-block\" ng-class=\"{loading: show_loading}\">\n" +
+    "                              <div class=\"title-outer\">\n" +
+    "                                  <div class=\"ibox-title\"><h5>Top City</h5></div>\n" +
+    "                              </div>\n" +
+    "                              <div class=\"content-holder\">\n" +
+    "                                 	<div class=\"w1\">\n" +
+    "                                 		<div class=\"w2\">\n" +
+    "                                 			<div class=\"ibox-content\">\n" +
+    "												<div class=\"data-holder\" ng-show = \"chart_data.city\">\n" +
+    "													<h4 class=\"no-margins\">{{chart_data.city.city_name}} Got</h4>\n" +
+    "													<h1 class=\"no-margins\">{{chart_data.city.count}}</h1>\n" +
     "													<h5 class=\"no-margins\">Feedbacks</h5>\n" +
     "												</div>\n" +
-    "												<div class=\"message-holder\" ng-hide = \"chart_data.region\">\n" +
-    "													<h2 class=\"no-margins\">No Data Available</h2>\n" +
+    "												<div class=\"message-holder\" ng-hide = \"chart_data.city\">\n" +
+    "                      								<h2 class=\"no-margins\">No Data Available</h2>\n" +
     "												</div>\n" +
     "											</div>\n" +
-    "										</div>\n" +
-    "									  </div>\n" +
-    "								  </div>\n" +
-    "							  </div>\n" +
-    "						  </div>\n" +
-    "						  <div class=\"col-sm-6 col-md-12\">\n" +
-    "							  <div class=\"ibox float-e-margins detail-block\">\n" +
-    "								  <div class=\"title-outer\">\n" +
-    "									  <div class=\"ibox-title\"><h5>Top City</h5></div>\n" +
-    "								  </div>\n" +
-    "								  <div class=\"content-holder\">\n" +
-    "										<div class=\"w1\">\n" +
-    "											<div class=\"w2\">\n" +
-    "												<div class=\"ibox-content\">\n" +
-    "													<div class=\"data-holder\" ng-show = \"chart_data.city\">\n" +
-    "														<h4 class=\"no-margins\">{{chart_data.city.city_name}} Got</h4>\n" +
-    "														<h1 class=\"no-margins\">{{chart_data.city.count}}</h1>\n" +
-    "														<h5 class=\"no-margins\">Feedbacks</h5>\n" +
-    "													</div>\n" +
-    "													<div class=\"message-holder\" ng-hide = \"chart_data.city\">\n" +
-    "														<h2 class=\"no-margins\">No Data Available</h2>\n" +
-    "													</div>\n" +
-    "												</div>\n" +
+    "                                 		</div>\n" +
+    "                                 	</div>\n" +
+    "                              </div>\n" +
+    "                          </div>\n" +
+    "                      </div>\n" +
+    "                  </div>\n" +
+    "                  <div class=\"row inner-row add\">\n" +
+    "                      <div class=\"col-sm-6 col-md-12\">\n" +
+    "                          <div class=\"ibox float-e-margins detail-block\" ng-class=\"{loading: show_loading}\">\n" +
+    "                              <div class=\"title-outer\">\n" +
+    "                                  <div class=\"ibox-title\"><h5>Top Branch</h5></div>\n" +
+    "                              </div>\n" +
+    "                              <div class=\"content-holder\">\n" +
+    "                                  <div class=\"w1\">\n" +
+    "                                  	<div class=\"w2\">\n" +
+    "                                  		<div class=\"ibox-content\">\n" +
+    "                      						<div class=\"data-holder\" ng-show = \"chart_data.branch\">\n" +
+    "                      							<h4 class=\"no-margins\">{{chart_data.branch.branch_name}} Got</h4>\n" +
+    "                      							<h1 class=\"no-margins\">{{chart_data.branch.count}}</h1>\n" +
+    "                      							<h5 class=\"no-margins\">Feedbacks</h5>\n" +
+    "                      						</div>\n" +
+    "                      						<div class=\"message-holder\" ng-hide = \"chart_data.branch\">\n" +
+    "                      							<h2 class=\"no-margins\">No Data Available</h2>\n" +
     "											</div>\n" +
     "										</div>\n" +
-    "								  </div>\n" +
-    "							  </div>\n" +
-    "						  </div>\n" +
-    "					  </div>\n" +
-    "					  <div class=\"row inner-row add\">\n" +
-    "						  <div class=\"col-sm-6 col-md-12\">\n" +
-    "							  <div class=\"ibox float-e-margins detail-block\">\n" +
-    "								  <div class=\"title-outer\">\n" +
-    "									  <div class=\"ibox-title\"><h5>Top Branch</h5></div>\n" +
-    "								  </div>\n" +
-    "								  <div class=\"content-holder\">\n" +
-    "									  <div class=\"w1\">\n" +
-    "										<div class=\"w2\">\n" +
-    "											<div class=\"ibox-content\">\n" +
-    "												<div class=\"data-holder\" ng-show = \"chart_data.branch\">\n" +
-    "													<h4 class=\"no-margins\">{{chart_data.branch.branch_name}} Got</h4>\n" +
-    "													<h1 class=\"no-margins\">{{chart_data.branch.count}}</h1>\n" +
-    "													<h5 class=\"no-margins\">Feedbacks</h5>\n" +
-    "												</div>\n" +
-    "												<div class=\"message-holder\" ng-hide = \"chart_data.branch\">\n" +
-    "													<h2 class=\"no-margins\">No Data Available</h2>\n" +
-    "												</div>\n" +
+    "                                  	</div>\n" +
+    "                                  </div>\n" +
+    "                              </div>\n" +
+    "                          </div>\n" +
+    "                      </div>\n" +
+    "                      <div class=\"col-sm-6 col-md-12\">\n" +
+    "                          <div class=\"ibox float-e-margins detail-block\" ng-class=\"{loading: show_loading}\">\n" +
+    "                              <div class=\"title-outer\">\n" +
+    "                                  <div class=\"ibox-title\"><h5>Top GRO</h5></div>\n" +
+    "                              </div>\n" +
+    "                              <div class=\"content-holder\">\n" +
+    "                                  <div class=\"w1\">\n" +
+    "                                  	<div class=\"w2\">\n" +
+    "                                  		<div class=\"ibox-content\">\n" +
+    "                                  			<div class=\"data-holder\" ng-show = \"chart_data.gro\">\n" +
+    "                                  				<h4 class=\"no-margins\">{{chart_data.gro.gro.gro_name}} Got</h4>\n" +
+    "												<h1 class=\"no-margins\">{{chart_data.gro.count}}</h1>\n" +
+    "                                 				<h5 class=\"no-margins\">Feedbacks</h5>\n" +
+    "                                  			</div>\n" +
+    "                      						<div class=\"message-holder\" ng-hide = \"chart_data.gro\">\n" +
+    "                      							<h2 class=\"no-margins\">No Data Available</h2>\n" +
     "											</div>\n" +
     "										</div>\n" +
-    "									  </div>\n" +
-    "								  </div>\n" +
-    "							  </div>\n" +
-    "						  </div>\n" +
-    "						  <div class=\"col-sm-6 col-md-12\">\n" +
-    "							  <div class=\"ibox float-e-margins detail-block\">\n" +
-    "								  <div class=\"title-outer\">\n" +
-    "									  <div class=\"ibox-title\"><h5>Top GRO</h5></div>\n" +
-    "								  </div>\n" +
-    "								  <div class=\"content-holder\">\n" +
-    "									  <div class=\"w1\">\n" +
-    "										<div class=\"w2\">\n" +
-    "											<div class=\"ibox-content\">\n" +
-    "												<div class=\"data-holder\" ng-show = \"chart_data.gro\">\n" +
-    "													<h4 class=\"no-margins\">{{chart_data.gro.gro.gro_name}} Got</h4>\n" +
-    "													<h1 class=\"no-margins\">{{chart_data.gro.count}}</h1>\n" +
-    "													<h5 class=\"no-margins\">Feedbacks</h5>\n" +
-    "												</div>\n" +
-    "												<div class=\"message-holder\" ng-hide = \"chart_data.gro\">\n" +
-    "													<h2 class=\"no-margins\">No Data Available</h2>\n" +
-    "												</div>\n" +
-    "											</div>\n" +
-    "										</div>\n" +
-    "									  </div>\n" +
-    "								  </div>\n" +
-    "							  </div>\n" +
-    "						  </div>\n" +
-    "					  </div>\n" +
-    "				  </div>\n" +
-    "				</div>\n" +
-    "			  </div>\n" +
-    "			</div>\n" +
-    "		  </div>\n" +
-    "		  <div class=\"row\">\n" +
-    "			<div class=\"col-xs-12 patch-section\">\n" +
-    "			  <ui-view name = \"regional_analysis\"></ui-view>\n" +
-    "			</div>\n" +
-    "		  </div>\n" +
-    "		  <div class=\"row same-height-parent\">\n" +
-    "			<div class=\"col-lg-6 map-section\">\n" +
-    "			  <ui-view name = \"feedback_map\"></ui-view>\n" +
-    "			</div>\n" +
-    "			<div class=\"col-lg-6 timeline-section\">\n" +
-    "			  <ui-view name = \"overall_rating\"></ui-view>\n" +
-    "			</div>\n" +
-    "		  </div>\n" +
-    "		</div>\n" +
+    "                                  	</div>\n" +
+    "                                  </div>\n" +
+    "                              </div>\n" +
+    "                          </div>\n" +
+    "                      </div>\n" +
+    "                  </div>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"row\">\n" +
+    "        <div class=\"col-xs-12 patch-section\">\n" +
+    "          <ui-view name = \"regional_analysis\"></ui-view>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"row same-height-parent\">\n" +
+    "        <div class=\"col-lg-6 map-section\">\n" +
+    "          <ui-view name = \"feedback_map\"></ui-view>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-lg-6 timeline-section\">\n" +
+    "          <ui-view name = \"overall_rating\"></ui-view>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
     "    </div>\n" +
-    "  	<ui-view name = \"footer\"></ui-view>\n" +
+    "    <ui-view name = \"footer\"></ui-view>\n" +
     "  </div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -323,7 +321,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
 
 angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/feedback-map/feedback-map.tpl.html",
-    "<div class=\"ibox float-e-margins\">\n" +
+    "<div class=\"ibox float-e-margins\" ng-class=\"{loading: show_loading}\">\n" +
     "  <div class=\"ibox-title\">\n" +
     "	  <h5>Benchmark Map</h5>\n" +
     "	  <div class=\"ibox-tools\">\n" +
@@ -354,7 +352,7 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
 
 angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/opportunities/opportunities.tpl.html",
-    "<div class=\"ibox float-e-margins float-e-margin-none\">\n" +
+    "<div class=\"ibox float-e-margins float-e-margin-none\" ng-class=\"{loading: show_loading}\">\n" +
     "  <div class=\"title-outer\">\n" +
     "	<div class=\"ibox-title\">\n" +
     "	  <h5>McDonald's Opportunities</h5>\n" +
@@ -388,7 +386,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
   $templateCache.put("dashboard/overall-feedback/overall-feedback.tpl.html",
     "<div class=\"row inner-row rating\">\n" +
     "    <div class=\"col-xs-12\">\n" +
-    "        <div class=\"ibox float-e-margins\">\n" +
+    "        <div class=\"ibox float-e-margins\" ng-class=\"{loading: show_loading}\">\n" +
     "            <div class=\"title-outer\">\n" +
     "                <div class=\"ibox-title\">\n" +
     "                    <h5>Overall Rating</h5>\n" +
@@ -406,7 +404,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "                     </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "            <div class=\"content-holder\" ng-class=\"{loading: show_loading}\">\n" +
+    "            <div class=\"content-holder\">\n" +
     "               <div class=\"content-inner\">\n" +
     "               	<div class=\"legends-outer\">\n" +
     "					 <div class=\"legends-holder\">\n" +
@@ -437,7 +435,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
 
 angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/overall-rating/overall-rating.tpl.html",
-    "<div class=\"ibox float-e-margins\">\n" +
+    "<div class=\"ibox float-e-margins\" ng-class=\"{loading: show_loading}\">\n" +
     "  <div class=\"ibox-title\">\n" +
     "      <h5>Timeline</h5>\n" +
     "      <div class=\"ibox-tools\">\n" +
@@ -586,7 +584,7 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
 
 angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/regional-analysis/regional-analysis.tpl.html",
-    "<div class=\"ibox float-e-margins\">\n" +
+    "<div class=\"ibox float-e-margins\" ng-class=\"{loading: show_loading}\">\n" +
     "    <div class=\"ibox-title\">\n" +
     "        <h5 ng-show = \"area_view\">{{title}}</h5>\n" +
     "        <h5 ng-show = \"area_view == false && regional_view == true\">{{selected_area.name}}'s Region Analysis</h5>\n" +
@@ -690,7 +688,7 @@ angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$temp
     "	<a style = \"cursor:pointer;\" class=\"btn-slider fa fa-angle-left\" ng-click=\"leftClickDisabled || previous(area,region,city,branch,sqc_data)\" ng-hide = \"leftClickDisabled\"></a>\n" +
     "	<a style = \"cursor:pointer;\" class=\"btn-slider fa fa-angle-right\" ng-click=\"rightClickDisabled || next(area,region,city,branch,sqc_data)\" ng-hide = \"rightClickDisabled\"></a>\n" +
     "\n" +
-    "  <div class=\"graph-container\">\n" +
+    "  <div class=\"graph-container\" ng-class=\"{loading: show_loading}\">\n" +
     "  	<div class=\"holder\">\n" +
     "  		<div class=\"graph-holder\">\n" +
     "		<div morris-chart-modal data-data=\"donut_subgraph_data.donutData\" data-type=\"donut\" data-options=\"donut_subgraph_data.donutOptions\"></div>\n" +
@@ -719,7 +717,7 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
   $templateCache.put("dashboard/top-concern/top-concern.tpl.html",
     "<div class=\"row inner-row add\">\n" +
     "  <div class=\"col-xs-12\">\n" +
-    "    <div class=\"ibox float-e-margins float-e-margin-none\">\n" +
+    "    <div class=\"ibox float-e-margins float-e-margin-none\" ng-class=\"{loading: show_loading}\">\n" +
     "      <div class=\"title-outer\">\n" +
     "        <div class=\"ibox-title\">\n" +
     "          <h5>Top Concerns</h5>\n" +
@@ -992,7 +990,7 @@ angular.module("login/login.tpl.html", []).run(["$templateCache", function($temp
     "	</div>\n" +
     "	<div class=\"section\">\n" +
     "		<div class=\"login-block\">\n" +
-    "			<div class=\"form-holder\">\n" +
+    "			<div class=\"form-holder\" ng-class=\"{loading: show_loading}\">\n" +
     "				<div flash-message=\"5000\" ></div> \n" +
     "				<div class=\"inner-holder\">\n" +
     "					<h3>Log In</h3>\n" +

@@ -2,150 +2,148 @@
 <div id="wrapper">
   <ui-view name = "sidebar"></ui-view>
   <div id="page-wrapper" class="gray-bg">
-    <div class="page-holder">
-    	<ui-view name = "header"></ui-view>
-		<ui-view name = "positive_negative_feedback"></ui-view>
-		<div class="wrapper wrapper-content animated fadeInRight">
-		  <div class="row same-height-parent">
-			<div class="col-lg-6 col-lg-push-6">
-			  <div class="same-height-block blocks-holder">
-				<div class="row">
-				  <div class="col-xs-12 business-segment">
-					<ui-view name = "category_performance_analysis"></ui-view>
-				  </div>
-				</div>
-				<div class="row">
-				  <div class="col-xs-12 opportunities">
-					<ui-view name = "opportunities"></ui-view>
-				  </div>
-				</div>
-			  </div>
-			</div>
-			<div class="col-lg-6 col-lg-pull-6">
-			  <div class="same-height-block">
-				<div class="row">
-				  <div class="col-md-8 same-height-col">
-					<ui-view name = "overall_feedback"></ui-view>
-					<ui-view name = "top_concern"></ui-view>
-				  </div>
-				  <div class="col-md-4 same-height-col">
-					  <div class="row inner-row">
-						  <div class="col-sm-6 col-md-12">
-							  <div class="ibox float-e-margins detail-block">
-								  <div class="title-outer">
-									  <div class="ibox-title"><h5>Top Region</h5></div>
-								  </div>
-								  <div class="content-holder">
-									  <div class="w1">
-										<div class="w2">
-											<div class="ibox-content">
-												<div class="data-holder" ng-show = "chart_data.region">
-													<h4 class="no-margins">{{chart_data.region.region_name}} Got</h4>
-													<h1 class="no-margins">{{chart_data.region.count}}</h1>
+    <ui-view name = "header"></ui-view>
+    <ui-view name = "positive_negative_feedback"></ui-view>
+    <div class="wrapper wrapper-content animated fadeInRight">
+      <div class="row same-height-parent">
+        <div class="col-lg-6 col-lg-push-6">
+          <div class="same-height-block blocks-holder">
+            <div class="row">
+              <div class="col-xs-12 business-segment">
+                <ui-view name = "category_performance_analysis"></ui-view>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 opportunities">
+                <ui-view name = "opportunities"></ui-view>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-lg-pull-6">
+          <div class="same-height-block">
+            <div class="row">
+              <div class="col-md-8 same-height-col">
+                <ui-view name = "overall_feedback"></ui-view>
+                <ui-view name = "top_concern"></ui-view>
+              </div>
+              <div class="col-md-4 same-height-col">
+                  <div class="row inner-row">
+                      <div class="col-sm-6 col-md-12">
+                          <div class="ibox float-e-margins detail-block" ng-class="{loading: show_loading}">
+                              <div class="title-outer">
+                                  <div class="ibox-title"><h5>Top Region</h5></div>
+                              </div>
+                              <div class="content-holder">
+                                  <div class="w1">
+                                  	<div class="w2">
+                                  		<div class="ibox-content">
+											<div class="data-holder" ng-show = "chart_data.region">
+												<h4 class="no-margins">{{chart_data.region.region_name}} Got</h4>
+												<h1 class="no-margins">{{chart_data.region.count}}</h1>
+												<h5 class="no-margins">Feedbacks</h5>
+											</div>
+											<div class="message-holder" ng-hide = "chart_data.region">
+												<h2 class="no-margins">No Data Available</h2>
+											</div>
+										</div>
+                                  	</div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-6 col-md-12">
+                          <div class="ibox float-e-margins detail-block" ng-class="{loading: show_loading}">
+                              <div class="title-outer">
+                                  <div class="ibox-title"><h5>Top City</h5></div>
+                              </div>
+                              <div class="content-holder">
+                                 	<div class="w1">
+                                 		<div class="w2">
+                                 			<div class="ibox-content">
+												<div class="data-holder" ng-show = "chart_data.city">
+													<h4 class="no-margins">{{chart_data.city.city_name}} Got</h4>
+													<h1 class="no-margins">{{chart_data.city.count}}</h1>
 													<h5 class="no-margins">Feedbacks</h5>
 												</div>
-												<div class="message-holder" ng-hide = "chart_data.region">
-													<h2 class="no-margins">No Data Available</h2>
+												<div class="message-holder" ng-hide = "chart_data.city">
+                      								<h2 class="no-margins">No Data Available</h2>
 												</div>
 											</div>
-										</div>
-									  </div>
-								  </div>
-							  </div>
-						  </div>
-						  <div class="col-sm-6 col-md-12">
-							  <div class="ibox float-e-margins detail-block">
-								  <div class="title-outer">
-									  <div class="ibox-title"><h5>Top City</h5></div>
-								  </div>
-								  <div class="content-holder">
-										<div class="w1">
-											<div class="w2">
-												<div class="ibox-content">
-													<div class="data-holder" ng-show = "chart_data.city">
-														<h4 class="no-margins">{{chart_data.city.city_name}} Got</h4>
-														<h1 class="no-margins">{{chart_data.city.count}}</h1>
-														<h5 class="no-margins">Feedbacks</h5>
-													</div>
-													<div class="message-holder" ng-hide = "chart_data.city">
-														<h2 class="no-margins">No Data Available</h2>
-													</div>
-												</div>
+                                 		</div>
+                                 	</div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row inner-row add">
+                      <div class="col-sm-6 col-md-12">
+                          <div class="ibox float-e-margins detail-block" ng-class="{loading: show_loading}">
+                              <div class="title-outer">
+                                  <div class="ibox-title"><h5>Top Branch</h5></div>
+                              </div>
+                              <div class="content-holder">
+                                  <div class="w1">
+                                  	<div class="w2">
+                                  		<div class="ibox-content">
+                      						<div class="data-holder" ng-show = "chart_data.branch">
+                      							<h4 class="no-margins">{{chart_data.branch.branch_name}} Got</h4>
+                      							<h1 class="no-margins">{{chart_data.branch.count}}</h1>
+                      							<h5 class="no-margins">Feedbacks</h5>
+                      						</div>
+                      						<div class="message-holder" ng-hide = "chart_data.branch">
+                      							<h2 class="no-margins">No Data Available</h2>
 											</div>
 										</div>
-								  </div>
-							  </div>
-						  </div>
-					  </div>
-					  <div class="row inner-row add">
-						  <div class="col-sm-6 col-md-12">
-							  <div class="ibox float-e-margins detail-block">
-								  <div class="title-outer">
-									  <div class="ibox-title"><h5>Top Branch</h5></div>
-								  </div>
-								  <div class="content-holder">
-									  <div class="w1">
-										<div class="w2">
-											<div class="ibox-content">
-												<div class="data-holder" ng-show = "chart_data.branch">
-													<h4 class="no-margins">{{chart_data.branch.branch_name}} Got</h4>
-													<h1 class="no-margins">{{chart_data.branch.count}}</h1>
-													<h5 class="no-margins">Feedbacks</h5>
-												</div>
-												<div class="message-holder" ng-hide = "chart_data.branch">
-													<h2 class="no-margins">No Data Available</h2>
-												</div>
+                                  	</div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-6 col-md-12">
+                          <div class="ibox float-e-margins detail-block" ng-class="{loading: show_loading}">
+                              <div class="title-outer">
+                                  <div class="ibox-title"><h5>Top GRO</h5></div>
+                              </div>
+                              <div class="content-holder">
+                                  <div class="w1">
+                                  	<div class="w2">
+                                  		<div class="ibox-content">
+                                  			<div class="data-holder" ng-show = "chart_data.gro">
+                                  				<h4 class="no-margins">{{chart_data.gro.gro.gro_name}} Got</h4>
+												<h1 class="no-margins">{{chart_data.gro.count}}</h1>
+                                 				<h5 class="no-margins">Feedbacks</h5>
+                                  			</div>
+                      						<div class="message-holder" ng-hide = "chart_data.gro">
+                      							<h2 class="no-margins">No Data Available</h2>
 											</div>
 										</div>
-									  </div>
-								  </div>
-							  </div>
-						  </div>
-						  <div class="col-sm-6 col-md-12">
-							  <div class="ibox float-e-margins detail-block">
-								  <div class="title-outer">
-									  <div class="ibox-title"><h5>Top GRO</h5></div>
-								  </div>
-								  <div class="content-holder">
-									  <div class="w1">
-										<div class="w2">
-											<div class="ibox-content">
-												<div class="data-holder" ng-show = "chart_data.gro">
-													<h4 class="no-margins">{{chart_data.gro.gro.gro_name}} Got</h4>
-													<h1 class="no-margins">{{chart_data.gro.count}}</h1>
-													<h5 class="no-margins">Feedbacks</h5>
-												</div>
-												<div class="message-holder" ng-hide = "chart_data.gro">
-													<h2 class="no-margins">No Data Available</h2>
-												</div>
-											</div>
-										</div>
-									  </div>
-								  </div>
-							  </div>
-						  </div>
-					  </div>
-				  </div>
-				</div>
-			  </div>
-			</div>
-		  </div>
-		  <div class="row">
-			<div class="col-xs-12 patch-section">
-			  <ui-view name = "regional_analysis"></ui-view>
-			</div>
-		  </div>
-		  <div class="row same-height-parent">
-			<div class="col-lg-6 map-section">
-			  <ui-view name = "feedback_map"></ui-view>
-			</div>
-			<div class="col-lg-6 timeline-section">
-			  <ui-view name = "overall_rating"></ui-view>
-			</div>
-		  </div>
-		</div>
+                                  	</div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 patch-section">
+          <ui-view name = "regional_analysis"></ui-view>
+        </div>
+      </div>
+      <div class="row same-height-parent">
+        <div class="col-lg-6 map-section">
+          <ui-view name = "feedback_map"></ui-view>
+        </div>
+        <div class="col-lg-6 timeline-section">
+          <ui-view name = "overall_rating"></ui-view>
+        </div>
+      </div>
     </div>
-  	<ui-view name = "footer"></ui-view>
+    <ui-view name = "footer"></ui-view>
   </div>
   </div>
 </div>

@@ -41,6 +41,30 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
     },
     opens: "left"
   };
+
+  $scope.showCategoryData = function(region_id,city_id,branch_id,option_id,string){
+    $scope.show_loading = true;
+    Graphs.category_performance(region_id,city_id,branch_id,option_id, $scope.start_date, $scope.end_date).$promise.then(function(performance_data){
+      $scope.category_data = _.map(performance_data.feedbacks,  function(data){
+        return {
+          id: data.option_id,
+          name: data.option__text,
+          complaints: data.count,
+          percentage: data.count === 0 ? 0 : Math.round((data.count/performance_data.feedback_count)*100),
+          priority:  option_id == null? Global.qscPriority[data.option__text] : Global.qscSubCategoriesData[string][data.option__text].priority,
+          colour: option_id == null? Global.categoryPerformanceClass[data.option__text] : Global.qscSubCategoriesData[string][data.option__text].color
+        };
+      });
+      $scope.category_data = _.sortBy( $scope.category_data, function(value){ return value.priority; });
+
+      if( option_id == null){
+        $scope.QualityID = $scope.category_data[0].id;
+        $scope.ServiceID = $scope.category_data[1].id;
+        $scope.CleanlinessID = $scope.category_data[2].id;
+      }
+    });
+  };
+
   $scope.showSegmentData = function(region_id,city_id,branch_id,option_id,string) {
     Graphs.segmentation_rating(region_id, city_id, branch_id, option_id, $scope.start_date, $scope.end_date).$promise.then(function (segment_data) {
       $timeout(function () {
@@ -63,31 +87,8 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
         $scope.segments = _.sortBy($scope.segments, function (value) {
           return value.priority;
         });
+        $scope.show_loading = false;
       }, 500);
-    });
-  };
-
-  $scope.showCategoryData = function(region_id,city_id,branch_id,option_id,string){
-    $scope.show_loading = true;
-
-    Graphs.category_performance(region_id,city_id,branch_id,option_id, $scope.start_date, $scope.end_date).$promise.then(function(performance_data){
-      $scope.category_data = _.map(performance_data.feedbacks,  function(data){
-        return {
-          id: data.option_id,
-          name: data.option__text,
-          complaints: data.count,
-          percentage: data.count === 0 ? 0 : Math.round((data.count/performance_data.feedback_count)*100),
-          priority:  option_id == null? Global.qscPriority[data.option__text] : Global.qscSubCategoriesData[string][data.option__text].priority,
-          colour: option_id == null? Global.categoryPerformanceClass[data.option__text] : Global.qscSubCategoriesData[string][data.option__text].color
-        };
-      });
-      $scope.category_data = _.sortBy( $scope.category_data, function(value){ return value.priority; });
-
-      if( option_id == null){
-        $scope.QualityID = $scope.category_data[0].id;
-        $scope.ServiceID = $scope.category_data[1].id;
-        $scope.CleanlinessID = $scope.category_data[2].id;
-      }
     });
   };
 

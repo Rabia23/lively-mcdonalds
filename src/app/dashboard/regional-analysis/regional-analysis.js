@@ -260,13 +260,15 @@
   $scope.rightClickDisabled = false;
 
   $scope.question_type = 2;
-
   $scope.show_div = false;
+  $scope.show_loading = false;
 
   function showGraph(area, region, city, branch, option) {
+    $scope.show_loading = true;
     Graphs.feedback_analysis_breakdown(area.id,region.id,city.id,branch.id,option.id,start_date,end_date).$promise.then(function(data) {
       $scope.show_div = data.feedback_count === 0? true: false;
       $scope.donut_subgraph_data = regionalAnalysisChartService.getSubDonutChartData(data,option.label);
+      $scope.show_loading = false;
     });
   }
 
