@@ -1404,12 +1404,15 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	height: 100%;
 }
 
-.progress-area .progress-holder {min-height: 55px;}
-
 .business-segment .progress-area .progress-holder .progress-inner{
-	max-height: 100px;
 	padding: 20px 0 15px;
 	position: relative;
+}
+
+.business-segment .progress-area .progress-holder .progress-block .progress{
+	min-height: 20px !important;
+	max-height: 40px !important;
+	height: auto !important;
 }
 
 .progress-area .progress-holder .progress {
@@ -1897,7 +1900,11 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 }*/
 
 @media screen and (max-width: 1450px) {
+	.business-segment .progress-area .progress-holder .progress-inner{max-height: inherit;}
+	.progress-area .progress-holder,
 	.same-height-block.add{height: auto !important;}
+	.business-segment .ibox,
+	.business-segment .ibox-content.add{height: auto !important;}
 	.same-height-parent .col-lg-6{
 		left: 0;
 		top: 0;
@@ -1917,6 +1924,12 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	.blocks-holder{height: auto !important;}
 	.progress-container,
 	.progress-area{height: auto !important;}
+	.detail-block .content-holder,
+	.rating .content-holder,
+	.same-height-block .inner-row .content-holder,
+	.business-segment .ibox .content-holder,
+	.opportunities .ibox .content-holder{min-height: 200px;}
+	.opportunities .progress-area .progress-holder{padding: 15px 0;}
 }
 
 @media only screen and (min-width:1200px) and (max-width: 1450px)  {
@@ -1971,6 +1984,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 		display: -ms-flexbox;
 		display: -webkit-flex;
 		display: flex;
+		height: auto !important;
 
 		-webkit-flex-flow: row wrap;
 		justify-content: space-around;
