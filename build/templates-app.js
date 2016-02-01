@@ -1158,7 +1158,8 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td ng-if = \"child_role == 4\">{{user.region.name}}</td>\n" +
     "											<td>\n" +
     "												<a ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a ng-click = \"deactivate(user, $index)\"class=\"fa fa-trash-o\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-user btn-active\"></a>\n" +
+    "												<a href=\"#\" class=\"fa fa-user-times btn-deactive\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "									</tbody>\n" +

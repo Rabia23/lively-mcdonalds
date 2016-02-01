@@ -1546,16 +1546,14 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 }
 
 .footable tbody tr{cursor: pointer;}
-.footable .fa.fa-pencil-square-o,
-.footable .fa.fa-trash-o{
-	color: #f00;
-	font-size: 15px;
-	line-height: 15px;
+.footable .fa{
+	font-size: 13px;
+	line-height: 13px;
 	margin: 0 2px;
 	display: inline-block;
 	vertical-align: middle;
 }
-
+.footable .fa.fa-trash-o{color: #f00;}
 .footable .fa.fa-trash-o:hover{color: #B10000;}
 
 .footable .fa.fa-pencil-square-o{color: #1ab394;}
@@ -2163,6 +2161,21 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	.morris-content-outer .title{
 		font-size: 16px;
 		line-height: 20px;
+	}
+	
+	#wrapper .table > thead > tr > th,
+	#wrapper .table > tbody > tr > th,
+	#wrapper .table > tfoot > tr > th,
+	#wrapper .table > thead > tr > td,
+	#wrapper .table > tbody > tr > td,
+	#wrapper .table > tfoot > tr > td{
+		padding: 8px 5px;
+		font-size: 11px;
+	}
+	#wrapper .footable.breakpoint > tbody > tr > td > span.footable-toggle{font-size: 12px;}
+	.footable .fa{
+		font-size: 12px;
+		line-height: 12px;
 	}
 }
 
