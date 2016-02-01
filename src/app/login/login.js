@@ -46,8 +46,8 @@ angular.module( 'livefeed.login', [
 .controller( 'LoginCtrl', function LoginController( $scope,  _ , $rootScope, $state, Authentication, TokenHandler, Flash) {
 
   $scope.submitted = false;
-
   $scope.authenticate = {};
+  $scope.show_loading = false;
 
   $rootScope.$on('app-online', function(event, args) {
     console.log("online in login");
@@ -58,9 +58,11 @@ angular.module( 'livefeed.login', [
   });
 
   $scope.login = function(valid){
+    $scope.show_loading = true;
     $scope.submitted = true;
     if(valid){
       Authentication.login($scope.authenticate).$promise.then(function(data){
+        $scope.show_loading = false;
         if(data.status){
           $rootScope.token = data.token;
           TokenHandler.store_token(data.token, data.username);

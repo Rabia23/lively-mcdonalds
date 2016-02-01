@@ -4,7 +4,7 @@
 	<a style = "cursor:pointer;" class="btn-slider fa fa-angle-left" ng-click="leftClickDisabled || previous(area,region,city,branch,sqc_data)" ng-hide = "leftClickDisabled"></a>
 	<a style = "cursor:pointer;" class="btn-slider fa fa-angle-right" ng-click="rightClickDisabled || next(area,region,city,branch,sqc_data)" ng-hide = "rightClickDisabled"></a>
 
-  <div class="graph-container">
+  <div class="graph-container" ng-class="{loading: show_loading}">
   	<div class="holder">
   		<div class="graph-holder">
 		<div morris-chart-modal data-data="donut_subgraph_data.donutData" data-type="donut" data-options="donut_subgraph_data.donutOptions"></div>
