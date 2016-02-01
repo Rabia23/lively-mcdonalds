@@ -148,7 +148,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
             });
           }, time);
         }
-
+		window.initSameHeight();
       });
     }
 
