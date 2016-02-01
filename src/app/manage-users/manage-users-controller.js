@@ -2,17 +2,18 @@
   angular.module( 'livefeed.manage_users')
 
 
-  .controller( 'ManageUsersCtrl', function ManageUsersCtrl( $scope, $state, $rootScope, TokenHandler, Auth, $uibModal, ManageApi, Enum) {
+  .controller( 'ManageUsersCtrl', function ManageUsersCtrl( $scope, $state, $rootScope, TokenHandler, Auth, $uibModal, ManageApi, Enum, Flash) {
+    $scope.show_active_icon = false;
+    $scope.show_deactive_icon = false;
 
     if (Auth.is_logged_in()) {
       $rootScope.show_username = true;
       $rootScope.username = TokenHandler.get_username();
     }
 
-
-
-
     ManageApi.manage_users().$promise.then(function(data){
+      console.log("manage users");
+      console.log(data);
       $scope.user_list = Enum.get_user_label(data.child_role);
       $scope.users = data.children;
       $scope.parent_id = data.parent_id;
@@ -27,6 +28,17 @@
 
     $scope.deactivate = function(user){
       ManageApi.delete_user(user.id).$promise.then(function(data){
+        var message = "";
+        if(data.is_active === true) {
+          message = "User successfully activated.";
+          user.is_active = true;
+        }
+        else {
+          message = "User successfully deactivated.";
+          user.is_active = false;
+        }
+        Flash.create('success', message, 'custom-class');
+        console.log(data);
       });
     };
 
@@ -51,6 +63,7 @@
         }
       });
       modalInstance.result.then(function (user) {
+        console.log("modal instance result");
         //$scope.users.push(user);
         ManageApi.manage_users().$promise.then(function(data){
           $scope.users = data.children;

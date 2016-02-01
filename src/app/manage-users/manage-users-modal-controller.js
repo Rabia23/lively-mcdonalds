@@ -3,7 +3,7 @@
 
 
 
-  .controller('ModalAddInstanceCtrl', function ($scope, $uibModalInstance, parent_id, child_role,branch_id, region_id, ManageApi, Enum, Filters) {
+  .controller('ModalAddInstanceCtrl', function ($scope, $uibModalInstance, parent_id, child_role,branch_id, region_id, ManageApi, Enum, Filters, Flash) {
 
     $scope.user = {role: child_role, parent_id: parent_id};
     if(branch_id){
@@ -29,6 +29,8 @@
         ManageApi.add_user($scope.user).$promise.then(function(data){
           console.log(data);
           $scope.ok();
+          var message = "User successfully created.";
+          Flash.create('success', message, 'custom-class');
         });
 
       }
@@ -46,7 +48,7 @@
     };
   })
 
-  .controller('ModalEditInstanceCtrl', function ($scope, $uibModalInstance, parent_id, child_role, user,ManageApi, Enum, Filters) {
+  .controller('ModalEditInstanceCtrl', function ($scope, $uibModalInstance, parent_id, child_role, user,ManageApi, Enum, Filters, Flash) {
 
     $scope.user = user;
 
@@ -69,6 +71,8 @@
         ManageApi.edit_user($scope.user).$promise.then(function(data){
           console.log(data);
           $scope.ok(true);
+          var message = "User successfully edited.";
+          Flash.create('success', message, 'custom-class');
         });
       }
       else{
