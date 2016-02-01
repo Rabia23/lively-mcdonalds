@@ -31,7 +31,7 @@ angular.module("common/header.tpl.html", []).run(["$templateCache", function($te
     "      </form> -->\n" +
     "    </div>\n" +
     "    <ul class=\"nav navbar-top-links navbar-right\">\n" +
-    "      <li>\n" +
+    "      <li class=\"dashboard\">\n" +
     "        <a style = \"cursor:pointer;\" ui-sref = \"live\">\n" +
     "           Live Dashboard\n" +
     "        </a>\n" +
@@ -75,7 +75,7 @@ angular.module("common/sidebar.tpl.html", []).run(["$templateCache", function($t
     "					<a ui-sref=\"users\"><i class=\"fa fa-user\"></i> <span class=\"nav-label\">Manage Users</span></a>\n" +
     "				</li>\n" +
     "			</ul>\n" +
-    "    </div>\n" +
+    "    	</div>\n" +
     "	</div>\n" +
     "</nav>\n" +
     "");
@@ -134,8 +134,8 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "                <div class=\"progress-container\">\n" +
     "                  <div class=\"progress-area\" progress-bar-spacing data-data = \"category_data\">\n" +
     "                    <div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" progress-bar-background>\n" +
-    "                      <small><em>{{dat.name}}</em></small>\n" +
-    "                      <div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}} complaints</b></uib-progressbar></div>\n" +
+    "                      <small><em>{{dat.name}} <b>{{dat.complaints}} complaints</b></em></small>\n" +
+    "                      <div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar></div>\n" +
     "                    </div>\n" +
     "                  </div>\n" +
     "                </div>\n" +
@@ -167,7 +167,6 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
   $templateCache.put("dashboard/dashboard.tpl.html",
     "\n" +
     "<div id=\"wrapper\">\n" +
-    "\n" +
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
     "    <ui-view name = \"header\"></ui-view>\n" +
@@ -200,16 +199,17 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                      <div class=\"col-sm-6 col-md-12\">\n" +
     "                          <div class=\"ibox float-e-margins detail-block\">\n" +
     "                              <div class=\"title-outer\">\n" +
-    "                                  <div class=\"ibox-title\">\n" +
-    "                                      <span class=\"label label-primary pull-right\">Top Region</span>\n" +
-    "                                      <h5>{{chart_data.region.region_name}}</h5>\n" +
-    "                                  </div>\n" +
+    "                                  <div class=\"ibox-title\"><h5>Top Region</h5></div>\n" +
     "                              </div>\n" +
     "                              <div class=\"content-holder\">\n" +
     "                                  <div class=\"w1\">\n" +
     "                                  	<div class=\"w2\">\n" +
     "                                  		<div class=\"ibox-content\">\n" +
-    "											<h1 class=\"no-margins\" ng-show = \"chart_data.region\">{{chart_data.region.count}}</h1>\n" +
+    "											<div class=\"data-holder\" ng-show = \"chart_data.region\">\n" +
+    "												<h4 class=\"no-margins\">{{chart_data.region.region_name}} Got</h4>\n" +
+    "												<h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
+    "												<h5 class=\"no-margins\">Feedbacks</h5>\n" +
+    "											</div>\n" +
     "											<div class=\"message-holder\" ng-hide = \"chart_data.region\">\n" +
     "												<h2 class=\"no-margins\">No Data Available</h2>\n" +
     "											</div>\n" +
@@ -222,16 +222,17 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                      <div class=\"col-sm-6 col-md-12\">\n" +
     "                          <div class=\"ibox float-e-margins detail-block\">\n" +
     "                              <div class=\"title-outer\">\n" +
-    "                                  <div class=\"ibox-title\">\n" +
-    "                                      <span class=\"label label-primary pull-right\">Top City</span>\n" +
-    "                                      <h5>{{chart_data.city.city_name}}</h5>\n" +
-    "                                  </div>\n" +
+    "                                  <div class=\"ibox-title\"><h5>Top City</h5></div>\n" +
     "                              </div>\n" +
     "                              <div class=\"content-holder\">\n" +
     "                                 	<div class=\"w1\">\n" +
     "                                 		<div class=\"w2\">\n" +
     "                                 			<div class=\"ibox-content\">\n" +
-    "												<h1 class=\"no-margins\" ng-show = \"chart_data.city\">{{chart_data.city.count}}</h1>\n" +
+    "												<div class=\"data-holder\" ng-show = \"chart_data.city\">\n" +
+    "													<h4 class=\"no-margins\">{{chart_data.city.city_name}} Got</h4>\n" +
+    "													<h1 class=\"no-margins\">{{chart_data.city.count}}</h1>\n" +
+    "													<h5 class=\"no-margins\">Feedbacks</h5>\n" +
+    "												</div>\n" +
     "												<div class=\"message-holder\" ng-hide = \"chart_data.city\">\n" +
     "                      								<h2 class=\"no-margins\">No Data Available</h2>\n" +
     "												</div>\n" +
@@ -246,16 +247,17 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                      <div class=\"col-sm-6 col-md-12\">\n" +
     "                          <div class=\"ibox float-e-margins detail-block\">\n" +
     "                              <div class=\"title-outer\">\n" +
-    "                                  <div class=\"ibox-title\">\n" +
-    "                                      <span class=\"label label-primary pull-right\">Top Branch</span>\n" +
-    "                                      <h5>{{chart_data.branch.branch_name}}</h5>\n" +
-    "                                  </div>\n" +
+    "                                  <div class=\"ibox-title\"><h5>Top Branch</h5></div>\n" +
     "                              </div>\n" +
     "                              <div class=\"content-holder\">\n" +
     "                                  <div class=\"w1\">\n" +
     "                                  	<div class=\"w2\">\n" +
     "                                  		<div class=\"ibox-content\">\n" +
-    "											<h1 class=\"no-margins\" ng-show = \"chart_data.branch\">{{chart_data.branch.count}}</h1>\n" +
+    "                      						<div class=\"data-holder\" ng-show = \"chart_data.branch\">\n" +
+    "                      							<h4 class=\"no-margins\">{{chart_data.branch.branch_name}} Got</h4>\n" +
+    "                      							<h1 class=\"no-margins\">{{chart_data.branch.count}}</h1>\n" +
+    "                      							<h5 class=\"no-margins\">Feedbacks</h5>\n" +
+    "                      						</div>\n" +
     "                      						<div class=\"message-holder\" ng-hide = \"chart_data.branch\">\n" +
     "                      							<h2 class=\"no-margins\">No Data Available</h2>\n" +
     "											</div>\n" +
@@ -268,16 +270,17 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                      <div class=\"col-sm-6 col-md-12\">\n" +
     "                          <div class=\"ibox float-e-margins detail-block\">\n" +
     "                              <div class=\"title-outer\">\n" +
-    "                                  <div class=\"ibox-title\">\n" +
-    "                                      <span class=\"label label-primary pull-right\">Top GRO</span>\n" +
-    "                                      <h5>{{chart_data.gro.gro.gro_name}}</h5>\n" +
-    "                                  </div>\n" +
+    "                                  <div class=\"ibox-title\"><h5>Top GRO</h5></div>\n" +
     "                              </div>\n" +
     "                              <div class=\"content-holder\">\n" +
     "                                  <div class=\"w1\">\n" +
     "                                  	<div class=\"w2\">\n" +
     "                                  		<div class=\"ibox-content\">\n" +
-    "											<h1 class=\"no-margins\" ng-show = \"chart_data.gro\">{{chart_data.gro.count}}</h1>\n" +
+    "                                  			<div class=\"data-holder\" ng-show = \"chart_data.gro\">\n" +
+    "                                  				<h4 class=\"no-margins\">{{chart_data.gro.gro.gro_name}} Got</h4>\n" +
+    "												<h1 class=\"no-margins\">{{chart_data.gro.count}}</h1>\n" +
+    "                                 				<h5 class=\"no-margins\">Feedbacks</h5>\n" +
+    "                                  			</div>\n" +
     "                      						<div class=\"message-holder\" ng-hide = \"chart_data.gro\">\n" +
     "                      							<h2 class=\"no-margins\">No Data Available</h2>\n" +
     "											</div>\n" +
@@ -309,8 +312,6 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "    </div>\n" +
     "    <ui-view name = \"footer\"></ui-view>\n" +
     "  </div>\n" +
-    "\n" +
-    "\n" +
     "  </div>\n" +
     "</div>\n" +
     "");
