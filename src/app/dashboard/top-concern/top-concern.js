@@ -73,20 +73,20 @@ angular.module( 'livefeed.dashboard.top_concern', [
         });
       }
     };
-  })
+  });
 
-.directive('sameHeight', function() {
-  return {
-      restrict: 'A',
-      scope: {
-        mydata: '='
-      },
-      link: function(scope, ele, attrs) {
-        scope.$watch('mydata', function(watchedData) {
-          if(watchedData !== undefined){
-            window.initSameHeight();
-          }
-        });
-      }
-  };
-});
+//.directive('sameHeight', function() {
+//  return {
+//      restrict: 'A',
+//      scope: {
+//        mydata: '='
+//      },
+//      link: function(scope, ele, attrs) {
+//        scope.$watch('mydata', function(watchedData) {
+//          if(watchedData !== undefined){
+//            window.initSameHeight();
+//          }
+//        });
+//      }
+//  };
+//});

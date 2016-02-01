@@ -5,6 +5,11 @@
  // initSlideShow();
  });
 
+
+jQuery(window).load(function(){
+	initSameHeight();
+});
+
 // fade gallery init
 function initSlideShow() {
   jQuery('#wrapper').fadeGallery({
@@ -561,14 +566,14 @@ function initSameHeight() {
     elements: '.same-height-block',
     flexible: true,
     multiLine: true,
-	biggestHeight: true,
+    biggestHeight: true,
 	useMinHeight: false
   });
   jQuery('.same-height-parent').sameHeight({
     elements: '.same-height-col , .same-height-block',
     flexible: true,
     multiLine: true,
-    biggestHeight: true,
+    biggestHeight: false,
 	useMinHeight: false
   });
   jQuery('.same-height-block').sameHeight({
