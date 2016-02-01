@@ -134,8 +134,10 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "                <div class=\"progress-container\">\n" +
     "                  <div class=\"progress-area\" progress-bar-spacing data-data = \"category_data\">\n" +
     "                    <div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" progress-bar-background>\n" +
-    "                      <small><em>{{dat.name}} <b>{{dat.complaints}} complaints</b></em></small>\n" +
-    "                      <div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar></div>\n" +
+    "                      <div class=\"progress-inner\">\n" +
+    "                      	<small><em>{{dat.name}} <b>{{dat.complaints}} complaints</b></em></small>\n" +
+    "                      	<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar></div>\n" +
+    "                      </div>\n" +
     "                    </div>\n" +
     "                  </div>\n" +
     "                </div>\n" +
@@ -169,148 +171,150 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "<div id=\"wrapper\">\n" +
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
-    "    <ui-view name = \"header\"></ui-view>\n" +
-    "    <ui-view name = \"positive_negative_feedback\"></ui-view>\n" +
-    "    <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
-    "      <div class=\"row same-height-parent\">\n" +
-    "        <div class=\"col-lg-6 col-lg-push-6\">\n" +
-    "          <div class=\"same-height-block blocks-holder\">\n" +
-    "            <div class=\"row\">\n" +
-    "              <div class=\"col-xs-12 business-segment\">\n" +
-    "                <ui-view name = \"category_performance_analysis\"></ui-view>\n" +
-    "              </div>\n" +
-    "            </div>\n" +
-    "            <div class=\"row\">\n" +
-    "              <div class=\"col-xs-12 opportunities\">\n" +
-    "                <ui-view name = \"opportunities\"></ui-view>\n" +
-    "              </div>\n" +
-    "            </div>\n" +
-    "          </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"col-lg-6 col-lg-pull-6\">\n" +
-    "          <div class=\"same-height-block\">\n" +
-    "            <div class=\"row\">\n" +
-    "              <div class=\"col-md-8 same-height-col\">\n" +
-    "                <ui-view name = \"overall_feedback\"></ui-view>\n" +
-    "                <ui-view name = \"top_concern\"></ui-view>\n" +
-    "              </div>\n" +
-    "              <div class=\"col-md-4 same-height-col\">\n" +
-    "                  <div class=\"row inner-row\">\n" +
-    "                      <div class=\"col-sm-6 col-md-12\">\n" +
-    "                          <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                              <div class=\"title-outer\">\n" +
-    "                                  <div class=\"ibox-title\"><h5>Top Region</h5></div>\n" +
-    "                              </div>\n" +
-    "                              <div class=\"content-holder\">\n" +
-    "                                  <div class=\"w1\">\n" +
-    "                                  	<div class=\"w2\">\n" +
-    "                                  		<div class=\"ibox-content\">\n" +
-    "											<div class=\"data-holder\" ng-show = \"chart_data.region\">\n" +
-    "												<h4 class=\"no-margins\">{{chart_data.region.region_name}} Got</h4>\n" +
-    "												<h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
-    "												<h5 class=\"no-margins\">Feedbacks</h5>\n" +
-    "											</div>\n" +
-    "											<div class=\"message-holder\" ng-hide = \"chart_data.region\">\n" +
-    "												<h2 class=\"no-margins\">No Data Available</h2>\n" +
-    "											</div>\n" +
-    "										</div>\n" +
-    "                                  	</div>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                          </div>\n" +
-    "                      </div>\n" +
-    "                      <div class=\"col-sm-6 col-md-12\">\n" +
-    "                          <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                              <div class=\"title-outer\">\n" +
-    "                                  <div class=\"ibox-title\"><h5>Top City</h5></div>\n" +
-    "                              </div>\n" +
-    "                              <div class=\"content-holder\">\n" +
-    "                                 	<div class=\"w1\">\n" +
-    "                                 		<div class=\"w2\">\n" +
-    "                                 			<div class=\"ibox-content\">\n" +
-    "												<div class=\"data-holder\" ng-show = \"chart_data.city\">\n" +
-    "													<h4 class=\"no-margins\">{{chart_data.city.city_name}} Got</h4>\n" +
-    "													<h1 class=\"no-margins\">{{chart_data.city.count}}</h1>\n" +
+    "    <div class=\"page-holder\">\n" +
+    "    	<ui-view name = \"header\"></ui-view>\n" +
+    "		<ui-view name = \"positive_negative_feedback\"></ui-view>\n" +
+    "		<div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
+    "		  <div class=\"row same-height-parent\">\n" +
+    "			<div class=\"col-lg-6 col-lg-push-6\">\n" +
+    "			  <div class=\"same-height-block blocks-holder\">\n" +
+    "				<div class=\"row\">\n" +
+    "				  <div class=\"col-xs-12 business-segment\">\n" +
+    "					<ui-view name = \"category_performance_analysis\"></ui-view>\n" +
+    "				  </div>\n" +
+    "				</div>\n" +
+    "				<div class=\"row\">\n" +
+    "				  <div class=\"col-xs-12 opportunities\">\n" +
+    "					<ui-view name = \"opportunities\"></ui-view>\n" +
+    "				  </div>\n" +
+    "				</div>\n" +
+    "			  </div>\n" +
+    "			</div>\n" +
+    "			<div class=\"col-lg-6 col-lg-pull-6\">\n" +
+    "			  <div class=\"same-height-block\">\n" +
+    "				<div class=\"row\">\n" +
+    "				  <div class=\"col-md-8 same-height-col\">\n" +
+    "					<ui-view name = \"overall_feedback\"></ui-view>\n" +
+    "					<ui-view name = \"top_concern\"></ui-view>\n" +
+    "				  </div>\n" +
+    "				  <div class=\"col-md-4 same-height-col\">\n" +
+    "					  <div class=\"row inner-row\">\n" +
+    "						  <div class=\"col-sm-6 col-md-12\">\n" +
+    "							  <div class=\"ibox float-e-margins detail-block\">\n" +
+    "								  <div class=\"title-outer\">\n" +
+    "									  <div class=\"ibox-title\"><h5>Top Region</h5></div>\n" +
+    "								  </div>\n" +
+    "								  <div class=\"content-holder\">\n" +
+    "									  <div class=\"w1\">\n" +
+    "										<div class=\"w2\">\n" +
+    "											<div class=\"ibox-content\">\n" +
+    "												<div class=\"data-holder\" ng-show = \"chart_data.region\">\n" +
+    "													<h4 class=\"no-margins\">{{chart_data.region.region_name}} Got</h4>\n" +
+    "													<h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
     "													<h5 class=\"no-margins\">Feedbacks</h5>\n" +
     "												</div>\n" +
-    "												<div class=\"message-holder\" ng-hide = \"chart_data.city\">\n" +
-    "                      								<h2 class=\"no-margins\">No Data Available</h2>\n" +
+    "												<div class=\"message-holder\" ng-hide = \"chart_data.region\">\n" +
+    "													<h2 class=\"no-margins\">No Data Available</h2>\n" +
     "												</div>\n" +
     "											</div>\n" +
-    "                                 		</div>\n" +
-    "                                 	</div>\n" +
-    "                              </div>\n" +
-    "                          </div>\n" +
-    "                      </div>\n" +
-    "                  </div>\n" +
-    "                  <div class=\"row inner-row add\">\n" +
-    "                      <div class=\"col-sm-6 col-md-12\">\n" +
-    "                          <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                              <div class=\"title-outer\">\n" +
-    "                                  <div class=\"ibox-title\"><h5>Top Branch</h5></div>\n" +
-    "                              </div>\n" +
-    "                              <div class=\"content-holder\">\n" +
-    "                                  <div class=\"w1\">\n" +
-    "                                  	<div class=\"w2\">\n" +
-    "                                  		<div class=\"ibox-content\">\n" +
-    "                      						<div class=\"data-holder\" ng-show = \"chart_data.branch\">\n" +
-    "                      							<h4 class=\"no-margins\">{{chart_data.branch.branch_name}} Got</h4>\n" +
-    "                      							<h1 class=\"no-margins\">{{chart_data.branch.count}}</h1>\n" +
-    "                      							<h5 class=\"no-margins\">Feedbacks</h5>\n" +
-    "                      						</div>\n" +
-    "                      						<div class=\"message-holder\" ng-hide = \"chart_data.branch\">\n" +
-    "                      							<h2 class=\"no-margins\">No Data Available</h2>\n" +
+    "										</div>\n" +
+    "									  </div>\n" +
+    "								  </div>\n" +
+    "							  </div>\n" +
+    "						  </div>\n" +
+    "						  <div class=\"col-sm-6 col-md-12\">\n" +
+    "							  <div class=\"ibox float-e-margins detail-block\">\n" +
+    "								  <div class=\"title-outer\">\n" +
+    "									  <div class=\"ibox-title\"><h5>Top City</h5></div>\n" +
+    "								  </div>\n" +
+    "								  <div class=\"content-holder\">\n" +
+    "										<div class=\"w1\">\n" +
+    "											<div class=\"w2\">\n" +
+    "												<div class=\"ibox-content\">\n" +
+    "													<div class=\"data-holder\" ng-show = \"chart_data.city\">\n" +
+    "														<h4 class=\"no-margins\">{{chart_data.city.city_name}} Got</h4>\n" +
+    "														<h1 class=\"no-margins\">{{chart_data.city.count}}</h1>\n" +
+    "														<h5 class=\"no-margins\">Feedbacks</h5>\n" +
+    "													</div>\n" +
+    "													<div class=\"message-holder\" ng-hide = \"chart_data.city\">\n" +
+    "														<h2 class=\"no-margins\">No Data Available</h2>\n" +
+    "													</div>\n" +
+    "												</div>\n" +
     "											</div>\n" +
     "										</div>\n" +
-    "                                  	</div>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                          </div>\n" +
-    "                      </div>\n" +
-    "                      <div class=\"col-sm-6 col-md-12\">\n" +
-    "                          <div class=\"ibox float-e-margins detail-block\">\n" +
-    "                              <div class=\"title-outer\">\n" +
-    "                                  <div class=\"ibox-title\"><h5>Top GRO</h5></div>\n" +
-    "                              </div>\n" +
-    "                              <div class=\"content-holder\">\n" +
-    "                                  <div class=\"w1\">\n" +
-    "                                  	<div class=\"w2\">\n" +
-    "                                  		<div class=\"ibox-content\">\n" +
-    "                                  			<div class=\"data-holder\" ng-show = \"chart_data.gro\">\n" +
-    "                                  				<h4 class=\"no-margins\">{{chart_data.gro.gro.gro_name}} Got</h4>\n" +
-    "												<h1 class=\"no-margins\">{{chart_data.gro.count}}</h1>\n" +
-    "                                 				<h5 class=\"no-margins\">Feedbacks</h5>\n" +
-    "                                  			</div>\n" +
-    "                      						<div class=\"message-holder\" ng-hide = \"chart_data.gro\">\n" +
-    "                      							<h2 class=\"no-margins\">No Data Available</h2>\n" +
+    "								  </div>\n" +
+    "							  </div>\n" +
+    "						  </div>\n" +
+    "					  </div>\n" +
+    "					  <div class=\"row inner-row add\">\n" +
+    "						  <div class=\"col-sm-6 col-md-12\">\n" +
+    "							  <div class=\"ibox float-e-margins detail-block\">\n" +
+    "								  <div class=\"title-outer\">\n" +
+    "									  <div class=\"ibox-title\"><h5>Top Branch</h5></div>\n" +
+    "								  </div>\n" +
+    "								  <div class=\"content-holder\">\n" +
+    "									  <div class=\"w1\">\n" +
+    "										<div class=\"w2\">\n" +
+    "											<div class=\"ibox-content\">\n" +
+    "												<div class=\"data-holder\" ng-show = \"chart_data.branch\">\n" +
+    "													<h4 class=\"no-margins\">{{chart_data.branch.branch_name}} Got</h4>\n" +
+    "													<h1 class=\"no-margins\">{{chart_data.branch.count}}</h1>\n" +
+    "													<h5 class=\"no-margins\">Feedbacks</h5>\n" +
+    "												</div>\n" +
+    "												<div class=\"message-holder\" ng-hide = \"chart_data.branch\">\n" +
+    "													<h2 class=\"no-margins\">No Data Available</h2>\n" +
+    "												</div>\n" +
     "											</div>\n" +
     "										</div>\n" +
-    "                                  	</div>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                          </div>\n" +
-    "                      </div>\n" +
-    "                  </div>\n" +
-    "              </div>\n" +
-    "            </div>\n" +
-    "          </div>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
-    "      <div class=\"row\">\n" +
-    "        <div class=\"col-xs-12 patch-section\">\n" +
-    "          <ui-view name = \"regional_analysis\"></ui-view>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
-    "      <div class=\"row same-height-parent\">\n" +
-    "        <div class=\"col-lg-6 map-section\">\n" +
-    "          <ui-view name = \"feedback_map\"></ui-view>\n" +
-    "        </div>\n" +
-    "        <div class=\"col-lg-6 timeline-section\">\n" +
-    "          <ui-view name = \"overall_rating\"></ui-view>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
+    "									  </div>\n" +
+    "								  </div>\n" +
+    "							  </div>\n" +
+    "						  </div>\n" +
+    "						  <div class=\"col-sm-6 col-md-12\">\n" +
+    "							  <div class=\"ibox float-e-margins detail-block\">\n" +
+    "								  <div class=\"title-outer\">\n" +
+    "									  <div class=\"ibox-title\"><h5>Top GRO</h5></div>\n" +
+    "								  </div>\n" +
+    "								  <div class=\"content-holder\">\n" +
+    "									  <div class=\"w1\">\n" +
+    "										<div class=\"w2\">\n" +
+    "											<div class=\"ibox-content\">\n" +
+    "												<div class=\"data-holder\" ng-show = \"chart_data.gro\">\n" +
+    "													<h4 class=\"no-margins\">{{chart_data.gro.gro.gro_name}} Got</h4>\n" +
+    "													<h1 class=\"no-margins\">{{chart_data.gro.count}}</h1>\n" +
+    "													<h5 class=\"no-margins\">Feedbacks</h5>\n" +
+    "												</div>\n" +
+    "												<div class=\"message-holder\" ng-hide = \"chart_data.gro\">\n" +
+    "													<h2 class=\"no-margins\">No Data Available</h2>\n" +
+    "												</div>\n" +
+    "											</div>\n" +
+    "										</div>\n" +
+    "									  </div>\n" +
+    "								  </div>\n" +
+    "							  </div>\n" +
+    "						  </div>\n" +
+    "					  </div>\n" +
+    "				  </div>\n" +
+    "				</div>\n" +
+    "			  </div>\n" +
+    "			</div>\n" +
+    "		  </div>\n" +
+    "		  <div class=\"row\">\n" +
+    "			<div class=\"col-xs-12 patch-section\">\n" +
+    "			  <ui-view name = \"regional_analysis\"></ui-view>\n" +
+    "			</div>\n" +
+    "		  </div>\n" +
+    "		  <div class=\"row same-height-parent\">\n" +
+    "			<div class=\"col-lg-6 map-section\">\n" +
+    "			  <ui-view name = \"feedback_map\"></ui-view>\n" +
+    "			</div>\n" +
+    "			<div class=\"col-lg-6 timeline-section\">\n" +
+    "			  <ui-view name = \"overall_rating\"></ui-view>\n" +
+    "			</div>\n" +
+    "		  </div>\n" +
+    "		</div>\n" +
     "    </div>\n" +
-    "    <ui-view name = \"footer\"></ui-view>\n" +
+    "  	<ui-view name = \"footer\"></ui-view>\n" +
     "  </div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -364,8 +368,10 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
     "				  <div class=\"progres-container\">\n" +
     "					<div class=\"progress-area\">\n" +
     "						<div class=\"progress-holder\" ng-repeat = \"dat in opportunity_data\" data-color = \"dat.colour\" data-data = \"opportunity_data\" opportunity-bar-background>\n" +
-    "							<small><em>{{dat.name}}</em></small>\n" +
-    "							<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"><b>{{dat.complaints}}</b></uib-progressbar></div>\n" +
+    "							<div class=\"progress-inner\">\n" +
+    "								<small><em>{{dat.name}} <b>{{dat.complaints}} Suggestion</b></em></small>\n" +
+    "								<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar></div>\n" +
+    "							</div>\n" +
     "					  </div>\n" +
     "					</div>\n" +
     "				</div>\n" +
@@ -1136,44 +1142,44 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "<div id=\"wrapper\">\n" +
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
-    "    <ui-view name = \"header\"></ui-view>\n" +
-    "\n" +
-    "    <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
-    "      		<div class=\"row\">\n" +
-    "            	<div class=\"col-lg-12\">\n" +
-    "            		<div class=\"ibox float-e-margins\">\n" +
-    "          				<div class=\"ibox-title\">\n" +
-    "                			<h5>{{user_list}} List</h5>\n" +
-    "            			</div>\n" +
-    "           				<div class=\"ibox-content\">\n" +
+    "    <div class=\"page-holder\">\n" +
+    "    	<ui-view name = \"header\"></ui-view>\n" +
+    "		<div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
+    "			<div class=\"row\">\n" +
+    "				<div class=\"col-lg-12\">\n" +
+    "					<div class=\"ibox float-e-margins\">\n" +
+    "						<div class=\"ibox-title\">\n" +
+    "							<h5>{{user_list}} List</h5>\n" +
+    "						</div>\n" +
+    "						<div class=\"ibox-content\">\n" +
     "							<div class=\"user-block\">\n" +
-    "                <button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
+    "								<button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
     "							</div>\n" +
-    "          					<div class=\"info-holder\">\n" +
+    "							<div class=\"info-holder\">\n" +
     "								<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\" data-users = \"users\">\n" +
     "									<thead>\n" +
     "										<tr>\n" +
     "											<th data-toggle=\"true\" data-sort-initial=\"true\">Name</th>\n" +
     "											<th data-hide=\"all\">User Name</th>\n" +
     "											<th data-hide=\"all\">Email</th>\n" +
-    "                      <th data-hide=\"all\">Active</th>\n" +
-    "                      <th data-hide=\"all\">Role</th>\n" +
+    "											<th data-hide=\"all\">Active</th>\n" +
+    "											<th data-hide=\"all\">Role</th>\n" +
     "											<th>Phone No.</th>\n" +
     "											<th ng-if = \"child_role == 2 || child_role == 3\">Branch</th>\n" +
-    "                      <th ng-if = \"child_role == 4\">Region</th>\n" +
+    "											<th ng-if = \"child_role == 4\">Region</th>\n" +
     "											<th>Action</th>\n" +
     "										</tr>\n" +
     "									</thead>\n" +
     "									<tbody>\n" +
     "										<tr ng-repeat = \"user in users track by $index\">\n" +
     "											<td>{{user.first_name}} {{user.last_name}}</td>\n" +
-    "                      <td>{{user.username}}</td>\n" +
-    "                      <td>{{user.email}}</td>\n" +
-    "                      <td>{{user.is_active}}</td>\n" +
-    "                      <td>{{user.role}}</td>\n" +
-    "                      <td >{{user.phone_no}}</td>\n" +
-    "                      <td ng-if = \"child_role == 2 || child_role == 3\">{{user.branch.name}}</td>\n" +
-    "                      <td ng-if = \"child_role == 4\">{{user.region.name}}</td>\n" +
+    "											<td>{{user.username}}</td>\n" +
+    "											<td>{{user.email}}</td>\n" +
+    "											<td>{{user.is_active}}</td>\n" +
+    "											<td>{{user.role}}</td>\n" +
+    "											<td >{{user.phone_no}}</td>\n" +
+    "											<td ng-if = \"child_role == 2 || child_role == 3\">{{user.branch.name}}</td>\n" +
+    "											<td ng-if = \"child_role == 4\">{{user.region.name}}</td>\n" +
     "											<td>\n" +
     "												<a ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
     "												<a ng-click = \"deactivate(user, $index)\"class=\"fa fa-trash-o\"></a>\n" +
@@ -1189,11 +1195,12 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "									</tfoot>\n" +
     "								</table>\n" +
     "							</div>\n" +
-    "           				</div>\n" +
-    "            		</div>\n" +
-    "            	</div>\n" +
-    "            </div>\n" +
-    "	  </div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "		  </div>\n" +
+    "    </div>\n" +
     "	  <ui-view name = \"footer\"></ui-view>\n" +
     "  </div>\n" +
     "</div>\n" +

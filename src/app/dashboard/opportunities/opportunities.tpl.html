@@ -12,8 +12,10 @@
 				  <div class="progres-container">
 					<div class="progress-area">
 						<div class="progress-holder" ng-repeat = "dat in opportunity_data" data-color = "dat.colour" data-data = "opportunity_data" opportunity-bar-background>
-							<small><em>{{dat.name}}</em></small>
-							<div class="progress-block"><uib-progressbar animate="false" value="dat.percentage" type="success"><b>{{dat.complaints}}</b></uib-progressbar></div>
+							<div class="progress-inner">
+								<small><em>{{dat.name}} <b>{{dat.complaints}} Suggestion</b></em></small>
+								<div class="progress-block"><uib-progressbar animate="false" value="dat.percentage" type="success"></uib-progressbar></div>
+							</div>
 					  </div>
 					</div>
 				</div>
