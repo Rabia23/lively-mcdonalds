@@ -1146,6 +1146,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "							<h5>{{user_list}} List</h5>\n" +
     "						</div>\n" +
     "						<div class=\"ibox-content\">\n" +
+    "							<div flash-message=\"5000\" ></div>\n" +
     "							<div class=\"user-block\">\n" +
     "								<button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
     "							</div>\n" +
@@ -1165,7 +1166,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "										</tr>\n" +
     "									</thead>\n" +
     "									<tbody>\n" +
-    "										<tr ng-repeat = \"user in users track by $index\">\n" +
+    "										<tr ng-repeat = \"user in users track by $index\" ng-class=\"{'deactivate': user.is_active == false}\">\n" +
     "											<td>{{user.first_name}} {{user.last_name}}</td>\n" +
     "											<td>{{user.username}}</td>\n" +
     "											<td>{{user.email}}</td>\n" +
@@ -1176,8 +1177,8 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td ng-if = \"child_role == 4\">{{user.region.name}}</td>\n" +
     "											<td>\n" +
     "												<a ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-user btn-active\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-user-times btn-deactive\"></a>\n" +
+    "												<a ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user btn-active': user.is_active == false}\"></a>\n" +
+    "												<a ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user-times btn-deactive': user.is_active == true}\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "									</tbody>\n" +

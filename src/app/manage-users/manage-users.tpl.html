@@ -11,6 +11,7 @@
 							<h5>{{user_list}} List</h5>
 						</div>
 						<div class="ibox-content">
+							<div flash-message="5000" ></div>
 							<div class="user-block">
 								<button type="button" class="btn btn-primary" ng-click = "open()"><i class="fa fa-user-plus"></i> Add {{user_list}}</button>
 							</div>
@@ -30,7 +31,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr ng-repeat = "user in users track by $index">
+										<tr ng-repeat = "user in users track by $index" ng-class="{'deactivate': user.is_active == false}">
 											<td>{{user.first_name}} {{user.last_name}}</td>
 											<td>{{user.username}}</td>
 											<td>{{user.email}}</td>
@@ -41,8 +42,8 @@
 											<td ng-if = "child_role == 4">{{user.region.name}}</td>
 											<td>
 												<a ng-click = "edit(user, $index)" class="fa fa-pencil-square-o"></a>
-												<a href="#" class="fa fa-user btn-active"></a>
-												<a href="#" class="fa fa-user-times btn-deactive"></a>
+												<a ng-click = "deactivate(user, $index)" ng-class="{'fa fa-user btn-active': user.is_active == false}"></a>
+												<a ng-click = "deactivate(user, $index)" ng-class="{'fa fa-user-times btn-deactive': user.is_active == true}"></a>
 											</td>
 										</tr>
 									</tbody>
