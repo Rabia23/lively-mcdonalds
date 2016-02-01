@@ -5,7 +5,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from apps.area.models import Area
 from apps.branch.models import Branch
-from apps.branch.serializers import BranchSerializer
 from apps.city.models import City
 from apps.option.models import Option
 from apps.option.utils import generate_missing_options, generate_missing_sub_options, generate_option_groups, \
@@ -771,10 +770,18 @@ class PromotionDetailView(APIView):
             id = get_param(request, 'id', None)
             
             promotion = Promotion.objects.get(pk=id)
+            questions = promotion.questions.all()
 
-            for questions in promotion.questions.all():
-                feedback_options = FeedbackOption.manager.promotion_options()
-            return Response(None)
+            question_data_list = []
+            for question in questions:
+                feedback_options = FeedbackOption.manager.promotion_options(question)
+                filtered_feedback = feedback_options.values('option_id', 'option__text', 'option__parent_id', 'option__score').\
+                                    annotate(count=Count('option_id'))
+                list_feedback = generate_missing_options(question, filtered_feedback)
+                question_data_list.append({'question': question.text, 'feedbacks': list_feedback})
+
+            data = {'question': questions.count(), 'analysis': question_data_list}
+            return Response(data)
 
         except Promotion.DoesNotExist as e:
             return Response(constants.TEXT_DOES_NOT_EXISTS)

@@ -382,7 +382,7 @@ class FeedbackOptionQuerySet(models.QuerySet):
         return self.filter(option__in=options.values_list('id'))
 
     def promotion_options(self, question):
-        return self.filter(option__in=question.options.filter(parent=None).values_list('id'))
+        return self.filter(option__in=question.options.filter().values_list('id'))
 
 
 class FeedbackOptionManager(models.Manager):

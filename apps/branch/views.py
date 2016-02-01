@@ -11,15 +11,15 @@ from django.db import transaction
 class BranchView(APIView):
     def get(self, request, format=None):
         branches = None
+        region_id = request.query_params.get('region', None)
         city_id = request.query_params.get('city', None)
-        if city_id:
-            city = City.get_by_id(city_id)
-            if city:
-                branches = city.branches.all()
-        else:
-            branches = Branch.objects.all()
+        if region_id:
+            branches = Branch.objects.filter(city__region__exact=region_id)
+        elif city_id:
+            branches = Branch.objects.filter(city__exact=city_id)
         serializer = BranchSerializer(branches, many=True)
         return Response(serializer.data)
+
 
     @transaction.atomic
     def post(self, request, format=None):
