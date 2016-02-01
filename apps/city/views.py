@@ -3,19 +3,15 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from apps.city.models import City
 from apps.city.serializers import CitySerializer
-from apps.region.models import Region
 from apps.utils import get_data_param
 from django.db import transaction
 
 
 class CityView(APIView):
     def get(self, request, format=None):
-        cities = None
         region_id = request.query_params.get('region', None)
         if region_id:
-            region = Region.get_by_id(region_id)
-            if region:
-                cities = region.cities.all()
+            cities = City.objects.filter(region__exact=region_id)
         else:
             cities = City.objects.all()
         serializer = CitySerializer(cities, many=True)

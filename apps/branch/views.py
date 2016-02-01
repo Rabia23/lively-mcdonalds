@@ -3,20 +3,20 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from apps.branch.models import Branch
 from apps.branch.serializers import BranchSerializer
-from apps.city.models import City
 from apps.utils import get_data_param
 from django.db import transaction
 
 
 class BranchView(APIView):
     def get(self, request, format=None):
-        branches = None
         region_id = request.query_params.get('region', None)
         city_id = request.query_params.get('city', None)
         if region_id:
             branches = Branch.objects.filter(city__region__exact=region_id)
         elif city_id:
             branches = Branch.objects.filter(city__exact=city_id)
+        else:
+            branches = Branch.objects.all()
         serializer = BranchSerializer(branches, many=True)
         return Response(serializer.data)
 
