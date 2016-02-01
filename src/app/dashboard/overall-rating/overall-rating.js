@@ -18,6 +18,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
   $scope.datePickerOption = {
     eventHandlers: {
       'apply.daterangepicker': function(ev, picker){
+        $scope.show_loading = true;
         $scope.type = "1";
         $(".jcf-select-text").children("span").html("Daily");
         if($scope.mainView){
@@ -39,6 +40,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
    $scope.type = "1";
    $scope.mainView = true;
+   $scope.show_loading = true;
 
    function mainRating() {
        $scope.mainView = true;
@@ -61,12 +63,12 @@ angular.module( 'livefeed.dashboard.overall_rating', [
            });
            var timeline_data = overallRatingChartService.getAreaChart(data);
            $scope.overall_rating_data = [$scope.labels, timeline_data];
-
+           $scope.show_loading = false;
        });
    }
 
    $scope.optionClick = function (option_object){
-
+       $scope.show_loading = true;
        var option_id = option_object.item.dataContext[option_object.graph.id];
        var date = option_object.item.category;
 
@@ -87,11 +89,12 @@ angular.module( 'livefeed.dashboard.overall_rating', [
              var qsc_suboptions_data = overallRatingChartService.getAreaSegmentChart(data);
              $scope.overall_rating_data = [$scope.labels, qsc_suboptions_data];
            }
+           $scope.show_loading = false;
        });
    };
 
    $scope.labelClick = function(option){
-
+      $scope.show_loading = true;
       if(option.parent_id == null){
         Graphs.overall_rating($scope.type, option.option_id).$promise.then(function(data) {
            $scope.mainView = false;
@@ -109,15 +112,18 @@ angular.module( 'livefeed.dashboard.overall_rating', [
            });
            var label_data =  overallRatingChartService.getAreaLabelChart(data);
            $scope.overall_rating_data = [$scope.labels, label_data];
+           $scope.show_loading = false;
         });
       }
    };
 
    $scope.axisChanged = function(){
+     $scope.show_loading = true;
      mainRating();
    };
 
    $scope.backToMain = function(){
+     $scope.show_loading = true;
      mainRating();
      resetDates();
    };

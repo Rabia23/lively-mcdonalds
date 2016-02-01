@@ -7,6 +7,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
 
   $scope.colors = [];
   $scope.labels = [];
+  $scope.show_loading = true;
 
   Graphs.top_concerns().$promise.then(function(data){
     $scope.data = [];
@@ -22,6 +23,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
       $scope.data.push({"category": value.name, "column-1": value.weight, "color": Global.topConcernsColors(index)});
 
     });
+    $scope.show_loading = false;
   });
 })
 

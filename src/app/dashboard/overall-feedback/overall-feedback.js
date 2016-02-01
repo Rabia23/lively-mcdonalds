@@ -8,7 +8,7 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
 
 .controller( 'OverallFeedbackCtrl', function DashboardController( $scope, Graphs, Global, overallFeedbackChartService ) {
 
-  $scope.show_loading = false;
+  $scope.show_loading = true;
   $scope.show_labels = true;
 
   $scope.today = new Date();
@@ -48,6 +48,7 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
         $scope.maximum = _.max(graph_data.feedbacks, function(data){ return data.count; });
         $scope.bar = {};
         $scope.bar = overallFeedbackChartService.getBarChartData(graph_data,$scope.maximum.count);
+        $scope.show_loading = false;
      });
   }
   show_graph("","");
