@@ -12,6 +12,7 @@ from apps.option.utils import generate_missing_options, generate_missing_sub_opt
     generate_segmentation_with_options
 from apps.person.enum import UserRolesEnum
 from apps.person.models import UserInfo
+from apps.promotion.models import Promotion
 from apps.question.models import Question
 from apps.region.models import Region
 from apps.review.models import FeedbackOption, Feedback, Concern
@@ -752,6 +753,25 @@ class OpportunityAnalysisView(APIView):
             data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
             return Response(data)
 
+        except Exception as e:
+            return Response(None)
+
+
+class PromotionDetailView(APIView):
+
+    @method_decorator(my_login_required)
+    def get(self, request, user, format=None):
+        try:
+            id = get_param(request, 'id', None)
+            
+            promotion = Promotion.objects.get(pk=id)
+
+            for questions in promotion.questions.all():
+                feedback_options = FeedbackOption.manager.promotion_options()
+            return Response(None)
+
+        except Promotion.DoesNotExist as e:
+            return Response(constants.TEXT_DOES_NOT_EXISTS)
         except Exception as e:
             return Response(None)
 

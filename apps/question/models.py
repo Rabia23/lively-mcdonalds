@@ -8,7 +8,7 @@ class Question(models.Model):
     type = models.IntegerField(db_index=True)
     objectId = models.CharField(max_length=20, db_index=True)
     isPromotion = models.BooleanField(default=True, db_index=True)
-    promotion = models.ForeignKey(Promotion, related_name='promotion', null=True, blank=True)
+    promotion = models.ForeignKey(Promotion, related_name='questions', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     def __str__(self):

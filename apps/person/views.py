@@ -138,7 +138,7 @@ class UserView(APIView):
                     else:
                         user_info.is_active = True
                     user_info.save()
-                    return Response(True)
+                    return Response(user_info.to_dict)
 
             return Response(False)
         except User.DoesNotExist as e:

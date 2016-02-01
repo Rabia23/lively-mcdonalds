@@ -366,7 +366,6 @@ class FeedbackOptionQuerySet(models.QuerySet):
         else:
             return self.filter(feedback__branch__city__region__area__exact=object.id)
 
-
     def feedback(self, option):
         return self.filter(feedback__in=FeedbackOption.objects.filter(option=option).values_list('feedback_id'))
 
@@ -381,6 +380,9 @@ class FeedbackOptionQuerySet(models.QuerySet):
 
     def options(self, options):
         return self.filter(option__in=options.values_list('id'))
+
+    def promotion_options(self, question):
+        return self.filter(option__in=question.options.filter(parent=None).values_list('id'))
 
 
 class FeedbackOptionManager(models.Manager):
