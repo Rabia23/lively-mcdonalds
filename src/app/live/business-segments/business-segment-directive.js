@@ -17,7 +17,6 @@
           if(watchedData !== undefined){
             var data = scope.data;
             if(!graph_drawn){
-              console.log("in the id");
               live_segment_chart =   AmCharts.makeChart("stackchart",{
                 "type": "serial",
                 "categoryField": "category",
@@ -109,7 +108,7 @@
               live_segment_chart.validateData();
             }
 
-             
+
           }
         });
       }
@@ -117,4 +116,3 @@
   });
 
 })();
-

@@ -6,9 +6,9 @@
  });
 
 
-jQuery(window).load(function(){
-	initSameHeight();
-});
+//jQuery(window).load(function(){
+//	initSameHeight();
+//});
 
 // fade gallery init
 function initSlideShow() {
@@ -573,7 +573,7 @@ function initSameHeight() {
     elements: '.same-height-col , .same-height-block',
     flexible: true,
     multiLine: true,
-    biggestHeight: false,
+    biggestHeight: true,
 	useMinHeight: false
   });
   jQuery('.same-height-block').sameHeight({

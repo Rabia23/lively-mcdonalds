@@ -13,12 +13,14 @@ angular.module( 'livefeed.dashboard.top_concern', [
     $scope.data = [];
     $scope.all_zero = true;
 
+    $scope.concern_list = data.concern_list;
+
     _.each($scope.concern_list, function(value, index){
       if(value.weight > 0){
         $scope.all_zero = false;
       }
     });
-    $scope.concern_list = data.concern_list;
+
     _.each($scope.concern_list, function(value, index){
       $scope.data.push({"category": value.name, "column-1": value.weight, "color": Global.topConcernsColors(index)});
 
@@ -38,8 +40,6 @@ angular.module( 'livefeed.dashboard.top_concern', [
         scope.$watch('data', function(watchedData) {
           if(watchedData !== undefined){
             var data = scope.data;
-            console.log("top concerns");
-            console.log(data);
             chart = AmCharts.makeChart("piechart",
               {
                 "type": "pie",
@@ -73,20 +73,20 @@ angular.module( 'livefeed.dashboard.top_concern', [
         });
       }
     };
-  });
+  })
 
-//.directive('sameHeight', function() {
-//  return {
-//      restrict: 'A',
-//      scope: {
-//        mydata: '='
-//      },
-//      link: function(scope, ele, attrs) {
-//        scope.$watch('mydata', function(watchedData) {
-//          if(watchedData !== undefined){
-//            window.initSameHeight();
-//          }
-//        });
-//      }
-//  };
-//});
+.directive('sameHeight', function() {
+  return {
+      restrict: 'A',
+      scope: {
+        mydata: '='
+      },
+      link: function(scope, ele, attrs) {
+        scope.$watch('mydata', function(watchedData) {
+          if(watchedData !== undefined){
+            window.initSameHeight();
+          }
+        });
+      }
+  };
+});

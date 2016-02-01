@@ -565,7 +565,7 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "       		<ul class=\"comments-list list-unstyled\">\n" +
     "			  <li ng-if = \"feedback_count != 0\" ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.data.is_negative, positive: !comment.data.is_negative, processed: comment.action_string == 'Processed', deferred: comment.action_string == 'Deferred'}\">\n" +
     "				  <p>{{comment.data.comment}}</p>\n" +
-    "				  <time datetime=\"2014-06-12 18:00\">Today 5:60 pm - 12.06.2014</time>\n" +
+    "				  <time datetime=\"{{comment.date_time}}\">{{comment.date_time}}</time>\n" +
     "			  </li>\n" +
     "			  <li ng-if = \"feedback_count == 0\">\n" +
     "				No Data Available\n" +
@@ -1070,7 +1070,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "				<label class=\"col-sm-2 control-label\" for=\"password\">Password</label>\n" +
     "				<div class=\"col-sm-10\">\n" +
     "					<input type=\"password\" id=\"password\" class=\"form-control\" placeholder=\"Password\" ng-model = \"user.password\" name=\"password\"\n" +
-    "					required = true autocomplete=\"off\">\n" +
+    "					autocomplete=\"off\" ng-required = \"!edit_form\">\n" +
     "					<div ng-show=\"UserForm.password.$error.required && (!UserForm.password.$pristine || submitted == true)\"\n" +
     "					class=\"form-error-message pull-left\">Password is required.\n" +
     "					</div>\n" +
@@ -1098,34 +1098,10 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "					<div ng-show=\"UserForm.phone_no.$error.required && (!UserForm.phone_no.$pristine || submitted == true)\"\n" +
     "					class=\"form-error-message pull-left\">Phone no is required.\n" +
     "					</div>\n" +
-    "					<div ng-show=\"UserForm.phone_no.$error.pattern && (!UserForm.phone_no.$pristine || submitted == true)\" \n" +
+    "					<div ng-show=\"UserForm.phone_no.$error.pattern && (!UserForm.phone_no.$pristine || submitted == true)\"\n" +
     "					class=\"form-error-message pull-left\">Wrong number pattern.</div>\n" +
     "				</div>\n" +
     "\n" +
-    "			</div>\n" +
-    "			<div class=\"form-group\" ng-if = \"user.role == 2 || user.role == 3\" ng-hide = \"edit_form\">\n" +
-    "				<label class=\"col-sm-2 control-label\" for=\"branch\">Branch</label>\n" +
-    "				<div class=\"col-sm-10\">\n" +
-    "					<select id=\"branch\" class=\"barcode\" custom-form  ng-options = \"branch.id as branch.name for branch in branches track by branch.id\"\n" +
-    "					ng-model = \"user.branch_id\" name = \"branch\" required = true>\n" +
-    "						<option class=\"hideme\" value = \"\">Please Select a Branch</option>\n" +
-    "					</select>\n" +
-    "					<div ng-show=\"UserForm.branch.$error.required && (!UserForm.branch.$pristine || submitted == true)\"\n" +
-    "					class=\"form-error-message pull-left\"> Branch is required.\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
-    "			<div class=\"form-group\" ng-if = \"user.role == 4\" ng-hide = \"edit_form\">\n" +
-    "				<label class=\"col-sm-2 control-label\" for=\"code\">Regions</label>\n" +
-    "				<div class=\"col-sm-10\">\n" +
-    "					<select id=\"region\" class=\"barcode\" custom-form  ng-options = \"region.id as region.name for region in regions track by region.id\"\n" +
-    "					ng-model = \"user.region_id\" name = \"region\" required=\"true\">\n" +
-    "						<option class=\"hideme\" value = \"\">Please Select a Region</option>\n" +
-    "					</select>\n" +
-    "					<div ng-show=\"UserForm.region.$error.required && (!UserForm.region.$pristine || submitted == true)\"\n" +
-    "					class=\"form-error-message pull-left\"> Region is required.\n" +
-    "					</div>\n" +
-    "				</div>\n" +
     "			</div>\n" +
     "		</div>\n" +
     "		<div class=\"modal-footer\">\n" +
@@ -1152,6 +1128,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "							<h5>{{user_list}} List</h5>\n" +
     "						</div>\n" +
     "						<div class=\"ibox-content\">\n" +
+    "							<div flash-message=\"5000\" ></div>\n" +
     "							<div class=\"user-block\">\n" +
     "								<button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
     "							</div>\n" +
@@ -1171,7 +1148,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "										</tr>\n" +
     "									</thead>\n" +
     "									<tbody>\n" +
-    "										<tr ng-repeat = \"user in users track by $index\">\n" +
+    "										<tr ng-repeat = \"user in users track by $index\" ng-class=\"{'deactivate': user.is_active == false}\">\n" +
     "											<td>{{user.first_name}} {{user.last_name}}</td>\n" +
     "											<td>{{user.username}}</td>\n" +
     "											<td>{{user.email}}</td>\n" +
@@ -1182,8 +1159,8 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "											<td ng-if = \"child_role == 4\">{{user.region.name}}</td>\n" +
     "											<td>\n" +
     "												<a ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-user btn-active\"></a>\n" +
-    "												<a href=\"#\" class=\"fa fa-user-times btn-deactive\"></a>\n" +
+    "												<a ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user btn-active': user.is_active == false}\"></a>\n" +
+    "												<a ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user-times btn-deactive': user.is_active == true}\"></a>\n" +
     "											</td>\n" +
     "										</tr>\n" +
     "									</tbody>\n" +

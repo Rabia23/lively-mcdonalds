@@ -37,7 +37,6 @@
       _.each($scope.complaint_view, function (value) {
         var region_name = value.object.name;
         if(region_name === "Pakistan") {
-          console.log(value.data);
           pakistan_feedback_count = value.data.feedback_count;
           _.each(value.data.action_analysis,function(dat){
             $scope.pakistan_analysis.push({ "category": Global.complaintAnalysisAction[dat.action_taken][0], "column-1": dat.count, "color": Global.complaintAnalysisAction[dat.action_taken][1] });
@@ -65,4 +64,3 @@
 
 
 })();
-

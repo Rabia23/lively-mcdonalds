@@ -1555,10 +1555,13 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	background: #e6e6e6;
 }
 .opportunities .progress-area .progress-bar{
-	position: static !important;
+	left: 0;
+	top: 0;
+	bottom: 0;
 }
 
 .footable tbody tr{cursor: pointer;}
+.footable tbody tr.deactivate{background: #fce8e8;}
 .footable .fa{
 	font-size: 13px;
 	line-height: 13px;

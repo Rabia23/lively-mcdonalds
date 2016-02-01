@@ -141,8 +141,6 @@ angular.module( 'livefeed.dashboard.overall_rating', [
       link: function(scope, ele, attrs) {
         scope.$watch('data', function(watchedData) {
           if(watchedData !== undefined){
-            console.log("in the if watch data");
-            console.log(scope.data);
             window.initSameHeight();
           }
         });
@@ -210,8 +208,8 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                       "startEffect": "easeOutSine",
                       "borderColor": "#FFFE6E",
                       "color": "#FFF",
-                      "fontFamily": "'Oswald', sans-serif",
-                      "fontSize": 15,
+                      "fontFamily": "'open Sans', open Sans",
+                      "fontSize": 12,
                       "handDrawScatter": 0,
                       "handDrawThickness": 0,
                       "theme": "default",
@@ -222,7 +220,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                           "twoLineMode": true,
                           "axisAlpha": 0.4,
                           "axisColor": "#CED4CE",
-                          "color": "#A7AAA7",
+                          "color": "#808080",
                           "fillColor": "#A7AAA7",
                           "gridAlpha": 0.4,
                           "gridColor": "#CED4CE",
@@ -233,7 +231,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                           "showFirstLabel": true,
                           "showLastLabel": true,
                           "tickLength": 0,
-                          "fontSize": 13
+                          "fontSize": 12
                       },
                       "trendLines": [],
                       "graphs": graphs,
@@ -244,14 +242,14 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                               "synchronizationMultiplier": 0,
                               "axisAlpha": 0.4,
                               "axisColor": "#CED4CE",
-                              "color": "#A7AAA7",
+                              "color": "#808080",
                               "fillColor": "#A7AAA7",
                               "gridAlpha": 0.4,
                               "gridColor": "#CED4CE",
                               "gridCount": 20,
                               "tickLength": 0,
                               "title": "",
-                              "fontSize": 13
+                              "fontSize": 12
 
                           }
                       ],
@@ -275,9 +273,12 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                       "dataProvider": data[1]
                   });
                   window.initSameHeight();
-                chart.addListener("clickGraphItem", function(event){
-                  scope.$apply(scope.action({option_object: event}));
-                });
+                  chart.addListener("clickGraphItem", function(event){
+                    scope.$apply(scope.action({option_object: event}));
+                  });
+                  // var width = $("#chartdiv").find("svg").width();
+                  // width = width + 20;
+                  // $("#chartdiv").find("svg").css("width", width);
               }
 
           });

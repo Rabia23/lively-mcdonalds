@@ -27,7 +27,11 @@ angular.module( 'livefeed.manage_users.api', [
   };
   ManageApi.prototype.edit_user = function(user){
     var token = $rootScope.token || TokenHandler.get_token();
-    var user_json = {new_password: user.password, email: user.email, phone_no: user.phone_no, id: user.id, token: token};
+    var user_json = {email: user.email, phone_no: user.phone_no, id: user.id, token: token};
+
+    if(user.password){
+      user_json.new_password = user.password;
+    }
     return this.service.edit_user(user_json);
   };
   ManageApi.prototype.add_user = function(user){
