@@ -2,7 +2,6 @@ body{
 	background: #f1c40f !important;
 	min-width: 320px;
 }
-
 .morris-block-holder{letter-spacing: -6px;}
 
 .morris-block-holder .morris-content-holder{
@@ -276,7 +275,7 @@ body{
 	top: 0;
 	z-index: 2;
 	pointer-events:none;
-	bottom: -9999px;
+	bottom: 0;
 	width: 10px;
 	content: "";
 	-webkit-box-shadow: -6px 0 4px 0 rgba(0, 0, 0, 0.05);
@@ -309,9 +308,11 @@ body{
 }
 
 #wrapper{
-	overflow: hidden;
 	position: relative;
+	overflow: hidden;
 }
+
+.navbar-static-side{height: 100%;}
 
 #wrapper .minimalize-styl-2{margin: 14px 5px 5px 10px;}
 
@@ -419,9 +420,8 @@ body{
 
 .comments-drop{
 	pointer-events: auto;
-	position: absolute;
+	position: fixed;
 	right: 0;
-	top: 0;
 	bottom: 0;
 	z-index: 9999;
 	width: 300px;
@@ -470,6 +470,8 @@ body{
 }
 
 .nav-active .comments-drop{
+	position: absolute;
+	top: 0;
 	-moz-transform: translateX(0);
 	-webkit-transform: translateX(0);
 	-o-transform: translateX(0);
@@ -1279,9 +1281,6 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 
 .rating .legends-list{text-align: left;}
 
-.same-height-parent .ibox-content,
-.same-height-parent .ibox.detail-block .ibox-content{padding: 10px;}
-
 .progress-area {
 	clear: both;
 	overflow: hidden;
@@ -1291,13 +1290,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	color: #12122e;
 	font-size: 100%;
 	text-transform: capitalize;
-	margin: 0 0 4px;
-}
-.business-segment .progress-area small{
-	position: absolute;
-	left: 0;
-	top: 0;
-	margin: 0;
+	margin: 0 0 5px;
 }
 .progress-area small em {
 	display: block;
@@ -1308,13 +1301,13 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	text-transform: uppercase;
 }
 
-.business-segment .progress-area small b{
+.progress-area small b{
 	font-weight: 400;
 	color: #6e6e75;
 	font-size: 12px;
 	line-height: 1;
 	display: inline-block;
-	vertical-align: middle;
+	vertical-align: top;
 	margin: 0 0 0 5px;
 	text-transform: capitalize;
 }
@@ -1363,14 +1356,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	background: #3498db;
 	color: #3498db;
 }
-.opportunities .progress-area .progress{height: 8px;}
-.business-segment .progress-area .progress{
-	height: 100%;
-	background: none;
-	border: 1px solid #e0e0e0;
-}
 
-.business-segment .progress-area .progress-bar{
+.progress-area .progress-bar{
 	position: absolute;
 	left: -1px;
 	top: -1px;
@@ -1380,21 +1367,42 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .progress-area .progress {
 	overflow: visible;
 	margin: 0;
-	height: 6px;
 	box-shadow: none;
 	color: inherit;
-	background: #e6e6e6;
 	border-radius: 0;
 	-webkit-border-radius: 0;
+	background: none;
+	border: 1px solid #e0e0e0;
+	min-height: 100%;
+	height: auto !important;
 }
 .progress-area .progress-holder {
-	padding: 25px 0 20px;
 	position: relative;
+	white-space: nowrap;
 }
-.business-segment .progress-area .progress-holder {min-height: 55px;}
-.opportunities .progress-area .progress-holder {padding: 0 0 12px;}
+
+.progress-area .progress-holder:after{
+	display: inline-block;
+	vertical-align: middle;
+	min-height: 100%;
+	content: "";
+	overflow: hidden;
+}
+
+.progress-area .progress-holder .progress-inner{
+	display: inline-block;
+	vertical-align: middle;
+	width: 100%;
+	white-space: normal;
+}
+
+.progress-area .progress-holder {min-height: 55px;}
+
 .progress-area .progress-holder .progress {
 	position: relative;
+	height: auto !important;
+	min-height: 20px !important;
+	max-height: 30px !important;
 	box-shadow: none !important;
 	-webkit-box-shadow: none !important;
 }
@@ -1413,15 +1421,6 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	text-align: left;
 }
 
-.opportunities .progress-area .progress-holder .progress-bar span,
-.opportunities .progress-area .progress-holder .progress-bar b{
-	left: 100%;
-	top: -5px;
-	padding: 0 2px;
-	text-align: center;
-	width: 50px;
-	color: #000;
-}
 .progress-area .progress-holder.yellow {color: #ffc300;}
 .progress-area .progress-holder.yellow .progress-bar {
 	color: #ffc300;
@@ -1438,8 +1437,6 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	color: #3498db;
 }
 .progress-area .progress-holder .progress-block {position: relative;}
-.business-segment .progress-area .progress-holder .progress-block{height: 100%;}
-.opportunities .progress-area .progress-holder .progress-block {padding: 0 50px 0 0;}
 
 .progress-container.Quality .progress-holder .progress-bar {background: #431051;}
 .progress-container.Quality .progress-holder .progress-bar b, .progress-container.Quality .progress-holder .progress-bar span {color: #431051;}
@@ -1532,6 +1529,22 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .progress-container.Cleanliness .list.add li:nth-child(5):before {background: #137ecc;}
 .progress-container.Cleanliness .list.add li:nth-child(6):before {background: #168ce0;}
 
+
+.opportunities .progress-area .progress-holder{
+	padding: 0 0 12px;
+	min-height: inherit;
+}
+.opportunities .progress-area .progress{
+	height: 6px !important;
+	min-height: inherit !important;
+	max-height: inherit !important;
+	border: 0;
+	background: #e6e6e6;
+}
+.opportunities .progress-area .progress-bar{
+	position: static !important;
+}
+
 .footable tbody tr{cursor: pointer;}
 .footable .fa.fa-pencil-square-o,
 .footable .fa.fa-trash-o{
@@ -1590,12 +1603,14 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .ibox > .content-holder,
 .ibox > .ibox-content{position: relative;}
 
+.modal-1000 .graph-container .holder:after,
+.form-holder:after,
 .ibox > .content-holder:after,
 .ibox > .ibox-content:after{
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	background: url(/assets/images/loader.gif) no-repeat;
+	background: url(../assets/images/loader.gif) no-repeat;
 	width: 75px;
 	height: 70px;
 	content: "";
@@ -1605,6 +1620,9 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	z-index: 992;
 	display: block !important;
 }
+
+.modal-1000 .graph-container .holder:before,
+.form-holder:before,
 .ibox > .content-holder:before,
 .ibox > .ibox-content:before {
 	left: 0;
@@ -1620,12 +1638,16 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	display: block !important;
 }
 
+.modal-1000 .graph-container.loading .holder:after,
+.form-holder.loading:after,
 .ibox.loading > .content-holder:after,
 .ibox.loading > .ibox-content:after{
 	visibility: visible;
 	opacity: 1;
 }
 
+.modal-1000 .graph-container.loading .holder:before,
+.form-holder.loading:before,
 .ibox.loading > .content-holder:before,
 .ibox.loading > .ibox-content:before{
 	visibility: visible;
@@ -1667,6 +1689,11 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	line-height: 1.1;
 	color: #12122e;
 	text-transform: uppercase;
+}
+
+#wrapper .same-height-parent .ibox-content{
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 @media screen and (min-width: 768px) {
@@ -1851,12 +1878,15 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	.breadcrum{padding: 5px 8px;}
 	.ibox-content h1{font-size: 26px;}
 	.detail-block h1{font-size: 25px;}
-	.tab-links li a{padding: 13px;}
+	.tab-links li a{padding: 13px 11px;}
 	.calender-outer{min-width: 50px;}
 }
 
+/*@media screen and (min-width: 1450px) {
+	.same-height-block .inner-row{height: 50% !important;}
+}*/
+
 @media screen and (max-width: 1450px) {
-	.opportunities .progress-area .progress-holder{padding: 0 0 28px;}
 	.same-height-block.add{height: auto !important;}
 	.same-height-parent .col-lg-6{
 		left: 0;
@@ -1875,8 +1905,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	.same-height-block.add{margin-bottom: 25px;}
 	.morris-block-holder .morris-graph-holder .morris-holder{min-height: 120px;}
 	.blocks-holder{height: auto !important;}
-	.business-segment .progress-container,
-	.business-segment .progress-area{height: auto !important;}
+	.progress-container,
+	.progress-area{height: auto !important;}
 }
 
 @media only screen and (min-width:1200px) and (max-width: 1450px)  {

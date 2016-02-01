@@ -15,7 +15,7 @@
 	border-bottom: 1px solid #d9d9d9;
 }
 
-.form-holder:after,
+.form-inner,
 .form-holder .inner-holder:after{
 	display: block;
 	content: "";
@@ -55,21 +55,21 @@
 
 .form-holder .btn.btn-info{
 	border-radius: 0;
-		-webkit-border-radius: 0;
-		width: 100%;
-		float: left;
-		@extend .text-uppercase;
-		font-size: 15px;
-		font-weight: bold;
-		line-height: 1.5em;
-		color: #927510;
-		text-shadow: 0 1px rgba(255,255,255,.75);
-		margin: 0 0 15px;
-		border-color: #e1d84c;
-		background: #ffeb7e;
-		background: -moz-linear-gradient(top, #ffeb7e 0%, #fde976 23%, #f5e056 80%, #f3de4f 100%);
-		background: -webkit-linear-gradient(top, #ffeb7e 0%,#fde976 23%,#f5e056 80%,#f3de4f 100%);
-		background: linear-gradient(to bottom, #ffeb7e 0%,#fde976 23%,#f5e056 80%,#f3de4f 100%);
+	-webkit-border-radius: 0;
+	width: 100%;
+	float: left;
+	@extend .text-uppercase;
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 1.5em;
+	color: #927510;
+	text-shadow: 0 1px rgba(255,255,255,.75);
+	margin: 0 0 15px;
+	border-color: #e1d84c;
+	background: #ffeb7e;
+	background: -moz-linear-gradient(top, #ffeb7e 0%, #fde976 23%, #f5e056 80%, #f3de4f 100%);
+	background: -webkit-linear-gradient(top, #ffeb7e 0%,#fde976 23%,#f5e056 80%,#f3de4f 100%);
+	background: linear-gradient(to bottom, #ffeb7e 0%,#fde976 23%,#f5e056 80%,#f3de4f 100%);
 }
 
 .form-holder .btn.btn-info:hover,
