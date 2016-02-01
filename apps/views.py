@@ -498,10 +498,16 @@ class TopChartsView(APIView):
     @method_decorator(my_login_required)
     def get(self, request, format=None):
         try:
-            branch = Feedback.get_top_branch()
-            city = Feedback.get_top_city()
-            region = Feedback.get_top_region()
-            gro = Feedback.get_top_gro()
+
+            now = datetime.now()
+
+            date_to_str = str(now.date())
+            date_from_str = str((now - timedelta(days=1)).date())
+
+            branch = Feedback.get_top_branch(date_from_str, date_to_str)
+            city = Feedback.get_top_city(date_from_str, date_to_str)
+            region = Feedback.get_top_region(date_from_str, date_to_str)
+            gro = Feedback.get_top_gro(date_from_str, date_to_str)
             
             data = {'branch': branch, 'city': city, 'region': region, 'gro': gro}
             return Response(data)

@@ -102,9 +102,9 @@ class Feedback(models.Model):
         return {"positive_feedback_count": positive_feedback_count, "negative_feedback_count": negative_feedback_count}
 
     @staticmethod
-    def get_top_branch():
+    def get_top_branch(date_from=None, date_to=None):
         result = None
-        dict = Feedback.objects.values('branch_id').annotate(count=Count("branch_id"))
+        dict = Feedback.manager.date(date_from, date_to).values('branch_id').annotate(count=Count("branch_id"))
         if dict:
             dict = dict.latest("count")
             branch = Branch.objects.get(pk=dict["branch_id"])
@@ -155,9 +155,9 @@ class Feedback(models.Model):
         return result
 
     @staticmethod
-    def get_top_region():
+    def get_top_region(date_from=None, date_to=None):
         result = None
-        dict = Feedback.objects.values('branch__city__region_id').annotate(count=Count("branch__city__region_id"))
+        dict = Feedback.manager.date(date_from, date_to).values('branch__city__region_id').annotate(count=Count("branch__city__region_id"))
 
         if dict:
             dict = dict.latest("count")
