@@ -8,7 +8,7 @@ from apps.parse import ParseHelper
 from apps.person.enum import UserRolesEnum
 from apps.person.models import UserInfo
 from apps.region.models import Region
-from apps.utils import get_data_param, get_param
+from apps.utils import get_data_param, get_param, get_default_param
 from django.db import IntegrityError
 
 
@@ -127,7 +127,7 @@ class UserView(APIView):
     @transaction.atomic()
     def delete(self, request, format=None):
         try:
-            id = get_param(request, 'id', None)
+            id = get_default_param(request, 'id', None)
 
             user = User.objects.get(pk=id)
             if user:
