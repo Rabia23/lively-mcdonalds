@@ -463,7 +463,7 @@ class Concern(models.Model):
         try:
             concern = {
                 "id": self.id,
-                "name": self.keyword,
+                "name": self.keyword.capitalize(),
                 "weight": self.count,
             }
             return concern

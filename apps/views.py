@@ -51,7 +51,7 @@ class LoginView(APIView):
 class OverallFeedbackView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         now = datetime.now()
 
         try:
@@ -78,7 +78,7 @@ class OverallFeedbackView(APIView):
 class FeedbackAnalysisView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         now = datetime.now()
         feedbacks = []
         objects = None
@@ -131,7 +131,7 @@ class FeedbackAnalysisView(APIView):
 class FeedbackAnalysisBreakdownView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         now = datetime.now()
 
         try:
@@ -162,7 +162,7 @@ class FeedbackAnalysisBreakdownView(APIView):
 class OverallRatingView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         feedback_records_list = []
 
         try:
@@ -238,7 +238,7 @@ class OverallRatingView(APIView):
 class CategoryPerformanceView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         now = datetime.now()
 
         try:
@@ -275,7 +275,7 @@ class CategoryPerformanceView(APIView):
 class PositiveNegativeFeedbackView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
             region_id = get_param(request, 'region', None)
             city_id = get_param(request, 'city', None)
@@ -297,7 +297,7 @@ class PositiveNegativeFeedbackView(APIView):
 class CommentsView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
             region_id = get_param(request, 'region', None)
             city_id = get_param(request, 'city', None)
@@ -321,7 +321,7 @@ class CommentsView(APIView):
 class MapView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         now = datetime.now()
 
         try:
@@ -341,7 +341,7 @@ class MapView(APIView):
 class FeedbackSegmentationView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
             region_id = get_param(request, 'region', None)
             city_id = get_param(request, 'city', None)
@@ -382,7 +382,7 @@ class FeedbackSegmentationView(APIView):
 class TopConcernsView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
             concerns = [concern.to_dict() for concern in Concern.objects.filter(is_active=True).order_by("-count")[:5]]
             data = {'concern_count': len(concerns), 'concern_list': concerns}
@@ -394,7 +394,7 @@ class TopConcernsView(APIView):
 class SegmentationRatingView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         now = datetime.now()
         try:
             region_id = get_param(request, 'region', None)
@@ -423,7 +423,7 @@ class SegmentationRatingView(APIView):
 class ActionTakenView(APIView):
 
     @method_decorator(my_login_required)
-    def post(self, request, format=None):
+    def post(self, request, user, format=None):
         try:
             feedback_id = get_data_param(request, 'feedback_id', None)
             action_id = get_data_param(request, 'action_id', None)
@@ -446,7 +446,7 @@ class ActionTakenView(APIView):
 class ActionAnalysisView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         now = datetime.now()
         data_list = []
         objects = None
@@ -495,7 +495,7 @@ class ActionAnalysisView(APIView):
 class TopChartsView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
 
             now = datetime.now()
@@ -519,7 +519,7 @@ class TopChartsView(APIView):
 class TopRankingsView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
             overall_experience = FeedbackOption.get_top_option()
             positive_negative_feedback = Feedback.get_feedback_type_count()
@@ -540,7 +540,7 @@ class TopRankingsView(APIView):
 class ComplaintAnalysisView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
             data_list = []
             objects = Area.objects.all()
@@ -570,7 +570,7 @@ class ComplaintAnalysisView(APIView):
 class LeaderBoardView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
             city = Feedback.get_top_city()
             branches = Feedback.get_top_branches()
@@ -634,7 +634,7 @@ class LiveDashboardView(APIView):
         concerns = Concern.objects.filter(is_active=True).order_by("-count")[:1]
 
         return {'overall_experience': overall_experience,
-                'top_concern': concerns.first().keyword,
+                'top_concern': concerns.first().keyword.capitalize(),
                 'positive_negative_feedback': positive_negative_feedback,
                 'qsc_count': qsc_count}
 
@@ -670,7 +670,7 @@ class LiveDashboardView(APIView):
         return feedback_records_list
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
             now = datetime.now()
 
