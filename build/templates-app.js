@@ -1118,68 +1118,66 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "<div id=\"wrapper\">\n" +
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
-    "    <div class=\"page-holder\">\n" +
-    "    	<ui-view name = \"header\"></ui-view>\n" +
-    "		<div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
-    "			<div class=\"row\">\n" +
-    "				<div class=\"col-lg-12\">\n" +
-    "					<div class=\"ibox float-e-margins\">\n" +
-    "						<div class=\"ibox-title\">\n" +
-    "							<h5>{{user_list}} List</h5>\n" +
+    "     <ui-view name = \"header\"></ui-view>\n" +
+    "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
+    "		<div class=\"row\">\n" +
+    "			<div class=\"col-lg-12\">\n" +
+    "				<div class=\"ibox float-e-margins\">\n" +
+    "					<div class=\"ibox-title\">\n" +
+    "						<h5>{{user_list}} List</h5>\n" +
+    "					</div>\n" +
+    "					<div class=\"ibox-content\">\n" +
+    "						<div flash-message=\"5000\" ></div>\n" +
+    "						<div class=\"user-block\">\n" +
+    "							<button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
     "						</div>\n" +
-    "						<div class=\"ibox-content\">\n" +
-    "							<div flash-message=\"5000\" ></div>\n" +
-    "							<div class=\"user-block\">\n" +
-    "								<button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
-    "							</div>\n" +
-    "							<div class=\"info-holder\">\n" +
-    "								<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\" data-users = \"users\">\n" +
-    "									<thead>\n" +
-    "										<tr>\n" +
-    "											<th data-toggle=\"true\" data-sort-initial=\"true\">Name</th>\n" +
-    "											<th data-hide=\"all\">User Name</th>\n" +
-    "											<th data-hide=\"all\">Email</th>\n" +
-    "											<th data-hide=\"all\">Active</th>\n" +
-    "											<th data-hide=\"all\">Role</th>\n" +
-    "											<th>Phone No.</th>\n" +
-    "											<th ng-if = \"child_role == 2 || child_role == 3\">Branch</th>\n" +
-    "											<th ng-if = \"child_role == 4\">Region</th>\n" +
-    "											<th>Action</th>\n" +
-    "										</tr>\n" +
-    "									</thead>\n" +
-    "									<tbody>\n" +
-    "										<tr ng-repeat = \"user in users track by $index\" ng-class=\"{'deactivate': user.is_active == false}\">\n" +
-    "											<td>{{user.first_name}} {{user.last_name}}</td>\n" +
-    "											<td>{{user.username}}</td>\n" +
-    "											<td>{{user.email}}</td>\n" +
-    "											<td>{{user.is_active}}</td>\n" +
-    "											<td>{{user.role}}</td>\n" +
-    "											<td >{{user.phone_no}}</td>\n" +
-    "											<td ng-if = \"child_role == 2 || child_role == 3\">{{user.branch.name}}</td>\n" +
-    "											<td ng-if = \"child_role == 4\">{{user.region.name}}</td>\n" +
-    "											<td>\n" +
-    "												<a title=\"Edit User\" ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a title=\"Deactivate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user btn-active': user.is_active == false}\"></a>\n" +
-    "												<a title=\"Activate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user-times btn-deactive': user.is_active == true}\"></a>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "									</tbody>\n" +
-    "									<tfoot>\n" +
-    "										<tr>\n" +
-    "											<td colspan=\"7\">\n" +
-    "												<ul class=\"pagination pull-right\"></ul>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "									</tfoot>\n" +
-    "								</table>\n" +
-    "							</div>\n" +
+    "						<div class=\"info-holder\">\n" +
+    "							<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\" data-users = \"users\">\n" +
+    "								<thead>\n" +
+    "									<tr>\n" +
+    "										<th data-toggle=\"true\" data-sort-initial=\"true\">Name</th>\n" +
+    "										<th data-hide=\"all\">User Name</th>\n" +
+    "										<th data-hide=\"all\">Email</th>\n" +
+    "										<th data-hide=\"all\">Active</th>\n" +
+    "										<th data-hide=\"all\">Role</th>\n" +
+    "										<th>Phone No.</th>\n" +
+    "										<th ng-if = \"child_role == 2 || child_role == 3\">Branch</th>\n" +
+    "										<th ng-if = \"child_role == 4\">Region</th>\n" +
+    "										<th>Action</th>\n" +
+    "									</tr>\n" +
+    "								</thead>\n" +
+    "								<tbody>\n" +
+    "									<tr ng-repeat = \"user in users track by $index\" ng-class=\"{'deactivate': user.is_active == false}\">\n" +
+    "										<td>{{user.first_name}} {{user.last_name}}</td>\n" +
+    "										<td>{{user.username}}</td>\n" +
+    "										<td>{{user.email}}</td>\n" +
+    "										<td>{{user.is_active}}</td>\n" +
+    "										<td>{{user.role}}</td>\n" +
+    "										<td >{{user.phone_no}}</td>\n" +
+    "										<td ng-if = \"child_role == 2 || child_role == 3\">{{user.branch.name}}</td>\n" +
+    "										<td ng-if = \"child_role == 4\">{{user.region.name}}</td>\n" +
+    "										<td>\n" +
+    "											<a title=\"Edit User\" ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "											<a title=\"Deactivate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user btn-active': user.is_active == false}\"></a>\n" +
+    "											<a title=\"Activate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user-times btn-deactive': user.is_active == true}\"></a>\n" +
+    "										</td>\n" +
+    "									</tr>\n" +
+    "								</tbody>\n" +
+    "								<tfoot>\n" +
+    "									<tr>\n" +
+    "										<td colspan=\"7\">\n" +
+    "											<ul class=\"pagination pull-right\"></ul>\n" +
+    "										</td>\n" +
+    "									</tr>\n" +
+    "								</tfoot>\n" +
+    "							</table>\n" +
     "						</div>\n" +
     "					</div>\n" +
     "				</div>\n" +
     "			</div>\n" +
-    "		  </div>\n" +
-    "    </div>\n" +
-    "	  <ui-view name = \"footer\"></ui-view>\n" +
+    "		</div>\n" +
+    "	  </div>\n" +
+    "	 <ui-view name = \"footer\"></ui-view>\n" +
     "  </div>\n" +
     "</div>\n" +
     "");
