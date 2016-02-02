@@ -372,7 +372,7 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
     "					<div class=\"progress-area\">\n" +
     "						<div class=\"progress-holder\" ng-repeat = \"dat in opportunity_data\" data-color = \"dat.colour\" data-data = \"opportunity_data\" opportunity-bar-background>\n" +
     "							<div class=\"progress-inner\">\n" +
-    "								<small><em>{{dat.name}} <b>{{dat.complaints}} Suggestion</b></em></small>\n" +
+    "								<small><em>{{dat.name}} <b>{{dat.complaints}} Suggestions</b></em></small>\n" +
     "								<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar></div>\n" +
     "							</div>\n" +
     "					  </div>\n" +
