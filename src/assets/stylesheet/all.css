@@ -226,14 +226,14 @@ body{
 
 .header-visual .inner-holder{
 	width: 100%;
-	min-width: 550px;
+	min-width: 800px;
 	position: relative;
 	left: 50%;
 }
 
 .header-visual .img-holder img{
 	width: 100%;
-	min-width: 550px;
+	min-width: 800px;
 	position: relative;
 	left: -50%;
 }
@@ -381,9 +381,9 @@ body{
 	background: #ffc72c;
 	color: #fff;
 	margin-top: 0;
-	padding: 10px;
-	font-size: 30px;
-	line-height: 30px;
+	padding: 8px 10px;
+	font-size: 28px;
+	line-height: 28px;
 	position: relative;
 	-moz-transform: translateX(0);
 	-webkit-transform: translateX(0);
@@ -1074,7 +1074,10 @@ body.login{background: #eee !important;}
 }
 .modal-1000 .graph-holder {overflow: hidden;}
 #wrapper .navbar-top-links li a{padding: 20px 5px;}
-.wrapper-content{padding-bottom: 20px !important;}
+#wrapper .wrapper-content{
+	padding-top: 40px;
+	padding-bottom: 20px !important;
+}
 
 /* custom select styles */
 .jcf-select {
@@ -1311,10 +1314,9 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .progress-area small b{
 	font-weight: 400;
 	color: #6e6e75;
-	font-size: 12px;
-	line-height: 1;
+	font-size: 11px;
 	display: inline-block;
-	vertical-align: top;
+	vertical-align: bottom;
 	margin: 0 0 0 5px;
 	text-transform: capitalize;
 }
@@ -2062,6 +2064,7 @@ li.active,
 	.row.inner-row.add .content-holder{padding: 10px;}
 	.row.inner-row.add .detail-block .content-holder{padding: 0;}
 	#piechart{padding: 5px;}
+	#wrapper .welcome-message{display: block;}
 }
 
 @media screen and (max-width: 991px) {
@@ -2138,6 +2141,14 @@ li.active,
 	.timeline-section .tab-links li .calender-outer,
 	.map-section .tab-links li .calender-outer,
 	.rating .tab-links li .calender-outer{height: 48px;}
+	.comments-drop .icon-holder i{
+		font-size: 55px;
+		line-height: 55px;
+	}
+	.comments-drop h2{
+		font-size: 20px;
+		margin: 0 0 5px;
+	}
 }
 
 @media screen and (max-width: 767px) {
@@ -2167,15 +2178,16 @@ li.active,
 		padding: 8px;
 	}
 	.comment-block > .nav-opener{padding: 8px;}
-	.comments-drop .heading-holder .holder{padding: 8px 13px;}
+	.comments-drop .heading-holder .holder{padding: 8px 10px;}
 	.comments-drop .icon-holder i{
-		font-size: 50px;
-		line-height: 50px;
+		font-size: 40px;
+		line-height: 40px;
 	}
 	.comments-drop h2{
-		font-size: 20px;
-		margin: 0 0 5px;
+		font-size: 17px;
+		margin: 0;
 	}
+	.comments-drop .btn.btn-info{padding: 6px 5px;}
 	.tab-links{font-size: 12px;}
 	.tooltip{
 		display: none !important;
@@ -2188,7 +2200,7 @@ li.active,
 		text-align: center;
 		margin: 0 0 5px;
 	}
-	.wrapper-content{padding: 20px 0 !important;}
+	.wrapper-content{padding: 30px 0 20px !important;}
 	.ibox-title h5{margin-bottom: 12px !important;}
 	.detail-block .ibox-title h5{margin-bottom: 5px !important;}
 	#wrapper .ibox-content{padding: 10px;}
@@ -2214,6 +2226,15 @@ li.active,
 		font-size: 12px;
 		line-height: 12px;
 	}
+	
+	.header-visual .img-holder img,
+	.header-visual .inner-holder{
+		height: 133px;
+		min-width: 550px;
+	}
+	.comment-block{top: 133px;}
+	#wrapper .m-r-sm{margin-right: 5px;}
+	#wrapper .nav > li > a i{margin-right: 3px;}
 }
 
 @media screen and (max-width: 479px) {

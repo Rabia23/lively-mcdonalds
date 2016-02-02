@@ -31,11 +31,13 @@ angular.module("common/header.tpl.html", []).run(["$templateCache", function($te
     "      </form> -->\n" +
     "    </div>\n" +
     "    <ul class=\"nav navbar-top-links navbar-right\">\n" +
+    "<!--\n" +
     "      <li class=\"dashboard\">\n" +
     "        <a style = \"cursor:pointer;\" ui-sref = \"live\">\n" +
     "           Live Dashboard\n" +
     "        </a>\n" +
     "      </li>\n" +
+    "-->\n" +
     "      <li>\n" +
     "        <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">{{username}}</span></span>\n" +
     "      </li>\n" +
@@ -51,7 +53,7 @@ angular.module("common/header.tpl.html", []).run(["$templateCache", function($te
     "    <div class=\"inner-holder\"><img alt=\"image\" class=\"img-responsive\" src=\"/assets/images/img1.jpg\" /></div>\n" +
     "  </div>\n" +
     "  <div class=\"header-caption animated fadeInRight\">\n" +
-    "    <h1>Customer Centric Approch</h1>\n" +
+    "    <h1>Customer Centric Approach</h1>\n" +
     "  </div>\n" +
     "</div>\n" +
     "");
