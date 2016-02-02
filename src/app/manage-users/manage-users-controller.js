@@ -37,6 +37,7 @@
           message = "User successfully deactivated.";
           user.is_active = false;
         }
+        //$scope.$digest();
         Flash.create('success', message, 'custom-class');
         console.log(data);
       });
