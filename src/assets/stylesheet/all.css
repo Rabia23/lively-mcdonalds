@@ -1713,6 +1713,17 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	padding-bottom: 10px;
 }
 
+.navbar-static-side,
+.nav-header,
+li.active,
+#page-wrapper,
+.footer {
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
 @media screen and (min-width: 768px) {
 	.legends-holder{padding: 15px 20px 0;}
 	.legends-list {
@@ -2208,11 +2219,4 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 @media screen and (max-width: 479px) {
 	.morris-content-outer .morris-content-holder{width: 100%;}
 	.timeline-section .tab-links{margin-left: 0;}
-}
-
-@media screen and (min-width: 769px) {
-	#side-menu{
-		opacity: 1 !important;
-		display: block !important;
-	}
 }

@@ -5,11 +5,6 @@
  // initSlideShow();
  });
 
-
-//jQuery(window).load(function(){
-//	initSameHeight();
-//});
-
 // fade gallery init
 function initSlideShow() {
   jQuery('#wrapper').fadeGallery({
