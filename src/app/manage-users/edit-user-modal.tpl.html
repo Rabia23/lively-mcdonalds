@@ -7,75 +7,76 @@
 			</a>
 		</div>
 		<div class="modal-body">
-			<div class="form-group" ng-hide = "edit_form">
-				<label class="col-sm-2 control-label" for="firsName">First Name</label>
-				<div class="col-sm-10">
-					<input type="text" id="first_name" class="form-control" placeholder="First Name" ng-model = "user.first_name" name = "first_name"
-					required = true>
-					<div ng-show="UserForm.first_name.$error.required && (!UserForm.first_name.$pristine || submitted == true)"
-					class="form-error-message pull-left">First Name is required.
-				  </div>
-				</div>
-
-			</div>
-			<div class="form-group" ng-hide = "edit_form">
-				<label class="col-sm-2 control-label" for="lastName">Last Name</label>
-				<div class="col-sm-10">
-					<input type="text" id="last_name" class="form-control" placeholder="Last Name" ng-model = "user.last_name" name = "last_name"
-					required="true">
-					<div ng-show="UserForm.last_name.$error.required && (!UserForm.last_name.$pristine || submitted == true)"
-					class="form-error-message pull-left">Last Name is required.
-				  </div>
-				</div>
-
-			</div>
-			<div class="form-group" ng-hide = "edit_form">
-				<label class="col-sm-2 control-label" for="userName">User Name</label>
-				<div class="col-sm-10">
-					<input type="text" id="username" class="form-control" placeholder="User Name" ng-model = "user.username" name = "username"
-					required = true autocomplete="off">
-					<div ng-show="UserForm.username.$error.required && (!UserForm.username.$pristine || submitted == true)"
-					class="form-error-message pull-left">User Name is required.
-				  </div>
-				</div>
-
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label" for="password">Password</label>
-				<div class="col-sm-10">
-					<input type="password" id="password" class="form-control" placeholder="Password" ng-model = "user.password" name="password"
-					autocomplete="off" ng-required = "!edit_form">
-					<div ng-show="UserForm.password.$error.required && (!UserForm.password.$pristine || submitted == true)"
-					class="form-error-message pull-left">Password is required.
+			<div class="row form-container">
+				<div class="col-md-6">
+					<div class="form-group" ng-hide = "edit_form">
+						<label class="col-sm-2 col-md-3 control-label" for="firsName">First Name</label>
+						<div class="col-sm-10 col-md-9">
+							<input type="text" id="first_name" class="form-control" ng-model = "user.first_name" name = "first_name"
+							required = true>
+							<div ng-show="UserForm.first_name.$error.required && (!UserForm.first_name.$pristine || submitted == true)"
+							class="form-error-message pull-left">First Name is required.
+						  </div>
+						</div>
+					</div>
+					<div class="form-group" ng-hide = "edit_form">
+						<label class="col-sm-2 col-md-3 control-label" for="lastName">Last Name</label>
+						<div class="col-sm-10 col-md-9">
+							<input type="text" id="last_name" class="form-control" ng-model = "user.last_name" name = "last_name"
+							required="true">
+							<div ng-show="UserForm.last_name.$error.required && (!UserForm.last_name.$pristine || submitted == true)"
+							class="form-error-message pull-left">Last Name is required.
+						  </div>
+						</div>
+					</div>
+					<div class="form-group" ng-hide = "edit_form">
+						<label class="col-sm-2 col-md-3 control-label" for="userName">User Name</label>
+						<div class="col-sm-10 col-md-9">
+							<input type="text" id="username" class="form-control" ng-model = "user.username" name = "username"
+							required = true autocomplete="off">
+							<div ng-show="UserForm.username.$error.required && (!UserForm.username.$pristine || submitted == true)"
+							class="form-error-message pull-left">User Name is required.
+						  </div>
+						</div>
 					</div>
 				</div>
-
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label" for="email">Email</label>
-				<div class="col-sm-10">
-					<input type="email" id="email" class="form-control" placeholder="Email" ng-model = "user.email" name = "email"
-					required = true autocomplete="off" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
-					<div ng-show="UserForm.email.$error.required && (!UserForm.email.$pristine || submitted == true)"
-					class="form-error-message pull-left">Email is required.
-				  </div>
-					<div ng-show="UserForm.email.$error.email && (!UserForm.email.$pristine || submitted == true)"
-					class="form-error-message pull-left">Wrong email pattern.
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-sm-2 col-md-3 control-label" for="password">Password</label>
+						<div class="col-sm-10 col-md-9">
+							<input type="password" id="password" class="form-control" ng-model = "user.password" name="password"
+							autocomplete="off" ng-required = "!edit_form">
+							<div ng-show="UserForm.password.$error.required && (!UserForm.password.$pristine || submitted == true)"
+							class="form-error-message pull-left">Password is required.
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 col-md-3 control-label" for="email">Email</label>
+						<div class="col-sm-10 col-md-9">
+							<input type="email" id="email" class="form-control" ng-model = "user.email" name = "email"
+							required = true autocomplete="off" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
+							<div ng-show="UserForm.email.$error.required && (!UserForm.email.$pristine || submitted == true)"
+							class="form-error-message pull-left">Email is required.
+						  </div>
+							<div ng-show="UserForm.email.$error.email && (!UserForm.email.$pristine || submitted == true)"
+							class="form-error-message pull-left">Wrong email pattern.
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 col-md-3 control-label" for="phoneno">Phone No.</label>
+						<div class="col-sm-10 col-md-9">
+							<input type="tel" id="phone_no" class="form-control" ng-model = "user.phone_no" name = "phone_no"
+							required = true ng-pattern="/^[0-9]+$/" >
+							<div ng-show="UserForm.phone_no.$error.required && (!UserForm.phone_no.$pristine || submitted == true)"
+							class="form-error-message pull-left">Phone no is required.
+							</div>
+							<div ng-show="UserForm.phone_no.$error.pattern && (!UserForm.phone_no.$pristine || submitted == true)"
+							class="form-error-message pull-left">Wrong number pattern.</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label" for="phoneno">Phone No.</label>
-				<div class="col-sm-10">
-					<input type="tel" id="phone_no" class="form-control" placeholder="Phone No." ng-model = "user.phone_no" name = "phone_no"
-					required = true ng-pattern="/^[0-9]+$/" >
-					<div ng-show="UserForm.phone_no.$error.required && (!UserForm.phone_no.$pristine || submitted == true)"
-					class="form-error-message pull-left">Phone no is required.
-					</div>
-					<div ng-show="UserForm.phone_no.$error.pattern && (!UserForm.phone_no.$pristine || submitted == true)"
-					class="form-error-message pull-left">Wrong number pattern.</div>
-				</div>
-
 			</div>
 		</div>
 		<div class="modal-footer">
