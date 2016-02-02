@@ -1700,7 +1700,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	line-height: 1.1;
 }
 
-.ibox.detail-block .ibox-content h1{
+#wrapper .ibox.detail-block .ibox-content h1{
 	color: #a6a6ab;
 	font-size: 53px;
 	font-weight: 700;
@@ -1722,7 +1722,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 
 .promotions h1{
 	font-weight: 600;
-	margin: 0 0 10px;
+	margin: 0 0 15px;
 }
 
 .promotions .btn.dim{
@@ -1732,7 +1732,6 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	padding: 10px;
 	font-size: 32px;
 	line-height: 40px;
-	margin: 0 0 20px;
 	text-transform: capitalize;
 }
 
@@ -1977,105 +1976,11 @@ li.active,
 	.business-segment .ibox .content-holder,
 	.opportunities .ibox .content-holder{min-height: 200px;}
 	.opportunities .progress-area .progress-holder{padding: 15px 0;}
-}
-
-@media only screen and (min-width:1200px) and (max-width: 1450px)  {
 	.opportunities{padding-bottom: 25px;}
-	.blocks-holder{
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-
-		-webkit-flex-flow: row wrap;
-		justify-content: space-around;
-		width: 100%;
-	}
-	.blocks-holder > .row{
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-
-		-webkit-flex-flow: row wrap;
-		justify-content: space-around;
-		height: inherit !important;
-		width: 33.3333% !important;
-	}
-	.blocks-holder > .row:first-child{
-		width: 66.6667% !important;
-		height: inherit !important;
-	}
-
-	.blocks-holder > .row > .col-xs-12{
-		display: table;
-		float: none;
-		height: 100%;
-		padding-bottom: 25px;
-		table-layout: fixed;
-		margin: 0;
-		border: 0;
-	}
-	.blocks-holder > .row > .col-xs-12 > *{
-		height: 100%;
-		display: table-cell;
-		vertical-align: top;
-	}
-
-	.blocks-holder > .row > .opportunities,
-	.blocks-holder > .row > .opportunities > *{
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		height: auto !important;
-
-		-webkit-flex-flow: row wrap;
-		justify-content: space-around;
-
-		height: inherit !important;
-
-	}
-
-	.blocks-holder .row .opportunities .ibox{
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-
-		flex-direction: column;
-		flex-wrap: nowrap;
-		justify-content: flex-start;
-		align-items: stretch;
-		align-content: stretch;
-
-		height: inherit !important;
-	}
-
-	.blocks-holder .row .opportunities .title-outer{
-		display: block;
-		height: inherit;
-	}
-
-	.opportunities .content-holder{
-		flex: 1 1 auto;
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		align-items: center;
-	}
-
-	.blocks-holder > .row > .business-segment{padding-left: 0;}
-	.blocks-holder > .row > .opportunities{padding-right: 0;}
 }
 
 @media screen and (max-width: 1199px) {
+	.opportunities{padding-bottom: 0;}
 	.modal-1200{width: 970px;}
 	.ibox.detail-block .ibox-content,
 	.ibox-content{padding: 15px 10px 20px;}
@@ -2191,6 +2096,11 @@ li.active,
 		font-size: 26px;
 		line-height: 34px;
 	}
+	#wrapper .same-height-block .inner-row .col-sm-6 .ibox.detail-block .content-holder{min-height: 130px;}
+	#wrapper .same-height-block .inner-row .col-sm-6 .ibox.detail-block .ibox-content{
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
 }
 
 @media screen and (max-width: 767px) {
@@ -2277,13 +2187,11 @@ li.active,
 	.comment-block{top: 133px;}
 	#wrapper .m-r-sm{margin-right: 5px;}
 	#wrapper .nav > li > a i{margin-right: 3px;}
-	
 	#wrapper .promotions h1{
 		font-size: 28px;
 		line-height: 34px;
 		margin: 0 0 10px;
 	}
-
 	.promotions .btn.dim{
 		font-size: 24px;
 		line-height: 32px;
