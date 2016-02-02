@@ -1,4 +1,4 @@
-angular.module('templates-app', ['common/footer.tpl.html', 'common/header.tpl.html', 'common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/opportunities/opportunities.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/edit-user-modal.tpl.html', 'manage-users/manage-users.tpl.html']);
+angular.module('templates-app', ['common/footer.tpl.html', 'common/header.tpl.html', 'common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/opportunities/opportunities.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/edit-user-modal.tpl.html', 'manage-users/manage-users.tpl.html', 'promotions/promotions.tpl.html']);
 
 angular.module("common/footer.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("common/footer.tpl.html",
@@ -31,6 +31,7 @@ angular.module("common/header.tpl.html", []).run(["$templateCache", function($te
     "      </form> -->\n" +
     "    </div>\n" +
     "    <ul class=\"nav navbar-top-links navbar-right\">\n" +
+    "\n" +
     "      <!-- <li class=\"dashboard\">\n" +
     "        <a style = \"cursor:pointer;\" ui-sref = \"live\">\n" +
     "           Live Dashboard\n" +
@@ -51,7 +52,7 @@ angular.module("common/header.tpl.html", []).run(["$templateCache", function($te
     "    <div class=\"inner-holder\"><img alt=\"image\" class=\"img-responsive\" src=\"/assets/images/img1.jpg\" /></div>\n" +
     "  </div>\n" +
     "  <div class=\"header-caption animated fadeInRight\">\n" +
-    "    <h1>Customer Centric Approch</h1>\n" +
+    "    <h1>Customer Centric Approach</h1>\n" +
     "  </div>\n" +
     "</div>\n" +
     "");
@@ -73,6 +74,9 @@ angular.module("common/sidebar.tpl.html", []).run(["$templateCache", function($t
     "				</li>\n" +
     "				<li ng-class = \"{'active': currentState == 'users'}\">\n" +
     "					<a ui-sref=\"users\"><i class=\"fa fa-user\"></i> <span class=\"nav-label\">Manage Users</span></a>\n" +
+    "				</li>\n" +
+    "				<li ng-class = \"{'active': currentState == 'promotions'}\">\n" +
+    "					<a ui-sref=\"promotions\"><i class=\"fa fa-bullhorn\"></i> <span class=\"nav-label\">Promotions</span></a>\n" +
     "				</li>\n" +
     "			</ul>\n" +
     "    	</div>\n" +
@@ -367,7 +371,7 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
     "					<div class=\"progress-area\">\n" +
     "						<div class=\"progress-holder\" ng-repeat = \"dat in opportunity_data\" data-color = \"dat.colour\" data-data = \"opportunity_data\" opportunity-bar-background>\n" +
     "							<div class=\"progress-inner\">\n" +
-    "								<small><em>{{dat.name}} <b>{{dat.complaints}} Suggestion</b></em></small>\n" +
+    "								<small><em>{{dat.name}} <b>{{dat.complaints}} Suggestions</b></em></small>\n" +
     "								<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar></div>\n" +
     "							</div>\n" +
     "					  </div>\n" +
@@ -1033,75 +1037,76 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "			</a>\n" +
     "		</div>\n" +
     "		<div class=\"modal-body\">\n" +
-    "			<div class=\"form-group\" ng-hide = \"edit_form\">\n" +
-    "				<label class=\"col-sm-2 control-label\" for=\"firsName\">First Name</label>\n" +
-    "				<div class=\"col-sm-10\">\n" +
-    "					<input type=\"text\" id=\"first_name\" class=\"form-control\" placeholder=\"First Name\" ng-model = \"user.first_name\" name = \"first_name\"\n" +
-    "					required = true>\n" +
-    "					<div ng-show=\"UserForm.first_name.$error.required && (!UserForm.first_name.$pristine || submitted == true)\"\n" +
-    "					class=\"form-error-message pull-left\">First Name is required.\n" +
-    "				  </div>\n" +
-    "				</div>\n" +
-    "\n" +
-    "			</div>\n" +
-    "			<div class=\"form-group\" ng-hide = \"edit_form\">\n" +
-    "				<label class=\"col-sm-2 control-label\" for=\"lastName\">Last Name</label>\n" +
-    "				<div class=\"col-sm-10\">\n" +
-    "					<input type=\"text\" id=\"last_name\" class=\"form-control\" placeholder=\"Last Name\" ng-model = \"user.last_name\" name = \"last_name\"\n" +
-    "					required=\"true\">\n" +
-    "					<div ng-show=\"UserForm.last_name.$error.required && (!UserForm.last_name.$pristine || submitted == true)\"\n" +
-    "					class=\"form-error-message pull-left\">Last Name is required.\n" +
-    "				  </div>\n" +
-    "				</div>\n" +
-    "\n" +
-    "			</div>\n" +
-    "			<div class=\"form-group\" ng-hide = \"edit_form\">\n" +
-    "				<label class=\"col-sm-2 control-label\" for=\"userName\">User Name</label>\n" +
-    "				<div class=\"col-sm-10\">\n" +
-    "					<input type=\"text\" id=\"username\" class=\"form-control\" placeholder=\"User Name\" ng-model = \"user.username\" name = \"username\"\n" +
-    "					required = true autocomplete=\"off\">\n" +
-    "					<div ng-show=\"UserForm.username.$error.required && (!UserForm.username.$pristine || submitted == true)\"\n" +
-    "					class=\"form-error-message pull-left\">User Name is required.\n" +
-    "				  </div>\n" +
-    "				</div>\n" +
-    "\n" +
-    "			</div>\n" +
-    "			<div class=\"form-group\">\n" +
-    "				<label class=\"col-sm-2 control-label\" for=\"password\">Password</label>\n" +
-    "				<div class=\"col-sm-10\">\n" +
-    "					<input type=\"password\" id=\"password\" class=\"form-control\" placeholder=\"Password\" ng-model = \"user.password\" name=\"password\"\n" +
-    "					autocomplete=\"off\" ng-required = \"!edit_form\">\n" +
-    "					<div ng-show=\"UserForm.password.$error.required && (!UserForm.password.$pristine || submitted == true)\"\n" +
-    "					class=\"form-error-message pull-left\">Password is required.\n" +
+    "			<div class=\"row form-container\">\n" +
+    "				<div class=\"col-md-6\">\n" +
+    "					<div class=\"form-group\" ng-hide = \"edit_form\">\n" +
+    "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"firsName\">First Name</label>\n" +
+    "						<div class=\"col-sm-10 col-md-9\">\n" +
+    "							<input type=\"text\" id=\"first_name\" class=\"form-control\" ng-model = \"user.first_name\" name = \"first_name\"\n" +
+    "							required = true>\n" +
+    "							<div ng-show=\"UserForm.first_name.$error.required && (!UserForm.first_name.$pristine || submitted == true)\"\n" +
+    "							class=\"form-error-message pull-left\">First Name is required.\n" +
+    "						  </div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div class=\"form-group\" ng-hide = \"edit_form\">\n" +
+    "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"lastName\">Last Name</label>\n" +
+    "						<div class=\"col-sm-10 col-md-9\">\n" +
+    "							<input type=\"text\" id=\"last_name\" class=\"form-control\" ng-model = \"user.last_name\" name = \"last_name\"\n" +
+    "							required=\"true\">\n" +
+    "							<div ng-show=\"UserForm.last_name.$error.required && (!UserForm.last_name.$pristine || submitted == true)\"\n" +
+    "							class=\"form-error-message pull-left\">Last Name is required.\n" +
+    "						  </div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div class=\"form-group\" ng-hide = \"edit_form\">\n" +
+    "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"userName\">User Name</label>\n" +
+    "						<div class=\"col-sm-10 col-md-9\">\n" +
+    "							<input type=\"text\" id=\"username\" class=\"form-control\" ng-model = \"user.username\" name = \"username\"\n" +
+    "							required = true autocomplete=\"off\">\n" +
+    "							<div ng-show=\"UserForm.username.$error.required && (!UserForm.username.$pristine || submitted == true)\"\n" +
+    "							class=\"form-error-message pull-left\">User Name is required.\n" +
+    "						  </div>\n" +
+    "						</div>\n" +
     "					</div>\n" +
     "				</div>\n" +
-    "\n" +
-    "			</div>\n" +
-    "			<div class=\"form-group\">\n" +
-    "				<label class=\"col-sm-2 control-label\" for=\"email\">Email</label>\n" +
-    "				<div class=\"col-sm-10\">\n" +
-    "					<input type=\"email\" id=\"email\" class=\"form-control\" placeholder=\"Email\" ng-model = \"user.email\" name = \"email\"\n" +
-    "					required = true autocomplete=\"off\" ng-pattern=\"/^[a-z]+[a-z0-9._]+@[a-z]+\\.[a-z.]{2,5}$/\">\n" +
-    "					<div ng-show=\"UserForm.email.$error.required && (!UserForm.email.$pristine || submitted == true)\"\n" +
-    "					class=\"form-error-message pull-left\">Email is required.\n" +
-    "				  </div>\n" +
-    "					<div ng-show=\"UserForm.email.$error.email && (!UserForm.email.$pristine || submitted == true)\"\n" +
-    "					class=\"form-error-message pull-left\">Wrong email pattern.\n" +
+    "				<div class=\"col-md-6\">\n" +
+    "					<div class=\"form-group\">\n" +
+    "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"password\">Password</label>\n" +
+    "						<div class=\"col-sm-10 col-md-9\">\n" +
+    "							<input type=\"password\" id=\"password\" class=\"form-control\" ng-model = \"user.password\" name=\"password\"\n" +
+    "							autocomplete=\"off\" ng-required = \"!edit_form\">\n" +
+    "							<div ng-show=\"UserForm.password.$error.required && (!UserForm.password.$pristine || submitted == true)\"\n" +
+    "							class=\"form-error-message pull-left\">Password is required.\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div class=\"form-group\">\n" +
+    "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"email\">Email</label>\n" +
+    "						<div class=\"col-sm-10 col-md-9\">\n" +
+    "							<input type=\"email\" id=\"email\" class=\"form-control\" ng-model = \"user.email\" name = \"email\"\n" +
+    "							required = true autocomplete=\"off\" ng-pattern=\"/^[a-z]+[a-z0-9._]+@[a-z]+\\.[a-z.]{2,5}$/\">\n" +
+    "							<div ng-show=\"UserForm.email.$error.required && (!UserForm.email.$pristine || submitted == true)\"\n" +
+    "							class=\"form-error-message pull-left\">Email is required.\n" +
+    "						  </div>\n" +
+    "							<div ng-show=\"UserForm.email.$error.email && (!UserForm.email.$pristine || submitted == true)\"\n" +
+    "							class=\"form-error-message pull-left\">Wrong email pattern.\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div class=\"form-group\">\n" +
+    "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"phoneno\">Phone No.</label>\n" +
+    "						<div class=\"col-sm-10 col-md-9\">\n" +
+    "							<input type=\"tel\" id=\"phone_no\" class=\"form-control\" ng-model = \"user.phone_no\" name = \"phone_no\"\n" +
+    "							required = true ng-pattern=\"/^[0-9]+$/\" >\n" +
+    "							<div ng-show=\"UserForm.phone_no.$error.required && (!UserForm.phone_no.$pristine || submitted == true)\"\n" +
+    "							class=\"form-error-message pull-left\">Phone no is required.\n" +
+    "							</div>\n" +
+    "							<div ng-show=\"UserForm.phone_no.$error.pattern && (!UserForm.phone_no.$pristine || submitted == true)\"\n" +
+    "							class=\"form-error-message pull-left\">Wrong number pattern.</div>\n" +
+    "						</div>\n" +
     "					</div>\n" +
     "				</div>\n" +
-    "			</div>\n" +
-    "			<div class=\"form-group\">\n" +
-    "				<label class=\"col-sm-2 control-label\" for=\"phoneno\">Phone No.</label>\n" +
-    "				<div class=\"col-sm-10\">\n" +
-    "					<input type=\"tel\" id=\"phone_no\" class=\"form-control\" placeholder=\"Phone No.\" ng-model = \"user.phone_no\" name = \"phone_no\"\n" +
-    "					required = true ng-pattern=\"/^[0-9]+$/\" >\n" +
-    "					<div ng-show=\"UserForm.phone_no.$error.required && (!UserForm.phone_no.$pristine || submitted == true)\"\n" +
-    "					class=\"form-error-message pull-left\">Phone no is required.\n" +
-    "					</div>\n" +
-    "					<div ng-show=\"UserForm.phone_no.$error.pattern && (!UserForm.phone_no.$pristine || submitted == true)\"\n" +
-    "					class=\"form-error-message pull-left\">Wrong number pattern.</div>\n" +
-    "				</div>\n" +
-    "\n" +
     "			</div>\n" +
     "			<div class=\"form-group\" ng-if = \"user.role == 3\">\n" +
     "				<label class=\"col-sm-2 control-label\" for=\"branch\">Branch</label>\n" +
@@ -1136,69 +1141,132 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "<div id=\"wrapper\">\n" +
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
-    "    <div class=\"page-holder\">\n" +
-    "    	<ui-view name = \"header\"></ui-view>\n" +
-    "		<div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
-    "			<div class=\"row\">\n" +
-    "				<div class=\"col-lg-12\">\n" +
-    "					<div class=\"ibox float-e-margins\">\n" +
-    "						<div class=\"ibox-title\">\n" +
-    "							<h5>{{user_list}} List</h5>\n" +
+    "     <ui-view name = \"header\"></ui-view>\n" +
+    "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
+    "		<div class=\"row\">\n" +
+    "			<div class=\"col-lg-12\">\n" +
+    "				<div class=\"ibox float-e-margins\">\n" +
+    "					<div class=\"ibox-title\">\n" +
+    "						<h5>{{user_list}} List</h5>\n" +
+    "					</div>\n" +
+    "					<div class=\"ibox-content\">\n" +
+    "						<div flash-message=\"5000\" ></div>\n" +
+    "						<div class=\"user-block\">\n" +
+    "							<button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
     "						</div>\n" +
     "						<div class=\"ibox-content\">\n" +
     "							<div flash-message=\"5000\" ></div>\n" +
     "							<div class=\"user-block\">\n" +
     "								<button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
     "							</div>\n" +
-    "							<div class=\"info-holder\">\n" +
-    "								<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\" data-users = \"users\">\n" +
-    "									<thead>\n" +
-    "										<tr>\n" +
-    "											<th data-toggle=\"true\" data-sort-initial=\"true\">Name</th>\n" +
-    "											<th data-hide=\"all\">User Name</th>\n" +
-    "											<th data-hide=\"all\">Email</th>\n" +
-    "											<th data-hide=\"all\">Active</th>\n" +
-    "											<th data-hide=\"all\">Role</th>\n" +
-    "											<th>Phone No.</th>\n" +
-    "											<th ng-if = \"child_role == 2 || child_role == 3\">Branch</th>\n" +
-    "											<th ng-if = \"child_role == 4\">Region</th>\n" +
-    "											<th>Action</th>\n" +
-    "										</tr>\n" +
-    "									</thead>\n" +
-    "									<tbody>\n" +
-    "										<tr ng-repeat = \"user in users track by $index\" ng-class=\"{'deactivate': user.is_active == false}\">\n" +
-    "											<td>{{user.first_name}} {{user.last_name}}</td>\n" +
-    "											<td>{{user.username}}</td>\n" +
-    "											<td>{{user.email}}</td>\n" +
-    "											<td>{{user.is_active}}</td>\n" +
-    "											<td>{{user.role}}</td>\n" +
-    "											<td >{{user.phone_no}}</td>\n" +
-    "											<td ng-if = \"child_role == 2 || child_role == 3\">{{user.branch.name}}</td>\n" +
-    "											<td ng-if = \"child_role == 4\">{{user.region.name}}</td>\n" +
-    "											<td>\n" +
-    "												<a title=\"Edit User\" ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "												<a title=\"Deactivate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user btn-active': user.is_active == false}\"></a>\n" +
-    "												<a title=\"Activate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user-times btn-deactive': user.is_active == true}\"></a>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "									</tbody>\n" +
-    "									<tfoot>\n" +
-    "										<tr>\n" +
-    "											<td colspan=\"7\">\n" +
-    "												<ul class=\"pagination pull-right\"></ul>\n" +
-    "											</td>\n" +
-    "										</tr>\n" +
-    "									</tfoot>\n" +
-    "								</table>\n" +
-    "							</div>\n" +
+    "						<div class=\"info-holder\">\n" +
+    "							<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\" data-users = \"users\">\n" +
+    "								<thead>\n" +
+    "									<tr>\n" +
+    "										<th data-toggle=\"true\" data-sort-initial=\"true\">Name</th>\n" +
+    "										<th data-hide=\"all\">User Name</th>\n" +
+    "										<th data-hide=\"all\">Email</th>\n" +
+    "										<th data-hide=\"all\">Active</th>\n" +
+    "										<th data-hide=\"all\">Role</th>\n" +
+    "										<th>Phone No.</th>\n" +
+    "										<th ng-if = \"child_role == 2 || child_role == 3\">Branch</th>\n" +
+    "										<th ng-if = \"child_role == 4\">Region</th>\n" +
+    "										<th>Action</th>\n" +
+    "									</tr>\n" +
+    "								</thead>\n" +
+    "								<tbody>\n" +
+    "									<tr ng-repeat = \"user in users track by $index\" ng-class=\"{'deactivate': user.is_active == false}\">\n" +
+    "										<td>{{user.first_name}} {{user.last_name}}</td>\n" +
+    "										<td>{{user.username}}</td>\n" +
+    "										<td>{{user.email}}</td>\n" +
+    "										<td>{{user.is_active}}</td>\n" +
+    "										<td>{{user.role}}</td>\n" +
+    "										<td >{{user.phone_no}}</td>\n" +
+    "										<td ng-if = \"child_role == 2 || child_role == 3\">{{user.branch.name}}</td>\n" +
+    "										<td ng-if = \"child_role == 4\">{{user.region.name}}</td>\n" +
+    "										<td>\n" +
+    "											<a title=\"Edit User\" ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "											<a title=\"Deactivate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user btn-active': user.is_active == false}\"></a>\n" +
+    "											<a title=\"Activate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user-times btn-deactive': user.is_active == true}\"></a>\n" +
+    "										</td>\n" +
+    "									</tr>\n" +
+    "								</tbody>\n" +
+    "								<tfoot>\n" +
+    "									<tr>\n" +
+    "										<td colspan=\"7\">\n" +
+    "											<ul class=\"pagination pull-right\"></ul>\n" +
+    "										</td>\n" +
+    "									</tr>\n" +
+    "								</tfoot>\n" +
+    "							</table>\n" +
     "						</div>\n" +
     "					</div>\n" +
     "				</div>\n" +
     "			</div>\n" +
-    "		  </div>\n" +
-    "    </div>\n" +
-    "	  <ui-view name = \"footer\"></ui-view>\n" +
+    "		</div>\n" +
+    "	  </div>\n" +
+    "	 <ui-view name = \"footer\"></ui-view>\n" +
     "  </div>\n" +
     "</div>\n" +
     "");
+}]);
+
+angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("promotions/promotions.tpl.html",
+    "<div id=\"wrapper\">\n" +
+    "  <ui-view name = \"sidebar\"></ui-view>\n" +
+    "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
+    "     <ui-view name = \"header\"></ui-view>\n" +
+    "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
+    "		<div class=\"row promotions\">\n" +
+    "			<div class=\"col-lg-12\">\n" +
+    "				<h1>Promotions</h1>\n" +
+    "				<div class=\"row\">\n" +
+    "					<div class=\"col-md-6\">\n" +
+    "						<button type=\"button\" class=\"btn btn-info dim btn-large-dim btn-outline\">\n" +
+    "							<i class=\"fa fa-coffee\"></i>\n" +
+    "							Coffe Promotion\n" +
+    "						</button>\n" +
+    "					</div>\n" +
+    "					<div class=\"col-md-6\">\n" +
+    "						<button type=\"button\" class=\"btn btn-primary dim btn-large-dim btn-outline\">\n" +
+    "							<i class=\"fa fa-cutlery\"></i>\n" +
+    "							Omelette Promotion\n" +
+    "						</button>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "				<div class=\"row\">\n" +
+    "					<div class=\"col-md-6\">\n" +
+    "						<button type=\"button\" class=\"btn btn-info dim btn-large-dim btn-outline\">\n" +
+    "							<i class=\"fa fa-coffee\"></i>\n" +
+    "							Coffe Promotion\n" +
+    "						</button>\n" +
+    "					</div>\n" +
+    "					<div class=\"col-md-6\">\n" +
+    "						<button type=\"button\" class=\"btn btn-primary dim btn-large-dim btn-outline\">\n" +
+    "							<i class=\"fa fa-cutlery\"></i>\n" +
+    "							Omelette Promotion\n" +
+    "						</button>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "				<div class=\"row\">\n" +
+    "					<div class=\"col-md-6\">\n" +
+    "						<button type=\"button\" class=\"btn btn-info dim btn-large-dim btn-outline\">\n" +
+    "							<i class=\"fa fa-coffee\"></i>\n" +
+    "							Coffe Promotion\n" +
+    "						</button>\n" +
+    "					</div>\n" +
+    "					<div class=\"col-md-6\">\n" +
+    "						<button type=\"button\" class=\"btn btn-primary dim btn-large-dim btn-outline\">\n" +
+    "							<i class=\"fa fa-cutlery\"></i>\n" +
+    "							Omelette Promotion\n" +
+    "						</button>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	  </div>\n" +
+    "	 <ui-view name = \"footer\"></ui-view>\n" +
+    "  </div>\n" +
+    "</div>");
 }]);
