@@ -98,10 +98,18 @@ def get_default_param(request, key, default):
 
 def get_user_data(user):
     if user:
-        user_info = user.user_info.first()
+        user_info = user.info.first()
         if user_info:
             if user_info.role == UserRolesEnum.BRANCH_MANAGER:
                 return None, None, user_info.branch_id
             elif user_info.role == UserRolesEnum.OPERATIONAL_CONSULTANT:
                 return user_info.region_id, None, None
     return None, None, None
+
+
+def get_user_role(user):
+    if user:
+        user_info = user.info.first()
+        if user_info:
+            return user_info.role
+    return None

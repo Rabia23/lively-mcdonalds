@@ -26,7 +26,7 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from operator import itemgetter
 from apps.decorators import my_login_required
-from apps.utils import get_param, get_data_param
+from apps.utils import get_param, get_data_param, get_user_data, get_user_role
 from django.utils.decorators import method_decorator
 
 
@@ -38,10 +38,10 @@ class LoginView(APIView):
         user = authenticate(username=username, password=password)
         if user:
             if user.info.first() and user.info.first().role == UserRolesEnum.GRO:
-                data = {'status': False, 'message': 'User has no permission to login', 'token': None, 'username': user.username}
+                data = {'status': False, 'message': 'User has no permission to login', 'token': None, 'username': user.first_name + " " + user.last_name}
             else:
                 token = Token.objects.get_or_create(user=user)
-                data = {'status': True, 'message': 'User authenticated', 'token': token[0].key, 'username': user.username}
+                data = {'status': True, 'message': 'User authenticated', 'token': token[0].key, 'username': user.first_name + " " + user.last_name}
         else:
             data = {'status': False, 'message': 'User not authenticated', 'token': None, 'username': None}
 
@@ -55,9 +55,7 @@ class OverallFeedbackView(APIView):
         now = datetime.now()
 
         try:
-            region_id = get_param(request, 'region', None)
-            city_id = get_param(request, 'city', None)
-            branch_id = get_param(request, 'branch', None)
+            region_id, city_id, branch_id = get_user_data(user)
 
             date_to = get_param(request, 'date_to', str(now.date()))
             date_from = get_param(request, 'date_from', str((now - timedelta(days=1)).date()))
@@ -166,9 +164,7 @@ class OverallRatingView(APIView):
         feedback_records_list = []
 
         try:
-            region_id = get_param(request, 'region', None)
-            city_id = get_param(request, 'city', None)
-            branch_id = get_param(request, 'branch', None)
+            region_id, city_id, branch_id = get_user_data(user)
 
             option_id = get_param(request, 'option', None)
             option = Option.objects.get(id=option_id) if option_id else None
@@ -242,9 +238,7 @@ class CategoryPerformanceView(APIView):
         now = datetime.now()
 
         try:
-            region_id = get_param(request, 'region', None)
-            city_id = get_param(request, 'city', None)
-            branch_id = get_param(request, 'branch', None)
+            region_id, city_id, branch_id = get_user_data(user)
 
             date_to = get_param(request, 'date_to', str(now.date()))
             date_from = get_param(request, 'date_from', str((now - timedelta(days=1)).date()))
@@ -277,9 +271,7 @@ class PositiveNegativeFeedbackView(APIView):
     @method_decorator(my_login_required)
     def get(self, request, user, format=None):
         try:
-            region_id = get_param(request, 'region', None)
-            city_id = get_param(request, 'city', None)
-            branch_id = get_param(request, 'branch', None)
+            region_id, city_id, branch_id = get_user_data(user)
 
             feedback = Feedback.manager.filters(region_id, city_id, branch_id)
 
@@ -299,9 +291,7 @@ class CommentsView(APIView):
     @method_decorator(my_login_required)
     def get(self, request, user, format=None):
         try:
-            region_id = get_param(request, 'region', None)
-            city_id = get_param(request, 'city', None)
-            branch_id = get_param(request, 'branch', None)
+            region_id, city_id, branch_id = get_user_data(user)
             page = int(get_param(request, 'page', 1))
 
             feedback = Feedback.manager.comments().filters(region_id, city_id, branch_id)
@@ -325,10 +315,18 @@ class MapView(APIView):
         now = datetime.now()
 
         try:
+            region_id, city_id, branch_id = get_user_data(user)
+
             date_to = get_param(request, 'date_to', str(now.date()))
             date_from = get_param(request, 'date_from', str((now - timedelta(days=1)).date()))
 
-            branches = Branch.objects.all()
+            if region_id:
+                branches = Branch.objects.filter(city__region__exact=region_id)
+            elif branch_id:
+                branches = Branch.objects.filter(id=branch_id)
+            else:
+                branches = Branch.objects.all()
+
             branch_detail_list = [branch.branch_feedback_detail(date_from, date_to) for branch in branches]
 
             data = {'branch_count': branches.count(), 'branches': branch_detail_list}
@@ -343,9 +341,7 @@ class FeedbackSegmentationView(APIView):
     @method_decorator(my_login_required)
     def get(self, request, user, format=None):
         try:
-            region_id = get_param(request, 'region', None)
-            city_id = get_param(request, 'city', None)
-            branch_id = get_param(request, 'branch', None)
+            region_id, city_id, branch_id = get_user_data(user)
             type = get_param(request, 'type', None)
 
             option_id = get_param(request, 'option', None)
@@ -397,9 +393,7 @@ class SegmentationRatingView(APIView):
     def get(self, request, user, format=None):
         now = datetime.now()
         try:
-            region_id = get_param(request, 'region', None)
-            city_id = get_param(request, 'city', None)
-            branch_id = get_param(request, 'branch', None)
+            region_id, city_id, branch_id = get_user_data(user)
 
             option_id = get_param(request, 'option', None)
             option = Option.objects.get(id=option_id) if option_id else None
@@ -741,9 +735,7 @@ class OpportunityAnalysisView(APIView):
         now = datetime.now()
 
         try:
-            region_id = get_param(request, 'region', None)
-            city_id = get_param(request, 'city', None)
-            branch_id = get_param(request, 'branch', None)
+            region_id, city_id, branch_id = get_user_data(user)
 
             date_to = get_param(request, 'date_to', str(now.date()))
             date_from = get_param(request, 'date_from', str((now - timedelta(days=1)).date()))
@@ -767,6 +759,7 @@ class PromotionDetailView(APIView):
     @method_decorator(my_login_required)
     def get(self, request, user, format=None):
         try:
+            region_id, city_id, branch_id = get_user_data(user)
             id = get_param(request, 'id', None)
             
             promotion = Promotion.objects.get(pk=id)
@@ -774,7 +767,7 @@ class PromotionDetailView(APIView):
 
             question_data_list = []
             for question in questions:
-                feedback_options = FeedbackOption.manager.promotion_options(question)
+                feedback_options = FeedbackOption.manager.promotion_options(question).filter(region_id, city_id, branch_id)
                 filtered_feedback = feedback_options.values('option_id', 'option__text', 'option__parent_id', 'option__score').\
                                     annotate(count=Count('option_id'))
                 list_feedback = generate_missing_options(question, filtered_feedback)
