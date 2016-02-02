@@ -1191,16 +1191,85 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
 
 angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("promotions/coffee-promotions.tpl.html",
-    "<!DOCTYPE html>\n" +
-    "<html>\n" +
-    "<head lang=\"en\">\n" +
-    "    <meta charset=\"UTF-8\">\n" +
-    "    <title></title>\n" +
-    "</head>\n" +
-    "<body>\n" +
-    "     <h1> Coffee Promotions </h1>\n" +
-    "</body>\n" +
-    "</html>");
+    "<div id=\"wrapper\">\n" +
+    "  <ui-view name = \"sidebar\"></ui-view>\n" +
+    "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
+    "     <ui-view name = \"header\"></ui-view>\n" +
+    "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
+    "		<div class=\"row promotions\">\n" +
+    "			<div class=\"col-lg-12\">\n" +
+    "				<h1>Coffee Promotion</h1>\n" +
+    "				<div class=\"row grid-items\">\n" +
+    "					<div class=\"col-md-6 grid-item\">\n" +
+    "						<div class=\"ibox float-e-margins\">\n" +
+    "							<div class=\"ibox-title\">\n" +
+    "								<h5>Question 1 <small>Lorem Ipsum is simply</small></h5>\n" +
+    "							</div>\n" +
+    "							<div class=\"ibox-content\">\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div class=\"col-md-6 grid-item\">\n" +
+    "						<div class=\"ibox float-e-margins\">\n" +
+    "							<div class=\"ibox-title\">\n" +
+    "								<h5>Question 2 <small>Lorem Ipsum is simply</small></h5>\n" +
+    "							</div>\n" +
+    "							<div class=\"ibox-content\">\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div class=\"col-md-6 grid-item\">\n" +
+    "						<div class=\"ibox float-e-margins\">\n" +
+    "							<div class=\"ibox-title\">\n" +
+    "								<h5>Question 4 <small>Lorem Ipsum is simply</small></h5>\n" +
+    "							</div>\n" +
+    "							<div class=\"ibox-content\">\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div class=\"col-md-6 grid-item\">\n" +
+    "						<div class=\"ibox float-e-margins\">\n" +
+    "							<div class=\"ibox-title\">\n" +
+    "								<h5>Question 3 <small>Lorem Ipsum is simply</small></h5>\n" +
+    "							</div>\n" +
+    "							<div class=\"ibox-content\">\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div class=\"col-md-6 grid-item\">\n" +
+    "						<div class=\"ibox float-e-margins\">\n" +
+    "							<div class=\"ibox-title\">\n" +
+    "								<h5>Question 5 <small>Lorem Ipsum is simply</small></h5>\n" +
+    "							</div>\n" +
+    "							<div class=\"ibox-content\">\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div class=\"col-md-6 grid-item\">\n" +
+    "						<div class=\"ibox float-e-margins\">\n" +
+    "							<div class=\"ibox-title\">\n" +
+    "								<h5>Question 6 <small>Lorem Ipsum is simply</small></h5>\n" +
+    "							</div>\n" +
+    "							<div class=\"ibox-content\">\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	  </div>\n" +
+    "	 <ui-view name = \"footer\"></ui-view>\n" +
+    "  </div>\n" +
+    "</div>");
 }]);
 
 angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", function($templateCache) {
