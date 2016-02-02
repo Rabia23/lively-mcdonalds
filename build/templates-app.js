@@ -75,7 +75,7 @@ angular.module("common/sidebar.tpl.html", []).run(["$templateCache", function($t
     "					<a ui-sref=\"users\"><i class=\"fa fa-user\"></i> <span class=\"nav-label\">Manage Users</span></a>\n" +
     "				</li>\n" +
     "				<li ng-class = \"{'active': currentState == 'promotions'}\">\n" +
-    "					<a ui-sref=\"users\"><i class=\"fa fa-user\"></i> <span class=\"nav-label\">Promotions</span></a>\n" +
+    "					<a ui-sref=\"promotions\"><i class=\"fa fa-user\"></i> <span class=\"nav-label\">Promotions</span></a>\n" +
     "				</li>\n" +
     "			</ul>\n" +
     "    	</div>\n" +
