@@ -12,8 +12,6 @@
     }
 
     ManageApi.manage_users().$promise.then(function(data){
-      console.log("manage users");
-      console.log(data);
       $scope.user_list = Enum.get_user_label(data.child_role);
       $scope.users = data.children;
       $scope.parent_id = data.parent_id;
@@ -26,19 +24,25 @@
       }
     });
 
-    $scope.deactivate = function(user){
+    $scope.deactivate = function(user,index){
       ManageApi.delete_user(user.id).$promise.then(function(data){
         var message = "";
         if(data.is_active === true) {
           message = "User successfully activated.";
-          user.is_active = true;
+          $scope.users[index].is_active = data.is_active;
+          //user.is_active = true;
+          console.log("users");
+          console.log($scope.users);
         }
         else {
           message = "User successfully deactivated.";
-          user.is_active = false;
+          $scope.users[index].is_active = data.is_active;
+          //user.is_active = false;
+          console.log("users");
+          console.log($scope.users);
         }
         Flash.create('success', message, 'custom-class');
-        console.log(data);
+        //console.log(data);
       });
     };
 

@@ -94,8 +94,8 @@ angular.module( 'livefeed.dashboard.overall_rating', [
    };
 
    $scope.labelClick = function(option){
-      $scope.show_loading = true;
       if(option.parent_id == null){
+        $scope.show_loading = true;
         Graphs.overall_rating($scope.type, option.option_id).$promise.then(function(data) {
            $scope.mainView = false;
            $scope.labels = _.map(data[0].data.feedbacks ,function(value, index){
@@ -279,7 +279,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                   });
                   var width = $("#chartdiv").find("svg").width();
                   width = width + 50;
-                  $("#chartdiv").find("svg").css({width: width, left: '-5px'});
+                  $("#chartdiv").find("svg").css({width: width, left: '-3px'});
               }
 
           });
