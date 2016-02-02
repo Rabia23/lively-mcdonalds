@@ -6,6 +6,7 @@ angular.module( 'livefeed', [
   'livefeed.coupon',
   'livefeed.live',
   'livefeed.manage_users',
+  'livefeed.promotions',
   'livefeed.authService',
   'ui.router',
   'livefeed.offline'
