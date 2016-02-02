@@ -148,7 +148,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
   };
 })
 
-.directive('timeLine', function() {
+.directive('timeLine', function($timeout) {
     return {
       restrict: 'A',
       scope: {
@@ -186,6 +186,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                   chart = AmCharts.makeChart("chartdiv",
                   {
                       "type": "serial",
+                      //"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
                       "balloonDateFormat": "",
                       "categoryField": "category",
                       "plotAreaBorderColor": "#FFFE6E",
@@ -276,9 +277,9 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                   chart.addListener("clickGraphItem", function(event){
                     scope.$apply(scope.action({option_object: event}));
                   });
-                  // var width = $("#chartdiv").find("svg").width();
-                  // width = width + 20;
-                  // $("#chartdiv").find("svg").css("width", width);
+                  var width = $("#chartdiv").find("svg").width();
+                  width = width + 50;
+                  $("#chartdiv").find("svg").css({width: width, left: '-5px'});
               }
 
           });
