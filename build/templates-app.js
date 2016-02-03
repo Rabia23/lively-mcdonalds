@@ -316,8 +316,8 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "        </div>\n" +
     "      </div>\n" +
     "    </div>\n" +
-    "    <ui-view name = \"footer\"></ui-view>\n" +
     "  </div>\n" +
+    "    <ui-view name = \"footer\"></ui-view>\n" +
     "  </div>\n" +
     "</div>\n" +
     "");
@@ -1199,8 +1199,8 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "			</div>\n" +
     "		</div>\n" +
     "	  </div>\n" +
-    "	 <ui-view name = \"footer\"></ui-view>\n" +
     "  </div>\n" +
+    "  <ui-view name = \"footer\"></ui-view>\n" +
     "</div>\n" +
     "");
 }]);
@@ -1283,8 +1283,8 @@ angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache
     "			</div>\n" +
     "		</div>\n" +
     "	  </div>\n" +
-    "	 <ui-view name = \"footer\"></ui-view>\n" +
     "  </div>\n" +
+    "  <ui-view name = \"footer\"></ui-view>\n" +
     "</div>");
 }]);
 
@@ -1343,7 +1343,7 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "			</div>\n" +
     "		</div>\n" +
     "	  </div>\n" +
-    "	 <ui-view name = \"footer\"></ui-view>\n" +
     "  </div>\n" +
+    "  <ui-view name = \"footer\"></ui-view>\n" +
     "</div>");
 }]);
