@@ -38,12 +38,18 @@ class LoginView(APIView):
         user = authenticate(username=username, password=password)
         if user:
             if user.info.first() and user.info.first().role == UserRolesEnum.GRO:
-                data = {'status': False, 'message': 'User has no permission to login', 'token': None, 'username': user.first_name + " " + user.last_name}
+                data = {'status': False,
+                        'message': 'User has no permission to login',
+                        'token': None,
+                        'user': user.info.first().to_dict()}
             else:
                 token = Token.objects.get_or_create(user=user)
-                data = {'status': True, 'message': 'User authenticated', 'token': token[0].key, 'username': user.first_name + " " + user.last_name}
+                data = {'status': True,
+                        'message': 'User authenticated',
+                        'token': token[0].key,
+                        'user': user.info.first().to_dict()}
         else:
-            data = {'status': False, 'message': 'User not authenticated', 'token': None, 'username': None}
+            data = {'status': False, 'message': 'User not authenticated', 'token': None, 'user': None}
 
         return Response(data)
 
@@ -108,7 +114,16 @@ class FeedbackAnalysisView(APIView):
                 else:
                     objects = Region.objects.all()
             else:
-                objects = Area.objects.all()
+                role = get_user_role(user)
+                user_region_id, user_city_id, user_branch_id = get_user_data(user)
+                if role == UserRolesEnum.OPERATIONAL_CONSULTANT:
+                    objects = Region.objects.filter(id=user_region_id)
+                    type = constants.REGIONAL_ANALYSIS
+                elif role == UserRolesEnum.BRANCH_MANAGER:
+                    objects = Branch.objects.filter(id=user_branch_id)
+                    type = constants.BRANCH_ANALYSIS
+                else:
+                    objects = Area.objects.all()
 
             for object in objects:
                 related_feedback_options = feedback_options.related_filters(type, object)
@@ -162,6 +177,7 @@ class OverallRatingView(APIView):
     @method_decorator(my_login_required)
     def get(self, request, user, format=None):
         feedback_records_list = []
+        type = 0
 
         try:
             region_id, city_id, branch_id = get_user_data(user)
@@ -171,9 +187,6 @@ class OverallRatingView(APIView):
 
             question = Question.objects.get(type=constants.TYPE_2)
 
-            #for grouping of data (daily, weekly, monthly, yearly)
-            type = get_param(request, 'type', None)
-
             date_to = get_param(request, 'date_to', None)
             date_from = get_param(request, 'date_from', None)
 
@@ -181,22 +194,24 @@ class OverallRatingView(APIView):
             now = datetime.now()
 
             if date_to and date_from:
-                rule = rrule.DAILY #when evenr there is a date range
-                type = constants.DAILY_ANALYSIS
+                current_tz = timezone.get_current_timezone()
+                date_start = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
+                date_end = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
+
+                delta = date_end - date_start
+                if delta.days >= constants.YEARLY_DAYS_COUNT:
+                    rule = rrule.YEARLY
+                elif delta.days >= constants.MONTHLY_DAYS_COUNT:
+                    rule = rrule.MONTHLY
+                elif delta.days >= constants.WEEKLY_DAYS_COUNT:
+                    rule = rrule.WEEKLY
+                else:
+                    type = constants.DAILY_ANALYSIS
+                    rule = rrule.DAILY
             else:
                 date_to = str(now.date())
-                if type == constants.YEARLY_ANALYSIS:
-                    rule = rrule.YEARLY
-                    date_from = str((now - relativedelta(years=constants.NO_OF_YEARS)).date())
-                elif type == constants.MONTHLY_ANALYSIS:
-                    rule = rrule.MONTHLY
-                    date_from = str((now - relativedelta(months=constants.NO_OF_MONTHS)).date())
-                elif type == constants.WEEK_ANALYSIS:
-                    rule = rrule.WEEKLY
-                    date_from = str((now - relativedelta(weeks=constants.NO_OF_WEEKS)).date())
-                else:
-                    rule = rrule.DAILY
-                    date_from = str((now - timedelta(days=constants.NO_OF_DAYS)).date())
+                rule = rrule.DAILY
+                date_from = str((now - timedelta(days=constants.NO_OF_DAYS)).date())
 
             date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
             date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
@@ -222,8 +237,8 @@ class OverallRatingView(APIView):
                 date_data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
                 feedback_records_list.append({'date': single_date.date(), 'data': date_data})
 
-            if len(feedback_records_list) > constants.NO_OF_DAYS:
-                feedback_records_list = feedback_records_list[-constants.NO_OF_DAYS:]
+            # if len(feedback_records_list) > constants.NO_OF_DAYS:
+            #     feedback_records_list = feedback_records_list[-constants.NO_OF_DAYS:]
 
             return Response(feedback_records_list)
 
@@ -469,7 +484,16 @@ class ActionAnalysisView(APIView):
                 else:
                     objects = Region.objects.all()
             else:
-                objects = Area.objects.all()
+                role = get_user_role(user)
+                user_region_id, user_city_id, user_branch_id = get_user_data(user)
+                if role == UserRolesEnum.OPERATIONAL_CONSULTANT:
+                    objects = Region.objects.filter(id=user_region_id)
+                    type = constants.REGIONAL_ANALYSIS
+                elif role == UserRolesEnum.BRANCH_MANAGER:
+                    objects = Branch.objects.filter(id=user_branch_id)
+                    type = constants.BRANCH_ANALYSIS
+                else:
+                    objects = Area.objects.all()
 
             for object in objects:
                 feedback = Feedback.manager.related_filters(type, object).date(date_from, date_to).normal_feedback()
