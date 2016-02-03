@@ -1217,8 +1217,8 @@ angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache
     "		<div class=\"row promotions\">\n" +
     "			<div class=\"col-lg-12\">\n" +
     "				<h1>Coffee Promotion</h1>\n" +
-    "				<div class=\"row grid-items\">\n" +
-    "					<div class=\"col-md-6 grid-item\">\n" +
+    "				<div class=\"row\">\n" +
+    "					<div class=\"col-md-6\">\n" +
     "						<div class=\"ibox float-e-margins\">\n" +
     "							<div class=\"ibox-title\">\n" +
     "								<h5>Question 1 <small>Lorem Ipsum is simply</small></h5>\n" +
@@ -1228,7 +1228,7 @@ angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache
     "							</div>\n" +
     "						</div>\n" +
     "					</div>\n" +
-    "					<div class=\"col-md-6 grid-item\">\n" +
+    "					<div class=\"col-md-6\">\n" +
     "						<div class=\"ibox float-e-margins\">\n" +
     "							<div class=\"ibox-title\">\n" +
     "								<h5>Question 2 <small>Lorem Ipsum is simply</small></h5>\n" +
@@ -1239,7 +1239,9 @@ angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache
     "							</div>\n" +
     "						</div>\n" +
     "					</div>\n" +
-    "					<div class=\"col-md-6 grid-item\">\n" +
+    "				</div>\n" +
+    "				<div class=\"row\">\n" +
+    "					<div class=\"col-md-6\">\n" +
     "						<div class=\"ibox float-e-margins\">\n" +
     "							<div class=\"ibox-title\">\n" +
     "								<h5>Question 4 <small>Lorem Ipsum is simply</small></h5>\n" +
@@ -1250,7 +1252,7 @@ angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache
     "							</div>\n" +
     "						</div>\n" +
     "					</div>\n" +
-    "					<div class=\"col-md-6 grid-item\">\n" +
+    "					<div class=\"col-md-6\">\n" +
     "						<div class=\"ibox float-e-margins\">\n" +
     "							<div class=\"ibox-title\">\n" +
     "								<h5>Question 3 <small>Lorem Ipsum is simply</small></h5>\n" +
@@ -1260,6 +1262,8 @@ angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache
     "							</div>\n" +
     "						</div>\n" +
     "					</div>\n" +
+    "				</div>\n" +
+    "				<div class=\"row\">\n" +
     "					<div class=\"col-md-6 grid-item\">\n" +
     "						<div class=\"ibox float-e-margins\">\n" +
     "							<div class=\"ibox-title\">\n" +
@@ -1301,45 +1305,27 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "			<div class=\"col-lg-12\">\n" +
     "				<h1>Promotions</h1>\n" +
     "				<div class=\"row\">\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<button type=\"button\" class=\"btn btn-info dim btn-large-dim btn-outline\" ui-sref=\"coffee-promotions\">\n" +
-    "							<i class=\"fa fa-coffee\"></i>\n" +
-    "							Coffee Promotion\n" +
-    "						</button>\n" +
-    "					</div>\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<button type=\"button\" class=\"btn btn-primary dim btn-large-dim btn-outline\">\n" +
-    "							<i class=\"fa fa-cutlery\"></i>\n" +
-    "							Omelette Promotion\n" +
-    "						</button>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "				<div class=\"row\">\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<button type=\"button\" class=\"btn btn-info dim btn-large-dim btn-outline\">\n" +
-    "							<i class=\"fa fa-coffee\"></i>\n" +
-    "							Coffe Promotion\n" +
-    "						</button>\n" +
-    "					</div>\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<button type=\"button\" class=\"btn btn-primary dim btn-large-dim btn-outline\">\n" +
-    "							<i class=\"fa fa-cutlery\"></i>\n" +
-    "							Omelette Promotion\n" +
-    "						</button>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "				<div class=\"row\">\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<button type=\"button\" class=\"btn btn-info dim btn-large-dim btn-outline\">\n" +
-    "							<i class=\"fa fa-coffee\"></i>\n" +
-    "							Coffe Promotion\n" +
-    "						</button>\n" +
-    "					</div>\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<button type=\"button\" class=\"btn btn-primary dim btn-large-dim btn-outline\">\n" +
-    "							<i class=\"fa fa-cutlery\"></i>\n" +
-    "							Omelette Promotion\n" +
-    "						</button>\n" +
+    "					<div class=\"col-xs-12\">\n" +
+    "						<ul class=\"btn-list\">\n" +
+    "							<li>\n" +
+    "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\" ui-sref=\"coffee-promotions\">\n" +
+    "									<span class=\"ico-holder\"><i class=\"fa fa-coffee\"></i></span>\n" +
+    "									Coffee Promotion\n" +
+    "								</a>\n" +
+    "							</li>\n" +
+    "							<li>\n" +
+    "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\">\n" +
+    "									<span class=\"ico-holder\"><i class=\"fa fa-cutlery\"></i></span>\n" +
+    "									Omelette Promotion\n" +
+    "								</a>\n" +
+    "							</li>\n" +
+    "							<li>\n" +
+    "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\" ui-sref=\"coffee-promotions\">\n" +
+    "									<span class=\"ico-holder\"><i class=\"fa fa-coffee\"></i></span>\n" +
+    "									Coffee Promotion\n" +
+    "								</a>\n" +
+    "							</li>\n" +
+    "						</ul>\n" +
     "					</div>\n" +
     "				</div>\n" +
     "			</div>\n" +
