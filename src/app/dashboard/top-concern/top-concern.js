@@ -56,7 +56,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
                 "titleField": "category",
                 "valueField": "column-1",
                 "colorField": "color",
-                "fontFamily": "'Oswald', sans-serif",
+                "fontFamily": "'Open Sans', sans-serif;",
                 "fontSize": 15,
                 "allLabels": [],
                 "balloon": { "fixedPosition": true },

@@ -82,7 +82,7 @@
       var editInstance = $uibModal.open({
         templateUrl: 'manage-users/edit-user-modal.tpl.html',
         controller: 'ModalEditInstanceCtrl',
-        size: 1200,
+        size: 600,
         resolve: {
           parent_id: function () {
             return $scope.parent_id;
