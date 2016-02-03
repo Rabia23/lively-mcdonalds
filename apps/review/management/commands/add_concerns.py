@@ -30,7 +30,8 @@ class Command(BaseCommand):
                 "coffee",
                 "muffin",
                 "omelette",
-                "sauce"]
+                "sauce",
+                "wifi"]
 
         for concern in list:
             Concern.objects.create(keyword=concern)

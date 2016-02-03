@@ -26,7 +26,7 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from operator import itemgetter
 from apps.decorators import my_login_required
-from apps.utils import get_param, get_data_param
+from apps.utils import get_param, get_data_param, get_user_data, get_user_role
 from django.utils.decorators import method_decorator
 
 
@@ -38,12 +38,18 @@ class LoginView(APIView):
         user = authenticate(username=username, password=password)
         if user:
             if user.info.first() and user.info.first().role == UserRolesEnum.GRO:
-                data = {'status': False, 'message': 'User has no permission to login', 'token': None, 'username': user.username}
+                data = {'status': False,
+                        'message': 'User has no permission to login',
+                        'token': None,
+                        'user': user.info.first().to_dict()}
             else:
                 token = Token.objects.get_or_create(user=user)
-                data = {'status': True, 'message': 'User authenticated', 'token': token[0].key, 'username': user.username}
+                data = {'status': True,
+                        'message': 'User authenticated',
+                        'token': token[0].key,
+                        'user': user.info.first().to_dict()}
         else:
-            data = {'status': False, 'message': 'User not authenticated', 'token': None, 'username': None}
+            data = {'status': False, 'message': 'User not authenticated', 'token': None, 'user': None}
 
         return Response(data)
 
@@ -51,13 +57,11 @@ class LoginView(APIView):
 class OverallFeedbackView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         now = datetime.now()
 
         try:
-            region_id = get_param(request, 'region', None)
-            city_id = get_param(request, 'city', None)
-            branch_id = get_param(request, 'branch', None)
+            region_id, city_id, branch_id = get_user_data(user)
 
             date_to = get_param(request, 'date_to', str(now.date()))
             date_from = get_param(request, 'date_from', str((now - timedelta(days=1)).date()))
@@ -78,7 +82,7 @@ class OverallFeedbackView(APIView):
 class FeedbackAnalysisView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         now = datetime.now()
         feedbacks = []
         objects = None
@@ -110,7 +114,16 @@ class FeedbackAnalysisView(APIView):
                 else:
                     objects = Region.objects.all()
             else:
-                objects = Area.objects.all()
+                role = get_user_role(user)
+                user_region_id, user_city_id, user_branch_id = get_user_data(user)
+                if role == UserRolesEnum.OPERATIONAL_CONSULTANT:
+                    objects = Region.objects.filter(id=user_region_id)
+                    type = constants.REGIONAL_ANALYSIS
+                elif role == UserRolesEnum.BRANCH_MANAGER:
+                    objects = Branch.objects.filter(id=user_branch_id)
+                    type = constants.BRANCH_ANALYSIS
+                else:
+                    objects = Area.objects.all()
 
             for object in objects:
                 related_feedback_options = feedback_options.related_filters(type, object)
@@ -131,7 +144,7 @@ class FeedbackAnalysisView(APIView):
 class FeedbackAnalysisBreakdownView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         now = datetime.now()
 
         try:
@@ -162,21 +175,17 @@ class FeedbackAnalysisBreakdownView(APIView):
 class OverallRatingView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         feedback_records_list = []
+        type = 0
 
         try:
-            region_id = get_param(request, 'region', None)
-            city_id = get_param(request, 'city', None)
-            branch_id = get_param(request, 'branch', None)
+            region_id, city_id, branch_id = get_user_data(user)
 
             option_id = get_param(request, 'option', None)
             option = Option.objects.get(id=option_id) if option_id else None
 
             question = Question.objects.get(type=constants.TYPE_2)
-
-            #for grouping of data (daily, weekly, monthly, yearly)
-            type = get_param(request, 'type', None)
 
             date_to = get_param(request, 'date_to', None)
             date_from = get_param(request, 'date_from', None)
@@ -185,22 +194,24 @@ class OverallRatingView(APIView):
             now = datetime.now()
 
             if date_to and date_from:
-                rule = rrule.DAILY #when evenr there is a date range
-                type = constants.DAILY_ANALYSIS
+                current_tz = timezone.get_current_timezone()
+                date_start = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
+                date_end = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
+
+                delta = date_end - date_start
+                if delta.days >= constants.YEARLY_DAYS_COUNT:
+                    rule = rrule.YEARLY
+                elif delta.days >= constants.MONTHLY_DAYS_COUNT:
+                    rule = rrule.MONTHLY
+                elif delta.days >= constants.WEEKLY_DAYS_COUNT:
+                    rule = rrule.WEEKLY
+                else:
+                    type = constants.DAILY_ANALYSIS
+                    rule = rrule.DAILY
             else:
                 date_to = str(now.date())
-                if type == constants.YEARLY_ANALYSIS:
-                    rule = rrule.YEARLY
-                    date_from = str((now - relativedelta(years=constants.NO_OF_YEARS)).date())
-                elif type == constants.MONTHLY_ANALYSIS:
-                    rule = rrule.MONTHLY
-                    date_from = str((now - relativedelta(months=constants.NO_OF_MONTHS)).date())
-                elif type == constants.WEEK_ANALYSIS:
-                    rule = rrule.WEEKLY
-                    date_from = str((now - relativedelta(weeks=constants.NO_OF_WEEKS)).date())
-                else:
-                    rule = rrule.DAILY
-                    date_from = str((now - timedelta(days=constants.NO_OF_DAYS)).date())
+                rule = rrule.DAILY
+                date_from = str((now - timedelta(days=constants.NO_OF_DAYS)).date())
 
             date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
             date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
@@ -226,8 +237,8 @@ class OverallRatingView(APIView):
                 date_data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
                 feedback_records_list.append({'date': single_date.date(), 'data': date_data})
 
-            if len(feedback_records_list) > constants.NO_OF_DAYS:
-                feedback_records_list = feedback_records_list[-constants.NO_OF_DAYS:]
+            # if len(feedback_records_list) > constants.NO_OF_DAYS:
+            #     feedback_records_list = feedback_records_list[-constants.NO_OF_DAYS:]
 
             return Response(feedback_records_list)
 
@@ -238,13 +249,11 @@ class OverallRatingView(APIView):
 class CategoryPerformanceView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         now = datetime.now()
 
         try:
-            region_id = get_param(request, 'region', None)
-            city_id = get_param(request, 'city', None)
-            branch_id = get_param(request, 'branch', None)
+            region_id, city_id, branch_id = get_user_data(user)
 
             date_to = get_param(request, 'date_to', str(now.date()))
             date_from = get_param(request, 'date_from', str((now - timedelta(days=1)).date()))
@@ -275,11 +284,9 @@ class CategoryPerformanceView(APIView):
 class PositiveNegativeFeedbackView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
-            region_id = get_param(request, 'region', None)
-            city_id = get_param(request, 'city', None)
-            branch_id = get_param(request, 'branch', None)
+            region_id, city_id, branch_id = get_user_data(user)
 
             feedback = Feedback.manager.filters(region_id, city_id, branch_id)
 
@@ -297,11 +304,9 @@ class PositiveNegativeFeedbackView(APIView):
 class CommentsView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
-            region_id = get_param(request, 'region', None)
-            city_id = get_param(request, 'city', None)
-            branch_id = get_param(request, 'branch', None)
+            region_id, city_id, branch_id = get_user_data(user)
             page = int(get_param(request, 'page', 1))
 
             feedback = Feedback.manager.comments().filters(region_id, city_id, branch_id)
@@ -321,14 +326,22 @@ class CommentsView(APIView):
 class MapView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         now = datetime.now()
 
         try:
+            region_id, city_id, branch_id = get_user_data(user)
+
             date_to = get_param(request, 'date_to', str(now.date()))
             date_from = get_param(request, 'date_from', str((now - timedelta(days=1)).date()))
 
-            branches = Branch.objects.all()
+            if region_id:
+                branches = Branch.objects.filter(city__region__exact=region_id)
+            elif branch_id:
+                branches = Branch.objects.filter(id=branch_id)
+            else:
+                branches = Branch.objects.all()
+
             branch_detail_list = [branch.branch_feedback_detail(date_from, date_to) for branch in branches]
 
             data = {'branch_count': branches.count(), 'branches': branch_detail_list}
@@ -341,11 +354,9 @@ class MapView(APIView):
 class FeedbackSegmentationView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
-            region_id = get_param(request, 'region', None)
-            city_id = get_param(request, 'city', None)
-            branch_id = get_param(request, 'branch', None)
+            region_id, city_id, branch_id = get_user_data(user)
             type = get_param(request, 'type', None)
 
             option_id = get_param(request, 'option', None)
@@ -382,7 +393,7 @@ class FeedbackSegmentationView(APIView):
 class TopConcernsView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
             concerns = [concern.to_dict() for concern in Concern.objects.filter(is_active=True).order_by("-count")[:5]]
             data = {'concern_count': len(concerns), 'concern_list': concerns}
@@ -394,12 +405,10 @@ class TopConcernsView(APIView):
 class SegmentationRatingView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         now = datetime.now()
         try:
-            region_id = get_param(request, 'region', None)
-            city_id = get_param(request, 'city', None)
-            branch_id = get_param(request, 'branch', None)
+            region_id, city_id, branch_id = get_user_data(user)
 
             option_id = get_param(request, 'option', None)
             option = Option.objects.get(id=option_id) if option_id else None
@@ -423,7 +432,7 @@ class SegmentationRatingView(APIView):
 class ActionTakenView(APIView):
 
     @method_decorator(my_login_required)
-    def post(self, request, format=None):
+    def post(self, request, user, format=None):
         try:
             feedback_id = get_data_param(request, 'feedback_id', None)
             action_id = get_data_param(request, 'action_id', None)
@@ -446,7 +455,7 @@ class ActionTakenView(APIView):
 class ActionAnalysisView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         now = datetime.now()
         data_list = []
         objects = None
@@ -475,7 +484,16 @@ class ActionAnalysisView(APIView):
                 else:
                     objects = Region.objects.all()
             else:
-                objects = Area.objects.all()
+                role = get_user_role(user)
+                user_region_id, user_city_id, user_branch_id = get_user_data(user)
+                if role == UserRolesEnum.OPERATIONAL_CONSULTANT:
+                    objects = Region.objects.filter(id=user_region_id)
+                    type = constants.REGIONAL_ANALYSIS
+                elif role == UserRolesEnum.BRANCH_MANAGER:
+                    objects = Branch.objects.filter(id=user_branch_id)
+                    type = constants.BRANCH_ANALYSIS
+                else:
+                    objects = Area.objects.all()
 
             for object in objects:
                 feedback = Feedback.manager.related_filters(type, object).date(date_from, date_to).normal_feedback()
@@ -495,7 +513,7 @@ class ActionAnalysisView(APIView):
 class TopChartsView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
 
             now = datetime.now()
@@ -519,7 +537,7 @@ class TopChartsView(APIView):
 class TopRankingsView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
             overall_experience = FeedbackOption.get_top_option()
             positive_negative_feedback = Feedback.get_feedback_type_count()
@@ -540,7 +558,7 @@ class TopRankingsView(APIView):
 class ComplaintAnalysisView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
             data_list = []
             objects = Area.objects.all()
@@ -570,7 +588,7 @@ class ComplaintAnalysisView(APIView):
 class LeaderBoardView(APIView):
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
             city = Feedback.get_top_city()
             branches = Feedback.get_top_branches()
@@ -634,7 +652,7 @@ class LiveDashboardView(APIView):
         concerns = Concern.objects.filter(is_active=True).order_by("-count")[:1]
 
         return {'overall_experience': overall_experience,
-                'top_concern': concerns.first().keyword,
+                'top_concern': concerns.first().keyword.capitalize(),
                 'positive_negative_feedback': positive_negative_feedback,
                 'qsc_count': qsc_count}
 
@@ -670,7 +688,7 @@ class LiveDashboardView(APIView):
         return feedback_records_list
 
     @method_decorator(my_login_required)
-    def get(self, request, format=None):
+    def get(self, request, user, format=None):
         try:
             now = datetime.now()
 
@@ -741,9 +759,7 @@ class OpportunityAnalysisView(APIView):
         now = datetime.now()
 
         try:
-            region_id = get_param(request, 'region', None)
-            city_id = get_param(request, 'city', None)
-            branch_id = get_param(request, 'branch', None)
+            region_id, city_id, branch_id = get_user_data(user)
 
             date_to = get_param(request, 'date_to', str(now.date()))
             date_from = get_param(request, 'date_from', str((now - timedelta(days=1)).date()))
@@ -767,6 +783,7 @@ class PromotionDetailView(APIView):
     @method_decorator(my_login_required)
     def get(self, request, user, format=None):
         try:
+            region_id, city_id, branch_id = get_user_data(user)
             id = get_param(request, 'id', None)
             
             promotion = Promotion.objects.get(pk=id)
@@ -774,7 +791,7 @@ class PromotionDetailView(APIView):
 
             question_data_list = []
             for question in questions:
-                feedback_options = FeedbackOption.manager.promotion_options(question)
+                feedback_options = FeedbackOption.manager.promotion_options(question).filter(region_id, city_id, branch_id)
                 filtered_feedback = feedback_options.values('option_id', 'option__text', 'option__parent_id', 'option__score').\
                                     annotate(count=Count('option_id'))
                 list_feedback = generate_missing_options(question, filtered_feedback)

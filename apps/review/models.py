@@ -32,11 +32,11 @@ class FeedbackQuerySet(models.QuerySet):
                 branch__city__exact=city_id,
                 branch__city__region__exact=region_id)
         elif region_id:
-            return self.filter(
-                branch__city__region__exact=region_id)
+            return self.filter(branch__city__region__exact=region_id)
+        elif branch_id:
+            return self.filter(feedback__branch__exact=branch_id)
         elif area_id:
-            return self.filter(
-                branch__city__region__area__exact=area_id)
+            return self.filter(branch__city__region__area__exact=area_id)
         return self
 
     def related_filters(self, type, object):
@@ -349,11 +349,11 @@ class FeedbackOptionQuerySet(models.QuerySet):
                 feedback__branch__city__exact=city_id,
                 feedback__branch__city__region__exact=region_id)
         elif region_id:
-            return self.filter(
-                feedback__branch__city__region__exact=region_id)
+            return self.filter(feedback__branch__city__region__exact=region_id)
+        elif branch_id:
+            return self.filter(feedback__branch__exact=branch_id)
         elif area_id:
-            return self.filter(
-                feedback__branch__city__region__area__exact=area_id)
+            return self.filter(feedback__branch__city__region__area__exact=area_id)
         return self
 
     def related_filters(self, type, object):
@@ -463,7 +463,7 @@ class Concern(models.Model):
         try:
             concern = {
                 "id": self.id,
-                "name": self.keyword,
+                "name": self.keyword.capitalize(),
                 "weight": self.count,
             }
             return concern

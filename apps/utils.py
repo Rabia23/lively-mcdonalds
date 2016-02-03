@@ -3,6 +3,7 @@ from rest_framework import status
 import string,random
 import http.client
 import json
+from apps.person.enum import UserRolesEnum
 from lively import settings
 from rest_framework.response import Response
 
@@ -93,3 +94,22 @@ def get_data_param(request, key, default):
 def get_default_param(request, key, default):
     key = request.query_params.get(key, request.data.get(key, default))
     return key or default
+
+
+def get_user_data(user):
+    if user:
+        user_info = user.info.first()
+        if user_info:
+            if user_info.role == UserRolesEnum.BRANCH_MANAGER:
+                return None, None, user_info.branch_id
+            elif user_info.role == UserRolesEnum.OPERATIONAL_CONSULTANT:
+                return user_info.region_id, None, None
+    return None, None, None
+
+
+def get_user_role(user):
+    if user:
+        user_info = user.info.first()
+        if user_info:
+            return user_info.role
+    return None
