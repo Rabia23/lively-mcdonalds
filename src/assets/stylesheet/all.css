@@ -1434,8 +1434,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 
 .business-segment .progress-area .progress-holder .progress-block .progress{
 	min-height: 20px !important;
-	max-height: 40px !important;
-	height: auto !important;
+	max-height: 50px !important;
+	height: 100% !important;
 }
 
 .progress-area .progress-holder .progress {
@@ -1588,6 +1588,10 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 
 .footable tbody tr{cursor: pointer;}
 .footable tbody tr.deactivate{background: #fce8e8;}
+.footable .btn-box{
+	display: inline-block;
+	vertical-align: middle;
+}
 .footable .fa{
 	font-size: 13px;
 	line-height: 13px;
@@ -1603,6 +1607,12 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 
 .ibox-title h5{margin: 3px 0 0;}
 
+.modal-600 .modal-header{
+	border: 0;
+	padding: 25px;
+	min-height: inherit;
+}
+.modal-600 .modal-body{padding-top: 0;} 
 .info-form .modal-header .close{margin-top: -10px;}
 .info-form .form-error-message{
 	clear: both;
@@ -1900,6 +1910,7 @@ li.active,
 		width: 100%;
 	}
 	.form-container{position: relative;}
+	.form-container.edit-form:before{display: none !important;}
 	.form-container:before{
 		position: absolute;
 		left: 50%;
@@ -1910,6 +1921,8 @@ li.active,
 		background: #f1f1f1;
 		display: block !important;
 	}
+	
+	.form-container.edit-form .col-md-6{width: 100% !important;}
 }
 
 @media screen and (min-width: 1200px) {
@@ -2210,7 +2223,6 @@ li.active,
 	#wrapper .ibox-content{padding: 10px;}
 	.info-form .form-group{margin-bottom: 12px;}
 	.info-form .form-group label{margin: 0 0 3px;}
-	.header-visual{margin: 0 -25px;}
 	.morris-content-outer .title{
 		font-size: 16px;
 		line-height: 20px;
@@ -2248,12 +2260,17 @@ li.active,
 		font-size: 24px;
 		line-height: 32px;
 	}
+	.header-visual .nav.navbar-top-links.navbar-right{text-align: right;}
+	.header-visual .navbar-top-links li:last-child{margin-right: 0;}
 }
 
 @media screen and (max-width: 768px) {
-	#page-wrapper{padding-bottom: 75px !important;}
+	#wrapper #page-wrapper{
+		padding-bottom: 75px !important;
+		margin: 0;
+	}
 	#footer{left: 0;}
-	.navbar-static-side{
+	#wrapper .navbar-static-side{
 		position: absolute;
 		left: -70px;
 		width: 70px !important;
@@ -2261,12 +2278,11 @@ li.active,
 		bottom: 0;
 		z-index: 999;
 	}
-	.navbar-default .sidebar-collapse .nav li a span{display: none;}
-	.mini-navbar .navbar-static-side{left: 0;}
-	.mini-navbar #page-wrapper{width: 100% !important;}
+	#wrapper .navbar-default .sidebar-collapse .nav li a span{display: none;}
+	.mini-navbar #wrapper .navbar-static-side{left: 0;}
+	.timeline-section .tab-links{margin-left: 0;}
 }
 
 @media screen and (max-width: 479px) {
 	.morris-content-outer .morris-content-holder{width: 100%;}
-	.timeline-section .tab-links{margin-left: 0;}
 }
