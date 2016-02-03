@@ -6,21 +6,6 @@
  });
 
 
-     // Full height of sidebar
-     function fix_height() {
-       var content_height = $(".wrapper-content").height();
-       var header_height = $(".header-visual").height();
-       var footer_height = $("#footer").height();
-       var page = $("#page-wrapper");
-       var minHeight = content_height + header_height + footer_height;
-
-       page.css("min-height", minHeight);
-     }
-
-     fix_height();
-
-     // Fixed Sidebar
-
 
 // fade gallery init
 function initSlideShow() {
