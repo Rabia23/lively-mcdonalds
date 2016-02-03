@@ -1142,27 +1142,69 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
     "     <ui-view name = \"header\"></ui-view>\n" +
     "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
-    "		<div class=\"row\">\n" +
+    "		<div class=\"row users-section\">\n" +
     "			<div class=\"col-lg-12\">\n" +
+    "				<h1>{{user_list}} List</h1>\n" +
+    "				<div class=\"users-area\">\n" +
+    "					<div flash-message=\"5000\" ></div>\n" +
+    "					<ul class=\"users-list\" data-users = \"users\">\n" +
+    "						<li ng-repeat = \"user in users track by $index\" ng-class=\"{'deactivate': user.is_active == false}\">\n" +
+    "							<div class=\"ibox\">\n" +
+    "								<dl>\n" +
+    "									<dt>Name:</dt>\n" +
+    "									<dd>{{user.first_name}} {{user.last_name}}</dd>\n" +
+    "									<dt>Phone No.</dt>\n" +
+    "									<dd>{{user.phone_no}}</dd>\n" +
+    "									<dt ng-if = \"child_role == 2 || child_role == 3\">Branch</dt>\n" +
+    "									<dd ng-if = \"child_role == 2 || child_role == 3\">{{user.branch.name}}</dd>\n" +
+    "									<dt>Action</dt>\n" +
+    "									<dd>\n" +
+    "										<div class=\"btn-box\">\n" +
+    "											<a title=\"Edit User\" ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "											<a title=\"Deactivate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user btn-active': user.is_active == false}\"></a>\n" +
+    "											<a title=\"Activate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user-times btn-deactive': user.is_active == true}\"></a>\n" +
+    "										</div>\n" +
+    "									</dd>\n" +
+    "								</dl>\n" +
+    "								<dl class=\"detail\">\n" +
+    "									<dt>User Name:</dt>\n" +
+    "									<dd>{{user.username}}</dd>\n" +
+    "									<dt>Email</dt>\n" +
+    "									<dd>{{user.email}}</dd>\n" +
+    "									<dt>Active</dt>\n" +
+    "									<dd>{{user.is_active}}</dd>\n" +
+    "									<dt>Role</dt>\n" +
+    "									<dd>{{user.role}}</dd>\n" +
+    "									<dt ng-if = \"child_role == 4\">Region</dt>\n" +
+    "									<dd ng-if = \"child_role == 4\">{{user.region.name}}</dd>\n" +
+    "								</dl>\n" +
+    "							</div>\n" +
+    "						</li>\n" +
+    "						<li class=\"btn-holder\">\n" +
+    "							<button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
+    "						</li>\n" +
+    "					</ul>\n" +
+    "				</div>\n" +
+    "<!--\n" +
     "				<div class=\"ibox float-e-margins\">\n" +
     "					<div class=\"ibox-title\">\n" +
-    "						<h5>{{user_list}} List</h5>\n" +
+    "						<h5></h5>\n" +
     "					</div>\n" +
     "						<div class=\"ibox-content\">\n" +
-    "							<div flash-message=\"5000\" ></div>\n" +
+    "							\n" +
     "							<div class=\"user-block\">\n" +
-    "								<button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
+    "								\n" +
     "							</div>\n" +
     "						<div class=\"info-holder\">\n" +
     "							<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\" data-users = \"users\">\n" +
     "								<thead>\n" +
     "									<tr>\n" +
     "										<th data-toggle=\"true\" data-sort-initial=\"true\">Name</th>\n" +
-    "										<th data-hide=\"all\">User Name</th>\n" +
-    "										<th data-hide=\"all\">Email</th>\n" +
-    "										<th data-hide=\"all\">Active</th>\n" +
-    "										<th data-hide=\"all\">Role</th>\n" +
-    "										<th>Phone No.</th>\n" +
+    "										<th data-hide=\"all\"></th>\n" +
+    "										<th data-hide=\"all\"></th>\n" +
+    "										<th data-hide=\"all\"></th>\n" +
+    "										<th data-hide=\"all\"></th>\n" +
+    "										<th></th>\n" +
     "										<th ng-if = \"child_role == 2 || child_role == 3\">Branch</th>\n" +
     "										<th ng-if = \"child_role == 4\">Region</th>\n" +
     "										<th>Action</th>\n" +
@@ -1198,6 +1240,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "						</div>\n" +
     "					</div>\n" +
     "				</div>\n" +
+    "-->\n" +
     "			</div>\n" +
     "		</div>\n" +
     "	  </div>\n" +
@@ -1303,7 +1346,6 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "		<div class=\"row promotions\">\n" +
     "			<div class=\"col-lg-12\">\n" +
-    "				<h1>Promotions</h1>\n" +
     "				<div class=\"row\">\n" +
     "					<div class=\"col-xs-12\">\n" +
     "						<ul class=\"btn-list\">\n" +

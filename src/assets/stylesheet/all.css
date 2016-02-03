@@ -1756,6 +1756,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	padding-right: 10px;
 }
 
+.users-section h1,
 .promotions h1{
 	font-weight: 600;
 	margin: 0 0 15px;
@@ -1838,6 +1839,62 @@ li.active,
 .modal-backdrop{
 	background-color: #fff;
 	opacity: 0.8 !important;
+}
+
+.users-list{
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+	letter-spacing: -6px;
+	list-style: none;
+	margin: 0 -15px;
+}
+
+.users-list li{
+	
+	padding: 0 15px 15px;
+	display: inline-block;
+	vertical-align: top;
+	letter-spacing: 0;
+	width: 25%;
+}
+
+.users-list li .ibox{
+	border: 1px solid #999;
+	background: #fff;
+	padding: 10px;
+}
+
+.users-list dl{
+	overflow: hidden;
+	width: 100%;
+	position: relative;
+}
+
+.users-list dt{
+	float: left;
+	width: 50%;
+	clear: left;
+	font-size: 15px;
+	line-height: 21px;
+}
+
+.users-list dd{
+	overflow: hidden;
+	font-size: 15px;
+	line-height: 21px;
+	margin: 0 0 10px;
+}
+
+.detail{
+	opacity: 0;
+	visibility: hidden;
+	height: 0;
+	transition: all 0.5s linear;
+}
+
+.users-list li .ibox.hover .detail{
+	
 }
 
 @media screen and (min-width: 768px) {
@@ -2306,6 +2363,7 @@ li.active,
 	.comment-block{top: 133px;}
 	#wrapper .m-r-sm{margin-right: 5px;}
 	#wrapper .nav > li > a i{margin-right: 3px;}
+	#wrapper .users-section h1,
 	#wrapper .promotions h1{
 		font-size: 28px;
 		line-height: 34px;
