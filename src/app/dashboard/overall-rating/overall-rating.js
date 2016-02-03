@@ -43,7 +43,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
    function mainRating() {
        $scope.mainView = true;
-       Graphs.overall_rating($scope.type, null, $scope.start_date, $scope.end_date).$promise.then(function (data) {
+       Graphs.overall_rating(null, $scope.start_date, $scope.end_date).$promise.then(function (data) {
            $scope.labels = _.map(data[0].data.feedbacks, function (value, index) {
                return {
                    option_id: value.option_id,
@@ -95,7 +95,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
    $scope.labelClick = function(option){
       if(option.parent_id == null){
         $scope.show_loading = true;
-        Graphs.overall_rating($scope.type, option.option_id).$promise.then(function(data) {
+        Graphs.overall_rating(option.option_id).$promise.then(function(data) {
            $scope.mainView = false;
            $scope.labels = _.map(data[0].data.feedbacks ,function(value, index){
               return {

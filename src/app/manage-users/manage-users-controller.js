@@ -30,20 +30,13 @@
         if(data.is_active === true) {
           message = "User successfully activated.";
           $scope.users[index].is_active = data.is_active;
-          //user.is_active = true;
-          console.log("users");
-          console.log($scope.users);
         }
         else {
           message = "User successfully deactivated.";
           $scope.users[index].is_active = data.is_active;
-          //user.is_active = false;
-          console.log("users");
-          console.log($scope.users);
         }
         //$scope.$digest();
         Flash.create('success', message, 'custom-class');
-        //console.log(data);
       });
     };
 

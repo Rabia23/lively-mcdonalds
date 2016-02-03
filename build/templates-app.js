@@ -1299,7 +1299,6 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "		<div class=\"row promotions\">\n" +
     "			<div class=\"col-lg-12\">\n" +
-    "				<h1>Promotions</h1>\n" +
     "				<div class=\"row\">\n" +
     "					<div class=\"col-md-6\">\n" +
     "						<button type=\"button\" class=\"btn btn-info dim btn-large-dim btn-outline\" ui-sref=\"coffee-promotions\">\n" +

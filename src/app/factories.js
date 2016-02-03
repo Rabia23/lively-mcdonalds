@@ -71,10 +71,10 @@ angular.module( 'factories', [
                  });
   }
 
-  Graphs.prototype.overall_rating = function(type,option_id, date_from, date_to){
+  Graphs.prototype.overall_rating = function(option_id, date_from, date_to){
     var token = $rootScope.token || TokenHandler.get_token();
     option_id = option_id || "";
-    return this.service.overall_rating({token: token, type: type, option: option_id, date_from: date_from, date_to: date_to});
+    return this.service.overall_rating({token: token, option: option_id, date_from: date_from, date_to: date_to});
   };
 
   Graphs.prototype.live_dashboard = function(){
@@ -127,29 +127,32 @@ angular.module( 'factories', [
     var token = $rootScope.token || TokenHandler.get_token();
     return this.service.feedback_analysis({token: token, question_type: question_type, date_from: start_date, date_to: end_date});
   };
-  Graphs.prototype.regional_analysis = function(question_type, start_date, end_date, area_id){
+  Graphs.prototype.regional_analysis = function(question_type, start_date, end_date, area_id, type_id){
     var token = $rootScope.token || TokenHandler.get_token();
     question_type = question_type || 1;
     area_id = area_id || "";
     start_date = start_date || "";
     end_date = end_date || "";
-    return this.service.feedback_analysis({token: token,type: 1, question_type: question_type, area: area_id, date_from: start_date, date_to: end_date});
+    type_id = type_id || "";
+    return this.service.feedback_analysis({token: token,type: type_id, question_type: question_type, area: area_id, date_from: start_date, date_to: end_date});
   };
-  Graphs.prototype.city_analysis = function(region_id, question_type, start_date, end_date){
+  Graphs.prototype.city_analysis = function(region_id, question_type, start_date, end_date, type_id){
     var token = $rootScope.token || TokenHandler.get_token();
     question_type = question_type || 1;
     region_id = region_id || "";
     start_date = start_date || "";
     end_date = end_date || "";
-    return this.service.feedback_analysis({token:  token,type: 2, date_from: start_date, date_to: end_date, region: region_id, question_type: question_type});
+    type_id = type_id || "";
+    return this.service.feedback_analysis({token:  token,type: type_id, date_from: start_date, date_to: end_date, region: region_id, question_type: question_type});
   };
-  Graphs.prototype.branch_analysis = function(city_id, question_type, start_date, end_date){
+  Graphs.prototype.branch_analysis = function(city_id, question_type, start_date, end_date, type_id){
     var token = $rootScope.token || TokenHandler.get_token();
     question_type = question_type || 1;
     city_id = city_id || "";
     start_date = start_date || "";
     end_date = end_date || "";
-    return this.service.feedback_analysis({token:  token,type: 3, date_from: start_date, date_to: end_date, city: city_id, question_type: question_type});
+    type_id = type_id || "";
+    return this.service.feedback_analysis({token:  token,type: type_id, date_from: start_date, date_to: end_date, city: city_id, question_type: question_type});
   };
   Graphs.prototype.category_performance = function(region_id, city_id, branch_id, option_id, start_date, end_date){
     var token = $rootScope.token || TokenHandler.get_token();
