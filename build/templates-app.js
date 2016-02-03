@@ -1,4 +1,4 @@
-angular.module('templates-app', ['common/footer.tpl.html', 'common/header.tpl.html', 'common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/opportunities/opportunities.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/edit-user-modal.tpl.html', 'manage-users/manage-users.tpl.html', 'promotions/promotions.tpl.html']);
+angular.module('templates-app', ['common/footer.tpl.html', 'common/header.tpl.html', 'common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/opportunities/opportunities.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/edit-user-modal.tpl.html', 'manage-users/manage-users.tpl.html', 'promotions/coffee-promotions.tpl.html', 'promotions/promotions.tpl.html']);
 
 angular.module("common/footer.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("common/footer.tpl.html",
@@ -1015,7 +1015,6 @@ angular.module("login/login.tpl.html", []).run(["$templateCache", function($temp
     "						</form>\n" +
     "					</div>\n" +
     "					<div class=\"btn-holder\">\n" +
-    "						<a href=\"#\">Forgot Password?</a>\n" +
     "						<a href=\"#\">Contact Support</a>\n" +
     "					</div>\n" +
     "				</div>\n" +
@@ -1206,6 +1205,89 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "");
 }]);
 
+angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("promotions/coffee-promotions.tpl.html",
+    "<div id=\"wrapper\">\n" +
+    "  <ui-view name = \"sidebar\"></ui-view>\n" +
+    "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
+    "     <ui-view name = \"header\"></ui-view>\n" +
+    "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
+    "		<div class=\"row promotions\">\n" +
+    "			<div class=\"col-lg-12\">\n" +
+    "				<h1>Coffee Promotion</h1>\n" +
+    "				<div class=\"row grid-items\">\n" +
+    "					<div class=\"col-md-6 grid-item\">\n" +
+    "						<div class=\"ibox float-e-margins\">\n" +
+    "							<div class=\"ibox-title\">\n" +
+    "								<h5>Question 1 <small>Lorem Ipsum is simply</small></h5>\n" +
+    "							</div>\n" +
+    "							<div class=\"ibox-content\">\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div class=\"col-md-6 grid-item\">\n" +
+    "						<div class=\"ibox float-e-margins\">\n" +
+    "							<div class=\"ibox-title\">\n" +
+    "								<h5>Question 2 <small>Lorem Ipsum is simply</small></h5>\n" +
+    "							</div>\n" +
+    "							<div class=\"ibox-content\">\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div class=\"col-md-6 grid-item\">\n" +
+    "						<div class=\"ibox float-e-margins\">\n" +
+    "							<div class=\"ibox-title\">\n" +
+    "								<h5>Question 4 <small>Lorem Ipsum is simply</small></h5>\n" +
+    "							</div>\n" +
+    "							<div class=\"ibox-content\">\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div class=\"col-md-6 grid-item\">\n" +
+    "						<div class=\"ibox float-e-margins\">\n" +
+    "							<div class=\"ibox-title\">\n" +
+    "								<h5>Question 3 <small>Lorem Ipsum is simply</small></h5>\n" +
+    "							</div>\n" +
+    "							<div class=\"ibox-content\">\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div class=\"col-md-6 grid-item\">\n" +
+    "						<div class=\"ibox float-e-margins\">\n" +
+    "							<div class=\"ibox-title\">\n" +
+    "								<h5>Question 5 <small>Lorem Ipsum is simply</small></h5>\n" +
+    "							</div>\n" +
+    "							<div class=\"ibox-content\">\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div class=\"col-md-6 grid-item\">\n" +
+    "						<div class=\"ibox float-e-margins\">\n" +
+    "							<div class=\"ibox-title\">\n" +
+    "								<h5>Question 6 <small>Lorem Ipsum is simply</small></h5>\n" +
+    "							</div>\n" +
+    "							<div class=\"ibox-content\">\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	  </div>\n" +
+    "	 <ui-view name = \"footer\"></ui-view>\n" +
+    "  </div>\n" +
+    "</div>");
+}]);
+
 angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("promotions/promotions.tpl.html",
     "<div id=\"wrapper\">\n" +
@@ -1218,9 +1300,9 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "				<h1>Promotions</h1>\n" +
     "				<div class=\"row\">\n" +
     "					<div class=\"col-md-6\">\n" +
-    "						<button type=\"button\" class=\"btn btn-info dim btn-large-dim btn-outline\">\n" +
+    "						<button type=\"button\" class=\"btn btn-info dim btn-large-dim btn-outline\" ui-sref=\"coffee-promotions\">\n" +
     "							<i class=\"fa fa-coffee\"></i>\n" +
-    "							Coffe Promotion\n" +
+    "							Coffee Promotion\n" +
     "						</button>\n" +
     "					</div>\n" +
     "					<div class=\"col-md-6\">\n" +

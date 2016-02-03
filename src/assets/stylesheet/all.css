@@ -1709,8 +1709,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 
 .data-holder h5{
 	font-weight: normal;
-	font-size: 12px;
-	line-height: 1.1;
+	font-size: 11px;
+	line-height: 1;
 	color: #12122e;
 	text-transform: uppercase;
 }
@@ -1718,6 +1718,11 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 #wrapper .same-height-parent .ibox-content{
 	padding-top: 10px;
 	padding-bottom: 10px;
+}
+
+#wrapper .same-height-parent .detail-block .ibox-content{
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .promotions h1{

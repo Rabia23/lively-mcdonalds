@@ -2,7 +2,7 @@
   angular.module( 'livefeed.promotions')
 
 
-  .controller( 'PromotionsCtrl', function ManageUsersCtrl( $scope, $state, $rootScope, TokenHandler, Auth, Flash) {
+  .controller( 'PromotionsCtrl', function PromotionCtrl( $scope, $state, $rootScope, TokenHandler, Auth, Flash) {
       console.log("inside promotion controller");
   });
 
