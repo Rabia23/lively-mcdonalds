@@ -1179,9 +1179,11 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "										<td ng-if = \"child_role == 2 || child_role == 3\">{{user.branch.name}}</td>\n" +
     "										<td ng-if = \"child_role == 4\">{{user.region.name}}</td>\n" +
     "										<td>\n" +
-    "											<a title=\"Edit User\" ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "											<a title=\"Deactivate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user btn-active': user.is_active == false}\"></a>\n" +
-    "											<a title=\"Activate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user-times btn-deactive': user.is_active == true}\"></a>\n" +
+    "											<div class=\"btn-box\">\n" +
+    "												<a title=\"Edit User\" ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "												<a title=\"Deactivate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user btn-active': user.is_active == false}\"></a>\n" +
+    "												<a title=\"Activate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user-times btn-deactive': user.is_active == true}\"></a>\n" +
+    "											</div>\n" +
     "										</td>\n" +
     "									</tr>\n" +
     "								</tbody>\n" +

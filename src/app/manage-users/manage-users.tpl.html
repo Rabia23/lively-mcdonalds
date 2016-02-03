@@ -40,9 +40,11 @@
 										<td ng-if = "child_role == 2 || child_role == 3">{{user.branch.name}}</td>
 										<td ng-if = "child_role == 4">{{user.region.name}}</td>
 										<td>
-											<a title="Edit User" ng-click = "edit(user, $index)" class="fa fa-pencil-square-o"></a>
-											<a title="Deactivate User" ng-click = "deactivate(user, $index)" ng-class="{'fa fa-user btn-active': user.is_active == false}"></a>
-											<a title="Activate User" ng-click = "deactivate(user, $index)" ng-class="{'fa fa-user-times btn-deactive': user.is_active == true}"></a>
+											<div class="btn-box">
+												<a title="Edit User" ng-click = "edit(user, $index)" class="fa fa-pencil-square-o"></a>
+												<a title="Deactivate User" ng-click = "deactivate(user, $index)" ng-class="{'fa fa-user btn-active': user.is_active == false}"></a>
+												<a title="Activate User" ng-click = "deactivate(user, $index)" ng-class="{'fa fa-user-times btn-deactive': user.is_active == true}"></a>
+											</div>
 										</td>
 									</tr>
 								</tbody>
