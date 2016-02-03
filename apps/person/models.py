@@ -26,7 +26,7 @@ class UserInfo(models.Model):
             "last_name": self.user.last_name,
             "email": self.user.email,
             "phone_no": self.phone_no,
-            "role": UserRolesEnum.labels[self.role],
+            "role": self.role,
             "branch": BranchSerializer(self.branch).data if self.branch else None,
             "region": RegionSerializer(self.region).data if self.region else None,
             "parent": self.get_parent_dict(),
@@ -43,7 +43,7 @@ class UserInfo(models.Model):
                 "last_name": self.parent.user.last_name,
                 "email": self.parent.user.email,
                 "phone_no": self.parent.phone_no,
-                "role": UserRolesEnum.labels[self.parent.role],
+                "role": self.parent.role,
                 "branch": BranchSerializer(self.parent.branch).data if self.parent.branch else None,
                 "region": RegionSerializer(self.parent.region).data if self.parent.region else None,
             }
