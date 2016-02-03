@@ -1434,8 +1434,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 
 .business-segment .progress-area .progress-holder .progress-block .progress{
 	min-height: 20px !important;
-	max-height: 40px !important;
-	height: auto !important;
+	max-height: 50px !important;
+	height: 100% !important;
 }
 
 .progress-area .progress-holder .progress {
@@ -1900,6 +1900,7 @@ li.active,
 		width: 100%;
 	}
 	.form-container{position: relative;}
+	.form-container.edit-form:before{display: none !important;}
 	.form-container:before{
 		position: absolute;
 		left: 50%;
@@ -1910,6 +1911,8 @@ li.active,
 		background: #f1f1f1;
 		display: block !important;
 	}
+	
+	.form-container.edit-form .col-md-6{width: 100% !important;}
 }
 
 @media screen and (min-width: 1200px) {
@@ -2267,9 +2270,9 @@ li.active,
 	}
 	#wrapper .navbar-default .sidebar-collapse .nav li a span{display: none;}
 	.mini-navbar #wrapper .navbar-static-side{left: 0;}
+	.timeline-section .tab-links{margin-left: 0;}
 }
 
 @media screen and (max-width: 479px) {
 	.morris-content-outer .morris-content-holder{width: 100%;}
-	.timeline-section .tab-links{margin-left: 0;}
 }

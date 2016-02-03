@@ -277,8 +277,9 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                     scope.$apply(scope.action({option_object: event}));
                   });
                   var width = $("#chartdiv").find("svg").width();
+                  console.log(width);
                   width = width + 50;
-                  $("#chartdiv").find("svg").css({width: width, left: '-3px'});
+                  $("#chartdiv").find("svg").css({width: width});
               }
 
           });
