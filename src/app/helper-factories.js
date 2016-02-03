@@ -8,9 +8,9 @@ angular.module( 'helper_factories', ['ngResource'])
       return colors[index];
     },
     complaintAnalysisAction: {
-      1: ["Unprocessed", "#bf1616"],
+      1: ["Unprocessed", "#cb1e24"],
       2: ["Processed", "#01c211"],
-      3: ["Deferred", "#ffee00"]
+      3: ["Deferred", "#ffd200"]
     },
 
     complaintAnalysisActionPriority: {
@@ -40,17 +40,17 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
      optionsColorScheme: {
-      "Quality": '#AC1A1A',
-      "Service": "#FFC300",
-      "Cleanliness": '#3498DB'
+      "Quality": '#cb1e24',
+      "Service": "#ffd200",
+      "Cleanliness": '#1f9aec'
 
     },
 
     optionsLineColorScheme: {
-      "Quality": '#FF8800',
-      "Service": "#FBE041",
-      "Cleanliness": '#12E9F0'
-      
+      "Quality": '#cb1e24',
+      "Service": "#ffd200",
+      "Cleanliness": '#1f9aec'
+
     },
 
     subOptionsColorScheme: {
@@ -83,9 +83,9 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
     categoryPerformanceClass: {
-      "Quality": '#AC1A1A',
-      "Service": "#FFC300",
-      "Cleanliness": '#3498DB'
+      "Quality": '#cb1e24',
+      "Service": "#ffd200",
+      "Cleanliness": '#1f9aec'
     },
 
     segmentationClass: {

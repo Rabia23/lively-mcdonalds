@@ -17,7 +17,7 @@
              else{
               $(ele).footable();
             }
-
+            window.fix_height();
           }
         });
 

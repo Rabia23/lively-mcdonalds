@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="comments-holder">
-       	<div class="jcf-scrollable" custom-form>
+       	<div class="jcf-scrollable" custom-form data-comments = "comments">
        		<ul class="comments-list list-unstyled">
 			  <li ng-if = "feedback_count != 0" ng-repeat = "comment in comments" ng-class = "{negative: comment.data.is_negative, positive: !comment.data.is_negative, processed: comment.action_string == 'Processed', deferred: comment.action_string == 'Deferred'}">
 				  <p>{{comment.data.comment}}</p>

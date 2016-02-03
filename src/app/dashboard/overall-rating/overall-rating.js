@@ -1,8 +1,7 @@
 angular.module( 'livefeed.dashboard.overall_rating', [
   'factories',
   'livefeed.overall_rating.chart',
-  "helper_factories",
-  'angular-flot'
+  "helper_factories"
 ])
 
 .controller( 'TimeLineCtrl', function DashboardController( $scope, overallRatingChartService, Graphs, Global ) {

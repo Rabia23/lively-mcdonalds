@@ -73,12 +73,12 @@ module.exports = {
       'vendor/jquery/dist/jquery.js',
       'vendor/morris.js/morris.js',
       'vendor/raphael/raphael.js',
-      'vendor/Flot/jquery.flot.js',
-      'vendor/Flot/jquery.flot.resize.js',
-      'vendor/flot.tooltip/js/jquery.flot.tooltip.js',
-      'vendor/Flot/jquery.flot.pie.js',
-      'vendor/Flot/jquery.flot.time.js',
-      'vendor/angular-flot/angular-flot.js',
+      // 'vendor/Flot/jquery.flot.js',
+      // 'vendor/Flot/jquery.flot.resize.js',
+      // 'vendor/flot.tooltip/js/jquery.flot.tooltip.js',
+      // 'vendor/Flot/jquery.flot.pie.js',
+      // 'vendor/Flot/jquery.flot.time.js',
+      // 'vendor/angular-flot/angular-flot.js',
       'vendor/color/one-color-all.js',
       'vendor/enscroll/js/mylibs/enscroll.js',
       'vendor/ngmap/build/scripts/ng-map.min.js',
@@ -108,7 +108,7 @@ module.exports = {
 
     ],
     assets: [
-      
+
     ]
   }
 };

@@ -565,7 +565,7 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "        </div>\n" +
     "      </div>\n" +
     "      <div class=\"comments-holder\">\n" +
-    "       	<div class=\"jcf-scrollable\" custom-form>\n" +
+    "       	<div class=\"jcf-scrollable\" custom-form data-comments = \"comments\">\n" +
     "       		<ul class=\"comments-list list-unstyled\">\n" +
     "			  <li ng-if = \"feedback_count != 0\" ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.data.is_negative, positive: !comment.data.is_negative, processed: comment.action_string == 'Processed', deferred: comment.action_string == 'Deferred'}\">\n" +
     "				  <p>{{comment.data.comment}}</p>\n" +
@@ -1037,9 +1037,9 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "			</a>\n" +
     "		</div>\n" +
     "		<div class=\"modal-body\">\n" +
-    "			<div class=\"row form-container\">\n" +
-    "				<div class=\"col-md-6\">\n" +
-    "					<div class=\"form-group\" ng-hide = \"edit_form\">\n" +
+    "			<div class=\"row form-container\" ng-class = \"{'edit-form': edit_form}\">\n" +
+    "				<div class=\"col-md-6\" ng-if = \"!edit_form\">\n" +
+    "					<div class=\"form-group\" ng-if = \"!edit_form\">\n" +
     "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"firsName\">First Name</label>\n" +
     "						<div class=\"col-sm-10 col-md-9\">\n" +
     "							<input type=\"text\" id=\"first_name\" class=\"form-control\" ng-model = \"user.first_name\" name = \"first_name\"\n" +
@@ -1049,7 +1049,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "						  </div>\n" +
     "						</div>\n" +
     "					</div>\n" +
-    "					<div class=\"form-group\" ng-hide = \"edit_form\">\n" +
+    "					<div class=\"form-group\" ng-if = \"!edit_form\">\n" +
     "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"lastName\">Last Name</label>\n" +
     "						<div class=\"col-sm-10 col-md-9\">\n" +
     "							<input type=\"text\" id=\"last_name\" class=\"form-control\" ng-model = \"user.last_name\" name = \"last_name\"\n" +
@@ -1059,7 +1059,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "						  </div>\n" +
     "						</div>\n" +
     "					</div>\n" +
-    "					<div class=\"form-group\" ng-hide = \"edit_form\">\n" +
+    "					<div class=\"form-group\" ng-if = \"!edit_form\">\n" +
     "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"userName\">User Name</label>\n" +
     "						<div class=\"col-sm-10 col-md-9\">\n" +
     "							<input type=\"text\" id=\"username\" class=\"form-control\" ng-model = \"user.username\" name = \"username\"\n" +
@@ -1108,7 +1108,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "					</div>\n" +
     "				</div>\n" +
     "			</div>\n" +
-    "			<div class=\"form-group\" ng-if = \"user.role == 3\">\n" +
+    "			<div class=\"form-group\" ng-if = \"user.role == 3 && !edit_form\">\n" +
     "				<label class=\"col-sm-2 control-label\" for=\"branch\">Branch</label>\n" +
     "				<div class=\"col-sm-10\">\n" +
     "						<select id=\"branch\" class=\"barcode\" custom-form  ng-options = \"branch.id as branch.name for branch in branches track by branch.id\"\n" +
@@ -1117,7 +1117,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "					</select>\n" +
     "				</div>\n" +
     "			</div>\n" +
-    "			<div class=\"form-group\" ng-if = \"user.role == 4\">\n" +
+    "			<div class=\"form-group\" ng-if = \"user.role == 4 && !edit_form\">\n" +
     "				<label class=\"col-sm-2 control-label\" for=\"code\">Regions</label>\n" +
     "				<div class=\"col-sm-10\">\n" +
     "					<select id=\"region\" class=\"barcode\" custom-form  ng-options = \"region.id as region.name for region in regions track by region.id\"\n" +
@@ -1149,11 +1149,6 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "					<div class=\"ibox-title\">\n" +
     "						<h5>{{user_list}} List</h5>\n" +
     "					</div>\n" +
-    "					<div class=\"ibox-content\">\n" +
-    "						<div flash-message=\"5000\" ></div>\n" +
-    "						<div class=\"user-block\">\n" +
-    "							<button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
-    "						</div>\n" +
     "						<div class=\"ibox-content\">\n" +
     "							<div flash-message=\"5000\" ></div>\n" +
     "							<div class=\"user-block\">\n" +
