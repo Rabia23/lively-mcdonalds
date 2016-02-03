@@ -1,7 +1,7 @@
 (function() {
   angular.module( 'livefeed.manage_users')
 
-  .directive('footable', function(){
+  .directive('footable', function($timeout){
     return {
       restrict: 'C',
       scope: {
@@ -12,12 +12,13 @@
           if(watchedData !== undefined){
             console.log("in the watch if");
             if ($(ele).hasClass("footable-loaded")){
-              $('.footable').trigger('footable_redraw');
+              $timeout(function(){
+                  $('.footable').trigger('footable_redraw');
+              }, 100);
             }
              else{
               $(ele).footable();
             }
-            window.fix_height();
           }
         });
 

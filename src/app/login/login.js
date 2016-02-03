@@ -22,9 +22,7 @@ angular.module( 'livefeed.login', [
 
 })
 
-/**
- * And of course we define a controller for our route.
- */
+
 .controller( 'LoginCtrl', function LoginController( $scope,  _ , $rootScope, $state, Authentication, TokenHandler, Flash) {
 
   $scope.submitted = false;
@@ -40,9 +38,9 @@ angular.module( 'livefeed.login', [
   });
 
   $scope.login = function(valid){
-    $scope.show_loading = true;
     $scope.submitted = true;
     if(valid){
+      $scope.show_loading = true;
       Authentication.login($scope.authenticate).$promise.then(function(data){
         $scope.show_loading = false;
         if(data.status){

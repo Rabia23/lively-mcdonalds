@@ -27,8 +27,6 @@
       if(valid){
         $scope.submitted = true;
         ManageApi.add_user($scope.user).$promise.then(function(data){
-          console.log("response");
-          console.log(data);
           $scope.ok();
           var message = "User successfully created.";
           Flash.create('success', message, 'custom-class');
@@ -62,8 +60,8 @@
       if(valid){
         $scope.submitted = true;
         ManageApi.edit_user($scope.user).$promise.then(function(data){
-          console.log(data);
-          $scope.ok(true);
+          $scope.user = data;
+          $scope.ok($scope.user);
           var message = "User successfully edited.";
           Flash.create('success', message, 'custom-class');
         });
@@ -73,8 +71,8 @@
       }
     };
 
-    $scope.ok = function (result) {
-      $uibModalInstance.close(result);
+    $scope.ok = function (user) {
+      $uibModalInstance.close(user);
     };
 
     $scope.cancel = function () {

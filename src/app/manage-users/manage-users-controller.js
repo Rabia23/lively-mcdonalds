@@ -22,6 +22,14 @@
       if(data.parent.region){
         $scope.region_id = data.parent.region.id;
       }
+      _.each($scope.users, function(value, index){
+        if(value.is_active){
+          value.status = "Active";
+        }
+        else{
+          value.status = "Inactive";
+        }
+      });
     });
 
     $scope.deactivate = function(user,index){
@@ -29,21 +37,17 @@
         var message = "";
         if(data.is_active === true) {
           message = "User successfully activated.";
-          $scope.users[index].is_active = data.is_active;
-          //user.is_active = true;
-          console.log("users");
-          console.log($scope.users);
+          user = data;
+          user.status = "Active";
+          $scope.users[index] = user;
         }
         else {
           message = "User successfully deactivated.";
-          $scope.users[index].is_active = data.is_active;
-          //user.is_active = false;
-          console.log("users");
-          console.log($scope.users);
+          user = data;
+          user.status = "Inactive";
+          $scope.users[index] = user;
         }
-        //$scope.$digest();
         Flash.create('success', message, 'custom-class');
-        //console.log(data);
       });
     };
 
@@ -77,7 +81,7 @@
     };
 
 
-    $scope.edit = function (user) {
+    $scope.edit = function (user, index) {
 
       var editInstance = $uibModal.open({
         templateUrl: 'manage-users/edit-user-modal.tpl.html',
@@ -98,7 +102,9 @@
         }
       });
 
-      editInstance.result.then(function (result) {
+      editInstance.result.then(function (edited_user) {
+        $scope.users[index] = edited_user;
+        console.log($scope.users[index]);
       });
     };
 

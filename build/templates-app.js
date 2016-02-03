@@ -1160,7 +1160,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "										<th data-toggle=\"true\" data-sort-initial=\"true\">Name</th>\n" +
     "										<th data-hide=\"all\">User Name</th>\n" +
     "										<th data-hide=\"all\">Email</th>\n" +
-    "										<th data-hide=\"all\">Active</th>\n" +
+    "										<th data-hide=\"all\">Status</th>\n" +
     "										<th data-hide=\"all\">Role</th>\n" +
     "										<th>Phone No.</th>\n" +
     "										<th ng-if = \"child_role == 2 || child_role == 3\">Branch</th>\n" +
@@ -1173,7 +1173,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "										<td>{{user.first_name}} {{user.last_name}}</td>\n" +
     "										<td>{{user.username}}</td>\n" +
     "										<td>{{user.email}}</td>\n" +
-    "										<td>{{user.is_active}}</td>\n" +
+    "										<td>{{user.status}}</td>\n" +
     "										<td>{{user.role}}</td>\n" +
     "										<td >{{user.phone_no}}</td>\n" +
     "										<td ng-if = \"child_role == 2 || child_role == 3\">{{user.branch.name}}</td>\n" +
