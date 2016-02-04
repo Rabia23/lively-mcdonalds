@@ -1,26 +1,24 @@
 <div class="ibox float-e-margins" ng-class="{loading: show_loading}">
   <div class="ibox-title">
-	  <h5>Benchmark Map</h5>
-	  <div class="ibox-tools">
-		  <ul class="tab-links">
-			  <li>
-				  <div class="calender-outer">
-					  <span class="calendar-holder" uib-tooltip="Click to Select Custom Date Range">
-						   <input date-range-picker id="daterange-map" readonly="readonly" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption" readonly="true"/>
-						  <i class="fa fa-calendar" map-range-click></i>
-					  </span>
-				  </div>
-			  </li>
-		  </ul>
-	  </div>
+    <h5>Benchmark Map</h5>
+	<div class="ibox-tools">
+	  <ul class="tab-links">
+	    <li>
+		  <div class="calender-outer">
+		    <span class="calendar-holder" uib-tooltip="Click to Select Custom Date Range">
+			  <input date-range-picker id="daterange-map" readonly="readonly" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption" readonly="true"/>
+			  <i class="fa fa-calendar" map-range-click></i>
+			</span>
+		  </div>
+		</li>
+	  </ul>
+	</div>
   </div>
   <div class="ibox-content" same-map-height>
-
-		  <div id="world-map">
-		  	<div map-lazy-load="http://maps.google.com/maps/api/js">
-			  	<map center="30,70" zoom="{{zoom}}"></map>
-				</div>
-		  
+    <div id="world-map">
+	  <div map-lazy-load="http://maps.google.com/maps/api/js">
+		<map center="30,70" zoom="{{zoom}}"></map>
 	  </div>
+	</div>
   </div>
 </div>

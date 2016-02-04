@@ -1,7 +1,7 @@
 <div class="comment-block">
   <a style = "cursor:pointer;" class="nav-opener" mobile-nav>
     <i class="fa fa-comments-o"></i>
-   <!--  <span class="count">{{feedback_count}}</span> -->
+    <!--  <span class="count">{{feedback_count}}</span> -->
   </a>
   <div class="comments-drop">
     <a href="#" class="nav-opener">
@@ -18,15 +18,13 @@
       </div>
       <div class="comments-holder">
        	<div class="jcf-scrollable" custom-form data-comments = "comments">
-       		<ul class="comments-list list-unstyled">
-			  <li ng-if = "feedback_count != 0" ng-repeat = "comment in comments" ng-class = "{negative: comment.data.is_negative, positive: !comment.data.is_negative, processed: comment.action_string == 'Processed', deferred: comment.action_string == 'Deferred'}">
-				  <p>{{comment.data.comment}}</p>
-				  <time datetime="{{comment.date_time}}">{{comment.date_time}}</time>
-			  </li>
-			  <li ng-if = "feedback_count == 0">
-				No Data Available
-			  </li>
-			</ul>
+          <ul class="comments-list list-unstyled">
+		    <li ng-if = "feedback_count != 0" ng-repeat = "comment in comments" ng-class = "{negative: comment.data.is_negative, positive: !comment.data.is_negative, processed: comment.action_string == 'Processed', deferred: comment.action_string == 'Deferred'}">
+			  <p>{{comment.data.comment}}</p>
+			  <time datetime="{{comment.date_time}}">{{comment.date_time}}</time>
+            </li>
+			<li ng-if = "feedback_count == 0">No Data Available</li>
+          </ul>
        	</div>
       </div>
       <div class="btn-holder">
