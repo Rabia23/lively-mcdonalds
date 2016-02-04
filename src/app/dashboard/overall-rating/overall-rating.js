@@ -164,10 +164,10 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                   _.each(data[0],function(graph_data){
                       graphs.push({
                           "bullet": "round",
-                          "bulletBorderAlpha": 0.3,
+                          "bulletBorderAlpha": 1,
                           "bulletSize": 7,
-                          "bulletBorderColor": "#FFFFFF",
-                          "bulletColor": "#FFFFFF",
+                          "bulletBorderColor": graph_data.color,
+                          "bulletColor": "#FFF",
                           "color": "#FFFFFF",
                           "fillAlphas": 0.84,
                           "fillColors": graph_data.color,
@@ -185,6 +185,9 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                   chart = AmCharts.makeChart("chartdiv",
                   {
                       "type": "serial",
+                      "marginTop": 15,
+                      "marginLeft": 30,
+                      "autoMargins": false,
                       //"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
                       "balloonDateFormat": "",
                       "categoryField": "category",
@@ -216,8 +219,9 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                       "categoryAxis": {
                           "equalSpacing": true,
                           "firstDayOfWeek": 0,
-                          "startOnAxis": true,
-                          "twoLineMode": true,
+                          "startOnAxis": false,
+                          "gridPosition": "start",
+                          //"twoLineMode": true,
                           "axisAlpha": 0.4,
                           "axisColor": "#CED4CE",
                           "color": "#808080",
@@ -272,14 +276,15 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                       ],
                       "dataProvider": data[1]
                   });
+                  //var width = $("#chartdiv").find("svg").width();
+                  //console.log("inside chart directive");
+                  //console.log(width);
+                  //width = width + 50;
+                  //$("#chartdiv").find("svg").css({width: width, left: '-5px', top: '-4px'});
                   window.initSameHeight();
                   chart.addListener("clickGraphItem", function(event){
                     scope.$apply(scope.action({option_object: event}));
                   });
-                  var width = $("#chartdiv").find("svg").width();
-                  console.log(width);
-                  width = width + 50;
-                  $("#chartdiv").find("svg").css({width: width});
               }
 
           });

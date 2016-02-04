@@ -590,10 +590,11 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
   $templateCache.put("dashboard/regional-analysis/regional-analysis.tpl.html",
     "<div class=\"ibox float-e-margins\" ng-class=\"{loading: show_loading}\">\n" +
     "    <div class=\"ibox-title\">\n" +
-    "        <h5 ng-show = \"area_view\">{{title}}</h5>\n" +
-    "        <h5 ng-show = \"area_view == false && regional_view == true\">{{selected_area.name}}'s Region Analysis</h5>\n" +
-    "		<h5 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}}'s City Analysis</h5>\n" +
-    "		<h5 ng-show = \"area_view == false && regional_view == false && city_view == false\">{{selected_city.name}}'s Branch Analysis</h5>\n" +
+    "		<h5>{{title}}</h5>\n" +
+    "        <!--<h5 ng-show = \"area_view\">{{title}}</h5>-->\n" +
+    "        <!--<h5 ng-show = \"area_view == false && regional_view == true\">{{selected_area.name}}'s Region Analysis</h5>-->\n" +
+    "		<!--<h5 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}}'s City Analysis</h5>-->\n" +
+    "		<!--<h5 ng-show = \"area_view == false && regional_view == false && city_view == false\">{{selected_city.name}}'s Branch Analysis</h5>-->\n" +
     "        <div class=\"ibox-tools\">\n" +
     "            <ul class=\"tab-links\">\n" +
     "                <li ng-class=\"{active: radioModel == 'Complaints'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'Complaints'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Complaint Resolution Analysis\">Complaints</a></li>\n" +
@@ -613,13 +614,19 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "    </div>\n" +
     "    <div class=\"ibox-content morris-content-outer\">\n" +
     "     	<div class = \"breadcrum\">\n" +
-    "        <span ng-hide = \"area_view\">\n" +
-    "         <a ng-click = \"backToAreas()\" style = \"cursor:pointer\">Area</a>\n" +
+    "        <span ng-show = \"area_link == true\">\n" +
+    "         <a ng-click = \"backToAreas()\" style = \"cursor:pointer\">Area&nbsp;/</a>\n" +
     "       </span>\n" +
-    "       <span ng-show = \"area_view == false && regional_view == false\">\n" +
-    "         <a ng-click = \"backToRegions(selected_area)\" style = \"cursor:pointer\">{{selected_area.name}}</a>\n" +
+    "       <span ng-show = \"area_link == true && region_link == true\">\n" +
+    "         <a ng-click = \"backToRegions(selected_area)\" style = \"cursor:pointer\">{{selected_area.name}}&nbsp;/</a>\n" +
     "       </span>\n" +
-    "       <span ng-show = \"area_view == false && regional_view == false && city_view == false\">\n" +
+    "		<span ng-show = \"area_link == false && region_link == true\">\n" +
+    "         <a ng-click = \"backToRegions(selected_area)\" style = \"cursor:pointer\"> Region&nbsp;/</a>\n" +
+    "       </span>\n" +
+    "		<span ng-show = \"area_link == true && region_link == true && city_link == true\">\n" +
+    "         <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}}</a>\n" +
+    "       </span>\n" +
+    "       <span ng-show = \"area_link == false && region_link == true && city_link == true\">\n" +
     "         <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}}</a>\n" +
     "       </span>\n" +
     "     </div>\n" +
@@ -1366,20 +1373,26 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "						<ul class=\"btn-list\">\n" +
     "							<li>\n" +
     "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\" ui-sref=\"coffee-promotions\">\n" +
-    "									<span class=\"ico-holder\"><i class=\"fa fa-coffee\"></i></span>\n" +
+    "									<span class=\"ico-holder\"><img src=\"assets/images/promo1.jpg\" alt=\"\"></span>\n" +
     "									Coffee Promotion\n" +
     "								</a>\n" +
     "							</li>\n" +
     "							<li>\n" +
     "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\">\n" +
-    "									<span class=\"ico-holder\"><i class=\"fa fa-cutlery\"></i></span>\n" +
+    "									<span class=\"ico-holder\"><img src=\"assets/images/promo2.jpg\" alt=\"\"></span>\n" +
     "									Omelette Promotion\n" +
     "								</a>\n" +
     "							</li>\n" +
     "							<li>\n" +
     "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\" ui-sref=\"coffee-promotions\">\n" +
-    "									<span class=\"ico-holder\"><i class=\"fa fa-coffee\"></i></span>\n" +
+    "									<span class=\"ico-holder\"><img src=\"assets/images/promo1.jpg\" alt=\"\"></span>\n" +
     "									Coffee Promotion\n" +
+    "								</a>\n" +
+    "							</li>\n" +
+    "							<li>\n" +
+    "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\">\n" +
+    "									<span class=\"ico-holder\"><img src=\"assets/images/promo2.jpg\" alt=\"\"></span>\n" +
+    "									Omelette Promotion\n" +
     "								</a>\n" +
     "							</li>\n" +
     "						</ul>\n" +

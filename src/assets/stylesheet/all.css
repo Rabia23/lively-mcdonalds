@@ -1773,17 +1773,19 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	line-height: 40px;
 	text-transform: capitalize;
 	color: #999;
-	border-top: 3px solid #e7eaec;
+	border: 1px solid #999;
 	background: #fff;
 	border-radius: 0;
+	white-space: normal;
 	margin: 0 !important;
 }
 
 .promotions .btn.dim:hover,
 .promotions .btn.dim:active,
 .promotions .btn.dim:focus{
-	color: #fff;
-	background: #999;
+	color: #be1011;
+	border-color: #be1011;
+	box-shadow: 0 0 5px 1px #be1011;
 }
 
 .btn-list{
@@ -1798,16 +1800,15 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	display: inline-block;
 	vertical-align: top;
 	letter-spacing: 0;
-	width: 33.33%;
-	padding: 0 15px 15px;
+	width: 25%;
+	padding: 8px 15px;
 }
 
 .promotions .btn.dim .ico-holder{
 	white-space: nowrap;
-	height: 70px;
 	display: block;
-	font-size: 50px;
-	line-height: 50px;
+	max-width: 50%;
+	margin: 0 auto 10px;
 }
 
 .promotions .btn.dim .ico-holder:after{
@@ -1823,6 +1824,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	display: inline-block;
 	vertical-align: middle;
 	white-space: normal;
+	width: 100%;
+	height: auto;
 }
 
 .promotions .btn.dim .fa{margin-right: 5px;}
@@ -2255,7 +2258,7 @@ li.active,
 		padding-right: 5px;
 	}
 	.btn-list{margin: 0 -5px 20px;}
-	.btn-list li{padding: 0 5px 10px;}
+	.btn-list li{padding: 5px 5px;}
 	#wrapper .sidebar-collapse .nav > li > a{font-size: 14px;}
 	#side-menu .nav > li > a{padding: 14px 18px 14px 23px;}
 	#wrapper .navbar-static-side{width: 170px;}
@@ -2274,6 +2277,10 @@ li.active,
 	.users-list > li{
 		width: 25%;
 		padding: 0 5px 10px;
+	}
+	.promotions .btn.dim{
+		font-size: 24px;
+		line-height: 34px;
 	}
 }
 
@@ -2309,7 +2316,7 @@ li.active,
 	.opportunities .ibox .content-holder{min-height: 200px;}
 	.opportunities .progress-area .progress-holder{padding: 15px 0;}
 	.opportunities{padding-bottom: 25px;}
-	.btn-list li{width: 50%;}
+	.btn-list li{width: 33.33%;}
 }
 
 @media screen and (max-width: 1199px) {
@@ -2339,8 +2346,8 @@ li.active,
 	#piechart{padding: 5px;}
 	#wrapper .welcome-message{display: block;}
 	.promotions .btn.dim{
-		font-size: 27px;
-		line-height: 36px;
+		font-size: 22px;
+		line-height: 30px;
 	}
 }
 
@@ -2426,9 +2433,10 @@ li.active,
 		font-size: 20px;
 		margin: 0 0 5px;
 	}
+	.btn-list li{width: 50%;}
 	.promotions .btn.dim{
-		font-size: 26px;
-		line-height: 34px;
+		font-size: 20px;
+		line-height: 28px;
 	}
 	#wrapper .same-height-block .inner-row .col-sm-6 .ibox.detail-block .content-holder{min-height: 130px;}
 	#wrapper .same-height-block .inner-row .col-sm-6 .ibox.detail-block .ibox-content{
@@ -2527,12 +2535,12 @@ li.active,
 		margin: 0 0 10px;
 	}
 	.promotions .btn.dim{
-		font-size: 24px;
-		line-height: 32px;
+		font-size: 20px;
+		line-height: 26px;
 	}
 	.header-visual .nav.navbar-top-links.navbar-right{text-align: right;}
 	.header-visual .navbar-top-links li:last-child{margin-right: 0;}
-	.btn-list li{width: 100%;}
+	.btn-list li{width: 50%;}
 	.users-list li{width: 100%;}
 }
 
@@ -2556,5 +2564,6 @@ li.active,
 }
 
 @media screen and (max-width: 479px) {
+	.btn-list li{width: 100%;}
 	.morris-content-outer .morris-content-holder{width: 100%;}
 }
