@@ -387,48 +387,46 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
 angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/overall-feedback/overall-feedback.tpl.html",
     "<div class=\"row inner-row rating\" same-bar-height data-data = \"bar.data\">\n" +
-    "    <div class=\"col-xs-12\">\n" +
-    "        <div class=\"ibox float-e-margins\" ng-class=\"{loading: show_loading}\">\n" +
-    "            <div class=\"title-outer\">\n" +
-    "                <div class=\"ibox-title\">\n" +
-    "                    <h5>Overall Rating</h5>\n" +
-    "                    <div class=\"ibox-tools\">\n" +
-    "                       <ul class=\"tab-links\">\n" +
-    "            							<li>\n" +
-    "            								<div class=\"calender-outer\">\n" +
-    "            								  <span class=\"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
-    "            									   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
-    "            									   <i class=\"fa fa-calendar\" map-range-click></i>\n" +
-    "            								  </span>\n" +
-    "            							  </div>\n" +
-    "            							</li>\n" +
-    "          					   </ul>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "            <div class=\"content-holder\">\n" +
-    "               <div class=\"content-inner\">\n" +
-    "                 	<div class=\"legends-outer\">\n" +
-    "          					 <div class=\"legends-holder\">\n" +
-    "            						<ul class=\"legends-list\" ng-show=\"show_labels\">\n" +
-    "            						  <li ng-repeat = \"label in labels track by $index\">\n" +
-    "            							<span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>{{label.option_name}}\n" +
-    "            						  </li>\n" +
-    "            						</ul>\n" +
-    "          					 </div>\n" +
-    "                 	</div>\n" +
-    "               	<div class=\"content-block\">\n" +
-    "               		<div class=\"ibox-content float-chart-block\">\n" +
-    "      				  		<div class=\"flot-chart\">\n" +
-    "        							<canvas ng-show = \"show_canvas\"  id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
-    "        						  <div ng-hide = \"show_canvas\" class=\"message-holder\">\n" +
-    "                   			<h2>No Data Available</h2>\n" +
-    "                   		</div>\n" +
-    "                    	</div>\n" +
-    "                  	</div>\n" +
-    "                </div>\n" +
-    "    		 </div>\n" +
-    "		   </div>\n" +
+    "  <div class=\"col-xs-12\">\n" +
+    "    <div class=\"ibox float-e-margins\" ng-class=\"{loading: show_loading}\">\n" +
+    "      <div class=\"title-outer\">\n" +
+    "        <div class=\"ibox-title\">\n" +
+    "          <h5>Overall Rating</h5>\n" +
+    "          <div class=\"ibox-tools\">\n" +
+    "            <ul class=\"tab-links\">\n" +
+    "			  <li>\n" +
+    "			    <div class=\"calender-outer\">\n" +
+    "				  <span class=\"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
+    "				    <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
+    "					<i class=\"fa fa-calendar\" map-range-click></i>\n" +
+    "				  </span>\n" +
+    "				</div>\n" +
+    "			  </li>\n" +
+    "			</ul>\n" +
+    "		  </div>\n" +
+    "		</div>\n" +
+    "	  </div>\n" +
+    "      <div class=\"content-holder\">\n" +
+    "        <div class=\"content-inner\">\n" +
+    "          <div class=\"legends-outer\">\n" +
+    "            <div class=\"legends-holder\">\n" +
+    "			  <ul class=\"legends-list\" ng-show=\"show_labels\">\n" +
+    "			    <li ng-repeat = \"label in labels track by $index\">\n" +
+    "				  <span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>{{label.option_name}}\n" +
+    "			    </li>\n" +
+    "			  </ul>\n" +
+    "			</div>\n" +
+    "		  </div>\n" +
+    "          <div class=\"content-block\">\n" +
+    "			<div class=\"ibox-content float-chart-block\">\n" +
+    "			  <div class=\"flot-chart\">\n" +
+    "				<canvas ng-show = \"show_canvas\"  id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
+    "				<div ng-hide = \"show_canvas\" class=\"message-holder\"><h2>No Data Available</h2></div>\n" +
+    "			  </div>\n" +
+    "			</div>\n" +
+    "		  </div>\n" +
+    "		</div>\n" +
+    "	  </div>\n" +
     "	</div>\n" +
     "  </div>\n" +
     "</div>\n" +
