@@ -211,7 +211,7 @@ class OverallRatingView(APIView):
             else:
                 date_to = str(now.date())
                 rule = rrule.DAILY
-                date_from = str((now - timedelta(days=constants.NO_OF_DAYS)).date())
+                date_from = str((now - timedelta(days=constants.NO_OF_DAYS - 1)).date())
 
             date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
             date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
