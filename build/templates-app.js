@@ -111,67 +111,66 @@ angular.module("coupon/coupon.tpl.html", []).run(["$templateCache", function($te
 angular.module("dashboard/category-performance-analysis/category-performance-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/category-performance-analysis/category-performance-analysis.tpl.html",
     "<div class=\"ibox float-e-margins\" ng-class=\"{loading: show_loading}\">\n" +
-    "      <div class=\"title-outer\">\n" +
-    "          <div class=\"ibox-title\">\n" +
-    "              <h5>Business Segment Breakdown</h5>\n" +
-    "              <div class=\"ibox-tools\">\n" +
-    "                  <ul class=\"tab-links\">\n" +
-    "                      <li ng-class=\"{active: class == ''}\"><a ng-click = \"onClick(null, 'All')\">All</a></li>\n" +
-    "                      <li class=\"item2\" ng-class=\"{active: class == 'Quality'}\"><a ng-click = \"onClick(QualityID, 'Quality')\">Quality</a></li>\n" +
-    "                      <li class=\"item3\" ng-class=\"{active: class == 'Service'}\"><a ng-click = \"onClick(ServiceID, 'Service')\">Service</a></li>\n" +
-    "                      <li class=\"item4\" ng-class=\"{active: class == 'Cleanliness'}\"><a ng-click = \"onClick(CleanlinessID, 'Cleanliness')\">Cleanliness</a></li>\n" +
-    "                      <li class=\"item5\">\n" +
-    "                          <div class=\"calender-outer\">\n" +
-    "							  <span class=\"calendar-holder\">\n" +
-    "							  	   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
-    "								  <i class=\"fa fa-calendar\" map-range-click></i>\n" +
-    "							  </span>\n" +
-    "						  </div>\n" +
-    "                      </li>\n" +
-    "                  </ul>\n" +
-    "              </div>\n" +
-    "          </div>\n" +
+    "\n" +
+    "  <div class=\"title-outer\">\n" +
+    "    <div class=\"ibox-title\">\n" +
+    "      <h5>Business Segment Breakdown</h5>\n" +
+    "        <div class=\"ibox-tools\">\n" +
+    "		  <ul class=\"tab-links\">\n" +
+    "			  <li ng-class=\"{active: class == ''}\"><a ng-click = \"onClick(null, 'All')\">All</a></li>\n" +
+    "			  <li class=\"item2\" ng-class=\"{active: class == 'Quality'}\"><a ng-click = \"onClick(QualityID, 'Quality')\">Quality</a></li>\n" +
+    "			  <li class=\"item3\" ng-class=\"{active: class == 'Service'}\"><a ng-click = \"onClick(ServiceID, 'Service')\">Service</a></li>\n" +
+    "			  <li class=\"item4\" ng-class=\"{active: class == 'Cleanliness'}\"><a ng-click = \"onClick(CleanlinessID, 'Cleanliness')\">Cleanliness</a></li>\n" +
+    "			  <li class=\"item5\">\n" +
+    "				  <div class=\"calender-outer\">\n" +
+    "					  <span class=\"calendar-holder\">\n" +
+    "						   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
+    "						  <i class=\"fa fa-calendar\" map-range-click></i>\n" +
+    "					  </span>\n" +
+    "				  </div>\n" +
+    "			  </li>\n" +
+    "		  </ul>\n" +
     "      </div>\n" +
-    "      <div class=\"content-holder\">\n" +
-    "          <div class=\"ibox-content add\">\n" +
-    "              <div class=\"chart-outer\">\n" +
-    "                <div class=\"progress-container\">\n" +
-    "                  <div class=\"progress-area\" progress-bar-spacing data-data = \"category_data\">\n" +
-    "                    <div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" progress-bar-background>\n" +
-    "                      <div class=\"progress-inner\">\n" +
-    "                      	<small><em>{{dat.name}} <b>{{dat.complaints}} complaints</b></em></small>\n" +
-    "                      	<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar></div>\n" +
-    "                      </div>\n" +
-    "                    </div>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "  <div class=\"content-holder\">\n" +
+    "    <div class=\"ibox-content add\">\n" +
+    "      <div class=\"chart-outer\">\n" +
+    "        <div class=\"progress-container\">\n" +
+    "          <div class=\"progress-area\" progress-bar-spacing data-data = \"category_data\">\n" +
+    "            <div class=\"progress-holder\" ng-repeat = \"dat in category_data\" data-color = \"dat.colour\" data-data = \"category_data\" progress-bar-background>\n" +
+    "              <div class=\"progress-inner\">\n" +
+    "                <small><em>{{dat.name}} <b>{{dat.complaints}} complaints</b></em></small>\n" +
+    "                <div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar></div>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"list-holder\">\n" +
+    "        <div class=\"row\">\n" +
+    "          <div class=\"morris-block-holder\">\n" +
+    "            <div class=\"morris-content-holder\" ng-repeat=\"segment in segments track by $index\">\n" +
+    "              <div class=\"morris-graph-holder\">\n" +
+    "                <div class=\"morris-holder\">\n" +
+    "                  <div ng-hide = \"segment.show_string\">\n" +
+    "                    <canvas id=\"doughnut\" class=\"chart chart-doughnut\" chart-data=\"segment.data\" chart-labels=\"segment.labels\" chart-colours=\"segment.colors\"></canvas>\n" +
     "                  </div>\n" +
+    "                  <div ng-show=\"segment.show_string\">No Data Available</div>\n" +
     "                </div>\n" +
     "              </div>\n" +
-    "              <div class=\"list-holder\">\n" +
-    "                  <div class=\"row\">\n" +
-    "                      <div class=\"morris-block-holder\">\n" +
-    "                          <div class=\"morris-content-holder\" ng-repeat=\"segment in segments track by $index\">\n" +
-    "                              <div class=\"morris-graph-holder\">\n" +
-    "                                 <div class=\"morris-holder\">\n" +
-    "                                      <div ng-hide = \"segment.show_string\">\n" +
-    "                                          <canvas id=\"doughnut\" class=\"chart chart-doughnut\" chart-data=\"segment.data\" chart-labels=\"segment.labels\" chart-colours=\"segment.colors\"></canvas>\n" +
-    "                                      </div>\n" +
-    "                                      <div ng-show=\"segment.show_string\">No Data Available</div>\n" +
-    "                                 </div>\n" +
-    "                              </div>\n" +
-    "                              <strong class=\"title\"><a href=\"#\">{{segment.name}}</a></strong>\n" +
-    "                          </div>\n" +
-    "                      </div>\n" +
-    "                  </div>\n" +
-    "              </div>\n" +
+    "              <strong class=\"title\"><a href=\"#\">{{segment.name}}</a></strong>\n" +
+    "            </div>\n" +
     "          </div>\n" +
+    "        </div>\n" +
     "      </div>\n" +
+    "    </div>\n" +
     "  </div>\n" +
-    "");
+    "</div>");
 }]);
 
 angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/dashboard.tpl.html",
-    "\n" +
     "<div id=\"wrapper\">\n" +
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
@@ -201,102 +200,102 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "                <ui-view name = \"top_concern\"></ui-view>\n" +
     "              </div>\n" +
     "              <div class=\"col-md-4 same-height-col\">\n" +
-    "                  <div class=\"row inner-row\">\n" +
-    "                      <div class=\"col-sm-6 col-md-12\">\n" +
-    "                          <div class=\"ibox float-e-margins detail-block\" ng-class=\"{loading: show_loading}\">\n" +
-    "                              <div class=\"title-outer\">\n" +
-    "                                  <div class=\"ibox-title\"><h5>Top Region</h5></div>\n" +
-    "                              </div>\n" +
-    "                              <div class=\"content-holder\">\n" +
-    "                                  <div class=\"w1\">\n" +
-    "                                  	<div class=\"w2\">\n" +
-    "                                  		<div class=\"ibox-content\">\n" +
-    "											<div class=\"data-holder\" ng-show = \"chart_data.region\">\n" +
-    "												<h4 class=\"no-margins\">{{chart_data.region.region_name}} Got</h4>\n" +
-    "												<h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
-    "												<h5 class=\"no-margins\">Feedbacks</h5>\n" +
-    "											</div>\n" +
-    "											<div class=\"message-holder\" ng-hide = \"chart_data.region\">\n" +
-    "												<h2 class=\"no-margins\">No Data Available</h2>\n" +
-    "											</div>\n" +
-    "										</div>\n" +
-    "                                  	</div>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                          </div>\n" +
+    "                <div class=\"row inner-row\">\n" +
+    "                  <div class=\"col-sm-6 col-md-12\">\n" +
+    "                    <div class=\"ibox float-e-margins detail-block\" ng-class=\"{loading: show_loading}\">\n" +
+    "                      <div class=\"title-outer\">\n" +
+    "                        <div class=\"ibox-title\"><h5>Top Region</h5></div>\n" +
     "                      </div>\n" +
-    "                      <div class=\"col-sm-6 col-md-12\">\n" +
-    "                          <div class=\"ibox float-e-margins detail-block\" ng-class=\"{loading: show_loading}\">\n" +
-    "                              <div class=\"title-outer\">\n" +
-    "                                  <div class=\"ibox-title\"><h5>Top City</h5></div>\n" +
+    "                      <div class=\"content-holder\">\n" +
+    "                        <div class=\"w1\">\n" +
+    "                          <div class=\"w2\">\n" +
+    "                            <div class=\"ibox-content\">\n" +
+    "                              <div class=\"data-holder\" ng-show = \"chart_data.region\">\n" +
+    "                                <h4 class=\"no-margins\">{{chart_data.region.region_name}} Got</h4>\n" +
+    "                                <h1 class=\"no-margins\">{{chart_data.region.count}}</h1>\n" +
+    "                                <h5 class=\"no-margins\">Feedbacks</h5>\n" +
     "                              </div>\n" +
-    "                              <div class=\"content-holder\">\n" +
-    "                                 	<div class=\"w1\">\n" +
-    "                                 		<div class=\"w2\">\n" +
-    "                                 			<div class=\"ibox-content\">\n" +
-    "												<div class=\"data-holder\" ng-show = \"chart_data.city\">\n" +
-    "													<h4 class=\"no-margins\">{{chart_data.city.city_name}} Got</h4>\n" +
-    "													<h1 class=\"no-margins\">{{chart_data.city.count}}</h1>\n" +
-    "													<h5 class=\"no-margins\">Feedbacks</h5>\n" +
-    "												</div>\n" +
-    "												<div class=\"message-holder\" ng-hide = \"chart_data.city\">\n" +
-    "                      								<h2 class=\"no-margins\">No Data Available</h2>\n" +
-    "												</div>\n" +
-    "											</div>\n" +
-    "                                 		</div>\n" +
-    "                                 	</div>\n" +
+    "                              <div class=\"message-holder\" ng-hide = \"chart_data.region\">\n" +
+    "                                <h2 class=\"no-margins\">No Data Available</h2>\n" +
     "                              </div>\n" +
+    "                            </div>\n" +
     "                          </div>\n" +
+    "                        </div>\n" +
     "                      </div>\n" +
+    "                    </div>\n" +
     "                  </div>\n" +
-    "                  <div class=\"row inner-row add\">\n" +
-    "                      <div class=\"col-sm-6 col-md-12\">\n" +
-    "                          <div class=\"ibox float-e-margins detail-block\" ng-class=\"{loading: show_loading}\">\n" +
-    "                              <div class=\"title-outer\">\n" +
-    "                                  <div class=\"ibox-title\"><h5>Top Branch</h5></div>\n" +
-    "                              </div>\n" +
-    "                              <div class=\"content-holder\">\n" +
-    "                                  <div class=\"w1\">\n" +
-    "                                  	<div class=\"w2\">\n" +
-    "                                  		<div class=\"ibox-content\">\n" +
-    "                      						<div class=\"data-holder\" ng-show = \"chart_data.branch\">\n" +
-    "                      							<h4 class=\"no-margins\">{{chart_data.branch.branch_name}} Got</h4>\n" +
-    "                      							<h1 class=\"no-margins\">{{chart_data.branch.count}}</h1>\n" +
-    "                      							<h5 class=\"no-margins\">Feedbacks</h5>\n" +
-    "                      						</div>\n" +
-    "                      						<div class=\"message-holder\" ng-hide = \"chart_data.branch\">\n" +
-    "                      							<h2 class=\"no-margins\">No Data Available</h2>\n" +
-    "											</div>\n" +
-    "										</div>\n" +
-    "                                  	</div>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                          </div>\n" +
+    "                  <div class=\"col-sm-6 col-md-12\">\n" +
+    "                    <div class=\"ibox float-e-margins detail-block\" ng-class=\"{loading: show_loading}\">\n" +
+    "                      <div class=\"title-outer\">\n" +
+    "                        <div class=\"ibox-title\"><h5>Top City</h5></div>\n" +
     "                      </div>\n" +
-    "                      <div class=\"col-sm-6 col-md-12\">\n" +
-    "                          <div class=\"ibox float-e-margins detail-block\" ng-class=\"{loading: show_loading}\">\n" +
-    "                              <div class=\"title-outer\">\n" +
+    "                      <div class=\"content-holder\">\n" +
+    "                        <div class=\"w1\">\n" +
+    "                          <div class=\"w2\">\n" +
+    "                            <div class=\"ibox-content\">\n" +
+    "                              <div class=\"data-holder\" ng-show = \"chart_data.city\">\n" +
+    "                                <h4 class=\"no-margins\">{{chart_data.city.city_name}} Got</h4>\n" +
+    "                                <h1 class=\"no-margins\">{{chart_data.city.count}}</h1>\n" +
+    "                                <h5 class=\"no-margins\">Feedbacks</h5>\n" +
+    "                              </div>\n" +
+    "                              <div class=\"message-holder\" ng-hide = \"chart_data.city\">\n" +
+    "                                <h2 class=\"no-margins\">No Data Available</h2>\n" +
+    "                              </div>\n" +
+    "                            </div>\n" +
+    "                          </div>\n" +
+    "                        </div>\n" +
+    "                      </div>\n" +
+    "                    </div>\n" +
+    "                  </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"row inner-row add\">\n" +
+    "                  <div class=\"col-sm-6 col-md-12\">\n" +
+    "                    <div class=\"ibox float-e-margins detail-block\" ng-class=\"{loading: show_loading}\">\n" +
+    "                      <div class=\"title-outer\">\n" +
+    "                        <div class=\"ibox-title\"><h5>Top Branch</h5></div>\n" +
+    "                      </div>\n" +
+    "                      <div class=\"content-holder\">\n" +
+    "                        <div class=\"w1\">\n" +
+    "                          <div class=\"w2\">\n" +
+    "                            <div class=\"ibox-content\">\n" +
+    "                              <div class=\"data-holder\" ng-show = \"chart_data.branch\">\n" +
+    "                                <h4 class=\"no-margins\">{{chart_data.branch.branch_name}} Got</h4>\n" +
+    "                                <h1 class=\"no-margins\">{{chart_data.branch.count}}</h1>\n" +
+    "                                <h5 class=\"no-margins\">Feedbacks</h5>\n" +
+    "                              </div>\n" +
+    "                              <div class=\"message-holder\" ng-hide = \"chart_data.branch\">\n" +
+    "                                <h2 class=\"no-margins\">No Data Available</h2>\n" +
+    "                              </div>\n" +
+    "                            </div>\n" +
+    "                          </div>\n" +
+    "                        </div>\n" +
+    "                      </div>\n" +
+    "                    </div>\n" +
+    "                  </div>\n" +
+    "                  <div class=\"col-sm-6 col-md-12\">\n" +
+    "                    <div class=\"ibox float-e-margins detail-block\" ng-class=\"{loading: show_loading}\">\n" +
+    "                      <div class=\"title-outer\">\n" +
     "                                  <div class=\"ibox-title\"><h5>Top GRO</h5></div>\n" +
-    "                              </div>\n" +
-    "                              <div class=\"content-holder\">\n" +
-    "                                  <div class=\"w1\">\n" +
-    "                                  	<div class=\"w2\">\n" +
-    "                                  		<div class=\"ibox-content\">\n" +
-    "                                  			<div class=\"data-holder\" ng-show = \"chart_data.gro\">\n" +
-    "                                  				<h4 class=\"no-margins\">{{chart_data.gro.gro.gro_name}} Got</h4>\n" +
-    "												<h1 class=\"no-margins\">{{chart_data.gro.count}}</h1>\n" +
-    "                                 				<h5 class=\"no-margins\">Feedbacks</h5>\n" +
-    "                                  			</div>\n" +
-    "                      						<div class=\"message-holder\" ng-hide = \"chart_data.gro\">\n" +
-    "                      							<h2 class=\"no-margins\">No Data Available</h2>\n" +
-    "											</div>\n" +
-    "										</div>\n" +
-    "                                  	</div>\n" +
-    "                                  </div>\n" +
-    "                              </div>\n" +
-    "                          </div>\n" +
     "                      </div>\n" +
+    "                      <div class=\"content-holder\">\n" +
+    "                        <div class=\"w1\">\n" +
+    "                          <div class=\"w2\">\n" +
+    "                            <div class=\"ibox-content\">\n" +
+    "                              <div class=\"data-holder\" ng-show = \"chart_data.gro\">\n" +
+    "                                <h4 class=\"no-margins\">{{chart_data.gro.gro.gro_name}} Got</h4>\n" +
+    "                                <h1 class=\"no-margins\">{{chart_data.gro.count}}</h1>\n" +
+    "                                <h5 class=\"no-margins\">Feedbacks</h5>\n" +
+    "                              </div>\n" +
+    "                              <div class=\"message-holder\" ng-hide = \"chart_data.gro\">\n" +
+    "                                <h2 class=\"no-margins\">No Data Available</h2>\n" +
+    "                              </div>\n" +
+    "                            </div>\n" +
+    "                          </div>\n" +
+    "                        </div>\n" +
+    "                      </div>\n" +
+    "                    </div>\n" +
     "                  </div>\n" +
+    "                </div>\n" +
     "              </div>\n" +
     "            </div>\n" +
     "          </div>\n" +
@@ -342,11 +341,11 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "	  </div>\n" +
     "  </div>\n" +
     "  <div class=\"ibox-content\" same-map-height>\n" +
-    "		  <div id=\"world-map\">\n" +
-    "		  	<div map-lazy-load=\"http://maps.google.com/maps/api/js\">\n" +
-    "			  	<map center=\"30,70\" zoom=\"{{zoom}}\"></map>\n" +
-    "			</div>\n" +
+    "    <div id=\"world-map\">\n" +
+    "	  <div map-lazy-load=\"http://maps.google.com/maps/api/js\">\n" +
+    "		<map center=\"30,70\" zoom=\"{{zoom}}\"></map>\n" +
     "	  </div>\n" +
+    "	</div>\n" +
     "  </div>\n" +
     "</div>\n" +
     "");
@@ -356,28 +355,28 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
   $templateCache.put("dashboard/opportunities/opportunities.tpl.html",
     "<div class=\"ibox float-e-margins float-e-margin-none\" ng-class=\"{loading: show_loading}\">\n" +
     "  <div class=\"title-outer\">\n" +
-    "	<div class=\"ibox-title\">\n" +
+    "    <div class=\"ibox-title\">\n" +
     "	  <h5>McDonald's Opportunities</h5>\n" +
     "	</div>\n" +
     "  </div>\n" +
     "  <div class=\"content-holder\">\n" +
-    "  	<div class=\"content-inner\">\n" +
-    "		<div class=\"content-block\">\n" +
-    "			<div class=\"ibox-content\">\n" +
-    "			  <div class=\"chart-outer\">\n" +
-    "				  <div class=\"progres-container\">\n" +
-    "					<div class=\"progress-area\">\n" +
-    "						<div class=\"progress-holder\" ng-repeat = \"dat in opportunity_data\" data-color = \"dat.colour\" data-data = \"opportunity_data\" opportunity-bar-background>\n" +
-    "							<div class=\"progress-inner\">\n" +
-    "								<small><em>{{dat.name}} <b>{{dat.complaints}} Suggestions</b></em></small>\n" +
-    "								<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar></div>\n" +
-    "							</div>\n" +
-    "					  </div>\n" +
-    "					</div>\n" +
+    "    <div class=\"content-inner\">\n" +
+    "	  <div class=\"content-block\">\n" +
+    "	    <div class=\"ibox-content\">\n" +
+    "		  <div class=\"chart-outer\">\n" +
+    "		    <div class=\"progres-container\">\n" +
+    "			  <div class=\"progress-area\">\n" +
+    "			    <div class=\"progress-holder\" ng-repeat = \"dat in opportunity_data\" data-color = \"dat.colour\" data-data = \"opportunity_data\" opportunity-bar-background>\n" +
+    "				  <div class=\"progress-inner\">\n" +
+    "				    <small><em>{{dat.name}} <b>{{dat.complaints}} Suggestions</b></em></small>\n" +
+    "					<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar></div>\n" +
+    "				  </div>\n" +
     "				</div>\n" +
     "			  </div>\n" +
-    "  			</div>\n" +
+    "			</div>\n" +
+    "		  </div>\n" +
     "  		</div>\n" +
+    "	  </div>\n" +
     "	</div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -387,50 +386,50 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
 angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/overall-feedback/overall-feedback.tpl.html",
     "<div class=\"row inner-row rating\">\n" +
-    "    <div class=\"col-xs-12\">\n" +
-    "        <div class=\"ibox float-e-margins\" ng-class=\"{loading: show_loading}\">\n" +
-    "            <div class=\"title-outer\">\n" +
-    "                <div class=\"ibox-title\">\n" +
-    "                    <h5>Overall Rating</h5>\n" +
-    "                    <div class=\"ibox-tools\">\n" +
-    "                       <ul class=\"tab-links\">\n" +
-    "							<li>\n" +
-    "								<div class=\"calender-outer\">\n" +
-    "								  <span class=\"calendar-holder\">\n" +
-    "									   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
-    "									   <i class=\"fa fa-calendar\" map-range-click></i>\n" +
-    "								  </span>\n" +
-    "							  </div>\n" +
-    "							</li>\n" +
-    "					   </ul>\n" +
-    "                     </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "            <div class=\"content-holder\">\n" +
-    "               <div class=\"content-inner\">\n" +
-    "               	<div class=\"legends-outer\">\n" +
-    "					 <div class=\"legends-holder\">\n" +
-    "						<ul class=\"legends-list\" ng-show=\"show_labels\">\n" +
-    "						  <li ng-repeat = \"label in labels track by $index\">\n" +
-    "							<span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>{{label.option_name}}\n" +
-    "						  </li>\n" +
-    "						</ul>\n" +
-    "					</div>\n" +
-    "               	</div>\n" +
-    "               	<div class=\"content-block\">\n" +
-    "               		<div class=\"ibox-content float-chart-block\">\n" +
-    "				  		<div class=\"flot-chart\">\n" +
-    "							<canvas ng-show = \"show_canvas\"  id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
-    "							<div ng-hide = \"show_canvas\" class=\"message-holder\">\n" +
-    "                   				<h2>No Data Available</h2>\n" +
-    "                   			</div>\n" +
-    "                    	</div>\n" +
-    "                  	</div>\n" +
-    "                </div>\n" +
-    "    		 </div>\n" +
-    "		   </div>\n" +
+    "  <div class=\"col-xs-12\">\n" +
+    "    <div class=\"ibox float-e-margins\" ng-class=\"{loading: show_loading}\">\n" +
+    "      <div class=\"title-outer\">\n" +
+    "        <div class=\"ibox-title\">\n" +
+    "          <h5>Overall Rating</h5>\n" +
+    "          <div class=\"ibox-tools\">\n" +
+    "            <ul class=\"tab-links\">\n" +
+    "			  <li>\n" +
+    "			    <div class=\"calender-outer\">\n" +
+    "				  <span class=\"calendar-holder\">\n" +
+    "				    <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
+    "					<i class=\"fa fa-calendar\" map-range-click></i>\n" +
+    "				  </span>\n" +
+    "				</div>\n" +
+    "			  </li>\n" +
+    "			</ul>\n" +
+    "		  </div>\n" +
     "		</div>\n" +
+    "	  </div>\n" +
+    "      <div class=\"content-holder\">\n" +
+    "        <div class=\"content-inner\">\n" +
+    "          <div class=\"legends-outer\">\n" +
+    "		    <div class=\"legends-holder\">\n" +
+    "			  <ul class=\"legends-list\" ng-show=\"show_labels\">\n" +
+    "			    <li ng-repeat = \"label in labels track by $index\">\n" +
+    "				  <span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>{{label.option_name}}\n" +
+    "				</li>\n" +
+    "			  </ul>\n" +
+    "			</div>\n" +
+    "		  </div>\n" +
+    "          <div class=\"content-block\">\n" +
+    "            <div class=\"ibox-content float-chart-block\">\n" +
+    "			  <div class=\"flot-chart\">\n" +
+    "			    <canvas ng-show = \"show_canvas\"  id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
+    "				<div ng-hide = \"show_canvas\" class=\"message-holder\">\n" +
+    "                  <h2>No Data Available</h2>\n" +
+    "				</div>\n" +
+    "			  </div>\n" +
+    "			</div>\n" +
+    "          </div>\n" +
+    "		</div>\n" +
+    "	  </div>\n" +
     "	</div>\n" +
+    "  </div>\n" +
     "</div>\n" +
     "");
 }]);
@@ -485,56 +484,47 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
     "  <div class=\"table-holder\">\n" +
-    "  	<div class=\"table-block jcf-scrollable\" custom-form>\n" +
-    "  		<table class=\"table\">\n" +
-    "			<thead>\n" +
-    "			  <tr>\n" +
-    "				<th class=\"item1\">Name</th>\n" +
-    "				<th class=\"item2\">Phone <span>Number</span><span class=\"no\">No</span>/ Email</th>\n" +
-    "				<th class=\"item3\">Branch</th>\n" +
-    "				<th class=\"item4\">Segment</th>\n" +
-    "				<th class=\"item5\">Comments</th>\n" +
-    "				<th class=\"item6\">Status</th>\n" +
-    "			  </tr>\n" +
-    "			</thead>\n" +
-    "	  	</table>\n" +
-    "		<div class=\"table-container jcf-scrollable\" data-comments = \"comments\" ng-class = \"{loading: lock}\" when-scrolled=\"getMoreComments()\" custom-form>\n" +
-    "			<table class=\"table\">\n" +
-    "			  <tbody>\n" +
-    "				<tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.data.is_negative, success: comment.data.action_taken === 2, defer: comment.data.action_taken === 3}\">\n" +
-    "\n" +
-    "				  <td class=\"item1\">{{comment.data.user_name}}</td>\n" +
-    "				  <td class=\"item2\">\n" +
-    "					<a href=\"tel:{{comment.phone_no}}\" class=\"tel\">{{comment.phone_no}}</a><br>\n" +
-    "					<a>{{comment.email}}</a>\n" +
-    "				  </td>\n" +
-    "				  <td class=\"item3\">{{comment.data.branch}}</td>\n" +
-    "				  <td class=\"item4\">{{comment.data.segment}}</td>\n" +
-    "				  <td class=\"item5\">\n" +
-    "					<span class=\"ico\"></span>\n" +
-    "					<div class=\"text\">\n" +
-    "						{{comment.data.comment}}\n" +
-    "					</div>\n" +
-    "				  </td>\n" +
-    "				  <td class=\"item6\">\n" +
-    "					<div class=\"btn-group\" uib-dropdown dropdown-append-to-body ng-show = \"comment.show_dropdown\">\n" +
-    "					  <button type=\"button\" class=\"btn btn-info\" ng-click=\"selectedValue('Process',comment)\">Process</button>\n" +
-    "					  <button id=\"btn-append-to-body\" type=\"button\" class=\"btn btn-info\" uib-dropdown-toggle>\n" +
-    "						<span class=\"caret\"></span>\n" +
-    "						<span class=\"sr-only\">Split button!</span>\n" +
-    "					  </button>\n" +
-    "					  <ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"btn-append-to-body\">\n" +
-    "						<li role=\"menuitem\">\n" +
-    "							<a style = \"cursor:pointer;\" ng-click=\"selectedValue('Defer',comment)\">Defer</a>\n" +
-    "						</li>\n" +
-    "					  </ul>\n" +
-    "					</div>\n" +
-    "					<span ng-hide = \"comment.show_dropdown\">{{comment.action_string}}</span>\n" +
-    "				   </td>\n" +
-    "				</tr>\n" +
-    "			  </tbody>\n" +
-    "			</table>\n" +
-    "			<span class=\"loader\"></span>\n" +
+    "    <div class=\"table-block jcf-scrollable\" custom-form>\n" +
+    "  	  <table class=\"table\">\n" +
+    "	    <thead>\n" +
+    "		  <tr>\n" +
+    "			<th class=\"item1\">Name</th>\n" +
+    "			<th class=\"item2\">Phone <span>Number</span><span class=\"no\">No</span>/ Email</th>\n" +
+    "			<th class=\"item3\">Branch</th>\n" +
+    "			<th class=\"item4\">Segment</th>\n" +
+    "			<th class=\"item5\">Comments</th>\n" +
+    "		    <th class=\"item6\">Status</th>\n" +
+    "		  </tr>\n" +
+    "		</thead>\n" +
+    "	  </table>\n" +
+    "	  <div class=\"table-container jcf-scrollable\" data-comments = \"comments\" ng-class = \"{loading: lock}\" when-scrolled=\"getMoreComments()\" custom-form>\n" +
+    "	    <table class=\"table\">\n" +
+    "		  <tbody>\n" +
+    "		    <tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.data.is_negative, success: comment.data.action_taken === 2, defer: comment.data.action_taken === 3}\">\n" +
+    "			  <td class=\"item1\">{{comment.data.user_name}}</td>\n" +
+    "			  <td class=\"item2\"><a href=\"tel:{{comment.phone_no}}\" class=\"tel\">{{comment.phone_no}}</a><br><a>{{comment.email}}</a></td>\n" +
+    "			  <td class=\"item3\">{{comment.data.branch}}</td>\n" +
+    "			  <td class=\"item4\">{{comment.data.segment}}</td>\n" +
+    "			  <td class=\"item5\"><span class=\"ico\"></span><div class=\"text\">{{comment.data.comment}}</div></td>\n" +
+    "			  <td class=\"item6\">\n" +
+    "			    <div class=\"btn-group\" uib-dropdown dropdown-append-to-body ng-show = \"comment.show_dropdown\">\n" +
+    "				  <button type=\"button\" class=\"btn btn-info\" ng-click=\"selectedValue('Process',comment)\">Process</button>\n" +
+    "				  <button id=\"btn-append-to-body\" type=\"button\" class=\"btn btn-info\" uib-dropdown-toggle>\n" +
+    "				    <span class=\"caret\"></span>\n" +
+    "					<span class=\"sr-only\">Split button!</span>\n" +
+    "				  </button>\n" +
+    "				  <ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"btn-append-to-body\">\n" +
+    "				    <li role=\"menuitem\">\n" +
+    "					  <a style = \"cursor:pointer;\" ng-click=\"selectedValue('Defer',comment)\">Defer</a>\n" +
+    "					</li>\n" +
+    "				  </ul>\n" +
+    "				</div>\n" +
+    "				<span ng-hide = \"comment.show_dropdown\">{{comment.action_string}}</span>\n" +
+    "			  </td>\n" +
+    "			</tr>\n" +
+    "		  </tbody>\n" +
+    "		</table>\n" +
+    "		<span class=\"loader\"></span>\n" +
     "	  </div>\n" +
     "  	</div>\n" +
     "  </div>\n" +
@@ -547,7 +537,7 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "<div class=\"comment-block\">\n" +
     "  <a style = \"cursor:pointer;\" class=\"nav-opener\" mobile-nav>\n" +
     "    <i class=\"fa fa-comments-o\"></i>\n" +
-    "   <!--  <span class=\"count\">{{feedback_count}}</span> -->\n" +
+    "    <!--  <span class=\"count\">{{feedback_count}}</span> -->\n" +
     "  </a>\n" +
     "  <div class=\"comments-drop\">\n" +
     "    <a href=\"#\" class=\"nav-opener\">\n" +
@@ -564,15 +554,13 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "      </div>\n" +
     "      <div class=\"comments-holder\">\n" +
     "       	<div class=\"jcf-scrollable\" custom-form data-comments = \"comments\">\n" +
-    "       		<ul class=\"comments-list list-unstyled\">\n" +
-    "			  <li ng-if = \"feedback_count != 0\" ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.data.is_negative, positive: !comment.data.is_negative, processed: comment.action_string == 'Processed', deferred: comment.action_string == 'Deferred'}\">\n" +
-    "				  <p>{{comment.data.comment}}</p>\n" +
-    "				  <time datetime=\"{{comment.date_time}}\">{{comment.date_time}}</time>\n" +
-    "			  </li>\n" +
-    "			  <li ng-if = \"feedback_count == 0\">\n" +
-    "				No Data Available\n" +
-    "			  </li>\n" +
-    "			</ul>\n" +
+    "          <ul class=\"comments-list list-unstyled\">\n" +
+    "		    <li ng-if = \"feedback_count != 0\" ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.data.is_negative, positive: !comment.data.is_negative, processed: comment.action_string == 'Processed', deferred: comment.action_string == 'Deferred'}\">\n" +
+    "			  <p>{{comment.data.comment}}</p>\n" +
+    "			  <time datetime=\"{{comment.date_time}}\">{{comment.date_time}}</time>\n" +
+    "            </li>\n" +
+    "			<li ng-if = \"feedback_count == 0\">No Data Available</li>\n" +
+    "          </ul>\n" +
     "       	</div>\n" +
     "      </div>\n" +
     "      <div class=\"btn-holder\">\n" +
@@ -587,106 +575,102 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
 angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/regional-analysis/regional-analysis.tpl.html",
     "<div class=\"ibox float-e-margins\" ng-class=\"{loading: show_loading}\">\n" +
-    "    <div class=\"ibox-title\">\n" +
-    "		<h5>{{title}}</h5>\n" +
-    "        <!--<h5 ng-show = \"area_view\">{{title}}</h5>-->\n" +
-    "        <!--<h5 ng-show = \"area_view == false && regional_view == true\">{{selected_area.name}}'s Region Analysis</h5>-->\n" +
-    "		<!--<h5 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}}'s City Analysis</h5>-->\n" +
-    "		<!--<h5 ng-show = \"area_view == false && regional_view == false && city_view == false\">{{selected_city.name}}'s Branch Analysis</h5>-->\n" +
-    "        <div class=\"ibox-tools\">\n" +
-    "            <ul class=\"tab-links\">\n" +
-    "                <li ng-class=\"{active: radioModel == 'Complaints'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'Complaints'\" ng-click = \"showChart(null, 'areas')\">Complaints</a></li>\n" +
-    "                <li ng-class=\"{active: radioModel == 'Rating'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'areas')\">Rating</a></li>\n" +
-    "                <li ng-class=\"{active: radioModel == 'QSC'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'areas')\">QSC</a></li>\n" +
-    "                <li>\n" +
-    "                    <div class=\"calender-outer\">\n" +
-    "					  <span class=\"calendar-holder\">\n" +
-    "						   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\"\n" +
-    "               ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
-    "						  <i class=\"fa fa-calendar\" map-range-click></i>\n" +
-    "					  </span>\n" +
-    "				  </div>\n" +
-    "                </li>\n" +
-    "              </ul>\n" +
-    "        </div>\n" +
+    "\n" +
+    "  <div class=\"ibox-title\">\n" +
+    "	<h5>{{title}}</h5>\n" +
+    "	<!--<h5 ng-show = \"area_view\">{{title}}</h5>-->\n" +
+    "	<!--<h5 ng-show = \"area_view == false && regional_view == true\">{{selected_area.name}}'s Region Analysis</h5>-->\n" +
+    "	<!--<h5 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}}'s City Analysis</h5>-->\n" +
+    "	<!--<h5 ng-show = \"area_view == false && regional_view == false && city_view == false\">{{selected_city.name}}'s Branch Analysis</h5>-->\n" +
+    "	<div class=\"ibox-tools\">\n" +
+    "	  <ul class=\"tab-links\">\n" +
+    "		<li ng-class=\"{active: radioModel == 'Complaints'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'Complaints'\" ng-click = \"showChart(null, 'areas')\">Complaints</a></li>\n" +
+    "		<li ng-class=\"{active: radioModel == 'Rating'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'areas')\">Rating</a></li>\n" +
+    "		<li ng-class=\"{active: radioModel == 'QSC'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'areas')\">QSC</a></li>\n" +
+    "		<li>\n" +
+    "			<div class=\"calender-outer\">\n" +
+    "			  <span class=\"calendar-holder\">\n" +
+    "				   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\"\n" +
+    "	   ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
+    "				  <i class=\"fa fa-calendar\" map-range-click></i>\n" +
+    "			  </span>\n" +
+    "		  </div>\n" +
+    "		</li>\n" +
+    "	  </ul>\n" +
+    "	</div>\n" +
+    "  </div>\n" +
+    "  <div class=\"ibox-content morris-content-outer\">\n" +
+    "    <div class = \"breadcrum\">\n" +
+    "      <span ng-show = \"area_link == true\">\n" +
+    "        <a ng-click = \"backToAreas()\" style = \"cursor:pointer\">Area&nbsp;/</a>\n" +
+    "      </span>\n" +
+    "      <span ng-show = \"area_link == true && region_link == true\">\n" +
+    "        <a ng-click = \"backToRegions(selected_area)\" style = \"cursor:pointer\">{{selected_area.name}}&nbsp;/</a>\n" +
+    "      </span>\n" +
+    "	  <span ng-show = \"area_link == false && region_link == true\">\n" +
+    "        <a ng-click = \"backToRegions(selected_area)\" style = \"cursor:pointer\"> Region&nbsp;/</a>\n" +
+    "      </span>\n" +
+    "	  <span ng-show = \"area_link == true && region_link == true && city_link == true\">\n" +
+    "        <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}}</a>\n" +
+    "      </span>\n" +
+    "      <span ng-show = \"area_link == false && region_link == true && city_link == true\">\n" +
+    "        <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}}</a>\n" +
+    "      </span>\n" +
     "    </div>\n" +
-    "    <div class=\"ibox-content morris-content-outer\">\n" +
-    "     	<div class = \"breadcrum\">\n" +
-    "        <span ng-show = \"area_link == true\">\n" +
-    "         <a ng-click = \"backToAreas()\" style = \"cursor:pointer\">Area&nbsp;/</a>\n" +
-    "       </span>\n" +
-    "       <span ng-show = \"area_link == true && region_link == true\">\n" +
-    "         <a ng-click = \"backToRegions(selected_area)\" style = \"cursor:pointer\">{{selected_area.name}}&nbsp;/</a>\n" +
-    "       </span>\n" +
-    "		<span ng-show = \"area_link == false && region_link == true\">\n" +
-    "         <a ng-click = \"backToRegions(selected_area)\" style = \"cursor:pointer\"> Region&nbsp;/</a>\n" +
-    "       </span>\n" +
-    "		<span ng-show = \"area_link == true && region_link == true && city_link == true\">\n" +
-    "         <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}}</a>\n" +
-    "       </span>\n" +
-    "       <span ng-show = \"area_link == false && region_link == true && city_link == true\">\n" +
-    "         <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}}</a>\n" +
-    "       </span>\n" +
-    "     </div>\n" +
     "     <div class=\"regional-holder\">\n" +
-    "     	<div class=\"regional-frame\">\n" +
-    "			  <div class=\"morris-content-holder\" ng-repeat = \"area in donut_graph_data.objects track by $index\" ng-show = \"area_view == true\">\n" +
-    "				<div class=\"morris-graph-holder\" same-region-height data-data=\"donut_graph_data.donutData[$index]\">\n" +
-    "				   <div class=\"morris-holder\">\n" +
-    "					  <div ng-show=\"area.show_chart\" morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\"\n" +
-    "            data-action=\"open(option,area,region,city,branch)\" style = \"height: 200px;\"></div>\n" +
-    "					  <div ng-hide=\"area.show_chart\">No data available</div>\n" +
-    "				   </div>\n" +
+    "       <div class=\"regional-frame\">\n" +
+    "	     <div class=\"morris-content-holder\" ng-repeat = \"area in donut_graph_data.objects track by $index\" ng-show = \"area_view == true\">\n" +
+    "		   <div class=\"morris-graph-holder\" same-region-height data-data=\"donut_graph_data.donutData[$index]\">\n" +
+    "		     <div class=\"morris-holder\">\n" +
+    "			   <div ng-show=\"area.show_chart\" morris-chart data-data=\"donut_graph_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_graph_data.donutOptions[$index]\"\n" +
+    "			     data-action=\"open(option,area,region,city,branch)\" style = \"height: 200px;\"></div>\n" +
+    "			   <div ng-hide=\"area.show_chart\">No data available</div>\n" +
+    "			 </div>\n" +
     "\n" +
-    "				</div>\n" +
-    "				<strong class=\"title\"><a ng-click = \"showChart(area, 'regions')\" style = \"cursor:pointer;\">{{area.name}}</a></strong>\n" +
-    "			  </div>\n" +
-    "			   <div ng-show=\"show_string && area_view == true\">No area available</div>\n" +
+    "		   </div>\n" +
+    "	       <strong class=\"title\"><a ng-click = \"showChart(area, 'regions')\" style = \"cursor:pointer;\">{{area.name}}</a></strong>\n" +
+    "		 </div>\n" +
+    "		 <div ng-show=\"show_string && area_view == true\">No area available</div>\n" +
     "\n" +
+    "		 <div class=\"morris-content-holder\" ng-repeat = \"region in donut_regions_data.objects track by $index\" ng-show = \"area_view == false && regional_view == true\">\n" +
+    "		   <div class=\"morris-graph-holder\" same-region-height data-data=\"donut_regions_data.donutData[$index]\">\n" +
+    "		     <div class=\"morris-holder\">\n" +
+    "			   <div ng-show=\"region.show_chart\" morris-chart data-data=\"donut_regions_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_regions_data.donutOptions[$index]\"\n" +
+    "                 data-action=\"open(option,selected_area,region,city,branch)\" style = \"height: 200px;\"></div>\n" +
+    "			   <div ng-hide=\"region.show_chart\">No data available</div>\n" +
+    "			 </div>\n" +
+    "		   </div>\n" +
+    "		   <strong class=\"title\"><a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{region.name}}</a></strong>\n" +
+    "		 </div>\n" +
+    "		 <div ng-show=\"show_string && area_view == false && regional_view == true\">No region available</div>\n" +
     "\n" +
-    "			  <div class=\"morris-content-holder\" ng-repeat = \"region in donut_regions_data.objects track by $index\" ng-show = \"area_view == false && regional_view == true\">\n" +
-    "				<div class=\"morris-graph-holder\" same-region-height data-data=\"donut_regions_data.donutData[$index]\">\n" +
-    "				   <div class=\"morris-holder\">\n" +
-    "					  <div ng-show=\"region.show_chart\" morris-chart data-data=\"donut_regions_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_regions_data.donutOptions[$index]\"\n" +
-    "             data-action=\"open(option,selected_area,region,city,branch)\" style = \"height: 200px;\"></div>\n" +
-    "					  <div ng-hide=\"region.show_chart\">No data available</div>\n" +
-    "				   </div>\n" +
+    "		 <div class=\"morris-content-holder\" ng-repeat = \"city in donut_cities_data.objects track by $index\" ng-show = \"area_view == false && regional_view == false && city_view == true\">\n" +
+    "		   <div class=\"morris-graph-holder\" same-city-height data-data = \"donut_cities_data.donutData[$index]\">\n" +
+    "		     <div class=\"morris-holder\">\n" +
+    "			   <div ng-show=\"city.show_chart\" morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\"\n" +
+    "                 data-action=\"open(option,selected_area,selected_region,city,branch)\" style = \"height: 200px;\"></div>\n" +
+    "			   <div ng-hide=\"city.show_chart\">No data available</div>\n" +
+    "			 </div>\n" +
+    "		   </div>\n" +
+    "		   <strong class=\"title\"><a ng-click = \"showChart(city, 'branches')\" style = \"cursor:pointer;\">{{city.name}}</a></strong>\n" +
+    "		 </div>\n" +
+    "		 <div ng-show=\"show_string && area_view == false && regional_view == false && city_view == true\">No city available</div>\n" +
     "\n" +
-    "				  </div>\n" +
-    "				  <strong class=\"title\"><a ng-click = \"showChart(region, 'cities')\" style = \"cursor:pointer;\">{{region.name}}</a></strong>\n" +
-    "				</div>\n" +
-    "				<div ng-show=\"show_string && area_view == false && regional_view == true\">No region available</div>\n" +
-    "\n" +
-    "\n" +
-    "			  <div class=\"morris-content-holder\" ng-repeat = \"city in donut_cities_data.objects track by $index\" ng-show = \"area_view == false && regional_view == false && city_view == true\">\n" +
-    "				<div class=\"morris-graph-holder\" same-city-height data-data = \"donut_cities_data.donutData[$index]\">\n" +
-    "				   <div class=\"morris-holder\">\n" +
-    "					  <div ng-show=\"city.show_chart\" morris-chart data-data=\"donut_cities_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_cities_data.donutOptions[$index]\"\n" +
-    "            data-action=\"open(option,selected_area,selected_region,city,branch)\" style = \"height: 200px;\"></div>\n" +
-    "					  <div ng-hide=\"city.show_chart\">No data available</div>\n" +
-    "				   </div>\n" +
-    "				  </div>\n" +
-    "				  <strong class=\"title\"><a ng-click = \"showChart(city, 'branches')\" style = \"cursor:pointer;\">{{city.name}}</a></strong>\n" +
-    "				</div>\n" +
-    "				<div ng-show=\"show_string && area_view == false && regional_view == false && city_view == true\">No city available</div>\n" +
-    "\n" +
-    "\n" +
-    "			  <div class=\"morris-content-holder\" ng-repeat = \"branch in donut_branches_data.objects track by $index\" ng-show = \"area_view == false && regional_view == false && city_view == false\">\n" +
-    "				<div class=\"morris-graph-holder\" same-branch-height  data-data = \"donut_branches_data.donutData[$index]\">\n" +
-    "				   <div class=\"morris-holder\">\n" +
-    "					  <div ng-show=\"branch.show_chart\" morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\"\n" +
-    "            data-action=\"open(option,selected_area,selected_region,selected_city,branch)\" style = \"height: 200px;\"></div>\n" +
-    "					  <div ng-hide=\"branch.show_chart\">No data available</div>\n" +
-    "				   </div>\n" +
-    "				  </div>\n" +
-    "				  <strong class=\"title\">{{branch.name}}</strong>\n" +
-    "				</div>\n" +
-    "				<div ng-show=\"show_string && area_view == false && regional_view == false && city_view == false\">No branch available</div>\n" +
-    "			</div>\n" +
-    "     	</div>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "");
+    "		 <div class=\"morris-content-holder\" ng-repeat = \"branch in donut_branches_data.objects track by $index\" ng-show = \"area_view == false && regional_view == false && city_view == false\">\n" +
+    "		   <div class=\"morris-graph-holder\" same-branch-height  data-data = \"donut_branches_data.donutData[$index]\">\n" +
+    "		     <div class=\"morris-holder\">\n" +
+    "			   <div ng-show=\"branch.show_chart\" morris-chart data-data=\"donut_branches_data.donutData[$index]\" data-type=\"donut\" data-options=\"donut_branches_data.donutOptions[$index]\"\n" +
+    "                 data-action=\"open(option,selected_area,selected_region,selected_city,branch)\" style = \"height: 200px;\"></div>\n" +
+    "			   <div ng-hide=\"branch.show_chart\">No data available</div>\n" +
+    "			 </div>\n" +
+    "		   </div>\n" +
+    "		   <strong class=\"title\">{{branch.name}}</strong>\n" +
+    "		 </div>\n" +
+    "		 <div ng-show=\"show_string && area_view == false && regional_view == false && city_view == false\">No branch available</div>\n" +
+    "	   </div>\n" +
+    "     </div>\n" +
+    "  </div>\n" +
+    "</div>");
 }]);
 
 angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$templateCache", function($templateCache) {

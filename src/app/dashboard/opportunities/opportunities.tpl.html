@@ -1,27 +1,27 @@
 <div class="ibox float-e-margins float-e-margin-none" ng-class="{loading: show_loading}">
   <div class="title-outer">
-	<div class="ibox-title">
+    <div class="ibox-title">
 	  <h5>McDonald's Opportunities</h5>
 	</div>
   </div>
   <div class="content-holder">
-  	<div class="content-inner">
-		<div class="content-block">
-			<div class="ibox-content">
-			  <div class="chart-outer">
-				  <div class="progres-container">
-					<div class="progress-area">
-						<div class="progress-holder" ng-repeat = "dat in opportunity_data" data-color = "dat.colour" data-data = "opportunity_data" opportunity-bar-background>
-							<div class="progress-inner">
-								<small><em>{{dat.name}} <b>{{dat.complaints}} Suggestions</b></em></small>
-								<div class="progress-block"><uib-progressbar animate="false" value="dat.percentage" type="success"></uib-progressbar></div>
-							</div>
-					  </div>
-					</div>
+    <div class="content-inner">
+	  <div class="content-block">
+	    <div class="ibox-content">
+		  <div class="chart-outer">
+		    <div class="progres-container">
+			  <div class="progress-area">
+			    <div class="progress-holder" ng-repeat = "dat in opportunity_data" data-color = "dat.colour" data-data = "opportunity_data" opportunity-bar-background>
+				  <div class="progress-inner">
+				    <small><em>{{dat.name}} <b>{{dat.complaints}} Suggestions</b></em></small>
+					<div class="progress-block"><uib-progressbar animate="false" value="dat.percentage" type="success"></uib-progressbar></div>
+				  </div>
 				</div>
 			  </div>
-  			</div>
+			</div>
+		  </div>
   		</div>
+	  </div>
 	</div>
   </div>
 </div>
