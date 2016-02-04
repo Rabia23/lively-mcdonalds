@@ -1,56 +1,56 @@
 <div class="ibox float-e-margins" ng-class="{loading: show_loading}">
-      <div class="title-outer">
-          <div class="ibox-title">
-              <h5>Business Segment Breakdown</h5>
-              <div class="ibox-tools">
-                  <ul class="tab-links">
-                      <li ng-class="{active: class == ''}"><a ng-click = "onClick(null, 'All')" uib-tooltip="Click to view QSC Segmentation Breakdown">All</a></li>
-                      <li class="item2" ng-class="{active: class == 'Quality'}"><a ng-click = "onClick(QualityID, 'Quality')" uib-tooltip="Click to View Quality SubCategories Breakdown">Quality</a></li>
-                      <li class="item3" ng-class="{active: class == 'Service'}"><a ng-click = "onClick(ServiceID, 'Service')" uib-tooltip="Click to view Service SubCategories Breakdown">Service</a></li>
-                      <li class="item4" ng-class="{active: class == 'Cleanliness'}"><a ng-click = "onClick(CleanlinessID, 'Cleanliness')" uib-tooltip="Click to view Cleanliness SubCategories Breakdown">Cleanliness</a></li>
-                      <li class="item5">
-                          <div class="calender-outer">
-							  <span class="calendar-holder" uib-tooltip="Click to Select Custom Date Range">
-							  	   <input date-range-picker id="daterange-map" readonly="readonly" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption" readonly="true"/>
-								  <i class="fa fa-calendar" map-range-click></i>
-							  </span>
-						  </div>
-                      </li>
-                  </ul>
-              </div>
-          </div>
+  <div class="title-outer">
+    <div class="ibox-title">
+      <h5>Business Segment Breakdown</h5>
+      <div class="ibox-tools">
+        <ul class="tab-links">
+          <li ng-class="{active: class == ''}"><a ng-click = "onClick(null, 'All')" uib-tooltip="Click to view QSC Segmentation Breakdown">All</a></li>
+          <li class="item2" ng-class="{active: class == 'Quality'}"><a ng-click = "onClick(QualityID, 'Quality')" uib-tooltip="Click to View Quality SubCategories Breakdown">Quality</a></li>
+          <li class="item3" ng-class="{active: class == 'Service'}"><a ng-click = "onClick(ServiceID, 'Service')" uib-tooltip="Click to view Service SubCategories Breakdown">Service</a></li>
+          <li class="item4" ng-class="{active: class == 'Cleanliness'}"><a ng-click = "onClick(CleanlinessID, 'Cleanliness')" uib-tooltip="Click to view Cleanliness SubCategories Breakdown">Cleanliness</a></li>
+          <li class="item5">
+            <div class="calender-outer">
+               <span class="calendar-holder" uib-tooltip="Click to Select Custom Date Range">
+                 <input date-range-picker id="daterange-map" readonly="readonly" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption" readonly="true"/>
+                 <i class="fa fa-calendar" map-range-click></i>
+               </span>
+            </div>
+          </li>
+        </ul>
       </div>
-      <div class="content-holder">
-          <div class="ibox-content add">
-              <div class="chart-outer">
-                <div class="progress-container">
-                  <div class="progress-area" progress-bar-spacing data-data = "category_data">
-                    <div class="progress-holder" ng-repeat = "dat in category_data" data-color = "dat.colour" data-data = "category_data" progress-bar-background>
-                      <div class="progress-inner">
-                      	<small><em>{{dat.name}} <b>{{dat.complaints}} complaints</b></em></small>
-                      	<div class="progress-block"><uib-progressbar animate="false" value="dat.percentage" type="success"></uib-progressbar></div>
-                      </div>
-                    </div>
+    </div>
+  </div>
+  <div class="content-holder">
+    <div class="ibox-content add">
+      <div class="chart-outer">
+        <div class="progress-container">
+          <div class="progress-area" progress-bar-spacing data-data = "category_data">
+            <div class="progress-holder" ng-repeat = "dat in category_data" data-color = "dat.colour" data-data = "category_data" progress-bar-background>
+              <div class="progress-inner">
+                <small><em>{{dat.name}} <b>{{dat.complaints}} complaints</b></em></small>
+                <div class="progress-block"><uib-progressbar animate="false" value="dat.percentage" type="success"></uib-progressbar></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="list-holder">
+        <div class="row">
+          <div class="morris-block-holder">
+            <div class="morris-content-holder" ng-repeat="segment in segments track by $index">
+              <div class="morris-graph-holder">
+                <div class="morris-holder">
+                  <div ng-hide = "segment.show_string">
+                    <canvas id="doughnut" class="chart chart-doughnut" chart-data="segment.data" chart-labels="segment.labels" chart-colours="segment.colors"></canvas>
                   </div>
+                  <div ng-show="segment.show_string">No Data Available</div>
                 </div>
               </div>
-              <div class="list-holder">
-                  <div class="row">
-                      <div class="morris-block-holder">
-                          <div class="morris-content-holder" ng-repeat="segment in segments track by $index">
-                              <div class="morris-graph-holder">
-                                 <div class="morris-holder">
-                                      <div ng-hide = "segment.show_string">
-                                          <canvas id="doughnut" class="chart chart-doughnut" chart-data="segment.data" chart-labels="segment.labels" chart-colours="segment.colors"></canvas>
-                                      </div>
-                                      <div ng-show="segment.show_string">No Data Available</div>
-                                 </div>
-                              </div>
-                              <strong class="title"><a href="#">{{segment.name}}</a></strong>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+              <strong class="title"><a href="#">{{segment.name}}</a></strong>
+            </div>
           </div>
+        </div>
       </div>
+    </div>
   </div>
+</div>
