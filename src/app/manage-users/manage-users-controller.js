@@ -41,6 +41,7 @@
           user = data;
           user.status = "Active";
           $scope.users[index] = user;
+
         }
         else {
           message = "User successfully deactivated.";
@@ -48,6 +49,7 @@
           user.status = "Inactive";
           $scope.users[index] = user;
         }
+        console.log($scope.users[index]);
         Flash.create('success', message, 'custom-class');
       });
     };
@@ -73,8 +75,6 @@
         }
       });
       modalInstance.result.then(function (user) {
-        console.log("modal instance result");
-        //$scope.users.push(user);
         ManageApi.manage_users().$promise.then(function(data){
           $scope.users = data.children;
         });
@@ -105,7 +105,6 @@
 
       editInstance.result.then(function (edited_user) {
         $scope.users[index] = edited_user;
-        console.log($scope.users[index]);
       });
     };
 

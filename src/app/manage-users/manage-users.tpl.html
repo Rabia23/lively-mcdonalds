@@ -21,9 +21,9 @@
 										<span class="title">Phone No.</span>
 										<div class="text">{{user.phone_no}}</div>
 									</li>
-									<li>
-										<span class="title" ng-if = "child_role == 2 || child_role == 3">Branch</span>
-										<div class="text" ng-if = "child_role == 2 || child_role == 3">{{user.branch.name}}</div>
+									<li ng-if = "child_role == 2 || child_role == 3">
+										<span class="title">Branch</span>
+										<div class="text">{{user.branch.name}}</div>
 									</li>
 									<li>
 										<span class="title">User Name:</span>
@@ -35,27 +35,25 @@
 									</li>
 									<li>
 										<span class="title">Active</span>
-										<div class="text">{{user.is_active}}</div>
+										<div class="text">{{user.status}}</div>
 									</li>
 									<li>
 										<span class="title">Role</span>
-										<div class="text">{{user.role}}</div>
+										<div class="text">{{user.user_role}}</div>
 									</li>
-									<li class="disabled">
-										<span class="title"  ng-if = "child_role == 4">Region</span>
-										<div class="text" ng-if = "child_role == 4">{{user.region.name}}</div>
+									<li ng-if = "child_role == 4" >
+										<span class="title">Region</span>
+										<div class="text" >{{user.region.name}}</div>
 									</li>
 								</ul>
 								<div class="btn-box">
 									<span class="btn-holder">
 										<a ng-click = "edit(user, $index)" class="fa fa-pencil-square-o"></a>
 									</span>
-									<span class="btn-holder disabled">
-										<a ng-click = "deactivate(user, $index)" ng-class="{'fa fa-user btn-active': user.is_active == false}"></a>
-									</span>
 									<span class="btn-holder">
-										<a ng-click = "deactivate(user, $index)" ng-class="{'fa fa-user-times btn-deactive': user.is_active == true}"></a>
+										<a ng-click = "deactivate(user, $index)" ng-class="{'fa fa-user btn-active': (user.is_active == false), 'fa fa-user-times btn-deactive': (user.is_active == true)}"></a>
 									</span>
+
 								</div>
 							</div>
 						</li>
