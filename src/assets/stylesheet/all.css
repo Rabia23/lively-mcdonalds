@@ -1769,8 +1769,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	width: 100%;
 	height: auto;
 	padding: 10px;
-	font-size: 32px;
-	line-height: 40px;
+	font-size: 28px;
+	line-height: 36px;
 	text-transform: capitalize;
 	color: #999;
 	border: 1px solid #999;
@@ -1778,6 +1778,10 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	border-radius: 0;
 	white-space: normal;
 	margin: 0 !important;
+	-webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
 }
 
 .promotions .btn.dim:hover,
@@ -1786,6 +1790,10 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	color: #be1011;
 	border-color: #be1011;
 	box-shadow: 0 0 5px 1px #be1011;
+	-webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
 }
 
 .btn-list{
@@ -2371,11 +2379,14 @@ li.active,
 	.row.inner-row.add .title-outer{border-bottom: 1px solid #e7eaec;}
 	.row.inner-row.add .content-holder{padding: 10px;}
 	.row.inner-row.add .detail-block .content-holder{padding: 0;}
-	#piechart{padding: 5px;}
 	#wrapper .welcome-message{display: block;}
 	.promotions .btn.dim{
 		font-size: 22px;
 		line-height: 30px;
+	}
+	.row.inner-row.add .content-holder .chart-box{
+		padding: 0 !important;
+		border: 0 !important;
 	}
 }
 

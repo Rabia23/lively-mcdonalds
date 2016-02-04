@@ -712,10 +712,12 @@ angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$template
     "        </div>\n" +
     "      </div>\n" +
     "      <div class=\"content-holder\" top-concerns data-data = \"data\">\n" +
-    "         <div id=\"piechart\" style=\"width:100%; height:300px;\" ng-hide = \"all_zero\"></div>\n" +
-    "          <div ng-show = \"all_zero\" class=\"message-holder\">\n" +
-    "            <h2>No Data Available</h2>\n" +
-    "          </div>\n" +
+    "        <div class=\"ibox-content float-chart-block chart-box\">\n" +
+    "        	<div id=\"piechart\" style=\"width:100%; height:300px;\" ng-hide = \"all_zero\"></div>\n" +
+    "			<div ng-show = \"all_zero\" class=\"message-holder\">\n" +
+    "				<h2>No Data Available</h2>\n" +
+    "			</div>\n" +
+    "        </div>\n" +
     "        <!--<div class=\"ibox-content\">-->\n" +
     "          <!--<div class=\"graph-block\">-->\n" +
     "            <!--&lt;!&ndash;<canvas id=\"doughnut\" class=\"chart chart-doughnut\" chart-data=\"data\" chart-labels=\"labels\"></canvas> &ndash;&gt;-->\n" +
