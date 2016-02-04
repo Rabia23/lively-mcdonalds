@@ -171,6 +171,11 @@ class Feedback(models.Model):
             return True
         return False
 
+    def not_empty(self):
+        if (not self.comment) and self.comment == "" and self.customer_name() == constants.ANONYMOUS_TEXT and self.customer_phone() == constants.NOT_ATTEMPTED_TEXT and self.customer_email() == constants.NOT_ATTEMPTED_TEXT:
+            return False
+        return True
+
     def keyword_analysis(self):
         if self.comment_exists() and self.is_negative():
             for concern in Concern.get_all_concerns():

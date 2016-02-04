@@ -62,7 +62,7 @@ class FeedbackView(APIView):
             q.put(str(get_live_record()))
             # q.put("ping")
 
-            if feedback.is_negative():
+            if feedback.is_negative() and feedback.not_empty():
                 feedback_json = {
                     "is_bad": feedback.is_bad(),
                     "branch_name": feedback.branch.name,
