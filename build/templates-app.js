@@ -116,13 +116,13 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "              <h5>Business Segment Breakdown</h5>\n" +
     "              <div class=\"ibox-tools\">\n" +
     "                  <ul class=\"tab-links\">\n" +
-    "                      <li ng-class=\"{active: class == ''}\"><a ng-click = \"onClick(null, 'All')\" uib-tooltip=\"Click to view QSC Segmentation Breakdown\">All</a></li>\n" +
-    "                      <li class=\"item2\" ng-class=\"{active: class == 'Quality'}\"><a ng-click = \"onClick(QualityID, 'Quality')\" uib-tooltip=\"Click to View Quality SubCategories Breakdown\">Quality</a></li>\n" +
-    "                      <li class=\"item3\" ng-class=\"{active: class == 'Service'}\"><a ng-click = \"onClick(ServiceID, 'Service')\" uib-tooltip=\"Click to view Service SubCategories Breakdown\">Service</a></li>\n" +
-    "                      <li class=\"item4\" ng-class=\"{active: class == 'Cleanliness'}\"><a ng-click = \"onClick(CleanlinessID, 'Cleanliness')\" uib-tooltip=\"Click to view Cleanliness SubCategories Breakdown\">Cleanliness</a></li>\n" +
+    "                      <li ng-class=\"{active: class == ''}\"><a ng-click = \"onClick(null, 'All')\">All</a></li>\n" +
+    "                      <li class=\"item2\" ng-class=\"{active: class == 'Quality'}\"><a ng-click = \"onClick(QualityID, 'Quality')\">Quality</a></li>\n" +
+    "                      <li class=\"item3\" ng-class=\"{active: class == 'Service'}\"><a ng-click = \"onClick(ServiceID, 'Service')\">Service</a></li>\n" +
+    "                      <li class=\"item4\" ng-class=\"{active: class == 'Cleanliness'}\"><a ng-click = \"onClick(CleanlinessID, 'Cleanliness')\">Cleanliness</a></li>\n" +
     "                      <li class=\"item5\">\n" +
     "                          <div class=\"calender-outer\">\n" +
-    "							  <span class=\"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
+    "							  <span class=\"calendar-holder\">\n" +
     "							  	   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
     "								  <i class=\"fa fa-calendar\" map-range-click></i>\n" +
     "							  </span>\n" +
@@ -332,7 +332,7 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "		  <ul class=\"tab-links\">\n" +
     "			  <li>\n" +
     "				  <div class=\"calender-outer\">\n" +
-    "					  <span class=\"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
+    "					  <span class=\"calendar-holder\">\n" +
     "						   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
     "						  <i class=\"fa fa-calendar\" map-range-click></i>\n" +
     "					  </span>\n" +
@@ -342,12 +342,10 @@ angular.module("dashboard/feedback-map/feedback-map.tpl.html", []).run(["$templa
     "	  </div>\n" +
     "  </div>\n" +
     "  <div class=\"ibox-content\" same-map-height>\n" +
-    "\n" +
     "		  <div id=\"world-map\">\n" +
     "		  	<div map-lazy-load=\"http://maps.google.com/maps/api/js\">\n" +
     "			  	<map center=\"30,70\" zoom=\"{{zoom}}\"></map>\n" +
-    "				</div>\n" +
-    "		  \n" +
+    "			</div>\n" +
     "	  </div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -398,7 +396,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "                       <ul class=\"tab-links\">\n" +
     "							<li>\n" +
     "								<div class=\"calender-outer\">\n" +
-    "								  <span class=\"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
+    "								  <span class=\"calendar-holder\">\n" +
     "									   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
     "									   <i class=\"fa fa-calendar\" map-range-click></i>\n" +
     "								  </span>\n" +
@@ -446,7 +444,7 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "          <ul class=\"tab-links\">\n" +
     "              <li>\n" +
     "                  <div class=\"calender-outer\">\n" +
-    "					  <span class=\"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
+    "					  <span class=\"calendar-holder\">\n" +
     "						   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" ng-disabled = \"!mainView\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
     "						  <i class=\"fa fa-calendar\" map-range-click></i>\n" +
     "					  </span>\n" +
@@ -597,12 +595,12 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "		<!--<h5 ng-show = \"area_view == false && regional_view == false && city_view == false\">{{selected_city.name}}'s Branch Analysis</h5>-->\n" +
     "        <div class=\"ibox-tools\">\n" +
     "            <ul class=\"tab-links\">\n" +
-    "                <li ng-class=\"{active: radioModel == 'Complaints'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'Complaints'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Complaint Resolution Analysis\">Complaints</a></li>\n" +
-    "                <li ng-class=\"{active: radioModel == 'Rating'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Overall Feedback Analysis\">Rating</a></li>\n" +
-    "                <li ng-class=\"{active: radioModel == 'QSC'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Overall QSC Analysis\">QSC</a></li>\n" +
+    "                <li ng-class=\"{active: radioModel == 'Complaints'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'Complaints'\" ng-click = \"showChart(null, 'areas')\">Complaints</a></li>\n" +
+    "                <li ng-class=\"{active: radioModel == 'Rating'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'Rating'\" ng-click = \"showChart(null, 'areas')\">Rating</a></li>\n" +
+    "                <li ng-class=\"{active: radioModel == 'QSC'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'QSC'\" ng-click = \"showChart(null, 'areas')\">QSC</a></li>\n" +
     "                <li>\n" +
     "                    <div class=\"calender-outer\">\n" +
-    "					  <span class=\"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
+    "					  <span class=\"calendar-holder\">\n" +
     "						   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\"\n" +
     "               ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
     "						  <i class=\"fa fa-calendar\" map-range-click></i>\n" +

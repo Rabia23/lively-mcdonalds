@@ -2048,6 +2048,7 @@ li.active,
 	display: inline-block;
 	vertical-align: middle;
 	white-space: normal;
+	margin: 3px 0 0 2px;
 }
 
 
@@ -2566,4 +2567,14 @@ li.active,
 @media screen and (max-width: 479px) {
 	.btn-list li{width: 100%;}
 	.morris-content-outer .morris-content-holder{width: 100%;}
+	.header-visual .nav.navbar-top-links.navbar-right{
+		padding: 10px 0 5px;
+		overflow: hidden;
+	}
+	.header-visual .navbar-top-links li{display: block;}
+	#wrapper .navbar-top-links li a{
+		padding: 0;
+		min-height: inherit;
+	}
+	
 }

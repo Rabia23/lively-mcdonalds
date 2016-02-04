@@ -7,12 +7,12 @@
 		<!--<h5 ng-show = "area_view == false && regional_view == false && city_view == false">{{selected_city.name}}'s Branch Analysis</h5>-->
         <div class="ibox-tools">
             <ul class="tab-links">
-                <li ng-class="{active: radioModel == 'Complaints'}"><a ng-model="radioModel" uib-btn-radio="'Complaints'" ng-click = "showChart(null, 'areas')" uib-tooltip="Click to View Complaint Resolution Analysis">Complaints</a></li>
-                <li ng-class="{active: radioModel == 'Rating'}"><a ng-model="radioModel" uib-btn-radio="'Rating'" ng-click = "showChart(null, 'areas')" uib-tooltip="Click to View Overall Feedback Analysis">Rating</a></li>
-                <li ng-class="{active: radioModel == 'QSC'}"><a ng-model="radioModel" uib-btn-radio="'QSC'" ng-click = "showChart(null, 'areas')" uib-tooltip="Click to View Overall QSC Analysis">QSC</a></li>
+                <li ng-class="{active: radioModel == 'Complaints'}"><a ng-model="radioModel" uib-btn-radio="'Complaints'" ng-click = "showChart(null, 'areas')">Complaints</a></li>
+                <li ng-class="{active: radioModel == 'Rating'}"><a ng-model="radioModel" uib-btn-radio="'Rating'" ng-click = "showChart(null, 'areas')">Rating</a></li>
+                <li ng-class="{active: radioModel == 'QSC'}"><a ng-model="radioModel" uib-btn-radio="'QSC'" ng-click = "showChart(null, 'areas')">QSC</a></li>
                 <li>
                     <div class="calender-outer">
-					  <span class="calendar-holder" uib-tooltip="Click to Select Custom Date Range">
+					  <span class="calendar-holder">
 						   <input date-range-picker id="daterange-map" readonly="readonly" name="daterange-map" class="date-picker" type="text"
                ng-model="date" max="today" options = "datePickerOption" readonly="true"/>
 						  <i class="fa fa-calendar" map-range-click></i>
