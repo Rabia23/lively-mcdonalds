@@ -1169,7 +1169,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "										<span class=\"title\">Role</span>\n" +
     "										<div class=\"text\">{{user.role}}</div>\n" +
     "									</li>\n" +
-    "									<li>\n" +
+    "									<li class=\"disabled\">\n" +
     "										<span class=\"title\"  ng-if = \"child_role == 4\">Region</span>\n" +
     "										<div class=\"text\" ng-if = \"child_role == 4\">{{user.region.name}}</div>\n" +
     "									</li>\n" +
@@ -1178,7 +1178,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "									<span class=\"btn-holder\">\n" +
     "										<a ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
     "									</span>\n" +
-    "									<span class=\"btn-holder\">\n" +
+    "									<span class=\"btn-holder disabled\">\n" +
     "										<a ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user btn-active': user.is_active == false}\"></a>\n" +
     "									</span>\n" +
     "									<span class=\"btn-holder\">\n" +

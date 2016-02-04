@@ -41,7 +41,7 @@
 										<span class="title">Role</span>
 										<div class="text">{{user.role}}</div>
 									</li>
-									<li>
+									<li class="disabled">
 										<span class="title"  ng-if = "child_role == 4">Region</span>
 										<div class="text" ng-if = "child_role == 4">{{user.region.name}}</div>
 									</li>
@@ -50,7 +50,7 @@
 									<span class="btn-holder">
 										<a ng-click = "edit(user, $index)" class="fa fa-pencil-square-o"></a>
 									</span>
-									<span class="btn-holder">
+									<span class="btn-holder disabled">
 										<a ng-click = "deactivate(user, $index)" ng-class="{'fa fa-user btn-active': user.is_active == false}"></a>
 									</span>
 									<span class="btn-holder">

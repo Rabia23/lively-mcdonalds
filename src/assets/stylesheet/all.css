@@ -1879,6 +1879,8 @@ li.active,
 	color: #4c4f51;
 }
 
+.users-list ul li.disabled{display: none;}
+
 .users-list ul li .title{
 	float: left;
 	color: #676a6c;
@@ -1887,9 +1889,7 @@ li.active,
 	text-transform: capitalize;
 }
 
-.users-list ul li .text{
-	overflow: hidden;
-}
+.users-list ul li .text{overflow: hidden;}
 
 .users-list li.btn-holder .btn{
 	width: 100%;
@@ -2009,6 +2009,8 @@ li.active,
 	display: block;
 	text-align: center;
 }
+
+.users-list .btn-box .btn-holder.disabled{display: none;}
 
 .add-user{
 	-webkit-border-radius: 100%;
