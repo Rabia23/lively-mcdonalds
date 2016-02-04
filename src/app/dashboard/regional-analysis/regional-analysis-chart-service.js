@@ -49,7 +49,7 @@ angular.module('livefeed.regional_analysis.chart', [
         donutOptions: _.map(graph_data.analysis,  function(data){
           return   {
               colors: _.map(data.data.action_analysis, function(dat){
-                return dat.action_taken === 1 ? '#e73a3a' : dat.action_taken === 2 ? '#01ad0f': '#FFCC00';
+                return Global.complaintAnalysisAction[dat.action_taken][1];
               })
             };
         })
