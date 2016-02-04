@@ -29,7 +29,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
   });
 })
 
- .directive('topConcerns', function() {
+ .directive('topConcerns', function($timeout) {
     return {
       restrict: 'A',
       scope: {
@@ -47,6 +47,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
                  "pullOutRadius": 0,
                 "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b></span>",
                 "innerRadius": "40%",
+                "startDuration": 0,
                 "color": "#FFF",
                 //"marginTop": -80,
                 //"marginBottom": -50,
@@ -66,29 +67,49 @@ angular.module( 'livefeed.dashboard.top_concern', [
                 "titles": [],
                "dataProvider": data
               });
-              //var width = $("#piechart").find("svg").width();
-              //width = width + 500;
-              //$("#piechart").find("svg").css("width", width);
-              //console.log("svg width");
-              //console.log(width);
+
+              // var width = $("#piechart").find("svg").width();
+              // //width = width + 500;
+              // //$("#piechart").find("svg").css("width", width);
+              // console.log("svg width");
+              // console.log(width);
+
+
+              $timeout(function () {
+                console.log("hello");
+                jQuery('.same-height-parent').sameHeight({
+                  elements: '.same-height',
+                  flexible: true,
+                  multiLine: true,
+                  biggestHeight: true,
+                  useMinHeight: false
+                });
+              }, 2000);
+
+
+              $timeout(function () {
+                console.log("hello");
+                window.initEqualHeight();
+              }, 1000);
+
           }
         });
       }
     };
-  })
+  });
 
-.directive('sameHeight', function() {
-  return {
-      restrict: 'A',
-      scope: {
-        mydata: '='
-      },
-      link: function(scope, ele, attrs) {
-        scope.$watch('mydata', function(watchedData) {
-          if(watchedData !== undefined){
-            window.initSameHeight();
-          }
-        });
-      }
-  };
-});
+// .directive('sameHeight', function() {
+//   return {
+//       restrict: 'A',
+//       scope: {
+//         data: '='
+//       },
+//       link: function(scope, ele, attrs) {
+//         scope.$watch('data', function(watchedData) {
+//           if(watchedData !== undefined){
+//             window.initEqualHeight();
+//           }
+//         });
+//       }
+//   };
+// });

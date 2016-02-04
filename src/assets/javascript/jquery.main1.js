@@ -538,13 +538,6 @@ function initCustomForms() {
 
 // align blocks height
 function initSameHeight() {
-  jQuery('.same-height-parent').sameHeight({
-    elements: '.same-height',
-    flexible: true,
-    multiLine: true,
-    biggestHeight: true,
-	useMinHeight: false
-  });
   jQuery('.morris-content-outer').sameHeight({
     elements: '.morris-holder',
     flexible: true,
@@ -559,26 +552,30 @@ function initSameHeight() {
     biggestHeight: true,
     useMinHeight: false
   });
-  jQuery('.same-height-parent').sameHeight({
-    elements: '.same-height-block',
-    flexible: true,
-    multiLine: true,
-    biggestHeight: true,
-	useMinHeight: false
-  });
-  jQuery('.same-height-parent').sameHeight({
-    elements: '.same-height-col , .same-height-block',
-    flexible: true,
-    multiLine: true,
-    biggestHeight: true,
-	useMinHeight: false
-  });
-  jQuery('.same-height-block').sameHeight({
+
+}
+
+function initEqualHeight(){
+  $('.same-height-block').sameHeight({
     elements: '.inner-row',
     flexible: true,
     multiLine: true,
     biggestHeight: true,
-	useMinHeight: false
+    useMinHeight: false
+  });
+  $('.same-height-parent').sameHeight({
+    elements: '.same-height-col , .same-height-block',
+    flexible: true,
+    multiLine: true,
+    biggestHeight: true,
+    useMinHeight: false
+  });
+  $('.same-height-parent').sameHeight({
+    elements: '.same-height-block',
+    flexible: true,
+    multiLine: true,
+    biggestHeight: true,
+    useMinHeight: false
   });
 }
 

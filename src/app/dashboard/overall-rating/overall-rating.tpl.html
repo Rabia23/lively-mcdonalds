@@ -12,15 +12,7 @@
 				  </div>
               </li>
           </ul>
-          <span class="select-holder">
-            <select id="timely" ng-disabled = "!mainView" ng-model= "type" ng-change = "axisChanged()" custom-form>
-  				<option value = "1">Daily</option>
-  				<option value = "2">Weekly</option>
-  				<option value = "3">Monthly</option>
-  				<option value = "4">Yearly</option>
-			</select>
-   		</span>
-    	<a ng-click = "backToMain()" ng-hide = "mainView" class="btn-back">Back</a>
+      <a ng-click = "backToMain()" ng-hide = "mainView" class="btn-back">Back</a>
       </div>
   </div>
   <div class="ibox-content" same-rating-height data-data="overall_rating_data">
@@ -31,7 +23,9 @@
         </li>
       </ul>
       <div class="block-holder" time-line data-data = "overall_rating_data" data-action="optionClick(option_object)">
+      	  <a ng-click = "Prev()" ng-show = "mainView" class="btn-prev fa fa-angle-left"></a>
+          <a ng-click = "Next()" ng-show = "mainView" class="btn-next fa fa-angle-right"></a>
           <div id="chartdiv" style="width: 100%; height: 320px;"></div>
-      </div> 
+      </div>
   </div>
 </div>

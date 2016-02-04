@@ -2053,6 +2053,31 @@ li.active,
 	margin: 3px 0 0 2px;
 }
 
+.timeline-section .ibox-content{
+	position: relative;
+}
+
+.timeline-section .btn-prev,
+.timeline-section .btn-next{
+	position: absolute;
+	left: 5px;
+	top: 50%;
+	font-size: 24px;
+	line-height: 24px;
+	margin-top: -12px;
+	color: #999;
+}
+
+.timeline-section .btn-prev.disabled,
+.timeline-section .btn-next.disabled{display: none;}
+
+.timeline-section .btn-prev:hover,
+.timeline-section .btn-next:hover{color: #000;}
+
+.timeline-section .btn-next{
+	left: auto;
+	right: 5px;
+}
 
 @media screen and (min-width: 768px) {
 	.legends-holder{padding: 15px 20px 0;}

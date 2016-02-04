@@ -154,7 +154,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "              <div class=\"morris-graph-holder\">\n" +
     "                <div class=\"morris-holder\">\n" +
     "                  <div ng-hide = \"segment.show_string\">\n" +
-    "                    <canvas id=\"doughnut\" class=\"chart chart-doughnut\" chart-data=\"segment.data\" chart-labels=\"segment.labels\" chart-colours=\"segment.colors\"></canvas>\n" +
+    "                    <canvas id=\"doughnut\" class=\"chart chart-doughnut\" chart-data=\"segment.data\" chart-labels=\"segment.labels\" chart-colours=\"segment.colors\" chart-options = \"segment.options\"></canvas>\n" +
     "                  </div>\n" +
     "                  <div ng-show=\"segment.show_string\">No Data Available</div>\n" +
     "                </div>\n" +
@@ -166,7 +166,8 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
-    "</div>");
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -385,49 +386,49 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
 
 angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/overall-feedback/overall-feedback.tpl.html",
-    "<div class=\"row inner-row rating\">\n" +
-    "  <div class=\"col-xs-12\">\n" +
-    "    <div class=\"ibox float-e-margins\" ng-class=\"{loading: show_loading}\">\n" +
-    "      <div class=\"title-outer\">\n" +
-    "        <div class=\"ibox-title\">\n" +
-    "          <h5>Overall Rating</h5>\n" +
-    "          <div class=\"ibox-tools\">\n" +
-    "            <ul class=\"tab-links\">\n" +
-    "			  <li>\n" +
-    "			    <div class=\"calender-outer\">\n" +
-    "				  <span class=\"calendar-holder\">\n" +
-    "				    <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
-    "					<i class=\"fa fa-calendar\" map-range-click></i>\n" +
-    "				  </span>\n" +
-    "				</div>\n" +
-    "			  </li>\n" +
-    "			</ul>\n" +
-    "		  </div>\n" +
-    "		</div>\n" +
-    "	  </div>\n" +
-    "      <div class=\"content-holder\">\n" +
-    "        <div class=\"content-inner\">\n" +
-    "          <div class=\"legends-outer\">\n" +
-    "		    <div class=\"legends-holder\">\n" +
-    "			  <ul class=\"legends-list\" ng-show=\"show_labels\">\n" +
-    "			    <li ng-repeat = \"label in labels track by $index\">\n" +
-    "				  <span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>{{label.option_name}}\n" +
-    "				</li>\n" +
-    "			  </ul>\n" +
-    "			</div>\n" +
-    "		  </div>\n" +
-    "          <div class=\"content-block\">\n" +
-    "            <div class=\"ibox-content float-chart-block\">\n" +
-    "			  <div class=\"flot-chart\">\n" +
-    "			    <canvas ng-show = \"show_canvas\"  id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
-    "				<div ng-hide = \"show_canvas\" class=\"message-holder\">\n" +
-    "                  <h2>No Data Available</h2>\n" +
-    "				</div>\n" +
-    "			  </div>\n" +
-    "			</div>\n" +
-    "          </div>\n" +
-    "		</div>\n" +
-    "	  </div>\n" +
+    "<div class=\"row inner-row rating\" same-bar-height data-data = \"bar.data\">\n" +
+    "    <div class=\"col-xs-12\">\n" +
+    "        <div class=\"ibox float-e-margins\" ng-class=\"{loading: show_loading}\">\n" +
+    "            <div class=\"title-outer\">\n" +
+    "                <div class=\"ibox-title\">\n" +
+    "                    <h5>Overall Rating</h5>\n" +
+    "                    <div class=\"ibox-tools\">\n" +
+    "                       <ul class=\"tab-links\">\n" +
+    "            							<li>\n" +
+    "            								<div class=\"calender-outer\">\n" +
+    "            								  <span class=\"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
+    "            									   <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
+    "            									   <i class=\"fa fa-calendar\" map-range-click></i>\n" +
+    "            								  </span>\n" +
+    "            							  </div>\n" +
+    "            							</li>\n" +
+    "          					   </ul>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"content-holder\">\n" +
+    "               <div class=\"content-inner\">\n" +
+    "                 	<div class=\"legends-outer\">\n" +
+    "          					 <div class=\"legends-holder\">\n" +
+    "            						<ul class=\"legends-list\" ng-show=\"show_labels\">\n" +
+    "            						  <li ng-repeat = \"label in labels track by $index\">\n" +
+    "            							<span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>{{label.option_name}}\n" +
+    "            						  </li>\n" +
+    "            						</ul>\n" +
+    "          					 </div>\n" +
+    "                 	</div>\n" +
+    "               	<div class=\"content-block\">\n" +
+    "               		<div class=\"ibox-content float-chart-block\">\n" +
+    "      				  		<div class=\"flot-chart\">\n" +
+    "        							<canvas ng-show = \"show_canvas\"  id=\"bar\" class=\"chart chart-bar\" chart-data=\"bar.data\" chart-labels=\"bar.labels\" chart-colours=\"bar.colours\" chart-options=\"bar.options\"></canvas>\n" +
+    "        						  <div ng-hide = \"show_canvas\" class=\"message-holder\">\n" +
+    "                   			<h2>No Data Available</h2>\n" +
+    "                   		</div>\n" +
+    "                    	</div>\n" +
+    "                  	</div>\n" +
+    "                </div>\n" +
+    "    		 </div>\n" +
+    "		   </div>\n" +
     "	</div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -450,15 +451,7 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "				  </div>\n" +
     "              </li>\n" +
     "          </ul>\n" +
-    "          <span class=\"select-holder\">\n" +
-    "            <select id=\"timely\" ng-disabled = \"!mainView\" ng-model= \"type\" ng-change = \"axisChanged()\" custom-form>\n" +
-    "  				<option value = \"1\">Daily</option>\n" +
-    "  				<option value = \"2\">Weekly</option>\n" +
-    "  				<option value = \"3\">Monthly</option>\n" +
-    "  				<option value = \"4\">Yearly</option>\n" +
-    "			</select>\n" +
-    "   		</span>\n" +
-    "    	<a ng-click = \"backToMain()\" ng-hide = \"mainView\" class=\"btn-back\">Back</a>\n" +
+    "      <a ng-click = \"backToMain()\" ng-hide = \"mainView\" class=\"btn-back\">Back</a>\n" +
     "      </div>\n" +
     "  </div>\n" +
     "  <div class=\"ibox-content\" same-rating-height data-data=\"overall_rating_data\">\n" +
@@ -469,8 +462,10 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "        </li>\n" +
     "      </ul>\n" +
     "      <div class=\"block-holder\" time-line data-data = \"overall_rating_data\" data-action=\"optionClick(option_object)\">\n" +
+    "      	  <a ng-click = \"Prev()\" ng-show = \"mainView\" class=\"btn-prev fa fa-angle-left\"></a>\n" +
+    "          <a ng-click = \"Next()\" ng-show = \"mainView\" class=\"btn-next fa fa-angle-right\"></a>\n" +
     "          <div id=\"chartdiv\" style=\"width: 100%; height: 320px;\"></div>\n" +
-    "      </div> \n" +
+    "      </div>\n" +
     "  </div>\n" +
     "</div>\n" +
     "");
@@ -708,7 +703,7 @@ angular.module("dashboard/statistics/statistics.tpl.html", []).run(["$templateCa
 
 angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/top-concern/top-concern.tpl.html",
-    "<div class=\"row inner-row add\">\n" +
+    "<div class=\"row inner-row add\" same-height data-data = \"data\">\n" +
     "  <div class=\"col-xs-12\">\n" +
     "    <div class=\"ibox float-e-margins float-e-margin-none\" ng-class=\"{loading: show_loading}\">\n" +
     "      <div class=\"title-outer\">\n" +
@@ -1195,20 +1190,20 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "						<h5></h5>\n" +
     "					</div>\n" +
     "						<div class=\"ibox-content\">\n" +
-    "							\n" +
+    "\n" +
     "							<div class=\"user-block\">\n" +
-    "								\n" +
+    "\n" +
     "							</div>\n" +
     "						<div class=\"info-holder\">\n" +
     "							<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\" data-users = \"users\">\n" +
     "								<thead>\n" +
     "									<tr>\n" +
-    "										<th data-toggle=\"true\" data-sort-initial=\"true\">Name</th>\n" +
-    "										<th data-hide=\"all\"></th>\n" +
-    "										<th data-hide=\"all\"></th>\n" +
-    "										<th data-hide=\"all\"></th>\n" +
-    "										<th data-hide=\"all\"></th>\n" +
-    "										<th></th>\n" +
+    "										<th data-toggle=\"true\">Name</th>\n" +
+    "										<th data-hide=\"all\">User Name</th>\n" +
+    "										<th data-hide=\"all\">Email</th>\n" +
+    "										<th data-hide=\"all\">Status</th>\n" +
+    "										<th data-hide=\"all\">Role</th>\n" +
+    "										<th>Phone No.</th>\n" +
     "										<th ng-if = \"child_role == 2 || child_role == 3\">Branch</th>\n" +
     "										<th ng-if = \"child_role == 4\">Region</th>\n" +
     "										<th>Action</th>\n" +
@@ -1219,8 +1214,8 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "										<td>{{user.first_name}} {{user.last_name}}</td>\n" +
     "										<td>{{user.username}}</td>\n" +
     "										<td>{{user.email}}</td>\n" +
-    "										<td>{{user.is_active}}</td>\n" +
-    "										<td>{{user.role}}</td>\n" +
+    "										<td>{{user.status}}</td>\n" +
+    "										<td>{{user.user_role}}</td>\n" +
     "										<td >{{user.phone_no}}</td>\n" +
     "										<td ng-if = \"child_role == 2 || child_role == 3\">{{user.branch.name}}</td>\n" +
     "										<td ng-if = \"child_role == 4\">{{user.region.name}}</td>\n" +
