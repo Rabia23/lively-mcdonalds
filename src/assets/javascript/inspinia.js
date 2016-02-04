@@ -259,7 +259,7 @@ function SmoothlyMenu() {
         setTimeout(
             function () {
                 $('#side-menu').fadeIn(500);
-            }, 100);
+            }, 200);
     } else if ($('body').hasClass('fixed-sidebar')) {
         $('#side-menu').hide();
         setTimeout(

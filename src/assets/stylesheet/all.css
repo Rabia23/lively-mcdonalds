@@ -718,6 +718,7 @@ body.login{background: #eee !important;}
 	letter-spacing: 0;
 }
 
+/*
 .breadcrum > span + span:before{
 	display: inline-block;
 	vertical-align: top;
@@ -725,6 +726,7 @@ body.login{background: #eee !important;}
 	margin: 0 1px 0 5px;
 	color: #337ab7;
 }
+*/
 
 #footer{
 	position: absolute;
@@ -1756,6 +1758,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	padding-right: 10px;
 }
 
+.users-section h1,
 .promotions h1{
 	font-weight: 600;
 	margin: 0 0 15px;
@@ -1769,6 +1772,57 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	font-size: 32px;
 	line-height: 40px;
 	text-transform: capitalize;
+	color: #999;
+	border-top: 3px solid #e7eaec;
+	background: #fff;
+	border-radius: 0;
+	margin: 0 !important;
+}
+
+.promotions .btn.dim:hover,
+.promotions .btn.dim:active,
+.promotions .btn.dim:focus{
+	color: #fff;
+	background: #999;
+}
+
+.btn-list{
+	margin: 0 -15px 20px;
+	overflow: hidden;
+	padding: 0;
+	list-style: none;
+	letter-spacing: -6px;
+}
+
+.btn-list li{
+	display: inline-block;
+	vertical-align: top;
+	letter-spacing: 0;
+	width: 33.33%;
+	padding: 0 15px 15px;
+}
+
+.promotions .btn.dim .ico-holder{
+	white-space: nowrap;
+	height: 70px;
+	display: block;
+	font-size: 50px;
+	line-height: 50px;
+}
+
+.promotions .btn.dim .ico-holder:after{
+	display: inline-block;
+	vertical-align: middle;
+	content: "";
+	overflow: hidden;
+	margin: 0 0 0 -4px;
+	min-height: 100%;
+}
+
+.promotions .btn.dim .ico-holder > *{
+	display: inline-block;
+	vertical-align: middle;
+	white-space: normal;
 }
 
 .promotions .btn.dim .fa{margin-right: 5px;}
@@ -1787,6 +1841,62 @@ li.active,
 .modal-backdrop{
 	background-color: #fff;
 	opacity: 0.8 !important;
+}
+
+.users-list{
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+	letter-spacing: -6px;
+	list-style: none;
+	margin: 0 -15px;
+}
+
+.users-list li{
+	
+	padding: 0 15px 15px;
+	display: inline-block;
+	vertical-align: top;
+	letter-spacing: 0;
+	width: 25%;
+}
+
+.users-list li .ibox{
+	border: 1px solid #999;
+	background: #fff;
+	padding: 10px;
+}
+
+.users-list dl{
+	overflow: hidden;
+	width: 100%;
+	position: relative;
+}
+
+.users-list dt{
+	float: left;
+	width: 50%;
+	clear: left;
+	font-size: 15px;
+	line-height: 21px;
+}
+
+.users-list dd{
+	overflow: hidden;
+	font-size: 15px;
+	line-height: 21px;
+	margin: 0 0 10px;
+}
+
+.detail{
+	opacity: 0;
+	visibility: hidden;
+	height: 0;
+	transition: all 0.5s linear;
+}
+
+.users-list li .ibox.hover .detail{
+	
 }
 
 @media screen and (min-width: 768px) {
@@ -1988,17 +2098,20 @@ li.active,
 
 @media screen and (max-width: 1600px) {
 	.row{
-		margin-left: -7px;
-		margin-right: -7px;
+		margin-left: -5px;
+		margin-right: -5px;
 	}
 	[class*="col-"]{
-		padding-left: 7px;
-		padding-right: 7px;
+		padding-left: 5px;
+		padding-right: 5px;
 	}
-	/*#side-menu .nav > li > a{padding: 14px 20px 14px 15px;}*/
-	#wrapper .navbar-static-side{width: 180px;}
-	#wrapper #page-wrapper{margin: 0 0 0 180px;}
-	#footer{left: 180px;}
+	.btn-list{margin: 0 -5px 20px;}
+	.btn-list li{padding: 0 5px 10px;}
+	#wrapper .sidebar-collapse .nav > li > a{font-size: 14px;}
+	#side-menu .nav > li > a{padding: 14px 18px 14px 23px;}
+	#wrapper .navbar-static-side{width: 170px;}
+	#wrapper #page-wrapper{margin: 0 0 0 170px;}
+	#footer{left: 170px;}
 	body.mini-navbar #wrapper .navbar-static-side{width: 70px;}
 	body.mini-navbar #wrapper #page-wrapper{margin: 0 0 0 70px;}
 	#wrapper .wrapper-content{padding: 40px 0 20px !important;}
@@ -2042,6 +2155,7 @@ li.active,
 	.opportunities .ibox .content-holder{min-height: 200px;}
 	.opportunities .progress-area .progress-holder{padding: 15px 0;}
 	.opportunities{padding-bottom: 25px;}
+	.btn-list li{width: 50%;}
 }
 
 @media screen and (max-width: 1199px) {
@@ -2251,6 +2365,7 @@ li.active,
 	.comment-block{top: 133px;}
 	#wrapper .m-r-sm{margin-right: 5px;}
 	#wrapper .nav > li > a i{margin-right: 3px;}
+	#wrapper .users-section h1,
 	#wrapper .promotions h1{
 		font-size: 28px;
 		line-height: 34px;
@@ -2262,6 +2377,7 @@ li.active,
 	}
 	.header-visual .nav.navbar-top-links.navbar-right{text-align: right;}
 	.header-visual .navbar-top-links li:last-child{margin-right: 0;}
+	.btn-list li{width: 100%;}
 }
 
 @media screen and (max-width: 768px) {

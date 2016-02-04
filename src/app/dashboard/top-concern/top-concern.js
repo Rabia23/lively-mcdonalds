@@ -50,7 +50,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
                 "marginTop": -80,
                 "marginBottom": -50,
                 "autoMargins": false,
-                "labelText": "[[title]] [[value]]",
+                "labelText": "[[title]] : [[value]]",
                 "labelTickColor" : "#FFF",
                 "labelRadius" : 8,
                 "labelColorField": "color",

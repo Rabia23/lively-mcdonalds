@@ -590,10 +590,11 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
   $templateCache.put("dashboard/regional-analysis/regional-analysis.tpl.html",
     "<div class=\"ibox float-e-margins\" ng-class=\"{loading: show_loading}\">\n" +
     "    <div class=\"ibox-title\">\n" +
-    "        <h5 ng-show = \"area_view\">{{title}}</h5>\n" +
-    "        <h5 ng-show = \"area_view == false && regional_view == true\">{{selected_area.name}}'s Region Analysis</h5>\n" +
-    "		<h5 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}}'s City Analysis</h5>\n" +
-    "		<h5 ng-show = \"area_view == false && regional_view == false && city_view == false\">{{selected_city.name}}'s Branch Analysis</h5>\n" +
+    "		<h5>{{title}}</h5>\n" +
+    "        <!--<h5 ng-show = \"area_view\">{{title}}</h5>-->\n" +
+    "        <!--<h5 ng-show = \"area_view == false && regional_view == true\">{{selected_area.name}}'s Region Analysis</h5>-->\n" +
+    "		<!--<h5 ng-show = \"regional_view == false && city_view == true\">{{selected_region.name}}'s City Analysis</h5>-->\n" +
+    "		<!--<h5 ng-show = \"area_view == false && regional_view == false && city_view == false\">{{selected_city.name}}'s Branch Analysis</h5>-->\n" +
     "        <div class=\"ibox-tools\">\n" +
     "            <ul class=\"tab-links\">\n" +
     "                <li ng-class=\"{active: radioModel == 'Complaints'}\"><a ng-model=\"radioModel\" uib-btn-radio=\"'Complaints'\" ng-click = \"showChart(null, 'areas')\" uib-tooltip=\"Click to View Complaint Resolution Analysis\">Complaints</a></li>\n" +
@@ -613,13 +614,19 @@ angular.module("dashboard/regional-analysis/regional-analysis.tpl.html", []).run
     "    </div>\n" +
     "    <div class=\"ibox-content morris-content-outer\">\n" +
     "     	<div class = \"breadcrum\">\n" +
-    "        <span ng-hide = \"area_view\">\n" +
-    "         <a ng-click = \"backToAreas()\" style = \"cursor:pointer\">Area</a>\n" +
+    "        <span ng-show = \"area_link == true\">\n" +
+    "         <a ng-click = \"backToAreas()\" style = \"cursor:pointer\">Area&nbsp;/</a>\n" +
     "       </span>\n" +
-    "       <span ng-show = \"area_view == false && regional_view == false\">\n" +
-    "         <a ng-click = \"backToRegions(selected_area)\" style = \"cursor:pointer\">{{selected_area.name}}</a>\n" +
+    "       <span ng-show = \"area_link == true && region_link == true\">\n" +
+    "         <a ng-click = \"backToRegions(selected_area)\" style = \"cursor:pointer\">{{selected_area.name}}&nbsp;/</a>\n" +
     "       </span>\n" +
-    "       <span ng-show = \"area_view == false && regional_view == false && city_view == false\">\n" +
+    "		<span ng-show = \"area_link == false && region_link == true\">\n" +
+    "         <a ng-click = \"backToRegions(selected_area)\" style = \"cursor:pointer\"> Region&nbsp;/</a>\n" +
+    "       </span>\n" +
+    "		<span ng-show = \"area_link == true && region_link == true && city_link == true\">\n" +
+    "         <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}}</a>\n" +
+    "       </span>\n" +
+    "       <span ng-show = \"area_link == false && region_link == true && city_link == true\">\n" +
     "         <a ng-click = \"backToCities(selected_region)\" style = \"cursor:pointer;\">{{selected_region.name}}</a>\n" +
     "       </span>\n" +
     "     </div>\n" +
@@ -1142,16 +1149,58 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
     "     <ui-view name = \"header\"></ui-view>\n" +
     "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
-    "		<div class=\"row\">\n" +
+    "		<div class=\"row users-section\">\n" +
     "			<div class=\"col-lg-12\">\n" +
+    "				<h1>{{user_list}} List</h1>\n" +
+    "				<div class=\"users-area\">\n" +
+    "					<div flash-message=\"5000\" ></div>\n" +
+    "					<ul class=\"users-list\" data-users = \"users\">\n" +
+    "						<li ng-repeat = \"user in users track by $index\" ng-class=\"{'deactivate': user.is_active == false}\">\n" +
+    "							<div class=\"ibox\">\n" +
+    "								<dl>\n" +
+    "									<dt>Name:</dt>\n" +
+    "									<dd>{{user.first_name}} {{user.last_name}}</dd>\n" +
+    "									<dt>Phone No.</dt>\n" +
+    "									<dd>{{user.phone_no}}</dd>\n" +
+    "									<dt ng-if = \"child_role == 2 || child_role == 3\">Branch</dt>\n" +
+    "									<dd ng-if = \"child_role == 2 || child_role == 3\">{{user.branch.name}}</dd>\n" +
+    "									<dt>Action</dt>\n" +
+    "									<dd>\n" +
+    "										<div class=\"btn-box\">\n" +
+    "											<a title=\"Edit User\" ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "											<a title=\"Deactivate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user btn-active': user.is_active == false}\"></a>\n" +
+    "											<a title=\"Activate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user-times btn-deactive': user.is_active == true}\"></a>\n" +
+    "										</div>\n" +
+    "									</dd>\n" +
+    "								</dl>\n" +
+    "								<dl class=\"detail\">\n" +
+    "									<dt>User Name:</dt>\n" +
+    "									<dd>{{user.username}}</dd>\n" +
+    "									<dt>Email</dt>\n" +
+    "									<dd>{{user.email}}</dd>\n" +
+    "									<dt>Active</dt>\n" +
+    "									<dd>{{user.is_active}}</dd>\n" +
+    "									<dt>Role</dt>\n" +
+    "									<dd>{{user.role}}</dd>\n" +
+    "									<dt ng-if = \"child_role == 4\">Region</dt>\n" +
+    "									<dd ng-if = \"child_role == 4\">{{user.region.name}}</dd>\n" +
+    "								</dl>\n" +
+    "							</div>\n" +
+    "						</li>\n" +
+    "						<li class=\"btn-holder\">\n" +
+    "							<button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
+    "						</li>\n" +
+    "					</ul>\n" +
+    "				</div>\n" +
+    "<!--\n" +
     "				<div class=\"ibox float-e-margins\">\n" +
     "					<div class=\"ibox-title\">\n" +
-    "						<h5>{{user_list}} List</h5>\n" +
+    "						<h5></h5>\n" +
     "					</div>\n" +
     "						<div class=\"ibox-content\">\n" +
-    "							<div flash-message=\"5000\" ></div>\n" +
+    "\n" +
     "							<div class=\"user-block\">\n" +
-    "								<button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
+    "\n" +
     "							</div>\n" +
     "						<div class=\"info-holder\">\n" +
     "							<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\" data-users = \"users\">\n" +
@@ -1198,6 +1247,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "						</div>\n" +
     "					</div>\n" +
     "				</div>\n" +
+    "-->\n" +
     "			</div>\n" +
     "		</div>\n" +
     "	  </div>\n" +
@@ -1217,8 +1267,8 @@ angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache
     "		<div class=\"row promotions\">\n" +
     "			<div class=\"col-lg-12\">\n" +
     "				<h1>Coffee Promotion</h1>\n" +
-    "				<div class=\"row grid-items\">\n" +
-    "					<div class=\"col-md-6 grid-item\">\n" +
+    "				<div class=\"row\">\n" +
+    "					<div class=\"col-md-6\">\n" +
     "						<div class=\"ibox float-e-margins\">\n" +
     "							<div class=\"ibox-title\">\n" +
     "								<h5>Question 1 <small>Lorem Ipsum is simply</small></h5>\n" +
@@ -1228,7 +1278,7 @@ angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache
     "							</div>\n" +
     "						</div>\n" +
     "					</div>\n" +
-    "					<div class=\"col-md-6 grid-item\">\n" +
+    "					<div class=\"col-md-6\">\n" +
     "						<div class=\"ibox float-e-margins\">\n" +
     "							<div class=\"ibox-title\">\n" +
     "								<h5>Question 2 <small>Lorem Ipsum is simply</small></h5>\n" +
@@ -1239,7 +1289,9 @@ angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache
     "							</div>\n" +
     "						</div>\n" +
     "					</div>\n" +
-    "					<div class=\"col-md-6 grid-item\">\n" +
+    "				</div>\n" +
+    "				<div class=\"row\">\n" +
+    "					<div class=\"col-md-6\">\n" +
     "						<div class=\"ibox float-e-margins\">\n" +
     "							<div class=\"ibox-title\">\n" +
     "								<h5>Question 4 <small>Lorem Ipsum is simply</small></h5>\n" +
@@ -1250,7 +1302,7 @@ angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache
     "							</div>\n" +
     "						</div>\n" +
     "					</div>\n" +
-    "					<div class=\"col-md-6 grid-item\">\n" +
+    "					<div class=\"col-md-6\">\n" +
     "						<div class=\"ibox float-e-margins\">\n" +
     "							<div class=\"ibox-title\">\n" +
     "								<h5>Question 3 <small>Lorem Ipsum is simply</small></h5>\n" +
@@ -1260,6 +1312,8 @@ angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache
     "							</div>\n" +
     "						</div>\n" +
     "					</div>\n" +
+    "				</div>\n" +
+    "				<div class=\"row\">\n" +
     "					<div class=\"col-md-6 grid-item\">\n" +
     "						<div class=\"ibox float-e-margins\">\n" +
     "							<div class=\"ibox-title\">\n" +
@@ -1300,45 +1354,27 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "		<div class=\"row promotions\">\n" +
     "			<div class=\"col-lg-12\">\n" +
     "				<div class=\"row\">\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<button type=\"button\" class=\"btn btn-info dim btn-large-dim btn-outline\" ui-sref=\"coffee-promotions\">\n" +
-    "							<i class=\"fa fa-coffee\"></i>\n" +
-    "							Coffee Promotion\n" +
-    "						</button>\n" +
-    "					</div>\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<button type=\"button\" class=\"btn btn-primary dim btn-large-dim btn-outline\">\n" +
-    "							<i class=\"fa fa-cutlery\"></i>\n" +
-    "							Omelette Promotion\n" +
-    "						</button>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "				<div class=\"row\">\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<button type=\"button\" class=\"btn btn-info dim btn-large-dim btn-outline\">\n" +
-    "							<i class=\"fa fa-coffee\"></i>\n" +
-    "							Coffe Promotion\n" +
-    "						</button>\n" +
-    "					</div>\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<button type=\"button\" class=\"btn btn-primary dim btn-large-dim btn-outline\">\n" +
-    "							<i class=\"fa fa-cutlery\"></i>\n" +
-    "							Omelette Promotion\n" +
-    "						</button>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "				<div class=\"row\">\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<button type=\"button\" class=\"btn btn-info dim btn-large-dim btn-outline\">\n" +
-    "							<i class=\"fa fa-coffee\"></i>\n" +
-    "							Coffe Promotion\n" +
-    "						</button>\n" +
-    "					</div>\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<button type=\"button\" class=\"btn btn-primary dim btn-large-dim btn-outline\">\n" +
-    "							<i class=\"fa fa-cutlery\"></i>\n" +
-    "							Omelette Promotion\n" +
-    "						</button>\n" +
+    "					<div class=\"col-xs-12\">\n" +
+    "						<ul class=\"btn-list\">\n" +
+    "							<li>\n" +
+    "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\" ui-sref=\"coffee-promotions\">\n" +
+    "									<span class=\"ico-holder\"><i class=\"fa fa-coffee\"></i></span>\n" +
+    "									Coffee Promotion\n" +
+    "								</a>\n" +
+    "							</li>\n" +
+    "							<li>\n" +
+    "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\">\n" +
+    "									<span class=\"ico-holder\"><i class=\"fa fa-cutlery\"></i></span>\n" +
+    "									Omelette Promotion\n" +
+    "								</a>\n" +
+    "							</li>\n" +
+    "							<li>\n" +
+    "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\" ui-sref=\"coffee-promotions\">\n" +
+    "									<span class=\"ico-holder\"><i class=\"fa fa-coffee\"></i></span>\n" +
+    "									Coffee Promotion\n" +
+    "								</a>\n" +
+    "							</li>\n" +
+    "						</ul>\n" +
     "					</div>\n" +
     "				</div>\n" +
     "			</div>\n" +
