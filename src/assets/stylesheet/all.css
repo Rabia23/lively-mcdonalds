@@ -718,6 +718,7 @@ body.login{background: #eee !important;}
 	letter-spacing: 0;
 }
 
+/*
 .breadcrum > span + span:before{
 	display: inline-block;
 	vertical-align: top;
@@ -725,6 +726,7 @@ body.login{background: #eee !important;}
 	margin: 0 1px 0 5px;
 	color: #337ab7;
 }
+*/
 
 #footer{
 	position: absolute;
