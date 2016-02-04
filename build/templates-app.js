@@ -1141,47 +1141,62 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
     "     <ui-view name = \"header\"></ui-view>\n" +
+    "	<a class=\"add-user\" ng-click = \"open()\"><i class=\"fa fa-plus\"></i></a>\n" +
     "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "		<div class=\"row users-section\">\n" +
     "			<div class=\"col-lg-12\">\n" +
-    "				<h1>{{user_list}} List</h1>\n" +
+    "				<h1>{{user_list}}</h1>\n" +
     "				<div class=\"users-area\">\n" +
     "					<div flash-message=\"5000\" ></div>\n" +
     "					<ul class=\"users-list\" data-users = \"users\">\n" +
     "						<li ng-repeat = \"user in users track by $index\" ng-class=\"{'deactivate': user.is_active == false}\">\n" +
     "							<div class=\"ibox\">\n" +
-    "								<dl>\n" +
-    "									<dt>Name:</dt>\n" +
-    "									<dd>{{user.first_name}} {{user.last_name}}</dd>\n" +
-    "									<dt>Phone No.</dt>\n" +
-    "									<dd>{{user.phone_no}}</dd>\n" +
-    "									<dt ng-if = \"child_role == 2 || child_role == 3\">Branch</dt>\n" +
-    "									<dd ng-if = \"child_role == 2 || child_role == 3\">{{user.branch.name}}</dd>\n" +
-    "									<dt>Action</dt>\n" +
-    "									<dd>\n" +
-    "										<div class=\"btn-box\">\n" +
-    "											<a title=\"Edit User\" ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
-    "											<a title=\"Deactivate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user btn-active': user.is_active == false}\"></a>\n" +
-    "											<a title=\"Activate User\" ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user-times btn-deactive': user.is_active == true}\"></a>\n" +
-    "										</div>\n" +
-    "									</dd>\n" +
-    "								</dl>\n" +
-    "								<dl class=\"detail\">\n" +
-    "									<dt>User Name:</dt>\n" +
-    "									<dd>{{user.username}}</dd>\n" +
-    "									<dt>Email</dt>\n" +
-    "									<dd>{{user.email}}</dd>\n" +
-    "									<dt>Active</dt>\n" +
-    "									<dd>{{user.is_active}}</dd>\n" +
-    "									<dt>Role</dt>\n" +
-    "									<dd>{{user.role}}</dd>\n" +
-    "									<dt ng-if = \"child_role == 4\">Region</dt>\n" +
-    "									<dd ng-if = \"child_role == 4\">{{user.region.name}}</dd>\n" +
-    "								</dl>\n" +
+    "								<div class=\"header\">\n" +
+    "									<div class=\"img-holder\"><img src=\"assets/images/person-img.png\" alt=\"\"></div>\n" +
+    "									<h5>{{user.first_name}} {{user.last_name}}</h5>\n" +
+    "								</div>\n" +
+    "								<ul>\n" +
+    "									<li>\n" +
+    "										<span class=\"title\">Phone No.</span>\n" +
+    "										<div class=\"text\">{{user.phone_no}}</div>\n" +
+    "									</li>\n" +
+    "									<li>\n" +
+    "										<span class=\"title\" ng-if = \"child_role == 2 || child_role == 3\">Branch</span>\n" +
+    "										<div class=\"text\" ng-if = \"child_role == 2 || child_role == 3\">{{user.branch.name}}</div>\n" +
+    "									</li>\n" +
+    "									<li>\n" +
+    "										<span class=\"title\">User Name:</span>\n" +
+    "										<div class=\"text\">{{user.username}}</div>\n" +
+    "									</li>\n" +
+    "									<li>\n" +
+    "										<span class=\"title\">Email</span>\n" +
+    "										<div class=\"text\">{{user.email}}</div>\n" +
+    "									</li>\n" +
+    "									<li>\n" +
+    "										<span class=\"title\">Active</span>\n" +
+    "										<div class=\"text\">{{user.is_active}}</div>\n" +
+    "									</li>\n" +
+    "									<li>\n" +
+    "										<span class=\"title\">Role</span>\n" +
+    "										<div class=\"text\">{{user.role}}</div>\n" +
+    "									</li>\n" +
+    "									<li>\n" +
+    "										<span class=\"title\"  ng-if = \"child_role == 4\">Region</span>\n" +
+    "										<div class=\"text\" ng-if = \"child_role == 4\">{{user.region.name}}</div>\n" +
+    "									</li>\n" +
+    "								</ul>\n" +
+    "								<div class=\"btn-box\">\n" +
+    "									<span class=\"btn-holder\">\n" +
+    "										<a ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
+    "									</span>\n" +
+    "									<span class=\"btn-holder\">\n" +
+    "										<a ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user btn-active': user.is_active == false}\"></a>\n" +
+    "									</span>\n" +
+    "									<span class=\"btn-holder\">\n" +
+    "										<a ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user-times btn-deactive': user.is_active == true}\"></a>\n" +
+    "									</span>\n" +
+    "								</div>\n" +
     "							</div>\n" +
-    "						</li>\n" +
-    "						<li class=\"btn-holder\">\n" +
-    "							<button type=\"button\" class=\"btn btn-primary\" ng-click = \"open()\"><i class=\"fa fa-user-plus\"></i> Add {{user_list}}</button>\n" +
     "						</li>\n" +
     "					</ul>\n" +
     "				</div>\n" +
