@@ -18,7 +18,7 @@
 							<table class="footable toggle-arrow-tiny table table-striped table-hover" data-page-size="8" data-users = "users">
 								<thead>
 									<tr>
-										<th data-toggle="true" data-sort-initial="true">Name</th>
+										<th data-toggle="true">Name</th>
 										<th data-hide="all">User Name</th>
 										<th data-hide="all">Email</th>
 										<th data-hide="all">Status</th>
@@ -35,7 +35,7 @@
 										<td>{{user.username}}</td>
 										<td>{{user.email}}</td>
 										<td>{{user.status}}</td>
-										<td>{{user.role}}</td>
+										<td>{{user.user_role}}</td>
 										<td >{{user.phone_no}}</td>
 										<td ng-if = "child_role == 2 || child_role == 3">{{user.branch.name}}</td>
 										<td ng-if = "child_role == 4">{{user.region.name}}</td>

@@ -23,6 +23,7 @@
         $scope.region_id = data.parent.region.id;
       }
       _.each($scope.users, function(value, index){
+        value.user_role = Enum.get_user_label(value.role);
         if(value.is_active){
           value.status = "Active";
         }

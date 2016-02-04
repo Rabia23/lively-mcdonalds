@@ -153,7 +153,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "                              <div class=\"morris-graph-holder\">\n" +
     "                                 <div class=\"morris-holder\">\n" +
     "                                      <div ng-hide = \"segment.show_string\">\n" +
-    "                                          <canvas id=\"doughnut\" class=\"chart chart-doughnut\" chart-data=\"segment.data\" chart-labels=\"segment.labels\" chart-colours=\"segment.colors\"></canvas>\n" +
+    "                                          <canvas id=\"doughnut\" class=\"chart chart-doughnut\" chart-data=\"segment.data\" chart-labels=\"segment.labels\" chart-colours=\"segment.colors\" chart-options = \"segment.options\"></canvas>\n" +
     "                                      </div>\n" +
     "                                      <div ng-show=\"segment.show_string\">No Data Available</div>\n" +
     "                                 </div>\n" +
@@ -388,7 +388,7 @@ angular.module("dashboard/opportunities/opportunities.tpl.html", []).run(["$temp
 
 angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/overall-feedback/overall-feedback.tpl.html",
-    "<div class=\"row inner-row rating\">\n" +
+    "<div class=\"row inner-row rating\" same-bar-height data-data = \"bar.data\">\n" +
     "    <div class=\"col-xs-12\">\n" +
     "        <div class=\"ibox float-e-margins\" ng-class=\"{loading: show_loading}\">\n" +
     "            <div class=\"title-outer\">\n" +
@@ -719,7 +719,7 @@ angular.module("dashboard/statistics/statistics.tpl.html", []).run(["$templateCa
 
 angular.module("dashboard/top-concern/top-concern.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard/top-concern/top-concern.tpl.html",
-    "<div class=\"row inner-row add\">\n" +
+    "<div class=\"row inner-row add\" same-height data-data = \"data\">\n" +
     "  <div class=\"col-xs-12\">\n" +
     "    <div class=\"ibox float-e-margins float-e-margin-none\" ng-class=\"{loading: show_loading}\">\n" +
     "      <div class=\"title-outer\">\n" +
@@ -1157,7 +1157,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "							<table class=\"footable toggle-arrow-tiny table table-striped table-hover\" data-page-size=\"8\" data-users = \"users\">\n" +
     "								<thead>\n" +
     "									<tr>\n" +
-    "										<th data-toggle=\"true\" data-sort-initial=\"true\">Name</th>\n" +
+    "										<th data-toggle=\"true\">Name</th>\n" +
     "										<th data-hide=\"all\">User Name</th>\n" +
     "										<th data-hide=\"all\">Email</th>\n" +
     "										<th data-hide=\"all\">Status</th>\n" +
@@ -1174,7 +1174,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "										<td>{{user.username}}</td>\n" +
     "										<td>{{user.email}}</td>\n" +
     "										<td>{{user.status}}</td>\n" +
-    "										<td>{{user.role}}</td>\n" +
+    "										<td>{{user.user_role}}</td>\n" +
     "										<td >{{user.phone_no}}</td>\n" +
     "										<td ng-if = \"child_role == 2 || child_role == 3\">{{user.branch.name}}</td>\n" +
     "										<td ng-if = \"child_role == 4\">{{user.region.name}}</td>\n" +

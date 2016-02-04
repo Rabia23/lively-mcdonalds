@@ -52,20 +52,20 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
      });
   }
   show_graph("","");
-})
-
-.directive('sameBarHeight', function() {
-  return {
-      restrict: 'A',
-      scope: {
-        mydata: '='
-      },
-      link: function(scope, ele, attrs) {
-        scope.$watch('mydata', function(watchedData) {
-          if(watchedData !== undefined){
-            window.initSameHeight();
-          }
-        });
-      }
-  };
 });
+
+// .directive('sameBarHeight', function() {
+//   return {
+//       restrict: 'A',
+//       scope: {
+//         data: '='
+//       },
+//       link: function(scope, ele, attrs) {
+//         scope.$watch('data', function(watchedData) {
+//           if(watchedData !== undefined){
+//             window.initSameHeight();
+//           }
+//         });
+//       }
+//   };
+// });
