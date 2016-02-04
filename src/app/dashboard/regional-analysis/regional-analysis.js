@@ -44,6 +44,10 @@
   $scope.regional_view = false;
   $scope.city_view = false;
 
+  $scope.area_link = false;
+  $scope.region_link = false;
+  $scope.city_link = false;
+
   $scope.radioModel = 'QSC';
 
   $scope.show_loading = false;
@@ -81,9 +85,6 @@
     }
     else {
      Graphs.area_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function (area_data){
-
-       console.log("area analysis");
-       console.log(area_data);
        showString(area_data.count);
        $scope.donut_graph_data = regionalAnalysisChartService.getDonutChartData(area_data, $scope.question_type);
        $scope.donut_graph_data.objects.push({id:"", name:"Pakistan", show_chart: $scope.donut_graph_data.objects[0].show_chart === false && $scope.donut_graph_data.objects[1].show_chart === false ?false:true});
@@ -108,25 +109,23 @@
     $scope.selected_area = area;
     $scope.regional_view = true;
     $scope.area_view = false;
-    //$scope.role_area_view = user_role === "OPERATIONAL_CONSULTANT" ? true : false;
+    $scope.area_link = user_role == 4 ? false : true;
+    $scope.region_link = false;
+    $scope.city_link = false;
     $scope.show_loading = true;
     $scope.donut_regions_data = [];
     var type_id;
     if($scope.radioModel === 'Complaints'){
-      type_id = user_role === "OPERATIONAL_CONSULTANT" ? "" : 1;
+      type_id = user_role == 4 ? "" : 1;
       Graphs.action_analysis(type_id, "", "", $scope.start_date, $scope.end_date, area.id).$promise.then(function(complains_data){
-         console.log(complains_data);
          showString(complains_data.count);
          $scope.donut_regions_data = regionalAnalysisChartService.getComplaintsDonutChartData(complains_data);
          $scope.show_loading = false;
       });
     }
     else {
-      type_id = user_role === "OPERATIONAL_CONSULTANT" ? "" : 1;
+      type_id = user_role == 4 ? "" : 1;
       Graphs.regional_analysis($scope.question_type, $scope.start_date, $scope.end_date, area.id, type_id).$promise.then(function(data){
-
-        console.log("regional analysis");
-        console.log(data);
         showString(data.count);
         $scope.donut_regions_data = regionalAnalysisChartService.getDonutChartData(data, $scope.question_type);
         $scope.show_loading = false;
@@ -139,8 +138,10 @@
     $scope.selected_region = region;
     $scope.area_view = false;
     $scope.regional_view = false;
-    //$scope.role_regional_view = true;
     $scope.city_view = true;
+    $scope.area_link = user_role == 4 ? false : true;
+    $scope.region_link = true;
+    $scope.city_link = false;
     $scope.show_loading = true;
     $scope.donut_cities_data = [];
     if($scope.radioModel === 'Complaints'){
@@ -152,9 +153,6 @@
     }
     else {
       Graphs.city_analysis(region.id, $scope.question_type, $scope.start_date, $scope.end_date, 2).$promise.then(function(data){
-
-        console.log("city analysis");
-        console.log(data);
         showString(data.count);
         $scope.donut_cities_data = regionalAnalysisChartService.getDonutChartData(data, $scope.question_type);
         $scope.show_loading = false;
@@ -168,11 +166,14 @@
     $scope.area_view = false;
     $scope.regional_view = false;
     $scope.city_view = false;
+    $scope.area_link = user_role == 4 || user_role == 3 ? false : true;
+    $scope.region_link = user_role == 3 ? false : true;
+    $scope.city_link = user_role == 3 ? false : true;
     $scope.show_loading = true;
     $scope.donut_branches_data = [];
     var type_id;
     if($scope.radioModel === 'Complaints'){
-      type_id = user_role === "BRANCH_MANAGER" ? "" : 3;
+      type_id = user_role == 3 ? "" : 3;
       Graphs.action_analysis(type_id, "", city.id, $scope.start_date, $scope.end_date,"").$promise.then(function(complains_data){
          showString(complains_data.count);
          $scope.donut_branches_data  = regionalAnalysisChartService.getComplaintsDonutChartData(complains_data);
@@ -180,11 +181,8 @@
       });
     }
     else {
-      type_id = user_role === "BRANCH_MANAGER" ? "" : 3;
+      type_id = user_role == 3 ? "" : 3;
       Graphs.branch_analysis(city.id, $scope.question_type, $scope.start_date, $scope.end_date, type_id).$promise.then(function (data) {
-
-        console.log("branch analysis");
-        console.log(data);
         showString(data.count);
         $scope.donut_branches_data = regionalAnalysisChartService.getDonutChartData(data, $scope.question_type);
         $scope.show_loading = false;
@@ -193,51 +191,50 @@
   };
 
   $scope.backToAreas = function(){
-    console.log("back to area");
 
     $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
     $scope.selected_area = null;
     $scope.area_view = true;
     $scope.regional_view = false;
+    $scope.area_link = false;
+    $scope.region_link = false;
+    $scope.city_link = false;
     $scope.donut_regions_data = [];
     $scope.showChart(null, 'areas');
   };
 
   $scope.backToRegions = function(area){
 
-    console.log("back to regions");
-    console.log(area);
     $scope.question_type = ($scope.radioModel === 'Rating') ? 1 : 2;
     $scope.selected_region = null;
     $scope.regional_view = true;
     $scope.city_view = false;
+    $scope.area_link = user_role == 4 ? false : true;
+    $scope.region_link = false;
+    $scope.city_link = false;
     $scope.donut_cities_data = [];
     $scope.showChart(area, 'regions');
   };
 
   $scope.backToCities = function(region){
 
-    console.log("back to cities");
-    console.log(region);
-
     $scope.selected_city = null;
     $scope.city_view = true;
     $scope.regional_view = false;
+    $scope.area_link = user_role == 4 ? false : true;
+    $scope.region_link = true;
+    $scope.city_link = false;
     $scope.donut_branches_data = [];
     $scope.showChart(region, 'cities');
   };
 
   $scope.showTitle = function(radioModel){
-    if(radioModel === 'Rating'){$scope.title = 'Patch Feedback Analysis';}
-    else if(radioModel === 'QSC'){$scope.title = 'Patch QSC Analysis';}
-    else if(radioModel === 'Complaints'){$scope.title = 'Patch Complaint Analysis';}
+    if(radioModel === 'Rating'){$scope.title = 'Feedback Analysis';}
+    else if(radioModel === 'QSC'){$scope.title = 'QSC Analysis';}
+    else if(radioModel === 'Complaints'){$scope.title = 'Complaint Analysis';}
   };
 
   $scope.showChart = function(object_id, string){
-
-      console.log("inside show chart");
-      console.log(object_id);
-      console.log(string);
       $scope.showTitle($scope.radioModel);
       $scope.object_id = object_id;
       $scope.string = string;
@@ -247,18 +244,12 @@
           $scope.getAreas();
         }
         else if($scope.regional_view === true){
-          console.log("$scope.selected_area");
-          console.log($scope.selected_area);
           $scope.getAreaRegions($scope.selected_area);
         }
         else if($scope.city_view === true){
-          console.log("$scope.selected_region");
-          console.log($scope.selected_region);
           $scope.getRegionCities($scope.selected_region);
         }
         else{
-          console.log("$scope.selected_city");
-          console.log($scope.selected_city);
           $scope.getCityBranches($scope.selected_city);
         }
       }
@@ -273,17 +264,15 @@
       }
 
   };
-  if(user_role === "OPERATIONAL_CONSULTANT"){
-
-    console.log("inside OPERATIONAL_CONSULTANT role");
+  if(user_role == 4){
+    $scope.showTitle($scope.radioModel);
     $scope.getAreaRegions("");
   }
-  else if(user_role === "BRANCH_MANAGER"){
-    console.log("inside BRANCH_MANAGER role");
+  else if(user_role == 3){
+    $scope.showTitle($scope.radioModel);
     $scope.getCityBranches("");
   }
   else {
-    console.log("inside Director role");
     $scope.showChart(null, 'areas');
   }
 

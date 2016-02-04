@@ -1,9 +1,10 @@
 <div class="ibox float-e-margins" ng-class="{loading: show_loading}">
     <div class="ibox-title">
-        <h5 ng-show = "area_view">{{title}}</h5>
-        <h5 ng-show = "area_view == false && regional_view == true">{{selected_area.name}}'s Region Analysis</h5>
-		<h5 ng-show = "regional_view == false && city_view == true">{{selected_region.name}}'s City Analysis</h5>
-		<h5 ng-show = "area_view == false && regional_view == false && city_view == false">{{selected_city.name}}'s Branch Analysis</h5>
+		<h5>{{title}}</h5>
+        <!--<h5 ng-show = "area_view">{{title}}</h5>-->
+        <!--<h5 ng-show = "area_view == false && regional_view == true">{{selected_area.name}}'s Region Analysis</h5>-->
+		<!--<h5 ng-show = "regional_view == false && city_view == true">{{selected_region.name}}'s City Analysis</h5>-->
+		<!--<h5 ng-show = "area_view == false && regional_view == false && city_view == false">{{selected_city.name}}'s Branch Analysis</h5>-->
         <div class="ibox-tools">
             <ul class="tab-links">
                 <li ng-class="{active: radioModel == 'Complaints'}"><a ng-model="radioModel" uib-btn-radio="'Complaints'" ng-click = "showChart(null, 'areas')" uib-tooltip="Click to View Complaint Resolution Analysis">Complaints</a></li>
@@ -23,13 +24,19 @@
     </div>
     <div class="ibox-content morris-content-outer">
      	<div class = "breadcrum">
-        <span ng-hide = "area_view">
-         <a ng-click = "backToAreas()" style = "cursor:pointer">Area</a>
+        <span ng-show = "area_link == true">
+         <a ng-click = "backToAreas()" style = "cursor:pointer">Area&nbsp;/</a>
        </span>
-       <span ng-show = "area_view == false && regional_view == false">
-         <a ng-click = "backToRegions(selected_area)" style = "cursor:pointer">{{selected_area.name}}</a>
+       <span ng-show = "area_link == true && region_link == true">
+         <a ng-click = "backToRegions(selected_area)" style = "cursor:pointer">{{selected_area.name}}&nbsp;/</a>
        </span>
-       <span ng-show = "area_view == false && regional_view == false && city_view == false">
+		<span ng-show = "area_link == false && region_link == true">
+         <a ng-click = "backToRegions(selected_area)" style = "cursor:pointer"> Region&nbsp;/</a>
+       </span>
+		<span ng-show = "area_link == true && region_link == true && city_link == true">
+         <a ng-click = "backToCities(selected_region)" style = "cursor:pointer;">{{selected_region.name}}</a>
+       </span>
+       <span ng-show = "area_link == false && region_link == true && city_link == true">
          <a ng-click = "backToCities(selected_region)" style = "cursor:pointer;">{{selected_region.name}}</a>
        </span>
      </div>

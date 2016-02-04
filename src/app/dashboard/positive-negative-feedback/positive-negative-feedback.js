@@ -8,7 +8,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
 
 
   Graphs.comments(1).$promise.then(function(data){
-    console.log(data);
+    //console.log(data);
     $scope.feedback_count = data.feedback_count;
     $scope.comments = _.map(data.feedbacks,  function(data){
       return commentService.getComment(data);
