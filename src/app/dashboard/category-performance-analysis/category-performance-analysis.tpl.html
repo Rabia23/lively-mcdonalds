@@ -1,22 +1,23 @@
 <div class="ibox float-e-margins" ng-class="{loading: show_loading}">
+
   <div class="title-outer">
     <div class="ibox-title">
       <h5>Business Segment Breakdown</h5>
-      <div class="ibox-tools">
-        <ul class="tab-links">
-          <li ng-class="{active: class == ''}"><a ng-click = "onClick(null, 'All')" uib-tooltip="Click to view QSC Segmentation Breakdown">All</a></li>
-          <li class="item2" ng-class="{active: class == 'Quality'}"><a ng-click = "onClick(QualityID, 'Quality')" uib-tooltip="Click to View Quality SubCategories Breakdown">Quality</a></li>
-          <li class="item3" ng-class="{active: class == 'Service'}"><a ng-click = "onClick(ServiceID, 'Service')" uib-tooltip="Click to view Service SubCategories Breakdown">Service</a></li>
-          <li class="item4" ng-class="{active: class == 'Cleanliness'}"><a ng-click = "onClick(CleanlinessID, 'Cleanliness')" uib-tooltip="Click to view Cleanliness SubCategories Breakdown">Cleanliness</a></li>
-          <li class="item5">
-            <div class="calender-outer">
-               <span class="calendar-holder" uib-tooltip="Click to Select Custom Date Range">
-                 <input date-range-picker id="daterange-map" readonly="readonly" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption" readonly="true"/>
-                 <i class="fa fa-calendar" map-range-click></i>
-               </span>
-            </div>
-          </li>
-        </ul>
+        <div class="ibox-tools">
+		  <ul class="tab-links">
+			  <li ng-class="{active: class == ''}"><a ng-click = "onClick(null, 'All')">All</a></li>
+			  <li class="item2" ng-class="{active: class == 'Quality'}"><a ng-click = "onClick(QualityID, 'Quality')">Quality</a></li>
+			  <li class="item3" ng-class="{active: class == 'Service'}"><a ng-click = "onClick(ServiceID, 'Service')">Service</a></li>
+			  <li class="item4" ng-class="{active: class == 'Cleanliness'}"><a ng-click = "onClick(CleanlinessID, 'Cleanliness')">Cleanliness</a></li>
+			  <li class="item5">
+				  <div class="calender-outer">
+					  <span class="calendar-holder">
+						   <input date-range-picker id="daterange-map" readonly="readonly" name="daterange-map" class="date-picker" type="text" ng-model="date" max="today" options = "datePickerOption" readonly="true"/>
+						  <i class="fa fa-calendar" map-range-click></i>
+					  </span>
+				  </div>
+			  </li>
+		  </ul>
       </div>
     </div>
   </div>
