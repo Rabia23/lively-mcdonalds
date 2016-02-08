@@ -396,7 +396,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "            <ul class=\"tab-links\">\n" +
     "			  <li>\n" +
     "			    <div class=\"calender-outer\">\n" +
-    "				  <span class=\"calendar-holder\" uib-tooltip=\"Click to Select Custom Date Range\">\n" +
+    "				  <span class=\"calendar-holder\">\n" +
     "				    <input date-range-picker id=\"daterange-map\" readonly=\"readonly\" name=\"daterange-map\" class=\"date-picker\" type=\"text\" ng-model=\"date\" max=\"today\" options = \"datePickerOption\" readonly=\"true\"/>\n" +
     "					<i class=\"fa fa-calendar\" map-range-click></i>\n" +
     "				  </span>\n" +
@@ -671,8 +671,8 @@ angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$temp
     "<div class=\"modal-body info-area\">\n" +
     "  <a ng-click = \"ok()\" class=\"pull-right close-btn-font\"><i class=\"fa fa-times\"></i></a>\n" +
     "  <h2>Regional Analysis</h2>\n" +
-    "	<a style = \"cursor:pointer;\" class=\"btn-slider fa fa-angle-left\" ng-click=\"leftClickDisabled || previous(area,region,city,branch,sqc_data)\" ng-hide = \"leftClickDisabled\"></a>\n" +
-    "	<a style = \"cursor:pointer;\" class=\"btn-slider fa fa-angle-right\" ng-click=\"rightClickDisabled || next(area,region,city,branch,sqc_data)\" ng-hide = \"rightClickDisabled\"></a>\n" +
+    "	<a style = \"cursor:pointer;\" class=\"btnSlider\" ng-click=\"leftClickDisabled || previous(area,region,city,branch,sqc_data)\" ng-hide = \"leftClickDisabled\"></a>\n" +
+    "	<a style = \"cursor:pointer;\" class=\"btnSlider right\" ng-click=\"rightClickDisabled || next(area,region,city,branch,sqc_data)\" ng-hide = \"rightClickDisabled\"></a>\n" +
     "\n" +
     "  <div class=\"graph-container\" ng-class=\"{loading: show_loading}\">\n" +
     "  	<div class=\"holder\">\n" +
@@ -813,7 +813,7 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "					<div class=\"heading-slide\"><h2>overall rating</h2></div>\n" +
     "					<div class=\"heading-slide\"><h2>top concerns</h2></div>\n" +
     "					<div class=\"heading-slide\"><h2>Complaint analysis</h2></div>\n" +
-    "					<div class=\"heading-slide\"><h2>Laederboard</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>Leaderboard</h2></div>\n" +
     "				</div>\n" +
     "				<h1>Country Wide</h1>\n" +
     "			</div>\n" +
@@ -1014,12 +1014,12 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "<form  class=\"info-form\" name=\"UserForm\" ng-submit=\"add(UserForm.$valid)\" novalidate>\n" +
     "	<fieldset>\n" +
     "		<div class=\"modal-header\">\n" +
-    "			<h4 ng-if = \"!edit_form\">Add User</h4>\n" +
-    "			<h4 ng-if = \"edit_form\">Edit User</h4>\n" +
     "			<a class=\"close\" ng-click = \"cancel()\">\n" +
     "				<span aria-hidden=\"true\">&times;</span>\n" +
     "				<span class=\"sr-only\">Close</span>\n" +
     "			</a>\n" +
+    "			<h4 ng-if = \"!edit_form\">Add User</h4>\n" +
+    "			<h4 ng-if = \"edit_form\">Edit User</h4>\n" +
     "		</div>\n" +
     "		<div class=\"modal-body\">\n" +
     "			<div class=\"row form-container\" ng-class = \"{'edit-form': edit_form}\">\n" +
@@ -1159,12 +1159,11 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "										<div class=\"text\">{{user.email}}</div>\n" +
     "									</li>\n" +
     "									<li>\n" +
-    "										<span class=\"title\">Active</span>\n" +
+    "										<span class=\"title\">Status</span>\n" +
     "										<div class=\"text\">{{user.status}}</div>\n" +
     "									</li>\n" +
     "									<li>\n" +
     "										<span class=\"title\">Role</span>\n" +
-    "                    {{user.user_role}}\n" +
     "										<div class=\"text\">{{user.user_role}}</div>\n" +
     "									</li>\n" +
     "									<li ng-if = \"child_role == 4\" >\n" +
@@ -1352,7 +1351,7 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "							<li ng-repeat = \"promotion in promotions\">\n" +
     "								<a class=\"btn ibox dim btn-large-dim btn-outline\" ui-sref=\"promotions_detail({ promotionId: {{promotion.id}} })\">\n" +
     "									<span class=\"ico-holder\"><img src=\"assets/images/promo1.jpg\" alt=\"\"></span>\n" +
-    "									{{promotion.title}} Promotion\n" +
+    "									<span class=\"title\">{{promotion.title}} Promotion</span>\n" +
     "								</a>\n" +
     "							</li>\n" +
     "						</ul>\n" +
