@@ -12,6 +12,7 @@ from apps.option.utils import generate_missing_options, generate_missing_sub_opt
 from apps.person.enum import UserRolesEnum
 from apps.person.models import UserInfo
 from apps.promotion.models import Promotion
+from apps.promotion.serializers import PromotionSerializer
 from apps.question.models import Question
 from apps.region.models import Region
 from apps.review.models import FeedbackOption, Feedback, Concern
@@ -797,7 +798,7 @@ class PromotionDetailView(APIView):
                 list_feedback = generate_missing_options(question, filtered_feedback)
                 question_data_list.append({'question': question.text, 'type': question.type,  'feedbacks': list_feedback})
 
-            data = {'question': questions.count(), 'analysis': question_data_list}
+            data = {'question': questions.count(), 'promotion': PromotionSerializer(promotion).data, 'analysis': question_data_list}
             return Response(data)
 
         except Promotion.DoesNotExist as e:
