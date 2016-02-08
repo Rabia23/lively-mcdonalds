@@ -25,27 +25,30 @@
       },
       authenticate: true
     })
-    .state( 'coffee-promotions', {
-      url: '/coffee-promotions',
+    .state( 'promotions_detail', {
+      url: '/promotions_detail/:promotionId',
       views: {
         "": {
-          controller: 'CoffeePromotionsCtrl',
-          templateUrl: 'promotions/coffee-promotions.tpl.html'
+          controller: 'PromotionsDetailCtrl',
+          templateUrl: 'promotions/promotions-detail.tpl.html'
         },
-        "sidebar@coffee-promotions":{
+        "sidebar@promotions_detail":{
           templateUrl: 'common/sidebar.tpl.html'
         },
 
-        "header@coffee-promotions":{
+        "header@promotions_detail":{
           templateUrl: 'common/header.tpl.html'
         },
 
-        "footer@coffee-promotions":{
+        "footer@promotions_detail":{
           templateUrl: 'common/footer.tpl.html'
         }
 
       },
       authenticate: true
+      // params: {
+      //   promotionId: null
+      // }
     });
 
   });

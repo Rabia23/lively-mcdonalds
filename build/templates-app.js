@@ -1,4 +1,4 @@
-angular.module('templates-app', ['common/footer.tpl.html', 'common/header.tpl.html', 'common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/opportunities/opportunities.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/edit-user-modal.tpl.html', 'manage-users/manage-users.tpl.html', 'promotions/coffee-promotions.tpl.html', 'promotions/promotions.tpl.html']);
+angular.module('templates-app', ['common/footer.tpl.html', 'common/header.tpl.html', 'common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/opportunities/opportunities.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/edit-user-modal.tpl.html', 'manage-users/manage-users.tpl.html', 'promotions/promotions-detail.tpl.html', 'promotions/promotions.tpl.html']);
 
 angular.module("common/footer.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("common/footer.tpl.html",
@@ -1250,8 +1250,8 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "");
 }]);
 
-angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("promotions/coffee-promotions.tpl.html",
+angular.module("promotions/promotions-detail.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("promotions/promotions-detail.tpl.html",
     "<div id=\"wrapper\">\n" +
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
@@ -1349,28 +1349,10 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "				<div class=\"row\">\n" +
     "					<div class=\"col-xs-12\">\n" +
     "						<ul class=\"btn-list\">\n" +
-    "							<li>\n" +
-    "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\" ui-sref=\"coffee-promotions\">\n" +
+    "							<li ng-repeat = \"promotion in promotions\">\n" +
+    "								<a class=\"btn ibox dim btn-large-dim btn-outline\" ui-sref=\"promotions_detail({ promotionId: {{promotion.id}} })\">\n" +
     "									<span class=\"ico-holder\"><img src=\"assets/images/promo1.jpg\" alt=\"\"></span>\n" +
-    "									Coffee Promotion\n" +
-    "								</a>\n" +
-    "							</li>\n" +
-    "							<li>\n" +
-    "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\">\n" +
-    "									<span class=\"ico-holder\"><img src=\"assets/images/promo2.jpg\" alt=\"\"></span>\n" +
-    "									Omelette Promotion\n" +
-    "								</a>\n" +
-    "							</li>\n" +
-    "							<li>\n" +
-    "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\" ui-sref=\"coffee-promotions\">\n" +
-    "									<span class=\"ico-holder\"><img src=\"assets/images/promo1.jpg\" alt=\"\"></span>\n" +
-    "									Coffee Promotion\n" +
-    "								</a>\n" +
-    "							</li>\n" +
-    "							<li>\n" +
-    "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\">\n" +
-    "									<span class=\"ico-holder\"><img src=\"assets/images/promo2.jpg\" alt=\"\"></span>\n" +
-    "									Omelette Promotion\n" +
+    "									{{promotion.title}} Promotion\n" +
     "								</a>\n" +
     "							</li>\n" +
     "						</ul>\n" +
@@ -1381,5 +1363,6 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "	  </div>\n" +
     "  </div>\n" +
     "  <ui-view name = \"footer\"></ui-view>\n" +
-    "</div>");
+    "</div>\n" +
+    "");
 }]);
