@@ -671,8 +671,8 @@ angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$temp
     "<div class=\"modal-body info-area\">\n" +
     "  <a ng-click = \"ok()\" class=\"pull-right close-btn-font\"><i class=\"fa fa-times\"></i></a>\n" +
     "  <h2>Regional Analysis</h2>\n" +
-    "	<a style = \"cursor:pointer;\" class=\"btnSlider\" ng-click=\"leftClickDisabled || previous(area,region,city,branch,sqc_data)\" ng-hide = \"leftClickDisabled\"></a>\n" +
-    "	<a style = \"cursor:pointer;\" class=\"btnSlider right\" ng-click=\"rightClickDisabled || next(area,region,city,branch,sqc_data)\" ng-hide = \"rightClickDisabled\"></a>\n" +
+    "	<a style = \"cursor:pointer;\" ng-class=\"{btnSlider: show_angle_left}\" ng-click=\"previous(area,region,city,branch,sqc_data)\"></a>\n" +
+    "	<a style = \"cursor:pointer;\" ng-class=\"{btnSlider:show_angle_right, right:show_angle_right}\" ng-click=\"next(area,region,city,branch,sqc_data)\"></a>\n" +
     "\n" +
     "  <div class=\"graph-container\" ng-class=\"{loading: show_loading}\">\n" +
     "  	<div class=\"holder\">\n" +
