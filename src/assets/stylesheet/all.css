@@ -1615,8 +1615,15 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	padding: 25px;
 	min-height: inherit;
 }
-.modal-600 .modal-body{padding-top: 0;} 
-.info-form .modal-header .close{margin-top: -10px;}
+.modal-600 .modal-body{padding-top: 0;}
+.modal-dialog .info-form .modal-header{
+	border-bottom: 1px solid #e5e5e5;
+	padding: 15px;
+	margin: 0 0 20px;
+}
+.modal-dialog .info-form .modal-body{padding-bottom: 0;}
+.info-form .modal-header h4{margin: 0;}
+.info-form .modal-header .close{margin: -2px 0 -4px;}
 .info-form .form-error-message{
 	clear: both;
 	position: absolute;

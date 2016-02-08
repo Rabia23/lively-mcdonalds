@@ -1018,6 +1018,8 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "				<span aria-hidden=\"true\">&times;</span>\n" +
     "				<span class=\"sr-only\">Close</span>\n" +
     "			</a>\n" +
+    "			<h4 ng-if = \"!edit_form\">Add User</h4>\n" +
+    "			<h4 ng-if = \"edit_form\">Edit User</h4>\n" +
     "		</div>\n" +
     "		<div class=\"modal-body\">\n" +
     "			<div class=\"row form-container\" ng-class = \"{'edit-form': edit_form}\">\n" +
@@ -1036,7 +1038,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"lastName\">Last Name</label>\n" +
     "						<div class=\"col-sm-10 col-md-9\">\n" +
     "							<input type=\"text\" id=\"last_name\" class=\"form-control\" ng-model = \"user.last_name\" name = \"last_name\"\n" +
-    "							required=\"true\">\n" +
+    "							required=\"true\" ngMaxlength = \"10\">\n" +
     "							<div ng-show=\"UserForm.last_name.$error.required && (!UserForm.last_name.$pristine || submitted == true)\"\n" +
     "							class=\"form-error-message pull-left\">Last Name is required.\n" +
     "						  </div>\n" +
@@ -1144,9 +1146,9 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "										<span class=\"title\">Phone No.</span>\n" +
     "										<div class=\"text\">{{user.phone_no}}</div>\n" +
     "									</li>\n" +
-    "									<li>\n" +
-    "										<span class=\"title\" ng-if = \"child_role == 2 || child_role == 3\">Branch</span>\n" +
-    "										<div class=\"text\" ng-if = \"child_role == 2 || child_role == 3\">{{user.branch.name}}</div>\n" +
+    "									<li ng-if = \"child_role == 2 || child_role == 3\">\n" +
+    "										<span class=\"title\">Branch</span>\n" +
+    "										<div class=\"text\">{{user.branch.name}}</div>\n" +
     "									</li>\n" +
     "									<li>\n" +
     "										<span class=\"title\">User Name:</span>\n" +
@@ -1157,28 +1159,26 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "										<div class=\"text\">{{user.email}}</div>\n" +
     "									</li>\n" +
     "									<li>\n" +
-    "										<span class=\"title\">Active</span>\n" +
-    "										<div class=\"text\">{{user.is_active}}</div>\n" +
+    "										<span class=\"title\">Status</span>\n" +
+    "										<div class=\"text\">{{user.status}}</div>\n" +
     "									</li>\n" +
     "									<li>\n" +
     "										<span class=\"title\">Role</span>\n" +
-    "										<div class=\"text\">{{user.role}}</div>\n" +
+    "										<div class=\"text\">{{user.user_role}}</div>\n" +
     "									</li>\n" +
-    "									<li class=\"disabled\">\n" +
-    "										<span class=\"title\"  ng-if = \"child_role == 4\">Region</span>\n" +
-    "										<div class=\"text\" ng-if = \"child_role == 4\">{{user.region.name}}</div>\n" +
+    "									<li ng-if = \"child_role == 4\" >\n" +
+    "										<span class=\"title\">Region</span>\n" +
+    "										<div class=\"text\" >{{user.region.name}}</div>\n" +
     "									</li>\n" +
     "								</ul>\n" +
     "								<div class=\"btn-box\">\n" +
     "									<span class=\"btn-holder\">\n" +
     "										<a ng-click = \"edit(user, $index)\" class=\"fa fa-pencil-square-o\"></a>\n" +
     "									</span>\n" +
-    "									<span class=\"btn-holder disabled\">\n" +
-    "										<a ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user btn-active': user.is_active == false}\"></a>\n" +
-    "									</span>\n" +
     "									<span class=\"btn-holder\">\n" +
-    "										<a ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user-times btn-deactive': user.is_active == true}\"></a>\n" +
+    "										<a ng-click = \"deactivate(user, $index)\" ng-class=\"{'fa fa-user btn-active': (user.is_active == false), 'fa fa-user-times btn-deactive': (user.is_active == true)}\"></a>\n" +
     "									</span>\n" +
+    "\n" +
     "								</div>\n" +
     "							</div>\n" +
     "						</li>\n" +
