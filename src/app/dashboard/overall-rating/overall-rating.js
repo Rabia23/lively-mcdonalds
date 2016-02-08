@@ -38,6 +38,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
    $scope.type = "1";
    $scope.mainView = true;
+   $scope.optionView = false;
 
    $scope.page = 1;
    $scope.max_page = 1;
@@ -46,6 +47,12 @@ angular.module( 'livefeed.dashboard.overall_rating', [
      $scope.overall_rating_data = [];
      var timeline_data = overallRatingChartService.getAreaChart(data);
      $scope.overall_rating_data = [$scope.labels, timeline_data];
+   }
+
+   function drawLabelGraph(data){
+     $scope.overall_rating_data = [];
+     var label_data =  overallRatingChartService.getAreaLabelChart(data);
+     $scope.overall_rating_data = [$scope.labels, label_data];
    }
 
    function calculate_labels(feedbacks){
@@ -67,9 +74,28 @@ angular.module( 'livefeed.dashboard.overall_rating', [
      });
    }
 
+   function calculate_option_labels(feedbacks){
+     $scope.labels = _.map(feedbacks ,function(value, index){
+        return {
+           option_id: value.option_id,
+           option_name: value.option__text,
+           parent_id: value.option__parent_id,
+           color: Global.subOptionsColorScheme[value.option__text].color,
+           lineColor: Global.subOptionsColorScheme[value.option__text].color,
+           title: value.option__text,
+           id: "column-"+(index+1)+"-id",
+           valueField: "column-"+(index+1)
+        };
+     });
+     $scope.labels = _.sortBy($scope.labels, function (value) {
+         return value.priority;
+     });
+   }
+
    function mainRating() {
        $scope.mainView = true;
        $scope.show_loading = true;
+       $scope.optionView = false;
        Graphs.overall_rating(null, $scope.start_date, $scope.end_date).$promise.then(function (data) {
           $scope.data_array = [];
           if(data.length > 7){
@@ -82,9 +108,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
             $scope.data_array[0] = data;
           }
           $scope.max_page  = $scope.data_array.length;
-          console.log($scope.data_array);
-          $scope.start_date_on_screen = $scope.data_array[0][0].date;
-          $scope.end_date_on_screen = _.last($scope.data_array[0]).date;
+
           calculate_labels($scope.data_array[0][0].data.feedbacks);
           $scope.page = 1;
           drawGraph($scope.data_array[0]);
@@ -94,11 +118,13 @@ angular.module( 'livefeed.dashboard.overall_rating', [
 
    $scope.optionClick = function (option_object){
        $scope.show_loading = true;
+
        var option_id = option_object.item.dataContext[option_object.graph.id];
        var date = option_object.item.category;
 
        Graphs.feedback_segmentation(date, option_id, $scope.type).$promise.then(function(data){
            $scope.mainView = false;
+           $scope.optionView = false;
            if(data.options !== undefined){
              $scope.labels =  _.map(data.options,function(value, index){
                 return {
@@ -121,22 +147,23 @@ angular.module( 'livefeed.dashboard.overall_rating', [
    $scope.labelClick = function(option){
       if(option.parent_id == null){
         $scope.show_loading = true;
-        Graphs.overall_rating(option.option_id, $scope.start_date_on_screen, $scope.end_date_on_screen).$promise.then(function(data) {
+        $scope.optionView = true;
+        Graphs.overall_rating(option.option_id, $scope.start_date, $scope.end_date).$promise.then(function(data) {
            $scope.mainView = false;
-           $scope.labels = _.map(data[0].data.feedbacks ,function(value, index){
-              return {
-                 option_id: value.option_id,
-                 option_name: value.option__text,
-                 parent_id: value.option__parent_id,
-                 color: Global.subOptionsColorScheme[value.option__text].color,
-                 lineColor: Global.subOptionsColorScheme[value.option__text].color,
-                 title: value.option__text,
-                 id: "column-"+(index+1)+"-id",
-                 valueField: "column-"+(index+1)
-              };
-           });
-           var label_data =  overallRatingChartService.getAreaLabelChart(data);
-           $scope.overall_rating_data = [$scope.labels, label_data];
+           $scope.data_array = [];
+           if(data.length > 7){
+             var sets = data.length/7;
+             while (data.length > 0){
+               $scope.data_array.push(data.splice(0, 7));
+             }
+           }
+           else{
+             $scope.data_array[0] = data;
+           }
+           $scope.max_page  = $scope.data_array.length;
+           calculate_option_labels($scope.data_array[0][0].data.feedbacks);
+           $scope.page = 1;
+           drawLabelGraph($scope.data_array[0]);
            $scope.show_loading = false;
         });
       }
@@ -151,23 +178,31 @@ angular.module( 'livefeed.dashboard.overall_rating', [
      if($scope.page < $scope.max_page){
        $scope.page = $scope.page + 1;
        drawGraph($scope.data_array[($scope.page -1 )]);
-       $scope.start_date_on_screen = $scope.data_array[($scope.page -1)][0].date;
-       $scope.end_date_on_screen = _.last($scope.data_array[($scope.page -1)]).date;
+     }
+   };
+
+   $scope.labelNext = function(){
+     if($scope.page < $scope.max_page){
+       $scope.page = $scope.page + 1;
+       drawLabelGraph($scope.data_array[($scope.page -1 )]);
      }
    };
 
    $scope.backToMain = function(){
-     calculate_labels($scope.data_array[0][0].data.feedbacks);
-     drawGraph($scope.data_array[($scope.page -1 )]);
-     $scope.mainView = true;
+     mainRating();
    };
 
    $scope.Prev = function(){
      if($scope.page > 1){
        $scope.page = $scope.page - 1;
        drawGraph($scope.data_array[($scope.page -1 )]);
-       $scope.start_date_on_screen = $scope.data_array[($scope.page -1)][0].date;
-       $scope.end_date_on_screen = _.last($scope.data_array[($scope.page -1)]).date;
+     }
+   };
+
+   $scope.labelPrev = function(){
+     if($scope.page > 1){
+       $scope.page = $scope.page - 1;
+       drawLabelGraph($scope.data_array[($scope.page -1 )]);
      }
    };
 

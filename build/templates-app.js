@@ -1,4 +1,4 @@
-angular.module('templates-app', ['common/footer.tpl.html', 'common/header.tpl.html', 'common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/opportunities/opportunities.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/edit-user-modal.tpl.html', 'manage-users/manage-users.tpl.html', 'promotions/coffee-promotions.tpl.html', 'promotions/promotions.tpl.html']);
+angular.module('templates-app', ['common/footer.tpl.html', 'common/header.tpl.html', 'common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/opportunities/opportunities.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/edit-user-modal.tpl.html', 'manage-users/manage-users.tpl.html', 'promotions/promotions-detail.tpl.html', 'promotions/promotions.tpl.html']);
 
 angular.module("common/footer.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("common/footer.tpl.html",
@@ -75,7 +75,7 @@ angular.module("common/sidebar.tpl.html", []).run(["$templateCache", function($t
     "				<li ng-class = \"{'active': currentState == 'users'}\">\n" +
     "					<a ui-sref=\"users\"><i class=\"fa fa-user\"></i> <span class=\"nav-label\">Manage Users</span></a>\n" +
     "				</li>\n" +
-    "				<li ng-class = \"{'active': currentState == 'promotions'}\">\n" +
+    "				<li ng-class = \"{'active': (currentState == 'promotions' || currentState == 'promotions_detail' ) }\">\n" +
     "					<a ui-sref=\"promotions\"><i class=\"fa fa-bullhorn\"></i> <span class=\"nav-label\">Promotions</span></a>\n" +
     "				</li>\n" +
     "			</ul>\n" +
@@ -462,6 +462,8 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "      <div class=\"block-holder\" time-line data-data = \"overall_rating_data\" data-action=\"optionClick(option_object)\">\n" +
     "      	  <a ng-click = \"Prev()\" ng-show = \"mainView\" class=\"btn-prev fa fa-angle-left\"></a>\n" +
     "          <a ng-click = \"Next()\" ng-show = \"mainView\" class=\"btn-next fa fa-angle-right\"></a>\n" +
+    "          <a ng-click = \"labelPrev()\" ng-show = \"optionView\" class=\"btn-prev fa fa-angle-left\"></a>\n" +
+    "          <a ng-click = \"labelNext()\" ng-show = \"optionView\" class=\"btn-next fa fa-angle-right\"></a>\n" +
     "          <div id=\"chartdiv\" style=\"width: 100%; height: 320px;\"></div>\n" +
     "      </div>\n" +
     "  </div>\n" +
@@ -669,8 +671,8 @@ angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$temp
     "<div class=\"modal-body info-area\">\n" +
     "  <a ng-click = \"ok()\" class=\"pull-right close-btn-font\"><i class=\"fa fa-times\"></i></a>\n" +
     "  <h2>Regional Analysis</h2>\n" +
-    "	<a style = \"cursor:pointer;\" class=\"btnSlider\" ng-click=\"leftClickDisabled || previous(area,region,city,branch,sqc_data)\" ng-hide = \"leftClickDisabled\"></a>\n" +
-    "	<a style = \"cursor:pointer;\" class=\"btnSlider right\" ng-click=\"rightClickDisabled || next(area,region,city,branch,sqc_data)\" ng-hide = \"rightClickDisabled\"></a>\n" +
+    "	<a style = \"cursor:pointer;\" ng-class=\"{btnSlider: show_angle_left}\" ng-click=\"previous(area,region,city,branch,sqc_data)\"></a>\n" +
+    "	<a style = \"cursor:pointer;\" ng-class=\"{btnSlider:show_angle_right, right:show_angle_right}\" ng-click=\"next(area,region,city,branch,sqc_data)\"></a>\n" +
     "\n" +
     "  <div class=\"graph-container\" ng-class=\"{loading: show_loading}\">\n" +
     "  	<div class=\"holder\">\n" +
@@ -730,7 +732,6 @@ angular.module("live/benchmark-map/benchmark-map.tpl.html", []).run(["$templateC
   $templateCache.put("live/benchmark-map/benchmark-map.tpl.html",
     "<div class=\"slide win-height\">\n" +
     "        <div class=\"slide-holder\">\n" +
-    "           <span class=\"data-count\">2 Days</span>\n" +
     "            <div class=\"holder\">\n" +
     "                <div class=\"detail-holder\">\n" +
     "                    <div class=\"table-inner\">\n" +
@@ -770,7 +771,8 @@ angular.module("live/benchmark-map/benchmark-map.tpl.html", []).run(["$templateC
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "</div>");
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("live/business-segments/business-segment.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -813,7 +815,7 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "					<div class=\"heading-slide\"><h2>overall rating</h2></div>\n" +
     "					<div class=\"heading-slide\"><h2>top concerns</h2></div>\n" +
     "					<div class=\"heading-slide\"><h2>Complaint analysis</h2></div>\n" +
-    "					<div class=\"heading-slide\"><h2>Laederboard</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>Leaderboard</h2></div>\n" +
     "				</div>\n" +
     "				<h1>Country Wide</h1>\n" +
     "			</div>\n" +
@@ -821,14 +823,19 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "		<div class=\"header-content\">\n" +
     "			<time datetime=\"2015-12-23 13:49\"><strong>{{time}}</strong>  {{date_output}}</time>\n" +
     "			<ul class=\"info-list\">\n" +
+    "<!--\n" +
     "				<li>\n" +
     "					<strong class=\"title\">Time Period</strong>\n" +
-    "					<div class=\"timer-slider\">\n" +
-    "						<ul>\n" +
-    "							<li></li>\n" +
-    "						</ul>\n" +
-    "					</div>\n" +
+    "					<ul class=\"timer-slider\">\n" +
+    "						<li>1 Week</li>\n" +
+    "						<li>2 Days</li>\n" +
+    "						<li>2 Days</li>\n" +
+    "						<li>Since beginning</li>\n" +
+    "						<li>2 Days</li>\n" +
+    "						<li>2 Days</li>\n" +
+    "					</ul>\n" +
     "				</li>\n" +
+    "-->\n" +
     "				<li>\n" +
     "					<strong class=\"title\">Overall Experience</strong>\n" +
     "					<ul>\n" +
@@ -1029,12 +1036,12 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "				<span aria-hidden=\"true\">&times;</span>\n" +
     "				<span class=\"sr-only\">Close</span>\n" +
     "			</a>\n" +
-    "			<h4 ng-if = \"!edit_form\">Add User</h4>\n" +
-    "			<h4 ng-if = \"edit_form\">Edit User</h4>\n" +
+    "			<h2 ng-if = \"!edit_form\">Add User</h2>\n" +
+    "			<h2 ng-if = \"edit_form\">Edit User</h2>\n" +
     "		</div>\n" +
     "		<div class=\"modal-body\">\n" +
-    "			<div class=\"row form-container\" ng-class = \"{'edit-form': edit_form}\">\n" +
-    "				<div class=\"col-md-6\" ng-if = \"!edit_form\">\n" +
+    "			<div class=\"row\" ng-class = \"{'edit-form': edit_form}\">\n" +
+    "				<div class=\"col-xs-12\" ng-if = \"!edit_form\">\n" +
     "					<div class=\"form-group\" ng-if = \"!edit_form\">\n" +
     "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"firsName\">First Name</label>\n" +
     "						<div class=\"col-sm-10 col-md-9\">\n" +
@@ -1066,7 +1073,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "						</div>\n" +
     "					</div>\n" +
     "				</div>\n" +
-    "				<div class=\"col-md-6\">\n" +
+    "				<div class=\"col-xs-12\">\n" +
     "					<div class=\"form-group\">\n" +
     "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"password\">Password</label>\n" +
     "						<div class=\"col-sm-10 col-md-9\">\n" +
@@ -1260,8 +1267,8 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "");
 }]);
 
-angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("promotions/coffee-promotions.tpl.html",
+angular.module("promotions/promotions-detail.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("promotions/promotions-detail.tpl.html",
     "<div id=\"wrapper\">\n" +
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
@@ -1269,73 +1276,16 @@ angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache
     "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "		<div class=\"row promotions\">\n" +
     "			<div class=\"col-lg-12\">\n" +
-    "				<h1>Coffee Promotion</h1>\n" +
+    "				<h1>{{promotion.title}} Promotion</h1>\n" +
     "				<div class=\"row\">\n" +
-    "					<div class=\"col-md-6\">\n" +
+    "					<div class=\"col-md-6 grid-item\" ng-repeat = \"question in questions track by $index\">\n" +
     "						<div class=\"ibox float-e-margins\">\n" +
     "							<div class=\"ibox-title\">\n" +
-    "								<h5>Question 1 <small>Lorem Ipsum is simply</small></h5>\n" +
+    "								<h5>Question {{$index + 1}} <small> {{question.question}}</small></h5>\n" +
     "							</div>\n" +
     "							<div class=\"ibox-content\">\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<div class=\"ibox float-e-margins\">\n" +
-    "							<div class=\"ibox-title\">\n" +
-    "								<h5>Question 2 <small>Lorem Ipsum is simply</small></h5>\n" +
-    "							</div>\n" +
-    "							<div class=\"ibox-content\">\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "				<div class=\"row\">\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<div class=\"ibox float-e-margins\">\n" +
-    "							<div class=\"ibox-title\">\n" +
-    "								<h5>Question 4 <small>Lorem Ipsum is simply</small></h5>\n" +
-    "							</div>\n" +
-    "							<div class=\"ibox-content\">\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<div class=\"ibox float-e-margins\">\n" +
-    "							<div class=\"ibox-title\">\n" +
-    "								<h5>Question 3 <small>Lorem Ipsum is simply</small></h5>\n" +
-    "							</div>\n" +
-    "							<div class=\"ibox-content\">\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "				<div class=\"row\">\n" +
-    "					<div class=\"col-md-6 grid-item\">\n" +
-    "						<div class=\"ibox float-e-margins\">\n" +
-    "							<div class=\"ibox-title\">\n" +
-    "								<h5>Question 5 <small>Lorem Ipsum is simply</small></h5>\n" +
-    "							</div>\n" +
-    "							<div class=\"ibox-content\">\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
-    "					<div class=\"col-md-6 grid-item\">\n" +
-    "						<div class=\"ibox float-e-margins\">\n" +
-    "							<div class=\"ibox-title\">\n" +
-    "								<h5>Question 6 <small>Lorem Ipsum is simply</small></h5>\n" +
-    "							</div>\n" +
-    "							<div class=\"ibox-content\">\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "							</div>\n" +
+    "                <div id = \"graph_{{$index}}\"></div>\n" +
+    "              </div>\n" +
     "						</div>\n" +
     "					</div>\n" +
     "				</div>\n" +
@@ -1344,7 +1294,8 @@ angular.module("promotions/coffee-promotions.tpl.html", []).run(["$templateCache
     "	  </div>\n" +
     "  </div>\n" +
     "  <ui-view name = \"footer\"></ui-view>\n" +
-    "</div>");
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -1359,28 +1310,10 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "				<div class=\"row\">\n" +
     "					<div class=\"col-xs-12\">\n" +
     "						<ul class=\"btn-list\">\n" +
-    "							<li>\n" +
-    "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\" ui-sref=\"coffee-promotions\">\n" +
+    "							<li ng-repeat = \"promotion in promotions\">\n" +
+    "								<a class=\"btn ibox dim btn-large-dim btn-outline\" ui-sref=\"promotions_detail({ promotionId: {{promotion.id}} })\">\n" +
     "									<span class=\"ico-holder\"><img src=\"assets/images/promo1.jpg\" alt=\"\"></span>\n" +
-    "									<span class=\"title\">Coffee Promotion</span>\n" +
-    "								</a>\n" +
-    "							</li>\n" +
-    "							<li>\n" +
-    "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\">\n" +
-    "									<span class=\"ico-holder\"><img src=\"assets/images/promo2.jpg\" alt=\"\"></span>\n" +
-    "									<span class=\"title\">Omelette Promotion</span>\n" +
-    "								</a>\n" +
-    "							</li>\n" +
-    "							<li>\n" +
-    "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\" ui-sref=\"coffee-promotions\">\n" +
-    "									<span class=\"ico-holder\"><img src=\"assets/images/promo1.jpg\" alt=\"\"></span>\n" +
-    "									<span class=\"title\">Coffee Promotion</span>\n" +
-    "								</a>\n" +
-    "							</li>\n" +
-    "							<li>\n" +
-    "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\">\n" +
-    "									<span class=\"ico-holder\"><img src=\"assets/images/promo2.jpg\" alt=\"\"></span>\n" +
-    "									<span class=\"title\">Omelette Promotion</span>\n" +
+    "									<span class=\"title\">{{promotion.title}} Promotion</span>\n" +
     "								</a>\n" +
     "							</li>\n" +
     "						</ul>\n" +
@@ -1391,5 +1324,6 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "	  </div>\n" +
     "  </div>\n" +
     "  <ui-view name = \"footer\"></ui-view>\n" +
-    "</div>");
+    "</div>\n" +
+    "");
 }]);

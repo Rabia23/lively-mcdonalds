@@ -58,7 +58,7 @@
       var modalInstance = $uibModal.open({
         templateUrl: 'manage-users/edit-user-modal.tpl.html',
         controller: 'ModalAddInstanceCtrl',
-        size: 1200,
+        size: 600,
         resolve: {
           parent_id: function () {
             return $scope.parent_id;
@@ -105,6 +105,14 @@
 
       editInstance.result.then(function (edited_user) {
         $scope.users[index] = edited_user;
+        $scope.users[index].user_role = Enum.get_user_label($scope.users[index].role);
+        if($scope.users[index].is_active === true) {
+          $scope.users[index].status = "Active";
+        }
+        else {
+          $scope.users[index].status = "Inactive";
+        }
+
       });
     };
 

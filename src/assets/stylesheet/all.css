@@ -1474,8 +1474,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	margin: 0 0 20px;
 }
 .modal-dialog .info-form .modal-body{padding-bottom: 0;}
-.info-form .modal-header h4{margin: 0;}
-.info-form .modal-header .close{margin: -2px 0 -4px;}
+.info-form .modal-header h2{margin: 0;}
+.info-form .modal-header .close{margin: 4px 0 0;}
 .info-form .form-error-message{
 	clear: both;
 	position: absolute;
@@ -1907,10 +1907,19 @@ li.active,
 	right: 5px;
 }
 .message-holder h2{font-size: 16px;}
-.form-container .col-md-6{
+.info-form .col-xs-12{
 	padding-left: 15px;
 	padding-right: 15px;
 }
+.modal .modal-dialog{
+	position: absolute !important;
+	top: 25%;
+	bottom: 25%;
+	left: 0;
+	right: 0;
+	transition: transform 0.5s ease-out;
+}
+.modal.in .modal-dialog{transition: transform 0.5s ease-out;}
 
 @media screen and (min-width: 768px) {
 	.legends-holder{padding: 15px 20px 0;}
@@ -2418,6 +2427,10 @@ li.active,
 		line-height: 16px;
 	}
 	.add-user > *{margin: 1px 0 0 2px;}
+	.modal .modal-dialog{
+		top: 0;
+		bottom: 0;
+	}
 }
 
 @media screen and (max-width: 768px) {

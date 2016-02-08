@@ -35,6 +35,19 @@ function initSlideShow() {
     switchTime: 12000,
     animSpeed: 1000
   });
+	jQuery('#wrapper').fadeGallery({
+    slides: '.timer-slider li',
+    btnPrev: '.btn-prev',
+    btnNext: '.btn-next',
+    pagerLinks: '.pagination li',
+    event: 'click',
+    useSwipe: true,
+    autoRotation: true,
+    pauseOnHover: false,
+    autoHeight: true,
+    switchTime: 12000,
+    animSpeed: 1000
+  });
 }
 
 /*

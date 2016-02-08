@@ -8,28 +8,10 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<ul class="btn-list">
-							<li>
-								<a href="#" class="btn ibox dim btn-large-dim btn-outline" ui-sref="coffee-promotions">
+							<li ng-repeat = "promotion in promotions">
+								<a class="btn ibox dim btn-large-dim btn-outline" ui-sref="promotions_detail({ promotionId: {{promotion.id}} })">
 									<span class="ico-holder"><img src="assets/images/promo1.jpg" alt=""></span>
-									<span class="title">Coffee Promotion</span>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="btn ibox dim btn-large-dim btn-outline">
-									<span class="ico-holder"><img src="assets/images/promo2.jpg" alt=""></span>
-									<span class="title">Omelette Promotion</span>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="btn ibox dim btn-large-dim btn-outline" ui-sref="coffee-promotions">
-									<span class="ico-holder"><img src="assets/images/promo1.jpg" alt=""></span>
-									<span class="title">Coffee Promotion</span>
-								</a>
-							</li>
-							<li>
-								<a href="#" class="btn ibox dim btn-large-dim btn-outline">
-									<span class="ico-holder"><img src="assets/images/promo2.jpg" alt=""></span>
-									<span class="title">Omelette Promotion</span>
+									<span class="title">{{promotion.title}} Promotion</span>
 								</a>
 							</li>
 						</ul>

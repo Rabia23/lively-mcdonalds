@@ -29,7 +29,18 @@
           console.log("applied");
           $scope.start_date = ev.model.startDate._i;
           $scope.end_date =  ev.model.endDate._i;
-          $scope.showChart($scope.object_id, $scope.string);
+          console.log("date filter");
+          console.log($scope.object_id);
+          console.log($scope.string);
+          if(user_role == 4){
+             $scope.showChart("", "regions");
+          }
+          else if(user_role == 3){
+            $scope.showChart("");
+          }
+          else{
+           $scope.showChart($scope.object_id, $scope.string);
+          }
         },
         'cancel.daterangepicker': function(ev, picker){
           //$scope.datePicker.date.startDate = null;
@@ -300,9 +311,13 @@
 
 })
 
-.controller('SQCModalCtrl', function ($scope, Graphs, regionalAnalysisChartService, $uibModalInstance, area, region, city, branch, option, start_date, end_date){
-  $scope.leftClickDisabled = false;
-  $scope.rightClickDisabled = false;
+.controller('SQCModalCtrl', function ($scope, Graphs, regionalAnalysisChartService, $uibModalInstance, area, region, city, branch, option, start_date, end_date, TokenHandler){
+
+  var user_role = TokenHandler.get_user_role();
+  var type_id;
+
+  $scope.show_angle_left = true;
+  $scope.show_angle_right = true;
 
   $scope.question_type = 2;
   $scope.show_div = false;
@@ -332,33 +347,60 @@
     $scope.sqc = sqc;
   }
 
+  function hideQSCModalButton(sqc, sqc_data){
+     var index = findSqcIndex(sqc,sqc_data);
+     if(index == sqc_data.length-1){
+       $scope.show_angle_right = false;
+     }
+     else if(index === 0){
+       $scope.show_angle_left = false;
+     }
+
+     if(sqc_data.length == 1){
+       $scope.show_angle_right = false;
+       $scope.show_angle_left = false;
+     }
+  }
+
   if(region == null && city == null && branch == null){
     onOptionSelect(area, null, null, null, area);
     Graphs.area_analysis($scope.question_type).$promise.then(function(data) {
       $scope.sqc_data = getSQCdata(data);
       $scope.sqc_data.push({id:"", name: "Pakistan"});
+      hideQSCModalButton(area, $scope.sqc_data);
       showGraph(area,"","","", option);
     });
   }
   else if(city == null && branch == null){
+    type_id = user_role == 4 ? "" : 1;
     onOptionSelect(area, region, null, null, region);
-    Graphs.regional_analysis($scope.question_type,"","",area.id).$promise.then(function(data) {
+    Graphs.regional_analysis($scope.question_type,"","",area.id,type_id).$promise.then(function(data) {
       $scope.sqc_data = getSQCdata(data);
+      hideQSCModalButton(region, $scope.sqc_data);
       showGraph(area,region,"","", option);
     });
   }
   else if(branch == null) {
     onOptionSelect(area, region, city, null, city);
-    Graphs.city_analysis(region.id, $scope.question_type).$promise.then(function(data) {
+    Graphs.city_analysis(region.id, $scope.question_type,"","",2).$promise.then(function(data) {
        $scope.sqc_data = getSQCdata(data);
+       console.log($scope.sqc_data);
+       hideQSCModalButton(city, $scope.sqc_data);
        showGraph(area,region,city,"", option);
     });
   }
   else{
+    type_id = user_role == 3 ? "" : 3;
     onOptionSelect(area, region, city, branch, branch);
-    Graphs.branch_analysis(city.id, $scope.question_type).$promise.then(function(data) {
+    Graphs.branch_analysis(city.id, $scope.question_type,"","",type_id).$promise.then(function(data) {
       $scope.sqc_data = getSQCdata(data);
-      showGraph(area,region,city,branch, option);
+      hideQSCModalButton(branch, $scope.sqc_data);
+      if(user_role == 3){
+        showGraph("","","",branch, option);
+      }
+      else{
+        showGraph(area,region,city,branch, option);
+      }
     });
   }
 
@@ -369,10 +411,6 @@
   function findNextSQC(sqc,sqc_data){
     var next_sqc;
     var index = findSqcIndex(sqc, sqc_data);
-    if(index == sqc_data.length-1){
-      $scope.rightClickDisabled = true;
-      return null;
-    }
     next_sqc = sqc_data[index + 1];
     return next_sqc;
   }
@@ -380,10 +418,6 @@
   function findPrevSQC(sqc,sqc_data){
     var prev_sqc;
     var index = findSqcIndex(sqc, sqc_data);
-    if(index === 0){
-      $scope.leftClickDisabled = true;
-      return null;
-    }
     prev_sqc = sqc_data[index -1];
     return prev_sqc;
   }
@@ -391,48 +425,46 @@
   function getNextSQC(sqc, sqc_data, area, region, city, branch){
      var next_sqc_data;
      next_sqc_data = findNextSQC(sqc,sqc_data);
+     hideQSCModalButton(next_sqc_data, sqc_data);
 
-     if(next_sqc_data != null) {
-       if(region == null && city == null && branch == null){
+     if(region == null && city == null && branch == null){
          onOptionSelect(next_sqc_data,region,city,branch,next_sqc_data);
          showGraph(next_sqc_data, "", "", "", option);
-       }
-       else if(city == null && branch == null){
-         onOptionSelect(area,next_sqc_data,city,branch,next_sqc_data);
-         showGraph(area, next_sqc_data, "", "", option);
-       }
-       else if(branch == null) {
-         onOptionSelect(area,region,next_sqc_data,branch,next_sqc_data);
-         showGraph(area, region, next_sqc_data, "", option);
-       }
-       else {
-         onOptionSelect(area,region,city,next_sqc_data,next_sqc_data);
-         showGraph(area, region, city, next_sqc_data, option);
-       }
+     }
+     else if(city == null && branch == null){
+       onOptionSelect(area,next_sqc_data,city,branch,next_sqc_data);
+       showGraph(area, next_sqc_data, "", "", option);
+     }
+     else if(branch == null) {
+       onOptionSelect(area,region,next_sqc_data,branch,next_sqc_data);
+       showGraph(area, region, next_sqc_data, "", option);
+     }
+     else {
+       onOptionSelect(area,region,city,next_sqc_data,next_sqc_data);
+       showGraph(area, region, city, next_sqc_data, option);
      }
   }
 
   function getPreviousSQC(sqc, sqc_data, area, region, city, branch){
      var prev_sqc_data;
      prev_sqc_data = findPrevSQC(sqc, sqc_data);
+     hideQSCModalButton(prev_sqc_data, sqc_data);
 
-     if(prev_sqc_data != null) {
-       if(region == null && city == null && branch == null){
-         onOptionSelect(prev_sqc_data,region,city,branch,prev_sqc_data);
-         showGraph(prev_sqc_data, "", "", "", option);
-       }
-       else if(city == null && branch == null){
-         onOptionSelect(area,prev_sqc_data,city,branch,prev_sqc_data);
-         showGraph(area, prev_sqc_data, "", "", option);
-       }
-       else if(branch == null) {
-         onOptionSelect(area,region,prev_sqc_data,branch,prev_sqc_data);
-         showGraph(area, region, prev_sqc_data, "", option);
-       }
-       else {
-         onOptionSelect(area,region,city,prev_sqc_data,prev_sqc_data);
-         showGraph(area, region, city, prev_sqc_data, option);
-       }
+     if(region == null && city == null && branch == null){
+       onOptionSelect(prev_sqc_data,region,city,branch,prev_sqc_data);
+       showGraph(prev_sqc_data, "", "", "", option);
+     }
+     else if(city == null && branch == null){
+       onOptionSelect(area,prev_sqc_data,city,branch,prev_sqc_data);
+       showGraph(area, prev_sqc_data, "", "", option);
+     }
+     else if(branch == null) {
+       onOptionSelect(area,region,prev_sqc_data,branch,prev_sqc_data);
+       showGraph(area, region, prev_sqc_data, "", option);
+     }
+     else {
+       onOptionSelect(area,region,city,prev_sqc_data,prev_sqc_data);
+       showGraph(area, region, city, prev_sqc_data, option);
      }
   }
 
@@ -440,50 +472,44 @@
      if(region == null && city == null && branch == null){
       if(string == "next"){
         getNextSQC(area,sqc_data,"",null,null,null);
-        $scope.rightClickDisabled = false;
       }
       else if(string == "previous"){
         getPreviousSQC(area,sqc_data,"",null,null,null);
-        $scope.leftClickDisabled = false;
       }
     }
     else if(city == null && branch == null){
       if(string == "next"){
         getNextSQC(region,sqc_data,area,"",null,null);
-        $scope.rightClickDisabled = false;
       }
       else if(string == "previous"){
         getPreviousSQC(region,sqc_data,area,"",null,null);
-        $scope.leftClickDisabled = false;
       }
     }
     else if(branch == null) {
       if (string == "next") {
         getNextSQC(city,sqc_data,area,region,"",null);
-        $scope.rightClickDisabled = false;
       }
       else if (string == "previous") {
         getPreviousSQC(city,sqc_data,area,region,"",null);
-        $scope.leftClickDisabled = false;
       }
     }
     else{
       if(string == "next"){
         getNextSQC(branch,sqc_data,area,region,city,"");
-        $scope.rightClickDisabled = false;
       }
       else if (string == "previous") {
         getPreviousSQC(branch,sqc_data,area,region,city,"");
-        $scope.leftClickDisabled = false;
       }
     }
   }
 
   $scope.next = function(area,region,city,branch,sqc_data){
+    $scope.show_angle_left = true;
     findSqcData(area,region,city,branch,sqc_data,"next");
   };
 
   $scope.previous = function(area,region,city,branch,sqc_data){
+    $scope.show_angle_right = true;
     findSqcData(area,region,city,branch,sqc_data,"previous");
   };
 

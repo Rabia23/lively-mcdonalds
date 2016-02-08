@@ -68,6 +68,7 @@
 		letter-spacing: 0;
 		text-align: left;
 		margin: 0 0 0 2.5%;
+		@include transition($val:all, $duration:3s, $function:linear);
 		
 		@include media("≥widescreen"){margin: 0 0 0 4.5%;}
 	}
@@ -83,6 +84,8 @@
 		@extend %listreset;
 		text-align: left;
 		color: $rosso-corsa;
+		letter-spacing: 0;
+		@include transition($val:all, $duration:3s, $function:linear);
 		font: {
 			size: 24px;
 			weight: 300;
@@ -92,18 +95,37 @@
 		
 		li{
 			float: left;
+			@include transition($val:all, $duration:3s, $function:linear);
 			
 			+li{
 				&:before{
-					@include inline-block(top);
-					content: "/";
+					float: left;
 					margin: 0 1px;
+					content: "/";
 					color: $mine-shaft;
 				}
 			}
 			&.positive{color: $india-green;}
 			&.item2{color: darken($yellow-orange,20%);}
 			&.item3{color: $rich-electric-blue;}
+		}
+		&.timer-slider{
+			position: relative;
+			li{
+				position: absolute;
+				left: 0;
+				top: 0;
+				@include transition($val:ease-in, $duration:3s, $function:linear);
+
+				&.active{
+					z-index: 2;
+					position: relative;
+				}
+				
+				+ li{
+					&:before{display: none;}
+				}
+			}
 		}
 	}
 }
