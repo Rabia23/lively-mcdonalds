@@ -857,8 +857,8 @@ body.login{background: #eee !important;}
 .modal-1200 .modal-body .table-container{
 	position: relative;
 	width: 100% !important;
-	min-height: 200px !important;
-	height: 200px;
+	min-height: 170px !important;
+	height: 170px;
 	min-width: 730px;
 }
 .modal-1200 .modal-body .table-holder{height: 1%;}
@@ -2589,6 +2589,11 @@ li.active,
 	.header-visual .navbar-top-links li:last-child{margin-right: 0;}
 	.btn-list li{width: 50%;}
 	.users-list > li{width: 50%;}
+	.modal-1200 .modal-body .table-container{
+		height: 175px !important;
+		min-height: 175px !important;
+	}
+	.modal-1200 .modal-body{padding: 0 0 10px;}
 }
 
 @media screen and (max-width: 768px) {
@@ -2623,4 +2628,13 @@ li.active,
 		min-height: inherit;
 	}
 	.users-list > li{width: 100%;}
+	.modal-1200 .modal-header h2{
+		font-size: 18px;
+		line-height: 1.4;
+	}
+	.modal-1200 .modal-body .table-container{
+		height: 300px !important;
+		min-height: 300px !important;
+	}
+	.modal-1200 .modal-body .table-block{min-height: 354px !important;}
 }
