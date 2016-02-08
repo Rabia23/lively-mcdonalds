@@ -34,7 +34,7 @@ class FeedbackQuerySet(models.QuerySet):
         elif region_id:
             return self.filter(branch__city__region__exact=region_id)
         elif branch_id:
-            return self.filter(feedback__branch__exact=branch_id)
+            return self.filter(branch__exact=branch_id)
         elif area_id:
             return self.filter(branch__city__region__area__exact=area_id)
         return self
