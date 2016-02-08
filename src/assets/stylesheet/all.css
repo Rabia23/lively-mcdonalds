@@ -1776,9 +1776,9 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	display: block;
 	width: 100%;
 	height: auto;
-	padding: 10px;
-	font-size: 28px;
-	line-height: 36px;
+	padding: 0;
+	font-size: 24px;
+	line-height: 30px;
 	text-transform: capitalize;
 	color: #999;
 	border: 1px solid #999;
@@ -1823,7 +1823,6 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .promotions .btn.dim .ico-holder{
 	white-space: nowrap;
 	display: block;
-	max-width: 50%;
 	margin: 0 auto 10px;
 }
 
@@ -1832,7 +1831,6 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	vertical-align: middle;
 	content: "";
 	overflow: hidden;
-	margin: 0 0 0 -4px;
 	min-height: 100%;
 }
 
@@ -1842,6 +1840,11 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	white-space: normal;
 	width: 100%;
 	height: auto;
+}
+
+.promotions .btn.dim .title{
+	display: block;
+	padding: 0 10px 10px;
 }
 
 .promotions .btn.dim .fa{margin-right: 5px;}
@@ -2093,6 +2096,8 @@ li.active,
 	left: auto;
 	right: 5px;
 }
+
+.message-holder h2{font-size: 16px;}
 
 @media screen and (min-width: 768px) {
 	.legends-holder{padding: 15px 20px 0;}

@@ -1351,25 +1351,25 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "							<li>\n" +
     "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\" ui-sref=\"coffee-promotions\">\n" +
     "									<span class=\"ico-holder\"><img src=\"assets/images/promo1.jpg\" alt=\"\"></span>\n" +
-    "									Coffee Promotion\n" +
+    "									<span class=\"title\">Coffee Promotion</span>\n" +
     "								</a>\n" +
     "							</li>\n" +
     "							<li>\n" +
     "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\">\n" +
     "									<span class=\"ico-holder\"><img src=\"assets/images/promo2.jpg\" alt=\"\"></span>\n" +
-    "									Omelette Promotion\n" +
+    "									<span class=\"title\">Omelette Promotion</span>\n" +
     "								</a>\n" +
     "							</li>\n" +
     "							<li>\n" +
     "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\" ui-sref=\"coffee-promotions\">\n" +
     "									<span class=\"ico-holder\"><img src=\"assets/images/promo1.jpg\" alt=\"\"></span>\n" +
-    "									Coffee Promotion\n" +
+    "									<span class=\"title\">Coffee Promotion</span>\n" +
     "								</a>\n" +
     "							</li>\n" +
     "							<li>\n" +
     "								<a href=\"#\" class=\"btn ibox dim btn-large-dim btn-outline\">\n" +
     "									<span class=\"ico-holder\"><img src=\"assets/images/promo2.jpg\" alt=\"\"></span>\n" +
-    "									Omelette Promotion\n" +
+    "									<span class=\"title\">Omelette Promotion</span>\n" +
     "								</a>\n" +
     "							</li>\n" +
     "						</ul>\n" +
