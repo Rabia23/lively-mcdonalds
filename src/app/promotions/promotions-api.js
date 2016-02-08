@@ -12,7 +12,7 @@ angular.module( 'livefeed.promotions.api', [
     this.service = $resource(apiLinks.staging, {},
                   {
                     promotions_list: {method: "GET",isArray: true, params: {endpoint: "promotion"}},
-                    promotion_detail: {method: "GET",isArray: true, params: {endpoint: "promotion_detail"}}
+                    promotion_detail: {method: "GET",isArray: false, params: {endpoint: "promotion_detail"}}
                  });
   }
   PromotionsApi.prototype.promotions_list = function(){

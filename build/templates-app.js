@@ -75,7 +75,7 @@ angular.module("common/sidebar.tpl.html", []).run(["$templateCache", function($t
     "				<li ng-class = \"{'active': currentState == 'users'}\">\n" +
     "					<a ui-sref=\"users\"><i class=\"fa fa-user\"></i> <span class=\"nav-label\">Manage Users</span></a>\n" +
     "				</li>\n" +
-    "				<li ng-class = \"{'active': currentState == 'promotions'}\">\n" +
+    "				<li ng-class = \"{'active': (currentState == 'promotions' || currentState == 'promotions_detail' ) }\">\n" +
     "					<a ui-sref=\"promotions\"><i class=\"fa fa-bullhorn\"></i> <span class=\"nav-label\">Promotions</span></a>\n" +
     "				</li>\n" +
     "			</ul>\n" +
@@ -462,6 +462,8 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "      <div class=\"block-holder\" time-line data-data = \"overall_rating_data\" data-action=\"optionClick(option_object)\">\n" +
     "      	  <a ng-click = \"Prev()\" ng-show = \"mainView\" class=\"btn-prev fa fa-angle-left\"></a>\n" +
     "          <a ng-click = \"Next()\" ng-show = \"mainView\" class=\"btn-next fa fa-angle-right\"></a>\n" +
+    "          <a ng-click = \"labelPrev()\" ng-show = \"optionView\" class=\"btn-prev fa fa-angle-left\"></a>\n" +
+    "          <a ng-click = \"labelNext()\" ng-show = \"optionView\" class=\"btn-next fa fa-angle-right\"></a>\n" +
     "          <div id=\"chartdiv\" style=\"width: 100%; height: 320px;\"></div>\n" +
     "      </div>\n" +
     "  </div>\n" +
@@ -732,7 +734,6 @@ angular.module("live/benchmark-map/benchmark-map.tpl.html", []).run(["$templateC
   $templateCache.put("live/benchmark-map/benchmark-map.tpl.html",
     "<div class=\"slide win-height\">\n" +
     "        <div class=\"slide-holder\">\n" +
-    "           <span class=\"data-count\">2 Days</span>\n" +
     "            <div class=\"holder\">\n" +
     "                <div class=\"detail-holder\">\n" +
     "                    <div class=\"table-inner\">\n" +
@@ -772,7 +773,8 @@ angular.module("live/benchmark-map/benchmark-map.tpl.html", []).run(["$templateC
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "</div>");
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("live/business-segments/business-segment.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -1263,73 +1265,16 @@ angular.module("promotions/promotions-detail.tpl.html", []).run(["$templateCache
     "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "		<div class=\"row promotions\">\n" +
     "			<div class=\"col-lg-12\">\n" +
-    "				<h1>Coffee Promotion</h1>\n" +
+    "				<h1>{{promotion.title}} Promotion</h1>\n" +
     "				<div class=\"row\">\n" +
-    "					<div class=\"col-md-6\">\n" +
+    "					<div class=\"col-md-6 grid-item\" ng-repeat = \"question in questions track by $index\">\n" +
     "						<div class=\"ibox float-e-margins\">\n" +
     "							<div class=\"ibox-title\">\n" +
-    "								<h5>Question 1 <small>Lorem Ipsum is simply</small></h5>\n" +
+    "								<h5>Question {{$index + 1}} <small> {{question.question}}</small></h5>\n" +
     "							</div>\n" +
     "							<div class=\"ibox-content\">\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<div class=\"ibox float-e-margins\">\n" +
-    "							<div class=\"ibox-title\">\n" +
-    "								<h5>Question 2 <small>Lorem Ipsum is simply</small></h5>\n" +
-    "							</div>\n" +
-    "							<div class=\"ibox-content\">\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "				<div class=\"row\">\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<div class=\"ibox float-e-margins\">\n" +
-    "							<div class=\"ibox-title\">\n" +
-    "								<h5>Question 4 <small>Lorem Ipsum is simply</small></h5>\n" +
-    "							</div>\n" +
-    "							<div class=\"ibox-content\">\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
-    "					<div class=\"col-md-6\">\n" +
-    "						<div class=\"ibox float-e-margins\">\n" +
-    "							<div class=\"ibox-title\">\n" +
-    "								<h5>Question 3 <small>Lorem Ipsum is simply</small></h5>\n" +
-    "							</div>\n" +
-    "							<div class=\"ibox-content\">\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "				<div class=\"row\">\n" +
-    "					<div class=\"col-md-6 grid-item\">\n" +
-    "						<div class=\"ibox float-e-margins\">\n" +
-    "							<div class=\"ibox-title\">\n" +
-    "								<h5>Question 5 <small>Lorem Ipsum is simply</small></h5>\n" +
-    "							</div>\n" +
-    "							<div class=\"ibox-content\">\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
-    "					<div class=\"col-md-6 grid-item\">\n" +
-    "						<div class=\"ibox float-e-margins\">\n" +
-    "							<div class=\"ibox-title\">\n" +
-    "								<h5>Question 6 <small>Lorem Ipsum is simply</small></h5>\n" +
-    "							</div>\n" +
-    "							<div class=\"ibox-content\">\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n" +
-    "							</div>\n" +
+    "                <div id = \"graph_{{$index}}\"></div>\n" +
+    "              </div>\n" +
     "						</div>\n" +
     "					</div>\n" +
     "				</div>\n" +
@@ -1338,7 +1283,8 @@ angular.module("promotions/promotions-detail.tpl.html", []).run(["$templateCache
     "	  </div>\n" +
     "  </div>\n" +
     "  <ui-view name = \"footer\"></ui-view>\n" +
-    "</div>");
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", function($templateCache) {

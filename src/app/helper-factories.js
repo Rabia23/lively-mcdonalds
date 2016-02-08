@@ -69,10 +69,10 @@ angular.module( 'helper_factories', ['ngResource'])
       "Ice Cream Quality":{priority: 6, color: "#2B0039"},
       "Not Fresh":{priority: 1, color: "#420F50"},
 
-      "Employee Attentiveness":{priority: 1, color: "#B84900"},
+      "Employee Attentiveness":{priority: 4, color: "#B84900"},
       "Wrong Order":{priority: 3, color: "#FFA42B"},
       "Speed of Service":{priority: 2, color: "#E67700"},
-      "Missing Order":{priority: 4, color: "#FFD259"}
+      "Missing Order":{priority: 1, color: "#FFD259"}
     },
 
     overallFeedbackClass: {

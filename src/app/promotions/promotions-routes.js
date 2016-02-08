@@ -47,7 +47,7 @@
       },
       authenticate: true
       // params: {
-      //   promotionId: null
+      //   promotionName: null
       // }
     });
 
