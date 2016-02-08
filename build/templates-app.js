@@ -732,6 +732,7 @@ angular.module("live/benchmark-map/benchmark-map.tpl.html", []).run(["$templateC
   $templateCache.put("live/benchmark-map/benchmark-map.tpl.html",
     "<div class=\"slide win-height\">\n" +
     "        <div class=\"slide-holder\">\n" +
+    "           <span class=\"data-count\">2 Days</span>\n" +
     "            <div class=\"holder\">\n" +
     "                <div class=\"detail-holder\">\n" +
     "                    <div class=\"table-inner\">\n" +
@@ -778,6 +779,7 @@ angular.module("live/business-segments/business-segment.tpl.html", []).run(["$te
   $templateCache.put("live/business-segments/business-segment.tpl.html",
     "<div class=\"slide win-height\" business-segment data-data = \"segmentation_rating\">\n" +
     "	<div class=\"slide-holder add\">\n" +
+    "		<span class=\"data-count\">2 Days</span>\n" +
     "		<div class=\"holder\">\n" +
     "			<div class=\"inner-holder\">\n" +
     "				<div class=\"list-holder\">\n" +
@@ -879,6 +881,7 @@ angular.module("live/overall-ratings/overall-rating.tpl.html", []).run(["$templa
   $templateCache.put("live/overall-ratings/overall-rating.tpl.html",
     "<div class=\"slide win-height\" overall-rating data-data = \"overall_rating_data\">\n" +
     "	<div class=\"slide-holder\">\n" +
+    "		<span class=\"data-count\">2 Days</span>\n" +
     "		<div class=\"holder\">\n" +
     "			<div class=\"chart-outer\">\n" +
     "				<div id=\"barchart\"></div>\n" +
@@ -892,6 +895,7 @@ angular.module("live/patch-qsc-analysis/patch-qsc-analysis.tpl.html", []).run(["
   $templateCache.put("live/patch-qsc-analysis/patch-qsc-analysis.tpl.html",
     "<div class=\"slide win-height\">\n" +
     "    <div class=\"slide-holder add\">\n" +
+    "       	<span class=\"data-count\">2 Days</span>\n" +
     "        <div class=\"holder\">\n" +
     "            <div class=\"inner-holder\">\n" +
     "                <div class=\"list-holder\">\n" +
@@ -934,6 +938,7 @@ angular.module("live/qsc/qsc.tpl.html", []).run(["$templateCache", function($tem
   $templateCache.put("live/qsc/qsc.tpl.html",
     "<div class=\"slide win-height\" qsc data-data = \"overall_rating_data\">\n" +
     "	<div class=\"slide-holder add\">\n" +
+    "		<span class=\"data-count\">1 Week</span>\n" +
     "		<div class=\"holder\">\n" +
     "			<div class=\"inner-holder\">\n" +
     "				<div class=\"list-holder\">\n" +
