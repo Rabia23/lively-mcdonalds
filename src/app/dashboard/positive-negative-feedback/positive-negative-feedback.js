@@ -110,6 +110,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
           height = window_height - header_height - button_holder;
         }
         $(".comments-holder").css("height", height);
+		window.initCustomForms();
       }
     }
   };

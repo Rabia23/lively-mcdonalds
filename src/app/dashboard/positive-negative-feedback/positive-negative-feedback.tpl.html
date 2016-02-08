@@ -17,15 +17,13 @@
         </div>
       </div>
       <div class="comments-holder">
-       	<div class="jcf-scrollable" custom-form data-comments = "comments">
-          <ul class="comments-list list-unstyled">
+          <ul class="comments-list list-unstyled jcf-scrollable" custom-form data-comments = "comments">
 		    <li ng-if = "feedback_count != 0" ng-repeat = "comment in comments" ng-class = "{negative: comment.data.is_negative, positive: !comment.data.is_negative, processed: comment.action_string == 'Processed', deferred: comment.action_string == 'Deferred'}">
 			  <p>{{comment.data.comment}}</p>
 			  <time datetime="{{comment.date_time}}">{{comment.date_time}}</time>
             </li>
 			<li ng-if = "feedback_count == 0">No Data Available</li>
           </ul>
-       	</div>
       </div>
       <div class="btn-holder">
         <button class="btn btn-info pull-right btn-close" ng-click = "open()" ng-disabled = "feedback_count == 0">View All</button>

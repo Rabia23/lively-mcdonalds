@@ -546,15 +546,13 @@ angular.module("dashboard/positive-negative-feedback/positive-negative-feedback.
     "        </div>\n" +
     "      </div>\n" +
     "      <div class=\"comments-holder\">\n" +
-    "       	<div class=\"jcf-scrollable\" custom-form data-comments = \"comments\">\n" +
-    "          <ul class=\"comments-list list-unstyled\">\n" +
+    "          <ul class=\"comments-list list-unstyled jcf-scrollable\" custom-form data-comments = \"comments\">\n" +
     "		    <li ng-if = \"feedback_count != 0\" ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.data.is_negative, positive: !comment.data.is_negative, processed: comment.action_string == 'Processed', deferred: comment.action_string == 'Deferred'}\">\n" +
     "			  <p>{{comment.data.comment}}</p>\n" +
     "			  <time datetime=\"{{comment.date_time}}\">{{comment.date_time}}</time>\n" +
     "            </li>\n" +
     "			<li ng-if = \"feedback_count == 0\">No Data Available</li>\n" +
     "          </ul>\n" +
-    "       	</div>\n" +
     "      </div>\n" +
     "      <div class=\"btn-holder\">\n" +
     "        <button class=\"btn btn-info pull-right btn-close\" ng-click = \"open()\" ng-disabled = \"feedback_count == 0\">View All</button>\n" +
@@ -824,6 +822,14 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "			<time datetime=\"2015-12-23 13:49\"><strong>{{time}}</strong>  {{date_output}}</time>\n" +
     "			<ul class=\"info-list\">\n" +
     "				<li>\n" +
+    "					<strong class=\"title\">Time Period</strong>\n" +
+    "					<div class=\"timer-slider\">\n" +
+    "						<ul>\n" +
+    "							<li></li>\n" +
+    "						</ul>\n" +
+    "					</div>\n" +
+    "				</li>\n" +
+    "				<li>\n" +
     "					<strong class=\"title\">Overall Experience</strong>\n" +
     "					<ul>\n" +
     "						<li>{{top_ranking.overall_experience.option_text}}</li>\n" +
@@ -1085,7 +1091,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "						</div>\n" +
     "					</div>\n" +
     "					<div class=\"form-group\">\n" +
-    "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"phoneno\">Phone No.</label>\n" +
+    "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"phone_no\">Phone No.</label>\n" +
     "						<div class=\"col-sm-10 col-md-9\">\n" +
     "							<input type=\"tel\" id=\"phone_no\" class=\"form-control\" ng-model = \"user.phone_no\" name = \"phone_no\"\n" +
     "							required = true ng-pattern=\"/^[0-9]+$/\" >\n" +
