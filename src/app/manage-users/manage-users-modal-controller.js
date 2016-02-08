@@ -27,6 +27,8 @@
       if(valid){
         $scope.submitted = true;
         ManageApi.add_user($scope.user).$promise.then(function(data){
+          console.log("user added");
+          console.log($scope.user);
           $scope.ok();
           var message = "User successfully created.";
           Flash.create('success', message, 'custom-class');

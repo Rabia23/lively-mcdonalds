@@ -77,6 +77,15 @@
       modalInstance.result.then(function (user) {
         ManageApi.manage_users().$promise.then(function(data){
           $scope.users = data.children;
+          _.each($scope.users, function(value, index){
+            value.user_role = Enum.get_user_label(value.role);
+            if(value.is_active){
+              value.status = "Active";
+            }
+            else{
+              value.status = "Inactive";
+            }
+          });
         });
       });
     };
