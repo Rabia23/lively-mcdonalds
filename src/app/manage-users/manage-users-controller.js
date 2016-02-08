@@ -49,7 +49,7 @@
           user.status = "Inactive";
           $scope.users[index] = user;
         }
-        console.log($scope.users[index]);
+        $scope.users[index].user_role = Enum.get_user_label(data.role);
         Flash.create('success', message, 'custom-class');
       });
     };

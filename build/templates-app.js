@@ -1164,6 +1164,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "									</li>\n" +
     "									<li>\n" +
     "										<span class=\"title\">Role</span>\n" +
+    "                    {{user.user_role}}\n" +
     "										<div class=\"text\">{{user.user_role}}</div>\n" +
     "									</li>\n" +
     "									<li ng-if = \"child_role == 4\" >\n" +
