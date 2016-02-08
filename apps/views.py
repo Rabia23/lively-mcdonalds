@@ -791,7 +791,7 @@ class PromotionDetailView(APIView):
 
             question_data_list = []
             for question in questions:
-                feedback_options = FeedbackOption.manager.promotion_options(question).filter(region_id, city_id, branch_id)
+                feedback_options = FeedbackOption.manager.promotion_options(question).filters(region_id, city_id, branch_id)
                 filtered_feedback = feedback_options.values('option_id', 'option__text', 'option__parent_id', 'option__score').\
                                     annotate(count=Count('option_id'))
                 list_feedback = generate_missing_options(question, filtered_feedback)
