@@ -110,7 +110,7 @@ angular.module( 'helper_factories', ['ngResource'])
 
     qscSubCategoriesData:{
       "Cleanliness": {"Flies":{priority: 4, color: "#4A90C0"}, "Lobby Temperature":{priority: 5, color: "#78BEEE"}, "Music":{priority: 6, color: "#B6E1FF"}, "Lobby":{priority: 2, color: "#003565"}, "Rest Rooms":{priority: 3, color: "#1C6292"}, "Employees":{priority: 1, color: "#000737"}},
-      "Quality": {"Fries":{priority: 3, color: "#683576"}, "Taste":{priority: 2, color: "#511E5F"}, "Coffee Quality":{priority: 5, color: "#1C002A"}, "Buns Quality":{priority: 4, color: "#A572B3"}, "Ice Cream Quality":{priority: 6, color: "#2B0039"}, "Not Fresh":{priority: 1, color: "#420F50"}},
+     "Quality": {"Fries":{priority: 3, color: "#d13535"}, "Taste":{priority: 2, color: "#b41e1f"}, "Coffee Quality":{priority: 5, color: "#ff5353"}, "Buns Quality":{priority: 4, color: "#ec4747"}, "Not Fresh":{priority: 1, color: "#990c0c"}},
       "Service": {"Employee Attentiveness":{priority: 1, color: "#B84900"}, "Wrong Order":{priority: 3, color: "#FFA42B"}, "Speed of Service":{priority: 2, color: "#E67700"}, "Missing Order":{priority: 4, color: "#FFD259"}}
     },
 
