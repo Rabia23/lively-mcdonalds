@@ -795,7 +795,7 @@ class PromotionDetailView(APIView):
                 filtered_feedback = feedback_options.values('option_id', 'option__text', 'option__parent_id', 'option__score').\
                                     annotate(count=Count('option_id'))
                 list_feedback = generate_missing_options(question, filtered_feedback)
-                question_data_list.append({'question': question.text, 'feedbacks': list_feedback})
+                question_data_list.append({'question': question.text, 'type': question.type,  'feedbacks': list_feedback})
 
             data = {'question': questions.count(), 'analysis': question_data_list}
             return Response(data)
