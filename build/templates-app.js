@@ -938,7 +938,7 @@ angular.module("live/qsc/qsc.tpl.html", []).run(["$templateCache", function($tem
   $templateCache.put("live/qsc/qsc.tpl.html",
     "<div class=\"slide win-height\" qsc data-data = \"overall_rating_data\">\n" +
     "	<div class=\"slide-holder add\">\n" +
-    "		<span class=\"data-count\">2 Days</span>\n" +
+    "		<span class=\"data-count\">1 Week</span>\n" +
     "		<div class=\"holder\">\n" +
     "			<div class=\"inner-holder\">\n" +
     "				<div class=\"list-holder\">\n" +
@@ -965,7 +965,6 @@ angular.module("live/top-concerns/top-concern.tpl.html", []).run(["$templateCach
   $templateCache.put("live/top-concerns/top-concern.tpl.html",
     "<div class=\"slide win-height\" top-concern data-data = \"top_concern_data\">\n" +
     "	<div class=\"slide-holder\">\n" +
-    "		<span class=\"data-count\">2 Days</span>\n" +
     "		<div class=\"holder\">\n" +
     "			<div class=\"chart-outer\">\n" +
     "				<div id=\"container\"></div>\n" +
