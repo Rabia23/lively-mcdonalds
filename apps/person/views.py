@@ -71,14 +71,20 @@ class UserView(APIView):
                         parse_helper.item_add(user_info, password)
                         return Response(response_json(True, user_info.to_dict(), None))
                     elif role == UserRolesEnum.BRANCH_MANAGER:
-                        user_info = UserInfo.objects.create(user=user, phone_no=phone_no, role=UserRolesEnum.BRANCH_MANAGER,
+                        if not branch.is_associated():
+                            user_info = UserInfo.objects.create(user=user, phone_no=phone_no, role=UserRolesEnum.BRANCH_MANAGER,
                                                         branch=branch, parent=parent)
-                        return Response(response_json(True, user_info.to_dict(), None))
+                            return Response(response_json(True, user_info.to_dict(), None))
+                        else:
+                            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
                 elif region and parent:
                     if role == UserRolesEnum.OPERATIONAL_CONSULTANT:
-                        user_info = UserInfo.objects.create(user=user, phone_no=phone_no, role=UserRolesEnum.OPERATIONAL_CONSULTANT,
+                        if not region.is_associated():
+                            user_info = UserInfo.objects.create(user=user, phone_no=phone_no, role=UserRolesEnum.OPERATIONAL_CONSULTANT,
                                                         region=region, parent=parent)
-                        return Response(response_json(True, user_info.to_dict(), None))
+                            return Response(response_json(True, user_info.to_dict(), None))
+                        else:
+                            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
                 elif parent:
                     if role == UserRolesEnum.OPERATIONAL_MANAGER:
                         user_info = UserInfo.objects.create(user=user, phone_no=phone_no,
@@ -96,7 +102,6 @@ class UserView(APIView):
             return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
         except IntegrityError as e:
             return Response(response_json(False, None, constants.TEXT_ALREADY_EXISTS))
-
 
     @transaction.atomic()
     def put(self, request, format=None):
@@ -122,7 +127,6 @@ class UserView(APIView):
 
         except User.DoesNotExist as e:
             return Response(response_json(False, None, constants.TEXT_DOES_NOT_EXISTS))
-
 
     @transaction.atomic()
     def delete(self, request, format=None):

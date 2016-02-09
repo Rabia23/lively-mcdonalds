@@ -3,6 +3,7 @@ from apps.city.models import City
 from django.utils import timezone
 from apps import constants
 from datetime import datetime
+from apps.person.enum import UserRolesEnum
 
 
 class Branch(models.Model):
@@ -47,3 +48,9 @@ class Branch(models.Model):
             date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
             return self.feedback.filter(created_at__gte=date_from, created_at__lte=date_to).count()
         return self.feedback.count()
+
+    def is_associated(self):
+        for user in self.user_info.all():
+            if user.role == UserRolesEnum.BRANCH_MANAGER:
+                return True
+        return False

@@ -1,5 +1,6 @@
 from django.db import models
 from apps.area.models import Area
+from apps.person.enum import UserRolesEnum
 
 
 class Region(models.Model):
@@ -21,3 +22,9 @@ class Region(models.Model):
         region = Region.objects.filter(pk=region_id).first() if region_id else None
         if region:
             return region
+        
+    def is_associated(self):
+        for user in self.user_info.all():
+            if user.role == UserRolesEnum.OPERATIONAL_CONSULTANT:
+                return True
+        return False
