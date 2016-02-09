@@ -19,7 +19,7 @@ function initSlideShow() {
     autoRotation: true,
     pauseOnHover: false,
     autoHeight: true,
-    switchTime: 12000,
+    switchTime: 24000,
     animSpeed: 1000
   });
   jQuery('.slideshow').fadeGallery({
@@ -32,7 +32,7 @@ function initSlideShow() {
     autoRotation: true,
     pauseOnHover: false,
     autoHeight: true,
-    switchTime: 12000,
+    switchTime: 24000,
     animSpeed: 1000
   });
 	jQuery('#wrapper').fadeGallery({
@@ -45,7 +45,7 @@ function initSlideShow() {
     autoRotation: true,
     pauseOnHover: false,
     autoHeight: true,
-    switchTime: 12000,
+    switchTime: 24000,
     animSpeed: 1000
   });
 }

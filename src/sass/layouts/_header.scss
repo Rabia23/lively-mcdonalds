@@ -15,7 +15,7 @@
 	@include inline-block(bottom);
 	width: 100px;
 	letter-spacing: 0;
-	margin: 0 15px 6px 0;
+	margin: 0 15px 0 0;
 	
 	@include media("≥widescreen"){
 		width: 116px;
@@ -63,20 +63,24 @@
 	text-transform: uppercase;
 	color: $mine-shaft;
 	
+	
 	> li{
 		@include inline-block(top);
 		letter-spacing: 0;
 		text-align: left;
-		margin: 0 0 0 2.5%;
-		@include transition($val:all, $duration:3s, $function:linear);
+		margin: 0 0 0 10px;
+		@include transition($val:all, $duration:1s, $function:linear);
 		
-		@include media("≥widescreen"){margin: 0 0 0 4.5%;}
+		@include media("≥largeDesktop"){margin: 0 0 0 20px;}
+		@include media("≥widescreen"){margin: 0 0 0 30px;}
+		
+		&:first-child{margin: 0;}
 	}
 	.title{
 		display: block;
 		font-weight: 400;
 		margin: 0 0 2px;
-		font-size: 16px;
+		font-size: 15px;
 		
 		@include media("≥widescreen"){font-size: 18px;}
 	}
@@ -85,17 +89,18 @@
 		text-align: left;
 		color: $rosso-corsa;
 		letter-spacing: 0;
-		@include transition($val:all, $duration:3s, $function:linear);
+		@include transition($val:all, $duration:1s, $function:linear);
 		font: {
-			size: 24px;
+			size: 20px;
 			weight: 300;
 		}
 		
-		@include media("≥widescreen"){font-size: 36px;}
+		@include media("≥largeDesktop"){font-size: 24px;}
+		@include media("≥widescreen"){font-size: 32px;}
 		
 		li{
 			float: left;
-			@include transition($val:all, $duration:3s, $function:linear);
+			@include transition($val:all, $duration:1s, $function:linear);
 			
 			+li{
 				&:before{
@@ -109,22 +114,40 @@
 			&.item2{color: darken($yellow-orange,20%);}
 			&.item3{color: $rich-electric-blue;}
 		}
-		&.timer-slider{
-			position: relative;
-			li{
-				position: absolute;
-				left: 0;
-				top: 0;
-				@include transition($val:ease-in, $duration:3s, $function:linear);
+	}
+}
 
-				&.active{
-					z-index: 2;
-					position: relative;
-				}
-				
-				+ li{
-					&:before{display: none;}
-				}
+.heading-holder{
+	@extend %clearfix;
+	
+	h1{
+		@include inline-block(bottom);
+	}
+	
+	.timer-slider{
+		@include inline-block(bottom);
+		@extend %listreset;
+		position: relative;
+		color: $rosso-corsa;
+		margin: 0 0 4px 5px;
+		
+		font-size: 14px;
+  		@include media("≥largeDesktop"){font-size: 15px;}
+  		@include media("≥widescreen"){font-size: 17px;}
+		
+		li{
+			position: absolute;
+			left: 0;
+			top: 0;
+			@include transition($val:ease-in, $duration:3s, $function:linear);
+
+			&.active{
+				z-index: 2;
+				position: relative;
+			}
+
+			+ li{
+				&:before{display: none;}
 			}
 		}
 	}

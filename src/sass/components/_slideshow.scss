@@ -194,7 +194,7 @@
 					content: "";
 					z-index: 9991;
 					background: $supernova;
-					@include transition($val:all, $duration:12s, $function:linear);
+					@include transition($val:all, $duration:25s, $function:linear);
 				}
 
 				&:hover{
@@ -233,7 +233,7 @@
 						left: 0;
 						width: 100%;
 						right: auto;
-						@include transition($val:all, $duration:12s, $function:linear);
+						@include transition($val:all, $duration:25s, $function:linear);
 					}
 				}
 			}

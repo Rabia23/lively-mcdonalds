@@ -484,7 +484,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "	    <thead>\n" +
     "		  <tr>\n" +
     "			<th class=\"item1\">Name</th>\n" +
-    "			<th class=\"item2\">Phone <span>Number</span><span class=\"no\">No</span>/ Email</th>\n" +
+    "			<th class=\"item2\">Phone / Email</th>\n" +
     "			<th class=\"item3\">Branch</th>\n" +
     "			<th class=\"item4\">Segment</th>\n" +
     "			<th class=\"item5\">Comments</th>\n" +
@@ -500,7 +500,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "			  <td class=\"item2\"><a href=\"tel:{{comment.phone_no}}\" class=\"tel\">{{comment.phone_no}}</a><br><a>{{comment.email}}</a></td>\n" +
     "			  <td class=\"item3\">{{comment.data.branch}}</td>\n" +
     "			  <td class=\"item4\">{{comment.data.segment}}</td>\n" +
-    "			  <td class=\"item5\"><span class=\"ico\"></span><div class=\"text\">{{comment.data.comment}}</div></td>\n" +
+    "			  <td class=\"item5\"><div class=\"text\">{{comment.data.comment}}</div></td>\n" +
     "			  <td class=\"item6\">\n" +
     "			    <div class=\"btn-group\" uib-dropdown dropdown-append-to-body ng-show = \"comment.show_dropdown\">\n" +
     "				  <button type=\"button\" class=\"btn btn-info\" ng-click=\"selectedValue('Process',comment)\">Process</button>\n" +
@@ -779,7 +779,6 @@ angular.module("live/business-segments/business-segment.tpl.html", []).run(["$te
   $templateCache.put("live/business-segments/business-segment.tpl.html",
     "<div class=\"slide win-height\" business-segment data-data = \"segmentation_rating\">\n" +
     "	<div class=\"slide-holder add\">\n" +
-    "		<span class=\"data-count\">2 Days</span>\n" +
     "		<div class=\"holder\">\n" +
     "			<div class=\"inner-holder\">\n" +
     "				<div class=\"list-holder\">\n" +
@@ -817,25 +816,22 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "					<div class=\"heading-slide\"><h2>Complaint analysis</h2></div>\n" +
     "					<div class=\"heading-slide\"><h2>Leaderboard</h2></div>\n" +
     "				</div>\n" +
-    "				<h1>Country Wide</h1>\n" +
+    "				<div class=\"heading-holder\">\n" +
+    "					<h1>Country Wide</h1>\n" +
+    "					<ul class=\"timer-slider\">\n" +
+    "						<li>Since Last 1 Week</li>\n" +
+    "						<li>Since Yesterday Morning</li>\n" +
+    "						<li>Since Yesterday Morning</li>\n" +
+    "						<li>Since Beginning</li>\n" +
+    "						<li>Since Yesterday Morning</li>\n" +
+    "						<li>Since Yesterday Morning</li>\n" +
+    "					</ul>\n" +
+    "				</div>\n" +
     "			</div>\n" +
     "		</div>\n" +
     "		<div class=\"header-content\">\n" +
     "			<time datetime=\"2015-12-23 13:49\"><strong>{{time}}</strong>  {{date_output}}</time>\n" +
     "			<ul class=\"info-list\">\n" +
-    "<!--\n" +
-    "				<li>\n" +
-    "					<strong class=\"title\">Time Period</strong>\n" +
-    "					<ul class=\"timer-slider\">\n" +
-    "						<li>1 Week</li>\n" +
-    "						<li>2 Days</li>\n" +
-    "						<li>2 Days</li>\n" +
-    "						<li>Since beginning</li>\n" +
-    "						<li>2 Days</li>\n" +
-    "						<li>2 Days</li>\n" +
-    "					</ul>\n" +
-    "				</li>\n" +
-    "-->\n" +
     "				<li>\n" +
     "					<strong class=\"title\">Overall Experience</strong>\n" +
     "					<ul>\n" +
@@ -894,7 +890,6 @@ angular.module("live/overall-ratings/overall-rating.tpl.html", []).run(["$templa
   $templateCache.put("live/overall-ratings/overall-rating.tpl.html",
     "<div class=\"slide win-height\" overall-rating data-data = \"overall_rating_data\">\n" +
     "	<div class=\"slide-holder\">\n" +
-    "		<span class=\"data-count\">2 Days</span>\n" +
     "		<div class=\"holder\">\n" +
     "			<div class=\"chart-outer\">\n" +
     "				<div id=\"barchart\"></div>\n" +
@@ -908,7 +903,6 @@ angular.module("live/patch-qsc-analysis/patch-qsc-analysis.tpl.html", []).run(["
   $templateCache.put("live/patch-qsc-analysis/patch-qsc-analysis.tpl.html",
     "<div class=\"slide win-height\">\n" +
     "    <div class=\"slide-holder add\">\n" +
-    "       	<span class=\"data-count\">2 Days</span>\n" +
     "        <div class=\"holder\">\n" +
     "            <div class=\"inner-holder\">\n" +
     "                <div class=\"list-holder\">\n" +
@@ -951,7 +945,6 @@ angular.module("live/qsc/qsc.tpl.html", []).run(["$templateCache", function($tem
   $templateCache.put("live/qsc/qsc.tpl.html",
     "<div class=\"slide win-height\" qsc data-data = \"overall_rating_data\">\n" +
     "	<div class=\"slide-holder add\">\n" +
-    "		<span class=\"data-count\">1 Week</span>\n" +
     "		<div class=\"holder\">\n" +
     "			<div class=\"inner-holder\">\n" +
     "				<div class=\"list-holder\">\n" +
@@ -1110,23 +1103,25 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "						</div>\n" +
     "					</div>\n" +
     "				</div>\n" +
-    "			</div>\n" +
-    "			<div class=\"form-group\" ng-if = \"user.role == 3 && !edit_form\">\n" +
-    "				<label class=\"col-sm-2 control-label\" for=\"branch\">Branch</label>\n" +
-    "				<div class=\"col-sm-10\">\n" +
-    "						<select id=\"branch\" class=\"barcode\" custom-form  ng-options = \"branch.id as branch.name for branch in branches track by branch.id\"\n" +
-    "					ng-model = \"user.branch_id\" name = \"branch\">\n" +
-    "							<option class=\"hideme\" value = \"\">Please Select a Branch</option>\n" +
-    "					</select>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
-    "			<div class=\"form-group\" ng-if = \"user.role == 4 && !edit_form\">\n" +
-    "				<label class=\"col-sm-2 control-label\" for=\"code\">Regions</label>\n" +
-    "				<div class=\"col-sm-10\">\n" +
-    "					<select id=\"region\" class=\"barcode\" custom-form  ng-options = \"region.id as region.name for region in regions track by region.id\"\n" +
-    "					ng-model = \"user.region_id\" name = \"region\" required=\"true\">\n" +
-    "						<option class=\"hideme\" value = \"\">Please Select a Region</option>\n" +
-    "					</select>\n" +
+    "				<div class=\"col-xs-12\">\n" +
+    "					<div class=\"form-group\" ng-if = \"user.role == 3 && !edit_form\">\n" +
+    "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"branch\">Branch</label>\n" +
+    "						<div class=\"col-sm-10 col-md-9\">\n" +
+    "								<select id=\"branch\" class=\"barcode\" custom-form  ng-options = \"branch.id as branch.name for branch in branches track by branch.id\"\n" +
+    "							ng-model = \"user.branch_id\" name = \"branch\">\n" +
+    "									<option class=\"hideme\" value = \"\">Please Select a Branch</option>\n" +
+    "							</select>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div class=\"form-group\" ng-if = \"user.role == 4 && !edit_form\">\n" +
+    "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"code\">Regions</label>\n" +
+    "						<div class=\"col-sm-10 col-md-9\">\n" +
+    "							<select id=\"region\" class=\"barcode\" custom-form  ng-options = \"region.id as region.name for region in regions track by region.id\"\n" +
+    "							ng-model = \"user.region_id\" name = \"region\" required=\"true\">\n" +
+    "								<option class=\"hideme\" value = \"\">Please Select a Region</option>\n" +
+    "							</select>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
     "				</div>\n" +
     "			</div>\n" +
     "		</div>\n" +
@@ -1161,31 +1156,31 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "								</div>\n" +
     "								<ul>\n" +
     "									<li>\n" +
-    "										<span class=\"title\">Phone No.</span>\n" +
+    "										<span class=\"title\">Phone No :</span>\n" +
     "										<div class=\"text\">{{user.phone_no}}</div>\n" +
     "									</li>\n" +
     "									<li ng-if = \"child_role == 2 || child_role == 3\">\n" +
-    "										<span class=\"title\">Branch</span>\n" +
+    "										<span class=\"title\">Branch :</span>\n" +
     "										<div class=\"text\">{{user.branch.name}}</div>\n" +
     "									</li>\n" +
     "									<li>\n" +
-    "										<span class=\"title\">User Name:</span>\n" +
+    "										<span class=\"title\">User Name :</span>\n" +
     "										<div class=\"text\">{{user.username}}</div>\n" +
     "									</li>\n" +
     "									<li>\n" +
-    "										<span class=\"title\">Email</span>\n" +
+    "										<span class=\"title\">Email :</span>\n" +
     "										<div class=\"text\">{{user.email}}</div>\n" +
     "									</li>\n" +
     "									<li>\n" +
-    "										<span class=\"title\">Status</span>\n" +
+    "										<span class=\"title\">Status :</span>\n" +
     "										<div class=\"text\">{{user.status}}</div>\n" +
     "									</li>\n" +
     "									<li>\n" +
-    "										<span class=\"title\">Role</span>\n" +
+    "										<span class=\"title\">Role :</span>\n" +
     "										<div class=\"text\">{{user.user_role}}</div>\n" +
     "									</li>\n" +
     "									<li ng-if = \"child_role == 4\" >\n" +
-    "										<span class=\"title\">Region</span>\n" +
+    "										<span class=\"title\">Region:</span>\n" +
     "										<div class=\"text\" >{{user.region.name}}</div>\n" +
     "									</li>\n" +
     "								</ul>\n" +
