@@ -38,7 +38,7 @@ angular.module("common/header.tpl.html", []).run(["$templateCache", function($te
     "        </a>\n" +
     "      </li> -->\n" +
     "      <li>\n" +
-    "        <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">{{username}}</span></span>\n" +
+    "        <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">{{fullname}}</span></span>\n" +
     "      </li>\n" +
     "      <li>\n" +
     "        <a style = \"cursor:pointer;\" ng-click = \"logout()\">\n" +
@@ -72,11 +72,11 @@ angular.module("common/sidebar.tpl.html", []).run(["$templateCache", function($t
     "				<li ng-class = \"{'active': currentState == 'dashboard'}\">\n" +
     "					<a ui-sref = \"dashboard\"><i class=\"fa fa-home\"></i> <span class=\"nav-label\">Dashboard</span></a>\n" +
     "				</li>\n" +
-    "				<li ng-class = \"{'active': currentState == 'users'}\">\n" +
-    "					<a ui-sref=\"users\"><i class=\"fa fa-user\"></i> <span class=\"nav-label\">Manage Users</span></a>\n" +
-    "				</li>\n" +
     "				<li ng-class = \"{'active': (currentState == 'promotions' || currentState == 'promotions_detail' ) }\">\n" +
     "					<a ui-sref=\"promotions\"><i class=\"fa fa-bullhorn\"></i> <span class=\"nav-label\">Promotions</span></a>\n" +
+    "				</li>\n" +
+    "				<li ng-class = \"{'active': currentState == 'users'}\">\n" +
+    "					<a ui-sref=\"users\"><i class=\"fa fa-user\"></i> <span class=\"nav-label\">Manage Users</span></a>\n" +
     "				</li>\n" +
     "			</ul>\n" +
     "    	</div>\n" +
@@ -819,7 +819,7 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "				<div class=\"heading-holder\">\n" +
     "					<h1>Country Wide</h1>\n" +
     "					<ul class=\"timer-slider\">\n" +
-    "						<li>Since Last 1 Week</li>\n" +
+    "						<li>Last 1 Week</li>\n" +
     "						<li>Since Yesterday Morning</li>\n" +
     "						<li>Since Yesterday Morning</li>\n" +
     "						<li>Since Beginning</li>\n" +

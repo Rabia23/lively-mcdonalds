@@ -1738,6 +1738,9 @@ li.active,
 	letter-spacing: 0;
 	width: 20%;
 }
+.users-list > li.inactive ul,
+.users-list > li.inactive .title,
+.users-list > li.inactive .img-holder{opacity: 0.5;}
 .users-list ul{
 	padding: 0;
 	margin: 0;
@@ -1752,8 +1755,6 @@ li.active,
 	padding: 8px 0;
 	color: #4c4f51;
 }
-
-.users-list ul li.disabled{display: none;}
 .users-list ul li .title{
 	float: left;
 	color: #676a6c;
