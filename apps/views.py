@@ -442,8 +442,7 @@ class ActionTakenView(APIView):
                 feedback.action_taken = action_id
                 feedback.save()
 
-                feedback_response = FeedbackCommentSerializer(feedback.feedback_comment_dict())
-                return Response(response_json(True, feedback_response, None))
+                return Response(response_json(True, feedback.feedback_comment_dict(), None))
             else:
                 return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
         except Exception as e:
