@@ -2,16 +2,19 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
   'factories',
   'livefeed.overall_feedback.chart',
   'helper_factories',
-  'chart.js'
+  'chart.js',
+  'flash'
 ])
 
 
-.controller( 'OverallFeedbackCtrl', function DashboardController( $scope, Graphs, Global, overallFeedbackChartService ) {
+.controller( 'OverallFeedbackCtrl', function DashboardController( $scope, Graphs, Global, overallFeedbackChartService, Flash ) {
 
   $scope.show_loading = true;
   $scope.show_labels = true;
 
   $scope.today = new Date();
+
+  $scope.show_error_message = false;
 
    function resetDates(){
     $scope.date = {
@@ -40,15 +43,25 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
 
   function show_graph(start_date, end_date){
      Graphs.overall_feedback(start_date, end_date).$promise.then(function(graph_data){
-        $scope.show_labels = graph_data.feedback_count === 0 ? false : true;
-        $scope.labels = _.map(graph_data.feedbacks ,function(value){
-          return {option_name: value.option__text, color: Global.mainRatingColorScheme[value.option__text]};
-        });
-        $scope.show_canvas = graph_data.feedback_count === 0 ? false : true;
-        $scope.maximum = _.max(graph_data.feedbacks, function(data){ return data.count; });
-        $scope.bar = {};
-        $scope.bar = overallFeedbackChartService.getBarChartData(graph_data,$scope.maximum.count);
-        $scope.show_loading = false;
+       if(graph_data.success) {
+          $scope.show_error_message = false;
+          $scope.show_labels = graph_data.response.feedback_count === 0 ? false : true;
+          $scope.labels = _.map(graph_data.response.feedbacks, function (value) {
+            return {option_name: value.option__text, color: Global.mainRatingColorScheme[value.option__text]};
+          });
+          $scope.show_canvas = graph_data.response.feedback_count === 0 ? false : true;
+          $scope.maximum = _.max(graph_data.response.feedbacks, function (data) {
+            return data.count;
+          });
+          $scope.bar = {};
+          $scope.bar = overallFeedbackChartService.getBarChartData(graph_data.response, $scope.maximum.count);
+          $scope.show_loading = false;
+       }
+       else {
+         $scope.show_error_message = true;
+         $scope.error_message = graph_data.message;
+         Flash.create('danger', $scope.error_message, 'custom-class');
+       }
      });
   }
   show_graph("","");

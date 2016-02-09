@@ -8,7 +8,7 @@
 			<h2 ng-if = "!edit_form">Add User</h2>
 			<h2 ng-if = "edit_form">Edit User</h2>
 		</div>
-		<div class="modal-body">
+		<div class="modal-body" ng-class = "{'loading': show_loading}">
 			<div class="row" ng-class = "{'edit-form': edit_form}">
 				<div class="col-xs-12">
 					<div flash-message="5000" ></div>

@@ -17,6 +17,8 @@
 
     $scope.submitted = false;
 
+    $scope.show_loading = false;
+
     Filters.allRegions().$promise.then(function(data){
       if(data.success){
         $scope.regions = data.response;
@@ -44,7 +46,9 @@
     $scope.add = function(valid){
       if(valid){
         $scope.submitted = true;
+        $scope.show_loading = true;
         ManageApi.add_user($scope.user).$promise.then(function(data){
+          $scope.show_loading = false;
           if(data.success){
             $scope.show_error_message = false;
             $scope.ok();
@@ -87,7 +91,9 @@
     $scope.add = function(valid){
       if(valid){
         $scope.submitted = true;
+        $scope.show_loading = true;
         ManageApi.edit_user($scope.user).$promise.then(function(data){
+          $scope.show_loading = false;
           if(data.success){
             $scope.show_error_message = false;
             $scope.user = data.response;

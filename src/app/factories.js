@@ -49,7 +49,7 @@ angular.module( 'factories', [
                   {
                     overall_feedback: {method: "GET",isArray: false, params: {endpoint: "overall_feedback/"}},
                     feedback_analysis: {method: "GET",isArray: false, params: {endpoint: "feedback_analysis/"}},
-                    overall_rating: {method: "GET",isArray: true, params: {endpoint: "overall_rating/"}},
+                    overall_rating: {method: "GET",isArray: false, params: {endpoint: "overall_rating/"}},
                     positive_negative_feedback: {method: "GET",isArray: false, params: {endpoint: "positive_negative_feedback/"}},
                     category_performance: {method: "GET",isArray: false, params: {endpoint: "category_performance/"}},
                     comments: {method: "GET",isArray: false, params: {endpoint: "comments/"}},

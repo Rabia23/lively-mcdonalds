@@ -9,12 +9,16 @@
 
     $scope.show_error_message = false;
 
+    $scope.show_loading = true;
+
     if (Auth.is_logged_in()) {
       $rootScope.show_username = true;
       $rootScope.username = TokenHandler.get_username();
     }
 
+
     ManageApi.manage_users().$promise.then(function(data){
+      $scope.show_loading = false;
       if(data.success){
         $scope.show_error_message = false;
         $scope.user_list = Enum.get_user_label(data.response.child_role) + "S";
@@ -46,7 +50,9 @@
     });
 
     $scope.deactivate = function(user,index){
+      $scope.show_loading = true;
       ManageApi.delete_user(user.id).$promise.then(function(data){
+        $scope.show_loading = false;
         var message = "";
         if(data.success){
           $scope.show_error_message = false;

@@ -79,7 +79,8 @@ angular.module( 'livefeed.live', [
 
 
   function live_dashboard(){
-    Api.live_dashboard().$promise.then(function(data){
+    Api.live_dashboard().$promise.then(function(dat){
+      var data = dat.response;
       $scope.top_ranking = data.top_rankings;
       $scope.overall_ratings = data.overall_rating;
       $scope.complaint_view = data.complaint_view;

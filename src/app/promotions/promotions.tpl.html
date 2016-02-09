@@ -3,7 +3,8 @@
   <div id="page-wrapper" class="gray-bg">
      <ui-view name = "header"></ui-view>
 	 <div class="wrapper wrapper-content animated fadeInRight">
-		<div class="row promotions">
+		<div class="row promotions" ng-class = "{'loading': show_loading}">
+      <div flash-message="5000" ></div>
 			<div class="col-lg-12">
 				<div class="row">
 					<div class="col-xs-12">

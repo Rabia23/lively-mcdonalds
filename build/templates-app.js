@@ -1032,7 +1032,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "			<h2 ng-if = \"!edit_form\">Add User</h2>\n" +
     "			<h2 ng-if = \"edit_form\">Edit User</h2>\n" +
     "		</div>\n" +
-    "		<div class=\"modal-body\">\n" +
+    "		<div class=\"modal-body\" ng-class = \"{'loading': show_loading}\">\n" +
     "			<div class=\"row\" ng-class = \"{'edit-form': edit_form}\">\n" +
     "				<div class=\"col-xs-12\">\n" +
     "					<div flash-message=\"5000\" ></div>\n" +
@@ -1149,7 +1149,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "     <ui-view name = \"header\"></ui-view>\n" +
     "	<a class=\"add-user\" ng-click = \"open()\"><i class=\"fa fa-plus\"></i></a>\n" +
     "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
-    "		<div class=\"row users-section\">\n" +
+    "		<div class=\"row users-section\" ng-class = \"{'loading': show_loading}\">\n" +
     "			<div class=\"col-lg-12\">\n" +
     "				<h1>{{user_list}}</h1>\n" +
     "				<div class=\"users-area\">\n" +
@@ -1221,6 +1221,7 @@ angular.module("promotions/promotions-detail.tpl.html", []).run(["$templateCache
     "     <ui-view name = \"header\"></ui-view>\n" +
     "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "		<div class=\"row promotions\">\n" +
+    "      <div flash-message=\"5000\" ></div>\n" +
     "			<div class=\"col-lg-12\">\n" +
     "				<h1>{{promotion.title}} Promotion</h1>\n" +
     "				<div class=\"row\">\n" +
@@ -1229,9 +1230,21 @@ angular.module("promotions/promotions-detail.tpl.html", []).run(["$templateCache
     "							<div class=\"ibox-title\">\n" +
     "								<h5>Question {{$index + 1}} <small> {{question.question}}</small></h5>\n" +
     "							</div>\n" +
-    "							<div class=\"ibox-content\">\n" +
-    "                <div id = \"graph_{{$index}}\"></div>\n" +
-    "              </div>\n" +
+    "							<div class=\"ibox-content\" question-pie-chart data-data = \"data\">\n" +
+    "                              <div id = \"graph_{{$index}}\">\n" +
+    "							    <div class=\"progres-container\" ng-if = \"question.type == 5\">\n" +
+    "								  <div class=\"progress-area\">\n" +
+    "								    <div class=\"progress-holder\" ng-repeat = \"dat in question_analysis\" data-color = \"dat.colour\" data-data = \"question_analysis\" question-bar-background>\n" +
+    "									  <div class=\"progress-inner\">\n" +
+    "									    <small><em>{{dat.name}} <b>{{dat.count}} Views</b></em></small>\n" +
+    "										<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar></div>\n" +
+    "									  </div>\n" +
+    "									</div>\n" +
+    "								  </div>\n" +
+    "								</div>\n" +
+    "								<div id=\"piechart\" style=\"width:100%; height:300px;\" ng-if = \"question.type == 4\"></div>\n" +
+    "							  </div>\n" +
+    "                            </div>\n" +
     "						</div>\n" +
     "					</div>\n" +
     "				</div>\n" +
@@ -1251,7 +1264,8 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
     "     <ui-view name = \"header\"></ui-view>\n" +
     "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
-    "		<div class=\"row promotions\">\n" +
+    "		<div class=\"row promotions\" ng-class = \"{'loading': show_loading}\">\n" +
+    "      <div flash-message=\"5000\" ></div>\n" +
     "			<div class=\"col-lg-12\">\n" +
     "				<div class=\"row\">\n" +
     "					<div class=\"col-xs-12\">\n" +
