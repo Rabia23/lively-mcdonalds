@@ -38,7 +38,7 @@ angular.module("common/header.tpl.html", []).run(["$templateCache", function($te
     "        </a>\n" +
     "      </li> -->\n" +
     "      <li>\n" +
-    "        <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">{{fullname}}</span></span>\n" +
+    "        <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name text-capitalize\">{{fullname}}</span></span>\n" +
     "      </li>\n" +
     "      <li>\n" +
     "        <a style = \"cursor:pointer;\" ng-click = \"logout()\">\n" +
@@ -820,7 +820,7 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "				<div class=\"heading-holder\">\n" +
     "					<h1>Country Wide</h1>\n" +
     "					<ul class=\"timer-slider\">\n" +
-    "						<li>Last 1 Week</li>\n" +
+    "						<li>Since Last Week</li>\n" +
     "						<li>Since Yesterday Morning</li>\n" +
     "						<li>Since Yesterday Morning</li>\n" +
     "						<li>Since Beginning</li>\n" +
