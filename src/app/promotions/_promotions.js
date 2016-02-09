@@ -3,6 +3,7 @@
     'ui.router',
     'flash',
     'livefeed.promotions.api',
-    'livefeed.authService'
+    'livefeed.authService',
+    'helper_factories'
   ]);
 })();

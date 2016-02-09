@@ -3,12 +3,15 @@ angular.module( 'livefeed.dashboard.feedback_map', [
   'factories',
   'livefeed.map',
   'ui.bootstrap',
-  'daterangepicker'
+  'daterangepicker',
+  'flash'
 ])
 
-.controller( 'FeedbackMapCtrl', function FeedbackMapController( $scope, Graphs, mapService ) {
+.controller( 'FeedbackMapCtrl', function FeedbackMapController( $scope, Graphs, mapService, Flash ) {
 
   $scope.today = new Date();
+
+  $scope.show_error_message = false;
 
   function resetDates(){
     $scope.date = {
@@ -31,17 +34,25 @@ angular.module( 'livefeed.dashboard.feedback_map', [
 
         $scope.show_loading = true;
         Graphs.map_view(ev.model.startDate._i, ev.model.endDate._i).$promise.then(function(data){
-          _.each(data.branches, function(branch){
-            var icon;
-            if(branch.count_exceeded === false){
-               icon = '../assets/images/ico-locator.png';
-            }
-            else{
-              icon = '../assets/images/ico-locator2.png';
-            }
-            $scope.markers.push(mapService.createMarker(branch, $scope.map, icon));
-          });
-          $scope.show_loading = false;
+          if(data.success) {
+            $scope.show_error_message = false;
+            _.each(data.response.branches, function (branch) {
+              var icon;
+              if (branch.count_exceeded === false) {
+                icon = '../assets/images/ico-locator.png';
+              }
+              else {
+                icon = '../assets/images/ico-locator2.png';
+              }
+              $scope.markers.push(mapService.createMarker(branch, $scope.map, icon));
+            });
+            $scope.show_loading = false;
+          }
+          else{
+            $scope.show_error_message = true;
+            $scope.error_message = data.message;
+            Flash.create('danger', $scope.error_message, 'custom-class');
+          }
         });
 
       },
@@ -59,16 +70,24 @@ angular.module( 'livefeed.dashboard.feedback_map', [
 
   Graphs.map_view().$promise.then(function(data){
     $scope.show_loading = false;
-    _.each(data.branches, function(branch){
-      var icon;
-      if(branch.count_exceeded === false){
-         icon = '../assets/images/ico-locator.png';
-      }
-      else{
-        icon = '../assets/images/ico-locator2.png';
-      }
-      $scope.markers.push(mapService.createMarker(branch, $scope.map, icon));
-    });
+    if(data.success) {
+      $scope.show_error_message = false;
+      _.each(data.response.branches, function (branch) {
+        var icon;
+        if (branch.count_exceeded === false) {
+          icon = '../assets/images/ico-locator.png';
+        }
+        else {
+          icon = '../assets/images/ico-locator2.png';
+        }
+        $scope.markers.push(mapService.createMarker(branch, $scope.map, icon));
+      });
+    }
+    else{
+      $scope.show_error_message = true;
+      $scope.error_message = data.message;
+      Flash.create('danger', $scope.error_message, 'custom-class');
+    }
   });
 })
 

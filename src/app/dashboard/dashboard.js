@@ -102,8 +102,7 @@ angular.module( 'livefeed.dashboard', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'DashboardCtrl', function DashboardController( $scope, $state, $location, $anchorScroll, Filters, $rootScope, TokenHandler, Auth, Graphs) {
-
+.controller( 'DashboardCtrl', function DashboardController( $scope, $state, $location, $anchorScroll, Filters, $rootScope, TokenHandler, Auth, Graphs, Flash) {
   $scope.show_loading = true;
   if (Auth.is_logged_in()) {
     $rootScope.show_username = true;
@@ -119,8 +118,13 @@ angular.module( 'livefeed.dashboard', [
   });
 
   Graphs.top_charts().$promise.then(function(data){
-    $scope.chart_data = data;
-    $scope.show_loading = false;
+    if(data.success) {
+      $scope.chart_data = data.response;
+      $scope.show_loading = false;
+    }
+    else{
+      Flash.create('danger', data.message, 'custom-class');
+    }
   });
 
 });

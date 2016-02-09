@@ -1,11 +1,14 @@
 angular.module( 'livefeed.dashboard.overall_rating', [
   'factories',
   'livefeed.overall_rating.chart',
-  "helper_factories"
+  'helper_factories',
+  'flash'
 ])
 
-.controller( 'TimeLineCtrl', function DashboardController( $scope, overallRatingChartService, Graphs, Global ) {
+.controller( 'TimeLineCtrl', function DashboardController( $scope, overallRatingChartService, Graphs, Global, Flash ) {
    $scope.today = new Date();
+
+   $scope.show_error_message = false;
 
   function resetDates(){
     $scope.date = {
@@ -97,50 +100,69 @@ angular.module( 'livefeed.dashboard.overall_rating', [
        $scope.show_loading = true;
        $scope.optionView = false;
        Graphs.overall_rating(null, $scope.start_date, $scope.end_date).$promise.then(function (data) {
-          $scope.data_array = [];
-          if(data.length > 7){
-            var sets = data.length/7;
-            while (data.length > 0){
-              $scope.data_array.push(data.splice(0, 7));
-            }
-          }
-          else{
-            $scope.data_array[0] = data;
-          }
-          $scope.max_page  = $scope.data_array.length;
+         console.log("timeline");
+         console.log(data);
+         if(data.success) {
+           $scope.show_error_message = false;
+           $scope.data_array = [];
+           if (data.response.length > 7) {
+             var sets = data.response.length / 7;
+             while (data.response.length > 0) {
+               $scope.data_array.push(data.response.splice(0, 7));
+             }
+           }
+           else {
+              $scope.data_array[0] = data.response;
+           }
+           $scope.max_page = $scope.data_array.length;
 
-          calculate_labels($scope.data_array[0][0].data.feedbacks);
-          $scope.page = 1;
-          drawGraph($scope.data_array[0]);
-          $scope.show_loading = false;
+           calculate_labels($scope.data_array[0][0].data.feedbacks);
+           $scope.page = 1;
+           drawGraph($scope.data_array[0]);
+           $scope.show_loading = false;
+         }
+         else{
+           $scope.show_error_message = true;
+           $scope.error_message = data.message;
+           Flash.create('danger', $scope.error_message, 'custom-class');
+         }
        });
    }
 
    $scope.optionClick = function (option_object){
+       console.log(option_object);
        $scope.show_loading = true;
 
        var option_id = option_object.item.dataContext[option_object.graph.id];
        var date = option_object.item.category;
 
        Graphs.feedback_segmentation(date, option_id, $scope.type).$promise.then(function(data){
+         if(data.success) {
+           $scope.show_error_message = false;
            $scope.mainView = false;
            $scope.optionView = false;
-           if(data.options !== undefined){
-             $scope.labels =  _.map(data.options,function(value, index){
-                return {
-                   option_name: value.option__text,
-                   parent_id: "",
-                   color: Global.subOptionsColorScheme[value.option__text].color,
-                   lineColor: Global.subOptionsColorScheme[value.option__text].color,
-                   title: value.option__text,
-                   id: "column-"+(index+1)+"-id",
-                   valueField: "column-"+(index+1)
-                };
+           if (data.response.options !== undefined) {
+             $scope.labels = _.map(data.response.options, function (value, index) {
+               return {
+                 option_name: value.option__text,
+                 parent_id: "",
+                 color: Global.subOptionsColorScheme[value.option__text].color,
+                 lineColor: Global.subOptionsColorScheme[value.option__text].color,
+                 title: value.option__text,
+                 id: "column-" + (index + 1) + "-id",
+                 valueField: "column-" + (index + 1)
+               };
              });
-             var qsc_suboptions_data = overallRatingChartService.getAreaSegmentChart(data);
+             var qsc_suboptions_data = overallRatingChartService.getAreaSegmentChart(data.response);
              $scope.overall_rating_data = [$scope.labels, qsc_suboptions_data];
            }
            $scope.show_loading = false;
+         }
+         else {
+           $scope.show_error_message = true;
+           $scope.error_message = data.message;
+           Flash.create('danger', $scope.error_message, 'custom-class');
+         }
        });
    };
 
@@ -149,22 +171,30 @@ angular.module( 'livefeed.dashboard.overall_rating', [
         $scope.show_loading = true;
         $scope.optionView = true;
         Graphs.overall_rating(option.option_id, $scope.start_date, $scope.end_date).$promise.then(function(data) {
-           $scope.mainView = false;
-           $scope.data_array = [];
-           if(data.length > 7){
-             var sets = data.length/7;
-             while (data.length > 0){
-               $scope.data_array.push(data.splice(0, 7));
-             }
-           }
-           else{
-             $scope.data_array[0] = data;
-           }
-           $scope.max_page  = $scope.data_array.length;
-           calculate_option_labels($scope.data_array[0][0].data.feedbacks);
-           $scope.page = 1;
-           drawLabelGraph($scope.data_array[0]);
-           $scope.show_loading = false;
+          if(data.success) {
+            $scope.show_error_message = false;
+            $scope.mainView = false;
+            $scope.data_array = [];
+            if (data.response.length > 7) {
+              var sets = data.response.length / 7;
+              while (data.response.length > 0) {
+                  $scope.data_array.push(data.response.splice(0, 7));
+              }
+            }
+            else {
+              $scope.data_array[0] = data.response;
+            }
+            $scope.max_page = $scope.data_array.length;
+            calculate_option_labels($scope.data_array[0][0].data.feedbacks);
+            $scope.page = 1;
+            drawLabelGraph($scope.data_array[0]);
+            $scope.show_loading = false;
+          }
+          else {
+            $scope.show_error_message = true;
+            $scope.error_message = data.message;
+            Flash.create('danger', $scope.error_message, 'custom-class');
+          }
         });
       }
    };
@@ -189,7 +219,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
    };
 
    $scope.backToMain = function(){
-     mainRating();
+       mainRating();
    };
 
    $scope.Prev = function(){
