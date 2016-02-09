@@ -51,7 +51,7 @@
 
   .controller('ModalEditInstanceCtrl', function ($scope, $uibModalInstance, parent_id, child_role, user,ManageApi, Enum, Filters, Flash) {
 
-    $scope.user = user;
+    $scope.user = angular.copy(user);
 
     $scope.edit_form = true;
 
@@ -78,6 +78,7 @@
     };
 
     $scope.cancel = function () {
+      $scope.user = angular.copy(user);
       $uibModalInstance.dismiss('cancel');
     };
   });

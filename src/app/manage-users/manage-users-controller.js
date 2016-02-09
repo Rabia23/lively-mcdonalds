@@ -12,7 +12,7 @@
     }
 
     ManageApi.manage_users().$promise.then(function(data){
-      $scope.user_list = Enum.get_user_label(data.child_role);
+      $scope.user_list = Enum.get_user_label(data.child_role) + "S";
       $scope.users = data.children;
       $scope.parent_id = data.parent_id;
       $scope.child_role = data.child_role;
