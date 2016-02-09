@@ -1255,9 +1255,10 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "			<div class=\"col-lg-12\">\n" +
     "				<div class=\"row\">\n" +
     "					<div class=\"col-xs-12\">\n" +
+    "            <div flash-message=\"5000\" ></div>\n" +
     "						<ul class=\"btn-list\">\n" +
     "							<li ng-repeat = \"promotion in promotions\">\n" +
-    "								<a class=\"btn ibox dim btn-large-dim btn-outline\" ui-sref=\"promotions_detail({ promotionId: {{promotion.id}} })\">\n" +
+    "								<a class=\"btn ibox dim btn-large-dim btn-outline\" ng-click = \"detail(promotion.id)\">\n" +
     "									<span class=\"ico-holder\"><img src=\"assets/images/promo1.jpg\" alt=\"\"></span>\n" +
     "									<span class=\"title\">{{promotion.title}} Promotion</span>\n" +
     "								</a>\n" +
