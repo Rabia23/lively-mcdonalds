@@ -2,14 +2,17 @@
     angular.module( 'livefeed.dashboard.regional_analysis', [
       'factories',
       'livefeed.regional_analysis.chart',
-      'ui.bootstrap'
+      'ui.bootstrap',
+      'flash'
     ])
 
-.controller( 'RegionalAnalysisCtrl', function DashboardController( $rootScope, $scope, Graphs, regionalAnalysisChartService, $uibModal, Global, TokenHandler ) {
+.controller( 'RegionalAnalysisCtrl', function DashboardController( $rootScope, $scope, Graphs, regionalAnalysisChartService, $uibModal, Global, TokenHandler, Flash ) {
   var user_role = TokenHandler.get_user_role();
   console.log("user role");
   console.log(user_role);
   $scope.today = new Date();
+
+  $scope.show_error_message = false;
 
   function resetDates(){
     $scope.date = {
@@ -77,40 +80,64 @@
 
     if($scope.radioModel === 'Complaints'){
        Graphs.action_analysis("", "", "", $scope.start_date, $scope.end_date, "").$promise.then(function(complains_data){
-         showString(complains_data.count);
-         $scope.donut_graph_data = regionalAnalysisChartService.getComplaintsDonutChartData(complains_data);
-         $scope.donut_graph_data.objects.push({id:"", name:"Pakistan", show_chart: $scope.donut_graph_data.objects[0].show_chart === false && $scope.donut_graph_data.objects[1].show_chart === false ?false:true});
-         _.each($scope.donut_graph_data.donutData[0], function(data) {
-           _.find($scope.donut_graph_data.donutData[1], function(dat) {
-             if (data['label'] === dat['label']){
-              donut_data.push({id:"",label:dat['label'],value:data['value']+dat['value']});
-              var color = dat['action_taken'] === 1? '#e73a3a' : dat['action_taken'] === 2 ? '#01ad0f': '#FFCC00';
-              donut_colors.push(color);
+         if(complains_data.success) {
+           $scope.show_error_message = false;
+           showString(complains_data.response.count);
+           $scope.donut_graph_data = regionalAnalysisChartService.getComplaintsDonutChartData(complains_data.response);
+           $scope.donut_graph_data.objects.push({
+             id: "",
+             name: "Pakistan",
+             show_chart: $scope.donut_graph_data.objects[0].show_chart === false && $scope.donut_graph_data.objects[1].show_chart === false ? false : true
+           });
+           _.each($scope.donut_graph_data.donutData[0], function (data) {
+             _.find($scope.donut_graph_data.donutData[1], function (dat) {
+               if (data['label'] === dat['label']) {
+                 donut_data.push({id: "", label: dat['label'], value: data['value'] + dat['value']});
+                 var color = dat['action_taken'] === 1 ? '#e73a3a' : dat['action_taken'] === 2 ? '#01ad0f' : '#FFCC00';
+                 donut_colors.push(color);
+               }
+             });
+           });
+           $scope.donut_graph_data.donutData.push(donut_data);
+           $scope.donut_graph_data.donutOptions.push({colors: donut_colors});
+           $scope.show_loading = false;
+         }
+         else {
+           $scope.show_error_message = true;
+           $scope.error_message = complains_data.message;
+           Flash.create('danger', $scope.error_message, 'custom-class');
+         }
+       });
+    }
+    else {
+     Graphs.area_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function (area_data){
+       if(area_data.success) {
+         $scope.show_error_message = false;
+         showString(area_data.response.count);
+         $scope.donut_graph_data = regionalAnalysisChartService.getDonutChartData(area_data.response, $scope.question_type);
+         $scope.donut_graph_data.objects.push({
+           id: "",
+           name: "Pakistan",
+           show_chart: $scope.donut_graph_data.objects[0].show_chart === false && $scope.donut_graph_data.objects[1].show_chart === false ? false : true
+         });
+         _.each($scope.donut_graph_data.donutData[0], function (data) {
+           _.find($scope.donut_graph_data.donutData[1], function (dat) {
+             if (data['label'] === dat['label']) {
+               donut_data.push({id: dat['id'], label: dat['label'], value: data['value'] + dat['value']});
+               var color = $scope.question_type == 1 ? Global.mainRatingColorScheme[dat['label']] : Global.optionsColorScheme[dat['label']];
+               donut_colors.push(color);
              }
            });
          });
          $scope.donut_graph_data.donutData.push(donut_data);
          $scope.donut_graph_data.donutOptions.push({colors: donut_colors});
          $scope.show_loading = false;
-       });
-    }
-    else {
-     Graphs.area_analysis($scope.question_type, $scope.start_date, $scope.end_date).$promise.then(function (area_data){
-       showString(area_data.count);
-       $scope.donut_graph_data = regionalAnalysisChartService.getDonutChartData(area_data, $scope.question_type);
-       $scope.donut_graph_data.objects.push({id:"", name:"Pakistan", show_chart: $scope.donut_graph_data.objects[0].show_chart === false && $scope.donut_graph_data.objects[1].show_chart === false ?false:true});
-       _.each($scope.donut_graph_data.donutData[0], function(data) {
-         _.find($scope.donut_graph_data.donutData[1], function(dat) {
-            if (data['label'] === dat['label']){
-              donut_data.push({id:dat['id'],label:dat['label'],value:data['value']+dat['value']});
-              var color = $scope.question_type == 1? Global.mainRatingColorScheme[dat['label']] : Global.optionsColorScheme[dat['label']];
-              donut_colors.push(color);
-            }
-         });
-       });
-       $scope.donut_graph_data.donutData.push(donut_data);
-       $scope.donut_graph_data.donutOptions.push({colors: donut_colors});
-       $scope.show_loading = false;
+       }
+       else {
+         $scope.show_error_message = true;
+         $scope.error_message = area_data.message;
+         Flash.create('danger', $scope.error_message, 'custom-class');
+       }
      });
    }
   };
@@ -129,17 +156,33 @@
     if($scope.radioModel === 'Complaints'){
       type_id = user_role == 4 ? "" : 1;
       Graphs.action_analysis(type_id, "", "", $scope.start_date, $scope.end_date, area.id).$promise.then(function(complains_data){
-         showString(complains_data.count);
-         $scope.donut_regions_data = regionalAnalysisChartService.getComplaintsDonutChartData(complains_data);
-         $scope.show_loading = false;
+        if(complains_data.success) {
+          $scope.show_error_message = false;
+          showString(complains_data.response.count);
+          $scope.donut_regions_data = regionalAnalysisChartService.getComplaintsDonutChartData(complains_data.response);
+          $scope.show_loading = false;
+        }
+        else{
+          $scope.show_error_message = true;
+          $scope.error_message = complains_data.message;
+          Flash.create('danger', $scope.error_message, 'custom-class');
+        }
       });
     }
     else {
       type_id = user_role == 4 ? "" : 1;
       Graphs.regional_analysis($scope.question_type, $scope.start_date, $scope.end_date, area.id, type_id).$promise.then(function(data){
-        showString(data.count);
-        $scope.donut_regions_data = regionalAnalysisChartService.getDonutChartData(data, $scope.question_type);
-        $scope.show_loading = false;
+        if(data.success) {
+          $scope.show_error_message = false;
+          showString(data.response.count);
+          $scope.donut_regions_data = regionalAnalysisChartService.getDonutChartData(data.response, $scope.question_type);
+          $scope.show_loading = false;
+        }
+        else{
+          $scope.show_error_message = true;
+          $scope.error_message = data.message;
+          Flash.create('danger', $scope.error_message, 'custom-class');
+        }
       });
     }
   };
@@ -157,16 +200,32 @@
     $scope.donut_cities_data = [];
     if($scope.radioModel === 'Complaints'){
       Graphs.action_analysis(2, region.id, "", $scope.start_date, $scope.end_date,"").$promise.then(function(complains_data){
-         showString(complains_data.count);
-         $scope.donut_cities_data = regionalAnalysisChartService.getComplaintsDonutChartData(complains_data);
-         $scope.show_loading = false;
+        if(complains_data.success) {
+          $scope.show_error_message = false;
+          showString(complains_data.response.count);
+          $scope.donut_cities_data = regionalAnalysisChartService.getComplaintsDonutChartData(complains_data.response);
+          $scope.show_loading = false;
+        }
+        else{
+          $scope.show_error_message = true;
+          $scope.error_message = complains_data.message;
+          Flash.create('danger', $scope.error_message, 'custom-class');
+        }
       });
     }
     else {
       Graphs.city_analysis(region.id, $scope.question_type, $scope.start_date, $scope.end_date, 2).$promise.then(function(data){
-        showString(data.count);
-        $scope.donut_cities_data = regionalAnalysisChartService.getDonutChartData(data, $scope.question_type);
-        $scope.show_loading = false;
+        if(data.success) {
+          $scope.show_error_message = false;
+          showString(data.response.count);
+          $scope.donut_cities_data = regionalAnalysisChartService.getDonutChartData(data.response, $scope.question_type);
+          $scope.show_loading = false;
+        }
+        else{
+          $scope.show_error_message = true;
+          $scope.error_message = data.message;
+          Flash.create('danger', $scope.error_message, 'custom-class');
+        }
       });
     }
   };
@@ -186,17 +245,33 @@
     if($scope.radioModel === 'Complaints'){
       type_id = user_role == 3 ? "" : 3;
       Graphs.action_analysis(type_id, "", city.id, $scope.start_date, $scope.end_date,"").$promise.then(function(complains_data){
-         showString(complains_data.count);
-         $scope.donut_branches_data  = regionalAnalysisChartService.getComplaintsDonutChartData(complains_data);
-         $scope.show_loading = false;
+        if(complains_data.success) {
+          $scope.show_error_message = false;
+          showString(complains_data.response.count);
+          $scope.donut_branches_data = regionalAnalysisChartService.getComplaintsDonutChartData(complains_data.response);
+          $scope.show_loading = false;
+        }
+        else{
+          $scope.show_error_message = true;
+          $scope.error_message = complains_data.message;
+          Flash.create('danger', $scope.error_message, 'custom-class');
+        }
       });
     }
     else {
       type_id = user_role == 3 ? "" : 3;
       Graphs.branch_analysis(city.id, $scope.question_type, $scope.start_date, $scope.end_date, type_id).$promise.then(function (data) {
-        showString(data.count);
-        $scope.donut_branches_data = regionalAnalysisChartService.getDonutChartData(data, $scope.question_type);
-        $scope.show_loading = false;
+        if(data.success) {
+          $scope.show_error_message = false;
+          showString(data.response.count);
+          $scope.donut_branches_data = regionalAnalysisChartService.getDonutChartData(data.response, $scope.question_type);
+          $scope.show_loading = false;
+        }
+        else{
+          $scope.show_error_message = true;
+          $scope.error_message = data.message;
+          Flash.create('danger', $scope.error_message, 'custom-class');
+        }
       });
     }
   };
@@ -311,7 +386,7 @@
 
 })
 
-.controller('SQCModalCtrl', function ($scope, Graphs, regionalAnalysisChartService, $uibModalInstance, area, region, city, branch, option, start_date, end_date, TokenHandler){
+.controller('SQCModalCtrl', function ($scope, Graphs, regionalAnalysisChartService, $uibModalInstance, area, region, city, branch, option, start_date, end_date, TokenHandler, Flash){
 
   var user_role = TokenHandler.get_user_role();
   var type_id;
@@ -323,12 +398,22 @@
   $scope.show_div = false;
   $scope.show_loading = false;
 
+  $scope.show_error_message = false;
+
   function showGraph(area, region, city, branch, option) {
     $scope.show_loading = true;
     Graphs.feedback_analysis_breakdown(area.id,region.id,city.id,branch.id,option.id,start_date,end_date).$promise.then(function(data) {
-      $scope.show_div = data.feedback_count === 0? true: false;
-      $scope.donut_subgraph_data = regionalAnalysisChartService.getSubDonutChartData(data,option.label);
-      $scope.show_loading = false;
+      if(data.success) {
+        $scope.show_error_message = false;
+        $scope.show_div = data.response.feedback_count === 0 ? true : false;
+        $scope.donut_subgraph_data = regionalAnalysisChartService.getSubDonutChartData(data.response, option.label);
+        $scope.show_loading = false;
+      }
+      else{
+        $scope.show_error_message = true;
+        $scope.error_message = data.message;
+        Flash.create('danger', $scope.error_message, 'custom-class');
+      }
     });
   }
 
@@ -365,41 +450,72 @@
   if(region == null && city == null && branch == null){
     onOptionSelect(area, null, null, null, area);
     Graphs.area_analysis($scope.question_type).$promise.then(function(data) {
-      $scope.sqc_data = getSQCdata(data);
-      $scope.sqc_data.push({id:"", name: "Pakistan"});
-      hideQSCModalButton(area, $scope.sqc_data);
-      showGraph(area,"","","", option);
+      if(data.success) {
+        $scope.show_error_message = false;
+        $scope.sqc_data = getSQCdata(data.response);
+        $scope.sqc_data.push({id: "", name: "Pakistan"});
+        hideQSCModalButton(area, $scope.sqc_data);
+        showGraph(area, "", "", "", option);
+      }
+      else{
+        $scope.show_error_message = true;
+        $scope.error_message = data.message;
+        Flash.create('danger', $scope.error_message, 'custom-class');
+      }
     });
   }
   else if(city == null && branch == null){
     type_id = user_role == 4 ? "" : 1;
     onOptionSelect(area, region, null, null, region);
     Graphs.regional_analysis($scope.question_type,"","",area.id,type_id).$promise.then(function(data) {
-      $scope.sqc_data = getSQCdata(data);
-      hideQSCModalButton(region, $scope.sqc_data);
-      showGraph(area,region,"","", option);
+      if(data.success) {
+        $scope.show_error_message = false;
+        $scope.sqc_data = getSQCdata(data.response);
+        hideQSCModalButton(region, $scope.sqc_data);
+        showGraph(area, region, "", "", option);
+      }
+      else{
+        $scope.show_error_message = true;
+        $scope.error_message = data.message;
+        Flash.create('danger', $scope.error_message, 'custom-class');
+      }
     });
   }
   else if(branch == null) {
     onOptionSelect(area, region, city, null, city);
     Graphs.city_analysis(region.id, $scope.question_type,"","",2).$promise.then(function(data) {
-       $scope.sqc_data = getSQCdata(data);
-       console.log($scope.sqc_data);
-       hideQSCModalButton(city, $scope.sqc_data);
-       showGraph(area,region,city,"", option);
+      if(data.success) {
+        $scope.show_error_message = false;
+        $scope.sqc_data = getSQCdata(data.response);
+        hideQSCModalButton(city, $scope.sqc_data);
+        showGraph(area, region, city, "", option);
+      }
+      else{
+        $scope.show_error_message = true;
+        $scope.error_message = data.message;
+        Flash.create('danger', $scope.error_message, 'custom-class');
+      }
     });
   }
   else{
     type_id = user_role == 3 ? "" : 3;
     onOptionSelect(area, region, city, branch, branch);
     Graphs.branch_analysis(city.id, $scope.question_type,"","",type_id).$promise.then(function(data) {
-      $scope.sqc_data = getSQCdata(data);
-      hideQSCModalButton(branch, $scope.sqc_data);
-      if(user_role == 3){
-        showGraph("","","",branch, option);
+      if(data.success) {
+        $scope.show_error_message = false;
+        $scope.sqc_data = getSQCdata(data.response);
+        hideQSCModalButton(branch, $scope.sqc_data);
+        if (user_role == 3) {
+          showGraph("", "", "", branch, option);
+        }
+        else {
+          showGraph(area, region, city, branch, option);
+        }
       }
       else{
-        showGraph(area,region,city,branch, option);
+        $scope.show_error_message = true;
+        $scope.error_message = data.message;
+        Flash.create('danger', $scope.error_message, 'custom-class');
       }
     });
   }

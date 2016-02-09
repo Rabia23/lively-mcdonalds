@@ -179,6 +179,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "    <ui-view name = \"positive_negative_feedback\"></ui-view>\n" +
     "    <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "      <div class=\"row same-height-parent\">\n" +
+    "        <div flash-message=\"5000\" ></div>\n" +
     "        <div class=\"col-lg-6 col-lg-push-6\">\n" +
     "          <div class=\"same-height-block blocks-holder\">\n" +
     "            <div class=\"row\">\n" +
