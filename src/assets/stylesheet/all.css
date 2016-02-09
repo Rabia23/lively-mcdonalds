@@ -1531,7 +1531,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .ibox > .content-holder:after,
 .ibox > .ibox-content:after,
 .users-section:after,
-.modal-dialog .info-form .modal-body:before{
+.modal-dialog .info-form .modal-body:after{
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -1546,7 +1546,6 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	display: block !important;
 }
 
-.modal-dialog .info-form .modal-body:before,
 .users-section:after{
 	position: static;
 	width: 0;
@@ -1566,7 +1565,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .modal-1000 .graph-container .holder:before,
 .form-holder:before,
 .ibox > .content-holder:before,
-.ibox > .ibox-content:before {
+.ibox > .ibox-content:before,
+.modal-dialog .info-form .modal-body:before{
 	left: 0;
 	right: 0;
 	top: 0;
@@ -1584,14 +1584,15 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .ibox.loading > .content-holder:after,
 .ibox.loading > .ibox-content:after,
 .users-section.loading:after,
-.modal-dialog .info-form .modal-body.loading:before{
+.modal-dialog .info-form .modal-body.loading:after{
 	visibility: visible;
 	opacity: 1;
 }
 .modal-1000 .graph-container.loading .holder:before,
 .form-holder.loading:before,
 .ibox.loading > .content-holder:before,
-.ibox.loading > .ibox-content:before{
+.ibox.loading > .ibox-content:before,
+.modal-dialog .info-form .modal-body.loading:before{
 	visibility: visible;
 	opacity: 0.6;
 }
