@@ -8,9 +8,9 @@ angular.module( 'factories', [
   function Filters() {
     this.service = $resource(apiLinks.staging, {},
                   {
-                    allRegions: {method: "GET",isArray: true, params: {endpoint: "region"}},
-                    Cities: {method: "GET",isArray: true, params: {endpoint: "city"}},
-                    Branches: {method: "GET",isArray: true, params: {endpoint: "branch"}}
+                    allRegions: {method: "GET",isArray: false, params: {endpoint: "region"}},
+                    Cities: {method: "GET",isArray: false, params: {endpoint: "city"}},
+                    Branches: {method: "GET",isArray: false, params: {endpoint: "branch"}}
                  });
   }
   Filters.prototype.allRegions = function(){

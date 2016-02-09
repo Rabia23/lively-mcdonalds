@@ -15,7 +15,6 @@
     }
 
     ManageApi.manage_users().$promise.then(function(data){
-      console.log(data);
       if(data.success){
         $scope.show_error_message = false;
         $scope.user_list = Enum.get_user_label(data.response.child_role) + "S";
@@ -41,6 +40,7 @@
       else{
         $scope.show_error_message = true;
         $scope.error_message = data.message;
+        Flash.create('danger', $scope.error_message, 'custom-class');
       }
 
     });
@@ -48,21 +48,31 @@
     $scope.deactivate = function(user,index){
       ManageApi.delete_user(user.id).$promise.then(function(data){
         var message = "";
-        if(data.is_active === true) {
-          message = "User successfully activated.";
-          user = data;
-          user.status = "Active";
-          $scope.users[index] = user;
+        if(data.success){
+          $scope.show_error_message = false;
+          if(data.response.is_active === true) {
+            message = "User successfully activated.";
+            user = data.response;
+            user.status = "Active";
+            $scope.users[index] = user;
 
+          }
+          else {
+            message = "User successfully deactivated.";
+            user = data.response;
+            user.status = "Inactive";
+            $scope.users[index] = user;
+          }
+          $scope.users[index].user_role = Enum.get_user_label(data.response.role);
+          Flash.create('success', message, 'custom-class');
         }
-        else {
-          message = "User successfully deactivated.";
-          user = data;
-          user.status = "Inactive";
-          $scope.users[index] = user;
+
+        else{
+          $scope.show_error_message = true;
+          $scope.error_message = data.message;
+          Flash.create('danger', $scope.error_message, 'custom-class');
         }
-        $scope.users[index].user_role = Enum.get_user_label(data.role);
-        Flash.create('success', message, 'custom-class');
+
       });
     };
 
@@ -88,16 +98,25 @@
       });
       modalInstance.result.then(function (user) {
         ManageApi.manage_users().$promise.then(function(data){
-          $scope.users = data.children;
-          _.each($scope.users, function(value, index){
-            value.user_role = Enum.get_user_label(value.role);
-            if(value.is_active){
-              value.status = "Active";
-            }
-            else{
-              value.status = "Inactive";
-            }
-          });
+          if(data.success){
+            $scope.show_error_message = false;
+            $scope.users = data.response.children;
+            _.each($scope.users, function(value, index){
+              value.user_role = Enum.get_user_label(value.role);
+              if(value.is_active){
+                value.status = "Active";
+              }
+              else{
+                value.status = "Inactive";
+              }
+            });
+          }
+          else{
+            $scope.show_error_message = true;
+            $scope.error_message = data.message;
+            Flash.create('danger', $scope.error_message, 'custom-class');
+          }
+
         });
       });
     };

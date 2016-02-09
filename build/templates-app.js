@@ -1040,8 +1040,10 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "			<h2 ng-if = \"edit_form\">Edit User</h2>\n" +
     "		</div>\n" +
     "		<div class=\"modal-body\">\n" +
+    "\n" +
     "			<div class=\"row\" ng-class = \"{'edit-form': edit_form}\">\n" +
     "				<div class=\"col-xs-12\">\n" +
+    "					<div flash-message=\"5000\" ></div>\n" +
     "					<div class=\"form-group\">\n" +
     "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"firsName\">First Name</label>\n" +
     "						<div class=\"col-sm-10 col-md-9\">\n" +
