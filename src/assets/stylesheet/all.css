@@ -1531,7 +1531,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .ibox > .content-holder:after,
 .ibox > .ibox-content:after,
 .users-section:after,
-.modal-dialog .info-form .modal-body:after{
+.modal-dialog .info-form .modal-body:after,
+.promotions:after{
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -1546,6 +1547,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	display: block !important;
 }
 
+.promotions:after,
 .users-section:after{
 	position: static;
 	width: 0;
@@ -1553,8 +1555,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	margin: 0;
 }
 
-.users-section.loading:after,
-.modal-dialog .info-form .modal-body.loading:before{
+.promotions.loading:after,
+.users-section.loading:after{
 	width: 75px;
 	height: 70px;
 	margin: 5% auto;
@@ -1584,7 +1586,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .ibox.loading > .content-holder:after,
 .ibox.loading > .ibox-content:after,
 .users-section.loading:after,
-.modal-dialog .info-form .modal-body.loading:after{
+.modal-dialog .info-form .modal-body.loading:after,
+.promotions:after{
 	visibility: visible;
 	opacity: 1;
 }
@@ -1640,6 +1643,32 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	font-weight: 600;
 	margin: 0 0 15px;
 }
+
+.promotions .grid-item .data-container{
+	white-space: nowrap;
+	min-height: 350px;
+}
+
+.promotions .grid-item .data-container:after{
+	content: "";
+	width: 0;
+	min-height: inherit;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.promotions .grid-item .data-container > *{
+	display: inline-block;
+	vertical-align: middle;
+	white-space: normal;
+	width: 100%;
+}
+
+.promotions .grid-item .progress-holder{padding: 10px 0;}
+
+.promotions .progress-area .progress-holder .progress-block{height: 20px;}
+
 .promotions .btn.dim{
 	display: block;
 	width: 100%;

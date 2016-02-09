@@ -565,7 +565,18 @@ function initSameHeight() {
     biggestHeight: true,
     useMinHeight: false
   });
-
+  jQuery('.promotions').sameHeight({
+    elements: '.grid-item .data-container',
+    flexible: true,
+    multiLine: true,
+    biggestHeight: true
+  });
+  jQuery('.promotions').sameHeight({
+    elements: '.grid-item .ibox-title',
+    flexible: true,
+    multiLine: true,
+    biggestHeight: true
+  });
 }
 
 function initEqualHeight(){
