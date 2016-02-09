@@ -518,7 +518,7 @@ module.exports = function ( grunt ) {
             // the server root directory
             root: '<%= build_dir %>',
             port: 3000,
-            host: "172.16.12.9",
+            host: "localhost",
             ext: "html",
             runInBackground: false,
 

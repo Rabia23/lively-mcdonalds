@@ -23,10 +23,10 @@
         </li>
       </ul>
       <div class="block-holder" time-line data-data = "overall_rating_data" data-action="optionClick(option_object)">
-      	  <a ng-click = "Prev()" ng-show = "mainView" class="btn-prev fa fa-angle-left"></a>
-          <a ng-click = "Next()" ng-show = "mainView" class="btn-next fa fa-angle-right"></a>
-          <a ng-click = "labelPrev()" ng-show = "optionView" class="btn-prev fa fa-angle-left"></a>
-          <a ng-click = "labelNext()" ng-show = "optionView" class="btn-next fa fa-angle-right"></a>
+      	  <a ng-click = "Prev()" ng-show = "mainView" class="btn-prev fa fa-angle-left" ng-if = "max_page > 1 && page > 1"></a>
+          <a ng-click = "Next()" ng-show = "mainView" class="btn-next fa fa-angle-right" ng-if = "max_page > 1 && page < max_page"></a>
+          <a ng-click = "labelPrev()" ng-show = "optionView" class="btn-prev fa fa-angle-left" ng-if = "max_page > 1 && page > 1"></a>
+          <a ng-click = "labelNext()" ng-show = "optionView" class="btn-next fa fa-angle-right" ng-if = "max_page > 1 && page < max_page"></a>
           <div id="chartdiv" style="width: 100%; height: 320px;"></div>
       </div>
   </div>

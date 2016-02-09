@@ -43,9 +43,9 @@ angular.module( 'livefeed.login', [
       $scope.show_loading = true;
       Authentication.login($scope.authenticate).$promise.then(function(data){
         $scope.show_loading = false;
-        if(data.status){
-          $rootScope.token = data.token;
-          TokenHandler.store_token(data.token, data.user.username, data.user.role, data.user.first_name+" "+data.user.last_name);
+        if(data.success){
+          $rootScope.token = data.response.token;
+          TokenHandler.store_token(data.response.token, data.response.user.username, data.response.user.role, data.response.user.first_name+" "+data.response.user.last_name);
           $state.go("dashboard");
         }
         else{

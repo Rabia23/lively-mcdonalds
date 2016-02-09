@@ -10,7 +10,7 @@
 				<div class="users-area">
 					<div flash-message="5000" ></div>
 					<ul class="users-list" data-users = "users">
-						<li ng-repeat = "user in users track by $index" ng-class="{'deactivate': user.is_active == false}">
+						<li ng-repeat = "user in users track by $index" ng-class="{'deactivate': user.is_active == false, 'inactive': user.is_active == false}">
 							<div class="ibox">
 								<div class="header">
 									<div class="img-holder"><img src="assets/images/person-img.png" alt=""></div>
@@ -59,62 +59,6 @@
 						</li>
 					</ul>
 				</div>
-<!--
-				<div class="ibox float-e-margins">
-					<div class="ibox-title">
-						<h5></h5>
-					</div>
-						<div class="ibox-content">
-
-							<div class="user-block">
-
-							</div>
-						<div class="info-holder">
-							<table class="footable toggle-arrow-tiny table table-striped table-hover" data-page-size="8" data-users = "users">
-								<thead>
-									<tr>
-										<th data-toggle="true">Name</th>
-										<th data-hide="all">User Name</th>
-										<th data-hide="all">Email</th>
-										<th data-hide="all">Status</th>
-										<th data-hide="all">Role</th>
-										<th>Phone No.</th>
-										<th ng-if = "child_role == 2 || child_role == 3">Branch</th>
-										<th ng-if = "child_role == 4">Region</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr ng-repeat = "user in users track by $index" ng-class="{'deactivate': user.is_active == false}">
-										<td>{{user.first_name}} {{user.last_name}}</td>
-										<td>{{user.username}}</td>
-										<td>{{user.email}}</td>
-										<td>{{user.status}}</td>
-										<td>{{user.user_role}}</td>
-										<td >{{user.phone_no}}</td>
-										<td ng-if = "child_role == 2 || child_role == 3">{{user.branch.name}}</td>
-										<td ng-if = "child_role == 4">{{user.region.name}}</td>
-										<td>
-											<div class="btn-box">
-												<a title="Edit User" ng-click = "edit(user, $index)" class="fa fa-pencil-square-o"></a>
-												<a title="Deactivate User" ng-click = "deactivate(user, $index)" ng-class="{'fa fa-user btn-active': user.is_active == false}"></a>
-												<a title="Activate User" ng-click = "deactivate(user, $index)" ng-class="{'fa fa-user-times btn-deactive': user.is_active == true}"></a>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-								<tfoot>
-									<tr>
-										<td colspan="7">
-											<ul class="pagination pull-right"></ul>
-										</td>
-									</tr>
-								</tfoot>
-							</table>
-						</div>
-					</div>
-				</div>
--->
 			</div>
 		</div>
 	  </div>

@@ -13,25 +13,49 @@
       $scope.user.region_id = region_id;
     }
 
+    $scope.show_error_message = false;
+
     $scope.submitted = false;
 
     Filters.allRegions().$promise.then(function(data){
-      $scope.regions = data;
+      if(data.success){
+        $scope.regions = data.response;
+        $scope.show_error_message = false;
+      }
+      else{
+        $scope.show_error_message = true;
+        Flash.create('danger', data.message, 'custom-class');
+      }
+
     });
 
     Filters.Branches(null, region_id).$promise.then(function(data){
-      $scope.branches = data;
+      if(data.success){
+        $scope.show_error_message = false;
+        $scope.branches = data.reponse;
+      }
+      else{
+        $scope.show_error_message = true;
+        Flash.create('danger',data.message, 'custom-class');
+      }
+
     });
 
     $scope.add = function(valid){
       if(valid){
         $scope.submitted = true;
         ManageApi.add_user($scope.user).$promise.then(function(data){
-          console.log("user added");
-          console.log($scope.user);
-          $scope.ok();
-          var message = "User successfully created.";
-          Flash.create('success', message, 'custom-class');
+          if(data.success){
+            $scope.show_error_message = false;
+            $scope.ok();
+            var message = "User successfully created.";
+            Flash.create('success', message, 'custom-class');
+          }
+          else{
+            $scope.show_error_message = true;
+            Flash.create('danger', data.message, 'custom-class');
+          }
+
         });
 
       }
@@ -51,21 +75,32 @@
 
   .controller('ModalEditInstanceCtrl', function ($scope, $uibModalInstance, parent_id, child_role, user,ManageApi, Enum, Filters, Flash) {
 
-    $scope.user = user;
+    $scope.user = angular.copy(user);
 
     $scope.edit_form = true;
 
     $scope.submitted = false;
+
+    $scope.show_error_message = false;
 
 
     $scope.add = function(valid){
       if(valid){
         $scope.submitted = true;
         ManageApi.edit_user($scope.user).$promise.then(function(data){
-          $scope.user = data;
-          $scope.ok($scope.user);
-          var message = "User successfully edited.";
-          Flash.create('success', message, 'custom-class');
+          if(data.success){
+            $scope.show_error_message = false;
+            $scope.user = data.response;
+            $scope.ok($scope.user);
+            var message = "User successfully edited.";
+            Flash.create('success', message, 'custom-class');
+          }
+          else{
+            $scope.show_error_message = true;
+            $scope.error_message = data.message;
+            Flash.create('danger', $scope.error_message, 'custom-class');
+          }
+
         });
       }
       else{
@@ -78,6 +113,7 @@
     };
 
     $scope.cancel = function () {
+      $scope.user = angular.copy(user);
       $uibModalInstance.dismiss('cancel');
     };
   });
