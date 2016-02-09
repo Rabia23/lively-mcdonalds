@@ -1022,6 +1022,7 @@ angular.module("login/login.tpl.html", []).run(["$templateCache", function($temp
 
 angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("manage-users/edit-user-modal.tpl.html",
+    "<div flash-message=\"5000\" ></div>\n" +
     "<form  class=\"info-form\" name=\"UserForm\" ng-submit=\"add(UserForm.$valid)\" novalidate>\n" +
     "	<fieldset>\n" +
     "		<div class=\"modal-header\">\n" +
@@ -1229,9 +1230,21 @@ angular.module("promotions/promotions-detail.tpl.html", []).run(["$templateCache
     "							<div class=\"ibox-title\">\n" +
     "								<h5>Question {{$index + 1}} <small> {{question.question}}</small></h5>\n" +
     "							</div>\n" +
-    "							<div class=\"ibox-content\">\n" +
-    "                <div id = \"graph_{{$index}}\"></div>\n" +
-    "              </div>\n" +
+    "							<div class=\"ibox-content\" question-pie-chart data-data = \"data\">\n" +
+    "                              <div id = \"graph_{{$index}}\">\n" +
+    "							    <div class=\"progres-container\" ng-if = \"question.type == 5\">\n" +
+    "								  <div class=\"progress-area\">\n" +
+    "								    <div class=\"progress-holder\" ng-repeat = \"dat in question_analysis\" data-color = \"dat.colour\" data-data = \"question_analysis\" question-bar-background>\n" +
+    "									  <div class=\"progress-inner\">\n" +
+    "									    <small><em>{{dat.name}} <b>{{dat.count}} Views</b></em></small>\n" +
+    "										<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar></div>\n" +
+    "									  </div>\n" +
+    "									</div>\n" +
+    "								  </div>\n" +
+    "								</div>\n" +
+    "								<div id=\"piechart\" style=\"width:100%; height:300px;\" ng-if = \"question.type == 4\"></div>\n" +
+    "							  </div>\n" +
+    "                            </div>\n" +
     "						</div>\n" +
     "					</div>\n" +
     "				</div>\n" +

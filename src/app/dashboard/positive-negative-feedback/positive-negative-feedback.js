@@ -1,18 +1,27 @@
 angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   'factories',
   'helper_factories',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'flash'
 ])
 
-.controller( 'PositiveNegativeFeedbackCtrl', function DashboardController( $scope, _, Global, Graphs,$uibModal, $log, commentService ) {
+.controller( 'PositiveNegativeFeedbackCtrl', function DashboardController( $scope, _, Global, Graphs,$uibModal, $log, commentService, Flash ) {
 
+  $scope.show_error_message = false;
 
   Graphs.comments(1).$promise.then(function(data){
-    //console.log(data);
-    $scope.feedback_count = data.feedback_count;
-    $scope.comments = _.map(data.feedbacks,  function(data){
-      return commentService.getComment(data);
-    });
+    if(data.success) {
+      $scope.show_error_message = false;
+      $scope.feedback_count = data.response.feedback_count;
+      $scope.comments = _.map(data.response.feedbacks, function (data) {
+        return commentService.getComment(data);
+      });
+    }
+    else{
+      $scope.show_error_message = true;
+      $scope.error_message = data.message;
+      Flash.create('danger', $scope.error_message, 'custom-class');
+    }
   });
 
   $scope.open = function (size) {
@@ -35,26 +44,44 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
 
 })
 
-.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items, Graphs, commentService) {
+.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items, Graphs, commentService, Flash) {
 
   $scope.comments = [];
   $scope.page = 1;
 
   $scope.lock = false;
 
+  $scope.show_error_message = false;
+
   $scope.selectedValue = function(value, comment){
     comment.show_dropdown = false;
     comment.action_string = value == "Process" ? "Processed" : "Deferred";
     var action_id = value == "Process" ? 2 : 3;
     Graphs.action_taken(comment.data.id,action_id).$promise.then(function(data){
-      comment.data.action_taken = data.action_taken;
+      if(data.success) {
+        $scope.show_error_message = false;
+        comment.data.action_taken = data.response.action_taken;
+      }
+      else {
+       $scope.show_error_message = true;
+       $scope.error_message = data.message;
+       Flash.create('danger', $scope.error_message, 'custom-class');
+      }
     });
   };
 
   Graphs.comments($scope.page).$promise.then(function(data){
-    $scope.comments = _.map(data.feedbacks,  function(data){
-      return commentService.getComment(data);
-    });
+    if(data.success) {
+      $scope.show_error_message = false;
+      $scope.comments = _.map(data.response.feedbacks, function (data) {
+        return commentService.getComment(data);
+      });
+    }
+    else {
+     $scope.show_error_message = true;
+     $scope.error_message = data.message;
+     Flash.create('danger', $scope.error_message, 'custom-class');
+    }
   });
 
   $scope.getMoreComments = function(){
@@ -62,11 +89,19 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     $scope.page = $scope.page + 1;
     $scope.lock = true;
     Graphs.comments($scope.page).$promise.then(function(data){
-      $scope.lock = false;
-      angular.forEach(data.feedbacks, function(value, key) {
-        var comment_data = commentService.getComment(value);
-        $scope.comments.push(comment_data);
-      });
+      if(data.success) {
+        $scope.show_error_message = false;
+        $scope.lock = false;
+        angular.forEach(data.response.feedbacks, function (value, key) {
+          var comment_data = commentService.getComment(value);
+          $scope.comments.push(comment_data);
+        });
+      }
+      else {
+       $scope.show_error_message = true;
+       $scope.error_message = data.message;
+       Flash.create('danger', $scope.error_message, 'custom-class');
+      }
     });
   };
 

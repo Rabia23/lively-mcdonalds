@@ -12,9 +12,21 @@
 							<div class="ibox-title">
 								<h5>Question {{$index + 1}} <small> {{question.question}}</small></h5>
 							</div>
-							<div class="ibox-content">
-                <div id = "graph_{{$index}}"></div>
-              </div>
+							<div class="ibox-content" question-pie-chart data-data = "data">
+                              <div id = "graph_{{$index}}">
+							    <div class="progres-container" ng-if = "question.type == 5">
+								  <div class="progress-area">
+								    <div class="progress-holder" ng-repeat = "dat in question_analysis" data-color = "dat.colour" data-data = "question_analysis" question-bar-background>
+									  <div class="progress-inner">
+									    <small><em>{{dat.name}} <b>{{dat.count}} Views</b></em></small>
+										<div class="progress-block"><uib-progressbar animate="false" value="dat.percentage" type="success"></uib-progressbar></div>
+									  </div>
+									</div>
+								  </div>
+								</div>
+								<div id="piechart" style="width:100%; height:300px;" ng-if = "question.type == 4"></div>
+							  </div>
+                            </div>
 						</div>
 					</div>
 				</div>

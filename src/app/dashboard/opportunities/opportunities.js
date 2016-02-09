@@ -1,24 +1,35 @@
 angular.module( 'livefeed.dashboard.opportunities', [
   'factories',
-  "helper_factories"
+  'helper_factories',
+   'flash'
 ])
 
-.controller( 'OpportunitiesCtrl', function OpportunitiesCtrl( $scope, Graphs, Global ) {
+.controller( 'OpportunitiesCtrl', function OpportunitiesCtrl( $scope, Graphs, Global, Flash ) {
     $scope.start_date = null;
     $scope.end_date = null;
     $scope.show_loading = true;
+
+    $scope.show_error_message = false;
+
     Graphs.opportunity_analysis("","","",$scope.start_date, $scope.end_date).$promise.then(function(opportunity_data){
       $scope.show_loading = false;
-      $scope.opportunity_data = _.map(opportunity_data.feedbacks,  function(data,index){
+      if(opportunity_data.success) {
+        $scope.show_error_message = false;
+        $scope.opportunity_data = _.map(opportunity_data.response.feedbacks, function (data, index) {
           return {
-              id: data.option_id,
-              name: data.option__text,
-              complaints: data.count,
-              percentage: data.count === 0 ? 0 : Math.round((data.count/opportunity_data.feedback_count)*100),
-              colour: Global.topConcernsColors(index)
+            id: data.option_id,
+            name: data.option__text,
+            complaints: data.count,
+            percentage: data.count === 0 ? 0 : Math.round((data.count / opportunity_data.feedback_count) * 100),
+            colour: Global.topConcernsColors(index)
           };
-       });
-
+        });
+      }
+      else{
+        $scope.show_error_message = true;
+        $scope.error_message = opportunity_data.message;
+        Flash.create('danger', $scope.error_message, 'custom-class');
+      }
     });
 })
 

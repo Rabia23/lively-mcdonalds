@@ -44,7 +44,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
               {
                 "type": "pie",
                 "pullOutDuration": 0,
-                 "pullOutRadius": 0,
+                "pullOutRadius": 0,
                 "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b></span>",
                 "innerRadius": "40%",
                 "startDuration": 0,
