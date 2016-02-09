@@ -9,7 +9,7 @@ from apps.review.models import Feedback, FeedbackOption
 from apps.review.serializers import FeedbackSerializer
 from lively._celery import send_negative_feedback_email
 from apps import constants
-from apps.utils import save, response
+from apps.utils import save, response, response_json
 from apps.redis_queue import RedisQueue
 
 
@@ -17,7 +17,7 @@ class FeedbackView(APIView):
     def get(self, request, format=None):
         feedback = Feedback.objects.all()
         serializer = FeedbackSerializer(feedback, many=True)
-        return Response(serializer.data)
+        return Response(response_json(True, serializer.data, None))
 
 
     @transaction.atomic

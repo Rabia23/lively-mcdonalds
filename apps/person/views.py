@@ -8,7 +8,7 @@ from apps.parse import ParseHelper
 from apps.person.enum import UserRolesEnum
 from apps.person.models import UserInfo
 from apps.region.models import Region
-from apps.utils import get_data_param, get_param, get_default_param
+from apps.utils import get_data_param, get_param, get_default_param, response_json
 from django.db import IntegrityError
 
 
@@ -37,7 +37,7 @@ class UserView(APIView):
         else:
             data = UserInfo.get_people_dict(int(role))
 
-        return Response(data)
+        return Response(response_json(True, data, None))
 
     @transaction.atomic()
     def post(self, request, format=None):
@@ -69,33 +69,33 @@ class UserView(APIView):
                                                             branch=branch, parent=parent)
                         parse_helper = ParseHelper()
                         parse_helper.item_add(user_info, password)
-                        return Response(user_info.to_dict())
+                        return Response(response_json(True, user_info.to_dict(), None))
                     elif role == UserRolesEnum.BRANCH_MANAGER:
                         user_info = UserInfo.objects.create(user=user, phone_no=phone_no, role=UserRolesEnum.BRANCH_MANAGER,
                                                         branch=branch, parent=parent)
-                        return Response(user_info.to_dict())
+                        return Response(response_json(True, user_info.to_dict(), None))
                 elif region and parent:
                     if role == UserRolesEnum.OPERATIONAL_CONSULTANT:
                         user_info = UserInfo.objects.create(user=user, phone_no=phone_no, role=UserRolesEnum.OPERATIONAL_CONSULTANT,
                                                         region=region, parent=parent)
-                        return Response(user_info.to_dict())
+                        return Response(response_json(True, user_info.to_dict(), None))
                 elif parent:
                     if role == UserRolesEnum.OPERATIONAL_MANAGER:
                         user_info = UserInfo.objects.create(user=user, phone_no=phone_no,
                                             role=UserRolesEnum.OPERATIONAL_MANAGER, parent=parent)
-                        return Response(user_info.to_dict())
+                        return Response(response_json(True, user_info.to_dict(), None))
                     elif role == UserRolesEnum.ASSISTANT_DIRECTOR:
                         user_info = UserInfo.objects.create(user=user, phone_no=phone_no,
                                             role=UserRolesEnum.ASSISTANT_DIRECTOR, parent=parent)
-                        return Response(user_info.to_dict())
+                        return Response(response_json(True, user_info.to_dict(), None))
                 else:
                     if role == UserRolesEnum.DIRECTOR:
                         user_info = UserInfo.objects.create(user=user, phone_no=phone_no, role=UserRolesEnum.DIRECTOR)
-                        return Response(user_info.to_dict())
+                        return Response(response_json(True, user_info.to_dict(), None))
 
-            return Response(False)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
         except IntegrityError as e:
-            return Response(constants.TEXT_ALREADY_EXISTS)
+            return Response(response_json(False, None, constants.TEXT_ALREADY_EXISTS))
 
 
     @transaction.atomic()
@@ -118,10 +118,10 @@ class UserView(APIView):
                 user_info.phone_no = phone_no if phone_no else user_info.phone_no
                 user_info.save()
 
-            return Response(user_info.to_dict())
+            return Response(response_json(True, user_info.to_dict(), None))
 
         except User.DoesNotExist as e:
-            return Response(constants.TEXT_DOES_NOT_EXISTS)
+            return Response(response_json(False, None, constants.TEXT_DOES_NOT_EXISTS))
 
 
     @transaction.atomic()
@@ -138,8 +138,8 @@ class UserView(APIView):
                     else:
                         user_info.is_active = True
                     user_info.save()
-                    return Response(user_info.to_dict())
+                    return Response(response_json(True, user_info.to_dict(), None))
 
-            return Response(False)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
         except User.DoesNotExist as e:
-            return Response(constants.TEXT_DOES_NOT_EXISTS)
+            return Response(response_json(False, None, constants.TEXT_DOES_NOT_EXISTS))

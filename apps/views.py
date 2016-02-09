@@ -27,7 +27,7 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from operator import itemgetter
 from apps.decorators import my_login_required
-from apps.utils import get_param, get_data_param, get_user_data, get_user_role
+from apps.utils import get_param, get_data_param, get_user_data, get_user_role, response_json
 from django.utils.decorators import method_decorator
 
 
@@ -38,21 +38,15 @@ class LoginView(APIView):
         password = get_data_param(request, 'password', None)
         user = authenticate(username=username, password=password)
         if user:
-            if user.info.first() and user.info.first().role == UserRolesEnum.GRO:
-                data = {'status': False,
-                        'message': 'User has no permission to login',
-                        'token': None,
-                        'user': user.info.first().to_dict()}
+            if user.info.first() and (user.info.first().role == UserRolesEnum.GRO or user.info.first().is_active == False):
+                return Response(response_json(False, None, 'User has no permission to login'))
             else:
                 token = Token.objects.get_or_create(user=user)
-                data = {'status': True,
-                        'message': 'User authenticated',
-                        'token': token[0].key,
+                data = {'token': token[0].key,
                         'user': user.info.first().to_dict()}
+                return Response(response_json(True, data, None))
         else:
-            data = {'status': False, 'message': 'User not authenticated', 'token': None, 'user': None}
-
-        return Response(data)
+            return Response(response_json(False, None, 'User not authenticated'))
 
 
 class OverallFeedbackView(APIView):
@@ -74,10 +68,10 @@ class OverallFeedbackView(APIView):
             list_feedback = generate_missing_options(Question.objects.get(type=constants.TYPE_1), feedback_options_dict)
 
             data = {'feedback_count': feedback_options.count(), 'feedbacks': sorted(list_feedback, reverse=True, key=itemgetter('option__score'))}
-            return Response(data)
+            return Response(response_json(True, data, None))
 
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 class FeedbackAnalysisView(APIView):
@@ -136,10 +130,10 @@ class FeedbackAnalysisView(APIView):
                 feedbacks.append({'object': ObjectSerializer(object).data, 'data': data})
 
             feedback_data = {'count': objects.count(), 'analysis': feedbacks}
-            return Response(feedback_data)
+            return Response(response_json(True, feedback_data, None))
 
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 class FeedbackAnalysisBreakdownView(APIView):
@@ -166,11 +160,11 @@ class FeedbackAnalysisBreakdownView(APIView):
                     annotate(count=Count('option_id'))
 
                 data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
-                return Response(data)
+                return Response(response_json(True, data, None))
 
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 class OverallRatingView(APIView):
@@ -241,10 +235,10 @@ class OverallRatingView(APIView):
             # if len(feedback_records_list) > constants.NO_OF_DAYS:
             #     feedback_records_list = feedback_records_list[-constants.NO_OF_DAYS:]
 
-            return Response(feedback_records_list)
+            return Response(response_json(True, feedback_records_list, None))
 
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 class CategoryPerformanceView(APIView):
@@ -276,10 +270,10 @@ class CategoryPerformanceView(APIView):
                                 generate_missing_options(question, filtered_feedback_options)
 
             data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
-            return Response(data)
+            return Response(response_json(True, data, None))
 
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 class PositiveNegativeFeedbackView(APIView):
@@ -296,10 +290,10 @@ class PositiveNegativeFeedbackView(APIView):
 
             data = {'positive_feedbacks': FeedbackSerializer(positive_feedback, many=True).data,
                     'negative_feedbacks': FeedbackSerializer(negative_feedback, many=True).data}
-            return Response(data)
+            return Response(response_json(True, data, None))
 
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 class CommentsView(APIView):
@@ -318,10 +312,10 @@ class CommentsView(APIView):
             data = {'feedback_count': feedback.count(),
                     'feedbacks': feedback_comments,
                     'is_last_page': paginator.num_pages == int(page)}
-            return Response(data)
+            return Response(response_json(True, data, None))
 
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 class MapView(APIView):
@@ -346,10 +340,10 @@ class MapView(APIView):
             branch_detail_list = [branch.branch_feedback_detail(date_from, date_to) for branch in branches]
 
             data = {'branch_count': branches.count(), 'branches': branch_detail_list}
-            return Response(data)
+            return Response(response_json(True, data, None))
 
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 class FeedbackSegmentationView(APIView):
@@ -369,7 +363,7 @@ class FeedbackSegmentationView(APIView):
             if option:
                 options = option.children.all()
             else:
-                return Response(None)
+                return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
             if type == constants.YEARLY_ANALYSIS:
                 date_from = str((date_to - relativedelta(months=constants.NO_OF_MONTHS)))
@@ -386,9 +380,10 @@ class FeedbackSegmentationView(APIView):
             feedback_segmented_list = generate_option_groups(feedback_options, options)
 
             data = {'option_count': len(feedback_segmented_list), 'options': feedback_segmented_list}
-            return Response(data)
+            return Response(response_json(True, data, None))
+
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 class TopConcernsView(APIView):
@@ -398,9 +393,10 @@ class TopConcernsView(APIView):
         try:
             concerns = [concern.to_dict() for concern in Concern.objects.filter(is_active=True).order_by("-count")[:5]]
             data = {'concern_count': len(concerns), 'concern_list': concerns}
-            return Response(data)
+
+            return Response(response_json(True, data, None))
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 class SegmentationRatingView(APIView):
@@ -425,9 +421,10 @@ class SegmentationRatingView(APIView):
             feedback_segmented_list = generate_segmentation_with_options(feedback_options, options)
 
             data = {'segment_count': len(feedback_segmented_list), 'segments': feedback_segmented_list}
-            return Response(data)
+            return Response(response_json(True, data, None))
+
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 class ActionTakenView(APIView):
@@ -446,11 +443,11 @@ class ActionTakenView(APIView):
                 feedback.save()
 
                 feedback_response = FeedbackCommentSerializer(feedback.feedback_comment_dict())
-                return Response(feedback_response.data)
+                return Response(response_json(True, feedback_response, None))
             else:
-                return Response(None)
+                return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 class ActionAnalysisView(APIView):
@@ -505,10 +502,10 @@ class ActionAnalysisView(APIView):
                 data_list.append({'object': ObjectSerializer(object).data, 'data': data})
 
             feedback_data = {'count': objects.count(), 'analysis': data_list}
-            return Response(feedback_data)
+            return Response(response_json(True, feedback_data, None))
 
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 class TopChartsView(APIView):
@@ -528,10 +525,10 @@ class TopChartsView(APIView):
             gro = Feedback.get_top_gro(date_from_str, date_to_str)
             
             data = {'branch': branch, 'city': city, 'region': region, 'gro': gro}
-            return Response(data)
+            return Response(response_json(True, data, None))
             
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 #for live dashboard
@@ -549,10 +546,10 @@ class TopRankingsView(APIView):
                     'positive_negative_feedback': positive_negative_feedback,
                     'qsc_count': qsc_count}
 
-            return Response(data)
+            return Response(response_json(True, data, None))
 
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 #for live dashboard
@@ -579,10 +576,10 @@ class ComplaintAnalysisView(APIView):
                 data = {'feedback_count': feedback.count(), 'action_analysis': filtered_feedback}
                 data_list.append({'object': ObjectSerializer(object).data, 'data': data})
 
-            return Response(data_list)
+            return Response(response_json(True, data_list, None))
 
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 #for live dashboard
@@ -596,10 +593,10 @@ class LeaderBoardView(APIView):
             gro = Feedback.get_top_gro()
 
             data = {'city': city, "branches": branches, "gro": gro}
-            return Response(data)
+            return Response(response_json(True, data, None))
 
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 class LiveDashboardView(APIView):
@@ -706,10 +703,10 @@ class LiveDashboardView(APIView):
                 "concerns": self._get_top_concers(),
             }
 
-            return Response(data)
+            return Response(response_json(True, data, None))
 
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 class ManageUserView(APIView):
@@ -721,7 +718,7 @@ class ManageUserView(APIView):
         parent = user.info.first()
 
         if not parent:
-            return Response(False)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
         parent_role = user.info.first().role
 
@@ -750,7 +747,7 @@ class ManageUserView(APIView):
             "children": people,
         }
 
-        return Response(data)
+        return Response(response_json(True, data, None))
 
 
 class OpportunityAnalysisView(APIView):
@@ -773,10 +770,10 @@ class OpportunityAnalysisView(APIView):
             list_feedback = generate_missing_options(Question.objects.get(type=constants.TYPE_3), feedback_options_dict)
 
             data = {'feedback_count': feedback_options.count(), 'feedbacks': list_feedback}
-            return Response(data)
+            return Response(response_json(True, data, None))
 
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 class PromotionDetailView(APIView):
@@ -792,19 +789,22 @@ class PromotionDetailView(APIView):
 
             question_data_list = []
             for question in questions:
+                total_count = 0
                 feedback_options = FeedbackOption.manager.promotion_options(question).filters(region_id, city_id, branch_id)
                 filtered_feedback = feedback_options.values('option_id', 'option__text', 'option__parent_id', 'option__score').\
                                     annotate(count=Count('option_id'))
                 list_feedback = generate_missing_options(question, filtered_feedback)
-                question_data_list.append({'question': question.text, 'type': question.type,  'feedbacks': list_feedback})
+                for feedback_count in list_feedback:
+                    total_count += int(feedback_count["count"])
+                question_data_list.append({'question': question.text, 'total_count': total_count, 'type': question.type, 'feedbacks': list_feedback})
 
             data = {'question': questions.count(), 'promotion': PromotionSerializer(promotion).data, 'analysis': question_data_list}
-            return Response(data)
+            return Response(response_json(True, data, None))
 
         except Promotion.DoesNotExist as e:
-            return Response(constants.TEXT_DOES_NOT_EXISTS)
+            return Response(response_json(False, None, constants.TEXT_DOES_NOT_EXISTS))
         except Exception as e:
-            return Response(None)
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
 
 
 

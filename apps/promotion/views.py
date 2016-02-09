@@ -4,7 +4,7 @@ from apps.promotion.models import Promotion
 from apps.promotion.serializers import PromotionSerializer
 from apps.question.models import Question
 from apps import constants
-from apps.utils import save, response
+from apps.utils import save, response, response_json
 from django.db import transaction
 
 
@@ -12,7 +12,7 @@ class PromotionView(APIView):
     def get(self, request, format=None):
         promotions = Promotion.objects.all()
         serializer = PromotionSerializer(promotions, many=True)
-        return Response(serializer.data)
+        return Response(response_json(True, serializer.data, None))
 
     @transaction.atomic
     def post(self, request, format=None):

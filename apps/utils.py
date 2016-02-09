@@ -113,3 +113,12 @@ def get_user_role(user):
         if user_info:
             return user_info.role
     return None
+
+
+def response_json(success, data, message=None):
+    data = {
+        "response": data,
+        "success": success,
+        "message": message,
+    }
+    return data

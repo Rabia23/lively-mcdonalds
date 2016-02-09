@@ -4,7 +4,7 @@ from apps.option.utils import option_get, get_related_option
 from apps.question.models import Question
 from apps.question.serializers import QuestionSerializer
 from apps import constants
-from apps.utils import save, response
+from apps.utils import save, response, response_json
 from django.db import transaction
 
 
@@ -12,7 +12,7 @@ class QuestionView(APIView):
     def get(self, request, format=None):
         questions = Question.objects.all()
         serializer = QuestionSerializer(questions, many=True)
-        return Response(serializer.data)
+        return Response(response_json(True, serializer.data, None))
 
     @transaction.atomic
     def post(self, request, format=None):

@@ -1,9 +1,9 @@
-from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from apps import constants
 from apps.branch.models import Branch
 from apps.branch.serializers import BranchSerializer
-from apps.utils import get_data_param
+from apps.utils import get_data_param, response_json
 from django.db import transaction
 
 
@@ -18,7 +18,7 @@ class BranchView(APIView):
         else:
             branches = Branch.objects.all()
         serializer = BranchSerializer(branches, many=True)
-        return Response(serializer.data)
+        return Response(response_json(True, serializer.data, None))
 
 
     @transaction.atomic
@@ -31,21 +31,5 @@ class BranchView(APIView):
         serializer = BranchSerializer(branch, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    # @transaction.atomic
-    # def post(self, request, format=None):
-    #     data = request.data["object"]
-    #     trigger = request.data["triggerName"]
-    #
-    #     if trigger == constants.TRIGGER_AFTER_SAVE:
-    #         related_city = city_get(data["city"]["objectId"])
-    #         city = City.get_if_exists(related_city["objectId"])
-    #
-    #         branch_params = data
-    #         branch_params['city'] = city.id
-    #
-    #         branch = Branch.get_if_exists(data["objectId"])
-    #         serializer = BranchSerializer(branch, data=data)
-    #         return save_and_response(serializer, data)
+            return Response(response_json(True, serializer.data, None))
+        return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
