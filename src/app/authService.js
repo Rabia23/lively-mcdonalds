@@ -4,11 +4,12 @@ angular.module('livefeed.authService', [])
   
   return {
     
-    store_token: function(token, username, user_role){
+    store_token: function(token, username, user_role, fullname){
       window.sessionStorage.setItem('token', token);
       window.sessionStorage.setItem('loggedin', 'true');
       window.sessionStorage.setItem('username', username);
       window.sessionStorage.setItem('user_role', user_role);
+      window.sessionStorage.setItem('fullname', fullname);
     },
 
     remove_token: function(){
@@ -16,6 +17,7 @@ angular.module('livefeed.authService', [])
       window.sessionStorage.setItem('loggedin', "false");
       window.sessionStorage.setItem('username', "");
       window.sessionStorage.setItem('user_role', "");
+      window.sessionStorage.setItem('fullname', "");
     },
 
     get_token: function(){
@@ -28,6 +30,10 @@ angular.module('livefeed.authService', [])
 
     get_user_role: function(){
       return window.sessionStorage.getItem("user_role");
+    },
+
+    get_fullname: function(){
+      return window.sessionStorage.getItem("fullname");
     }
   };
 })

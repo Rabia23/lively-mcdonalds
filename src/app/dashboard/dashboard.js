@@ -107,7 +107,7 @@ angular.module( 'livefeed.dashboard', [
   $scope.show_loading = true;
   if (Auth.is_logged_in()) {
     $rootScope.show_username = true;
-    $rootScope.username = TokenHandler.get_username();
+    $rootScope.fullname = TokenHandler.get_fullname();
   }
 
   $rootScope.$on('app-online', function(event, args) {

@@ -38,7 +38,7 @@ angular.module("common/header.tpl.html", []).run(["$templateCache", function($te
     "        </a>\n" +
     "      </li> -->\n" +
     "      <li>\n" +
-    "        <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">{{username}}</span></span>\n" +
+    "        <span class=\"m-r-sm text-muted welcome-message\">Welcome <span class=\"name\">{{fullname}}</span></span>\n" +
     "      </li>\n" +
     "      <li>\n" +
     "        <a style = \"cursor:pointer;\" ng-click = \"logout()\">\n" +
