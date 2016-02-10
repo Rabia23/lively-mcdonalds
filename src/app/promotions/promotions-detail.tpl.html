@@ -8,29 +8,33 @@
 			<div class="col-lg-12">
 				<h1>{{promotion.title}} Promotion</h1>
 				<div class="row">
-					<div class="col-md-6 grid-item" ng-repeat = "question in questions track by $index">
+					<div class="col-md-6 col-lg-4 grid-item" ng-repeat = "question in questions track by $index">
 						<div class="ibox float-e-margins" ng-class = "{loading: show_loading}">
 							<div class="ibox-title">
-								<h5>Question {{$index + 1}} <small> {{question.question}}</small></h5>
+								<h3>Q{{$index + 1}} : {{question.question}}</h3>
 							</div>
 							<div class="ibox-content" ng-if = "question.type == 5">
-							  <div id = "graph_{{$index}}">
-							    <div class="progres-container">
-								  <div class="progress-area">
-								    <div class="progress-holder" ng-repeat = "dat in question.question_bar_chart" data-color = "dat.colour" data-data = "question.question_bar_chart" question-bar-background>
-									  <div class="progress-inner">
-									    <small><em>{{dat.name}} <b>{{dat.count}} Views</b></em></small>
-										<div class="progress-block"><uib-progressbar animate="false" value="dat.percentage" type="success"></uib-progressbar></div>
+							  <div class="data-container">
+							  	<div id = "graph_{{$index}}">
+									<div class="progres-container">
+									  <div class="progress-area">
+										<div class="progress-holder" ng-repeat = "dat in question.question_bar_chart" data-color = "dat.colour" data-data = "question.question_bar_chart" question-bar-background>
+										  <div class="progress-inner">
+											<small><em>{{dat.name}} <b>{{dat.count}} Views</b></em></small>
+											<div class="progress-block"><uib-progressbar animate="false" value="dat.percentage" type="success"></uib-progressbar></div>
+										  </div>
+										</div>
 									  </div>
 									</div>
 								  </div>
-								</div>
 							  </div>
                             </div>
 							<div class="ibox-content" ng-if = "question.type == 4" question-pie-chart data-data = "question.question_pie_chart">
-								<div id={{question.question_pie_chart[0]}} style="width:100%; height:300px;" ng-hide = "all_zero"></div>
-								<div ng-show = "all_zero" class="message-holder">
-									<h2>No Data Available</h2>
+								<div class="data-container">
+									<div id={{question.question_pie_chart[0]}} style="width:100%; height:300px;" ng-hide = "all_zero"></div>
+									<div ng-show = "all_zero" class="message-holder">
+										<h2>No Data Available</h2>
+									</div>
 								</div>
                             </div>
 						</div>
