@@ -102,7 +102,7 @@ angular.module( 'livefeed.dashboard', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'DashboardCtrl', function DashboardController( $scope, $state, $rootScope, Flash) {
+.controller( 'DashboardCtrl', function DashboardController( $scope, $state, $rootScope, Flash, Graphs) {
   $scope.show_loading = true;
 
   $rootScope.$on('app-online', function(event, args) {

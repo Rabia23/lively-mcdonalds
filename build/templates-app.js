@@ -1220,47 +1220,47 @@ angular.module("promotions/promotions-detail.tpl.html", []).run(["$templateCache
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
     "     <ui-view name = \"header\"></ui-view>\n" +
-    "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
-    "		<div class=\"row promotions\">\n" +
+    "   <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
+    "    <div class=\"row promotions\">\n" +
     "      <div flash-message=\"5000\" ></div>\n" +
-    "			<div class=\"col-lg-12\">\n" +
-    "				<h1>{{promotion.title}} Promotion</h1>\n" +
-    "				<div class=\"row\">\n" +
-    "					<div class=\"col-md-6 col-lg-4 grid-item\" ng-repeat = \"question in questions track by $index\">\n" +
-    "						<div class=\"ibox float-e-margins\" ng-class = \"{loading: show_loading}\">\n" +
-    "							<div class=\"ibox-title\">\n" +
-    "								<h3>Q{{$index + 1}} : {{question.question}}</h3>\n" +
-    "							</div>\n" +
-    "							<div class=\"ibox-content\" ng-if = \"question.type == 5\">\n" +
-    "							  <div class=\"data-container\">\n" +
-    "							  	<div id = \"graph_{{$index}}\">\n" +
-    "									<div class=\"progres-container\">\n" +
-    "									  <div class=\"progress-area\">\n" +
-    "										<div class=\"progress-holder\" ng-repeat = \"dat in question.question_bar_chart\" data-color = \"dat.colour\" data-data = \"question.question_bar_chart\" question-bar-background>\n" +
-    "										  <div class=\"progress-inner\">\n" +
-    "											<small><em>{{dat.name}} <b>{{dat.count}} Views</b></em></small>\n" +
-    "											<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar></div>\n" +
-    "										  </div>\n" +
-    "										</div>\n" +
-    "									  </div>\n" +
-    "									</div>\n" +
-    "								  </div>\n" +
-    "							  </div>\n" +
-    "                            </div>\n" +
-    "							<div class=\"ibox-content\" ng-if = \"question.type == 4\" question-pie-chart data-data = \"question.question_pie_chart\">\n" +
-    "								<div class=\"data-container\">\n" +
-    "									<div id={{question.question_pie_chart[0]}} style=\"width:100%; height:300px;\" ng-hide = \"all_zero\"></div>\n" +
-    "									<div ng-show = \"all_zero\" class=\"message-holder\">\n" +
-    "										<h2>No Data Available</h2>\n" +
-    "									</div>\n" +
-    "								</div>\n" +
-    "                            </div>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
-    "		</div>\n" +
-    "	  </div>\n" +
+    "      <div class=\"col-lg-12\">\n" +
+    "        <h1>{{promotion.title}} Promotion</h1>\n" +
+    "        <div class=\"row\">\n" +
+    "          <div class=\"col-md-6 col-lg-4 grid-item\" ng-repeat = \"question in questions track by $index\">\n" +
+    "            <div class=\"ibox float-e-margins\" ng-class = \"{loading: show_loading}\">\n" +
+    "              <div class=\"ibox-title\">\n" +
+    "                <h3>Q{{$index + 1}} : {{question.question}}</h3>\n" +
+    "              </div>\n" +
+    "              <div class=\"ibox-content\" ng-if = \"question.type == 5\">\n" +
+    "                <div class=\"data-container\">\n" +
+    "                  <div id = \"graph_{{$index}}\">\n" +
+    "                  <div class=\"progres-container\">\n" +
+    "                    <div class=\"progress-area\">\n" +
+    "                    <div class=\"progress-holder\" ng-repeat = \"dat in question.question_bar_chart\" data-color = \"dat.colour\" data-data = \"question.question_bar_chart\" question-bar-background>\n" +
+    "                      <div class=\"progress-inner\">\n" +
+    "                      <small><em>{{dat.name}} <b>{{dat.count}} Views</b></em></small>\n" +
+    "                      <div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar></div>\n" +
+    "                      </div>\n" +
+    "                    </div>\n" +
+    "                    </div>\n" +
+    "                  </div>\n" +
+    "                  </div>\n" +
+    "                </div>\n" +
+    "              </div>\n" +
+    "              <div class=\"ibox-content\" ng-if = \"question.type == 4\" question-pie-chart data-data = \"question.question_pie_chart\">\n" +
+    "                <div class=\"data-container\">\n" +
+    "                  <div id={{question.question_pie_chart[0]}} style=\"width:100%; height:300px;\" ng-hide = \"all_zero\"></div>\n" +
+    "                  <div ng-show = \"all_zero\" class=\"message-holder\">\n" +
+    "                    <h2>No Data Available</h2>\n" +
+    "                  </div>\n" +
+    "                </div>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    </div>\n" +
     "  </div>\n" +
     "  <ui-view name = \"footer\"></ui-view>\n" +
     "</div>\n" +

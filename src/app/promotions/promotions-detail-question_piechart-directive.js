@@ -37,6 +37,7 @@
                 "titles": [],
                 "dataProvider": data[1]
               });
+              window.initSameHeight();
             }
           });
         }

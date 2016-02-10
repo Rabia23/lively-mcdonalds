@@ -42,7 +42,6 @@
         });
         $scope.users = _.sortBy($scope.users, function(item) { return item.is_active; });
         $scope.users = $scope.users.reverse();
-        //$scope.users.sort( function( item ) { return !item.is_active; } );
       }
       else{
         $scope.show_error_message = true;
@@ -53,9 +52,7 @@
     });
 
     $scope.deactivate = function(user,index){
-      $scope.show_loading = true;
       ManageApi.delete_user(user.id).$promise.then(function(data){
-        $scope.show_loading = false;
         var message = "";
         if(data.success){
           $scope.show_error_message = false;

@@ -26,8 +26,6 @@
             inc = inc + 1;
           }
         });
-        console.log("updated question array...");
-        console.log($scope.questions);
       }
       else{
         Flash.create('danger', data.message, 'custom-class');
