@@ -4,21 +4,30 @@
 
   .controller( 'PromotionsDetailCtrl', function PromotionDetailCtrl( $scope, $state, $rootScope, Global, TokenHandler, Auth, Flash, $stateParams, PromotionsApi) {
     var promotionId = $stateParams.promotionId;
-
+    var inc = 1;
+    $scope.show_loading = true;
+    $scope.all_zero = true;
     PromotionsApi.promotion_detail(promotionId).$promise.then(function(data){
-      console.log(data);
+      $scope.show_loading = false;
       if(data.success){
-        console.log("in the if");
         $scope.promotion = data.response.promotion;
         $scope.questions = data.response.analysis;
         _.each($scope.questions, function(question){
+          if (question.total_count > 0) {
+              $scope.all_zero = false;
+          }
           if(question.type == 5){
-            showBarChart(question.feedbacks,100);
+            var question_bar_chart = getBarChartData(question.feedbacks, question.total_count);
+             question["question_bar_chart"] = question_bar_chart;
           }
           else if(question.type == 4){
-            showPieChart(question.feedbacks);
+            var question_pie_chart= getPieChartData(question.feedbacks);
+            question["question_pie_chart"] = ["piechart-" + inc, question_pie_chart];
+            inc = inc + 1;
           }
         });
+        console.log("updated question array...");
+        console.log($scope.questions);
       }
       else{
         Flash.create('danger', data.message, 'custom-class');
@@ -26,10 +35,8 @@
 
     });
 
-    function showBarChart(feedbacks, feedback_count){
-       console.log("bar chart..");
-       console.log(feedbacks);
-       $scope.question_analysis = _.map(feedbacks,  function(data, index){
+    function getBarChartData(feedbacks, feedback_count){
+       var question_analysis = _.map(feedbacks,  function(data, index){
         return {
           id: data.option_id,
           name: data.option__text,
@@ -38,15 +45,15 @@
           colour: Global.topConcernsColors(index)
         };
       });
+      return question_analysis;
     }
 
-    function showPieChart(feedbacks){
-      console.log("pie chart..");
-      console.log(feedbacks);
-      $scope.data = [];
-      _.each(feedbacks,  function(value, index){
-        $scope.data.push({"category": value.option__text, "column-1": value.count, "color": Global.topConcernsColors(index)});
-      });
+    function getPieChartData(feedbacks){
+       var pie_chart_data = [];
+       _.each(feedbacks,  function(value){
+          pie_chart_data.push({"category": value.option__text, "column-1": value.count, "color": Global.promotionPieChartColorScheme[value.option__text]});
+       });
+      return pie_chart_data;
     }
   });
 
