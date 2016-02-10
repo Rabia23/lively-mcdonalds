@@ -206,6 +206,7 @@ class OverallRatingView(APIView):
             else:
                 date_to = str(now.date())
                 rule = rrule.DAILY
+                type = constants.DAILY_ANALYSIS
                 date_from = str((now - timedelta(days=constants.NO_OF_DAYS - 1)).date())
 
             date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
@@ -214,11 +215,10 @@ class OverallRatingView(APIView):
             section_start_date = str(date_from.date())
             for single_date in rrule.rrule(rule, dtstart=date_from, until=date_to):
                 if type != constants.DAILY_ANALYSIS:
-                    section_start_date = str(single_date.date())
                     section_end_date = str(single_date.date())
                     feedback_options = FeedbackOption.manager.date(section_start_date, section_end_date).\
                                         filters(region_id, city_id, branch_id)
-                    #section_start_date = section_end_date
+                    section_start_date = section_end_date
                 else:
                     feedback_options = FeedbackOption.manager.date(str(single_date.date()), str(single_date.date())).\
                                         filters(region_id, city_id, branch_id)

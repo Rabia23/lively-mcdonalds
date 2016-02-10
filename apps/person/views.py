@@ -116,22 +116,41 @@ class UserView(APIView):
             new_password = get_data_param(request, 'new_password', None)
             email = get_data_param(request, 'email', None)
             phone_no = get_data_param(request, 'phone_no', None)
+            first_name = get_data_param(request, 'first_name', None)
+            last_name = get_data_param(request, 'last_name', None)
+            branch_id = get_data_param(request, 'branch_id', None)
+            region_id = get_data_param(request, 'region_id', None)
+
+            branch = Branch.objects.get(pk=branch_id) if branch_id else None
+            region = Region.objects.get(pk=region_id) if region_id else None
+
+            if branch and branch.is_associated():
+                return Response(response_json(False, None, "Branch is already Associated"))
+            elif region and region.is_associated():
+                return Response(response_json(False, None, "Region is already Associated"))
 
             user = User.objects.get(pk=id)
             if user:
                 user.email = email if email else user.email
                 if new_password:
                     user.set_password(new_password)
+                user.first_name = first_name if first_name else user.first_name
+                user.last_name = last_name if last_name else user.last_name
                 user.save()
 
             user_info = user.info.first()
             if user_info:
+                user_info.branch_id = branch.id if branch else user_info.branch_id
+                user_info.region_id = region.id if region else user_info.region_id
                 user_info.phone_no = phone_no if phone_no else user_info.phone_no
                 user_info.save()
-
             return Response(response_json(True, user_info.to_dict(), None))
 
         except User.DoesNotExist as e:
+            return Response(response_json(False, None, constants.TEXT_DOES_NOT_EXISTS))
+        except Branch.DoesNotExist as e:
+            return Response(response_json(False, None, constants.TEXT_DOES_NOT_EXISTS))
+        except Region.DoesNotExist as e:
             return Response(response_json(False, None, constants.TEXT_DOES_NOT_EXISTS))
 
     @method_decorator(my_login_required)
