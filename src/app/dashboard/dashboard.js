@@ -102,12 +102,8 @@ angular.module( 'livefeed.dashboard', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'DashboardCtrl', function DashboardController( $scope, $state, $location, $anchorScroll, Filters, $rootScope, TokenHandler, Auth, Graphs, Flash) {
+.controller( 'DashboardCtrl', function DashboardController( $scope, $state, $rootScope, Flash) {
   $scope.show_loading = true;
-  if (Auth.is_logged_in()) {
-    $rootScope.show_username = true;
-    $rootScope.fullname = TokenHandler.get_fullname();
-  }
 
   $rootScope.$on('app-online', function(event, args) {
     console.log("online in dashboard");
