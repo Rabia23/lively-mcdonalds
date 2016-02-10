@@ -123,4 +123,15 @@ angular.module( 'livefeed.dashboard', [
     }
   });
 
+  var $chart;
+  $scope.$on('create', function (event, chart) {
+    if(chart.chart.canvas.id === "bar"){
+      if (typeof $chart !== "undefined") {
+        $chart.destroy();
+      }
+      $chart = chart;
+    }
+
+  });
+
 });

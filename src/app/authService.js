@@ -1,15 +1,25 @@
 angular.module('livefeed.authService', [])
 
 .service('TokenHandler', function (){
-  
+
   return {
-    
-    store_token: function(token, username, user_role, fullname){
+
+    store_token: function(token, username, user_role, fullname, remember_me, password){
       window.sessionStorage.setItem('token', token);
       window.sessionStorage.setItem('loggedin', 'true');
       window.sessionStorage.setItem('username', username);
       window.sessionStorage.setItem('user_role', user_role);
       window.sessionStorage.setItem('fullname', fullname);
+      if(remember_me){
+        window.localStorage.setItem('username', username);
+        window.localStorage.setItem('password', password);
+        window.localStorage.setItem('remember_me', true);
+      }
+      else{
+        window.localStorage.setItem('username', "");
+        window.localStorage.setItem('password', "");
+        window.localStorage.setItem('remember_me', false);
+      }
     },
 
     remove_token: function(){
@@ -18,6 +28,18 @@ angular.module('livefeed.authService', [])
       window.sessionStorage.setItem('username', "");
       window.sessionStorage.setItem('user_role', "");
       window.sessionStorage.setItem('fullname', "");
+
+      window.localStorage.setItem('username', "");
+      window.localStorage.setItem('password', "");
+      window.localStorage.setItem('remember_me', false);
+    },
+
+    get_login_detail: function(){
+      return {
+        username: window.localStorage.getItem('username'),
+        password: window.localStorage.getItem('password'),
+        remember_me: window.localStorage.getItem('remember_me')
+      };
     },
 
     get_token: function(){
@@ -39,7 +61,7 @@ angular.module('livefeed.authService', [])
 })
 
 .service('Auth', function (TokenHandler){
-  
+
   return {
     is_logged_in: function(){
       var value = window.sessionStorage.getItem("loggedin");
@@ -49,6 +71,10 @@ angular.module('livefeed.authService', [])
       else{
         return false;
       }
+    },
+    is_remembered: function(){
+      var value = window.localStorage.getItem("remember_me");
+      return value;
     },
     is_logged_out: function(){
       TokenHandler.remove_token();

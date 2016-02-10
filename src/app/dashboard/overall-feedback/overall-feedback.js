@@ -16,6 +16,8 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
 
   $scope.show_error_message = false;
 
+
+
    function resetDates(){
     $scope.date = {
         startDate: moment().subtract(1, "days"),
@@ -65,6 +67,9 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
      });
   }
   show_graph("","");
+
+
+
 });
 
 // .directive('sameBarHeight', function() {

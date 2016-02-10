@@ -23,11 +23,13 @@ angular.module( 'livefeed.login', [
 })
 
 
-.controller( 'LoginCtrl', function LoginController( $scope,  _ , $rootScope, $state, Authentication, TokenHandler, Flash) {
+.controller( 'LoginCtrl', function LoginController( $scope,  _ , $rootScope, $state, Authentication, TokenHandler, Flash, Auth) {
 
   $scope.submitted = false;
   $scope.authenticate = {};
   $scope.show_loading = false;
+
+  $scope.remember_me = false;
 
   $rootScope.$on('app-online', function(event, args) {
     console.log("online in login");
@@ -37,8 +39,19 @@ angular.module( 'livefeed.login', [
     console.log("offline in login");
   });
 
+  console.log(Auth.is_remembered());
+
+  if(Auth.is_remembered() === "true"){
+    console.log("in the if");
+    var object = TokenHandler.get_login_detail();
+    $scope.authenticate.username = object.username;
+    $scope.authenticate.password = object.password;
+    $scope.remember_me = true;
+  }
+
   $scope.login = function(valid){
     $scope.submitted = true;
+    console.log($scope.remember_me);
     if(valid){
       $scope.show_loading = true;
       Authentication.login($scope.authenticate).$promise.then(function(data){
@@ -46,7 +59,7 @@ angular.module( 'livefeed.login', [
         if(data.success){
           $rootScope.token = data.response.token;
           $rootScope.fullname = data.response.user.first_name+" "+data.response.user.last_name;
-          TokenHandler.store_token(data.response.token, data.response.user.username, data.response.user.role, data.response.user.first_name+" "+data.response.user.last_name);
+          TokenHandler.store_token(data.response.token, data.response.user.username, data.response.user.role, data.response.user.first_name+" "+data.response.user.last_name, $scope.remember_me, $scope.authenticate.password);
           $state.go("dashboard");
         }
         else{

@@ -7,7 +7,7 @@
 		<div class="login-block">
 			<div class="form-holder" ng-class="{loading: show_loading}">
 				<div class="form-inner">
-					<div flash-message="5000" ></div> 
+					<div flash-message="5000" ></div>
 					<div class="inner-holder">
 						<h3>Log In</h3>
 						<form class="login-form" name = "LoginForm" ng-submit="login(LoginForm.$valid)" novalidate>
@@ -18,7 +18,7 @@
 								<div ng-show="LoginForm.password.$error.required && (!LoginForm.password.$pristine || submitted == true)" class="form-error-message pull-left">Password is required.</div>
 								<input type="submit" value="Log in" class="btn btn-info">
 								<label for="check-1">
-									<input id="check-1" type="checkbox">
+									<input id="check-1" type="checkbox" ng-model = "remember_me" ng-checked = "remember_me">
 									<span class="fake-input"></span>
 									<span class="fake-label">Remember me on this computer.</span>
 								</label>
@@ -33,4 +33,3 @@
 		</div>
 	</div>
  </div>
-  

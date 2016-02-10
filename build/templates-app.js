@@ -993,7 +993,7 @@ angular.module("login/login.tpl.html", []).run(["$templateCache", function($temp
     "		<div class=\"login-block\">\n" +
     "			<div class=\"form-holder\" ng-class=\"{loading: show_loading}\">\n" +
     "				<div class=\"form-inner\">\n" +
-    "					<div flash-message=\"5000\" ></div> \n" +
+    "					<div flash-message=\"5000\" ></div>\n" +
     "					<div class=\"inner-holder\">\n" +
     "						<h3>Log In</h3>\n" +
     "						<form class=\"login-form\" name = \"LoginForm\" ng-submit=\"login(LoginForm.$valid)\" novalidate>\n" +
@@ -1004,7 +1004,7 @@ angular.module("login/login.tpl.html", []).run(["$templateCache", function($temp
     "								<div ng-show=\"LoginForm.password.$error.required && (!LoginForm.password.$pristine || submitted == true)\" class=\"form-error-message pull-left\">Password is required.</div>\n" +
     "								<input type=\"submit\" value=\"Log in\" class=\"btn btn-info\">\n" +
     "								<label for=\"check-1\">\n" +
-    "									<input id=\"check-1\" type=\"checkbox\">\n" +
+    "									<input id=\"check-1\" type=\"checkbox\" ng-model = \"remember_me\" ng-checked = \"remember_me\">\n" +
     "									<span class=\"fake-input\"></span>\n" +
     "									<span class=\"fake-label\">Remember me on this computer.</span>\n" +
     "								</label>\n" +
@@ -1019,7 +1019,7 @@ angular.module("login/login.tpl.html", []).run(["$templateCache", function($temp
     "		</div>\n" +
     "	</div>\n" +
     " </div>\n" +
-    "  ");
+    "");
 }]);
 
 angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache", function($templateCache) {

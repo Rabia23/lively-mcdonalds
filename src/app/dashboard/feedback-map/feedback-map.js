@@ -29,6 +29,7 @@ angular.module( 'livefeed.dashboard.feedback_map', [
   });
 
   function draw_map(start_date,end_date ){
+    $scope.markers = [];
     Graphs.map_view(start_date, end_date).$promise.then(function(data){
       console.log(data);
       if(data.success) {
