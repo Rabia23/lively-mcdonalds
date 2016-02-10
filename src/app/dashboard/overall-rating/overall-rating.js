@@ -100,8 +100,6 @@ angular.module( 'livefeed.dashboard.overall_rating', [
        $scope.show_loading = true;
        $scope.optionView = false;
        Graphs.overall_rating(null, $scope.start_date, $scope.end_date).$promise.then(function (data) {
-         console.log("timeline");
-         console.log(data);
          if(data.success) {
            $scope.show_error_message = false;
            $scope.data_array = [];
@@ -130,33 +128,33 @@ angular.module( 'livefeed.dashboard.overall_rating', [
    }
 
    $scope.optionClick = function (option_object){
-       console.log(option_object);
+     var option_id = option_object.item.dataContext[option_object.graph.id];
+     var date = option_object.item.category;
+
+     if(option_id !== undefined) {
        $scope.show_loading = true;
 
-       var option_id = option_object.item.dataContext[option_object.graph.id];
-       var date = option_object.item.category;
-
-       Graphs.feedback_segmentation(date, option_id, $scope.type).$promise.then(function(data){
-         if(data.success) {
-           $scope.show_error_message = false;
-           $scope.mainView = false;
-           $scope.optionView = false;
-           if (data.response.options !== undefined) {
-             $scope.labels = _.map(data.response.options, function (value, index) {
-               return {
-                 option_name: value.option__text,
-                 parent_id: "",
-                 color: Global.subOptionsColorScheme[value.option__text].color,
-                 lineColor: Global.subOptionsColorScheme[value.option__text].color,
-                 title: value.option__text,
-                 id: "column-" + (index + 1) + "-id",
-                 valueField: "column-" + (index + 1)
-               };
-             });
-             var qsc_suboptions_data = overallRatingChartService.getAreaSegmentChart(data.response);
-             $scope.overall_rating_data = [$scope.labels, qsc_suboptions_data];
-           }
-           $scope.show_loading = false;
+       Graphs.feedback_segmentation(date, option_id, $scope.type).$promise.then(function (data) {
+         $scope.show_loading = false;
+         if (data.success) {
+            $scope.show_error_message = false;
+            $scope.mainView = false;
+            $scope.optionView = false;
+            if (data.response.options !== undefined) {
+              $scope.labels = _.map(data.response.options, function (value, index) {
+                return {
+                  option_name: value.option__text,
+                  parent_id: "",
+                  color: Global.subOptionsColorScheme[value.option__text].color,
+                  lineColor: Global.subOptionsColorScheme[value.option__text].color,
+                  title: value.option__text,
+                  id: "column-" + (index + 1) + "-id",
+                  valueField: "column-" + (index + 1)
+                };
+              });
+              var qsc_suboptions_data = overallRatingChartService.getAreaSegmentChart(data.response);
+              $scope.overall_rating_data = [$scope.labels, qsc_suboptions_data];
+            }
          }
          else {
            $scope.show_error_message = true;
@@ -164,6 +162,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
            Flash.create('danger', $scope.error_message, 'custom-class');
          }
        });
+     }
    };
 
    $scope.labelClick = function(option){
@@ -218,9 +217,9 @@ angular.module( 'livefeed.dashboard.overall_rating', [
      }
    };
 
-   $scope.backToMain = function(){
-       mainRating();
-   };
+   $scope.backToMain = function() {
+     mainRating();
+   };
 
    $scope.Prev = function(){
      if($scope.page > 1){
@@ -385,11 +384,18 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                       ],
                       "dataProvider": data[1]
                   });
-                  //var width = $("#chartdiv").find("svg").width();
-                  //console.log("inside chart directive");
-                  //console.log(width);
-                  //width = width + 50;
-                  //$("#chartdiv").find("svg").css({width: width, left: '-5px', top: '-4px'});
+                  $("#chartdiv").find("svg").find("text").each(function(index, value){
+                    if($(value).children().html() == "Late Night"){
+                      console.log($(value).parents("g"));
+                      var string = $(value).parents("g").attr("transform").split(",")[1];
+                      var string2 = $(value).parents("g").attr("transform").split(",")[0];
+                      var y = parseInt(string.split(")")[0], 10) - 1;
+                      var x = parseInt(string2.split("(")[1], 10);
+                      console.log(x);
+                      console.log(y);
+                      $($(value).parents("g")[0]).attr("transform", "translate("+ x + "," + y + ")");
+                    }
+                  });
                   window.initSameHeight();
                   chart.addListener("clickGraphItem", function(event){
                     scope.$apply(scope.action({option_object: event}));

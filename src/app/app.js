@@ -20,7 +20,7 @@ angular.module( 'livefeed', [
     window._
 )
 
-.run( function run ($rootScope, Auth, $state) {
+.run( function run ($rootScope, Auth, $state, TokenHandler) {
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
     if (toState.authenticate && !Auth.is_logged_in()) {
@@ -30,13 +30,17 @@ angular.module( 'livefeed', [
 
   });
 
+  if (Auth.is_logged_in()) {
+    $rootScope.fullname = TokenHandler.get_fullname();
+  }
+
   $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     $rootScope.currentState = toState.name;
   });
 
   $rootScope.logout = function(){
     Auth.is_logged_out();
-    $rootScope.show_username = false;
+    $rootScope.fullname = null;
     $state.go('login');
   };
 

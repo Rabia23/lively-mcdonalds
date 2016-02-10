@@ -12,6 +12,7 @@
               if(watchedData !== undefined){
                 $(ele).find(".progress-bar").css("background-color", ('' + scope.color));
                 $(ele).find(".progress-bar").css("color", ('' + scope.color));
+                window.initSameHeight();
               }
             });
           }

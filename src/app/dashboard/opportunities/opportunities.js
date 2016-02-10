@@ -20,7 +20,7 @@ angular.module( 'livefeed.dashboard.opportunities', [
             id: data.option_id,
             name: data.option__text,
             complaints: data.count,
-            percentage: data.count === 0 ? 0 : Math.round((data.count / opportunity_data.feedback_count) * 100),
+            percentage: data.count === 0 ? 0 : Math.round((data.count / opportunity_data.response.feedback_count) * 100),
             colour: Global.topConcernsColors(index)
           };
         });

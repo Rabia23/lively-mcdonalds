@@ -159,7 +159,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "                  <div ng-show=\"segment.show_string\">No Data Available</div>\n" +
     "                </div>\n" +
     "              </div>\n" +
-    "              <strong class=\"title\"><a href=\"#\">{{segment.name}}</a></strong>\n" +
+    "              <strong class=\"title\">{{segment.name}}</strong>\n" +
     "            </div>\n" +
     "          </div>\n" +
     "        </div>\n" +
@@ -457,7 +457,8 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "      <ul class=\"legends-list\">\n" +
     "        <li ng-repeat = \"label in labels track by $index\">\n" +
     "          <span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>\n" +
-    "          <a ng-click=\"labelClick(label)\">{{label.option_name}}</a>\n" +
+    "          <a ng-click=\"labelClick(label)\" ng-if = \"mainView\">{{label.option_name}}</a>\n" +
+    "          <span ng-if = \"!mainView\">{{label.option_name}}</span>\n" +
     "        </li>\n" +
     "      </ul>\n" +
     "      <div class=\"block-holder\" time-line data-data = \"overall_rating_data\" data-action=\"optionClick(option_object)\">\n" +
@@ -498,7 +499,7 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "		  <tbody>\n" +
     "		    <tr ng-repeat = \"comment in comments\" ng-class = \"{negative: comment.data.is_negative, success: comment.data.action_taken === 2, defer: comment.data.action_taken === 3}\">\n" +
     "			  <td class=\"item1\">{{comment.data.user_name}}</td>\n" +
-    "			  <td class=\"item2\"><a href=\"tel:{{comment.phone_no}}\" class=\"tel\">{{comment.phone_no}}</a><br><a>{{comment.email}}</a></td>\n" +
+    "			  <td class=\"item2\"><a href=\"tel:{{comment.phone_no}}\" class=\"tel\">{{comment.phone_no}}</a><br>{{comment.email}}</td>\n" +
     "			  <td class=\"item3\">{{comment.data.branch}}</td>\n" +
     "			  <td class=\"item4\">{{comment.data.segment}}</td>\n" +
     "			  <td class=\"item5\"><div class=\"text\">{{comment.data.comment}}</div></td>\n" +
@@ -1220,47 +1221,47 @@ angular.module("promotions/promotions-detail.tpl.html", []).run(["$templateCache
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
     "     <ui-view name = \"header\"></ui-view>\n" +
-    "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
-    "		<div class=\"row promotions\">\n" +
+    "   <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
+    "    <div class=\"row promotions\">\n" +
     "      <div flash-message=\"5000\" ></div>\n" +
-    "			<div class=\"col-lg-12\">\n" +
-    "				<h1>{{promotion.title}} Promotion</h1>\n" +
-    "				<div class=\"row\">\n" +
-    "					<div class=\"col-md-6 col-lg-4 grid-item\" ng-repeat = \"question in questions track by $index\">\n" +
-    "						<div class=\"ibox float-e-margins\" ng-class = \"{loading: show_loading}\">\n" +
-    "							<div class=\"ibox-title\">\n" +
-    "								<h3>Q{{$index + 1}} : {{question.question}}</h3>\n" +
-    "							</div>\n" +
-    "							<div class=\"ibox-content\" ng-if = \"question.type == 5\">\n" +
-    "							  <div class=\"data-container\">\n" +
-    "							  	<div id = \"graph_{{$index}}\">\n" +
-    "									<div class=\"progres-container\">\n" +
-    "									  <div class=\"progress-area\">\n" +
-    "										<div class=\"progress-holder\" ng-repeat = \"dat in question.question_bar_chart\" data-color = \"dat.colour\" data-data = \"question.question_bar_chart\" question-bar-background>\n" +
-    "										  <div class=\"progress-inner\">\n" +
-    "											<small><em>{{dat.name}} <b>{{dat.count}} Views</b></em></small>\n" +
-    "											<div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar></div>\n" +
-    "										  </div>\n" +
-    "										</div>\n" +
-    "									  </div>\n" +
-    "									</div>\n" +
-    "								  </div>\n" +
-    "							  </div>\n" +
-    "                            </div>\n" +
-    "							<div class=\"ibox-content\" ng-if = \"question.type == 4\" question-pie-chart data-data = \"question.question_pie_chart\">\n" +
-    "								<div class=\"data-container\">\n" +
-    "									<div id={{question.question_pie_chart[0]}} style=\"width:100%; height:300px;\" ng-hide = \"all_zero\"></div>\n" +
-    "									<div ng-show = \"all_zero\" class=\"message-holder\">\n" +
-    "										<h2>No Data Available</h2>\n" +
-    "									</div>\n" +
-    "								</div>\n" +
-    "                            </div>\n" +
-    "						</div>\n" +
-    "					</div>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
-    "		</div>\n" +
-    "	  </div>\n" +
+    "      <div class=\"col-lg-12\">\n" +
+    "        <h1>{{promotion.title}} Promotion</h1>\n" +
+    "        <div class=\"row\">\n" +
+    "          <div class=\"col-md-6 col-lg-4 grid-item\" ng-repeat = \"question in questions track by $index\">\n" +
+    "            <div class=\"ibox float-e-margins\" ng-class = \"{loading: show_loading}\">\n" +
+    "              <div class=\"ibox-title\">\n" +
+    "                <h3>Q{{$index + 1}} : {{question.question}}</h3>\n" +
+    "              </div>\n" +
+    "              <div class=\"ibox-content\" ng-if = \"question.type == 5\">\n" +
+    "                <div class=\"data-container\">\n" +
+    "                  <div id = \"graph_{{$index}}\">\n" +
+    "                  <div class=\"progres-container\">\n" +
+    "                    <div class=\"progress-area\">\n" +
+    "                    <div class=\"progress-holder\" ng-repeat = \"dat in question.question_bar_chart\" data-color = \"dat.colour\" data-data = \"question.question_bar_chart\" question-bar-background>\n" +
+    "                      <div class=\"progress-inner\">\n" +
+    "                      <small><em>{{dat.name}} <b>{{dat.count}} Views</b></em></small>\n" +
+    "                      <div class=\"progress-block\"><uib-progressbar animate=\"false\" value=\"dat.percentage\" type=\"success\"></uib-progressbar></div>\n" +
+    "                      </div>\n" +
+    "                    </div>\n" +
+    "                    </div>\n" +
+    "                  </div>\n" +
+    "                  </div>\n" +
+    "                </div>\n" +
+    "              </div>\n" +
+    "              <div class=\"ibox-content\" ng-if = \"question.type == 4\" question-pie-chart data-data = \"question.question_pie_chart\">\n" +
+    "                <div class=\"data-container\">\n" +
+    "                  <div id={{question.question_pie_chart[0]}} style=\"width:100%; height:300px;\" ng-hide = \"all_zero\"></div>\n" +
+    "                  <div ng-show = \"all_zero\" class=\"message-holder\">\n" +
+    "                    <h2>No Data Available</h2>\n" +
+    "                  </div>\n" +
+    "                </div>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    </div>\n" +
     "  </div>\n" +
     "  <ui-view name = \"footer\"></ui-view>\n" +
     "</div>\n" +

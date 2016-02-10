@@ -19,7 +19,8 @@
       <ul class="legends-list">
         <li ng-repeat = "label in labels track by $index">
           <span class="bullet" style = "background-color: {{label.color}}"></span>
-          <a ng-click="labelClick(label)">{{label.option_name}}</a>
+          <a ng-click="labelClick(label)" ng-if = "mainView">{{label.option_name}}</a>
+          <span ng-if = "!mainView">{{label.option_name}}</span>
         </li>
       </ul>
       <div class="block-holder" time-line data-data = "overall_rating_data" data-action="optionClick(option_object)">

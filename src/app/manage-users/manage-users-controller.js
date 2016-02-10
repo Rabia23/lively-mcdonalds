@@ -40,6 +40,8 @@
             value.status = "Inactive";
           }
         });
+        $scope.users = _.sortBy($scope.users, function(item) { return item.is_active; });
+        $scope.users = $scope.users.reverse();
       }
       else{
         $scope.show_error_message = true;
@@ -50,9 +52,7 @@
     });
 
     $scope.deactivate = function(user,index){
-      $scope.show_loading = true;
       ManageApi.delete_user(user.id).$promise.then(function(data){
-        $scope.show_loading = false;
         var message = "";
         if(data.success){
           $scope.show_error_message = false;
@@ -70,7 +70,10 @@
             $scope.users[index] = user;
           }
           $scope.users[index].user_role = Enum.get_user_label(data.response.role);
-          Flash.create('success', message, 'custom-class');
+          Flash.create('success', message, 0, {class: 'custom-class', id: 'custom-id'}, true);
+          //Flash.dismiss(1);
+          $scope.users = _.sortBy($scope.users, function(item) { return item.is_active; });
+          $scope.users = $scope.users.reverse();
         }
 
         else{
@@ -116,6 +119,8 @@
                 value.status = "Inactive";
               }
             });
+            $scope.users = _.sortBy($scope.users, function(item) { return item.is_active; });
+            $scope.users = $scope.users.reverse();
           }
           else{
             $scope.show_error_message = true;

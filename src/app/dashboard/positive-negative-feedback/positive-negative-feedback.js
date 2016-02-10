@@ -71,6 +71,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   };
 
   Graphs.comments($scope.page).$promise.then(function(data){
+    console.log(data);
     if(data.success) {
       $scope.show_error_message = false;
       $scope.comments = _.map(data.response.feedbacks, function (data) {
@@ -89,6 +90,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     $scope.page = $scope.page + 1;
     $scope.lock = true;
     Graphs.comments($scope.page).$promise.then(function(data){
+      console.log(data);
       if(data.success) {
         $scope.show_error_message = false;
         $scope.lock = false;
