@@ -14,15 +14,17 @@ h6, .h6,
 }
 
 h1, .h1 {
-  font-size: 30px;
+  font-size: 28px;
   @include media("≥largeDesktop"){font-size: 36px;}
-  @include media("≥widescreen"){font-size: $h1-font-size;}
+  @include media("≥widescreen"){font-size: 44px;}
+  @include media("≥largeScreen"){font-size: $h1-font-size;}
 }
 
 h2, .h2 {
-  font-size: 22px;
-  @include media("≥largeDesktop"){font-size: 26px;}
-  @include media("≥widescreen"){font-size: $h2-font-size;}
+  font-size: 18px;
+  @include media("≥largeDesktop"){font-size: 25px;}
+  @include media("≥widescreen"){font-size: 28px;}
+  @include media("≥largeScreen"){font-size: $h2-font-size;}
 }
 
 h3, .h3 {

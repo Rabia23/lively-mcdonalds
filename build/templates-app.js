@@ -1107,8 +1107,8 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "				</div>\n" +
     "				<div class=\"col-xs-12\">\n" +
     "					<div class=\"form-group\" ng-if = \"user.role == 3 && !edit_form\">\n" +
-    "						<label class=\"col-sm-2 control-label\" for=\"branch\">Branch</label>\n" +
-    "						<div class=\"col-sm-10\">\n" +
+    "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"branch\">Branch</label>\n" +
+    "						<div class=\"col-sm-10 col-md-9\">\n" +
     "								<select id=\"branch\" class=\"barcode\" custom-form  ng-options = \"branch.id as branch.name for branch in branches track by branch.id\"\n" +
     "							ng-model = \"user.branch_id\" name = \"branch\" required>\n" +
     "									<option class=\"hideme\" value = \"\">Please Select a Branch</option>\n" +
@@ -1119,8 +1119,8 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "						</div>\n" +
     "					</div>\n" +
     "					<div class=\"form-group\" ng-if = \"user.role == 4 && !edit_form\">\n" +
-    "						<label class=\"col-sm-2 control-label\" for=\"code\">Regions</label>\n" +
-    "						<div class=\"col-sm-10\">\n" +
+    "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"code\">Regions</label>\n" +
+    "						<div class=\"col-sm-10 col-md-9\">\n" +
     "							<select id=\"region\" class=\"barcode\" custom-form  ng-options = \"region.id as region.name for region in regions track by region.id\"\n" +
     "							ng-model = \"user.region_id\" name = \"region\" required=\"true\">\n" +
     "								<option class=\"hideme\" value = \"\">Please Select a Region</option>\n" +
