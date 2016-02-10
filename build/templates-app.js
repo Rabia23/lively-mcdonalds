@@ -502,7 +502,9 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "			  <td class=\"item2\"><a href=\"tel:{{comment.phone_no}}\" class=\"tel\">{{comment.phone_no}}</a><br>{{comment.email}}</td>\n" +
     "			  <td class=\"item3\">{{comment.data.branch}}</td>\n" +
     "			  <td class=\"item4\">{{comment.data.segment}}</td>\n" +
-    "			  <td class=\"item5\"><div class=\"text\">{{comment.data.comment}}</div></td>\n" +
+    "			  <td class=\"item5\">\n" +
+    "			  	<div class=\"text\">{{comment.data.comment}}</div>\n" +
+    "			  </td>\n" +
     "			  <td class=\"item6\">\n" +
     "			    <div class=\"btn-group\" uib-dropdown dropdown-append-to-body ng-show = \"comment.show_dropdown\">\n" +
     "				  <button type=\"button\" class=\"btn btn-info\" ng-click=\"selectedValue('Process',comment)\">Process</button>\n" +
