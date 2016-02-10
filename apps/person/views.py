@@ -4,16 +4,20 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from apps import constants
 from apps.branch.models import Branch
+from apps.decorators import my_login_required
 from apps.parse import ParseHelper
 from apps.person.enum import UserRolesEnum
 from apps.person.models import UserInfo
 from apps.region.models import Region
 from apps.utils import get_data_param, get_param, get_default_param, response_json
 from django.db import IntegrityError
+from django.utils.decorators import method_decorator
 
 
 class UserView(APIView):
-    def get(self, request, format=None):
+
+    @method_decorator(my_login_required)
+    def get(self, request, user, format=None):
         role = get_param(request, 'role', None)
         id = get_param(request, 'id', None)
         director_id = get_param(request, 'director_id', None)
@@ -39,8 +43,9 @@ class UserView(APIView):
 
         return Response(response_json(True, data, None))
 
+    @method_decorator(my_login_required)
     @transaction.atomic()
-    def post(self, request, format=None):
+    def post(self, request, user, format=None):
         try:
             role = get_data_param(request, 'role', None)
             username = get_data_param(request, 'username', None)
@@ -103,8 +108,9 @@ class UserView(APIView):
         except IntegrityError as e:
             return Response(response_json(False, None, constants.TEXT_ALREADY_EXISTS))
 
+    @method_decorator(my_login_required)
     @transaction.atomic()
-    def put(self, request, format=None):
+    def put(self, request, user, format=None):
         try:
             id = get_data_param(request, 'id', None)
             new_password = get_data_param(request, 'new_password', None)
@@ -128,8 +134,9 @@ class UserView(APIView):
         except User.DoesNotExist as e:
             return Response(response_json(False, None, constants.TEXT_DOES_NOT_EXISTS))
 
+    @method_decorator(my_login_required)
     @transaction.atomic()
-    def delete(self, request, format=None):
+    def delete(self, request, user, format=None):
         try:
             id = get_default_param(request, 'id', None)
 
@@ -142,6 +149,30 @@ class UserView(APIView):
                     else:
                         user_info.is_active = True
                     user_info.save()
+                    return Response(response_json(True, user_info.to_dict(), None))
+
+            return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
+        except User.DoesNotExist as e:
+            return Response(response_json(False, None, constants.TEXT_DOES_NOT_EXISTS))
+
+
+class DisassociateBranchRegionView(APIView):
+
+    @method_decorator(my_login_required)
+    def get(self, request, user, format=None):
+        try:
+            id = get_param(request, 'id', None)
+
+            user = User.objects.get(pk=id)
+            if user:
+                user_info = user.info.first()
+                if user_info:
+                    if user_info.role == UserRolesEnum.BRANCH_MANAGER or user_info.role == UserRolesEnum.GRO:
+                        user_info.branch_id = None
+                        user_info.save()
+                    elif user_info.role == UserRolesEnum.OPERATIONAL_CONSULTANT:
+                        user_info.region_id = None
+                        user_info.save()
                     return Response(response_json(True, user_info.to_dict(), None))
 
             return Response(response_json(False, None, constants.TEXT_OPERATION_UNSUCCESSFUL))
