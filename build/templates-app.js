@@ -159,7 +159,7 @@ angular.module("dashboard/category-performance-analysis/category-performance-ana
     "                  <div ng-show=\"segment.show_string\">No Data Available</div>\n" +
     "                </div>\n" +
     "              </div>\n" +
-    "              <strong class=\"title\"><a href=\"#\">{{segment.name}}</a></strong>\n" +
+    "              <strong class=\"title\">{{segment.name}}</strong>\n" +
     "            </div>\n" +
     "          </div>\n" +
     "        </div>\n" +
@@ -457,7 +457,8 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "      <ul class=\"legends-list\">\n" +
     "        <li ng-repeat = \"label in labels track by $index\">\n" +
     "          <span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>\n" +
-    "          <a ng-click=\"labelClick(label)\">{{label.option_name}}</a>\n" +
+    "          <a ng-click=\"labelClick(label)\" ng-if = \"mainView\">{{label.option_name}}</a>\n" +
+    "          <span ng-if = \"!mainView\">{{label.option_name}}</span>\n" +
     "        </li>\n" +
     "      </ul>\n" +
     "      <div class=\"block-holder\" time-line data-data = \"overall_rating_data\" data-action=\"optionClick(option_object)\">\n" +

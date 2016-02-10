@@ -151,7 +151,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
       scope.$watch('data', function(watchedData) {
         if(watchedData !== undefined){
           if(first_time){
-            time = 3000;
+            time = 4000;
             first_time = false;
           }
           else{

@@ -40,7 +40,7 @@ angular.module( 'livefeed', [
 
   $rootScope.logout = function(){
     Auth.is_logged_out();
-    $rootScope.show_username = false;
+    $rootScope.fullname = null;
     $state.go('login');
   };
 

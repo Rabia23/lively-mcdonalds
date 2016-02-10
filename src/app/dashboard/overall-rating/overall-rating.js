@@ -385,11 +385,18 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                       ],
                       "dataProvider": data[1]
                   });
-                  //var width = $("#chartdiv").find("svg").width();
-                  //console.log("inside chart directive");
-                  //console.log(width);
-                  //width = width + 50;
-                  //$("#chartdiv").find("svg").css({width: width, left: '-5px', top: '-4px'});
+                  $("#chartdiv").find("svg").find("text").each(function(index, value){
+                    if($(value).children().html() == "Late Night"){
+                      console.log($(value).parents("g"));
+                      var string = $(value).parents("g").attr("transform").split(",")[1];
+                      var string2 = $(value).parents("g").attr("transform").split(",")[0];
+                      var y = parseInt(string.split(")")[0], 10) - 1;
+                      var x = parseInt(string2.split("(")[1], 10);
+                      console.log(x);
+                      console.log(y);
+                      $($(value).parents("g")[0]).attr("transform", "translate("+ x + "," + y + ")");
+                    }
+                  });
                   window.initSameHeight();
                   chart.addListener("clickGraphItem", function(event){
                     scope.$apply(scope.action({option_object: event}));

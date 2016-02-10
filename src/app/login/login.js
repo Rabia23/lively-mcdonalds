@@ -45,6 +45,7 @@ angular.module( 'livefeed.login', [
         $scope.show_loading = false;
         if(data.success){
           $rootScope.token = data.response.token;
+          $rootScope.fullname = data.response.user.first_name+" "+data.response.user.last_name;
           TokenHandler.store_token(data.response.token, data.response.user.username, data.response.user.role, data.response.user.first_name+" "+data.response.user.last_name);
           $state.go("dashboard");
         }
