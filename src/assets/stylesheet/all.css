@@ -865,7 +865,8 @@ body.login{background: #eee !important;}
 }
 .modal-1200 .modal-body .table tbody tr {background: #fff;}
 .modal-1200 .modal-body .table tbody tr:hover {background: #f7f7f7;}
-
+.modal-1200 .modal-body .table tbody tr.negative {background: #fedfda;}
+.modal-1200 .modal-body .table tbody tr.negative:hover {background: #ffd9d3;}
 .modal-1200 .modal-body .table tbody tr.defer,
 .modal-1200 .modal-body .table tbody tr.success,
 .modal-1200 .modal-body .table tbody tr.defer td,
@@ -882,7 +883,7 @@ body.login{background: #eee !important;}
 	padding-top: 8px;
 	padding-bottom: 8px;
 	border: 0;
-	color: #929292;
+	color: #000;
 	border-bottom: 1px solid #d9d9d9 !important;
 	border-left: 1px solid #d9d9d9 !important;
 	overflow: hidden;
@@ -899,10 +900,10 @@ body.login{background: #eee !important;}
 	top: 0;
 	bottom: -999px;
 }
-.modal-1200 .table tbody td a{color: #929292;}
+.modal-1200 .table tbody td a{color: #000;}
 .modal-1200 .table tbody td a:hover,
 .modal-1200 .table tbody td a:active,
-.modal-1200 .table tbody td a:focus{color: #000;}
+.modal-1200 .table tbody td a:focus{color: #929292;}
 .loading .loader {display: block;}
 .loader {
   display: none;
