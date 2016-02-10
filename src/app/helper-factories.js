@@ -8,6 +8,14 @@ angular.module( 'helper_factories', ['ngResource'])
       return colors[index];
     },
 
+    opportunityPriority: {
+      "Quality of Food": 1,
+      "Friendly & Courteous Staff": 2,
+      "Clean Restaurant": 3,
+      "Variety in Menu": 4,
+      "Special Promotions": 5
+    },
+
     promotionPieChartColorScheme: {
       "Yes": "#01c211",
       "No": "#cb1e24"

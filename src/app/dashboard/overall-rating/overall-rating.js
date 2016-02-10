@@ -273,11 +273,11 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                       graphs.push({
                           "bullet": "round",
                           "bulletBorderAlpha": 1,
-                          "bulletSize": 7,
+                          "bulletSize": 8,
                           "bulletBorderColor": graph_data.color,
                           "bulletColor": "#FFF",
                           "color": "#FFFFFF",
-                          "fillAlphas": 0.84,
+                          "fillAlphas": 0.3,
                           "fillColors": graph_data.color,
                           "id": graph_data.id,
                           "legendColor": graph_data.color,
@@ -315,7 +315,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                           "#333333",
                           "#990000"
                       ],
-                      "startDuration": 0.5,
+                      "startDuration": 0,
                       "startEffect": "easeOutSine",
                       "borderColor": "#FFFE6E",
                       "color": "#FFF",

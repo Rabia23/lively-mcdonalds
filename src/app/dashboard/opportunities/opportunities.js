@@ -21,8 +21,13 @@ angular.module( 'livefeed.dashboard.opportunities', [
             name: data.option__text,
             complaints: data.count,
             percentage: data.count === 0 ? 0 : Math.round((data.count / opportunity_data.response.feedback_count) * 100),
-            colour: Global.topConcernsColors(index)
+            colour: Global.topConcernsColors(index),
+            priority: Global.opportunityPriority[data.option__text]
           };
+        });
+        console.log($scope.opportunity_data);
+        $scope.opportunity_data = _.sortBy($scope.opportunity_data, function (value) {
+           return value.priority;
         });
       }
       else{

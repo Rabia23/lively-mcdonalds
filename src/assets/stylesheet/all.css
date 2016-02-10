@@ -1533,8 +1533,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .ibox > .ibox-content:after,
 .users-section:after,
 .modal-dialog .info-form .modal-body:after,
-.promotions:after,
-.modal-1200 .modal-body .table-container:after{
+.promotions:after{
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -1570,8 +1569,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .form-holder:before,
 .ibox > .content-holder:before,
 .ibox > .ibox-content:before,
-.modal-dialog .info-form .modal-body:before,
-.modal-1200 .modal-body .table-container:before{
+.modal-dialog .info-form .modal-body:before{
 	left: 0;
 	right: 0;
 	top: 0;
@@ -1590,7 +1588,6 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .ibox.loading > .ibox-content:after,
 .users-section.loading:after,
 .modal-dialog .info-form .modal-body.loading:after,
-.modal-1200 .modal-body .table-container.loading:after,
 .promotions:after{
 	visibility: visible;
 	opacity: 1;
@@ -1599,8 +1596,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .form-holder.loading:before,
 .ibox.loading > .content-holder:before,
 .ibox.loading > .ibox-content:before,
-.modal-dialog .info-form .modal-body.loading:before,
-.modal-1200 .modal-body .table-container.loading:before{
+.modal-dialog .info-form .modal-body.loading:before{
 	visibility: visible;
 	opacity: 0.6;
 }
