@@ -1647,7 +1647,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 
 .promotions .grid-item .data-container{
 	white-space: nowrap;
-	min-height: 350px;
+	min-height: 200px;
 }
 
 .promotions .grid-item .data-container:after{
@@ -1985,17 +1985,6 @@ li.active,
 	padding-left: 15px;
 	padding-right: 15px;
 }
-/*
-.modal .modal-dialog{
-	position: absolute !important;
-	top: 25%;
-	bottom: 25%;
-	left: 0;
-	right: 0;
-	transition: transform 0.5s ease-out;
-}
-.modal.in .modal-dialog{transition: transform 0.5s ease-out;}
-*/
 
 @media screen and (min-width: 768px) {
 	.legends-holder{padding: 15px 20px 0;}
@@ -2476,8 +2465,8 @@ li.active,
 	#wrapper .nav > li > a i{margin-right: 3px;}
 	#wrapper .users-section h1,
 	#wrapper .promotions h1{
-		font-size: 28px;
-		line-height: 34px;
+		font-size: 26px;
+		line-height: 32px;
 		margin: 0 0 10px;
 	}
 	.header-visual .nav.navbar-top-links.navbar-right{text-align: right;}
@@ -2498,12 +2487,8 @@ li.active,
 		line-height: 16px;
 	}
 	.add-user > *{margin: 1px 0 0 2px;}
-/*
-	.modal .modal-dialog{
-		top: 0;
-		bottom: 0;
-	}
-*/
+	.grid-item .ibox-title{min-height: inherit !important;}
+	.promotions .grid-item .data-container{min-height: 200px !important;}
 }
 
 @media screen and (max-width: 768px) {
