@@ -95,7 +95,13 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
               colors: _.map(data.option_data, function (dat) {
                 return option_id == null ? Global.categoryPerformanceClass[dat.option__text] : Global.qscSubCategoriesData[string][dat.option__text].color;
               }),
-              options: {percentageInnerCutout: 70},
+              options: {
+                percentageInnerCutout: 70,
+                tooltipTemplate: "<%if (label) %><%= value %>",
+                tooltipYPadding: 4,
+                tooltipXPadding: 4,
+                tooltipFontSize: 12
+              },
               priority: Global.segmentationPriority[data.segment]
             };
           });
