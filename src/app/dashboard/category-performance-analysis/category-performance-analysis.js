@@ -49,7 +49,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
     Graphs.category_performance(region_id,city_id,branch_id,option_id, $scope.start_date, $scope.end_date).$promise.then(function(performance_data){
       if(performance_data.success) {
         $scope.show_error_message = false;
-        $scope.category_data = _.map(performance_data.response.feedbacks, function (data) {
+        $scope.category_data = _.map(performance_data.response.feedbacks, function (data, index) {
           return {
             id: data.option_id,
             name: data.option__text,
@@ -82,7 +82,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
       if(segment_data.success) {
         $scope.show_error_message = false;
         $timeout(function () {
-          $scope.segments = _.map(segment_data.response.segments, function (data) {
+          $scope.segments = _.map(segment_data.response.segments, function (data,index) {
             return {
               name: data.segment,
               show_string: data.option_count === 0 ? true : false,
@@ -92,7 +92,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
               labels: _.map(data.option_data, function (dat) {
                 return dat.option__text;
               }),
-              colors: _.map(data.option_data, function (dat) {
+              colors: _.map(data.option_data, function (dat, index) {
                 return option_id == null ? Global.categoryPerformanceClass[dat.option__text] : Global.qscSubCategoriesData[string][dat.option__text].color;
               }),
               options: {
