@@ -5,19 +5,28 @@
 	top: 15px;
 	z-index: 5;
 	@include media("≥widescreen"){
+		left: 20px;
+		right: 20px;
+		top: 24px;
+	}
+	@include media("≥largeScreen"){
 		left: 30px;
 		right: 30px;
-		top: 24px;
 	}
 }
 
 .logo{
 	@include inline-block(bottom);
-	width: 100px;
+	width: 95px;
 	letter-spacing: 0;
-	margin: 0 15px 0 0;
+	margin: 0 10px 4px 0;
 	
 	@include media("≥widescreen"){
+		width: 110px;
+		margin: 0 20px 6px 0;
+	}
+	
+	@include media("≥largeScreen"){
 		width: 116px;
 		margin: 0 27px 6px 0;
 	}
@@ -51,7 +60,9 @@
 			margin: 0 10px 0 0;
 		}
 		
+		@include media("≥largeDesktop"){margin: 0 2px 18px 0;}
 		@include media("≥widescreen"){margin: 0 2px 25px 0;}
+		@include media("≥largeScreen"){margin: 0 2px 25px 0;}
 	}
 }
 
@@ -73,16 +84,27 @@
 		
 		@include media("≥largeDesktop"){margin: 0 0 0 20px;}
 		@include media("≥widescreen"){margin: 0 0 0 30px;}
+		@include media("≥largeScreen"){margin: 0 0 0 40px;}
 		
 		&:first-child{margin: 0;}
 	}
 	.title{
 		display: block;
 		font-weight: 400;
-		margin: 0 0 2px;
-		font-size: 15px;
+		margin: 0 0 4px;
+		font-size: 13px;
 		
-		@include media("≥widescreen"){font-size: 18px;}
+		@include media("≥largeDesktop"){
+			font-size: 15px;
+			margin: 0 0 2px;
+		}
+		@include media("≥widescreen"){
+			font-size: 17px;
+		}
+		@include media("≥largeScreen"){
+			font-size: 18px;
+			margin: 0 0 4px;
+		}
 	}
 	ul{
 		@extend %listreset;
@@ -96,7 +118,8 @@
 		}
 		
 		@include media("≥largeDesktop"){font-size: 24px;}
-		@include media("≥widescreen"){font-size: 32px;}
+		@include media("≥widescreen"){font-size: 30px;}
+		@include media("≥largeScreen"){font-size: 33px;}
 		
 		li{
 			float: left;

@@ -865,7 +865,8 @@ body.login{background: #eee !important;}
 }
 .modal-1200 .modal-body .table tbody tr {background: #fff;}
 .modal-1200 .modal-body .table tbody tr:hover {background: #f7f7f7;}
-
+.modal-1200 .modal-body .table tbody tr.negative {background: #fedfda;}
+.modal-1200 .modal-body .table tbody tr.negative:hover {background: #ffd9d3;}
 .modal-1200 .modal-body .table tbody tr.defer,
 .modal-1200 .modal-body .table tbody tr.success,
 .modal-1200 .modal-body .table tbody tr.defer td,
@@ -882,7 +883,7 @@ body.login{background: #eee !important;}
 	padding-top: 8px;
 	padding-bottom: 8px;
 	border: 0;
-	color: #929292;
+	color: #000;
 	border-bottom: 1px solid #d9d9d9 !important;
 	border-left: 1px solid #d9d9d9 !important;
 	overflow: hidden;
@@ -899,10 +900,10 @@ body.login{background: #eee !important;}
 	top: 0;
 	bottom: -999px;
 }
-.modal-1200 .table tbody td a{color: #929292;}
+.modal-1200 .table tbody td a{color: #000;}
 .modal-1200 .table tbody td a:hover,
 .modal-1200 .table tbody td a:active,
-.modal-1200 .table tbody td a:focus{color: #000;}
+.modal-1200 .table tbody td a:focus{color: #929292;}
 .loading .loader {display: block;}
 .loader {
   display: none;
@@ -1532,7 +1533,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .ibox > .ibox-content:after,
 .users-section:after,
 .modal-dialog .info-form .modal-body:after,
-.promotions:after{
+.promotions:after,
+.modal-1200 .modal-body .table-container:after{
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -1568,7 +1570,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .form-holder:before,
 .ibox > .content-holder:before,
 .ibox > .ibox-content:before,
-.modal-dialog .info-form .modal-body:before{
+.modal-dialog .info-form .modal-body:before,
+.modal-1200 .modal-body .table-container:before{
 	left: 0;
 	right: 0;
 	top: 0;
@@ -1587,6 +1590,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .ibox.loading > .ibox-content:after,
 .users-section.loading:after,
 .modal-dialog .info-form .modal-body.loading:after,
+.modal-1200 .modal-body .table-container.loading:after,
 .promotions:after{
 	visibility: visible;
 	opacity: 1;
@@ -1595,7 +1599,8 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 .form-holder.loading:before,
 .ibox.loading > .content-holder:before,
 .ibox.loading > .ibox-content:before,
-.modal-dialog .info-form .modal-body.loading:before{
+.modal-dialog .info-form .modal-body.loading:before,
+.modal-1200 .modal-body .table-container.loading:before{
 	visibility: visible;
 	opacity: 0.6;
 }

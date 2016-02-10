@@ -11,9 +11,7 @@
           scope.$watch('data', function(watchedData) {
             if(watchedData !== undefined){
               var data = scope.data;
-              console.log("inside directive");
-              console.log(data);
-              chart = AmCharts.makeChart("piechart",
+              chart = AmCharts.makeChart(data[0],
               {
                 "type": "pie",
                 "pullOutDuration": 0,
@@ -37,7 +35,7 @@
                 "balloon": { "fixedPosition": true },
                 "legend": {},
                 "titles": [],
-                "dataProvider": data
+                "dataProvider": data[1]
               });
             }
           });
