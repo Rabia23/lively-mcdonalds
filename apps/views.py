@@ -648,7 +648,11 @@ class LiveDashboardView(APIView):
 
         options = question.options.all()
         feedback_options = FeedbackOption.manager.options(question.options.all()).date(date_from, date_to)
-        feedback_segmented_list = generate_segmentation_with_options(feedback_options, options)
+
+        next_date_from, next_date_to = get_next_day(date_from, date_to)
+        feedback_options_next_day = FeedbackOption.manager.options(options).date(next_date_from, next_date_to)
+
+        feedback_segmented_list = generate_segmentation_with_options(feedback_options, feedback_options_next_day, options)
 
         return {'segment_count': len(feedback_segmented_list), 'segments': feedback_segmented_list}
 
