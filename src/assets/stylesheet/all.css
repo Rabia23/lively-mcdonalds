@@ -244,11 +244,13 @@ body.login{background: #eee !important;}
 .logo-holder{
 	width: 100%;
 	height: 152px;
-	background: #ac1a1a;
+	background: #be1011;
+	/*background: #ac1a1a;*/
 	white-space: nowrap;
 	text-align: center;
 	padding: 0 10px;
 }
+.logo-holder .logo a:after,
 .logo-holder:after{
 	display: inline-block;
 	vertical-align: middle;
@@ -260,8 +262,19 @@ body.login{background: #eee !important;}
 .logo-holder .logo{
 	display: inline-block;
 	vertical-align: middle;
+	width: 100%;
+	height: 100%;
+}
+.logo-holder .logo a{
+	display: block;
+	width: 100%;
+	height: 100%;
+	white-space: nowrap;
+}
+.logo-holder .logo img{
+	display: inline-block;
+	vertical-align: middle;
 	white-space: normal;
-	max-width: 100%;
 }
 #wrapper{
 	position: relative;
@@ -1745,6 +1758,7 @@ body > .jcf-select-drop.jcf-drop-flipped {margin: 1px 0 0;}
 	position: relative;
 }
 .promotions .btn.dim .title:after{
+	display: none;
 	position: absolute;
 	left: 0;
 	top: 0;
