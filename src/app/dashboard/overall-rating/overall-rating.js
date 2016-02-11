@@ -52,12 +52,6 @@ angular.module( 'livefeed.dashboard.overall_rating', [
      $scope.overall_rating_data = [$scope.labels, timeline_data];
    }
 
-   function drawLabelGraph(data){
-     $scope.overall_rating_data = [];
-     var label_data =  overallRatingChartService.getAreaLabelChart(data);
-     $scope.overall_rating_data = [$scope.labels, label_data];
-   }
-
    function calculate_labels(feedbacks){
      $scope.labels = _.map(feedbacks, function (value, index) {
          return {
@@ -71,24 +65,6 @@ angular.module( 'livefeed.dashboard.overall_rating', [
              id: "column-" + Global.qscPriority[value.option__text] + "-id",
              valueField: "column-" + Global.qscPriority[value.option__text]
          };
-     });
-     $scope.labels = _.sortBy($scope.labels, function (value) {
-         return value.priority;
-     });
-   }
-
-   function calculate_option_labels(feedbacks){
-     $scope.labels = _.map(feedbacks ,function(value, index){
-        return {
-           option_id: value.option_id,
-           option_name: value.option__text,
-           parent_id: value.option__parent_id,
-           color: Global.subOptionsColorScheme[value.option__text].color,
-           lineColor: Global.subOptionsColorScheme[value.option__text].color,
-           title: value.option__text,
-           id: "column-"+(index+1)+"-id",
-           valueField: "column-"+(index+1)
-        };
      });
      $scope.labels = _.sortBy($scope.labels, function (value) {
          return value.priority;
@@ -130,7 +106,6 @@ angular.module( 'livefeed.dashboard.overall_rating', [
    $scope.optionClick = function (option_object){
      var option_id = option_object.item.dataContext[option_object.graph.id];
      var date = option_object.item.category;
-
      if(option_id !== undefined) {
        $scope.show_loading = true;
 
@@ -147,10 +122,14 @@ angular.module( 'livefeed.dashboard.overall_rating', [
                   parent_id: "",
                   color: Global.subOptionsColorScheme[value.option__text].color,
                   lineColor: Global.subOptionsColorScheme[value.option__text].color,
+                  priority:  Global.subOptionsColorScheme[value.option__text].priority,
                   title: value.option__text,
                   id: "column-" + (index + 1) + "-id",
                   valueField: "column-" + (index + 1)
                 };
+              });
+              $scope.labels = _.sortBy($scope.labels, function (value) {
+                 return value.priority;
               });
               var qsc_suboptions_data = overallRatingChartService.getAreaSegmentChart(data.response);
               $scope.overall_rating_data = [$scope.labels, qsc_suboptions_data];
@@ -164,6 +143,31 @@ angular.module( 'livefeed.dashboard.overall_rating', [
        });
      }
    };
+
+   function drawLabelGraph(data){
+     $scope.overall_rating_data = [];
+     var label_data =  overallRatingChartService.getAreaLabelChart(data);
+     $scope.overall_rating_data = [$scope.labels, label_data];
+   }
+
+   function calculate_option_labels(feedbacks){
+     $scope.labels = _.map(feedbacks ,function(value, index){
+        return {
+           option_id: value.option_id,
+           option_name: value.option__text,
+           parent_id: value.option__parent_id,
+           color: Global.subOptionsColorScheme[value.option__text].color,
+           lineColor: Global.subOptionsColorScheme[value.option__text].color,
+           priority:  Global.subOptionsColorScheme[value.option__text].priority,
+           title: value.option__text,
+           id: "column-"+(index+1)+"-id",
+           valueField: "column-"+(index+1)
+        };
+     });
+     $scope.labels = _.sortBy($scope.labels, function (value) {
+         return value.priority;
+     });
+   }
 
    $scope.labelClick = function(option){
       if(option.parent_id == null){
