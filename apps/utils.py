@@ -1,11 +1,15 @@
 from django.contrib.auth.models import User
 from rest_framework import status
-import string,random
+import string
+import random
 import http.client
 import json
 from apps.person.enum import UserRolesEnum
 from lively import settings
 from rest_framework.response import Response
+from django.utils import timezone
+from datetime import datetime, timedelta
+from apps import constants
 
 __author__ = 'aamish'
 
@@ -122,3 +126,15 @@ def response_json(success, data, message=None):
         "message": message,
     }
     return data
+
+
+def get_next_day(date_from, date_to):
+    current_tz = timezone.get_current_timezone()
+
+    date_from = current_tz.localize(datetime.strptime(date_from + " 00:00:00", constants.DATE_FORMAT))
+    date_to = current_tz.localize(datetime.strptime(date_to + " 23:59:59", constants.DATE_FORMAT))
+
+    next_date_to = str((date_to + timedelta(days=1)).date())
+    next_date_from = str((date_from + timedelta(days=1)).date())
+
+    return next_date_from, next_date_to

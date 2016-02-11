@@ -74,10 +74,14 @@ def generate_missing_sub_options(option, data, is_parent_needed=True):
     return list_feedback
 
 
-def generate_segmentation(data):
+def generate_segmentation(data, data_next_day):
     segments_list = []
     for segment in constants.segments:
         segment_feedbacks = [feedback_option for feedback_option in data if feedback_option.feedback.get_segment() == constants.segments[segment]]
+
+        if segment == constants.LATE_NIGHT_TIME:
+            segment_feedbacks += [feedback_option for feedback_option in data_next_day if feedback_option.feedback.get_segment() == constants.segments[segment]]
+
         segments_list.append({
             "segment_end_time": segment,
             "segment": constants.segments[segment],
@@ -86,10 +90,14 @@ def generate_segmentation(data):
     return sorted(segments_list, key=itemgetter('segment_end_time'))
 
 
-def generate_segmentation_with_options(data, options):
+def generate_segmentation_with_options(data, data_next_day, options):
     segments_list = []
     for segment in constants.segments:
         segment_feedbacks = [feedback_option for feedback_option in data if feedback_option.feedback.get_segment() == constants.segments[segment]]
+
+        if segment == constants.LATE_NIGHT_TIME:
+            segment_feedbacks += [feedback_option for feedback_option in data_next_day if feedback_option.feedback.get_segment() == constants.segments[segment]]
+
         segments_list.append({
             "segment_end_time": segment,
             "segment": constants.segments[segment],
@@ -99,10 +107,10 @@ def generate_segmentation_with_options(data, options):
     return sorted(segments_list, key=itemgetter('segment_end_time'))
 
 
-def generate_option_groups(data, options):
+def generate_option_groups(data, data_next_day, options):
     option_groups = []
     for option in options:
-        segment_list = generate_segmentation(data.filter(option=option))
+        segment_list = generate_segmentation(data.filter(option=option), data_next_day)
         option_groups.append({
             "option__text": option.text,
             "option_id": option.id,

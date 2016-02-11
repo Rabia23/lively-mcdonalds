@@ -10,7 +10,7 @@ from django.db import transaction
 
 class PromotionView(APIView):
     def get(self, request, format=None):
-        promotions = Promotion.objects.all()
+        promotions = Promotion.objects.all().order_by("-created_at")
         serializer = PromotionSerializer(promotions, many=True)
         return Response(response_json(True, serializer.data, None))
 

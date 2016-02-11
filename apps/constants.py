@@ -32,7 +32,7 @@ NO_OF_YEARS = 7
 #------------ DAYS Option Ratting -------------
 WEEKLY_DAYS_COUNT = 49
 MONTHLY_DAYS_COUNT = 210
-YEARLY_DAYS_COUNT = 2562
+YEARLY_DAYS_COUNT = 2555
 
 #------------ Negative Feedback -------------
 NEGATIVE_SCORE_LIST = [1,2]

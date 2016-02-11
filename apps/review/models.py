@@ -172,7 +172,7 @@ class Feedback(models.Model):
         return False
 
     def not_empty(self):
-        if (not self.comment) and self.comment == "" and self.customer_name() == constants.ANONYMOUS_TEXT and self.customer_phone() == constants.NOT_ATTEMPTED_TEXT and self.customer_email() == constants.NOT_ATTEMPTED_TEXT:
+        if ((not self.comment) or self.comment == "") and self.customer_name() == constants.ANONYMOUS_TEXT and self.customer_phone() == constants.NOT_ATTEMPTED_TEXT and self.customer_email() == constants.NOT_ATTEMPTED_TEXT:
             return False
         return True
 

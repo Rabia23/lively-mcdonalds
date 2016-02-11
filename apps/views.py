@@ -22,13 +22,14 @@ from apps.serializers import ObjectSerializer, FeedbackCommentSerializer
 from apps import constants
 from dateutil import rrule
 from dateutil.relativedelta import relativedelta
-from datetime import datetime, timedelta
 from django.core.paginator import Paginator
 from django.utils import timezone
 from operator import itemgetter
 from apps.decorators import my_login_required
-from apps.utils import get_param, get_data_param, get_user_data, get_user_role, response_json
+from apps.utils import get_param, get_data_param, get_user_data, get_user_role, response_json, get_next_day
 from django.utils.decorators import method_decorator
+from datetime import datetime, timedelta
+from apps import constants
 
 
 class LoginView(APIView):
@@ -218,7 +219,7 @@ class OverallRatingView(APIView):
                     section_end_date = str(single_date.date())
                     feedback_options = FeedbackOption.manager.date(section_start_date, section_end_date).\
                                         filters(region_id, city_id, branch_id)
-                    section_start_date = section_end_date
+                    section_start_date = str((single_date.date() + timedelta(days=1)))
                 else:
                     feedback_options = FeedbackOption.manager.date(str(single_date.date()), str(single_date.date())).\
                                         filters(region_id, city_id, branch_id)
@@ -377,8 +378,12 @@ class FeedbackSegmentationView(APIView):
 
             date_to = str(date_to)
 
+            next_date_from, next_date_to = get_next_day(date_from, date_to)
+            feedback_options_next_day = FeedbackOption.manager.options(options).date(next_date_from, next_date_to).\
+                                    filters(region_id, city_id, branch_id)
+
             feedback_options = FeedbackOption.manager.children(option).date(date_from, date_to).filters(region_id, city_id, branch_id)
-            feedback_segmented_list = generate_option_groups(feedback_options, options)
+            feedback_segmented_list = generate_option_groups(feedback_options, feedback_options_next_day, options)
 
             data = {'option_count': len(feedback_segmented_list), 'options': feedback_segmented_list}
             return Response(response_json(True, data, None))
@@ -419,7 +424,12 @@ class SegmentationRatingView(APIView):
             options = option.children.all() if option else question.options.all()
             feedback_options = FeedbackOption.manager.options(options).date(date_from, date_to).\
                                     filters(region_id, city_id, branch_id)
-            feedback_segmented_list = generate_segmentation_with_options(feedback_options, options)
+
+            next_date_from, next_date_to = get_next_day(date_from, date_to)
+            feedback_options_next_day = FeedbackOption.manager.options(options).date(next_date_from, next_date_to).\
+                                    filters(region_id, city_id, branch_id)
+
+            feedback_segmented_list = generate_segmentation_with_options(feedback_options, feedback_options_next_day, options)
 
             data = {'segment_count': len(feedback_segmented_list), 'segments': feedback_segmented_list}
             return Response(response_json(True, data, None))
@@ -785,7 +795,7 @@ class PromotionDetailView(APIView):
             id = get_param(request, 'id', None)
             
             promotion = Promotion.objects.get(pk=id)
-            questions = promotion.questions.all()
+            questions = promotion.questions.all().order_by("-created_at")
 
             question_data_list = []
             for question in questions:
