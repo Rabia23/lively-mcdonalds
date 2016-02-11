@@ -3,7 +3,6 @@ angular.module( 'livefeed.live', [
   'livefeed.authService',
   'livefeed.live.api',
    'helper_factories',
-  'flash',
   'livefeed.live.top_concerns',
   'livefeed.live.overall-ratings',
   'livefeed.live.business_segment',

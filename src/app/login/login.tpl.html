@@ -7,7 +7,7 @@
 		<div class="login-block">
 			<div class="form-holder" ng-class="{loading: show_loading}">
 				<div class="form-inner">
-					<div flash-message="5000" ></div>
+					<flash-message  show-close="true" on-dismiss="onAlertDismiss(flash)"></flash-message> 
 					<div class="inner-holder">
 						<h3>Log In</h3>
 						<form class="login-form" name = "LoginForm" ng-submit="login(LoginForm.$valid)" novalidate>

@@ -1,10 +1,10 @@
 angular.module( 'livefeed.dashboard.opportunities', [
   'factories',
   'helper_factories',
-   'flash'
+   'ngFlash'
 ])
 
-.controller( 'OpportunitiesCtrl', function OpportunitiesCtrl( $scope, Graphs, Global, Flash ) {
+.controller( 'OpportunitiesCtrl', function OpportunitiesCtrl( $scope, Graphs, Global, flashService ) {
     $scope.start_date = null;
     $scope.end_date = null;
     $scope.show_loading = true;
@@ -33,7 +33,7 @@ angular.module( 'livefeed.dashboard.opportunities', [
       else{
         $scope.show_error_message = true;
         $scope.error_message = opportunity_data.message;
-        Flash.create('danger', $scope.error_message, 'custom-class');
+        flashService.createFlash($scope.error_message, "danger");
       }
     });
 })

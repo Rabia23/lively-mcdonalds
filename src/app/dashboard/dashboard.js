@@ -24,7 +24,7 @@ angular.module( 'livefeed.dashboard', [
   'livefeed.dashboard.positive_negative_feedback',
   'livefeed.dashboard.top_concern',
   'livefeed.dashboard.opportunities',
-  'flash',
+  'ngFlash',
   'livefeed.authService'
 
 ])
@@ -102,7 +102,7 @@ angular.module( 'livefeed.dashboard', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'DashboardCtrl', function DashboardController( $scope, $state, $rootScope, Flash, Graphs) {
+.controller( 'DashboardCtrl', function DashboardController( $scope, $state, $rootScope, flashService, Graphs) {
   $scope.show_loading = true;
 
   $rootScope.$on('app-online', function(event, args) {
@@ -119,7 +119,7 @@ angular.module( 'livefeed.dashboard', [
       $scope.show_loading = false;
     }
     else{
-      Flash.create('danger', data.message, 'custom-class');
+      flashService.createFlash(data.message, "danger");
     }
   });
 

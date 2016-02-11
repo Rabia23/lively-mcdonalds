@@ -3,11 +3,11 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
   'livefeed.overall_feedback.chart',
   'helper_factories',
   'chart.js',
-  'flash'
+  'ngFlash'
 ])
 
 
-.controller( 'OverallFeedbackCtrl', function DashboardController( $scope, Graphs, Global, overallFeedbackChartService, Flash ) {
+.controller( 'OverallFeedbackCtrl', function DashboardController( $scope, Graphs, Global, overallFeedbackChartService, flashService ) {
 
   $scope.show_loading = true;
   $scope.show_labels = true;
@@ -62,7 +62,7 @@ angular.module( 'livefeed.dashboard.overall_feedback', [
        else {
          $scope.show_error_message = true;
          $scope.error_message = graph_data.message;
-         Flash.create('danger', $scope.error_message, 'custom-class');
+         flashService.createFlash($scope.error_message, "danger");
        }
      });
   }

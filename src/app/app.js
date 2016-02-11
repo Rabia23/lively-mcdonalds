@@ -20,7 +20,7 @@ angular.module( 'livefeed', [
     window._
 )
 
-.run( function run ($rootScope, Auth, $state, TokenHandler) {
+.run( function run ($rootScope, Auth, $state, TokenHandler, Flash) {
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
     if (toState.authenticate && !Auth.is_logged_in()) {
@@ -38,10 +38,19 @@ angular.module( 'livefeed', [
     $rootScope.currentState = toState.name;
   });
 
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+    Flash.dismiss($rootScope.flashId);
+  });
+
   $rootScope.logout = function(){
     Auth.is_logged_out();
     $rootScope.fullname = null;
     $state.go('login');
+  };
+
+  $rootScope.onAlertDismiss = function(flash){
+    console.log(flash);
+    $rootScope.flashId = undefined;
   };
 
 })
@@ -55,6 +64,17 @@ angular.module( 'livefeed', [
 
   //console.log("Offline service: "+offlineService.init());
 
+})
+
+.factory('flashService', function(Flash, $rootScope){
+  return {
+    createFlash: function(message, type){
+      if( $rootScope.flashId !== undefined){
+        Flash.dismiss($rootScope.flashId);
+      }
+        $rootScope.flashId = Flash.create(type, message, 5000, {class: 'custom-class'}, true);
+    }
+  };
 })
 
 .directive('customForm', function() {

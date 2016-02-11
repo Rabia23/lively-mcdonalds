@@ -3,7 +3,7 @@
 
 
 
-  .controller('ModalAddInstanceCtrl', function ($scope, $uibModalInstance, parent_id, child_role,branch_id, region_id, ManageApi, Enum, Filters, Flash) {
+  .controller('ModalAddInstanceCtrl', function ($scope, $uibModalInstance, parent_id, child_role,branch_id, region_id, ManageApi, Enum, Filters, flashService) {
 
     $scope.user = {role: child_role, parent_id: parent_id};
     if(branch_id){
@@ -26,7 +26,7 @@
       }
       else{
         $scope.show_error_message = true;
-        Flash.create('danger', data.message, 'custom-class');
+        flashService.createFlash(data.message, "danger");
       }
 
     });
@@ -38,7 +38,7 @@
       }
       else{
         $scope.show_error_message = true;
-        Flash.create('danger',data.message, 'custom-class');
+        flashService.createFlash(data.message, "danger");
       }
 
     });
@@ -53,11 +53,11 @@
             $scope.show_error_message = false;
             $scope.ok();
             var message = "User successfully created.";
-            Flash.create('success', message, 'custom-class');
+            flashService.createFlash(message, "success");
           }
           else{
             $scope.show_error_message = true;
-            Flash.create('danger', data.message, 'custom-class');
+            flashService.createFlash(data.message, "danger");
           }
 
         });
@@ -99,12 +99,13 @@
             $scope.user = data.response;
             $scope.ok($scope.user);
             var message = "User successfully edited.";
-            Flash.create('success', message, 'custom-class');
+            flashService.createFlash(message, "success");
+
           }
           else{
             $scope.show_error_message = true;
             $scope.error_message = data.message;
-            Flash.create('danger', $scope.error_message, 'custom-class');
+            flashService.createFlash($scope.error_message, "danger");
           }
 
         });

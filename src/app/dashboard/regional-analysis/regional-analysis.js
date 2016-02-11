@@ -2,11 +2,10 @@
     angular.module( 'livefeed.dashboard.regional_analysis', [
       'factories',
       'livefeed.regional_analysis.chart',
-      'ui.bootstrap',
-      'flash'
+      'ui.bootstrap'
     ])
 
-.controller( 'RegionalAnalysisCtrl', function DashboardController( $rootScope, $scope, Graphs, regionalAnalysisChartService, $uibModal, Global, TokenHandler, Flash ) {
+.controller( 'RegionalAnalysisCtrl', function DashboardController( $rootScope, $scope, Graphs, regionalAnalysisChartService, $uibModal, Global, TokenHandler, flashService ) {
   var user_role = TokenHandler.get_user_role();
   $scope.today = new Date();
 
@@ -99,7 +98,7 @@
          else {
            $scope.show_error_message = true;
            $scope.error_message = complains_data.message;
-           Flash.create('danger', $scope.error_message, 'custom-class');
+           flashService.createFlash($scope.error_message, "danger");
          }
        });
     }
@@ -130,7 +129,8 @@
        else {
          $scope.show_error_message = true;
          $scope.error_message = area_data.message;
-         Flash.create('danger', $scope.error_message, 'custom-class');
+         flashService.createFlash($scope.error_message, "danger");
+
        }
      });
    }
@@ -159,7 +159,8 @@
         else{
           $scope.show_error_message = true;
           $scope.error_message = complains_data.message;
-          Flash.create('danger', $scope.error_message, 'custom-class');
+          flashService.createFlash($scope.error_message, "danger");
+
         }
       });
     }
@@ -175,7 +176,7 @@
         else{
           $scope.show_error_message = true;
           $scope.error_message = data.message;
-          Flash.create('danger', $scope.error_message, 'custom-class');
+          flashService.createFlash($scope.error_message, "danger");
         }
       });
     }
@@ -203,7 +204,7 @@
         else{
           $scope.show_error_message = true;
           $scope.error_message = complains_data.message;
-          Flash.create('danger', $scope.error_message, 'custom-class');
+          flashService.createFlash($scope.error_message, "danger");
         }
       });
     }
@@ -218,7 +219,7 @@
         else{
           $scope.show_error_message = true;
           $scope.error_message = data.message;
-          Flash.create('danger', $scope.error_message, 'custom-class');
+          flashService.createFlash($scope.error_message, "danger");
         }
       });
     }
@@ -248,7 +249,7 @@
         else{
           $scope.show_error_message = true;
           $scope.error_message = complains_data.message;
-          Flash.create('danger', $scope.error_message, 'custom-class');
+          flashService.createFlash($scope.error_message, "danger");
         }
       });
     }
@@ -264,7 +265,7 @@
         else{
           $scope.show_error_message = true;
           $scope.error_message = data.message;
-          Flash.create('danger', $scope.error_message, 'custom-class');
+          flashService.createFlash($scope.error_message, "danger");
         }
       });
     }
@@ -406,7 +407,7 @@
       else{
         $scope.show_error_message = true;
         $scope.error_message = data.message;
-        Flash.create('danger', $scope.error_message, 'custom-class');
+        flashService.createFlash($scope.error_message, "danger");
       }
     });
   }
@@ -454,7 +455,7 @@
       else{
         $scope.show_error_message = true;
         $scope.error_message = data.message;
-        Flash.create('danger', $scope.error_message, 'custom-class');
+        flashService.createFlash($scope.error_message, "danger");
       }
     });
   }
@@ -471,7 +472,7 @@
       else{
         $scope.show_error_message = true;
         $scope.error_message = data.message;
-        Flash.create('danger', $scope.error_message, 'custom-class');
+        flashService.createFlash($scope.error_message, "danger");
       }
     });
   }
@@ -487,7 +488,7 @@
       else{
         $scope.show_error_message = true;
         $scope.error_message = data.message;
-        Flash.create('danger', $scope.error_message, 'custom-class');
+        flashService.createFlash($scope.error_message, "danger");
       }
     });
   }
@@ -509,7 +510,7 @@
       else{
         $scope.show_error_message = true;
         $scope.error_message = data.message;
-        Flash.create('danger', $scope.error_message, 'custom-class');
+        flashService.createFlash($scope.error_message, "danger");
       }
     });
   }

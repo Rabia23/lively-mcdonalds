@@ -2,7 +2,7 @@
   angular.module( 'livefeed.promotions')
 
 
-  .controller( 'PromotionsDetailCtrl', function PromotionDetailCtrl( $scope, $state, $rootScope, Global, TokenHandler, Auth, Flash, $stateParams, PromotionsApi) {
+  .controller( 'PromotionsDetailCtrl', function PromotionDetailCtrl( $scope, $state, $rootScope, Global, TokenHandler, Auth, flashService, $stateParams, PromotionsApi) {
     var promotionId = $stateParams.promotionId;
     var inc = 1;
     $scope.show_loading = true;
@@ -28,7 +28,8 @@
         });
       }
       else{
-        Flash.create('danger', data.message, 'custom-class');
+        flashService.createFlash(data.message, "danger");
+
       }
 
     });

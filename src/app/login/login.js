@@ -3,7 +3,7 @@ angular.module( 'livefeed.login', [
   'ui.router',
   'livefeed.authService',
   'factories',
-  'flash'
+  'ngFlash'
 
 ])
 
@@ -63,8 +63,7 @@ angular.module( 'livefeed.login', [
           $state.go("dashboard");
         }
         else{
-          var message = data.message;
-          Flash.create('danger', message, 'show-alert');
+          flashService.createFlash(data.message, "danger");
         }
 
       });

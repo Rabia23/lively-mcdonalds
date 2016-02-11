@@ -4,10 +4,10 @@ angular.module( 'livefeed.dashboard.feedback_map', [
   'livefeed.map',
   'ui.bootstrap',
   'daterangepicker',
-  'flash'
+  'ngFlash'
 ])
 
-.controller( 'FeedbackMapCtrl', function FeedbackMapController( $scope, Graphs, mapService, Flash ) {
+.controller( 'FeedbackMapCtrl', function FeedbackMapController( $scope, Graphs, mapService, flashService ) {
 
   $scope.today = new Date();
 
@@ -48,7 +48,7 @@ angular.module( 'livefeed.dashboard.feedback_map', [
       else{
         $scope.show_error_message = true;
         $scope.error_message = data.message;
-        Flash.create('danger', $scope.error_message, 'custom-class');
+        flashService.createFlash($scope.error_message, "danger");
       }
     });
 
@@ -74,28 +74,6 @@ angular.module( 'livefeed.dashboard.feedback_map', [
   $scope.markers = [];
 
   draw_map();
-
-  // Graphs.map_view().$promise.then(function(data){
-  //   $scope.show_loading = false;
-  //   if(data.success) {
-  //     $scope.show_error_message = false;
-  //     _.each(data.response.branches, function (branch) {
-  //       var icon;
-  //       if (branch.count_exceeded === false) {
-  //         icon = '../assets/images/ico-locator.png';
-  //       }
-  //       else {
-  //         icon = '../assets/images/ico-locator2.png';
-  //       }
-  //       $scope.markers.push(mapService.createMarker(branch, $scope.map, icon));
-  //     });
-  //   }
-  //   else{
-  //     $scope.show_error_message = true;
-  //     $scope.error_message = data.message;
-  //     Flash.create('danger', $scope.error_message, 'custom-class');
-  //   }
-  // });
 })
 
 .directive('mapRangeClick', function() {

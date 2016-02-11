@@ -2,7 +2,7 @@
   angular.module( 'livefeed.manage_users')
 
 
-  .controller( 'ManageUsersCtrl', function ManageUsersCtrl( $scope, $state, $rootScope, TokenHandler, Auth, $uibModal, ManageApi, Enum, Flash) {
+  .controller( 'ManageUsersCtrl', function ManageUsersCtrl( $scope, $state, $rootScope, TokenHandler, Auth, $uibModal, ManageApi, Enum, flashService) {
 
     $scope.show_active_icon = false;
     $scope.show_deactive_icon = false;
@@ -44,9 +44,7 @@
         $scope.users = $scope.users.reverse();
       }
       else{
-        $scope.show_error_message = true;
-        $scope.error_message = data.message;
-        Flash.create('danger', $scope.error_message, 'custom-class');
+        flashService.createFlash(data.message, "danger");
       }
 
     });
@@ -70,7 +68,7 @@
             $scope.users[index] = user;
           }
           $scope.users[index].user_role = Enum.get_user_label(data.response.role);
-          Flash.create('success', message, 0, {class: 'custom-class', id: 'custom-id'}, true);
+          flashService.createFlash(message, "success");
           //Flash.dismiss(1);
           $scope.users = _.sortBy($scope.users, function(item) { return item.is_active; });
           $scope.users = $scope.users.reverse();
@@ -79,7 +77,7 @@
         else{
           $scope.show_error_message = true;
           $scope.error_message = data.message;
-          Flash.create('danger', $scope.error_message, 'custom-class');
+          flashService.createFlash($scope.error_message, "danger");
         }
 
       });
@@ -125,7 +123,7 @@
           else{
             $scope.show_error_message = true;
             $scope.error_message = data.message;
-            Flash.create('danger', $scope.error_message, 'custom-class');
+            flashService.createFlash($scope.error_message, "danger");
           }
 
         });

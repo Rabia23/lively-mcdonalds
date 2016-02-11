@@ -2,7 +2,7 @@
   angular.module( 'livefeed.promotions')
 
 
-  .controller( 'PromotionsCtrl', function PromotionCtrl( $scope, $state, $rootScope, TokenHandler, Auth, Flash, PromotionsApi) {
+  .controller( 'PromotionsCtrl', function PromotionCtrl( $scope, $state, $rootScope, TokenHandler, Auth, flashService, PromotionsApi) {
       $scope.show_loading = true;
       PromotionsApi.promotions_list().$promise.then(function(data){
         $scope.show_loading = false;
@@ -10,7 +10,7 @@
           $scope.promotions = data.response;
         }
         else{
-          Flash.create('danger', data.message, 'custom-class');
+          flashService.createFlash(data.message, "danger");
         }
 
       });

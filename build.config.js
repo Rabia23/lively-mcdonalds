@@ -88,7 +88,7 @@ module.exports = {
       'vendor/Chart.js/Chart.js',
       'vendor/angular-chart.js/dist/angular-chart.js',
       'vendor/Heyoffline/Heyoffline.js',
-      'vendor/angular-flash-alert/dist/angular-flash.js',
+      'vendor/angular-flash-alert/dist/angular-flash.min.js',
       'vendor/angular-animate/angular-animate.min.js',
       'vendor/metisMenu/dist/metisMenu.min.js',
       'vendor/hammerjs/hammer.min.js',
@@ -100,7 +100,7 @@ module.exports = {
       'vendor/morris.js/morris.css',
       'vendor/bootstrap-daterangepicker/daterangepicker.css',
       'vendor/angular-chart.js/dist/angular-chart.css',
-      'vendor/angular-flash-alert/dist/angular-flash.css',
+      'vendor/angular-flash-alert/dist/angular-flash.min.css',
       'vendor/font-awesome/css/font-awesome.css',
       'vendor/footable/css/footable.core.css'
 

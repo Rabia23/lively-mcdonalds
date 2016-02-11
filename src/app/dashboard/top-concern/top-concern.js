@@ -1,10 +1,9 @@
 angular.module( 'livefeed.dashboard.top_concern', [
   'factories',
-  'helper_factories',
-  'flash'
+  'helper_factories'
 ])
 
-.controller( 'TopConcernsCtrl', function TopConcernController( $scope, Graphs, Global, Flash ) {
+.controller( 'TopConcernsCtrl', function TopConcernController( $scope, Graphs, Global, flashService ) {
 
   $scope.colors = [];
   $scope.labels = [];
@@ -35,7 +34,7 @@ angular.module( 'livefeed.dashboard.top_concern', [
     else{
       $scope.show_error_message = true;
       $scope.error_message = data.message;
-      Flash.create('danger', $scope.error_message, 'custom-class');
+      flashService.createFlash($scope.error_message, "danger");
     }
   });
 })

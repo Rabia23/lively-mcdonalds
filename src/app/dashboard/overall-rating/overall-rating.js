@@ -2,10 +2,10 @@ angular.module( 'livefeed.dashboard.overall_rating', [
   'factories',
   'livefeed.overall_rating.chart',
   'helper_factories',
-  'flash'
+  'ngFlash'
 ])
 
-.controller( 'TimeLineCtrl', function DashboardController( $scope, overallRatingChartService, Graphs, Global, Flash ) {
+.controller( 'TimeLineCtrl', function DashboardController( $scope, overallRatingChartService, Graphs, Global, flashService ) {
    $scope.today = new Date();
 
    $scope.show_error_message = false;
@@ -122,7 +122,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
          else{
            $scope.show_error_message = true;
            $scope.error_message = data.message;
-           Flash.create('danger', $scope.error_message, 'custom-class');
+           flashService.createFlash($scope.error_message, "danger");
          }
        });
    }
@@ -159,7 +159,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
          else {
            $scope.show_error_message = true;
            $scope.error_message = data.message;
-           Flash.create('danger', $scope.error_message, 'custom-class');
+           flashService.createFlash($scope.error_message, "danger");
          }
        });
      }
@@ -192,7 +192,7 @@ angular.module( 'livefeed.dashboard.overall_rating', [
           else {
             $scope.show_error_message = true;
             $scope.error_message = data.message;
-            Flash.create('danger', $scope.error_message, 'custom-class');
+            flashService.createFlash($scope.error_message, "danger");
           }
         });
       }

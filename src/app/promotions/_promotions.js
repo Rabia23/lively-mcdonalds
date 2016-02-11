@@ -1,7 +1,7 @@
 (function() {
   angular.module( 'livefeed.promotions', [
     'ui.router',
-    'flash',
+    'ngFlash',
     'livefeed.promotions.api',
     'livefeed.authService',
     'helper_factories'

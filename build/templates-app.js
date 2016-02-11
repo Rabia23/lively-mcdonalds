@@ -179,7 +179,7 @@ angular.module("dashboard/dashboard.tpl.html", []).run(["$templateCache", functi
     "    <ui-view name = \"positive_negative_feedback\"></ui-view>\n" +
     "    <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "      <div class=\"row same-height-parent\">\n" +
-    "        <div flash-message=\"5000\" ></div>\n" +
+    "        <flash-message  show-close=\"true\" on-dismiss=\"onAlertDismiss(flash)\"></flash-message> \n" +
     "        <div class=\"col-lg-6 col-lg-push-6\">\n" +
     "          <div class=\"same-height-block blocks-holder\">\n" +
     "            <div class=\"row\">\n" +
@@ -995,7 +995,7 @@ angular.module("login/login.tpl.html", []).run(["$templateCache", function($temp
     "		<div class=\"login-block\">\n" +
     "			<div class=\"form-holder\" ng-class=\"{loading: show_loading}\">\n" +
     "				<div class=\"form-inner\">\n" +
-    "					<div flash-message=\"5000\" ></div>\n" +
+    "					<flash-message  show-close=\"true\" on-dismiss=\"onAlertDismiss(flash)\"></flash-message> \n" +
     "					<div class=\"inner-holder\">\n" +
     "						<h3>Log In</h3>\n" +
     "						<form class=\"login-form\" name = \"LoginForm\" ng-submit=\"login(LoginForm.$valid)\" novalidate>\n" +
@@ -1039,7 +1039,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "		<div class=\"modal-body\" ng-class = \"{'loading': show_loading}\">\n" +
     "			<div class=\"row\" ng-class = \"{'edit-form': edit_form}\">\n" +
     "				<div class=\"col-xs-12\">\n" +
-    "					<div flash-message=\"5000\" ></div>\n" +
+    "					<flash-message duration=\"5000\" show-close=\"true\"></flash-message>\n" +
     "					<div class=\"form-group\">\n" +
     "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"firsName\">First Name</label>\n" +
     "						<div class=\"col-sm-10 col-md-9\">\n" +
@@ -1157,7 +1157,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "			<div class=\"col-lg-12\">\n" +
     "				<h1>{{user_list}}</h1>\n" +
     "				<div class=\"users-area\">\n" +
-    "					<div flash-message=\"5000\" ></div>\n" +
+    "					<flash-message  show-close=\"true\" on-dismiss=\"onAlertDismiss(flash)\"></flash-message> \n" +
     "					<ul class=\"users-list\" data-users = \"users\">\n" +
     "						<li ng-repeat = \"user in users track by $index\" ng-class=\"{'deactivate': user.is_active == false, 'inactive': user.is_active == false}\">\n" +
     "							<div class=\"ibox\">\n" +
@@ -1225,14 +1225,14 @@ angular.module("promotions/promotions-detail.tpl.html", []).run(["$templateCache
     "     <ui-view name = \"header\"></ui-view>\n" +
     "   <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "    <div class=\"row promotions\" ng-class = \"{loading: show_loading}\">\n" +
-    "      <div flash-message=\"5000\" ></div>\n" +
+    "      <flash-message  show-close=\"true\" on-dismiss=\"onAlertDismiss(flash)\"></flash-message> \n" +
     "      <div class=\"col-lg-12\">\n" +
     "        <h1>{{promotion.title}} Promotion</h1>\n" +
     "        <div class=\"row\">\n" +
     "          <div class=\"col-sm-6 col-lg-4 grid-item\" ng-repeat = \"question in questions track by $index\">\n" +
     "            <div class=\"ibox float-e-margins\">\n" +
     "              <div class=\"ibox-title\">\n" +
-    "                <h3>Q{{$index + 1}} : {{question.question}}</h3>\n" +
+    "                <h3>{{question.question}}</h3>\n" +
     "              </div>\n" +
     "              <div class=\"ibox-content\" ng-if = \"question.type == 5\">\n" +
     "                <div class=\"data-container\">\n" +
@@ -1278,11 +1278,10 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "     <ui-view name = \"header\"></ui-view>\n" +
     "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "		<div class=\"row promotions\" ng-class = \"{loading: show_loading}\">\n" +
-    "      <div flash-message=\"5000\" ></div>\n" +
     "			<div class=\"col-lg-12\">\n" +
     "				<div class=\"row\">\n" +
     "					<div class=\"col-xs-12\">\n" +
-    "            <div flash-message=\"5000\" ></div>\n" +
+    "            <flash-message  show-close=\"true\" on-dismiss=\"onAlertDismiss(flash)\"></flash-message> \n" +
     "						<ul class=\"btn-list\">\n" +
     "							<li ng-repeat = \"promotion in promotions\">\n" +
     "								<a class=\"btn ibox dim btn-large-dim btn-outline\" ng-click = \"detail(promotion.id)\">\n" +

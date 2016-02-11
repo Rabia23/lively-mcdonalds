@@ -2,10 +2,10 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
     'factories',
     'ui.bootstrap',
     'chart.js',
-    'flash'
+    'ngFlash'
 ])
 
-.controller('CategoryPerformanceAnalysisCtrl', function DashboardController($scope, Graphs, Global, $timeout, Flash) {
+.controller('CategoryPerformanceAnalysisCtrl', function DashboardController($scope, Graphs, Global, $timeout, flashService) {
 
   $scope.show_loading = false;
   $scope.class = '';
@@ -72,7 +72,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
       else{
         $scope.show_error_message = true;
         $scope.error_message = performance_data.message;
-        Flash.create('danger', $scope.error_message, 'custom-class');
+        flashService.createFlash($scope.error_message, "danger");
       }
     });
   };
@@ -114,7 +114,7 @@ angular.module( 'livefeed.dashboard.category_performance_analysis', [
       else{
         $scope.show_error_message = true;
         $scope.error_message = segment_data.message;
-        Flash.create('danger', $scope.error_message, 'custom-class');
+        flashService.createFlash($scope.error_message, "danger");
       }
     });
   };

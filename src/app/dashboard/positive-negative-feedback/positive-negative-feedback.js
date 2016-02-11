@@ -2,10 +2,10 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   'factories',
   'helper_factories',
   'ui.bootstrap',
-  'flash'
+  'ngFlash'
 ])
 
-.controller( 'PositiveNegativeFeedbackCtrl', function DashboardController( $scope, _, Global, Graphs,$uibModal, $log, commentService, Flash ) {
+.controller( 'PositiveNegativeFeedbackCtrl', function DashboardController( $scope, _, Global, Graphs,$uibModal, $log, commentService, flashService ) {
 
   $scope.show_error_message = false;
 
@@ -20,7 +20,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     else{
       $scope.show_error_message = true;
       $scope.error_message = data.message;
-      Flash.create('danger', $scope.error_message, 'custom-class');
+      flashService.createFlash($scope.error_message, "danger");
     }
   });
 
@@ -67,7 +67,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
       else {
        $scope.show_error_message = true;
        $scope.error_message = data.message;
-       Flash.create('danger', $scope.error_message, 'custom-class');
+       flashService.createFlash($scope.error_message, "danger");
       }
     });
   };
@@ -87,7 +87,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     else {
      $scope.show_error_message = true;
      $scope.error_message = data.message;
-     Flash.create('danger', $scope.error_message, 'custom-class');
+     flashService.createFlash($scope.error_message, "danger");
     }
   });
 
@@ -110,7 +110,7 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
         else {
          $scope.show_error_message = true;
          $scope.error_message = data.message;
-         Flash.create('danger', $scope.error_message, 'custom-class');
+         flashService.createFlash($scope.error_message, "danger");
         }
       });
     }
