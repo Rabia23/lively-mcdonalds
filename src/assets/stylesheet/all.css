@@ -865,15 +865,17 @@ body.login{background: #eee !important;}
 }
 .modal-1200 .modal-body .table tbody tr {background: #fff;}
 .modal-1200 .modal-body .table tbody tr:hover {background: #f7f7f7;}
+
 .modal-1200 .modal-body .table tbody tr.negative {background: #fedfda;}
 .modal-1200 .modal-body .table tbody tr.negative:hover {background: #ffd9d3;}
-.modal-1200 .modal-body .table tbody tr.defer,
-.modal-1200 .modal-body .table tbody tr.defer td{background: #ffffe5;}
-.modal-1200 .modal-body .table tbody tr.defer:hover,
-.modal-1200 .modal-body .table tbody tr.defer:hover td{background: #fefed8;}
-
-.modal-1200 .modal-body .table tbody tr.success:hover,
-.modal-1200 .modal-body .table tbody tr.success:hover td{background: #d8f5cc;}
+.modal-1200 .modal-body .table tbody tr.negative.defer,
+.modal-1200 .modal-body .table tbody tr.negative.defer td{background: #ffffe5;}
+.modal-1200 .modal-body .table tbody tr.negative.defer:hover,
+.modal-1200 .modal-body .table tbody tr.negative.defer:hover td{background: #fefed8;}
+.modal-1200 .modal-body .table tbody tr.negative.success,
+.modal-1200 .modal-body .table tbody tr.negative.success td{background: #dff0d8;}
+.modal-1200 .modal-body .table tbody tr.negative.success:hover,
+.modal-1200 .modal-body .table tbody tr.negative.success:hover td{background: #d8f5cc;}
 
 .modal-1200 .modal-body .table tbody tr.positive td.item6 .btn-group,
 .modal-1200 .modal-body .table tbody tr.positive td.item6 span{display: none !important;}
