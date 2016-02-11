@@ -1015,6 +1015,11 @@ body.login{background: #eee !important;}
   max-width: 100%;
 }
 .modal-1000 .graph-holder {overflow: hidden;}
+.modal-1000 .graph-holder > *,
+.modal-1000 .graph-holder > * > *{
+	max-width: 100%;
+	height: auto;
+}
 #wrapper .navbar-top-links li a{padding: 20px 5px;}
 #wrapper .wrapper-content{padding: 40px 10px 20px !important;}
 /* custom select styles */
@@ -2329,6 +2334,7 @@ li.active,
 @media screen and (max-width: 991px) {
 	.tab-links{overflow: hidden;}
 	.tab-links li{float: left;}
+	.ibox-tools{vertical-align: top;}
 	.users-list > li{width: 50%;}
 	.same-height-block,
 	.inner-row,
@@ -2529,6 +2535,10 @@ li.active,
 	.grid-item .ibox-title{min-height: inherit !important;}
 	.promotions .grid-item .data-container{min-height: 200px !important;}
 	.grid-container .grid-item{width: 100%;}
+	.modal-1000 .graph-holder{
+		max-width: 250px;
+		margin: 0 auto;
+	}
 }
 
 @media screen and (max-width: 768px) {
@@ -2579,4 +2589,5 @@ li.active,
 		padding: 0;
 		min-height: inherit;
 	}
+	body.mini-navbar .tab-links a{font-size: 10px;}
 }

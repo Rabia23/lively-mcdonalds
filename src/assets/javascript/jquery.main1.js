@@ -579,6 +579,12 @@ function initSameHeight() {
 	useMinHeight: true,
     biggestHeight: true
   });
+  jQuery('.btn-list li').sameHeight({
+    elements: '.title',
+    flexible: true,
+    multiLine: true,
+    biggestHeight: true
+  });
 }
 
 function initEqualHeight(){
