@@ -23,8 +23,8 @@ angular.module( 'livefeed.login', [
 })
 
 
-.controller( 'LoginCtrl', function LoginController( $scope,  _ , $rootScope, $state, Authentication, TokenHandler, Flash, Auth) {
-
+.controller( 'LoginCtrl', function LoginController( $scope,  _ , $rootScope, $state, Authentication, TokenHandler, flashService, Auth) {
+  console.log("login controller");
   $scope.submitted = false;
   $scope.authenticate = {};
   $scope.show_loading = false;
@@ -45,6 +45,8 @@ angular.module( 'livefeed.login', [
 
   if(Auth.is_remembered() === "true"){
     var object = TokenHandler.get_login_detail();
+    console.log("remember me..");
+    console.log(object);
     $scope.authenticate.username = object.username;
     $scope.authenticate.password = object.password;
     $scope.remember_me = true;
