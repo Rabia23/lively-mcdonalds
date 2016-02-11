@@ -1021,7 +1021,7 @@ body.login{background: #eee !important;}
 	height: auto;
 }
 #wrapper .navbar-top-links li a{padding: 20px 5px;}
-#wrapper .wrapper-content{padding: 40px 10px 20px !important;}
+#wrapper .wrapper-content{padding: 40px 10px 0 !important;}
 /* custom select styles */
 .jcf-select {
 	display: inline-block;
@@ -2249,7 +2249,7 @@ li.active,
 	#footer{left: 170px;}
 	body.mini-navbar #wrapper .navbar-static-side{width: 70px;}
 	body.mini-navbar #wrapper #page-wrapper{margin: 0 0 0 70px;}
-	#wrapper .wrapper-content{padding: 40px 0 20px !important;}
+	#wrapper .wrapper-content{padding: 40px 0 0 !important;}
 	.header-caption{
 		left: 13px;
 		right: 13px;
@@ -2475,7 +2475,7 @@ li.active,
 		text-align: center;
 		margin: 0 0 5px;
 	}
-	#wrapper .wrapper-content{padding: 30px 0 20px !important;}
+	#wrapper .wrapper-content{padding: 30px 0 0 !important;}
 	.ibox-title h5{margin-bottom: 12px !important;}
 	.detail-block .ibox-title h5{margin-bottom: 5px !important;}
 	#wrapper .ibox-content{padding: 10px;}

@@ -686,7 +686,7 @@ angular.module("dashboard/regional-analysis/sqc-modal.tpl.html", []).run(["$temp
     "	  <div style = \"text-align: center;\" ng-show=\"show_div\">No data available</div>\n" +
     "  	</div>\n" +
     "  </div>\n" +
-    "  <h1 style = \"text-align: center;\">{{ sqc.name }}</h1>\n" +
+    "  <h3 style = \"text-align: center;\">{{ sqc.name }}</h3>\n" +
     "</div>\n" +
     "");
 }]);
