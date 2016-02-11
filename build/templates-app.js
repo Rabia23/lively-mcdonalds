@@ -413,7 +413,7 @@ angular.module("dashboard/overall-feedback/overall-feedback.tpl.html", []).run([
     "            <div class=\"legends-holder\">\n" +
     "			  <ul class=\"legends-list\" ng-show=\"show_labels\">\n" +
     "			    <li ng-repeat = \"label in labels track by $index\">\n" +
-    "				  <span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>{{label.option_name}}\n" +
+    "				  <span class=\"bullet\" back-ground data-color = \"label.color\"></span>{{label.option_name}}\n" +
     "			    </li>\n" +
     "			  </ul>\n" +
     "			</div>\n" +
@@ -456,7 +456,7 @@ angular.module("dashboard/overall-rating/overall-rating.tpl.html", []).run(["$te
     "  <div class=\"ibox-content\" same-rating-height data-data=\"overall_rating_data\">\n" +
     "      <ul class=\"legends-list\">\n" +
     "        <li ng-repeat = \"label in labels track by $index\">\n" +
-    "          <span class=\"bullet\" style = \"background-color: {{label.color}}\"></span>\n" +
+    "          <span class=\"bullet\" back-ground data-color = \"label.color\"></span>\n" +
     "          <a ng-click=\"labelClick(label)\" ng-if = \"mainView\">{{label.option_name}}</a>\n" +
     "          <span ng-if = \"!mainView\">{{label.option_name}}</span>\n" +
     "        </li>\n" +

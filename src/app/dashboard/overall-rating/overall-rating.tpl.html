@@ -18,7 +18,7 @@
   <div class="ibox-content" same-rating-height data-data="overall_rating_data">
       <ul class="legends-list">
         <li ng-repeat = "label in labels track by $index">
-          <span class="bullet" style = "background-color: {{label.color}}"></span>
+          <span class="bullet" back-ground data-color = "label.color"></span>
           <a ng-click="labelClick(label)" ng-if = "mainView">{{label.option_name}}</a>
           <span ng-if = "!mainView">{{label.option_name}}</span>
         </li>
