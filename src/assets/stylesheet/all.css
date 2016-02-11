@@ -2013,6 +2013,14 @@ li.active,
 
 .amcharts-chart-div > a{display: none !important;}
 
+.grid-container{letter-spacing: -6px;}
+.grid-container .grid-item{
+	float: none;
+	display: inline-block;
+	vertical-align: top;
+	letter-spacing: 0;
+}
+
 @media screen and (min-width: 768px) {
 	.legends-holder{padding: 15px 20px 0;}
 	.legends-list {
@@ -2519,6 +2527,7 @@ li.active,
 	.add-user > *{margin: 1px 0 0 2px;}
 	.grid-item .ibox-title{min-height: inherit !important;}
 	.promotions .grid-item .data-container{min-height: 200px !important;}
+	.grid-container .grid-item{width: 100%;}
 }
 
 @media screen and (max-width: 768px) {

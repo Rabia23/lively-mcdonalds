@@ -1228,7 +1228,7 @@ angular.module("promotions/promotions-detail.tpl.html", []).run(["$templateCache
     "      <div flash-message=\"5000\" ></div>\n" +
     "      <div class=\"col-lg-12\">\n" +
     "        <h1>{{promotion.title}} Promotion</h1>\n" +
-    "        <div class=\"row\">\n" +
+    "        <div class=\"row grid-container\">\n" +
     "          <div class=\"col-sm-6 col-lg-4 grid-item\" ng-repeat = \"question in questions track by $index\">\n" +
     "            <div class=\"ibox float-e-margins\">\n" +
     "              <div class=\"ibox-title\">\n" +
