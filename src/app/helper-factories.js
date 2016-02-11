@@ -3,6 +3,11 @@ angular.module( 'helper_factories', ['ngResource'])
 .factory('Global', [ '_', function(_) {
 
   return {
+    qscSubCategoriesColors: function(index){
+      var colors = [ "#4CCC72","#3598DC","#9C59B8","#34495E","#F0C547","#E74D3D"];
+      return colors[index];
+    },
+
     topConcernsColors: function(index){
       var colors = [ "#cb1e24","#178aea","#434347","#f1d400","#90ec7c"];
       return colors[index];
@@ -66,27 +71,25 @@ angular.module( 'helper_factories', ['ngResource'])
       "Cleanliness": '#1f9aec'
 
     },
-
     subOptionsColorScheme: {
 
-      "Flies":{priority: 4, color: "#4A90C0"},
-      "Lobby Temperature":{priority: 5, color: "#78BEEE"},
-      "Music":{priority: 6, color: "#B6E1FF"},
-      "Lobby":{priority: 2, color: "#003565"},
-      "Rest Rooms":{priority: 3, color: "#1C6292"},
-      "Employees":{priority: 1, color: "#000737"},
+      "Employees":{priority: 1, color: "#4CCC72"},
+      "Lobby":{priority: 2, color: "#3598DC"},
+      "Rest Rooms":{priority: 3, color: "#E74D3D"},
+      "Lobby Temperature":{priority: 4, color: "#F0C547"},
+      "Music":{priority: 5, color: "#9C59B8"},
+      "Flies":{priority: 6, color: "#34495E"},
 
-      "Fries":{priority: 3, color: "#683576"},
-      "Taste":{priority: 2, color: "#511E5F"},
-      "Coffee Quality":{priority: 5, color: "#1C002A"},
-      "Buns Quality":{priority: 4, color: "#A572B3"},
-      "Ice Cream Quality":{priority: 6, color: "#2B0039"},
-      "Not Fresh":{priority: 1, color: "#420F50"},
+      "Not Fresh":{priority: 1, color: "#4CCC72"},
+      "Taste":{priority: 2, color: "#3598DC"},
+      "Fries":{priority: 3, color: "#E74D3D"},
+      "Buns Quality":{priority: 4, color: "#F0C547"},
+      "Coffee Quality":{priority: 5, color: "#9C59B8"},
 
-      "Employee Attentiveness":{priority: 4, color: "#B84900"},
-      "Wrong Order":{priority: 3, color: "#FFA42B"},
-      "Speed of Service":{priority: 2, color: "#E67700"},
-      "Missing Order":{priority: 1, color: "#FFD259"}
+      "Employee Attentiveness":{priority: 1, color: "#4CCC72"},
+      "Speed of Service":{priority: 2, color: "#3598DC"},
+      "Wrong Order":{priority: 3, color: "#E74D3D"},
+      "Missing Order":{priority: 4, color: "#F0C547"}
     },
 
     overallFeedbackClass: {
@@ -121,11 +124,28 @@ angular.module( 'helper_factories', ['ngResource'])
       "Quality": 1,
       "Service": 2
     },
-
     qscSubCategoriesData:{
-      "Cleanliness": {"Flies":{priority: 4, color: "#4A90C0"}, "Lobby Temperature":{priority: 5, color: "#78BEEE"}, "Music":{priority: 6, color: "#B6E1FF"}, "Lobby":{priority: 2, color: "#003565"}, "Rest Rooms":{priority: 3, color: "#1C6292"}, "Employees":{priority: 1, color: "#000737"}},
-     "Quality": {"Fries":{priority: 3, color: "#d13535"}, "Taste":{priority: 2, color: "#b41e1f"}, "Coffee Quality":{priority: 5, color: "#ff5353"}, "Buns Quality":{priority: 4, color: "#ec4747"}, "Not Fresh":{priority: 1, color: "#990c0c"}},
-      "Service": {"Employee Attentiveness":{priority: 1, color: "#B84900"}, "Wrong Order":{priority: 3, color: "#FFA42B"}, "Speed of Service":{priority: 2, color: "#E67700"}, "Missing Order":{priority: 4, color: "#FFD259"}}
+      "Quality": {
+        "Not Fresh":{priority: 1, color: "#4CCC72"},
+        "Taste":{priority: 2, color: "#3598DC"},
+        "Fries":{priority: 3, color: "#E74D3D"},
+        "Buns Quality":{priority: 4, color: "#F0C547"},
+        "Coffee Quality":{priority: 5, color: "#9C59B8"}
+      },
+      "Service": {
+        "Employee Attentiveness":{priority: 1, color: "#4CCC72"},
+        "Speed of Service":{priority: 2, color: "#3598DC"},
+        "Wrong Order":{priority: 3, color: "#E74D3D"},
+        "Missing Order":{priority: 4, color: "#F0C547"}
+      },
+      "Cleanliness": {
+        "Employees":{priority: 1, color: "#4CCC72"},
+        "Lobby":{priority: 2, color: "#3598DC"},
+        "Rest Rooms":{priority: 3, color: "#E74D3D"},
+        "Lobby Temperature":{priority: 4, color: "#F0C547"},
+        "Music":{priority: 5, color: "#9C59B8"},
+        "Flies":{priority: 6, color: "#34495E"}
+      }
     },
 
     overallFeedbackPriority: {

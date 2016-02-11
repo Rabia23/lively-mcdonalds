@@ -502,7 +502,9 @@ angular.module("dashboard/positive-negative-feedback/comments-modal.tpl.html", [
     "			  <td class=\"item2\"><a href=\"tel:{{comment.phone_no}}\" class=\"tel\">{{comment.phone_no}}</a><br>{{comment.email}}</td>\n" +
     "			  <td class=\"item3\">{{comment.data.branch}}</td>\n" +
     "			  <td class=\"item4\">{{comment.data.segment}}</td>\n" +
-    "			  <td class=\"item5\"><div class=\"text\">{{comment.data.comment}}</div></td>\n" +
+    "			  <td class=\"item5\">\n" +
+    "			  	<div class=\"text\">{{comment.data.comment}}</div>\n" +
+    "			  </td>\n" +
     "			  <td class=\"item6\">\n" +
     "			    <div class=\"btn-group\" uib-dropdown dropdown-append-to-body ng-show = \"comment.show_dropdown\">\n" +
     "				  <button type=\"button\" class=\"btn btn-info\" ng-click=\"selectedValue('Process',comment)\">Process</button>\n" +
@@ -1222,13 +1224,13 @@ angular.module("promotions/promotions-detail.tpl.html", []).run(["$templateCache
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
     "     <ui-view name = \"header\"></ui-view>\n" +
     "   <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
-    "    <div class=\"row promotions\">\n" +
+    "    <div class=\"row promotions\" ng-class = \"{loading: show_loading}\">\n" +
     "      <div flash-message=\"5000\" ></div>\n" +
     "      <div class=\"col-lg-12\">\n" +
     "        <h1>{{promotion.title}} Promotion</h1>\n" +
     "        <div class=\"row\">\n" +
-    "          <div class=\"col-md-6 col-lg-4 grid-item\" ng-repeat = \"question in questions track by $index\">\n" +
-    "            <div class=\"ibox float-e-margins\" ng-class = \"{loading: show_loading}\">\n" +
+    "          <div class=\"col-sm-6 col-lg-4 grid-item\" ng-repeat = \"question in questions track by $index\">\n" +
+    "            <div class=\"ibox float-e-margins\">\n" +
     "              <div class=\"ibox-title\">\n" +
     "                <h3>Q{{$index + 1}} : {{question.question}}</h3>\n" +
     "              </div>\n" +
