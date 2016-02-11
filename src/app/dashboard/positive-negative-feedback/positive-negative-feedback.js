@@ -140,6 +140,10 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
         assignHeight();
       });
 
+       $(window).on("resize", function() {
+        assignHeight();
+      });
+
       function assignHeight(){
         var height;
         var window_height = document.body.offsetHeight;

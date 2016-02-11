@@ -29,7 +29,7 @@
                 "titleField": "category",
                 "valueField": "column-1",
                 "colorField": "color",
-                "fontFamily": "'Oswald', sans-serif;",
+                "fontFamily": "'open Sans', open Sans",
                 "fontSize": 17,
                 "allLabels": [],
                 "balloon": { "fixedPosition": true },
