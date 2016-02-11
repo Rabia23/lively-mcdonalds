@@ -113,7 +113,6 @@
                  }
                  $timeout(function() {
                    var text_elements = $("#patch-bar").find("svg").find("text");
-                   console.log(text_elements);
                    $.each(text_elements, function(index, value){
                      if($(value).find("tspan").html() == "NORTH"){
                        $(value).find("tspan").css("text-shadow", "none");

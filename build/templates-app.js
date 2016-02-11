@@ -1012,7 +1012,7 @@ angular.module("login/login.tpl.html", []).run(["$templateCache", function($temp
     "						</form>\n" +
     "					</div>\n" +
     "					<div class=\"btn-holder\">\n" +
-    "						<a href=\"#\">Contact Support</a>\n" +
+    "						<a ng-click = \"open_support()\">Contact Support</a>\n" +
     "					</div>\n" +
     "				</div>\n" +
     "			</div>\n" +

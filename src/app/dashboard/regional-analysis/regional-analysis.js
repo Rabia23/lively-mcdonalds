@@ -8,8 +8,6 @@
 
 .controller( 'RegionalAnalysisCtrl', function DashboardController( $rootScope, $scope, Graphs, regionalAnalysisChartService, $uibModal, Global, TokenHandler, Flash ) {
   var user_role = TokenHandler.get_user_role();
-  console.log("user role");
-  console.log(user_role);
   $scope.today = new Date();
 
   $scope.show_error_message = false;
@@ -29,12 +27,8 @@
   $scope.datePickerOption = {
     eventHandlers: {
         'apply.daterangepicker': function(ev, picker){
-          console.log("applied");
           $scope.start_date = ev.model.startDate._i;
           $scope.end_date =  ev.model.endDate._i;
-          console.log("date filter");
-          console.log($scope.object_id);
-          console.log($scope.string);
           if(user_role == 4){
              $scope.showChart("", "regions");
           }

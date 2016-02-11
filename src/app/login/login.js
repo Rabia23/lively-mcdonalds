@@ -39,10 +39,11 @@ angular.module( 'livefeed.login', [
     console.log("offline in login");
   });
 
-  console.log(Auth.is_remembered());
+  $scope.open_support = function(){
+    window.location.href = "mailto:danial.zahid@arbisoft.com?subject=Support&body=message%20goes%20here";
+  };
 
   if(Auth.is_remembered() === "true"){
-    console.log("in the if");
     var object = TokenHandler.get_login_detail();
     $scope.authenticate.username = object.username;
     $scope.authenticate.password = object.password;
@@ -51,7 +52,6 @@ angular.module( 'livefeed.login', [
 
   $scope.login = function(valid){
     $scope.submitted = true;
-    console.log($scope.remember_me);
     if(valid){
       $scope.show_loading = true;
       Authentication.login($scope.authenticate).$promise.then(function(data){
