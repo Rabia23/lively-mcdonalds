@@ -49,9 +49,11 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
   $scope.comments = [];
   $scope.page = 1;
 
-  $scope.lock = false;
+  $scope.lock = true;
 
   $scope.show_error_message = false;
+
+  $scope.is_last_page = false;
 
   $scope.selectedValue = function(value, comment){
     comment.show_dropdown = false;
@@ -70,8 +72,12 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
     });
   };
 
+
+
   Graphs.comments($scope.page).$promise.then(function(data){
     console.log(data);
+    $scope.lock = false;
+    $scope.is_last_page = data.response.is_last_page;
     if(data.success) {
       $scope.show_error_message = false;
       $scope.comments = _.map(data.response.feedbacks, function (data) {
@@ -87,24 +93,27 @@ angular.module( 'livefeed.dashboard.positive_negative_feedback', [
 
   $scope.getMoreComments = function(){
     var show_dropdown, action_string;
-    $scope.page = $scope.page + 1;
-    $scope.lock = true;
-    Graphs.comments($scope.page).$promise.then(function(data){
-      console.log(data);
-      if(data.success) {
-        $scope.show_error_message = false;
-        $scope.lock = false;
-        angular.forEach(data.response.feedbacks, function (value, key) {
-          var comment_data = commentService.getComment(value);
-          $scope.comments.push(comment_data);
-        });
-      }
-      else {
-       $scope.show_error_message = true;
-       $scope.error_message = data.message;
-       Flash.create('danger', $scope.error_message, 'custom-class');
-      }
-    });
+    if(!$scope.is_last_page){
+      $scope.page = $scope.page + 1;
+      $scope.lock = true;
+      Graphs.comments($scope.page).$promise.then(function(data){
+        console.log(data);
+        $scope.is_last_page = data.response.is_last_page;
+        if(data.success) {
+          $scope.show_error_message = false;
+          $scope.lock = false;
+          angular.forEach(data.response.feedbacks, function (value, key) {
+            var comment_data = commentService.getComment(value);
+            $scope.comments.push(comment_data);
+          });
+        }
+        else {
+         $scope.show_error_message = true;
+         $scope.error_message = data.message;
+         Flash.create('danger', $scope.error_message, 'custom-class');
+        }
+      });
+    }
   };
 
   $scope.ok = function () {

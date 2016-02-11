@@ -1,6 +1,6 @@
 (function() {
     angular.module('livefeed.promotions')
-    .directive('questionPieChart', function() {
+    .directive('questionPieChart', function($timeout) {
       return {
         restrict: 'A',
         scope: {
@@ -37,7 +37,10 @@
                 "titles": [],
                 "dataProvider": data[1]
               });
-              window.initSameHeight();
+              $timeout(function(){
+                  window.initSameHeight();
+              },500);
+
             }
           });
         }
