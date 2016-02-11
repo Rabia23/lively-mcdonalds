@@ -22,8 +22,8 @@ angular.module( 'helper_factories', ['ngResource'])
     },
 
     promotionPieChartColorScheme: {
-      "Yes": "#01c211",
-      "No": "#cb1e24"
+      "Yes": "#4CCC72",
+      "No": "#E74D3D"
     },
 
     complaintAnalysisAction: {
