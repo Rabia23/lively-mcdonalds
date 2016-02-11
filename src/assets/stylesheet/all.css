@@ -1,6 +1,7 @@
 body{
 	background: #f1c40f !important;
 	min-width: 320px;
+	-ms-overflow-style: scrollbar;
 }
 body.login{background: #eee !important;}
 .morris-block-holder{letter-spacing: -6px;}
