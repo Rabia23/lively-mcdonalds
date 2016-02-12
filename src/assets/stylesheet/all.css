@@ -576,7 +576,12 @@ body.login{background: #eee !important;}
 	color: transparent;
 	cursor: pointer;
 }
-.calender-outer .date-picker:focus{outline: none;}
+.calender-outer .date-picker:focus{
+	outline: none;
+	background: transparent;
+	color: transparent;
+	cursor: pointer;
+}
 .calender-outer .calendar-holder{
 	display: inline-block;
 	vertical-align: middle;
