@@ -1,4 +1,4 @@
-angular.module('templates-app', ['common/footer.tpl.html', 'common/header.tpl.html', 'common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/opportunities/opportunities.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/edit-user-modal.tpl.html', 'manage-users/manage-users.tpl.html', 'promotions/promotions-detail.tpl.html', 'promotions/promotions.tpl.html']);
+angular.module('templates-app', ['common/footer.tpl.html', 'common/header.tpl.html', 'common/sidebar.tpl.html', 'coupon/coupon.tpl.html', 'dashboard/category-performance-analysis/category-performance-analysis.tpl.html', 'dashboard/dashboard.tpl.html', 'dashboard/feedback-map/feedback-map.tpl.html', 'dashboard/opportunities/opportunities.tpl.html', 'dashboard/overall-feedback/overall-feedback.tpl.html', 'dashboard/overall-rating/overall-rating.tpl.html', 'dashboard/positive-negative-feedback/comments-modal.tpl.html', 'dashboard/positive-negative-feedback/positive-negative-feedback.tpl.html', 'dashboard/regional-analysis/regional-analysis.tpl.html', 'dashboard/regional-analysis/sqc-modal.tpl.html', 'dashboard/statistics/statistics.tpl.html', 'dashboard/top-concern/top-concern.tpl.html', 'live/benchmark-map/benchmark-map.tpl.html', 'live/business-segments/business-segment.tpl.html', 'live/live.tpl.html', 'live/overall-ratings/overall-rating.tpl.html', 'live/patch-qsc-analysis/patch-qsc-analysis.tpl.html', 'live/qsc/qsc.tpl.html', 'live/strength/strength.tpl.html', 'live/top-concerns/top-concern.tpl.html', 'login/login.tpl.html', 'manage-users/edit-user-modal.tpl.html', 'manage-users/manage-users.tpl.html', 'promotions/promotions-detail.tpl.html', 'promotions/promotions.tpl.html']);
 
 angular.module("common/footer.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("common/footer.tpl.html",
@@ -816,7 +816,8 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "					<div class=\"heading-slide\"><h2>qsc complaints</h2></div>\n" +
     "					<div class=\"heading-slide\"><h2>business segment</h2></div>\n" +
     "					<div class=\"heading-slide\"><h2>overall rating</h2></div>\n" +
-    "					<div class=\"heading-slide\"><h2>top concerns</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>Strength</h2></div>\n" +
+    "					<div class=\"heading-slide\"><h2>Top Opportunities</h2></div>\n" +
     "					<div class=\"heading-slide\"><h2>Complaint analysis</h2></div>\n" +
     "					<div class=\"heading-slide\"><h2>Leaderboard</h2></div>\n" +
     "				</div>\n" +
@@ -871,6 +872,7 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "			<ui-view name = \"qsc\"></ui-view>\n" +
     "			<ui-view name = \"business_segment\"></ui-view>\n" +
     "			<ui-view name = \"overall_rating\"></ui-view>\n" +
+    "			<ui-view name = \"top_concern\"></ui-view>\n" +
     "			<ui-view name = \"top_concern\"></ui-view>\n" +
     "			<ui-view name = \"patch_qsc_analysis\"></ui-view>\n" +
     "			<ui-view name = \"benchmark_map\"></ui-view>\n" +
@@ -967,6 +969,19 @@ angular.module("live/qsc/qsc.tpl.html", []).run(["$templateCache", function($tem
     "						</div>\n" +
     "					</div>\n" +
     "				</div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>");
+}]);
+
+angular.module("live/strength/strength.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("live/strength/strength.tpl.html",
+    "<div class=\"slide win-height\" strength data-data = \"top_concern_data\">\n" +
+    "	<div class=\"slide-holder\">\n" +
+    "		<div class=\"holder\">\n" +
+    "			<div class=\"chart-outer\">\n" +
+    "				<div id=\"container\"></div>\n" +
     "			</div>\n" +
     "		</div>\n" +
     "	</div>\n" +

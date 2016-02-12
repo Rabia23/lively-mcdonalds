@@ -8,7 +8,8 @@ angular.module( 'livefeed.live', [
   'livefeed.live.business_segment',
   'livefeed.live.qsc',
   'livefeed.live.patch_qsc_analysis',
-  'livefeed.live.benchmark_map'
+  'livefeed.live.benchmark_map',
+  'livefeed.live.strength'
 ])
 
 
@@ -44,6 +45,10 @@ angular.module( 'livefeed.live', [
       "benchmark_map@live":{
         controller: "BenchmarkMapCtrl",
         templateUrl: 'live/benchmark-map/benchmark-map.tpl.html'
+      },
+      "strength@live":{
+        controller: "StrengthCtrl",
+        templateUrl: 'live/strength/strength.tpl.html'
       }
     },
     authenticate: true
