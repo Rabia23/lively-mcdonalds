@@ -572,10 +572,11 @@ body.login{background: #eee !important;}
 	width: 100%;
 	text-indent: -9999px;
 	border: 0;
-	background: none;
-	color: #fff;
+	background: transparent;
+	color: transparent;
 	cursor: pointer;
 }
+.calender-outer .date-picker:focus{outline: none;}
 .calender-outer .calendar-holder{
 	display: inline-block;
 	vertical-align: middle;
@@ -2329,9 +2330,17 @@ li.active,
 		padding: 0 !important;
 		border: 0 !important;
 	}
+	.promotions .btn.dim{
+		font-size: 16px;
+		line-height: 24px;
+	}
 }
 
 @media screen and (max-width: 991px) {
+	.promotions .btn.dim{
+		font-size: 15px;
+		line-height: 22px;
+	}
 	.tab-links{overflow: hidden;}
 	.tab-links li{float: left;}
 	.ibox-tools{vertical-align: top;}
@@ -2427,6 +2436,11 @@ li.active,
 }
 
 @media screen and (max-width: 767px) {
+	.promotions .btn.dim{
+		font-size: 14px;
+		line-height: 20px;
+	}
+	.promotions .btn.dim .title{padding: 15px 6px;}
 	.modal-1200 .table thead,
 	.modal-1200 .table{
 		min-width: 730px;
@@ -2536,7 +2550,7 @@ li.active,
 	.promotions .grid-item .data-container{min-height: 200px !important;}
 	.grid-container .grid-item{width: 100%;}
 	.modal-1000 .graph-holder{
-		max-width: 250px;
+		max-width: 245px;
 		margin: 0 auto;
 	}
 }
