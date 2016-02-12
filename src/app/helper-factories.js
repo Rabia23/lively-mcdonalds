@@ -21,6 +21,15 @@ angular.module( 'helper_factories', ['ngResource'])
       "Special Promotions": 5
     },
 
+    promotionBarChartClass: {
+      "Fliers": [1, "#4CCC72"],
+      "Restaurants": [2, "#3598DC"],
+      "Billboards": [3, "#9C59B8"],
+      "Digital": [4, "#34495E"],
+      "Radio": [5, "#F0C547"],
+      "Print": [6, "#E74D3D"]
+    },
+
     promotionPieChartColorScheme: {
       "Yes": "#4CCC72",
       "No": "#E74D3D"

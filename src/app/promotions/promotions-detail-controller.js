@@ -41,9 +41,11 @@
           name: data.option__text,
           count: data.count,
           percentage: data.count === 0 ? 0 : Math.round((data.count/feedback_count)*100),
-          colour: Global.topConcernsColors(index)
+          colour: Global.promotionBarChartClass[data.option__text][1],
+          priority: Global.promotionBarChartClass[data.option__text][0]
         };
       });
+      question_analysis = _.sortBy(question_analysis, function (value) { return value.priority;  });
       return question_analysis;
     }
 

@@ -25,7 +25,6 @@ angular.module( 'livefeed.dashboard.opportunities', [
             priority: Global.opportunityPriority[data.option__text]
           };
         });
-        console.log($scope.opportunity_data);
         $scope.opportunity_data = _.sortBy($scope.opportunity_data, function (value) {
            return value.priority;
         });

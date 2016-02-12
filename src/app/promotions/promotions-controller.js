@@ -16,7 +16,6 @@
       });
 
       $scope.detail = function(promotion_id){
-        console.log(promotion_id);
         $state.go("promotions_detail", {promotionId: promotion_id});
       };
   })
