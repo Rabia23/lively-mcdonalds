@@ -85,7 +85,6 @@ angular.module( 'livefeed.dashboard.top_concern', [
 
 
               $timeout(function () {
-                console.log("hello");
                 jQuery('.same-height-parent').sameHeight({
                   elements: '.same-height',
                   flexible: true,
@@ -97,7 +96,6 @@ angular.module( 'livefeed.dashboard.top_concern', [
 
 
               $timeout(function () {
-                console.log("hello");
                 window.initEqualHeight();
               }, 1000);
 
