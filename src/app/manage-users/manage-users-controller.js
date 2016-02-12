@@ -18,8 +18,14 @@
 
 
     ManageApi.manage_users().$promise.then(function(data){
+      console.log("manage users");
+      console.log(data);
       $scope.show_loading = false;
+      $scope.show_users = false;
       if(data.success){
+        if(data.response.children.length === 0){
+            $scope.show_users = true;
+        }
         $scope.show_error_message = false;
         $scope.user_list = Enum.get_user_label(data.response.child_role) + "S";
         $scope.users = data.response.children;

@@ -1160,7 +1160,7 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "			<div class=\"col-lg-12\">\n" +
     "				<h1>{{user_list}}</h1>\n" +
     "				<div class=\"users-area\">\n" +
-    "					<div ng-hide=\"show_users\" class=\"message-block alert alert-info\">\n" +
+    "					<div ng-show=\"show_users\" class=\"message-block alert alert-info\">\n" +
     "						<i class=\"fa fa-info-circle\"></i>\n" +
     "						<h2>No User Added</h2>\n" +
     "					</div>\n" +
