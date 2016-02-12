@@ -827,6 +827,7 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "						<li>Since Yesterday Morning</li>\n" +
     "						<li>Since Yesterday Morning</li>\n" +
     "						<li>Since Beginning</li>\n" +
+    "						<li>Since Beginning</li>\n" +
     "						<li>Since Yesterday Morning</li>\n" +
     "						<li>Since Yesterday Morning</li>\n" +
     "					</ul>\n" +
@@ -880,7 +881,8 @@ angular.module("live/live.tpl.html", []).run(["$templateCache", function($templa
     "				<li><a href=\"#\"><span>QSc</span></a></li>\n" +
     "				<li><a href=\"#\"><span>Business Segment</span></a></li>\n" +
     "				<li><a href=\"#\"><span>Overall rating</span></a></li>\n" +
-    "				<li><a href=\"#\"><span>Top Concerns</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Strength</span></a></li>\n" +
+    "				<li><a href=\"#\"><span>Top Opportunities</span></a></li>\n" +
     "				<li><a href=\"#\"><span>Complaint analysis</span></a></li>\n" +
     "				<li><a href=\"#\"><span>Leaderboard</span></a></li>\n" +
     "			</ul>\n" +
@@ -1158,6 +1160,10 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "			<div class=\"col-lg-12\">\n" +
     "				<h1>{{user_list}}</h1>\n" +
     "				<div class=\"users-area\">\n" +
+    "					<div ng-hide=\"show_users\" class=\"message-block alert alert-info\">\n" +
+    "						<i class=\"fa fa-info-circle\"></i>\n" +
+    "						<h2>No User Added</h2>\n" +
+    "					</div>\n" +
     "					<flash-message  show-close=\"true\" on-dismiss=\"onAlertDismiss(flash)\"></flash-message>\n" +
     "					<ul class=\"users-list\" data-users = \"users\">\n" +
     "						<li ng-repeat = \"user in users track by $index\" ng-class=\"{'deactivate': user.is_active == false, 'inactive': user.is_active == false}\">\n" +

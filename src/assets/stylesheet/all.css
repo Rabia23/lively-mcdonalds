@@ -2033,6 +2033,23 @@ li.active,
 	letter-spacing: 0;
 }
 
+.message-block{
+	overflow: hidden;
+	text-align: center;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.message-block i{
+	font-size: 40px;
+	line-height: 40px;
+	margin: 0 0 10px;
+}
+
+.message-block h2{
+	margin: 0;
+	font-weight: 600;
+}
 @media screen and (min-width: 768px) {
 	.legends-holder{padding: 15px 20px 0;}
 	.legends-list {
@@ -2557,6 +2574,10 @@ li.active,
 	.modal-1000 .graph-holder{
 		max-width: 245px;
 		margin: 0 auto;
+	}
+	.message-block i{
+		font-size: 30px;
+		line-height: 30px;
 	}
 }
 
