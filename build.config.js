@@ -73,12 +73,6 @@ module.exports = {
       'vendor/jquery/dist/jquery.js',
       'vendor/morris.js/morris.js',
       'vendor/raphael/raphael.js',
-      // 'vendor/Flot/jquery.flot.js',
-      // 'vendor/Flot/jquery.flot.resize.js',
-      // 'vendor/flot.tooltip/js/jquery.flot.tooltip.js',
-      // 'vendor/Flot/jquery.flot.pie.js',
-      // 'vendor/Flot/jquery.flot.time.js',
-      // 'vendor/angular-flot/angular-flot.js',
       'vendor/color/one-color-all.js',
       'vendor/enscroll/js/mylibs/enscroll.js',
       'vendor/ngmap/build/scripts/ng-map.min.js',
@@ -92,8 +86,7 @@ module.exports = {
       'vendor/angular-animate/angular-animate.min.js',
       'vendor/metisMenu/dist/metisMenu.min.js',
       'vendor/hammerjs/hammer.min.js',
-      'vendor/ngmap/build/scripts/ng-map.min.js',
-      'vendor/footable/dist/footable.all.min.js'
+      'vendor/ngmap/build/scripts/ng-map.min.js'
     ],
     css: [
       'vendor/bootstrap/dist/css/bootstrap.min.css',
@@ -101,11 +94,7 @@ module.exports = {
       'vendor/bootstrap-daterangepicker/daterangepicker.css',
       'vendor/angular-chart.js/dist/angular-chart.css',
       'vendor/angular-flash-alert/dist/angular-flash.min.css',
-      'vendor/font-awesome/css/font-awesome.css',
-      'vendor/footable/css/footable.core.css'
-
-
-
+      'vendor/font-awesome/css/font-awesome.css'
     ],
     assets: [
 

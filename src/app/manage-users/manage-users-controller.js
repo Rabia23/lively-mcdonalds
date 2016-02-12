@@ -144,6 +144,23 @@
           child_role: function(){
             return $scope.child_role;
           },
+          branch_id: function(){
+            if($scope.branch_id){
+              return $scope.branch_id;
+            }
+            else{
+              return $scope.user.branch.id;
+            }
+          },
+          region_id: function(){
+            if($scope.region_id){
+              return $scope.region_id;
+            }
+            else{
+              return $scope.user.region.id;
+            }
+
+          },
           user: function(){
             user.parent_id = $scope.parent_id;
             user.role = $scope.child_role;

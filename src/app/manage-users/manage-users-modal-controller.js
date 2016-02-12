@@ -34,7 +34,7 @@
     Filters.Branches(null, region_id).$promise.then(function(data){
       if(data.success){
         $scope.show_error_message = false;
-        $scope.branches = data.reponse;
+        $scope.branches = data.response;
       }
       else{
         $scope.show_error_message = true;
@@ -77,15 +77,54 @@
     };
   })
 
-  .controller('ModalEditInstanceCtrl', function ($scope, $uibModalInstance, parent_id, child_role, user,ManageApi, Enum, Filters, Flash) {
+  .controller('ModalEditInstanceCtrl', function ($scope, $uibModalInstance, parent_id, child_role,branch_id, region_id, user,ManageApi, Enum, Filters, flashService) {
 
     $scope.user = angular.copy(user);
+
+
 
     $scope.edit_form = true;
 
     $scope.submitted = false;
 
     $scope.show_error_message = false;
+
+    console.log(branch_id);
+    console.log(region_id);
+    if(branch_id){
+      $scope.user.branch_id = branch_id;
+    }
+    if(region_id){
+      $scope.user.region_id = region_id;
+    }
+
+    console.log("user");
+
+    console.log($scope.user);
+
+    Filters.allRegions().$promise.then(function(data){
+      if(data.success){
+        $scope.regions = data.response;
+        $scope.show_error_message = false;
+      }
+      else{
+        $scope.show_error_message = true;
+        flashService.createFlash(data.message, "danger");
+      }
+
+    });
+
+    Filters.Branches(null, region_id).$promise.then(function(data){
+      if(data.success){
+        $scope.show_error_message = false;
+        $scope.branches = data.response;
+      }
+      else{
+        $scope.show_error_message = true;
+        flashService.createFlash(data.message, "danger");
+      }
+
+    });
 
 
     $scope.add = function(valid){

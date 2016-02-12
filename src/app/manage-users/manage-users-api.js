@@ -32,6 +32,12 @@ angular.module( 'livefeed.manage_users.api', [
     if(user.password){
       user_json.new_password = user.password;
     }
+    if(user.role == 4){
+      user_json.region_id = user.region_id;
+    }
+    if(user.role == 2 || user.role == 3){
+      user_json.branch_id = user.branch_id;
+    }
     return this.service.edit_user(user_json);
   };
   ManageApi.prototype.add_user = function(user){

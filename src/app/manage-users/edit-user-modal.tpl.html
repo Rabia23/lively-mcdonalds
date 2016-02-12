@@ -9,7 +9,7 @@
 			<h2 ng-if = "edit_form">Edit User</h2>
 		</div>
 		<div class="modal-body" ng-class = "{'loading': show_loading}">
-			<div class="row" ng-class = "{'edit-form': edit_form}">
+			<div class="row">
 				<div class="col-xs-12">
 					<flash-message duration="5000" show-close="true"></flash-message>
 					<div class="form-group">
@@ -81,7 +81,8 @@
 					</div>
 				</div>
 				<div class="col-xs-12">
-					<div class="form-group" ng-if = "user.role == 3 && !edit_form">
+					<div class="form-group" ng-if = "user.role == 3">
+						{{user.branch_id}}
 						<label class="col-sm-2 col-md-3 control-label" for="branch">Branch</label>
 						<div class="col-sm-10 col-md-9">
 								<select id="branch" class="barcode" custom-form  ng-options = "branch.id as branch.name for branch in branches track by branch.id"
@@ -93,7 +94,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group" ng-if = "user.role == 4 && !edit_form">
+					<div class="form-group" ng-if = "user.role == 4">
 						<label class="col-sm-2 col-md-3 control-label" for="code">Regions</label>
 						<div class="col-sm-10 col-md-9">
 							<select id="region" class="barcode" custom-form  ng-options = "region.id as region.name for region in regions track by region.id"

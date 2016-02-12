@@ -75,9 +75,9 @@ angular.module("common/sidebar.tpl.html", []).run(["$templateCache", function($t
     "				<li ng-class = \"{'active': (currentState == 'promotions' || currentState == 'promotions_detail' ) }\">\n" +
     "					<a ui-sref=\"promotions\"><i class=\"fa fa-bullhorn\"></i> <span class=\"nav-label\">Promotions</span></a>\n" +
     "				</li>\n" +
-    "				<!-- <li ng-class = \"{'active': currentState == 'users'}\">\n" +
+    "				<li ng-class = \"{'active': currentState == 'users'}\">\n" +
     "					<a ui-sref=\"users\"><i class=\"fa fa-user\"></i> <span class=\"nav-label\">Manage Users</span></a>\n" +
-    "				</li> -->\n" +
+    "				</li>\n" +
     "			</ul>\n" +
     "    	</div>\n" +
     "	</div>\n" +
@@ -1037,7 +1037,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "			<h2 ng-if = \"edit_form\">Edit User</h2>\n" +
     "		</div>\n" +
     "		<div class=\"modal-body\" ng-class = \"{'loading': show_loading}\">\n" +
-    "			<div class=\"row\" ng-class = \"{'edit-form': edit_form}\">\n" +
+    "			<div class=\"row\">\n" +
     "				<div class=\"col-xs-12\">\n" +
     "					<flash-message duration=\"5000\" show-close=\"true\"></flash-message>\n" +
     "					<div class=\"form-group\">\n" +
@@ -1109,7 +1109,8 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "					</div>\n" +
     "				</div>\n" +
     "				<div class=\"col-xs-12\">\n" +
-    "					<div class=\"form-group\" ng-if = \"user.role == 3 && !edit_form\">\n" +
+    "					<div class=\"form-group\" ng-if = \"user.role == 3\">\n" +
+    "						{{user.branch_id}}\n" +
     "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"branch\">Branch</label>\n" +
     "						<div class=\"col-sm-10 col-md-9\">\n" +
     "								<select id=\"branch\" class=\"barcode\" custom-form  ng-options = \"branch.id as branch.name for branch in branches track by branch.id\"\n" +
@@ -1121,7 +1122,7 @@ angular.module("manage-users/edit-user-modal.tpl.html", []).run(["$templateCache
     "							</div>\n" +
     "						</div>\n" +
     "					</div>\n" +
-    "					<div class=\"form-group\" ng-if = \"user.role == 4 && !edit_form\">\n" +
+    "					<div class=\"form-group\" ng-if = \"user.role == 4\">\n" +
     "						<label class=\"col-sm-2 col-md-3 control-label\" for=\"code\">Regions</label>\n" +
     "						<div class=\"col-sm-10 col-md-9\">\n" +
     "							<select id=\"region\" class=\"barcode\" custom-form  ng-options = \"region.id as region.name for region in regions track by region.id\"\n" +
@@ -1151,13 +1152,13 @@ angular.module("manage-users/manage-users.tpl.html", []).run(["$templateCache", 
     "  <ui-view name = \"sidebar\"></ui-view>\n" +
     "  <div id=\"page-wrapper\" class=\"gray-bg\">\n" +
     "     <ui-view name = \"header\"></ui-view>\n" +
-    "	<a class=\"add-user\" ng-click = \"open()\"><i class=\"fa fa-plus\"></i></a>\n" +
+    "	<a class=\"add-user\" ng-click = \"open()\" ng-hide = \"show_loading\"><i class=\"fa fa-plus\"></i></a>\n" +
     "	 <div class=\"wrapper wrapper-content animated fadeInRight\">\n" +
     "		<div class=\"row users-section\" ng-class = \"{'loading': show_loading}\">\n" +
     "			<div class=\"col-lg-12\">\n" +
     "				<h1>{{user_list}}</h1>\n" +
     "				<div class=\"users-area\">\n" +
-    "					<flash-message  show-close=\"true\" on-dismiss=\"onAlertDismiss(flash)\"></flash-message> \n" +
+    "					<flash-message  show-close=\"true\" on-dismiss=\"onAlertDismiss(flash)\"></flash-message>\n" +
     "					<ul class=\"users-list\" data-users = \"users\">\n" +
     "						<li ng-repeat = \"user in users track by $index\" ng-class=\"{'deactivate': user.is_active == false, 'inactive': user.is_active == false}\">\n" +
     "							<div class=\"ibox\">\n" +
