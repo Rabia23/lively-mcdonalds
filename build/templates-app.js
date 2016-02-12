@@ -75,9 +75,9 @@ angular.module("common/sidebar.tpl.html", []).run(["$templateCache", function($t
     "				<li ng-class = \"{'active': (currentState == 'promotions' || currentState == 'promotions_detail' ) }\">\n" +
     "					<a ui-sref=\"promotions\"><i class=\"fa fa-bullhorn\"></i> <span class=\"nav-label\">Promotions</span></a>\n" +
     "				</li>\n" +
-    "				<li ng-class = \"{'active': currentState == 'users'}\">\n" +
+    "				<!-- <li ng-class = \"{'active': currentState == 'users'}\">\n" +
     "					<a ui-sref=\"users\"><i class=\"fa fa-user\"></i> <span class=\"nav-label\">Manage Users</span></a>\n" +
-    "				</li>\n" +
+    "				</li> -->\n" +
     "			</ul>\n" +
     "    	</div>\n" +
     "	</div>\n" +
@@ -1281,12 +1281,12 @@ angular.module("promotions/promotions.tpl.html", []).run(["$templateCache", func
     "			<div class=\"col-lg-12\">\n" +
     "				<div class=\"row\">\n" +
     "					<div class=\"col-xs-12\">\n" +
-    "            <flash-message  show-close=\"true\" on-dismiss=\"onAlertDismiss(flash)\"></flash-message> \n" +
+    "            <flash-message  show-close=\"true\" on-dismiss=\"onAlertDismiss(flash)\"></flash-message>\n" +
     "						<ul class=\"btn-list\">\n" +
     "							<li ng-repeat = \"promotion in promotions\">\n" +
     "								<a class=\"btn ibox dim btn-large-dim btn-outline\" ng-click = \"detail(promotion.id)\">\n" +
     "									<span class=\"ico-holder\"><img src=\"assets/images/promo1.jpg\" alt=\"\"></span>\n" +
-    "									<span class=\"title\">{{promotion.title}} Promotion</span>\n" +
+    "									<span class=\"title\" promotion-same-height data-promotion = \"promotion\">{{promotion.title}} Promotion</span>\n" +
     "								</a>\n" +
     "							</li>\n" +
     "						</ul>\n" +

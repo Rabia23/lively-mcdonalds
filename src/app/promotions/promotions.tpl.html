@@ -7,12 +7,12 @@
 			<div class="col-lg-12">
 				<div class="row">
 					<div class="col-xs-12">
-            <flash-message  show-close="true" on-dismiss="onAlertDismiss(flash)"></flash-message> 
+            <flash-message  show-close="true" on-dismiss="onAlertDismiss(flash)"></flash-message>
 						<ul class="btn-list">
 							<li ng-repeat = "promotion in promotions">
 								<a class="btn ibox dim btn-large-dim btn-outline" ng-click = "detail(promotion.id)">
 									<span class="ico-holder"><img src="assets/images/promo1.jpg" alt=""></span>
-									<span class="title">{{promotion.title}} Promotion</span>
+									<span class="title" promotion-same-height data-promotion = "promotion">{{promotion.title}} Promotion</span>
 								</a>
 							</li>
 						</ul>

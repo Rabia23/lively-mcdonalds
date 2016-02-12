@@ -579,11 +579,10 @@ function initSameHeight() {
 	useMinHeight: true,
     biggestHeight: true
   });
-  jQuery('.btn-list li').sameHeight({
+  jQuery('.btn-list').sameHeight({
     elements: '.title',
     flexible: true,
-    multiLine: true,
-    biggestHeight: true
+    multiLine: true
   });
 }
 

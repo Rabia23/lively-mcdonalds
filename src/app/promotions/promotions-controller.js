@@ -19,6 +19,24 @@
         console.log(promotion_id);
         $state.go("promotions_detail", {promotionId: promotion_id});
       };
-  });
+  })
+
+  .directive('promotionSameHeight', function($timeout) {
+    return {
+      restrict: 'A',
+      scope: {
+        promotion: '='
+      },
+      link: function(scope, ele, attrs) {
+        scope.$watch('promotion', function(watchedData) {
+          if (watchedData !== undefined) {
+            window.initSameHeight();
+          }
+        });
+      }
+    };
+ });
+
+
 
 })();
